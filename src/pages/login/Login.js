@@ -4,6 +4,7 @@ import "./Login.css";
 import pickersLogo from "./../../assets/login/PickersLogo.svg";
 import canguro from "./../../assets/login/Canguro.svg";
 import {Link} from 'react-router-dom'
+import Button from '../../component/Button/Button'
 
 //import api from '../../config/api'
 
@@ -13,12 +14,15 @@ function Login() {
     e.preventDefault();
     setForm({ mail: e.target.mail.value, password: e.target.password.value });
     localStorage.setItem("token", 123123123);
-   // window.location.href = "./dashboard";
+    window.location.href = "./dashboard";
   };
 
   const handleClick= (e) => {
+
     e.target.classList.add('blue','shine');
+
   }
+
 
   return (
       <>
@@ -30,13 +34,12 @@ function Login() {
         <form className="form" onSubmit={handleSubmit}>
           <div className="form-group">
             <br />
-            <input type="text" className="input" name="mail" placeholder="Usuario" />
+            <input type="mail" className="input" name="mail" placeholder="Usuario" />
             <br />
             <br />
             <input type="password" className="input" name="password" placeholder="Contraseña"/>
             <br />
-            <button className="btn btn-outline-primary button_ mt-5" onClick={handleClick}>Iniciar Sesión</button>
-            {/* <Button name="Login" text="Iniciar Sesion"/> */}
+            <Button className="btn btn-outline-primary button_ mt-5" type="submit" name="button" onClick={handleClick} >Iniciar</Button>
             <br/>
             <br/>
             <Link className="forgotPass" to={"./pepe"}>¿Olvidó su contraseña?</Link>
@@ -47,6 +50,7 @@ function Login() {
           <div className="canguro"> 
               <img src={canguro}></img>
           </div>
+
     </>
   );
 }
