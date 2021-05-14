@@ -61,7 +61,7 @@ function Login() {
         <form className="form" onSubmit={handleSubmit}>
           <div className="form-group">
             <br />
-            <input type="mail" className="input" name="mail" placeholder="Usuario" onChange={handleChage} />
+            <input type="mail" className="input" name="Email" placeholder="Usuario" onChange={handleChage} />
             {errors!=""?<div className="errorsContainer">
                 <text className="errors">{errors.errors}</text>
             </div>:<div></div>}
@@ -74,7 +74,7 @@ function Login() {
             </div>
             <br/>
             <br/>
-            <Link className="forgotPass" to={"./pepe"}>¿Olvidó su contraseña?</Link>
+            <Link className="forgotPass" to={"./dashboard"}>¿Olvidó su contraseña?</Link>
           </div>
         </form>
       </div>
