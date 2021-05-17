@@ -6,9 +6,7 @@ import canguro from "./../../assets/login/Canguro.svg";
 import {Link} from 'react-router-dom'
 import Button from '../../component/Button/Button'
 import {useForm} from '../../hooks/useForm.js'
-
-//import api from '../../config/api'
-
+import loginService from '../../services/login/loginService'
 
 export const Login = () => {
 
@@ -22,8 +20,12 @@ export const Login = () => {
 
   const {mail,password,errorMail,errorPassWord,errorMsg} = formValues;
 
+const onSubmit = () =>{
+  const response = loginService.login(mail,password)
+  window.localStorage.setItem("token",response.access_token)
+  window.location.href= "./dashboard"
 
-
+}
 
   
 
@@ -79,7 +81,7 @@ export const Login = () => {
             className="btn btn-outline-primary button_ mt-5" 
             type="submit" 
             name="button" 
-          
+            onClick={onSubmit}
             
             >Iniciar</Button>
             </div>
