@@ -39,8 +39,8 @@
     }
     
     @keyframes animate-shine {
-      0% {opacity: .5; width: 0;}
-      50% {opacity: .5;}
+      0% {opacity: .1; width: 0;}
+      50% {opacity: .1;}
       95% {opacity: 1; width: 95%;}
     }
 

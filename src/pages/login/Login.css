@@ -3,11 +3,10 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  padding: 40px;
-  height: 86vh;
   background-color: white;
   width: 100%;
 }
+
 .form{
     margin-left: auto;
     margin-right: auto;
@@ -16,6 +15,7 @@
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 5%;
+    margin-top: 8vh;
     width: 208px;
     height: 63px;
 }
@@ -35,10 +35,7 @@
 
 }
 
-.canguro{
-position: absolute;
-  margin-top: 50vh;
-}
+
 
 .containerSecundario {
   text-align: center;
@@ -61,6 +58,9 @@ line-height: 20px;
   color: white;
   border: 4px solid #145a99;
   box-sizing: border-box;
+  font-family: 'Mulish';
+  font-weight: 800;
+  font-size: 18px;
   
 }
 
@@ -89,4 +89,23 @@ color: #FF1515;
 margin-left: auto;
 margin-right: auto;
   }
-  
+
+
+
+  .miResolucion{
+    height: 50vh;
+  }
+  .arriba{
+    height: 50vh;
+  }
+  .arriba2{
+    height: 40vh;
+  }
+ 
+ 
+  .contenedor-imagen{
+    padding-top: 17vh;
+  }
+  .correcion{
+    height: 52vh;
+  }
