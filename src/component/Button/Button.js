@@ -1,7 +1,7 @@
 import React from 'react'
 import './style.css'
-import "bootstrap/dist/css/bootstrap.min.css";
-const ButtonSend = ({className,type, children,onClick}) => {
+
+const ButtonSend = ({className,type, name,children,onClick}) => {
 
 
     return (
@@ -10,6 +10,7 @@ const ButtonSend = ({className,type, children,onClick}) => {
                  className={className}
                  type={type}
                  onClick={onClick}
+                 name={name}
                  >
                      {children}
                 </button>
