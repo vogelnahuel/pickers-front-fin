@@ -12,11 +12,11 @@ export const  DashBoard = () => {
     const [formValues,handleInputBlur,handleInputChange] = useForm({
       mail:'',
       errorMail:true,
-      errorMsg:'',
+      errorMsgMail:'',
     });
   
 
-    const {mail,errorMail,errorMsg} = formValues;
+    const {mail,errorMail,errorMsgMail} = formValues;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -55,7 +55,7 @@ export const  DashBoard = () => {
                />
                 {
                 errorMail ? <div className="errorsContainer">
-                 <p className="errors"> {errorMsg}  </p>
+                 <p className="errors"> {errorMsgMail}  </p>
                  </div>:<></>
                }
               <br />

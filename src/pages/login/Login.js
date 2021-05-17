@@ -7,6 +7,7 @@ import {Link} from 'react-router-dom'
 import Button from '../../component/Button/Button'
 import {useForm} from '../../hooks/useForm.js'
 
+
 //import api from '../../config/api'
 
 
@@ -16,14 +17,15 @@ export const Login = () => {
       mail:'',
       password:'',
       errorMail:false,
-      errorMsg:'',
+      errorMsgMail:'',
       errorPassWord:false,
+      errorMsgPassword:'',
     });
 
-  const {mail,password,errorMail,errorPassWord,errorMsg} = formValues;
+  const {mail,password,errorMail,errorPassWord,errorMsgMail,errorMsgPassword} = formValues;
 
-
-
+ 
+  
 
   
 
@@ -37,7 +39,7 @@ export const Login = () => {
           <img src={pickersLogo} alt="PickersLogo"></img>
         </div>
 
-        <form className="form" onSubmit={handleSubmit}>
+        <form className="form" onSubmit={handleSubmit} >
           <div className="form-group">
             <br />
             <input 
@@ -53,7 +55,7 @@ export const Login = () => {
             />
             {
             errorMail ? <div className="errorsContainer">
-                <p className="errors"> {errorMsg}  </p>
+                <p className="errors"> {errorMsgMail}  </p>
             </div>:<></>
             }
             <br />
@@ -70,18 +72,20 @@ export const Login = () => {
             />
             {
             errorPassWord ? <div className="errorsContainer">
-                <p className="errors"> {errorMsg}  </p>
+                <p className="errors"> {errorMsgPassword}  </p>
             </div>:<></>
             }
             <br />
             <div className="buttonContainer">
-            <Button 
-            className="btn btn-outline-primary button_ mt-5" 
-            type="submit" 
-            name="button" 
-          
-            
-            >Iniciar</Button>
+            <div className="buttonContainer">
+             
+                <Button 
+                className="btn btn-outline-primary button_ mt-5" 
+                type="submit" 
+                name="button" 
+                
+                > Iniciar sesión </Button>
+              </div>
             </div>
             <br/>
             <br/>

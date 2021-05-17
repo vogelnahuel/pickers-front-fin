@@ -13,13 +13,13 @@
       transition: color 0.8s linear 0.2s;
     }
     
-    
-    
-    /**** SHINE ****/
-    .shine  {
+
+
+    .shineBorder  {
+      position: absolute;
     }
     
-    .shine::after {
+    .shineBorder::after {
       content: '';
       opacity: 0;
       position: absolute;
@@ -27,20 +27,18 @@
       right: 0;
       bottom: 0;
       left: 0;
-      margin-right: auto;
-      margin-left: auto;
-      margin-top: 27.3vh;
-      max-height: 50px;
-      max-width: 233px;
-      
+      border-radius: 50px;
+      margin-top: 45px;
+      width: 233px;
+      height: 55px;
       background: #06D0FF;
-      border-radius: 104.118px;
-      animation: animate-shine 15s ease-out infinite;             
+      
+      animation: animate-shineBorder 18s ease-out infinite;             
     }
     
-    @keyframes animate-shine {
-      0% {opacity: .1; width: 0;}
-      50% {opacity: .1;}
+    @keyframes animate-shineBorder {
+      0% {opacity: .7; width: 0%;}
+      50% {opacity: .4s;}
       95% {opacity: 1; width: 95%;}
     }
 
