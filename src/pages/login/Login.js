@@ -6,14 +6,7 @@ import canguro from "./../../assets/login/Canguro.svg";
 import {Link} from 'react-router-dom'
 import Button from '../../component/Button/Button'
 import {useForm} from '../../hooks/useForm.js'
-<<<<<<< HEAD
 import loginService from '../../services/login/loginService'
-=======
-
-
-//import api from '../../config/api'
-
->>>>>>> be8b1fab2cb691a71e2dc7013c5c3e5c8c976142
 
 export const Login = () => {
 
@@ -26,21 +19,14 @@ export const Login = () => {
       errorMsgPassword:'',
     });
 
-<<<<<<< HEAD
-  const {mail,password,errorMail,errorPassWord,errorMsg} = formValues;
-
+  const {mail,password,errorMail,errorMsgMail,errorPassWord,errorMsgPassword} = formValues;
+/*
 const onSubmit = () =>{
   const response = loginService.login(mail,password)
   window.localStorage.setItem("token",response.access_token)
-  window.location.href= "./dashboard"
+  //window.location.href= "./dashboard"
 
-}
-=======
-  const {mail,password,errorMail,errorPassWord,errorMsgMail,errorMsgPassword} = formValues;
-
- 
-  
->>>>>>> be8b1fab2cb691a71e2dc7013c5c3e5c8c976142
+}*/
 
   
 
@@ -92,25 +78,15 @@ const onSubmit = () =>{
             }
             <br />
             <div className="buttonContainer">
-<<<<<<< HEAD
-            <Button 
-            className="btn btn-outline-primary button_ mt-5" 
-            type="submit" 
-            name="button" 
-            onClick={onSubmit}
-            
-            >Iniciar</Button>
-=======
             <div className="buttonContainer">
-             
-                <Button 
-                className="btn btn-outline-primary button_ mt-5" 
-                type="submit" 
-                name="button" 
-                
-                > Iniciar sesión </Button>
-              </div>
->>>>>>> be8b1fab2cb691a71e2dc7013c5c3e5c8c976142
+              <Button 
+              className="btn btn-outline-primary button_ mt-5" 
+             type="submit" 
+              name="button" 
+            
+            
+              >Iniciar sesión</Button>
+             </div>
             </div>
             
             <Link className="forgotPass" to={"./restore"}>¿Olvidó su contraseña?</Link>
