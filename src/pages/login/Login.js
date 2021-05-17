@@ -87,9 +87,8 @@ export const Login = () => {
                 > Iniciar sesión </Button>
               </div>
             </div>
-            <br/>
-            <br/>
-            <Link className="forgotPass" to={"./dashboard"}>¿Olvidó su contraseña?</Link>
+            
+            <Link className="forgotPass" to={"./restore"}>¿Olvidó su contraseña?</Link>
           </div>
         </form>
        
