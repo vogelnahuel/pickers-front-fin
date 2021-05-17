@@ -112,9 +112,8 @@ const onSubmit = () =>{
               </div>
 >>>>>>> be8b1fab2cb691a71e2dc7013c5c3e5c8c976142
             </div>
-            <br/>
-            <br/>
-            <Link className="forgotPass" to={"./dashboard"}>¿Olvidó su contraseña?</Link>
+            
+            <Link className="forgotPass" to={"./restore"}>¿Olvidó su contraseña?</Link>
           </div>
         </form>
        
