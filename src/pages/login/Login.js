@@ -6,7 +6,14 @@ import canguro from "./../../assets/login/Canguro.svg";
 import {Link} from 'react-router-dom'
 import Button from '../../component/Button/Button'
 import {useForm} from '../../hooks/useForm.js'
+<<<<<<< HEAD
 import loginService from '../../services/login/loginService'
+=======
+
+
+//import api from '../../config/api'
+
+>>>>>>> be8b1fab2cb691a71e2dc7013c5c3e5c8c976142
 
 export const Login = () => {
 
@@ -14,10 +21,12 @@ export const Login = () => {
       mail:'',
       password:'',
       errorMail:false,
-      errorMsg:'',
+      errorMsgMail:'',
       errorPassWord:false,
+      errorMsgPassword:'',
     });
 
+<<<<<<< HEAD
   const {mail,password,errorMail,errorPassWord,errorMsg} = formValues;
 
 const onSubmit = () =>{
@@ -26,6 +35,12 @@ const onSubmit = () =>{
   window.location.href= "./dashboard"
 
 }
+=======
+  const {mail,password,errorMail,errorPassWord,errorMsgMail,errorMsgPassword} = formValues;
+
+ 
+  
+>>>>>>> be8b1fab2cb691a71e2dc7013c5c3e5c8c976142
 
   
 
@@ -39,7 +54,7 @@ const onSubmit = () =>{
           <img src={pickersLogo} alt="PickersLogo"></img>
         </div>
 
-        <form className="form" onSubmit={handleSubmit}>
+        <form className="form" onSubmit={handleSubmit} >
           <div className="form-group">
             <br />
             <input 
@@ -55,7 +70,7 @@ const onSubmit = () =>{
             />
             {
             errorMail ? <div className="errorsContainer">
-                <p className="errors"> {errorMsg}  </p>
+                <p className="errors"> {errorMsgMail}  </p>
             </div>:<></>
             }
             <br />
@@ -72,11 +87,12 @@ const onSubmit = () =>{
             />
             {
             errorPassWord ? <div className="errorsContainer">
-                <p className="errors"> {errorMsg}  </p>
+                <p className="errors"> {errorMsgPassword}  </p>
             </div>:<></>
             }
             <br />
             <div className="buttonContainer">
+<<<<<<< HEAD
             <Button 
             className="btn btn-outline-primary button_ mt-5" 
             type="submit" 
@@ -84,6 +100,17 @@ const onSubmit = () =>{
             onClick={onSubmit}
             
             >Iniciar</Button>
+=======
+            <div className="buttonContainer">
+             
+                <Button 
+                className="btn btn-outline-primary button_ mt-5" 
+                type="submit" 
+                name="button" 
+                
+                > Iniciar sesión </Button>
+              </div>
+>>>>>>> be8b1fab2cb691a71e2dc7013c5c3e5c8c976142
             </div>
             <br/>
             <br/>

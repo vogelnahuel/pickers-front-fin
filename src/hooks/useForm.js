@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import Swal  from 'sweetalert2'
 
 
 export const useForm = ( initialState = {} ) => {
@@ -9,7 +9,7 @@ export const useForm = ( initialState = {} ) => {
    
 
     const handleInputChange = (e) => {
-       console.log(e.target)
+       
         setValues({
             ...values,
             [e.target.name]:[e.target.value]
@@ -21,30 +21,30 @@ export const useForm = ( initialState = {} ) => {
     const handleInputBlur = (e) => {
 
         var expresionEmail = /\w+@\w+\.+[a-z]/;
-           
+  
         
         if(e.target.value==='' && e.target.name==='mail'){
             values.errorMail=true;
-            values.errorMsg='Este campo es requerido';
-        }else if(!expresionEmail.test(e.target.value)){
+            values.errorMsgMail='Este campo es requerido';
+        }else if(!expresionEmail.test(e.target.value) && e.target.name==='mail'){
             values.errorMail=true;
-            values.errorMsg='Debe ingresar un email válido';
+            values.errorMsgMail='Debe ingresar un email válido';
         }
         else if(e.target.value!=='' && e.target.name==='mail'){
             values.errorMail=false;
         }
-
+        /*
         if(e.target.value==='' && e.target.name==='password'){
             values.errorPassWord=true;
-            values.errorMsg='Este campo es requerido';
+            values.errorMsgPassword='Este campo es requerido';
         }
         else if(e.target.value.length<7 && e.target.name==='password'){
-            values.errorMsg='la contraseña debe tener mas de 7 caracteres';
+            values.errorMsgPassword='la contraseña debe tener mas de 7 caracteres';
             values.errorPassWord=true;
         }
         else if(e.target.value!=='' && e.target.name==='password'){
             values.errorPassWord=false;           
-        }
+        }*/
       
 
         setValues({
@@ -57,12 +57,21 @@ export const useForm = ( initialState = {} ) => {
     const handleSubmit = (e) => {
 
         e.preventDefault();
-       
-        
-
-       
-
-    }
+    
+        if(values.mail==='' || values.errorMail===true || values.password==='' || values.errorPassWord===true){
+            Swal.fire({
+              position: 'center',
+              icon: 'error',
+              title: 'Hay errores en los campos',
+              showConfirmButton: false,
+              timer: 3000
+            })
+          }
+          else{
+          e.target.button.parentNode.classList.add('shineBorder')
+          } 
+    
+      }
 
     return [ values, handleInputBlur,handleInputChange,handleSubmit];
 

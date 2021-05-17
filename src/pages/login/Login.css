@@ -69,6 +69,7 @@ line-height: 20px;
     width: 352px;
     margin-right: auto;
     margin-left: auto;
+    
   }
 
 
@@ -85,10 +86,12 @@ color: #FF1515;
 
   .buttonContainer{
     width: 233px;
-  height: 50px;
-margin-left: auto;
-margin-right: auto;
+    height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: start;
   }
+  
 
 
 
