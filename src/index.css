@@ -6,3 +6,7 @@
     text-decoration:none;
    
 }
+@font-face {
+    font-family: 'Mulish';
+    src: url('./assets/login/Mulish-SemiBold.ttf');
+  }

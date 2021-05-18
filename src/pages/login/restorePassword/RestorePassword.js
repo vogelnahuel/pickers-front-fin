@@ -1,12 +1,15 @@
 import React from 'react'
-import pickersLogo from "../../../assets/login/PickersLogo.svg";
-import canguro from "../../../assets/login/Canguro.svg";
-import "../Login.css";
-import "./restorePassword.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 import  Button  from '../../../component/Button/Button'
 import  {useForm} from '../../../hooks/useForm'
 
+import "../Login.css";
+import "./restorePassword.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+import pickersLogo from "../../../assets/login/PickersLogo.svg";
+import canguro from "../../../assets/login/Canguro.svg";
+import Okey from "../../../assets/login/Okey.svg";
+import Informacion from "../../../assets/login/Informacion.svg";
 
 export const RestorePassword = () => {
 
@@ -30,6 +33,7 @@ export const RestorePassword = () => {
           <div className="logo">
             <img src={pickersLogo} alt="PickersLogo"></img>
           </div>
+         
         
         <div className="container centrar ">
           <form className="form " onSubmit={handleSubmit} >
@@ -44,6 +48,11 @@ export const RestorePassword = () => {
                onChange={handleInputChange}         
                value={password}
             />
+            {
+                errorPassWord ? <div className="errorsContainer">
+                 <p className="errors"> {errorMsgPassword}  </p>
+                 </div>:<></>   
+            }
           
               <input 
               type="password" 
@@ -52,20 +61,25 @@ export const RestorePassword = () => {
               placeholder="Repitir nueva contraseña" 
               onBlur={handleInputBlur}
               onChange={handleInputChange}
-              value={password2}
-              
+              value={password2} 
               />
+
+              {
+                errorPassWord2 ? <div className="errorsContainer">
+                 <p className="errors"> {errorMsgPassword2}  </p>
+                 </div>:<></>   
+                }
               <div>
                 <ul>
                     <p>La contraseña debe contar con:</p>
                     <li>
-                        8 o más caracteres
+                       <img  src={Okey} alt="ok"/>  8 o más caracteres
                     </li>
                     <li>
-                        Mayúsculas y minúsculas
+                         <img  src={Okey} alt="ok"/>  Mayúsculas y minúsculas
                     </li>
                     <li>
-                        Números y letras
+                        <img   src={Informacion} alt="ok"/>  Números y letras
                     </li>
                 </ul>
               </div>
