@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Swal  from 'sweetalert2'
-
+import loginService from '../services/login/loginService'
 
 export const useForm = ( initialState = {} ) => {
     
@@ -57,6 +57,7 @@ export const useForm = ( initialState = {} ) => {
     const handleSubmit = (e) => {
 
         e.preventDefault();
+        
     
         if(values.mail==='' || values.errorMail===true || values.password==='' || values.errorPassWord===true){
             Swal.fire({
@@ -68,7 +69,11 @@ export const useForm = ( initialState = {} ) => {
             })
           }
           else{
-          e.target.button.parentNode.classList.add('shineBorder')
+          e.target.button.parentNode.classList.add('shineBorder')  
+          const response = loginService.login(values.mail,values.password)
+          window.localStorage.setItem("token",response.access_token)
+          window.location.href= "./dashboard"
+        
           } 
     
       }

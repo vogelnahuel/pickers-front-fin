@@ -6,7 +6,7 @@ import canguro from "./../../assets/login/Canguro.svg";
 import {Link} from 'react-router-dom'
 import Button from '../../component/Button/Button'
 import {useForm} from '../../hooks/useForm.js'
-import loginService from '../../services/login/loginService'
+//import loginService from '../../services/login/loginService'
 
 export const Login = () => {
 
