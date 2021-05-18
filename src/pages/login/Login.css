@@ -1,15 +1,5 @@
 
 
-.containerPrincipal {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  width: 100%;
-  margin-top: 20px;
-}
-
 .form{
     margin-left: auto;
     margin-right: auto;
@@ -17,21 +7,22 @@
 .logo{
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 5%;
-    margin-top: 8vh;
+    margin-bottom: 3%;
+    margin-top: 17vh;
     width: 208px;
     height: 63px;
 }
 
 .input{
-    width: 28%;
+    width: 120%;
     border: rgba(20, 90, 153, 0);
     border-bottom: 1px solid #4D4D4D;
     outline: none;
+    margin-bottom: 15px;
 }
 
 .inputError{
-  width: 28%;
+  width: 120%;
   border: rgba(153, 24, 20, 0);
   color: #FF1515;
   border-bottom: 1px solid #e00404;
@@ -40,17 +31,13 @@
 
 
 
-.containerSecundario {
-  text-align: center;
-}
-
-.forgotPass{
-    color: #4D4D4D;
-font-style: normal;
-font-weight: 300;
-font-size: 16px;
-line-height: 20px;
-margin-bottom: 10px;
+  .forgotPass{
+  color: #4D4D4D;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 20px;
+  padding-bottom: 10px;
 }
 
 .button_ {
@@ -69,23 +56,6 @@ margin-bottom: 10px;
 }
 
 
-  .errorsContainer{
-    width: 352px;
-    margin-right: auto;
-    margin-left: auto;
-    
-  }
-
-
-  .errors{
-    font-family: 'Mulish', sans-serif;
-font-style: normal;
-font-weight: 300;
-font-size: 14px;
-line-height: 18px;
-position: relative;
-color: #FF1515;
-  }
 
 
   .buttonContainer{
@@ -94,28 +64,42 @@ color: #FF1515;
     margin-left: auto;
     margin-right: auto;
     text-align: start;
+    margin-bottom: 10px;
   }
   
 
-  .miResolucion{
-    height: 50vh;
-  }
-
-  .contenedor-imagen{
-    padding-top: 17vh;
-  }
-
   
-  .arriba{
-    height: 50vh;
+  .errorsContainer{
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    
   }
-  .arriba2{
-    height: 40vh;
+
+
+  .errors{
+    font-family: 'Mulish', sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 18px;
+  position: relative;
+  color: #FF1515;
   }
- 
- 
 
   .correcion{
-    height: 52vh;
+    display: inline;
+    margin-left: 200px;
   }
- 
+
+  .myresolution{
+    height: 50vh;
+  }
+
+  .flotar {
+    position: absolute;
+    margin-left: 8%;
+   }
+.tamanio{
+    width: 50%;
+}

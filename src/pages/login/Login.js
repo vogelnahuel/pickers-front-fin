@@ -31,18 +31,18 @@ const onSubmit = () =>{
   
 
   return (
-      <>
-    <div className="containerPrincipal">
-      <div className="containerSecundario">
+      <div>
+    
         
-
+        <br />
         <div className="logo">
           <img src={pickersLogo} alt="PickersLogo"></img>
         </div>
 
-        <form className="form" onSubmit={handleSubmit} >
+        <div className="container centrar">
+        <form className="form tamanio" onSubmit={handleSubmit} >
           <div className="form-group">
-            <br />
+       
             <input 
             type="mail"
              className="input" 
@@ -59,8 +59,8 @@ const onSubmit = () =>{
                 <p className="errors"> {errorMsgMail}  </p>
             </div>:<></>
             }
-            <br />
-            <br />
+          
+         
             <input 
             type="password" 
             className="input" 
@@ -76,34 +76,25 @@ const onSubmit = () =>{
                 <p className="errors"> {errorMsgPassword}  </p>
             </div>:<></>
             }
-            <br />
-            <div className="buttonContainer">
-            <div className="buttonContainer">
+          
+            
               <Button 
-              className="btn btn-outline-primary button_ mt-5" 
-             type="submit" 
-              name="button" 
-            
-            
-              >Iniciar sesión</Button>
-             </div>
-            </div>
-            
+              className="btn btn-outline-primary button_ mt-4 mb-4" 
+              type="submit" 
+              name="button" >Iniciar sesión</Button>
+              <br/>
             <Link className="forgotPass" to={"./restore"}>¿Olvidó su contraseña?</Link>
           </div>
         </form>
        
-        
-                <img className="img-fluid  miResolucion" src={canguro} alt="PickersFooter"></img>
+        </div> 
+          <img className="img-fluid  myresolution" src={canguro} alt="PickersFooter"></img>
     
        
-      </div>
-        
-       
-    </div>
+     
        
 
-    </>
+    </div>
   );
 }
 

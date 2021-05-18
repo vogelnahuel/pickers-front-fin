@@ -36,12 +36,12 @@ export const RestorePassword = () => {
          
         
         <div className="container centrar ">
-          <form className="form " onSubmit={handleSubmit} >
+          <form className="form tamanio" onSubmit={handleSubmit} >
             <div className="form-group">
               <br />
               <input 
               type="password"
-               className="input inputRestore" 
+               className="input" 
                name="password" 
                placeholder="Nueva contraseña" 
                onBlur={handleInputBlur} 
@@ -69,9 +69,9 @@ export const RestorePassword = () => {
                  <p className="errors"> {errorMsgPassword2}  </p>
                  </div>:<></>   
                 }
-              <div>
-                <ul>
-                    <p>La contraseña debe contar con:</p>
+            
+                <ul className="ul">
+                    La contraseña debe contar con
                     <li>
                        <img  src={Okey} alt="ok"/>  8 o más caracteres
                     </li>
@@ -82,17 +82,15 @@ export const RestorePassword = () => {
                         <img   src={Informacion} alt="ok"/>  Números y letras
                     </li>
                 </ul>
-              </div>
-            
-              <div className="buttonContainer flotar">
-              <div className="buttonContainer">
+              
+           
+             
                 <Button 
-                className="btn btn-outline-primary button_ mt-5 " 
+                className="btn btn-outline-primary button_ mt-5 flotar centerMybuttonPass" 
                 type="submit" 
                 name="button" 
                >Guardar</Button>
-               </div>
-              </div>
+            
               
              
             </div>
@@ -101,7 +99,7 @@ export const RestorePassword = () => {
           </div>
               
       
-          <img className="img-fluid  miResolucion" src={canguro} alt="PickersFooter"></img>
+          <img className="img-fluid myresolution" src={canguro} alt="PickersFooter"></img>
      
           
          

@@ -34,16 +34,17 @@ export const  DashBoard = () => {
 
     return(
       <>
-      <div className="containerPrincipal">
-        <div className="containerSecundario">
-          <div className="arriba2">
+     
           <div className="logo">
             <img src={pickersLogo} alt="PickersLogo"></img>
           </div>
-          <form className="form" onSubmit={handleSubmit}>
+
+
+          <div className="container centrar">
+          <form className="form tamanio" onSubmit={handleSubmit}>
             <div className="form-group">
-              <br />
-              
+            
+            <br />
               <input 
                type="mail" 
                className="input" 
@@ -59,29 +60,25 @@ export const  DashBoard = () => {
                  <p className="errors"> {errorMsgMail}  </p>
                  </div>:<></>
                }
-              <br />
-              <div className="buttonContainer">
               
+            
               <Button 
               className="btn btn-outline-primary button_ mt-5" 
               type="submit" 
               name="button" 
                >Enviar correo
                </Button>
-              </div>
+              
              
             
             </div>
           </form>
-          </div>
-         
-           <img className="img-fluid correcion" src={canguro} alt="pickersFooter"></img>
-          
-         
         </div>
-          
+      
          
-      </div>
+           <img className="img-fluid myresolution" src={canguro} alt="pickersFooter"></img>
+          
+    
          
   
       </>
