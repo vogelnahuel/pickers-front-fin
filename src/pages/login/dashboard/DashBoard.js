@@ -3,6 +3,7 @@ import Button from '../../../component/Button/Button'
 import canguro from "../../../assets/login/Canguro.svg";
 import pickersLogo from "../../../assets/login/PickersLogo.svg";
 import {useForm} from '../../../hooks/useForm.js'
+import './Dashboard.css'
 import Swal  from 'sweetalert2'
 
 export const  DashBoard = () => {

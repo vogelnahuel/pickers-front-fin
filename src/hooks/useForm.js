@@ -72,7 +72,7 @@ export const useForm = ( initialState = {} ) => {
           e.target.button.parentNode.classList.add('shineBorder')  
           const response = loginService.login(values.mail,values.password)
           window.localStorage.setItem("token",response.access_token)
-          window.location.href= "./dashboard"
+          //window.location.href= "./dashboard"
         
           } 
     

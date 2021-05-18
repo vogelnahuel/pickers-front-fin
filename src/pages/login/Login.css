@@ -1,3 +1,7 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@600&display=swap');
+
+
 .containerPrincipal {
   position: absolute;
   left: 50%;
@@ -75,7 +79,7 @@ margin-bottom: 10px;
 
 
   .errors{
-    font-family: Mulish;
+    font-family: 'Mulish', sans-serif;
 font-style: normal;
 font-weight: 300;
 font-size: 14px;
@@ -94,11 +98,15 @@ color: #FF1515;
   }
   
 
-
-
   .miResolucion{
     height: 50vh;
   }
+
+  .contenedor-imagen{
+    padding-top: 17vh;
+  }
+
+  
   .arriba{
     height: 50vh;
   }
@@ -107,9 +115,8 @@ color: #FF1515;
   }
  
  
-  .contenedor-imagen{
-    padding-top: 17vh;
-  }
+
   .correcion{
     height: 52vh;
   }
+ 

@@ -37,7 +37,8 @@
     }
     
     @keyframes animate-shineBorder {
-      0% {opacity: .7; width: 0%;}
+      0% {opacity: .0; width: 0%;}
+      15% {opacity: .5; width: 15%;}
       50% {opacity: .4s;}
       95% {opacity: 1; width: 95%;}
     }
