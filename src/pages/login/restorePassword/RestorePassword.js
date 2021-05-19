@@ -36,7 +36,7 @@ export const RestorePassword = () => {
          
         
         <div className="container centrar ">
-          <form className="form tamanio" onSubmit={handleSubmit} >
+          <form className="form size" onSubmit={handleSubmit} >
             <div className="form-group">
               <br />
               <input 
@@ -84,12 +84,13 @@ export const RestorePassword = () => {
                 </ul>
               
            
-             
-                <Button 
-                className="btn btn-outline-primary button_ mt-5 flotar centerMybuttonPass" 
-                type="submit" 
-                name="button" 
-               >Guardar</Button>
+                
+                    <Button 
+                    className="btn btn-outline-primary button_ mt-5 flotar centerMybuttonPass" 
+                    type="submit" 
+                    name="button" 
+                  >Guardar</Button> 
+          
             
               
              

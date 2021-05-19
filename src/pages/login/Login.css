@@ -14,7 +14,7 @@
 }
 
 .input{
-    width: 120%;
+    width: 115%;
     border: rgba(20, 90, 153, 0);
     border-bottom: 1px solid #4D4D4D;
     outline: none;
@@ -22,7 +22,7 @@
 }
 
 .inputError{
-  width: 120%;
+  width: 115%;
   border: rgba(153, 24, 20, 0);
   color: #FF1515;
   border-bottom: 1px solid #e00404;
@@ -92,14 +92,111 @@
     margin-left: 200px;
   }
 
-  .myresolution{
-    height: 50vh;
-  }
+ 
 
-  .flotar {
+.flotar {
     position: absolute;
     margin-left: 8%;
    }
-.tamanio{
+.size{
     width: 50%;
+    height: 146px;
 }
+.myresolution{
+  position: absolute;
+  z-index: -1;
+}
+
+.contenedor{
+  width: 233px;
+  height: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+/***************Hacerlo responsive para diferentes monitores*****************/
+
+@media (max-width: 900px) { 
+  
+  .myresolution{
+    position: absolute;
+    z-index: -1;
+    height: 50vh;
+  }
+
+ }
+
+@media (min-height: 720px) { 
+  
+  .myresolution{
+    position: absolute;
+    z-index: -1;
+    height: 48vh;
+  }
+  .size{
+    width: 50%;
+    height: 153px;
+  }
+
+ }
+ @media (min-height: 768px) { 
+  
+  .myresolution{
+    position: absolute;
+    z-index: -1;
+    height: 50vh;
+  }
+  .size{
+    width: 50%;
+    height: 148px;
+}
+
+ }
+ @media (min-height: 900px) { 
+  
+  .myresolution{
+    position: absolute;
+    z-index: -1;
+    height: 50vh;
+  }
+  .size{
+    width: 50%;
+    height: 191px;
+  }
+
+ }
+
+ 
+
+ @media (min-width: 1680px) { 
+  
+  .myresolution{
+    position: absolute;
+    z-index: -1;
+    height: 54vh;
+  }
+  .size{
+    width: 50%;
+    height: 191px;
+  }
+
+ }
+
+ @media (min-width: 1920px) { 
+  
+  .myresolution{
+    position: absolute;
+    z-index: -1;
+    height: 56vh;
+  }
+  .size{
+    width: 50%;
+    height: 202px;
+  }
+
+ }
+
+ 
+

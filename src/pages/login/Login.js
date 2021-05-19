@@ -31,16 +31,16 @@ const onSubmit = () =>{
   
 
   return (
-      <div>
+      < >
     
         
-        <br />
+       
         <div className="logo">
           <img src={pickersLogo} alt="PickersLogo"></img>
         </div>
 
         <div className="container centrar">
-        <form className="form tamanio" onSubmit={handleSubmit} >
+        <form className="form size" onSubmit={handleSubmit} >
           <div className="form-group">
        
             <input 
@@ -77,16 +77,21 @@ const onSubmit = () =>{
             </div>:<></>
             }
           
-            
+          <div className="contenedor">
+            <div className="contenedor">
               <Button 
               className="btn btn-outline-primary button_ mt-4 mb-4" 
               type="submit" 
               name="button" >Iniciar sesión</Button>
-              <br/>
+            </div>
+          </div>
+            <br/>
+            <br/>
             <Link className="forgotPass" to={"./restore"}>¿Olvidó su contraseña?</Link>
           </div>
         </form>
        
+      
         </div> 
           <img className="img-fluid  myresolution" src={canguro} alt="PickersFooter"></img>
     
@@ -94,7 +99,7 @@ const onSubmit = () =>{
      
        
 
-    </div>
+    </>
   );
 }
 

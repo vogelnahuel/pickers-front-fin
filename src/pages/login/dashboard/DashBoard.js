@@ -41,7 +41,7 @@ export const  DashBoard = () => {
 
 
           <div className="container centrar">
-          <form className="form tamanio" onSubmit={handleSubmit}>
+          <form className="form size" onSubmit={handleSubmit}>
             <div className="form-group">
             
             <br />
