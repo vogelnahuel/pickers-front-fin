@@ -1,0 +1,73 @@
+.navAdmin{
+    border-right: 1px solid #145A99;
+    border-top: 1px solid #145A99;
+    border-radius: 0px 20px 0px 0px;
+    padding-top: 2%;
+    padding-left: 4%;
+    padding-right: 1%;
+    height: 80vh;
+   background-color: #FFFFFF;
+}
+.tamxx{
+    height: 70vh;
+}
+.navAdmin ul{
+    padding-right: 20px;
+}
+
+
+.navAdmin ul li{
+        margin-bottom: 10px;
+}
+.navAdmin ul li a{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 200%;
+    color: #2D2D2D;
+    
+}
+.navAdmin ul h3{
+        font-family: 'Mulish';
+        font-style: normal;
+        font-weight: bold;
+        font-size: 20px;
+        line-height: 20px;
+        color: #2D2D2D;
+}
+
+.scroll{
+    overflow-y: scroll;
+    padding-right: 20px;
+    
+}
+.scroll::-webkit-scrollbar {
+    width: 8px;     /* Tamaño del scroll en horizontal */
+    height: 8px;
+}
+.scroll::-webkit-scrollbar-thumb {
+    background: #BDBDBD;
+    width: 7px;     
+    height: 7px;
+   
+}
+
+/* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+.scroll::-webkit-scrollbar-thumb:hover {
+    background: #BDBDBD;
+    width: 7px;     
+    height: 7px;
+}
+
+/* Cambiamos el fondo cuando esté en active */
+.scroll::-webkit-scrollbar-thumb:active {
+    background-color: #BDBDBD;
+    width: 7px;     
+    height: 7px;
+}
+
+.scroll::-webkit-scrollbar-track {
+    background: #F1F1F1;
+    border-radius: 4px;
+}

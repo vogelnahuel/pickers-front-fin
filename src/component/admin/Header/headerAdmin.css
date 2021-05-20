@@ -1,0 +1,36 @@
+.headerAdmin{
+    background-color: #0098FF;
+    color: white;
+    margin-bottom: 8vh;
+}
+.container{
+    display: flex;
+    width: 90%;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+}
+.centerHeight{
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+}
+.font-Admin{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 3rem;
+    text-align: right;
+}
+.leftEnd{
+    margin-left: 70%;
+}
+.argentina{
+    margin-left: 1%;
+}
+.user{
+    margin-left: 1%;
+}
+.pickersLogo{
+    margin-left: 1%;
+}
