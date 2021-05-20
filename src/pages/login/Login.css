@@ -1,11 +1,4 @@
-.containerPrincipal {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  width: 100%;
-}
+
 
 .form{
     margin-left: auto;
@@ -14,21 +7,22 @@
 .logo{
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 5%;
-    margin-top: 8vh;
+    margin-bottom: 3%;
+    margin-top: 17vh;
     width: 208px;
     height: 63px;
 }
 
 .input{
-    width: 28%;
+    width: 115%;
     border: rgba(20, 90, 153, 0);
     border-bottom: 1px solid #4D4D4D;
     outline: none;
+    margin-bottom: 15px;
 }
 
 .inputError{
-  width: 28%;
+  width: 115%;
   border: rgba(153, 24, 20, 0);
   color: #FF1515;
   border-bottom: 1px solid #e00404;
@@ -37,17 +31,13 @@
 
 
 
-.containerSecundario {
-  text-align: center;
-}
-
-.forgotPass{
-    color: #4D4D4D;
-font-style: normal;
-font-weight: 300;
-font-size: 16px;
-line-height: 20px;
-margin-bottom: 10px;
+  .forgotPass{
+  color: #4D4D4D;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 20px;
+  padding-bottom: 10px;
 }
 
 .button_ {
@@ -66,23 +56,6 @@ margin-bottom: 10px;
 }
 
 
-  .errorsContainer{
-    width: 352px;
-    margin-right: auto;
-    margin-left: auto;
-    
-  }
-
-
-  .errors{
-    font-family: Mulish;
-font-style: normal;
-font-weight: 300;
-font-size: 14px;
-line-height: 18px;
-position: relative;
-color: #FF1515;
-  }
 
 
   .buttonContainer{
@@ -91,25 +64,139 @@ color: #FF1515;
     margin-left: auto;
     margin-right: auto;
     text-align: start;
+    margin-bottom: 10px;
   }
   
 
+  
+  .errorsContainer{
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    
+  }
 
 
-  .miResolucion{
-    height: 50vh;
+  .errors{
+    font-family: 'Mulish', sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 18px;
+  position: relative;
+  color: #FF1515;
   }
-  .arriba{
-    height: 50vh;
-  }
-  .arriba2{
-    height: 40vh;
-  }
- 
- 
-  .contenedor-imagen{
-    padding-top: 17vh;
-  }
+
   .correcion{
-    height: 52vh;
+    display: inline;
+    margin-left: 200px;
   }
+
+ 
+
+.flotar {
+    position: absolute;
+    margin-left: 8%;
+   }
+.size{
+    width: 50%;
+    height: 146px;
+}
+.myresolution{
+  position: absolute;
+  z-index: -1;
+}
+
+.contenedor{
+  width: 233px;
+  height: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+/***************Hacerlo responsive para diferentes monitores*****************/
+
+@media (max-width: 900px) { 
+  
+  .myresolution{
+    position: absolute;
+    z-index: -1;
+    height: 50vh;
+  }
+
+ }
+
+@media (min-height: 720px) { 
+  
+  .myresolution{
+    position: absolute;
+    z-index: -1;
+    height: 48vh;
+  }
+  .size{
+    width: 50%;
+    height: 153px;
+  }
+
+ }
+ @media (min-height: 768px) { 
+  
+  .myresolution{
+    position: absolute;
+    z-index: -1;
+    height: 50vh;
+  }
+  .size{
+    width: 50%;
+    height: 148px;
+}
+
+ }
+ @media (min-height: 900px) { 
+  
+  .myresolution{
+    position: absolute;
+    z-index: -1;
+    height: 50vh;
+  }
+  .size{
+    width: 50%;
+    height: 191px;
+  }
+
+ }
+
+ 
+
+ @media (min-width: 1680px) { 
+  
+  .myresolution{
+    position: absolute;
+    z-index: -1;
+    height: 54vh;
+  }
+  .size{
+    width: 50%;
+    height: 191px;
+  }
+
+ }
+
+ @media (min-width: 1920px) { 
+  
+  .myresolution{
+    position: absolute;
+    z-index: -1;
+    height: 56vh;
+  }
+  .size{
+    width: 50%;
+    height: 202px;
+  }
+
+ }
+
+ 
+

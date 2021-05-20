@@ -28,7 +28,7 @@
       bottom: 0;
       left: 0;
       border-radius: 50px;
-      margin-top: 45px;
+      margin-top: 22px;
       width: 233px;
       height: 55px;
       background: #06D0FF;
@@ -37,7 +37,8 @@
     }
     
     @keyframes animate-shineBorder {
-      0% {opacity: .7; width: 0%;}
+      0% {opacity: .0; width: 0%;}
+      20% {opacity: .7; width: 20%;}
       50% {opacity: .4s;}
       95% {opacity: 1; width: 95%;}
     }
