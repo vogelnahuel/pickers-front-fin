@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './nav.css'
 
 
@@ -6,32 +7,33 @@ export const Nav = () => {
     return (
       
             <nav className="navAdmin "> 
-                         <div className="tamxx scroll">
+                         <div className="tamScroll scroll">
                               <ul>
                               <h3>Reportes</h3>
+                              
                               <li>
-                                   <a href="">Dashboard</a>
+                                 { window.location.pathname  ==="/dashboard"  ? <div className="circle"></div> : null  }  <Link to="">Dashboard</Link>
                               </li>
                               <li>
-                                   <a href="">Usuarios</a>
+                                   { window.location.pathname  ==="/userAdmin"  ? <div className="circle"></div> : null }   <Link to="">Usuarios</Link>
                               </li>
                               <li>
-                                   <a href="">Transacciones</a>
+                                   { window.location.pathname  ==="/userAdmin"  ?<div className="circle"></div> : null  }   <Link to="">Transacciones</Link>
                               </li>
                               </ul>
                               <ul>
                               <h3>Operaciones</h3>
                               <li>
-                                   <a href="">Settings</a>
+                                   { window.location.pathname  ==="/userAdmin"  ?<div className="circle"></div> : null  }<Link to="">Settings</Link>
                               </li>
                               <li>
-                                   <a href="">Planificacion</a>
+                                   { window.location.pathname  ==="/userAdmin"  ?<div className="circle"></div> : null  }  <Link to="">Planificacion</Link>
                               </li>
                               </ul>
                               <ul>
                               <h3>Administracion</h3>
                               <li>
-                                   <a href="">Preliquidacion</a>
+                                  { window.location.pathname  ==="/userAdmin"  ? <div className="circle"></div> : null  } <Link to="">Preliquidacion</Link>
                               </li>
                               </ul>
                             

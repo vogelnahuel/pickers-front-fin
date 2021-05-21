@@ -2,22 +2,24 @@
     border-right: 1px solid #145A99;
     border-top: 1px solid #145A99;
     border-radius: 0px 20px 0px 0px;
-    padding-top: 2%;
-    padding-left: 4%;
-    padding-right: 1%;
-    height: 80vh;
+    padding-top: 2vh;
+    padding-left: 4vh;
+    padding-right: 2vh;
+    height: 82vh;
    background-color: #FFFFFF;
 }
-.tamxx{
-    height: 70vh;
+.tamScroll{
+    height: 79vh;
 }
 .navAdmin ul{
-    padding-right: 20px;
+    padding-right: 2vh;
 }
 
 
 .navAdmin ul li{
-        margin-bottom: 10px;
+        margin-bottom: 1vh;
+        margin-left: 1rem;
+   
 }
 .navAdmin ul li a{
     font-family: 'Mulish';
@@ -70,4 +72,16 @@
 .scroll::-webkit-scrollbar-track {
     background: #F1F1F1;
     border-radius: 4px;
+}
+
+.circle{
+    height: 7px;
+    width: 7px;
+    border-radius: 3px;
+    position: absolute;
+    left: 2.5vw;
+    margin-top: 1.5vh;
+    position: absolute;
+    background-color: #145A99;
+    display: inline-block;
 }

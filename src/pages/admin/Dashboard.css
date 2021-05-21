@@ -4,3 +4,87 @@
 .fondo{
     background-color: #FAFAFA;
 }
+.title_Dashboard_Admin{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 45px;
+    color: #0098FF;
+    text-align: center;
+}
+.subtitle_Dashboard_Admin{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 21px;
+    line-height: 26px;
+    color: #101820;
+    text-align: center;
+}
+.card-admin{
+    margin-top: 5vh;
+    display: flex;
+    flex-wrap: wrap;
+}
+.card-body-admin{
+    width: 38vw;
+    height: 25vh;
+    margin-left: 1.5vw;
+    margin-bottom: 2vh;
+    border-radius: 10px;
+    display: flex;
+}
+.Admin-container{
+    width: 100%;
+}
+.color-admin-card{
+    background-color: #63E8A8;
+   
+}
+.color-admin-card2{
+    background-color: #63E8A8;
+}
+.color2-admin-card{
+    background-color: #BCB6FF;
+    
+}
+.color3-admin-card{
+    background-color: #FF8F76;
+}
+.admin-black{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 18px;
+    color: #2D2D2D;
+}
+.number-admin{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 80px;
+    line-height: 100px;
+    text-align: right;
+    color: #2D2D2D;
+}
+.part-1{
+    margin-left: 5%;
+    width: 30%;
+    margin-top:12%;
+}
+.part-2{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 40%;
+    width: 10%;
+}
+
+.paragraph-admin-card{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 8px;
+}
