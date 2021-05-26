@@ -12,28 +12,28 @@ export const Nav = () => {
                               <h3>Reportes</h3>
                               
                               <li>
-                                 { window.location.pathname  ==="/dashboard"  ? <div className="circle"></div> : null  }  <Link to="">Dashboard</Link>
+                                 { window.location.pathname  ==="/dashboard"  ? <div className="circle"></div> : null  }  <Link to="#">Dashboard</Link>
                               </li>
                               <li>
-                                   { window.location.pathname  ==="/userAdmin"  ? <div className="circle"></div> : null }   <Link to="">Usuarios</Link>
+                                   { window.location.pathname  ==="/pendingUserAdmin"  ? <div className="circle"></div> : null }   <Link to="#">Usuarios</Link>
                               </li>
                               <li>
-                                   { window.location.pathname  ==="/userAdmin"  ?<div className="circle"></div> : null  }   <Link to="">Transacciones</Link>
+                                   { window.location.pathname  ==="/userAdmin"  ?<div className="circle"></div> : null  }   <Link to="#">Transacciones</Link>
                               </li>
                               </ul>
                               <ul>
                               <h3>Operaciones</h3>
                               <li>
-                                   { window.location.pathname  ==="/userAdmin"  ?<div className="circle"></div> : null  }<Link to="">Settings</Link>
+                                   { window.location.pathname  ==="/userAdmin"  ?<div className="circle"></div> : null  }<Link to="#">Settings</Link>
                               </li>
                               <li>
-                                   { window.location.pathname  ==="/userAdmin"  ?<div className="circle"></div> : null  }  <Link to="">Planificacion</Link>
+                                   { window.location.pathname  ==="/userAdmin"  ?<div className="circle"></div> : null  }  <Link to="#">Planificacion</Link>
                               </li>
                               </ul>
                               <ul>
                               <h3>Administracion</h3>
                               <li>
-                                  { window.location.pathname  ==="/userAdmin"  ? <div className="circle"></div> : null  } <Link to="">Preliquidacion</Link>
+                                  { window.location.pathname  ==="/userAdmin"  ? <div className="circle"></div> : null  } <Link to="#">Preliquidacion</Link>
                               </li>
                               </ul>
                             

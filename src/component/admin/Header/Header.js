@@ -7,7 +7,7 @@ import  user from '../../../assets/admin/user.svg'
 export const Header = () => {
     return (
         <header className="headerAdmin">
-            <div className="container">
+            <div className="containerHeader">
 
                     <img className="" src={canguroLogo}  alt="Logo "/>
                     <img className="pickersLogo" src={pickers}  alt="Logo "/>

@@ -2,12 +2,13 @@
     background-color: #0098FF;
     color: white;
     height: 10vh;
-    margin-bottom: 8vh;
+    
 }
-.container{
+.containerHeader{
     display: flex;
     width: 90%;
     padding-top: 2vh;
+    margin-left: 3vw;
 }
 .centerHeight{
     margin-top: auto;
@@ -23,7 +24,7 @@
     text-align: right;
 }
 .leftEnd{
-    margin-left: 60vw;
+    margin-left: 75%;
 }
 .argentina{
     margin-left: 1vw;

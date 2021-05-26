@@ -1,0 +1,44 @@
+.pending-container{
+    width: 90%;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    
+}
+.subTitle-pending{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 45px;
+    color: #101820;
+    margin-top: 5vh;
+    width: 25vw;
+}
+.display-inline-block{
+    display: inline-block;
+}
+.export{
+    box-sizing: border-box;
+    border-radius: 50px;
+    border: 2.5px solid #0098FF;
+    width: 150px;
+    height: 50px;
+    background-color: white;
+    text-align: center;
+    padding-top: 10px;
+    margin-top: 5vh;
+    margin-left: 40vw;
+}
+.p-export{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 23px;
+    text-align: center;
+    color: #2D2D2D;
+    padding-left: 0.8rem;
+}
+.or-pending{
+    margin-left: 0.5rem;
+}
