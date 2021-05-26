@@ -1,0 +1,87 @@
+.navAdmin{
+    border-right: 1px solid #145A99;
+    border-top: 1px solid #145A99;
+    border-radius: 0px 20px 0px 0px;
+    padding-top: 2vh;
+    padding-left: 4vh;
+    padding-right: 2vh;
+    height: 82vh;
+   background-color: #FFFFFF;
+}
+.tamScroll{
+    height: 79vh;
+}
+.navAdmin ul{
+    padding-right: 2vh;
+}
+
+
+.navAdmin ul li{
+        margin-bottom: 1vh;
+        margin-left: 1rem;
+   
+}
+.navAdmin ul li a{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 200%;
+    color: #2D2D2D;
+    
+}
+.navAdmin ul h3{
+        font-family: 'Mulish';
+        font-style: normal;
+        font-weight: bold;
+        font-size: 20px;
+        line-height: 20px;
+        color: #2D2D2D;
+}
+
+.scroll{
+    overflow-y: scroll;
+    padding-right: 20px;
+    
+}
+.scroll::-webkit-scrollbar {
+    width: 8px;     /* Tamaño del scroll en horizontal */
+    height: 8px;
+}
+.scroll::-webkit-scrollbar-thumb {
+    background: #BDBDBD;
+    width: 7px;     
+    height: 7px;
+   
+}
+
+/* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+.scroll::-webkit-scrollbar-thumb:hover {
+    background: #BDBDBD;
+    width: 7px;     
+    height: 7px;
+}
+
+/* Cambiamos el fondo cuando esté en active */
+.scroll::-webkit-scrollbar-thumb:active {
+    background-color: #BDBDBD;
+    width: 7px;     
+    height: 7px;
+}
+
+.scroll::-webkit-scrollbar-track {
+    background: #F1F1F1;
+    border-radius: 4px;
+}
+
+.circle{
+    height: 7px;
+    width: 7px;
+    border-radius: 3px;
+    position: absolute;
+    left: 2.5vw;
+    margin-top: 1.5vh;
+    position: absolute;
+    background-color: #145A99;
+    display: inline-block;
+}

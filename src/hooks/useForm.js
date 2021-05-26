@@ -69,10 +69,16 @@ export const useForm = ( initialState = {} ) => {
             })
           }
           else{
-          e.target.button.parentNode.classList.add('shineBorder')  
-          const response = loginService.login(values.mail,values.password)
-          window.localStorage.setItem("token",response.access_token)
-          //window.location.href= "./dashboard"
+            if( window.location.pathname==="/")
+            {
+              e.target.button.parentNode.classList.add('shineBorder') ; 
+            }
+          const response = loginService.login(values.mail,values.password);
+          window.localStorage.setItem("token",response.access_token);
+          if (JSON.stringify(response)!=='{}' && window.location.pathname==="/") {
+            window.location.href= "./dashboard"
+            }
+        
         
           } 
     

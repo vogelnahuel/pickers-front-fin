@@ -1,0 +1,34 @@
+.table-admin{
+    width: 100%;
+    margin-bottom: 20px;
+}
+.title-table{
+    background: #F7F7F7;
+    border: 1px solid #CCCCCC;
+    
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 23px;
+    color: #4D4D4D;
+    height: 70px;
+    text-align: center;
+}
+.info{
+    text-align: center;
+    background: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 23px;
+    color: #666666;
+    height: 70px;
+}
+.color-state-red{
+    color: #FF1515;
+}
+.color-state-green{
+    color: #27AE60;
+}
