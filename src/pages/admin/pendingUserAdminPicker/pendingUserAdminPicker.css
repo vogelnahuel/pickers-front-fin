@@ -169,3 +169,6 @@
     letter-spacing: 0.0125em;
     color: #FFFFFF;
 }
+.Admin-Pickers-input-clear{
+    display: none;
+}
