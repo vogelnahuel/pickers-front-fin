@@ -9,6 +9,7 @@ import {Filter} from '../../../component/admin/Filter/Filter'
 import { TableAdmin } from '../../../component/admin/table/TableAdmin'
 
 export const PendingUserAdmin = () => {
+    const titulosAdminPending = ['Nombre','DNI','Email','vehiculo','Pendiente hace','Editar'];
 
   
     return (
@@ -35,7 +36,9 @@ export const PendingUserAdmin = () => {
                      
                      <Filter/>
                      <br/>
-                     <TableAdmin/>
+                     <TableAdmin
+                    titulosAdminPending={titulosAdminPending}
+                     />
                 </div>
                 
                 

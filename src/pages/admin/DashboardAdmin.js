@@ -12,16 +12,7 @@ export const DashboardAdmin = () => {
     return (
         <div className="background-Grey">
             <Header/>
-                    <div className="rectangle r1"></div>
-                    <div className="rectangle r2"></div>
-                    <div className="rectangle r3"></div>
-                    <div className="rectangle r4"></div>
-                    <div className="rectangle r5"></div>
-                    <div className="rectangle r6"></div>
-                    <div className="rectangle r7"></div>
-                    <div className="rectangle r8"></div>
-
-            <div className="mainContainerFlex">  
+          <div className="mainContainerFlex">  
                 <Nav/>
               
                             <div className="Admin-container">

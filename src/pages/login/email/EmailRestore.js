@@ -3,13 +3,13 @@ import Button from '../../../component/Button/Button'
 import canguro from "../../../assets/login/Canguro.svg";
 import pickersLogo from "../../../assets/login/PickersLogo.svg";
 import {useForm} from '../../../hooks/useForm.js'
-import './Dashboard.css'
+import './Email.css'
 import Swal  from 'sweetalert2'
 // import loginService from '../../../services/login/loginService'
 import api from '../../../config/api'
 
 
-export const  DashBoard = () => {
+export const  EmailRestore = () => {
     //let token =localStorage.getItem("token")
    // console.log(token)
 
@@ -92,4 +92,4 @@ export const  DashBoard = () => {
     )
 }
 
-export default DashBoard;
+export default EmailRestore;
