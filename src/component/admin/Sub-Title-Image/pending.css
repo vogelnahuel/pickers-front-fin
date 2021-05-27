@@ -1,0 +1,67 @@
+.FlexPending{
+    display: flex;
+}
+.backGround-pending{
+    background-color: white;
+    
+}
+.Pending-paragraph{
+    color: #0098FF;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16.4627px;
+    line-height: 21px;
+    margin-top: auto;
+    margin-bottom: auto;
+    display: inline-block;
+    padding-top: 2rem;
+    padding-left: 1rem;
+}
+
+.Pending-paragraph2{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16.4627px;
+    line-height: 21px; 
+    color: #2D2D2D;
+    margin-top: auto;
+    margin-bottom: auto;
+    display: inline-block;
+    padding-top: 2rem;
+    padding-left: 1rem;
+}
+.Pending-paragraph3{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 23px;
+    text-align: center;
+    color: #0098FF;  
+    display: inline-block;
+    margin-top: 1rem;
+    margin-left: 0.5rem;
+}
+.container-pending{
+    height: 12.5vh;
+    width: 30vw;
+}
+.border-pending{
+    border-left: 0.823136px solid #E5E5E5;
+}
+.img{
+    position: absolute;
+    margin-left: 12rem;
+    margin-top: 1rem;
+}
+.img2{
+    position: absolute;
+    margin-left: 15rem;
+    margin-top: 1rem;
+}
+.img3{
+    margin-left: 7rem;
+    display: inline-block;
+}
