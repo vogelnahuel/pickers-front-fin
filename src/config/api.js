@@ -1,10 +1,10 @@
 import axios from 'axios';
-// import { getValue, removeItem } from '../utils/localStorage';
 
 const api = axios.create({
-  baseURL: process.env.API_BASE_URL,
+  baseURL: process.env.REACT_APP_API_URL,
   headers: {
-    apiKey: "1234",//getValue('token'),
+    "country-code":"ar",
+    "accessToken": window.localStorage.getItem('token'),
   },
 });
 
@@ -12,7 +12,7 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response && error.response.status === 403) {
-      //removeItem('token');
+      window.localStorage.removeItem('token');
       api.defaults.headers = {
         apiKey: null,
       };

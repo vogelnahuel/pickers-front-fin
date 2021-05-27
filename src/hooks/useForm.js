@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Swal  from 'sweetalert2'
-import loginService from '../services/login/loginService'
+import api from '../config/api'
 
 export const useForm = ( initialState = {} ) => {
     
@@ -54,7 +54,7 @@ export const useForm = ( initialState = {} ) => {
 
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
 
         e.preventDefault();
         
@@ -73,9 +73,14 @@ export const useForm = ( initialState = {} ) => {
             {
               e.target.button.parentNode.classList.add('shineBorder') ; 
             }
-          const response = loginService.login(values.mail,values.password);
-          window.localStorage.setItem("token",response.access_token);
-          if (JSON.stringify(response)!=='{}' && window.location.pathname==="/") {
+         api.post('/ms-admin-rest/api/v1.0/login',{email:values.mail[0],password:values.password[0]})
+            .then((response)=>{
+                window.localStorage.setItem("token",response.data.accessToken)
+        })
+            .catch((err)=>console.log(err))
+        
+          
+          if (window.localStorage.getItem('token') && window.location.pathname==="/") {
             window.location.href= "./dashboard"
             }
         

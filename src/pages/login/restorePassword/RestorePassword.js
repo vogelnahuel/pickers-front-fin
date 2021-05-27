@@ -1,6 +1,7 @@
 import React from 'react'
 import  Button  from '../../../component/Button/Button'
 import  {useForm} from '../../../hooks/useForm'
+import api from '../../../config/api'
 
 import "../Login.css";
 import "./restorePassword.css";
@@ -13,7 +14,7 @@ import Informacion from "../../../assets/login/Informacion.svg";
 
 export const RestorePassword = () => {
 
-    const [formValues,handleInputBlur,handleInputChange,handleSubmit] = useForm({
+    const [formValues,handleInputBlur,handleInputChange] = useForm({
         password:'',
         password2:'',
         errorPassWord:false,
@@ -23,6 +24,14 @@ export const RestorePassword = () => {
       });
   
     const {password,password2,errorPassWord,errorMsgPassword,errorPassWord2,errorMsgPassword2} = formValues;
+
+const handleSubmit = (e) =>{
+  e.preventDefault();
+  api.post('ms-admin-rest/api/v1.0/change-password',{email:"maximiliano.caseres+test01@virtualdreams.io",verificationCode:"",password:e.target.password.value})
+  .then((response)=>{console.log(response)})
+  .catch((err)=>{console.log(err)})
+}
+
 
     return (
         <section>
