@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Login.css";
 import pickersLogo from "./../../assets/login/PickersLogo.svg";
@@ -6,7 +6,7 @@ import canguro from "./../../assets/login/Canguro.svg";
 import {Link} from 'react-router-dom'
 import Button from '../../component/Button/Button'
 import {useForm} from '../../hooks/useForm.js'
-//import loginService from '../../services/login/loginService'
+
 
 export const Login = () => {
 
@@ -20,15 +20,10 @@ export const Login = () => {
     });
 
   const {mail,password,errorMail,errorMsgMail,errorPassWord,errorMsgPassword} = formValues;
-/*
-const onSubmit = () =>{
-  const response = loginService.login(mail,password)
-  window.localStorage.setItem("token",response.access_token)
-  //window.location.href= "./dashboard"
 
-}*/
-
-  
+  useEffect(()=>{
+    window.localStorage.setItem('token','')
+  },[])
 
   return (
       < >
