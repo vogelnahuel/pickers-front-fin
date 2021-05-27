@@ -3,7 +3,9 @@ import './tableAdmin.css'
 import edit from '../../../assets/admin/PendingUser/edit.svg'
 
 
-export const TableAdmin = () => {
+export const TableAdmin = (props) => {
+  const {titulosAdminPending,titulosAdminActive} = props;
+
     const  api = [
         {
           "id": 1,
@@ -11,6 +13,8 @@ export const TableAdmin = () => {
           "email": "test@test.com",
           "vehiculo":"test",
           "pendienteHace":"1 dia",
+          "estado":"Habilitado",
+          "Transacciones": "10"
         },
         {
             "id": 2,
@@ -18,6 +22,8 @@ export const TableAdmin = () => {
             "email": "test@test.com",
             "vehiculo":"test",
             "pendienteHace":"1 dia",
+            "estado":"Habilitado",
+            "Transacciones": "10"
           },
           {
             "id": 3,
@@ -25,6 +31,8 @@ export const TableAdmin = () => {
             "email": "test@test.com",
             "vehiculo":"test",
             "pendienteHace":"1 dia",
+            "estado":"Habilitado",
+            "Transacciones": "10"
           },
           {
             "id": 4,
@@ -32,6 +40,8 @@ export const TableAdmin = () => {
             "email": "test@test.com",
             "vehiculo":"test",
             "pendienteHace":"1 dia",
+            "estado":"Deshabilitado", 
+            "Transacciones": "7"
           },
           {
             "id": 5,
@@ -39,6 +49,8 @@ export const TableAdmin = () => {
             "email": "test@test.com",
             "vehiculo":"test",
             "pendienteHace":"1 dia",
+            "estado":"Deshabilitado",
+            "Transacciones": "7"
           },
           {
             "id": 6,
@@ -46,6 +58,8 @@ export const TableAdmin = () => {
             "email": "test@test.com",
             "vehiculo":"test",
             "pendienteHace":"1 dia",
+            "estado":"Deshabilitado",
+            "Transacciones": "7"
           },
           {
             "id": 7,
@@ -53,6 +67,8 @@ export const TableAdmin = () => {
             "email": "test@test.com",
             "vehiculo":"test",
             "pendienteHace":"1 dia",
+            "estado":"Deshabilitado",
+            "Transacciones": "7"
           },
           {
             "id": 8,
@@ -60,6 +76,8 @@ export const TableAdmin = () => {
             "email": "test@test.com",
             "vehiculo":"test",
             "pendienteHace":"1 dia",
+            "estado":"Habilitado",
+            "Transacciones": "7"
           },
           {
             "id": 9,
@@ -67,6 +85,8 @@ export const TableAdmin = () => {
             "email": "test@test.com",
             "vehiculo":"test",
             "pendienteHace":"1 dia",
+            "estado":"Deshabilitado",
+            "Transacciones": "11"
           },
           {
             "id": 10,
@@ -74,6 +94,8 @@ export const TableAdmin = () => {
             "email": "test@test.com",
             "vehiculo":"test",
             "pendienteHace":"1 dia",
+            "estado":"Habilitado",
+            "Transacciones": "11"
           },
           {
             "id": 11,
@@ -81,26 +103,29 @@ export const TableAdmin = () => {
             "email": "test@test.com",
             "vehiculo":"test",
             "pendienteHace":"1 dia",
+            "estado":"Habilitado",
+            "Transacciones": "19"
           },
 ];
 
-const titulosAdminPending = ['Nombre','DNI','Email','vehiculo','Pendiente hace','Editar'];
-const titulosAdminActive = ['Nombre','DNI','Email','vehiculo','Transacciones','Estado','Editar'];
 
 
     return (
+      
         <table className="table-admin">
             <thead>
                     <tr className="title-table">
                         {
-                            window.location.pathname==='/pendingUserAdmin'  ?
+                           
+                           
+                            window.location.pathname==='/pendingUserAdmin'  && titulosAdminPending !==undefined ?
                                 titulosAdminPending.map(rows => (
-                                    <td key={rows}> {rows} </td>                                 
+                                    <td key={rows}>  {rows} </td>                                 
                                 ))
                             : null
                         }
                         {
-                            window.location.pathname==='/activeUserAdmin'  ?
+                            window.location.pathname==='/activeUserAdmin' && titulosAdminActive !==undefined  ?
                             titulosAdminActive.map(rows => (
                                     <td key={rows}> {rows} </td>                                 
                                 ))
@@ -137,7 +162,7 @@ const titulosAdminActive = ['Nombre','DNI','Email','vehiculo','Transacciones','E
                                     <td>  {rows.id} </td>
                                     <td>  {rows.email}</td>
                                     <td>  {rows.vehiculo}</td>
-                                    <td>  {rows.transacciones} </td>
+                                    <td>  {rows.Transacciones} </td>
                                     {
                                         rows.estado ==='Habilitado' 
                                         ? <td className="color-state-green">  {rows.estado} </td>

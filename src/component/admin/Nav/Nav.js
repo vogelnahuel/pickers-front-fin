@@ -15,7 +15,11 @@ export const Nav = () => {
                                  { window.location.pathname  ==="/dashboard"  ? <div className="circle"></div> : null  }  <Link to="#">Dashboard</Link>
                               </li>
                               <li>
-                                   { window.location.pathname  ==="/pendingUserAdmin"  ? <div className="circle"></div> : null }   <Link to="#">Usuarios</Link>
+                                   { window.location.pathname  ==="/pendingUserAdmin" 
+                                   || window.location.pathname  ==="/activeUserAdmin" 
+                                   || window.location.pathname  ==="/pendingUserAdminpicker"  
+                                   ? <div className="circle"></div> : null 
+                                   }   <Link to="#">Usuarios</Link>
                               </li>
                               <li>
                                    { window.location.pathname  ==="/userAdmin"  ?<div className="circle"></div> : null  }   <Link to="#">Transacciones</Link>
