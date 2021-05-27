@@ -65,3 +65,9 @@
     margin-left: 7rem;
     display: inline-block;
 }
+.pending-black{
+    color: #2D2D2D;
+}
+.pending-blue{
+    color: #0098FF;  
+}

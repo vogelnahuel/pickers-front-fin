@@ -1,0 +1,81 @@
+.vehiculo-active-picker{
+    position: absolute;
+    margin-left: 20%;
+    margin-top: 2%;
+}
+.button-active-picker{
+    position: absolute;
+    margin-left: 39%;
+    margin-top: 2.8%;
+}
+
+.lbl{
+    display: inline-block;
+    width: 65px;
+    height: 33px;
+    background-color: #979797;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: .2s;
+}
+.lbl::after{
+    content: '';
+    display: block;
+    width: 25px;
+    height: 25px;
+    background-color: #eee;
+    border-radius: 100px;
+    position: absolute;
+    margin-top: 4px;
+    margin-left: 4px;
+    transition: .2s;
+}
+#switch:checked+.lbl::after{
+    margin-left: 35px;
+
+}
+#switch:checked{
+    background-color: #3FD78D;
+}
+#switch{
+    display: none;
+}
+.admin-active-picker{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 20px;
+    color: #BDBDBD;
+    position: absolute;
+    margin-left: 30%;
+    margin-top: 3%;
+}
+.admin-active-picker-p{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 20px;
+    color: #6FCF97;
+    opacity: 0.9;
+    position: absolute;
+    margin-left: 45%;
+    margin-top: 3%;
+}
+
+.corregir-admin-picker-active{
+    border: 2.5px solid #BDBDBD;
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 50px;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 23px;
+    text-align: center;
+    color: #BDBDBD;
+    width: 217px;
+    height: 50px;
+}

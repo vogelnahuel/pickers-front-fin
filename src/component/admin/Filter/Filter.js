@@ -52,9 +52,28 @@ export const Filter = () => {
                             <input className="filter-input" type="text" name="Email" id="Email" placeholder="Ingresá el mail"/>
                         </div>
                     </div>
+                    
+                    
                    
-                    
-                    
+                   {
+                       window.location.pathname==="/activeUserAdmin" ?
+                    <div className="filter-space">
+                        <div>
+                            <label className="label-filter" htmlFor="Vehículo">Más de X transacciones</label>
+                        </div>
+                        <div>
+                            <select  className="filter-select" type="text" name="Vehículo" id="Vehículo">            
+                               
+                                <option className="option" hidden  value="DEFAULT">Seleccioná un valor</option> 
+                                <option className="option" value="10">10</option> 
+                                <option className="option" value="5">5</option> 
+                                <option className="option" value="20">20</option> 
+                                
+                            </select>
+                        </div>
+                    </div>
+                    : null
+                    }
                     
                    <div className="container-button-width">
                         <button 

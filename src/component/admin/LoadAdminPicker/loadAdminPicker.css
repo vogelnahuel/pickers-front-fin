@@ -1,0 +1,65 @@
+.card-tam{
+    width: 20vw;
+    text-align: center;
+    margin-top: 2rem;
+}
+.card-admin-picker{
+    background: #FFFFFF;
+    border: 1px dashed rgba(77, 77, 77, 0.5);
+    box-sizing: border-box;
+    border-radius: 16px;
+    height: 230px;
+}
+.load-font{
+    margin-top: 15px;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 16px;
+    text-align: center;
+    letter-spacing: 0.004em;
+    color: #4D4D4D;
+}
+.img-admin-picker{
+    padding-top: 20px;
+}
+.title-admin-picker{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 23px;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.01em;  
+    color: #4D4D4D;
+    
+}
+.button-admin-picker{
+    background: #145A99;
+    border-radius: 50px;
+    color: white;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 17px;
+    line-height: 21px;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.0125em;
+    width: 191px;
+    height: 50px;
+}
+.p-admin-picker{
+    margin-top: 15px;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 19px;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.0025em; 
+    color: #4D4D4D;
+}
