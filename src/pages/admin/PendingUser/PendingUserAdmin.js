@@ -7,10 +7,13 @@ import exportar from '../../../assets/admin/PendingUser/exportar.svg'
 import or from '../../../assets/admin/PendingUser/or.svg'
 import {Filter} from '../../../component/admin/Filter/Filter'
 import { TableAdmin } from '../../../component/admin/table/TableAdmin'
+import {dataPendingUser}  from './dataPendingUser'
 
 export const PendingUserAdmin = () => {
+    /****titulos de la tabla */
     const titulosAdminPending = ['Nombre','DNI','Email','vehiculo','Pendiente hace','Editar'];
-
+       /****llama a los campos y los envia */
+    const [FieldsPart] = dataPendingUser();
   
     return (
         <div className="background-Grey">
@@ -34,7 +37,9 @@ export const PendingUserAdmin = () => {
                          </button>
                      </div>
                      
-                     <Filter/>
+                     <Filter
+                    FieldsPart={FieldsPart}
+                     />
                      <br/>
                      <TableAdmin
                     titulosAdminPending={titulosAdminPending}
