@@ -14,8 +14,8 @@ function Routes() {
     <BrowserRouter>
       <Switch>
         <Route path='/' exact component={Login}/>
+        <Route path='/restore/:mail/:cod' exact component={RestorePassword}/>
         <Route path='/restore' exact component={EmailRestore}/>
-        <Route path='/newPassword' exact component={RestorePassword}/>
         <Route path='/Dashboard' exact component={DashboardAdmin}/>
         <Route path='/pendingUserAdmin' exact component={PendingUserAdmin}/>
         <Route path='/activeUserAdmin' exact component={ActiveUserAdmin}/>
