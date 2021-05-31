@@ -3,12 +3,14 @@ import {Header} from '../../component/admin/Header/Header'
 import {Nav} from '../../component/admin/Nav/Nav'
 import './Dashboard.css'
 export const DashboardAdmin = () => {
+    /*
     useEffect(()=>{
         if(!window.localStorage.getItem('token')){
             window.location.href = '/'
         }
     
-      })
+      })*/
+
     return (
         <div className="background-Grey">
             <Header/>

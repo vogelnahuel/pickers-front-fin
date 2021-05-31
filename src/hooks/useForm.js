@@ -9,17 +9,6 @@ export const useForm = ( initialState = {} ) => {
    
 
     const handleInputChange = (e) => {
-       
-        setValues({
-            ...values,
-            [e.target.name]:[e.target.value]
-
-        });
-    }
-
-
-    const handleInputBlur = (e) => {
-
         var expresionEmail = /\w+@\w+\.+[a-z]/;
   
         
@@ -33,6 +22,17 @@ export const useForm = ( initialState = {} ) => {
         else if(e.target.value!=='' && e.target.name==='mail'){
             values.errorMail=false;
         }
+        setValues({
+            ...values,
+            [e.target.name]:[e.target.value]
+
+        });
+    }
+
+
+    const handleInputBlur = (e) => {
+
+        
         /*
         if(e.target.value==='' && e.target.name==='password'){
             values.errorPassWord=true;
@@ -73,19 +73,32 @@ export const useForm = ( initialState = {} ) => {
             {
               e.target.button.parentNode.classList.add('shineBorder') ; 
             }
-         api.post('/ms-admin-rest/api/v1.0/login',{email:values.mail[0],password:values.password[0]})
-            .then((response)=>{
-                window.localStorage.setItem("token",response.data.accessToken)
-        })
+            api.post('/ms-admin-rest/api/v1.0/login',{email:values.mail[0],password:values.password[0]})
+                .then((response)=>{
+                    window.localStorage.setItem("token",response.data.accessToken)
+            })
             .catch((err)=>console.log(err))
         
           
           if (window.localStorage.getItem('token') && window.location.pathname==="/") {
             window.location.href= "./dashboard"
             }
-        
-        
-          } 
+            if( window.location.pathname==="/")
+            {
+                setTimeout(() => {
+                    e.target.button.parentNode.classList.remove('shineBorder') ; 
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'Hubo un error al cargar la pagina',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                }, 18000);
+            
+            
+                } 
+            }
     
       }
 
