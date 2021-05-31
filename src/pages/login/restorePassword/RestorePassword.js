@@ -1,6 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
 import  Button  from '../../../component/Button/Button'
-import  {useForm} from '../../../hooks/useForm'
 import api from '../../../config/api'
 
 import "../Login.css";
@@ -15,17 +14,9 @@ import { useParams } from 'react-router';
 
 export const RestorePassword = () => {
 
-    const [formValues,handleInputBlur,handleInputChange] = useForm({
-        password:'',
-        password2:'',
-        errorPassWord:false,
-        errorMsgPassword:'',
-        errorPassWord2:false,
-        errorMsgPassword2:'',
-      });
   
-    const {password,password2,errorPassWord,errorMsgPassword,errorPassWord2,errorMsgPassword2} = formValues;
-    const {cod,mail} = useParams();
+
+  const {cod,mail} = useParams();
 
 const handleSubmit = (e) =>{
   e.preventDefault();
@@ -34,13 +25,152 @@ const handleSubmit = (e) =>{
   .catch((err)=>{console.log(err)})
 }
 
+ 
+  const [errorPassWord, setError] = useState(false);
+  const [errorPassWord2, setError2] = useState(false);
+  const [errorMsgPassword, setMsgError] = useState("");
+  const [errorMsgPassword2, setMsgError2] = useState("");
+  const [password, setPassword] = useState("");
+  const [password2, setPassword2] = useState("");
+
+const handleInputChange = (e) => {
+    
+    validarFormulario(e);
+
+    if(e.target.name==="password")
+    setPassword(
+      e.target.value
+    );
+    if(e.target.name==="password2")
+    setPassword2(
+      e.target.value
+    );
+
+
+  }
+
+  const validarFormulario = (e) =>{
+
+    //donde poner los errores
+    const errorCaracteres = document.querySelector('#caracteres');
+    const errorLetras = document.querySelector('#mayusculas');
+    const errorNumeros = document.querySelector('#numeros');
+
+    ///setear errores
+    errorCaracteres.classList.remove('restore-error-p');
+    errorLetras.classList.remove('restore-error-p');
+    errorNumeros.classList.remove('restore-error-p');
+
+    if(estaVacio(e)!==false){
+
+      ///setear errores del inputChange
+      if(e.target.name==="password"){
+        setError(false);
+        setMsgError("");
+        e.target.classList.remove('inputError');   
+      }
+      if(e.target.name==="password2"){
+        setError2(false);
+        setMsgError2("");
+        e.target.classList.remove('inputError');   
+      }
+       /// FIN setear errores del inputChange
+
+
+      if(tieneMasDeOchoCaracteres(e)===false){
+        errorCaracteres.classList.add('restore-error-p');
+      }
+      else if(TieneMayusculasYminusculas(e)===false){
+        errorLetras.classList.add('restore-error-p');
+      }
+      else if(TieneNumerosYletras(e)===false){
+        errorNumeros.classList.add('restore-error-p');
+      }
+
+    }else{
+      ///// si esta vacio le pongo un error
+      if(e.target.name==="password"){
+        setError(true);
+        setMsgError("Este campo es requerido");
+        e.target.classList.add('inputError');
+      }
+      if(e.target.name==="password2"){
+        setError2(true);
+        setMsgError2("Este campo es requerido");
+        e.target.classList.add('inputError');
+      }
+      
+    }
+}
+  
+
+const estaVacio=(e) =>{
+  if(e.target.value!==""){
+    return true;
+  }
+  return false;
+}
+const tieneMasDeOchoCaracteres=(e)=>{
+
+  if(e.target.value.length<8){
+    return false;
+  }
+  return true;
+}
+const TieneMayusculasYminusculas =(e) =>{
+
+  const letras="abcdefghyjklmnñopqrstuvwxyz";
+  const letras_mayusculas="ABCDEFGHYJKLMNÑOPQRSTUVWXYZ";
+  let existeAlMenosUnaLetraMin=false;
+  let existeAlMenosUnaLetraMay=false;
+  let i;
+
+
+  for(i=0; i<letras.length; i++){
+      if(  e.target.value.indexOf (letras.charAt(i)  ) ){
+        existeAlMenosUnaLetraMin=true;
+      }
+  }
+  for(i=0; i<letras_mayusculas.length; i++){
+    if(  e.target.value.includes (letras_mayusculas.charAt(i)  )  ){
+      existeAlMenosUnaLetraMay=true;
+    }
+  }
+  if(existeAlMenosUnaLetraMin===false  || existeAlMenosUnaLetraMay ===false){
+      return false;
+  }
+
+  return true;
+}
+
+const TieneNumerosYletras = (e) =>{
+  const numeros="0123456789";
+  const letras="abcdefghyjklmnñopqrstuvwxyzABCDEFGHYJKLMNÑOPQRSTUVWXYZ";
+  let existeAlMenosUnNumero=false;
+  let existeAlMenosUnaLetra=false;
+  let i;
+
+  for(i=0; i<numeros.length; i++){
+      if(  e.target.value.includes (numeros.charAt(i)  ) ){
+        existeAlMenosUnNumero=true;
+      }
+  }
+    for(i=0; i<letras.length; i++){
+      if(  e.target.value.includes (letras.charAt(i)  ) ){
+        existeAlMenosUnaLetra=true;
+      }
+    }
+
+  if(existeAlMenosUnNumero===false  || existeAlMenosUnaLetra ===false){
+      return false;
+    }
+
+    return true;
+
+}
 
     return (
         <section>
-     
-       
-          
-        
           <div className="logo">
             <img src={pickersLogo} alt="PickersLogo"></img>
           </div>
@@ -51,13 +181,13 @@ const handleSubmit = (e) =>{
             <div className="form-group">
               <br />
               <input 
+              value={password}
               type="password"
                className="input" 
                name="password" 
-               placeholder="Nueva contraseña" 
-               onBlur={handleInputBlur} 
+               placeholder="nueva contraseña" 
                onChange={handleInputChange}         
-               value={password}
+               
             />
             {
                 errorPassWord ? <div className="errorsContainer">
@@ -70,7 +200,7 @@ const handleSubmit = (e) =>{
               className="input inputRestore" 
               name="password2" 
               placeholder="Repitir nueva contraseña" 
-              onBlur={handleInputBlur}
+             
               onChange={handleInputChange}
               value={password2} 
               />
@@ -79,18 +209,18 @@ const handleSubmit = (e) =>{
                 errorPassWord2 ? <div className="errorsContainer">
                  <p className="errors"> {errorMsgPassword2}  </p>
                  </div>:<></>   
-                }
+              }
             
-                <ul className="ul">
+                <ul name="elementosError" className="ul">
                     La contraseña debe contar con
-                    <li>
-                       <img  src={Okey} alt="ok"/>  8 o más caracteres
+                    <li className="display-flex">
+                       <img  src={Okey} alt="ok"/>  <p id="caracteres" className="restore-p">8 o más caracteres</p>
                     </li>
-                    <li>
-                         <img  src={Okey} alt="ok"/>  Mayúsculas y minúsculas
+                    <li className="display-flex">
+                         <img  src={Okey} alt="ok"/> <p id="mayusculas" className="restore-p"> Mayúsculas y minúsculas</p>
                     </li>
-                    <li>
-                        <img   src={Informacion} alt="ok"/>  Números y letras
+                    <li className="display-flex">
+                        <img   src={Informacion} alt="ok"/> <p id="numeros" className="restore-p"> Números y letras</p>
                     </li>
                 </ul>
               
