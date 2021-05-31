@@ -1,6 +1,7 @@
 import React from 'react'
 import  Button  from '../../../component/Button/Button'
 import  {useForm} from '../../../hooks/useForm'
+import api from '../../../config/api'
 
 import "../Login.css";
 import "./restorePassword.css";
@@ -10,10 +11,11 @@ import pickersLogo from "../../../assets/login/PickersLogo.svg";
 import canguro from "../../../assets/login/Canguro.svg";
 import Okey from "../../../assets/login/Okey.svg";
 import Informacion from "../../../assets/login/Informacion.svg";
+import { useParams } from 'react-router';
 
 export const RestorePassword = () => {
 
-    const [formValues,handleInputBlur,handleInputChange,handleSubmit] = useForm({
+    const [formValues,handleInputBlur,handleInputChange] = useForm({
         password:'',
         password2:'',
         errorPassWord:false,
@@ -23,6 +25,15 @@ export const RestorePassword = () => {
       });
   
     const {password,password2,errorPassWord,errorMsgPassword,errorPassWord2,errorMsgPassword2} = formValues;
+    const {cod,mail} = useParams();
+
+const handleSubmit = (e) =>{
+  e.preventDefault();
+  api.post('ms-admin-rest/api/v1.0/change-password',{email:mail,verificationCode:cod,password:e.target.password.value})
+  .then((response)=>{console.log(response)})
+  .catch((err)=>{console.log(err)})
+}
+
 
     return (
         <section>

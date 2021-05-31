@@ -8,6 +8,8 @@
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
+    "cors": "^2.8.5",
+    "env-cmd": "^10.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.5.2",
@@ -18,7 +20,9 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start:dev": "PORT=33000 env-cmd -f ./environments/.env.dev react-scripts start",
+    "start:prod": "PORT=33000 env-cmd -f ./environments/.env.production react-scripts start",
+    "start:test": "PORT=33000 env-cmd -f ./environments/.env.test react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

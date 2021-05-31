@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Login.css";
 import pickersLogo from "./../../assets/login/PickersLogo.svg";
@@ -6,29 +6,24 @@ import canguro from "./../../assets/login/Canguro.svg";
 import {Link} from 'react-router-dom'
 import Button from '../../component/Button/Button'
 import {useForm} from '../../hooks/useForm.js'
-//import loginService from '../../services/login/loginService'
+
 
 export const Login = () => {
 
   const [formValues,handleInputBlur,handleInputChange,handleSubmit] = useForm({
       mail:'',
       password:'',
-      errorMail:false,
+      errorMail:true,
       errorMsgMail:'',
       errorPassWord:false,
       errorMsgPassword:'',
     });
 
   const {mail,password,errorMail,errorMsgMail,errorPassWord,errorMsgPassword} = formValues;
-/*
-const onSubmit = () =>{
-  const response = loginService.login(mail,password)
-  window.localStorage.setItem("token",response.access_token)
-  //window.location.href= "./dashboard"
 
-}*/
-
-  
+  useEffect(()=>{
+    window.localStorage.setItem('token','')
+  },[])
 
   return (
       < >
@@ -77,12 +72,12 @@ const onSubmit = () =>{
             </div>:<></>
             }
           
-          <div className="contenedor">
-            <div className="contenedor">
+          <div className="contenedor z-index">
+            <div className="contenedor z-index">
               <Button 
-              className="btn btn-outline-primary button_ mt-4 mb-4" 
+              className="btn btn-outline-primary button_ mt-4 mb-4 z-index" 
               type="submit" 
-              name="button" >Iniciar sesión</Button>
+              name="button" ><p className="login-init "> Iniciar sesión </p> </Button>
             </div>
           </div>
             <br/>

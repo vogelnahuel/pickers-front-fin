@@ -32,8 +32,9 @@
       width: 233px;
       height: 55px;
       background: #06D0FF;
+      z-index: 0;
       
-      animation: animate-shineBorder 18s ease-out infinite;             
+      animation: animate-shineBorder 18s ease-out ;             
     }
     
     @keyframes animate-shineBorder {

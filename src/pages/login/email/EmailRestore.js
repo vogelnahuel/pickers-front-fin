@@ -5,6 +5,9 @@ import pickersLogo from "../../../assets/login/PickersLogo.svg";
 import {useForm} from '../../../hooks/useForm.js'
 import './Email.css'
 import Swal  from 'sweetalert2'
+// import loginService from '../../../services/login/loginService'
+import api from '../../../config/api'
+
 
 export const  EmailRestore = () => {
     //let token =localStorage.getItem("token")
@@ -19,9 +22,12 @@ export const  EmailRestore = () => {
 
     const {mail,errorMail,errorMsgMail} = formValues;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if(mail!=='' && errorMail!==true){
+      api.post('ms-admin-rest/api/v1.0/admin/request-change-password',{email:mail[0]})
+      .then((res)=>{console.log(res.data)})
+      .catch((err)=>{console.log(err)})
       Swal.fire({
         position: 'center',
         icon: 'success',
@@ -50,7 +56,6 @@ export const  EmailRestore = () => {
                className="input" 
                name="mail" 
                placeholder="Email"
-               
                onBlur={handleInputBlur}
                onChange={handleInputChange}
                value={mail}
