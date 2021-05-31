@@ -1,4 +1,5 @@
-
+/**si desea agregar campos y utilizar sus propias clases agregalas aca para inputs y select!*/
+/**Inclusive se pueden pasar componentes! fijarse  ComponentesPart*/
 export const data = () => {
     const inputsPart1 =
     [   

@@ -8,10 +8,15 @@ import or from '../../../assets/admin/PendingUser/or.svg'
 import {Filter} from '../../../component/admin/Filter/Filter'
 import { TableAdmin } from '../../../component/admin/table/TableAdmin'
 import { PendingBlack } from '../../../component/admin/Sub-Title-Image/PendingBlack'
+import {dataActiveUser} from './dataActiveUser'
 
 export const ActiveUserAdmin = () => {
+    /****titulos de la tabla */
     const titulosAdminActive = ['Nombre','DNI','Email','vehiculo','Transacciones','Estado','Editar'];
+     /****llama a los campos y los envia */
+    const [FieldsPart] = dataActiveUser();
 
+       
     return (
         <div className="background-Grey">
         <Header/>
@@ -34,7 +39,9 @@ export const ActiveUserAdmin = () => {
                      </button>
                  </div>
                  
-                 <Filter/>
+                 <Filter
+                 FieldsPart={FieldsPart}
+                 />
                  <br/>
                  <TableAdmin
                  titulosAdminActive={titulosAdminActive}

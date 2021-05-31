@@ -5,7 +5,10 @@ import {Input} from '../../inputs/Input.js'
 import './part.css'
 import { SaveAdminPicker } from '../SaveAdminPicker/SaveAdminPicker'
 
+/**** muestro los campos con sus labels y tambien los componentes pasados */
 export const Part = (props) => {
+
+
     const variables = props.inputsPart;
     const componentes = props.ComponentesPart;
     

@@ -13,7 +13,7 @@ import {data} from './data'
 
 export const PendingUserAdminPicker = () => {
 
-
+    /****Campos y componentes a mostrar  que se muestran en un part que es parte del diseño*/
    const [inputsPart1,ComponentesPart1,inputsPart2,ComponentesPart2,inputsPart3,ComponentesPart3,inputsPart4,ComponentesPart4]=data();
         
     return (
