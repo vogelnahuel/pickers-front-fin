@@ -56,7 +56,6 @@ export const  EmailRestore = () => {
                className="input" 
                name="mail" 
                placeholder="Email"
-               
                onBlur={handleInputBlur}
                onChange={handleInputChange}
                value={mail}

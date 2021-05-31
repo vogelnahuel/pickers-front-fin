@@ -13,7 +13,7 @@ export const Login = () => {
   const [formValues,handleInputBlur,handleInputChange,handleSubmit] = useForm({
       mail:'',
       password:'',
-      errorMail:false,
+      errorMail:true,
       errorMsgMail:'',
       errorPassWord:false,
       errorMsgPassword:'',
@@ -72,12 +72,12 @@ export const Login = () => {
             </div>:<></>
             }
           
-          <div className="contenedor">
-            <div className="contenedor">
+          <div className="contenedor z-index">
+            <div className="contenedor z-index">
               <Button 
-              className="btn btn-outline-primary button_ mt-4 mb-4" 
+              className="btn btn-outline-primary button_ mt-4 mb-4 z-index" 
               type="submit" 
-              name="button" >Iniciar sesión</Button>
+              name="button" ><p className="login-init "> Iniciar sesión </p> </Button>
             </div>
           </div>
             <br/>
