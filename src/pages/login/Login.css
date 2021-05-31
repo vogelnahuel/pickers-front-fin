@@ -18,7 +18,7 @@
     border: rgba(20, 90, 153, 0);
     border-bottom: 1px solid #4D4D4D;
     outline: none;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
 }
 
 .inputError{
@@ -27,6 +27,9 @@
   color: #FF1515;
   border-bottom: 1px solid #e00404;
 
+}
+.inputError::placeholder{
+  color: #FF1515;
 }
 
 
@@ -71,21 +74,18 @@
 
   
   .errorsContainer{
-    width: 100%;
-    margin-right: auto;
-    margin-left: auto;
-    
+    display: flex;
   }
 
 
   .errors{
     font-family: 'Mulish', sans-serif;
-  font-style: normal;
-  font-weight: 300;
-  font-size: 14px;
-  line-height: 18px;
-  position: relative;
-  color: #FF1515;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 18px;
+    position: relative;
+    color: #FF1515;
   }
 
   .correcion{
