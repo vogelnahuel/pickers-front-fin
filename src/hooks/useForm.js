@@ -18,12 +18,17 @@ export const useForm = ( initialState = {} ) => {
         if(e.target.value==='' && e.target.name==='mail'){
             values.errorMail=true;
             values.errorMsgMail='Este campo es requerido';
+            e.target.classList.add('inputError');
+            
+   
         }else if(!expresionEmail.test(e.target.value) && e.target.name==='mail'){
             values.errorMail=true;
             values.errorMsgMail='Debe ingresar un email válido';
+            e.target.classList.add('inputError');           
         }
         else if(e.target.value!=='' && e.target.name==='mail'){
             values.errorMail=false;
+            e.target.classList.remove('inputError');
         }
         setValues({
             ...values,
