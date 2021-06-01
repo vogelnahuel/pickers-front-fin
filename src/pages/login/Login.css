@@ -7,14 +7,14 @@
 .logo{
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 3%;
+    margin-bottom: 87px;
     margin-top: 17vh;
     width: 208px;
     height: 63px;
 }
 
 .input{
-    width: 115%;
+    width: 541px;
     border: rgba(20, 90, 153, 0);
     border-bottom: 1px solid #4D4D4D;
     outline: none;
@@ -23,6 +23,9 @@
 
 .separador{
   height: 49.6px;
+}
+.separador_{
+  height: 24px;
 }
 
 
@@ -46,6 +49,7 @@
   font-size: 16px;
   line-height: 20px;
   padding-bottom: 10px;
+  margin-top: 27px!important;
 }
 
 .button_ {
@@ -60,6 +64,8 @@
   font-family: 'Mulish';
   font-weight: 800;
   font-size: 18px;
+  margin-top: 47px!important;
+  margin-bottom: 27px!important;
   
   
 }
@@ -134,6 +140,10 @@
 }
 .z-index{
   z-index: -1;
+}
+
+.img-container{
+  overflow: hidden;
 }
 /***************Hacerlo responsive para diferentes monitores*****************/
 

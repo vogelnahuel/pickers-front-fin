@@ -81,6 +81,7 @@ export const Login = () => {
               name="button" ><p className="login-init "> Iniciar sesión </p> </Button>
             </div>
           </div>
+          <div className="separador_"></div>
             <br/>
             <br/>
             <Link className="forgotPass" to={"./restore"}>¿Olvidó su contraseña?</Link>
@@ -89,8 +90,9 @@ export const Login = () => {
        
       
         </div> 
+        <div className="img-container">
           <img className="img-fluid  myresolution" src={canguro} alt="PickersFooter"></img>
-    
+          </div>
        
      
        
