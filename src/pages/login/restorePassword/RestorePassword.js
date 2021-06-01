@@ -20,7 +20,7 @@ export const RestorePassword = () => {
 
 const handleSubmit = (e) =>{
   e.preventDefault();
-  api.post('ms-admin-rest/api/v1.0/change-password',{email:mail,verificationCode:cod,password:e.target.password.value})
+  api.put('ms-admin-rest/api/v1.0/admin/change-password',{email:mail,verificationCode:cod,password:e.target.password.value})
   .then((response)=>{console.log(response)})
   .catch((err)=>{console.log(err)})
 }

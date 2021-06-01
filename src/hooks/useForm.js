@@ -2,6 +2,9 @@ import { useState } from 'react';
 import Swal  from 'sweetalert2'
 import api from '../config/api'
 
+
+
+
 export const useForm = ( initialState = {} ) => {
     
     const [values, setValues] = useState(initialState);
@@ -74,20 +77,18 @@ export const useForm = ( initialState = {} ) => {
             })
           }
           else{
-            if( window.location.pathname==="/")
-            {
-              e.target.button.parentNode.classList.add('shineBorder') ; 
-            }
+            // if( window.location.pathname==="/")
+            // {
+            //   e.target.button.parentNode.classList.add('shineBorder') ; 
+            // }
             api.post('/ms-admin-rest/api/v1.0/login',{email:values.mail[0],password:values.password[0]})
                 .then((response)=>{
-                    window.localStorage.setItem("token",response.data.accessToken)
+                    window.localStorage.setItem("token",response.data.result.accessToken)
+                    window.location.href= "./dashboard"
             })
             .catch((err)=>console.log(err))
         
           
-          if (window.localStorage.getItem('token') && window.location.pathname==="/") {
-            window.location.href= "./dashboard"
-            }
             if( window.location.pathname==="/")
             {
                 setTimeout(() => {
@@ -99,7 +100,7 @@ export const useForm = ( initialState = {} ) => {
                         showConfirmButton: false,
                         timer: 3000
                     })
-                }, 18000);
+                }, 6000);
             
             
                 } 
