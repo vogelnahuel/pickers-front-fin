@@ -13,7 +13,7 @@ export const Login = () => {
   const [formValues,handleInputBlur,handleInputChange,handleSubmit] = useForm({
       mail:'',
       password:'',
-      errorMail:true,
+      errorMail:false,
       errorMsgMail:'',
       errorPassWord:false,
       errorMsgPassword:'',
@@ -49,12 +49,13 @@ export const Login = () => {
              
             
             />
+            <div className="separador">
             {
             errorMail ? <div className="errorsContainer">
                 <p className="errors"> {errorMsgMail}  </p>
-            </div>:<></>
+            </div>:null
             }
-          
+     </div> 
          
             <input 
             type="password" 

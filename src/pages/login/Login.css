@@ -18,8 +18,13 @@
     border: rgba(20, 90, 153, 0);
     border-bottom: 1px solid #4D4D4D;
     outline: none;
-    margin-bottom: 5px;
+    /* margin-bottom: 5px; */
 }
+
+.separador{
+  height: 49.6px;
+}
+
 
 .inputError{
   width: 115%;
