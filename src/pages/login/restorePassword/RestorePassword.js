@@ -189,12 +189,13 @@ const TieneNumerosYletras = (e) =>{
                onChange={handleInputChange}         
                
             />
+            <div className="separador">
             {
                 errorPassWord ? <div className="errorsContainer">
                  <p className="errors"> {errorMsgPassword}  </p>
                  </div>:<></>   
             }
-          
+          </div>
               <input 
               type="password" 
               className="input inputRestore" 

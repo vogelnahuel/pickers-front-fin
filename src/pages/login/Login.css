@@ -142,9 +142,6 @@
   z-index: -1;
 }
 
-.img-container{
-  overflow: hidden;
-}
 /***************Hacerlo responsive para diferentes monitores*****************/
 
 @media (max-width: 900px) { 
@@ -218,11 +215,11 @@
   .myresolution{
     position: absolute;
     z-index: -1;
-    height: 56vh;
+    /* height: 56vh; */
   }
   .size{
     width: 50%;
-    height: 202px;
+    /* height: 202px; */
   }
 
  }
