@@ -5,7 +5,8 @@ import edit from '../../../assets/admin/PendingUser/edit.svg'
 
 export const TableAdmin = (props) => {
   const {titulosAdminPending,titulosAdminActive} = props;
-
+  console.log(titulosAdminPending)
+  console.log(titulosAdminActive)
     const  api = [
         {
           "id": 1,

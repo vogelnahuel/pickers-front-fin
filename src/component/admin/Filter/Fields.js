@@ -12,7 +12,7 @@ export const Fields = (props) => {
                 {
                     
                     variables.map(variable => (
-                        <div className="filter-space">
+                        <div key={variable.id} className="filter-space">
                            {
                                variable.type!=="select" && variable.type!=="" ?
                                     <>
@@ -36,7 +36,7 @@ export const Fields = (props) => {
                                                     <select className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}>            
                                                             {
                                                             variable.options.map(option => (
-                                                                    <option hidden={option.hidden} className={option.classNameSelect}  value={option.value}>{option.text}</option>
+                                                                    <option key={option.text} hidden={option.hidden} className={option.classNameSelect}  value={option.value}>{option.text}</option>
                                                             ))  
                                                             }
                                                     </select>

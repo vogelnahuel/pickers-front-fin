@@ -226,12 +226,13 @@ const TieneNumerosYletras = (e) =>{
                 </ul>
               
            
-                
+              
                     <Button 
-                    className="btn btn-outline-primary button_ mt-5 flotar centerMybuttonPass" 
+                    className="btn btn-outline-primary button_  float centerMybuttonPass" 
                     type="submit" 
                     name="button" 
                   >Guardar</Button> 
+                
           
             
               
