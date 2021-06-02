@@ -49,13 +49,13 @@ export const Login = () => {
              
             
             />
-            <div className="separador">
-            {
-            errorMail ? <div className="errorsContainer">
-                <p className="errors"> {errorMsgMail}  </p>
-            </div>:null
-            }
-     </div> 
+           
+              {
+              errorMail ? <div className="errorsContainer">
+                  <p className="errors"> {errorMsgMail}  </p>
+              </div>:null
+              }
+           
          
             <input 
             type="password" 
@@ -90,9 +90,9 @@ export const Login = () => {
        
       
         </div> 
-        <div className="img-container">
+        <div className="login-image" >
           <img className="img-fluid  myresolution" src={canguro} alt="PickersFooter"></img>
-          </div>
+        </div>
        
      
        

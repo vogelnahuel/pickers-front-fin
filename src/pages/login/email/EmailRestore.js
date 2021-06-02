@@ -50,7 +50,7 @@ export const  EmailRestore = () => {
           <form className="form size" onSubmit={handleSubmit}>
             <div className="form-group">
             
-            <br />
+           
               <input 
                type="mail" 
                className="input" 
@@ -68,7 +68,7 @@ export const  EmailRestore = () => {
               
             
               <Button 
-              className="btn btn-outline-primary button_ mt-5" 
+              className="btn btn-outline-primary button_ " 
               type="submit" 
               name="button" 
                >Enviar correo
