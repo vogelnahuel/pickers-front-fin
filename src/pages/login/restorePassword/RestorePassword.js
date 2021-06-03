@@ -284,12 +284,13 @@ const contraseñasIguales =(e) => {
                 </ul>
               
            
-              
+                   <div className="Test">
                     <Button 
                     className="btn btn-outline-primary button_  float centerMybuttonPass" 
                     type="submit" 
                     name="button" 
                   >Guardar</Button> 
+                  </div>
                 
           
             
