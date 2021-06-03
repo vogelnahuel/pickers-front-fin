@@ -5,8 +5,10 @@
     padding-top: 2vh;
     padding-left: 4vh;
     padding-right: 2vh;
-    height: 82vh;
-   background-color: #FFFFFF;
+    height: 83.65416666666667vh;
+    width:17.082vw;
+    background-color: #FFFFFF;
+   
 }
 .tamScroll{
     height: 79vh;
@@ -19,7 +21,6 @@
 .navAdmin ul li{
         margin-bottom: 1vh;
         margin-left: 1rem;
-   
 }
 .navAdmin ul li a{
     font-family: 'Mulish';

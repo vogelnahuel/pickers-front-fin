@@ -1,14 +1,13 @@
 .headerAdmin{
     background-color: #0098FF;
     color: white;
-    height: 10vh;
-    
+    height: 9.765625vh;
+
+  
 }
 .containerHeader{
     display: flex;
-    width: 90%;
     padding-top: 2vh;
-    margin-left: 3vw;
 }
 .centerHeight{
     margin-top: auto;
@@ -22,16 +21,31 @@
     font-size: 18px;
     line-height: 3rem;
     text-align: right;
+    width: 4.100vw    ;
 }
 .leftEnd{
-    margin-left: 75%;
+    margin-left: 69.618vw;
 }
 .argentina{
-    margin-left: 1vw;
+    padding-left: 0.805vw ;
+    width: 2.489vw;
 }
 .user{
-    margin-left: 1vw;
+    padding-left: 0.805vw    ;
+    width: 2.489vw    ;
 }
 .pickersLogo{
-    margin-left: 1vw;
+    padding-left: 0.366vw;
+    width: 10.395vw;
 }
+.admin-header-canguro{
+    margin-left: 1.611vw;
+    width: 4.100vw ;
+}
+
+@media (min-width: 1920px) { 
+    .leftEnd{
+        margin-left: 69.618vw;
+    }
+
+ }

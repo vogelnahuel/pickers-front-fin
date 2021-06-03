@@ -83,6 +83,7 @@ export const useForm = ( initialState = {} ) => {
             // }
             api.post('/ms-admin-rest/api/v1.0/login',{email:values.mail[0],password:values.password[0]})
                 .then((response)=>{
+                    alert("entro");
                     window.localStorage.setItem("token",response.data.result.accessToken)
                     window.location.href= "./dashboard"
             })
