@@ -7,22 +7,30 @@
 .logo{
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 3%;
-    margin-top: 17vh;
+    margin-bottom: 5.555555555555555vh;
+    margin-top: 25.833333333333332vh;
     width: 208px;
-    height: 63px;
+    height: 5.833333333333333vh;
 }
 
 .input{
-    width: 115%;
+    width: 28.177vw ;
     border: rgba(20, 90, 153, 0);
     border-bottom: 1px solid #4D4D4D;
     outline: none;
-    margin-bottom: 5px;
+    /* margin-bottom: 5px; */
 }
 
+.separador{
+  height: 3.888888888888889vh;
+  width: 28.177vw ;
+  display: inline-block;
+}
+
+
+
 .inputError{
-  width: 115%;
+  width: 28.177vw ;
   border: rgba(153, 24, 20, 0);
   color: #FF1515;
   border-bottom: 1px solid #e00404;
@@ -41,6 +49,7 @@
   font-size: 16px;
   line-height: 20px;
   padding-bottom: 10px;
+  
 }
 
 .button_ {
@@ -55,8 +64,6 @@
   font-family: 'Mulish';
   font-weight: 800;
   font-size: 18px;
-  
-  
 }
 
 
@@ -101,11 +108,12 @@
    }
 .size{
     width: 50%;
-    height: 146px;
+    height: 8.888888888888888vh;
 }
 .myresolution{
   position: absolute;
   z-index: -1;
+  height: 53.9vh;
 }
 
 .contenedor{
@@ -130,87 +138,9 @@
 .z-index{
   z-index: -1;
 }
+
+
 /***************Hacerlo responsive para diferentes monitores*****************/
 
-@media (max-width: 900px) { 
-  
-  .myresolution{
-    position: absolute;
-    z-index: -1;
-    height: 50vh;
-  }
 
- }
-
-@media (min-height: 720px) { 
-  
-  .myresolution{
-    position: absolute;
-    z-index: -1;
-    height: 48vh;
-  }
-  .size{
-    width: 50%;
-    height: 153px;
-  }
-
- }
- @media (min-height: 768px) { 
-  
-  .myresolution{
-    position: absolute;
-    z-index: -1;
-    height: 50vh;
-  }
-  .size{
-    width: 50%;
-    height: 148px;
-}
-
- }
- @media (min-height: 900px) { 
-  
-  .myresolution{
-    position: absolute;
-    z-index: -1;
-    height: 50vh;
-  }
-  .size{
-    width: 50%;
-    height: 191px;
-  }
-
- }
-
- 
-
- @media (min-width: 1680px) { 
-  
-  .myresolution{
-    position: absolute;
-    z-index: -1;
-    height: 54vh;
-  }
-  .size{
-    width: 50%;
-    height: 191px;
-  }
-
- }
-
- @media (min-width: 1920px) { 
-  
-  .myresolution{
-    position: absolute;
-    z-index: -1;
-    height: 56vh;
-  }
-  .size{
-    width: 50%;
-    height: 202px;
-  }
-
- }
-
- 
 

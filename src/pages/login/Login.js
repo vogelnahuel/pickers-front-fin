@@ -13,7 +13,7 @@ export const Login = () => {
   const [formValues,handleInputBlur,handleInputChange,handleSubmit] = useForm({
       mail:'',
       password:'',
-      errorMail:true,
+      errorMail:false,
       errorMsgMail:'',
       errorPassWord:false,
       errorMsgPassword:'',
@@ -49,12 +49,13 @@ export const Login = () => {
              
             
             />
-            {
-            errorMail ? <div className="errorsContainer">
-                <p className="errors"> {errorMsgMail}  </p>
-            </div>:<></>
-            }
-          
+           
+              {
+              errorMail ? <div className="errorsContainer">
+                  <p className="errors"> {errorMsgMail}  </p>
+              </div>:null
+              }
+           
          
             <input 
             type="password" 
@@ -80,6 +81,7 @@ export const Login = () => {
               name="button" ><p className="login-init "> Iniciar sesión </p> </Button>
             </div>
           </div>
+          <div className="separador_"></div>
             <br/>
             <br/>
             <Link className="forgotPass" to={"./restore"}>¿Olvidó su contraseña?</Link>
@@ -88,8 +90,9 @@ export const Login = () => {
        
       
         </div> 
+        <div className="login-image" >
           <img className="img-fluid  myresolution" src={canguro} alt="PickersFooter"></img>
-    
+        </div>
        
      
        

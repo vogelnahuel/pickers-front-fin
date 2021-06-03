@@ -20,7 +20,7 @@ export const RestorePassword = () => {
 
 const handleSubmit = (e) =>{
   e.preventDefault();
-  api.put('ms-admin-rest/api/v1.0/admin/change-password',{email:mail,verificationCode:cod,password:e.target.password.value})
+  api.post('ms-admin-rest/api/v1.0/change-password',{email:mail,verificationCode:cod,password:e.target.password.value})
   .then((response)=>{console.log(response)})
   .catch((err)=>{console.log(err)})
 }
@@ -179,7 +179,7 @@ const TieneNumerosYletras = (e) =>{
         <div className="container centrar ">
           <form className="form size" onSubmit={handleSubmit} >
             <div className="form-group">
-              <br />
+              
               <input 
               value={password}
               type="password"
@@ -190,10 +190,11 @@ const TieneNumerosYletras = (e) =>{
                
             />
             {
-                errorPassWord ? <div className="errorsContainer">
-                 <p className="errors"> {errorMsgPassword}  </p>
-                 </div>:<></>   
-            }
+                    errorPassWord ? <div className="errorsContainer">
+                    <p className="errors"> {errorMsgPassword}  </p>
+                    </div>:<></>   
+                }
+        
           
               <input 
               type="password" 
@@ -225,12 +226,13 @@ const TieneNumerosYletras = (e) =>{
                 </ul>
               
            
-                
+              
                     <Button 
-                    className="btn btn-outline-primary button_ mt-5 flotar centerMybuttonPass" 
+                    className="btn btn-outline-primary button_  float centerMybuttonPass" 
                     type="submit" 
                     name="button" 
                   >Guardar</Button> 
+                
           
             
               
