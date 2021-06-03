@@ -9,7 +9,7 @@ export const Header = () => {
         <header className="headerAdmin">
             <div className="containerHeader">
 
-                    <img className="" src={canguroLogo}  alt="Logo "/>
+                    <img className="admin-header-canguro" src={canguroLogo}  alt="Logo "/>
                     <img className="pickersLogo" src={pickers}  alt="Logo "/>
                     <p   className="font-Admin centerHeight leftEnd">ADMIN</p>
                     <img className="argentina " src={argentina}  alt="Logo "/>

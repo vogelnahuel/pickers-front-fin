@@ -32,6 +32,10 @@ const handleSubmit = (e) =>{
   const [errorMsgPassword2, setMsgError2] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
+  const [errorNumerosState, setErrorNumeros] = useState(false);
+  const [errorMayusculasState, setErrorMayusculas] = useState(false);
+  const [errorCaracteresState, setErrorCaracteres] = useState(false);
+  const [errorDiferentesPassword, setErrorPassword] = useState(false);
 
 const handleInputChange = (e) => {
     
@@ -53,13 +57,19 @@ const handleInputChange = (e) => {
 
     //donde poner los errores
     const errorCaracteres = document.querySelector('#caracteres');
+   
     const errorLetras = document.querySelector('#mayusculas');
+    
     const errorNumeros = document.querySelector('#numeros');
+   
 
     ///setear errores
     errorCaracteres.classList.remove('restore-error-p');
     errorLetras.classList.remove('restore-error-p');
     errorNumeros.classList.remove('restore-error-p');
+    setErrorCaracteres(false);
+    setErrorMayusculas(false);
+    setErrorNumeros(false);
 
     if(estaVacio(e)!==false){
 
@@ -79,12 +89,22 @@ const handleInputChange = (e) => {
 
       if(tieneMasDeOchoCaracteres(e)===false){
         errorCaracteres.classList.add('restore-error-p');
+        setErrorCaracteres(true);
       }
-      else if(TieneMayusculasYminusculas(e)===false){
+      if(TieneMayusculasYminusculas(e)===false){
         errorLetras.classList.add('restore-error-p');
+        setErrorMayusculas(true);
       }
-      else if(TieneNumerosYletras(e)===false){
+       if(TieneNumerosYletras(e)===false){
         errorNumeros.classList.add('restore-error-p');
+        setErrorNumeros(true);
+      }
+      if( e.target.name==="password2" && contraseñasIguales(e)===false  ){
+        setErrorPassword(true);
+        e.target.classList.add('errorInput');
+      }else{
+        setErrorPassword(false);
+        e.target.classList.remove('errorInput');
       }
 
     }else{
@@ -93,11 +113,13 @@ const handleInputChange = (e) => {
         setError(true);
         setMsgError("Este campo es requerido");
         e.target.classList.add('inputError');
+        e.target.style.marginBottom="0.6481481481481481vh";
       }
       if(e.target.name==="password2"){
         setError2(true);
         setMsgError2("Este campo es requerido");
         e.target.classList.add('inputError');
+        e.target.style.marginBottom="0.6481481481481481vh";
       }
       
     }
@@ -168,6 +190,15 @@ const TieneNumerosYletras = (e) =>{
     return true;
 
 }
+const contraseñasIguales =(e) => {
+
+  if(password!==e.target.value){
+    return false;
+  }
+  return true;
+
+}
+
 
     return (
         <section>
@@ -211,17 +242,44 @@ const TieneNumerosYletras = (e) =>{
                  <p className="errors"> {errorMsgPassword2}  </p>
                  </div>:<></>   
               }
+               {
+                errorDiferentesPassword ? <div className="errorsContainer">
+                 <p className="noEqualsPassword"> Las contraseñas no coinciden </p>
+                 </div>:<></>   
+              }
             
                 <ul name="elementosError" className="ul">
                     La contraseña debe contar con
                     <li className="display-flex">
-                       <img  src={Okey} alt="ok"/>  <p id="caracteres" className="restore-p">8 o más caracteres</p>
+                      {
+                        errorCaracteresState 
+                        ?  <img   src={Informacion} alt="ok"/>
+                       
+                        :  <img  src={Okey} alt="ok"/>
+                      }
+                        <p id="caracteres" className="restore-p">8 o más caracteres</p>
                     </li>
                     <li className="display-flex">
-                         <img  src={Okey} alt="ok"/> <p id="mayusculas" className="restore-p"> Mayúsculas y minúsculas</p>
+
+                      {
+                          errorMayusculasState 
+                        ?  <img   src={Informacion} alt="ok"/>
+                       
+                        :  <img  src={Okey} alt="ok"/>
+                      }
+                         
+                         
+                         <p id="mayusculas" className="restore-p"> Mayúsculas y minúsculas</p>
                     </li>
                     <li className="display-flex">
-                        <img   src={Informacion} alt="ok"/> <p id="numeros" className="restore-p"> Números y letras</p>
+                    {
+                          errorNumerosState 
+                        ?  <img   src={Informacion} alt="ok"/>
+                       
+                        :  <img  src={Okey} alt="ok"/>
+                      }
+                       
+                         <p id="numeros" className="restore-p"> Números y letras</p>
                     </li>
                 </ul>
               
