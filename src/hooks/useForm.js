@@ -77,10 +77,10 @@ export const useForm = ( initialState = {} ) => {
             })
           }
           else{
-            // if( window.location.pathname==="/")
-            // {
-            //   e.target.button.parentNode.classList.add('shineBorder') ; 
-            // }
+            if( window.location.pathname==="/")
+            {
+              e.target.button.parentNode.classList.add('shineBorder') ; 
+            }
             api.post('/ms-admin-rest/api/v1.0/login',{email:values.mail[0],password:values.password[0]})
                 .then((response)=>{
                     window.localStorage.setItem("token",response.data.result.accessToken)
