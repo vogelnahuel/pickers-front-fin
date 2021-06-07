@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {Header} from '../../../component/admin/Header/Header'
 import {Nav} from '../../../component/admin/Nav/Nav'
 import '../PendingUser/PendingUserAdmin.css'
@@ -13,6 +13,13 @@ import { Part } from '../../../component/admin/pendingUserAdminPicker/Part'
 import {data} from './data'
 
 export const ActiveUserAdminPicker = () => {
+
+    useEffect(()=>{
+        if(!window.localStorage.getItem('token')){
+            window.location.href = '/'
+        }
+    
+      })
 
     const [inputsPart1,ComponentesPart1,inputsPart2,ComponentesPart2,inputsPart3,ComponentesPart3,inputsPart4,ComponentesPart4]=data();
        

@@ -22,7 +22,7 @@ export const Login = () => {
   const {mail,password,errorMail,errorMsgMail,errorPassWord,errorMsgPassword} = formValues;
 
   useEffect(()=>{
-    window.localStorage.setItem('token','')
+    window.localStorage.removeItem('token')
   },[])
 
   return (
