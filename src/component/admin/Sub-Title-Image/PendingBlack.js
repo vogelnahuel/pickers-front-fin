@@ -1,17 +1,37 @@
-import React from 'react'
+import React, { useState } from 'react'
 import volver from '../../../assets/admin/PendingUser/volver.svg'
 import relojOscuro from '../../../assets/admin/PendingUser/relojOscuro.svg'
 import trabajadorAzul from '../../../assets/admin/PendingUser/trabajadorAzul.svg'
 import './pending.css'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 export const PendingBlack = () => {
+
+    
+
+    const [activedmin, setActive] = useState("/activeUserAdmin");
+    const [activeAdminPicker, setActivePicker] = useState("/activeUserAdminpicker");
+
+    const  handleOnClickredirect =(e) => {
+
+        
+        if(window.location.pathname==="/activeUserAdmin"){         
+            
+            setActive("/pendingUserAdmin")
+        }
+        if(window.location.pathname==="/activeUserAdminpicker"){         
+            setActivePicker("/pendingUserAdminpicker");
+        }    
+    }
+
     return (
         <div>
             <div className="FlexPending">
                     <div className="FlexPending backGround-pending">
 
-                        <div className="container-pending">
+                        <div 
+                            onClick={handleOnClickredirect}
+                            className="container-pending">
                             <p className="Pending-paragraph  pending-black">Pendientes</p>
                             <img className="img" src={relojOscuro} alt="reloj" />
                         </div>
@@ -20,6 +40,15 @@ export const PendingBlack = () => {
                             <img className="img2" src={trabajadorAzul} alt="trabajador" />
                         </div>
                     </div>
+
+                    {
+                        window.location.pathname==="/activeUserAdmin" ?
+                        <Redirect to={activedmin}></Redirect>:<></>
+                    }
+                    {
+                        window.location.pathname==="/activeUserAdminpicker" ?
+                        <Redirect to={activeAdminPicker}></Redirect>:<></>
+                    }
 
                     <div>
                         <Link to="./dashboard" >

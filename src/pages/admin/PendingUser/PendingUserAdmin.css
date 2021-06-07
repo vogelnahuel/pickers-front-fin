@@ -1,6 +1,7 @@
 .pending-container{
-    margin-left: 27px;
-    
+    margin-left: 1.977vw    ;
+    margin-right: 1.977vw    ;
+    width: 78vw;
 }
 .subTitle-pending{
     font-family: 'Mulish';
