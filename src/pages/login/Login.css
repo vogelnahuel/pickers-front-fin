@@ -64,6 +64,11 @@
   font-family: 'Mulish';
   font-weight: 800;
   font-size: 18px;
+  text-align: center;
+  align-items: center;
+  vertical-align: middle;
+  padding: .375rem .75rem;
+  line-height: 1.5;
 }
 
 
@@ -137,6 +142,11 @@
 }
 .z-index{
   z-index: -1;
+}
+.animation{
+  width: 245px;
+  height: 57px;
+  margin-right: 12px;
 }
 
 

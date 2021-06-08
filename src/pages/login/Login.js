@@ -28,8 +28,8 @@ export const Login = () => {
   return (
       < >
     
-        
-       
+    
+    
         <div className="logo">
           <img src={pickersLogo} alt="PickersLogo"></img>
         </div>
@@ -74,9 +74,9 @@ export const Login = () => {
             }
           
           <div className="contenedor z-index">
-            <div className="contenedor z-index">
+            <div className="contenedor z-index animation">
               <Button 
-              className="btn btn-outline-primary button_ mt-4 mb-4 z-index" 
+              className="  button_ mt-4 mb-4 z-index" 
               type="submit" 
               name="button" ><p className="login-init "> Iniciar sesión </p> </Button>
             </div>
@@ -94,9 +94,9 @@ export const Login = () => {
           <img className="img-fluid  myresolution" src={canguro} alt="PickersFooter"></img>
         </div>
        
-     
-       
+         
 
+          
     </>
   );
 }
