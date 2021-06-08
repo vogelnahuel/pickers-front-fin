@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {Header} from '../../../component/admin/Header/Header'
 import {Nav} from '../../../component/admin/Nav/Nav'
 import '../PendingUser/PendingUserAdmin.css'
@@ -15,6 +15,13 @@ export const ActiveUserAdmin = () => {
     const titulosAdminActive = ['Nombre','DNI','Email','vehiculo','Transacciones','Estado','Editar'];
      /****llama a los campos y los envia */
     const [FieldsPart] = dataActiveUser();
+    useEffect(()=>{
+        if(!window.localStorage.getItem('token')){
+            window.location.href = '/'
+        }
+    
+      })
+      
 
        
     return (
