@@ -86,24 +86,30 @@ export const useForm = ( initialState = {} ) => {
                     window.localStorage.setItem("token",response.data.result.accessToken)
                     window.location.href= "./dashboard"
             })
-            .catch((err)=>console.log(err))
+            .catch((err)=>console.log(Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: 'Hubo un error al cargar la pagina',
+                showConfirmButton: false,
+                timer: 20000
+            })))
         
           
-            if( window.location.pathname==="/")
-            {
-                setTimeout(() => {
-                    e.target.button.parentNode.classList.remove('shineBorder') ; 
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'error',
-                        title: 'Hubo un error al cargar la pagina',
-                        showConfirmButton: false,
-                        timer: 3000
-                    })
-                }, 6000);
+            // if( window.location.pathname==="/")
+            // {
+            //     setTimeout(() => {
+            //         e.target.button.parentNode.classList.remove('shineBorder') ; 
+            //         Swal.fire({
+            //             position: 'center',
+            //             icon: 'error',
+            //             title: 'Hubo un error al cargar la pagina',
+            //             showConfirmButton: false,
+            //             timer: 3000
+            //         })
+            //     }, 6000);
             
             
-                } 
+            //     } 
             }
     
       }

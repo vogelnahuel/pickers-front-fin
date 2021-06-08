@@ -1,115 +1,17 @@
 import React from 'react'
 import './tableAdmin.css'
 import edit from '../../../assets/admin/PendingUser/edit.svg'
+import moment from 'moment';
 
 
 export const TableAdmin = (props) => {
-  const {titulosAdminPending,titulosAdminActive} = props;
-  console.log(titulosAdminPending)
-  console.log(titulosAdminActive)
-    const  api = [
-        {
-          "id": 1,
-          "nombre": "delectus aut autem",
-          "email": "test@test.com",
-          "vehiculo":"test",
-          "pendienteHace":"1 dia",
-          "estado":"Habilitado",
-          "Transacciones": "10"
-        },
-        {
-            "id": 2,
-            "nombre": "delectus aut autem",
-            "email": "test@test.com",
-            "vehiculo":"test",
-            "pendienteHace":"1 dia",
-            "estado":"Habilitado",
-            "Transacciones": "10"
-          },
-          {
-            "id": 3,
-            "nombre": "delectus aut autem",
-            "email": "test@test.com",
-            "vehiculo":"test",
-            "pendienteHace":"1 dia",
-            "estado":"Habilitado",
-            "Transacciones": "10"
-          },
-          {
-            "id": 4,
-            "nombre": "delectus aut autem",
-            "email": "test@test.com",
-            "vehiculo":"test",
-            "pendienteHace":"1 dia",
-            "estado":"Deshabilitado", 
-            "Transacciones": "7"
-          },
-          {
-            "id": 5,
-            "nombre": "delectus aut autem",
-            "email": "test@test.com",
-            "vehiculo":"test",
-            "pendienteHace":"1 dia",
-            "estado":"Deshabilitado",
-            "Transacciones": "7"
-          },
-          {
-            "id": 6,
-            "nombre": "delectus aut autem",
-            "email": "test@test.com",
-            "vehiculo":"test",
-            "pendienteHace":"1 dia",
-            "estado":"Deshabilitado",
-            "Transacciones": "7"
-          },
-          {
-            "id": 7,
-            "nombre": "delectus aut autem",
-            "email": "test@test.com",
-            "vehiculo":"test",
-            "pendienteHace":"1 dia",
-            "estado":"Deshabilitado",
-            "Transacciones": "7"
-          },
-          {
-            "id": 8,
-            "nombre": "delectus aut autem",
-            "email": "test@test.com",
-            "vehiculo":"test",
-            "pendienteHace":"1 dia",
-            "estado":"Habilitado",
-            "Transacciones": "7"
-          },
-          {
-            "id": 9,
-            "nombre": "delectus aut autem",
-            "email": "test@test.com",
-            "vehiculo":"test",
-            "pendienteHace":"1 dia",
-            "estado":"Deshabilitado",
-            "Transacciones": "11"
-          },
-          {
-            "id": 10,
-            "nombre": "delectus aut autem",
-            "email": "test@test.com",
-            "vehiculo":"test",
-            "pendienteHace":"1 dia",
-            "estado":"Habilitado",
-            "Transacciones": "11"
-          },
-          {
-            "id": 11,
-            "nombre": "delectus aut autem",
-            "email": "test@test.com",
-            "vehiculo":"test",
-            "pendienteHace":"1 dia",
-            "estado":"Habilitado",
-            "Transacciones": "19"
-          },
-];
+  const {titulosAdminPending,titulosAdminActive,data} = props;
 
+var regDate =moment()
+var actualDate = moment('2021-06-04 18:06:38', 'YYYY-MM-DD hh:mm:ss')
+var difRegDate =regDate.diff(actualDate, 'days')
 
+console.log(data)
 
     return (
       
@@ -138,15 +40,15 @@ export const TableAdmin = (props) => {
 
             {
                window.location.pathname==='/pendingUserAdmin'  ?
-                        api.map(rows => (
+                        data.map(rows => (
                             <tr className="info"
                                 key={rows.id}
                             > 
-                                <td>  {rows.nombre} </td>
+                                <td>  {rows.name} </td>
                                 <td>  {rows.id} </td>
-                                <td>  {rows.email}</td>
-                                <td>  {rows.vehiculo}</td>
-                                <td>  {rows.pendienteHace} </td>
+                                <td>  {rows.user.email}</td>
+                                <td>  {rows.vehicleTypeId==1?"moto":rows.vehicleTypeId==2?"bici":null}</td>
+                                <td>  {difRegDate} días </td>
                                 <td>  <img src={edit} alt="edit"/> </td>
                             </tr>
                             ))
@@ -155,7 +57,7 @@ export const TableAdmin = (props) => {
 
             {
                 window.location.pathname==='/activeUserAdmin'  ?
-                            api.map(rows => (
+                            data.map(rows => (
                                 <tr className="info"
                                     key={rows.id}
                                 > 
