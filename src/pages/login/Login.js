@@ -28,8 +28,8 @@ export const Login = () => {
   return (
       < >
     
-        
-       
+    
+    
         <div className="logo">
           <img src={pickersLogo} alt="PickersLogo"></img>
         </div>
@@ -94,7 +94,7 @@ export const Login = () => {
           <img className="img-fluid  myresolution" src={canguro} alt="PickersFooter"></img>
         </div>
        
-          
+         
 
           
     </>
