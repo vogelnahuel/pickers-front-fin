@@ -15,8 +15,8 @@
     margin-top: auto;
     margin-bottom: auto;
     display: inline-block;
-    padding-top: 2rem;
-    padding-left: 1rem;
+    padding-top: 3.595724003887269vh;
+    padding-left: 2.196vw    ;
 }
 
 .Pending-paragraph2{
@@ -29,8 +29,8 @@
     margin-top: auto;
     margin-bottom: auto;
     display: inline-block;
-    padding-top: 2rem;
-    padding-left: 1rem;
+    padding-top: 3.595724003887269vh;
+    padding-left: 2.196vw    ;
 }
 .Pending-paragraph3{
     font-family: 'Mulish';
@@ -54,13 +54,13 @@
 }
 .img{
     position: absolute;
-    margin-left: 12rem;
-    margin-top: 1rem;
+    margin-left: 15.029vw;
+    margin-top: 1.943634596695821vh;
 }
 .img2{
     position: absolute;
-    margin-left: 15rem;
-    margin-top: 1rem;
+    margin-left: 15.029vw ;
+    margin-top: 1.943634596695821vh;
 }
 .img3{
     margin-left: 7rem;
@@ -71,4 +71,27 @@
 }
 .pending-blue{
     color: #0098FF;  
+}
+@media (min-height: 750px) { 
+    .img{
+      
+        
+        margin-top: 2.943634596695821vh;
+    }
+    .img2{
+       
+       
+        margin-top: 2.943634596695821vh;
+    }
+    .Pending-paragraph{
+        
+        padding-top: 4.595724003887269vh;
+       
+    }
+    
+    .Pending-paragraph2{
+       
+        padding-top: 4.595724003887269vh;
+      
+    }
 }
