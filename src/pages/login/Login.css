@@ -1,155 +1,183 @@
 
 
 .form{
-    margin-left: auto;
-    margin-right: auto;
+  margin-left: auto;
+  margin-right: auto;
+ position: relative;
 }
 .logo{
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 5.555555555555555vh;
-    margin-top: 25.833333333333332vh;
-    width: 208px;
-    height: 5.833333333333333vh;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5.555555555555555vh;
+  margin-top: 25.833333333333332vh;
+  width: 208px;
+  height: 5.833333333333333vh;
 }
 
 .input{
-    width: 28.177vw ;
-    border: rgba(20, 90, 153, 0);
-    border-bottom: 1px solid #4D4D4D;
-    outline: none;
-    /* margin-bottom: 5px; */
+  width: 28.177vw ;
+  border: rgba(20, 90, 153, 0);
+  border-bottom: 1px solid #4D4D4D;
+  outline: none;
+  margin-bottom: 3px;
+  /* margin-bottom: 5px; */
 }
 
 .separador{
-  height: 3.888888888888889vh;
-  width: 28.177vw ;
-  display: inline-block;
+height: 3.888888888888889vh;
+width: 28.177vw ;
+display: inline-block;
 }
 
 
 
 .inputError{
-  width: 28.177vw ;
-  border: rgba(153, 24, 20, 0);
-  color: #FF1515;
-  border-bottom: 1px solid #e00404;
+width: 28.177vw ;
+border: rgba(153, 24, 20, 0);
+color: #FF1515;
+border-bottom: 1px solid #e00404;
+margin-bottom: 5px;
 
 }
 .inputError::placeholder{
-  color: #FF1515;
+color: #FF1515;
 }
 
 
 
-  .forgotPass{
-  color: #4D4D4D;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 20px;
-  padding-bottom: 10px;
-  padding-left: 10px;
-  
+.forgotPass{
+color: #4D4D4D;
+font-style: normal;
+font-weight: 300;
+font-size: 16px;
+line-height: 20px;
+padding-bottom: 10px;
+
 }
 
 .button_ {
-  background-color: rgba(20, 90, 153, 1);
-  border-radius: 50px;
-  width: 233px;
-  height: 50px;
-  background: #145a99;
-  color: white;
-  border: 4px solid #145a99;
-  box-sizing: border-box;
-  font-family: 'Mulish';
-  font-weight: 800;
-  font-size: 18px;
-  text-align: center;
-  align-items: center;
-  vertical-align: middle;
-  padding: .375rem .75rem;
-  line-height: 1.5;
+background-color: rgba(20, 90, 153, 1);
+border-radius: 50px;
+width: 233px;
+height: 50px;
+background: #145a99;
+color: white;
+border: 4px solid #145a99;
+box-sizing: border-box;
+font-family: 'Mulish';
+font-weight: 800;
+font-size: 18px;
+text-align: center;
+align-items: center;
+vertical-align: middle;
+padding: .375rem .75rem;
+line-height: 1.5;
 }
 
 
 
 
-  .buttonContainer{
-    width: 233px;
-    height: 150px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: start;
-    margin-bottom: 10px;
-  }
-  
-
-  
-  .errorsContainer{
-    display: flex;
-  }
+.buttonContainer{
+  width: 233px;
+  height: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: start;
+  margin-bottom: 10px;
+}
 
 
-  .errors{
-    font-family: 'Mulish', sans-serif;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 14px;
-    line-height: 18px;
-    position: relative;
-    color: #FF1515;
-  }
 
-  .correcion{
-    display: inline;
-    margin-left: 200px;
-  }
+.errorsContainer{
+  display: flex;
+}
 
- 
+
+.errors{
+  font-family: 'Mulish', sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 18px;
+  position: relative;
+  color: #FF1515;
+}
+
+.correcion{
+  display: inline;
+  margin-left: 200px;
+}
+
+
 
 .flotar {
-    position: absolute;
-    margin-left: 8%;
-   }
+  position: absolute;
+  margin-left: 8%;
+ }
 .size{
-    width: 50%;
-    height: 8.888888888888888vh;
+  width: 50%;
+  height: 8.888888888888888vh;
 }
 .myresolution{
-  position: absolute;
-  z-index: -1;
-  height: 53.9vh;
+position: absolute;
+z-index: -1;
+height: 53.9vh;
 }
 
 .contenedor{
-  width: 233px;
-  height: 50px;
-  margin-left: auto;
-  margin-right: auto;
+width: 233px;
+height: 50px;
+margin-left: auto;
+margin-right: auto;
 }
 
 .login-init{
-  position: relative;
-  z-index: 10;
-  margin-top: 0.2rem;
-  font-family: 'Mulish';
-  font-style: normal;
-  font-weight: 800;
-  font-size: 18px;
-  line-height: 23px;
-  text-align: center;
-  color: #FFFFFF;
+position: relative;
+z-index: 10;
+margin-top: 0.2rem;
+font-family: 'Mulish';
+font-style: normal;
+font-weight: 800;
+font-size: 18px;
+line-height: 23px;
+text-align: center;
+color: #FFFFFF;
 }
 .z-index{
-  z-index: -1;
+z-index: -1;
 }
 .animation{
-  width: 245px;
-  height: 57px;
-  margin-right: 12px;
+width: 245px;
+height: 57px;
+margin-right: 12px;
 }
 
+label{
+position: absolute;
+margin-top: 0px;
+left: 0;
+font-family: 'Mulish';
+font-style: normal;
+font-weight: 300;
+font-size: 17px;
+line-height: 21px;
+color: #4D4D4D;
+width: 31vw;
+transform-origin: 0 0;
+transition: transform 0.2s ease-in-out;
+padding-right: 32.086vw;
+}
+.labelError{
+color: #FF1515;
+}
+
+
+.animationTop{
+transform: translateY(-0.8em) scale(0.8);
+}
+.animationOrigin{
+transform: translateY(0em) scale(1);
+}
 
 /***************Hacerlo responsive para diferentes monitores*****************/
 

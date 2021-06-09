@@ -13,6 +13,7 @@ export const  EmailRestore = () => {
     //let token =localStorage.getItem("token")
    // console.log(token)
 
+
     const [formValues,handleInputBlur,handleInputChange] = useForm({
       mail:'',
       errorMail:true,
@@ -38,6 +39,12 @@ export const  EmailRestore = () => {
     }
   }
 
+  const handleFocusLabel = (e,mail="") => {
+    e.target.nextSibling.classList.remove('animationOrigin');
+    e.target.nextSibling.classList.add('animationTop');
+  }
+
+
     return(
       <>
      
@@ -50,16 +57,21 @@ export const  EmailRestore = () => {
           <form className="form size" onSubmit={handleSubmit}>
             <div className="form-group">
             
-           
+            
               <input 
                type="mail" 
                className="input" 
                name="mail" 
-               placeholder="Email"
-               onBlur={handleInputBlur}
-               onChange={handleInputChange}
+               id="mail"
+               autoComplete="off"
+               onBlur={(e) => {
+                handleInputBlur(e)
+               }}
+               onChange={(e)=>{handleInputChange(e,mail)}}   
                value={mail}
+               onFocus={(e) => handleFocusLabel(e,mail)}
                />
+               <label htmlFor="mail" className="login-label">Email</label>
                 {
                 errorMail ? <div className="errorsContainer">
                  <p className="errors"> {errorMsgMail}  </p>
