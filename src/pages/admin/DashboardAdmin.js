@@ -25,7 +25,7 @@ export const DashboardAdmin = () => {
 
                                             <Card
                                              subtitle="Pickers"
-                                             title="On line"
+                                             title="En linea"
                                              number={10}
                                              backgroundColor="#63E8A8"
                                             />

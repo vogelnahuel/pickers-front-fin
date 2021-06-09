@@ -20,7 +20,7 @@ export const Nav = () => {
                                    || window.location.pathname  ==="/pendingUserAdminpicker" 
                                    || window.location.pathname  ==="/activeUserAdminpicker"  
                                    ? <div className="circle"></div> :  <div className="circle-transparent"></div>  
-                                   }   <Link to="/pendingUserAdmin">Usuarios</Link>
+                                   }   <Link to="/pendingUserAdmin">Flota</Link>
                               </li>
                               <li>
                                    { window.location.pathname  ==="/userAdmin"  ?<div className="circle"></div> : <div className="circle-transparent"></div>  }   <Link to="#">Transacciones</Link>
@@ -29,7 +29,7 @@ export const Nav = () => {
                               <ul>
                               <h3>Operaciones</h3>
                               <li>
-                                   { window.location.pathname  ==="/userAdmin"  ?<div className="circle"></div> : <div className="circle-transparent"></div>   }<Link to="#">   Settings</Link>
+                                   { window.location.pathname  ==="/userAdmin"  ?<div className="circle"></div> : <div className="circle-transparent"></div>   }<Link to="#">   Configuración</Link>
                               </li>
                               <li>
                                    { window.location.pathname  ==="/userAdmin"  ?<div className="circle"></div> : <div className="circle-transparent"></div>   }  <Link to="#">Planificacion</Link>

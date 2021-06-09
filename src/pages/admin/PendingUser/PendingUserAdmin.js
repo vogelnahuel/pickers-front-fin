@@ -22,11 +22,11 @@ export const PendingUserAdmin = () => {
         if(!window.localStorage.getItem('token')){
             window.location.href = '/'
         }
-            pepito();
+            getData();
       },[])
       
-      const pepito = async () =>{
-       setData(  await api.get('ms-admin-rest/api/v1.0/pickers?pickerStatusId=1,2')
+      const getData = async () =>{
+       setData(  await api.get('ms-admin-rest/api/v1.0/pickers?pickerStatusId=2,3')
         .then((res)=>{return res.data.result.items})
         .catch((err)=>{console.log(err)}) )
       }
@@ -42,7 +42,7 @@ export const PendingUserAdmin = () => {
                        
                      <div 
                      className="mainContainerFlex">
-                         <h2 className="subTitle-pending">Pickers pendientes</h2>
+                         <h2 className="subTitle-pending">Solicitudes pendientes</h2>
                          <button 
                             
                             className="export"

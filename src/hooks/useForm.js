@@ -97,7 +97,6 @@ export const useForm = ( initialState = {} ) => {
             })))
         
           
-<<<<<<< HEAD
             // if( window.location.pathname==="/")
             // {
             //     setTimeout(() => {
@@ -110,20 +109,6 @@ export const useForm = ( initialState = {} ) => {
             //             timer: 3000
             //         })
             //     }, 6000);
-=======
-            if( window.location.pathname==="/")
-            {
-                setTimeout(() => {
-                    e.target.button.parentNode.classList.remove('shineBorder') ; 
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'error',
-                        title: 'Hubo un error al cargar la pagina',
-                        showConfirmButton: false,
-                        timer: 3000
-                    })
-                }, 16000);
->>>>>>> develop
             
             
             //     } 
