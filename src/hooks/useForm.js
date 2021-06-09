@@ -79,10 +79,12 @@ export const useForm = ( initialState = {} ) => {
           else{
             if( window.location.pathname==="/")
             {
-              e.target.button.parentNode.classList.add('shineBorder') ; 
-            }
-            api.post('/ms-admin-rest/api/v1.0/login',{email:values.mail[0],password:values.password[0]})
-                .then((response)=>{
+               e.target.button.parentNode.classList.add('shineBorder') ; 
+              
+             }
+        
+             api.post('/ms-admin-rest/api/v1.0/login',{email:values.mail[0],password:values.password[0]})
+                 .then((response)=>{
                     window.localStorage.setItem("token",response.data.result.accessToken)
                     window.location.href= "./dashboard"
             })
@@ -95,6 +97,7 @@ export const useForm = ( initialState = {} ) => {
             })))
         
           
+<<<<<<< HEAD
             // if( window.location.pathname==="/")
             // {
             //     setTimeout(() => {
@@ -107,6 +110,20 @@ export const useForm = ( initialState = {} ) => {
             //             timer: 3000
             //         })
             //     }, 6000);
+=======
+            if( window.location.pathname==="/")
+            {
+                setTimeout(() => {
+                    e.target.button.parentNode.classList.remove('shineBorder') ; 
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'Hubo un error al cargar la pagina',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                }, 16000);
+>>>>>>> develop
             
             
             //     } 
