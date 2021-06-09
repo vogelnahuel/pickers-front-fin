@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {Header} from '../../../component/admin/Header/Header'
 import {Nav} from '../../../component/admin/Nav/Nav'
 import '../PendingUser/PendingUserAdmin.css'
@@ -9,20 +9,29 @@ import {Filter} from '../../../component/admin/Filter/Filter'
 import { TableAdmin } from '../../../component/admin/table/TableAdmin'
 import { PendingBlack } from '../../../component/admin/Sub-Title-Image/PendingBlack'
 import {dataActiveUser} from './dataActiveUser'
+import api from '../../../config/api'
 
 export const ActiveUserAdmin = () => {
     /****titulos de la tabla */
     const titulosAdminActive = ['Nombre','DNI','Email','vehiculo','Transacciones','Estado','Editar'];
      /****llama a los campos y los envia */
     const [FieldsPart] = dataActiveUser();
+
+    const [data, setData] = useState([])
+
+
     useEffect(()=>{
         if(!window.localStorage.getItem('token')){
             window.location.href = '/'
         }
-    
-      })
+            getData();
+      },[])
       
-
+      const getData = async () =>{
+       setData(  await api.get('ms-admin-rest/api/v1.0/pickers?pickerStatusId=4,5')
+        .then((res)=>{return res.data.result.items})
+        .catch((err)=>{console.log(err)}) )
+      }
        
     return (
         <div className="background-Grey">
@@ -52,6 +61,7 @@ export const ActiveUserAdmin = () => {
                  <br/>
                  <TableAdmin
                  titulosAdminActive={titulosAdminActive}
+                 data={data}
                  />
             </div>
             

@@ -1,186 +1,85 @@
-import React from 'react'
-import './tableAdmin.css'
-import edit from '../../../assets/admin/PendingUser/edit.svg'
-
+import React from "react";
+import "./tableAdmin.css";
+import edit from "../../../assets/admin/PendingUser/edit.svg";
+import moment from "moment";
 
 export const TableAdmin = (props) => {
-  const {titulosAdminPending,titulosAdminActive} = props;
-  console.log(titulosAdminPending)
-  console.log(titulosAdminActive)
-    const  api = [
-        {
-          "id": 1,
-          "nombre": "delectus aut autem",
-          "email": "test@test.com",
-          "vehiculo":"test",
-          "pendienteHace":"1 dia",
-          "estado":"Habilitado",
-          "Transacciones": "10"
-        },
-        {
-            "id": 2,
-            "nombre": "delectus aut autem",
-            "email": "test@test.com",
-            "vehiculo":"test",
-            "pendienteHace":"1 dia",
-            "estado":"Habilitado",
-            "Transacciones": "10"
-          },
-          {
-            "id": 3,
-            "nombre": "delectus aut autem",
-            "email": "test@test.com",
-            "vehiculo":"test",
-            "pendienteHace":"1 dia",
-            "estado":"Habilitado",
-            "Transacciones": "10"
-          },
-          {
-            "id": 4,
-            "nombre": "delectus aut autem",
-            "email": "test@test.com",
-            "vehiculo":"test",
-            "pendienteHace":"1 dia",
-            "estado":"Deshabilitado", 
-            "Transacciones": "7"
-          },
-          {
-            "id": 5,
-            "nombre": "delectus aut autem",
-            "email": "test@test.com",
-            "vehiculo":"test",
-            "pendienteHace":"1 dia",
-            "estado":"Deshabilitado",
-            "Transacciones": "7"
-          },
-          {
-            "id": 6,
-            "nombre": "delectus aut autem",
-            "email": "test@test.com",
-            "vehiculo":"test",
-            "pendienteHace":"1 dia",
-            "estado":"Deshabilitado",
-            "Transacciones": "7"
-          },
-          {
-            "id": 7,
-            "nombre": "delectus aut autem",
-            "email": "test@test.com",
-            "vehiculo":"test",
-            "pendienteHace":"1 dia",
-            "estado":"Deshabilitado",
-            "Transacciones": "7"
-          },
-          {
-            "id": 8,
-            "nombre": "delectus aut autem",
-            "email": "test@test.com",
-            "vehiculo":"test",
-            "pendienteHace":"1 dia",
-            "estado":"Habilitado",
-            "Transacciones": "7"
-          },
-          {
-            "id": 9,
-            "nombre": "delectus aut autem",
-            "email": "test@test.com",
-            "vehiculo":"test",
-            "pendienteHace":"1 dia",
-            "estado":"Deshabilitado",
-            "Transacciones": "11"
-          },
-          {
-            "id": 10,
-            "nombre": "delectus aut autem",
-            "email": "test@test.com",
-            "vehiculo":"test",
-            "pendienteHace":"1 dia",
-            "estado":"Habilitado",
-            "Transacciones": "11"
-          },
-          {
-            "id": 11,
-            "nombre": "delectus aut autem",
-            "email": "test@test.com",
-            "vehiculo":"test",
-            "pendienteHace":"1 dia",
-            "estado":"Habilitado",
-            "Transacciones": "19"
-          },
-];
+  const { titulosAdminPending, titulosAdminActive, data } = props;
 
+  const getDifDate = (date) => {
+    var regDate = moment();
+    var actualDate = moment(date, "YYYY-MM-DD hh:mm:ss");
+   return regDate.diff(actualDate, "days");
+  };
+  console.log(data);
 
+  return (
+    <table className="table-admin">
+      <thead>
+        <tr className="title-table">
+          {window.location.pathname === "/pendingUserAdmin" &&
+          titulosAdminPending !== undefined
+            ? titulosAdminPending.map((rows) => <td key={rows}> {rows} </td>)
+            : null}
+          {window.location.pathname === "/activeUserAdmin" &&
+          titulosAdminActive !== undefined
+            ? titulosAdminActive.map((rows) => <td key={rows}> {rows} </td>)
+            : null}
+        </tr>
+      </thead>
+      <tbody>
+        {window.location.pathname === "/pendingUserAdmin"
+          ? data.map((rows) => (
+              <tr className="info" key={rows.id}>
+                <td> {rows.name} </td>
+                <td> {rows.id} </td>
+                <td> {rows.user.email}</td>
+                <td>
+                  {" "}
+                  {rows.vehicleTypeId == 1
+                    ? "moto"
+                    : rows.vehicleTypeId == 2
+                    ? "bici"
+                    : null}
+                </td>
+                <td> {rows.registerDate?getDifDate(rows.registerDate):null} días</td>
+                <td>
+                  {" "}
+                  <img src={edit} alt="edit" />{" "}
+                </td>
+              </tr>
+            ))
+          : null}
 
-    return (
-      
-        <table className="table-admin">
-            <thead>
-                    <tr className="title-table">
-                        {
-                           
-                           
-                            window.location.pathname==='/pendingUserAdmin'  && titulosAdminPending !==undefined ?
-                                titulosAdminPending.map(rows => (
-                                    <td key={rows}>  {rows} </td>                                 
-                                ))
-                            : null
-                        }
-                        {
-                            window.location.pathname==='/activeUserAdmin' && titulosAdminActive !==undefined  ?
-                            titulosAdminActive.map(rows => (
-                                    <td key={rows}> {rows} </td>                                 
-                                ))
-                            : null
-                        }
-                    </tr>
-            </thead>
-            <tbody>
+        {window.location.pathname === "/activeUserAdmin"
+          ? data.map((rows) => (
+              <tr className="info" key={rows.id}>
+                <td> {rows.name} </td>
+                <td> {rows.id} </td>
+                <td> {rows.user.email}</td>
+                <td>
+                  {" "}
+                  {rows.vehicleTypeId == 1
+                    ? "moto"
+                    : rows.vehicleTypeId == 2
+                    ? "bici"
+                    : null}
+                </td>
+                <td> {rows.Transacciones} </td>
+                {rows.pickerStatusId === 1 ? (
+                  <td className="color-state-green"> {"Habilitado"} </td>
+                ) : (
+                  <td className="color-state-red"> {"Deshabilitado"} </td>
+                )}
 
-            {
-               window.location.pathname==='/pendingUserAdmin'  ?
-                        api.map(rows => (
-                            <tr className="info"
-                                key={rows.id}
-                            > 
-                                <td>  {rows.nombre} </td>
-                                <td>  {rows.id} </td>
-                                <td>  {rows.email}</td>
-                                <td>  {rows.vehiculo}</td>
-                                <td>  {rows.pendienteHace} </td>
-                                <td>  <img src={edit} alt="edit"/> </td>
-                            </tr>
-                            ))
-                 : null
-            } 
-
-            {
-                window.location.pathname==='/activeUserAdmin'  ?
-                            api.map(rows => (
-                                <tr className="info"
-                                    key={rows.id}
-                                > 
-                                    <td>  {rows.nombre} </td>
-                                    <td>  {rows.id} </td>
-                                    <td>  {rows.email}</td>
-                                    <td>  {rows.vehiculo}</td>
-                                    <td>  {rows.Transacciones} </td>
-                                    {
-                                        rows.estado ==='Habilitado' 
-                                        ? <td className="color-state-green">  {rows.estado} </td>
-                                        : <td className="color-state-red">  {rows.estado} </td>
-                                    }
-                                    
-                                    <td>  <img src={edit} alt="edit"/> </td>
-                                </tr>
-                                ))
-                    : null
-                }
-           
-            </tbody>
-           
-           
-            
-            
-        </table>
-    )
-}
+                <td>
+                  {" "}
+                  <img src={edit} alt="edit" />{" "}
+                </td>
+              </tr>
+            ))
+          : null}
+      </tbody>
+    </table>
+  );
+};

@@ -25,7 +25,7 @@ export const PendingBlue = () => {
                     <div className="FlexPending backGround-pending">
 
                         <div className="container-pending">
-                            <p className="Pending-paragraph">Pendientes</p>
+                            <p className="Pending-paragraph">Solicitudes pendientes</p>
                             <img className="img" src={relojAzul} alt="reloj" />
                         </div>
                         <div

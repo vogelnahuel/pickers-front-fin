@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {Header} from '../../../component/admin/Header/Header'
 import {Nav} from '../../../component/admin/Nav/Nav'
 import './PendingUserAdmin.css'
@@ -8,18 +8,30 @@ import or from '../../../assets/admin/PendingUser/or.svg'
 import {Filter} from '../../../component/admin/Filter/Filter'
 import { TableAdmin } from '../../../component/admin/table/TableAdmin'
 import {dataPendingUser}  from './dataPendingUser'
+import api from '../../../config/api'
 
 export const PendingUserAdmin = () => {
     /****titulos de la tabla */
     const titulosAdminPending = ['Nombre','DNI','Email','vehiculo','Pendiente hace','Editar'];
        /****llama a los campos y los envia */
     const [FieldsPart] = dataPendingUser();
+
+    const [data, setData] = useState([])
+
     useEffect(()=>{
         if(!window.localStorage.getItem('token')){
             window.location.href = '/'
         }
-    
-      })
+            getData();
+      },[])
+      
+      const getData = async () =>{
+       setData(  await api.get('ms-admin-rest/api/v1.0/pickers?pickerStatusId=2,3')
+        .then((res)=>{return res.data.result.items})
+        .catch((err)=>{console.log(err)}) )
+      }
+  
+  
     return (
         <div className="background-Grey">
             <Header/>
@@ -30,7 +42,7 @@ export const PendingUserAdmin = () => {
                        
                      <div 
                      className="mainContainerFlex">
-                         <h2 className="subTitle-pending">Pickers pendientes</h2>
+                         <h2 className="subTitle-pending">Solicitudes pendientes</h2>
                          <button 
                             
                             className="export"
@@ -48,6 +60,7 @@ export const PendingUserAdmin = () => {
                      <br/>
                      <TableAdmin
                     titulosAdminPending={titulosAdminPending}
+                    data={data}
                      />
                 </div>
                 
