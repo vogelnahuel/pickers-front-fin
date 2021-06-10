@@ -21,6 +21,7 @@
 .navAdmin ul li{
         margin-bottom: 1vh;
         margin-left: 1rem;
+       
 }
 .navAdmin ul li a{
     font-family: 'Mulish';
@@ -78,31 +79,35 @@
 .circle{
     height: 7px;
     width: 7px;
+    left: 2.5vw;
+    margin-top: 1.6vh; 
     border-radius: 3px;
     background-color: #145A99;
-    display: inline-block;
-}
-.circle-transparent{
-    height: 7px;
-    width: 7px;
-    border-radius: 3px;
-    background-color: #145b9900;
-    display: inline-block;
+    position: absolute;
 }
 
+
+@media (min-height: 800px) { 
+  
+    .circle{
+        left: 2vw;
+        margin-top: 1.4vh;
+    }
+  
+   }
 
 @media (min-height: 900px) { 
   
     .circle{
-        left: 2.5vw;
-        margin-top: 1.3vh;
+        left: 2.2vw;
+        margin-top: 1.2vh;
     }
   
    }
-   @media (min-height: 1050px) { 
+   @media (min-height: 1000px) { 
   
     .circle{
-        left: 2.8vw;
+        left: 2.5vw;
         margin-top: 1vh;
     }
   

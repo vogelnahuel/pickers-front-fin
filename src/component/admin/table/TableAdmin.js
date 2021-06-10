@@ -11,7 +11,7 @@ export const TableAdmin = (props) => {
     var actualDate = moment(date, "YYYY-MM-DD hh:mm:ss");
    return regDate.diff(actualDate, "days");
   };
-  console.log(data);
+
 
   return (
     <table className="table-admin">
@@ -36,9 +36,9 @@ export const TableAdmin = (props) => {
                 <td> {rows.user.email}</td>
                 <td>
                   {" "}
-                  {rows.vehicleTypeId == 1
+                  {rows.vehicleTypeId === 1
                     ? "moto"
-                    : rows.vehicleTypeId == 2
+                    : rows.vehicleTypeId === 2
                     ? "bici"
                     : null}
                 </td>
@@ -59,9 +59,9 @@ export const TableAdmin = (props) => {
                 <td> {rows.user.email}</td>
                 <td>
                   {" "}
-                  {rows.vehicleTypeId == 1
+                  {rows.vehicleTypeId === 1
                     ? "moto"
-                    : rows.vehicleTypeId == 2
+                    : rows.vehicleTypeId === 2
                     ? "bici"
                     : null}
                 </td>

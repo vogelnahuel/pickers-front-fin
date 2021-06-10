@@ -42,7 +42,7 @@ export const PendingUserAdmin = () => {
                        
                      <div 
                      className="mainContainerFlex">
-                         <h2 className="subTitle-pending">Solicitudes pendientes</h2>
+                         <h2 className="subTitle-pending"><p className="subtitle-pendingUser-h2">Solicitudes pendientes</p></h2>
                          <button 
                             
                             className="export"

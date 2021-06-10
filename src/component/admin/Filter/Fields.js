@@ -16,12 +16,13 @@ export const Fields = (props) => {
                            {
                                variable.type!=="select" && variable.type!=="" ?
                                     <>
-                                    <div>
+                                     <div>
                                         <label className={variable.label.labelclassName} htmlFor={variable.label.labelhtmlFor}>{variable.label.labelparrafo}</label>
                                     </div>
                                     <div>
                                         <input className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>
-                                    </div>   
+                                    </div>  
+                                    
                                     </>
                                  : null                       
                                  

@@ -256,7 +256,7 @@ const handleInputBlur = (e) => {
                onFocus={(e) => handleFocusLabel(e,password)}          
                
             />
-             <label htmlFor="password" className="login-label-width login-restore-padding2">Nueva contraseña</label>
+             <label htmlFor="password" className="label login-label-width login-restore-padding2">Nueva contraseña</label>
             {
                     errorPassWord ? <div className="errorsContainer">
                     <p className="errors"> {errorMsgPassword}  </p>
@@ -275,7 +275,7 @@ const handleInputBlur = (e) => {
               value={password2} 
               />
               
-            <label htmlFor="password2" className="login-label-width login-restore-padding">Repetir nueva contraseña</label> 
+            <label htmlFor="password2" className="label login-label-width login-restore-padding">Repetir nueva contraseña</label> 
               {
                 errorPassWord2 ? <div className="errorsContainer">
                  <p className="errors"> {errorMsgPassword2}  </p>
