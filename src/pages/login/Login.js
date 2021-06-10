@@ -84,7 +84,7 @@ export const Login = () => {
           <div className="separador_"></div>
             <br/>
             <br/>
-            <Link className="forgotPass" to={"./restore"}>¿Olvidó su contraseña?</Link>
+            <Link className="forgotPass" to={"./restore"}>¿Olvidaste tu contraseña?</Link>
           </div>
         </form>
        
