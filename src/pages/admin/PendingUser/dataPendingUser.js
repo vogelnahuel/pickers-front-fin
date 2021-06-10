@@ -5,14 +5,14 @@ export const dataPendingUser = () => {
             { 
                 label: {
                         labelclassName:"label-filter",
-                        labelhtmlFor:"nombre",
-                        labelparrafo:"Nombre"
+                        labelhtmlFor:"NyA",
+                        labelparrafo:"Nombre y apellido"
                         },
                     className:"filter-input",
                     type:"text",
-                    name:"nombre",
-                    id:"nombre",
-                    placeholder:"Ingresá el nombre",         
+                    name:"NyA",
+                    id:"NyA",
+                    placeholder:"Ingresá el Nombre y apellido",         
             
             },
             { 

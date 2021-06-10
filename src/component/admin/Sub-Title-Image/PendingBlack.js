@@ -32,7 +32,7 @@ export const PendingBlack = () => {
                         <div 
                             onClick={handleOnClickredirect}
                             className="container-pending">
-                            <p className="Pending-paragraph  pending-black">PendSoliientes</p>
+                            <p className="Pending-paragraph  pending-black">Solicitudes pendientes</p>
                             <img className="img" src={relojOscuro} alt="reloj" />
                         </div>
                         <div className="container-pending border-pending">

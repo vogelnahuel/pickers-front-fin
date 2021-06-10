@@ -18,15 +18,33 @@ export const PendingUserAdmin = () => {
 
     const [data, setData] = useState([])
 
+    let filter={
+        dni:"",
+        nombre:"",
+        mail:"",
+        vehiculo:"",}
+
+    const onFilter = (e) => {
+        e.preventDefault();
+        filter={
+            dni:e.target.dni.value,
+            nombre:e.target.NyA.value,
+            mail:e.target.Email.value,
+            vehiculo:e.target.Vehículo.value,
+        }
+        console.log(filter);
+       getData(filter)
+    }
+
     useEffect(()=>{
         if(!window.localStorage.getItem('token')){
             window.location.href = '/'
         }
-            getData();
+            getData(filter);
       },[])
       
-      const getData = async () =>{
-       setData(  await api.get('ms-admin-rest/api/v1.0/pickers?pickerStatusId=2,3')
+      const getData = async (filter) =>{
+       setData(  await api.get(`ms-admin-rest/api/v1.0/pickers?pickerStatusId=2,3${filter.nombre?`&name=${filter.nombre}`:""}`)
         .then((res)=>{return res.data.result.items})
         .catch((err)=>{console.log(err)}) )
       }
@@ -42,7 +60,7 @@ export const PendingUserAdmin = () => {
                        
                      <div 
                      className="mainContainerFlex">
-                         <h2 className="subTitle-pending">Solicitudes pendientes</h2>
+                         <h2 className="subTitle-pending"><p className="subtitle-pendingUser-h2">Solicitudes pendientes</p></h2>
                          <button 
                             
                             className="export"
@@ -56,6 +74,7 @@ export const PendingUserAdmin = () => {
                      
                      <Filter
                     FieldsPart={FieldsPart}
+                    onSubmit={onFilter}
                      />
                      <br/>
                      <TableAdmin

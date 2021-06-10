@@ -8,6 +8,7 @@ import Button from '../../component/Button/Button'
 import {useForm} from '../../hooks/useForm.js'
 
 
+
 export const Login = () => {
 
   const [formValues,handleInputBlur,handleInputChange,handleSubmit] = useForm({
@@ -24,7 +25,13 @@ export const Login = () => {
   useEffect(()=>{
     window.localStorage.removeItem('token')
   },[])
+  
+  const handleFocusLabel = (e,mail="") => {
+    e.target.nextSibling.classList.remove('animationOrigin');
+    e.target.nextSibling.classList.add('animationTop');
+  }
 
+ 
   return (
       < >
     
@@ -37,36 +44,43 @@ export const Login = () => {
         <div className="container centrar">
         <form className="form size" onSubmit={handleSubmit} >
           <div className="form-group">
-       
+        
+          
             <input 
             type="mail"
              className="input" 
              name="mail" 
-             placeholder="Usuario" 
+             id="mail"
              onBlur={handleInputBlur} 
-             onChange={handleInputChange}         
+             onChange={(e)=>{handleInputChange(e,mail)}}         
              value={mail}
-             
+             onFocus={(e) => handleFocusLabel(e,mail)}
+            
             
             />
-           
+       
+       <label htmlFor="mail" className="login-label label">Usuario</label>
+
               {
               errorMail ? <div className="errorsContainer">
                   <p className="errors"> {errorMsgMail}  </p>
               </div>:null
               }
+          
            
-         
             <input 
             type="password" 
             className="input" 
             name="password" 
-            placeholder="Contraseña" 
+            id="password"
             onBlur={handleInputBlur}
-            onChange={handleInputChange}
+            onChange={(e)=>{handleInputChange(e,password)}}  
             value={password}
+            onFocus={(e) => handleFocusLabel(e,password)}
+            
             
             />
+          <label htmlFor="password" className="login-label label">Contraseña</label>
             {
             errorPassWord ? <div className="errorsContainer">
                 <p className="errors"> {errorMsgPassword}  </p>

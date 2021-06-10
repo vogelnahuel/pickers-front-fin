@@ -12,16 +12,17 @@ export const Fields = (props) => {
                 {
                     
                     variables.map(variable => (
-                        <div key={variable.id} className="filter-space">
+                        <div key={variable.id} name={variable.id} className="filter-space">
                            {
                                variable.type!=="select" && variable.type!=="" ?
                                     <>
-                                    <div>
+                                     <div>
                                         <label className={variable.label.labelclassName} htmlFor={variable.label.labelhtmlFor}>{variable.label.labelparrafo}</label>
                                     </div>
                                     <div>
-                                        <input className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>
-                                    </div>   
+                                        <input className={variable.className} type={variable.type} name={variable.name} id={variable.id} value={variable.value} placeholder={variable.placeholder}/>
+                                    </div>  
+                                    
                                     </>
                                  : null                       
                                  
@@ -33,7 +34,7 @@ export const Fields = (props) => {
                                                 <label className={variable.label.labelclassName} htmlFor={variable.label.labelhtmlFor}>{variable.label.labelparrafo}</label>
                                             </div>
                                             <div>
-                                                    <select className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}>            
+                                                    <select className={variable.className} type={variable.type} name={variable.name} value={variable.value} id={variable.id} placeholder={variable.placeholder}>            
                                                             {
                                                             variable.options.map(option => (
                                                                     <option key={option.text} hidden={option.hidden} className={option.classNameSelect}  value={option.value}>{option.text}</option>

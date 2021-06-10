@@ -50,6 +50,21 @@ const handleInputChange = (e) => {
       e.target.value
     );
 
+    if(e.target.value.length>0){
+
+      e.target.nextSibling.classList.remove('animationOrigin');
+      e.target.nextSibling.classList.add('animationTop');
+     
+   }else{
+       
+       e.target.nextSibling.classList.remove('animationTop');
+       e.target.nextSibling.classList.add('animationOrigin');
+   }
+  
+   if(e.target.value.length===0)    {
+       e.target.nextSibling.classList.add('labelError');
+   }
+
 
   }
 
@@ -74,29 +89,38 @@ const handleInputChange = (e) => {
     if(estaVacio(e)!==false){
 
       ///setear errores del inputChange
+      e.target.style.marginBottom="2.6481481481481481vh";
       if(e.target.name==="password"){
         setError(false);
         setMsgError("");
         e.target.classList.remove('inputError');   
+        e.target.nextSibling.classList.remove('labelError'); 
       }
       if(e.target.name==="password2"){
         setError2(false);
         setMsgError2("");
         e.target.classList.remove('inputError');   
+        e.target.nextSibling.classList.remove('labelError');
       }
        /// FIN setear errores del inputChange
 
 
       if(tieneMasDeOchoCaracteres(e)===false){
         errorCaracteres.classList.add('restore-error-p');
+        e.target.classList.add('inputError');  
+        e.target.nextSibling.classList.add('labelError');
         setErrorCaracteres(true);
       }
       if(TieneMayusculasYminusculas(e)===false){
         errorLetras.classList.add('restore-error-p');
+        e.target.classList.add('inputError');  
+        e.target.nextSibling.classList.add('labelError');
         setErrorMayusculas(true);
       }
        if(TieneNumerosYletras(e)===false){
         errorNumeros.classList.add('restore-error-p');
+        e.target.classList.add('inputError'); 
+        e.target.nextSibling.classList.add('labelError'); 
         setErrorNumeros(true);
       }
       if( e.target.name==="password2" && contraseñasIguales(e)===false  ){
@@ -199,6 +223,16 @@ const contraseñasIguales =(e) => {
 
 }
 
+const handleFocusLabel = (e,mail="") => {
+  e.target.nextSibling.classList.remove('animationOrigin');
+  e.target.nextSibling.classList.add('animationTop');
+}
+const handleInputBlur = (e) => {
+    if(e.target.value.length===0){
+      e.target.nextSibling.classList.remove('animationTop');
+      e.target.nextSibling.classList.add('animationOrigin');
+  }
+}
 
     return (
         <section>
@@ -216,10 +250,13 @@ const contraseñasIguales =(e) => {
               type="password"
                className="input" 
                name="password" 
-               placeholder="nueva contraseña" 
-               onChange={handleInputChange}         
+               id="password"
+               onBlur={handleInputBlur} 
+               onChange={(e)=>{handleInputChange(e,password)}}
+               onFocus={(e) => handleFocusLabel(e,password)}          
                
             />
+             <label htmlFor="password" className="label login-label-width login-restore-padding2">Nueva contraseña</label>
             {
                     errorPassWord ? <div className="errorsContainer">
                     <p className="errors"> {errorMsgPassword}  </p>
@@ -231,12 +268,14 @@ const contraseñasIguales =(e) => {
               type="password" 
               className="input inputRestore" 
               name="password2" 
-              placeholder="Repitir nueva contraseña" 
-             
-              onChange={handleInputChange}
+              id="password2"
+              onBlur={handleInputBlur} 
+              onChange={(e)=>{handleInputChange(e,password2)}}  
+              onFocus={(e) => handleFocusLabel(e,password2)}
               value={password2} 
               />
-
+              
+            <label htmlFor="password2" className="label login-label-width login-restore-padding">Repetir nueva contraseña</label> 
               {
                 errorPassWord2 ? <div className="errorsContainer">
                  <p className="errors"> {errorMsgPassword2}  </p>
@@ -312,3 +351,4 @@ const contraseñasIguales =(e) => {
       </section>
     );
 }
+
