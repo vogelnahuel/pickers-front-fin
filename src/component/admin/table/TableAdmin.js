@@ -2,6 +2,7 @@ import React from "react";
 import "./tableAdmin.css";
 import edit from "../../../assets/admin/PendingUser/edit.svg";
 import moment from "moment";
+import { Link } from "react-router-dom";
 
 export const TableAdmin = (props) => {
   const { titulosAdminPending, titulosAdminActive, data } = props;
@@ -11,7 +12,7 @@ export const TableAdmin = (props) => {
     var actualDate = moment(date, "YYYY-MM-DD hh:mm:ss");
    return regDate.diff(actualDate, "days");
   };
-  console.log(data);
+
 
   return (
     <table className="table-admin">
@@ -36,16 +37,16 @@ export const TableAdmin = (props) => {
                 <td> {rows.user.email}</td>
                 <td>
                   {" "}
-                  {rows.vehicleTypeId == 1
+                  {rows.vehicleTypeId === 1
                     ? "moto"
-                    : rows.vehicleTypeId == 2
+                    : rows.vehicleTypeId === 2
                     ? "bici"
                     : null}
                 </td>
                 <td> {rows.registerDate?getDifDate(rows.registerDate):null} días</td>
                 <td>
-                  {" "}
-                  <img src={edit} alt="edit" />{" "}
+                  <Link  to ={`/pendingUserAdminpicker/${rows.id}`} > <img src={edit} alt="edit" /></Link>
+                  
                 </td>
               </tr>
             ))
@@ -59,9 +60,9 @@ export const TableAdmin = (props) => {
                 <td> {rows.user.email}</td>
                 <td>
                   {" "}
-                  {rows.vehicleTypeId == 1
+                  {rows.vehicleTypeId === 1
                     ? "moto"
-                    : rows.vehicleTypeId == 2
+                    : rows.vehicleTypeId === 2
                     ? "bici"
                     : null}
                 </td>
@@ -73,8 +74,7 @@ export const TableAdmin = (props) => {
                 )}
 
                 <td>
-                  {" "}
-                  <img src={edit} alt="edit" />{" "}
+                <Link  to ={`/activeUserAdminpicker/${rows.id}`} > <img src={edit} alt="edit" /></Link>
                 </td>
               </tr>
             ))
