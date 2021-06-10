@@ -32,7 +32,6 @@ export const PendingUserAdmin = () => {
             mail:e.target.Email.value,
             vehiculo:e.target.Vehículo.value,
         }
-        console.log(filter);
        getData(filter)
     }
 
