@@ -71,7 +71,7 @@ export const  EmailRestore = () => {
                value={mail}
                onFocus={(e) => handleFocusLabel(e,mail)}
                />
-               <label htmlFor="mail" className="login-label">Email</label>
+               <label htmlFor="mail" className="label login-label">Email</label>
                 {
                 errorMail ? <div className="errorsContainer">
                  <p className="errors"> {errorMsgMail}  </p>

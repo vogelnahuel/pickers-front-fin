@@ -25,6 +25,7 @@ export const Login = () => {
   useEffect(()=>{
     window.localStorage.removeItem('token')
   },[])
+  
   const handleFocusLabel = (e,mail="") => {
     e.target.nextSibling.classList.remove('animationOrigin');
     e.target.nextSibling.classList.add('animationTop');
@@ -58,7 +59,8 @@ export const Login = () => {
             
             />
        
-       <label htmlFor="mail" className="login-label">Usuario</label>
+       <label htmlFor="mail" className="login-label label">Usuario</label>
+
               {
               errorMail ? <div className="errorsContainer">
                   <p className="errors"> {errorMsgMail}  </p>
@@ -78,7 +80,7 @@ export const Login = () => {
             
             
             />
-          <label htmlFor="password" className="login-label">Contraseña</label>
+          <label htmlFor="password" className="login-label label">Contraseña</label>
             {
             errorPassWord ? <div className="errorsContainer">
                 <p className="errors"> {errorMsgPassword}  </p>
