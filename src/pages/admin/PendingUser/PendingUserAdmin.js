@@ -43,7 +43,8 @@ export const PendingUserAdmin = () => {
       },[])
       
       const getData = async (filter) =>{
-       setData(  await api.get(`ms-admin-rest/api/v1.0/pickers?pickerStatusId=2,3${filter.nombre?`&name=${filter.nombre}`:""}`)
+          console.log(filter)
+       setData(  await api.get(`ms-admin-rest/api/v1.0/pickers?pickerStatusId=2,3${filter.nombre?`&name=${filter.nombre}`:""}${filter.vehiculo&&filter.vehiculo!="DEFAULT"?`&vehicleTypeId=${filter.vehiculo=="moto"?1:2}`:""}${filter.dni?`&identificationNumber=${parseInt(filter.dn)}`:""}${filter.mail?`&email=${filter.mail}`:""}`)
         .then((res)=>{return res.data.result.items})
         .catch((err)=>{console.log(err)}) )
       }

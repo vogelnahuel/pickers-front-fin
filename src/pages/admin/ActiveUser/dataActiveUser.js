@@ -58,11 +58,11 @@ export const dataActiveUser = () => {
                         text:"Moto"
 
                     },
-                    {
-                        classNameSelect:"option",
-                        value:"auto",
-                        text:"Auto"
-                    }
+                    // {
+                    //     classNameSelect:"option",
+                    //     value:"auto",
+                    //     text:"Auto"
+                    // }
                 ]
                 
           },

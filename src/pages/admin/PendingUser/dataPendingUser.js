@@ -57,11 +57,11 @@ export const dataPendingUser = () => {
                         text:"Moto"
 
                     },
-                    {
-                        classNameSelect:"option",
-                        value:"auto",
-                        text:"Auto"
-                    }
+                    // {
+                    //     classNameSelect:"option",
+                    //     value:"auto",
+                    //     text:"Auto"
+                    // }
                 ]
                 
           },

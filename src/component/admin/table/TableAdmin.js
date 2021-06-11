@@ -30,11 +30,11 @@ export const TableAdmin = (props) => {
       </thead>
       <tbody>
         {window.location.pathname === "/pendingUserAdmin"
-          ? data.map((rows) => (
+          ? data?data.map((rows) => (
               <tr className="info" key={rows.id}>
                 <td> {rows.name} </td>
                 <td> {rows.id} </td>
-                <td> {rows.user.email}</td>
+                <td> {rows.email}</td>
                 <td>
                   {" "}
                   {rows.vehicleTypeId === 1
@@ -50,14 +50,14 @@ export const TableAdmin = (props) => {
                 </td>
               </tr>
             ))
-          : null}
+          : null:null}
 
         {window.location.pathname === "/activeUserAdmin"
           ? data.map((rows) => (
               <tr className="info" key={rows.id}>
                 <td> {rows.name} </td>
                 <td> {rows.id} </td>
-                <td> {rows.user.email}</td>
+                <td> {rows.email}</td>
                 <td>
                   {" "}
                   {rows.vehicleTypeId === 1
