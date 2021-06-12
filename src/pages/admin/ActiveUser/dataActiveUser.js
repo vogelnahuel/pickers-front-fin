@@ -6,13 +6,13 @@ export const dataActiveUser = () => {
             { 
                 label: {
                         labelclassName:"label-filter",
-                        labelhtmlFor:"nombre",
+                        labelhtmlFor:"NyA",
                         labelparrafo:"Nombre"
                         },
                     className:"filter-input",
                     type:"text",
-                    name:"nombre",
-                    id:"nombre",
+                    name:"NyA",
+                    id:"NyA",
                     placeholder:"Ingresá el nombre",      
             },
             { 
@@ -42,7 +42,7 @@ export const dataActiveUser = () => {
                 placeholder:"",
                 options:[
                     {
-                        hidden:true,
+                      
                         classNameSelect:"option",
                         value:"DEFAULT",
                         text:"Seleccioná un tipo de vehículo"
@@ -92,7 +92,6 @@ export const dataActiveUser = () => {
                 placeholder:"transacciones",
                 options:[
                     {
-                        hidden:true,
                         classNameSelect:"option",
                         value:"DEFAULT",
                         text:"Seleccioná un valor"

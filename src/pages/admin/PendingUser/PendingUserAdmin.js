@@ -17,6 +17,7 @@ export const PendingUserAdmin = () => {
     const [FieldsPart] = dataPendingUser();
 
     const [data, setData] = useState([])
+    
 
     let filter={
         dni:"",
@@ -35,19 +36,37 @@ export const PendingUserAdmin = () => {
        getData(filter)
     }
 
+    
+    const getData = async (filter) =>{
+
+        filter.mail= codificarEmailURI(filter.mail);
+
+        setData(  await api.get(`ms-admin-rest/api/v1.0/pickers?pickerStatusId=2,3${filter.nombre?`&name=${filter.nombre}`:""}${filter.vehiculo&&filter.vehiculo!=="DEFAULT"?`&vehicleTypeId=${filter.vehiculo==="moto"?1:2}`:""}${filter.dni?`&identificationNumber=${parseInt(filter.dni)}`:""}${filter.mail?`&email=${filter.mail}`:""}`)
+       .then((res)=>{return res.data.result.items})
+        .catch((err)=>{console.log(err)}) )
+
+       
+      }
+
+      const codificarEmailURI = (mail) => {
+          //busco la primera parte del email a codificar ejemplo  máth.+picker641
+        const  emailCodificar =  (mail).substring(0,mail.indexOf("@"));
+        //guardo despues del arroba sin codificar
+        const  AliasDelMail =  (mail).substring(mail.indexOf("@"),(mail).length);
+        //codifico  para hacer la consulta a la api
+        const mailCodificado= encodeURIComponent(emailCodificar);
+        //uno ambas cadenas
+        mail = mailCodificado.concat(AliasDelMail);
+        return mail;
+      }
     useEffect(()=>{
         if(!window.localStorage.getItem('token')){
             window.location.href = '/'
         }
             getData(filter);
-      },[])
+      },[getData])
       
-      const getData = async (filter) =>{
-          console.log(filter)
-       setData(  await api.get(`ms-admin-rest/api/v1.0/pickers?pickerStatusId=2,3${filter.nombre?`&name=${filter.nombre}`:""}${filter.vehiculo&&filter.vehiculo!="DEFAULT"?`&vehicleTypeId=${filter.vehiculo=="moto"?1:2}`:""}${filter.dni?`&identificationNumber=${parseInt(filter.dn)}`:""}${filter.mail?`&email=${filter.mail}`:""}`)
-        .then((res)=>{return res.data.result.items})
-        .catch((err)=>{console.log(err)}) )
-      }
+      
   
   
     return (

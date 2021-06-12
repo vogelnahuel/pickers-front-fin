@@ -41,7 +41,7 @@ export const dataPendingUser = () => {
                 placeholder:"",
                 options:[
                     {
-                        hidden:true,
+                       
                         classNameSelect:"option",
                         value:"DEFAULT",
                         text:"Seleccioná un tipo de vehículo"

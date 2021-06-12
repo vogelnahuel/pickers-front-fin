@@ -33,7 +33,7 @@ export const TableAdmin = (props) => {
           ? data?data.map((rows) => (
               <tr className="info" key={rows.id}>
                 <td> {rows.name} </td>
-                <td> {rows.id} </td>
+                <td> {rows.identificationNumber} </td>
                 <td> {rows.email}</td>
                 <td>
                   {" "}
@@ -56,7 +56,7 @@ export const TableAdmin = (props) => {
           ? data.map((rows) => (
               <tr className="info" key={rows.id}>
                 <td> {rows.name} </td>
-                <td> {rows.id} </td>
+                <td> {rows.identificationNumber} </td>
                 <td> {rows.email}</td>
                 <td>
                   {" "}
