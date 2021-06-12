@@ -42,7 +42,14 @@ export const ActiveUserAdmin = () => {
         if(!window.localStorage.getItem('token')){
             window.location.href = '/'
         }
-            getData(filter);
+            //getData(filter);
+            const cargarDatos = async () =>  {
+           
+                setData ( await api.get(`ms-admin-rest/api/v1.0/pickers?pickerStatusId=4,5`)
+                .then((res)=>{return res.data.result.items})
+                .catch((err)=>{console.log(err)})  )
+            }
+            cargarDatos();
       },[])
       
       const getData = async (filter) =>{

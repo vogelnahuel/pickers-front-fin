@@ -17,8 +17,8 @@ export const Nav = () => {
                               <li>
                                    { window.location.pathname  ==="/pendingUserAdmin" 
                                    || window.location.pathname  ==="/activeUserAdmin" 
-                                   || window.location.pathname  ==="/pendingUserAdminpicker" 
-                                   || window.location.pathname  ==="/activeUserAdminpicker"  
+                                   || window.location.pathname  ==="/pendingUserAdminpicker/:id" 
+                                   || window.location.pathname  ==="/activeUserAdminpicker/:id"  
                                    ? <div className="circle"></div> :  null  
                                    } <Link to="/pendingUserAdmin">Flota</Link>
                               </li>

@@ -10,6 +10,7 @@ import { TableAdmin } from '../../../component/admin/table/TableAdmin'
 import {dataPendingUser}  from './dataPendingUser'
 import api from '../../../config/api'
 
+
 export const PendingUserAdmin = () => {
     /****titulos de la tabla */
     const titulosAdminPending = ['Nombre','DNI','Email','vehiculo','Pendiente hace','Editar'];
@@ -25,16 +26,25 @@ export const PendingUserAdmin = () => {
         mail:"",
         vehiculo:"",}
 
-    const onFilter = (e) => {
-        e.preventDefault();
-        filter={
-            dni:e.target.dni.value,
-            nombre:e.target.NyA.value,
-            mail:e.target.Email.value,
-            vehiculo:e.target.Vehículo.value,
+
+ 
+
+    const onFilter =   (e) => {
+      
+            e.preventDefault();
+            filter={
+                dni:e.target.dni.value,
+                nombre:e.target.NyA.value,
+                mail:e.target.Email.value,
+                vehiculo:e.target.Vehículo.value,
+            }
+            
+        
+             getData(filter) 
         }
-       getData(filter)
-    }
+       
+  
+   
 
     
     const getData = async (filter) =>{
@@ -59,12 +69,23 @@ export const PendingUserAdmin = () => {
         mail = mailCodificado.concat(AliasDelMail);
         return mail;
       }
-    useEffect(()=>{
+
+    useEffect(  ()=>{
         if(!window.localStorage.getItem('token')){
             window.location.href = '/'
         }
-            getData(filter);
-      },[getData])
+
+  
+        const cargarDatos = async () =>  {
+           
+            setData ( await api.get(`ms-admin-rest/api/v1.0/pickers?pickerStatusId=2,3`)
+            .then((res)=>{return res.data.result.items})
+            .catch((err)=>{console.log(err)})  )
+        }
+        cargarDatos();
+      
+
+    },[])
       
       
   

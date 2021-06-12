@@ -7,13 +7,13 @@ export const dataActiveUser = () => {
                 label: {
                         labelclassName:"label-filter",
                         labelhtmlFor:"NyA",
-                        labelparrafo:"Nombre"
+                        labelparrafo:"Nombre y apellido"
                         },
                     className:"filter-input",
                     type:"text",
                     name:"NyA",
                     id:"NyA",
-                    placeholder:"Ingresá el nombre",      
+                    placeholder:"Ingresá el nombre y apellido",      
             },
             { 
                 label: {
