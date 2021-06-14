@@ -66,7 +66,7 @@ export const TableAdmin = (props) => {
                     ? "bici"
                     : null}
                 </td>
-                <td> {rows.Transacciones} </td>
+                {/* <td> {rows.Transacciones} </td> */}
                 {rows.pickerStatusId === 1 ? (
                   <td className="color-state-green"> {"Habilitado"} </td>
                 ) : (

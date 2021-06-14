@@ -14,7 +14,7 @@ import codificarEmailURIFunction from '../../../tools/encodeMail.js'
 
 export const ActiveUserAdmin = () => {
     /****titulos de la tabla */
-    const titulosAdminActive = ['Nombre','DNI','Email','vehiculo','Transacciones','Estado','Editar'];
+    const titulosAdminActive = ['Nombre','DNI','Email','vehiculo','Estado','Editar'];
      /****llama a los campos y los envia */
     const [FieldsPart] = dataActiveUser();
 
