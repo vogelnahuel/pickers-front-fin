@@ -3,11 +3,15 @@ import volver from '../../../assets/admin/PendingUser/volver.svg'
 import relojAzul from '../../../assets/admin/PendingUser/relojAzul.svg'
 import trabajadorOscuro from '../../../assets/admin/PendingUser/trabajadorOscuro.svg'
 import './pending.css'
-import { Link, Redirect } from 'react-router-dom'
+import { Link, Redirect, useParams } from 'react-router-dom'
 
 export const PendingBlue = () => {
+
+    const {id} = useParams();
+    
+
     const [pendingAdmin, setPending] = useState("/pendingUserAdmin");
-    const [pendingAdminPicker, setPendingPicker] = useState("/pendingUserAdminpicker");
+    const [pendingAdminPicker, setPendingPicker] = useState(`/pendingUserAdminpicker/${id}`);
     const  handleOnClickredirect =(e) => {
         
     
@@ -15,8 +19,8 @@ export const PendingBlue = () => {
         
         setPending("/activeUserAdmin")
     }
-    if(window.location.pathname==="/pendingUserAdminpicker"){         
-        setPendingPicker("/activeUserAdminpicker");
+    if(window.location.pathname===`/pendingUserAdminpicker/${id}`){         
+        setPendingPicker(`/activeUserAdmin`);
     }    
 }
     return (
@@ -40,7 +44,7 @@ export const PendingBlue = () => {
                         <Redirect to={pendingAdmin}></Redirect>:<></>
                     }
                     {
-                        window.location.pathname==="/pendingUserAdminpicker" ?
+                        window.location.pathname===`/pendingUserAdminpicker/${id}` ?
                         <Redirect to={pendingAdminPicker}></Redirect>:<></>
                     }
 

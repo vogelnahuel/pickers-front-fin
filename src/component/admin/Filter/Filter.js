@@ -7,7 +7,8 @@ import { Fields } from './Fields'
 
     /****diseño del filtro y muestra inputs*/
 export const Filter = (props) => {
-
+    const {onSubmit} = props;
+ 
 
     return (
         <div className="form-fiter">
@@ -15,7 +16,7 @@ export const Filter = (props) => {
                     <img className="tamImgFilter" src={desplegable} alt="" />
                     <p className="Filter-p">Filtros</p>
 
-                <form className="filter-inputs">
+                <form className="filter-inputs" onSubmit={onSubmit}>
                     <Fields
                      FieldsPart={props.FieldsPart}
                     />

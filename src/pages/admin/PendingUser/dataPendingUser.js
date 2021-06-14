@@ -5,13 +5,13 @@ export const dataPendingUser = () => {
             { 
                 label: {
                         labelclassName:"label-filter",
-                        labelhtmlFor:"Nombre y apellido",
+                        labelhtmlFor:"NyA",
                         labelparrafo:"Nombre y apellido"
                         },
                     className:"filter-input",
                     type:"text",
-                    name:"Nombre y apellido",
-                    id:"Nombre y apellido",
+                    name:"NyA",
+                    id:"NyA",
                     placeholder:"Ingresá el Nombre y apellido",         
             
             },
@@ -41,7 +41,7 @@ export const dataPendingUser = () => {
                 placeholder:"",
                 options:[
                     {
-                        hidden:true,
+                       
                         classNameSelect:"option",
                         value:"DEFAULT",
                         text:"Seleccioná un tipo de vehículo"
@@ -57,11 +57,11 @@ export const dataPendingUser = () => {
                         text:"Moto"
 
                     },
-                    {
-                        classNameSelect:"option",
-                        value:"auto",
-                        text:"Auto"
-                    }
+                    // {
+                    //     classNameSelect:"option",
+                    //     value:"auto",
+                    //     text:"Auto"
+                    // }
                 ]
                 
           },

@@ -2,6 +2,7 @@ import React from "react";
 import "./tableAdmin.css";
 import edit from "../../../assets/admin/PendingUser/edit.svg";
 import moment from "moment";
+import { Link } from "react-router-dom";
 
 export const TableAdmin = (props) => {
   const { titulosAdminPending, titulosAdminActive, data } = props;
@@ -11,7 +12,7 @@ export const TableAdmin = (props) => {
     var actualDate = moment(date, "YYYY-MM-DD hh:mm:ss");
    return regDate.diff(actualDate, "days");
   };
-
+//   console.log(data);
 
   return (
     <table className="table-admin">
@@ -29,11 +30,11 @@ export const TableAdmin = (props) => {
       </thead>
       <tbody>
         {window.location.pathname === "/pendingUserAdmin"
-          ? data.map((rows) => (
+          ? data?data.map((rows) => (
               <tr className="info" key={rows.id}>
                 <td> {rows.name} </td>
-                <td> {rows.id} </td>
-                <td> {rows.user.email}</td>
+                <td> {rows.identificationNumber} </td>
+                <td> {rows.email}</td>
                 <td>
                   {" "}
                   {rows.vehicleTypeId === 1
@@ -44,19 +45,19 @@ export const TableAdmin = (props) => {
                 </td>
                 <td> {rows.registerDate?getDifDate(rows.registerDate):null} días</td>
                 <td>
-                  {" "}
-                  <img src={edit} alt="edit" />{" "}
+                  <Link  to ={`/pendingUserAdminpicker/${rows.id}`} > <img src={edit} alt="edit" /></Link>
+                  
                 </td>
               </tr>
             ))
-          : null}
+          : null:null}
 
         {window.location.pathname === "/activeUserAdmin"
           ? data.map((rows) => (
               <tr className="info" key={rows.id}>
                 <td> {rows.name} </td>
-                <td> {rows.id} </td>
-                <td> {rows.user.email}</td>
+                <td> {rows.identificationNumber} </td>
+                <td> {rows.email}</td>
                 <td>
                   {" "}
                   {rows.vehicleTypeId === 1
@@ -73,8 +74,7 @@ export const TableAdmin = (props) => {
                 )}
 
                 <td>
-                  {" "}
-                  <img src={edit} alt="edit" />{" "}
+                <Link  to ={`/activeUserAdminpicker/${rows.id}`} > <img src={edit} alt="edit" /></Link>
                 </td>
               </tr>
             ))

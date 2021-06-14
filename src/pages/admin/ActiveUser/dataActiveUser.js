@@ -6,14 +6,14 @@ export const dataActiveUser = () => {
             { 
                 label: {
                         labelclassName:"label-filter",
-                        labelhtmlFor:"nombre",
-                        labelparrafo:"Nombre"
+                        labelhtmlFor:"NyA",
+                        labelparrafo:"Nombre y apellido"
                         },
                     className:"filter-input",
                     type:"text",
-                    name:"nombre",
-                    id:"nombre",
-                    placeholder:"Ingresá el nombre",      
+                    name:"NyA",
+                    id:"NyA",
+                    placeholder:"Ingresá el nombre y apellido",      
             },
             { 
                 label: {
@@ -42,7 +42,7 @@ export const dataActiveUser = () => {
                 placeholder:"",
                 options:[
                     {
-                        hidden:true,
+                      
                         classNameSelect:"option",
                         value:"DEFAULT",
                         text:"Seleccioná un tipo de vehículo"
@@ -58,11 +58,11 @@ export const dataActiveUser = () => {
                         text:"Moto"
 
                     },
-                    {
-                        classNameSelect:"option",
-                        value:"auto",
-                        text:"Auto"
-                    }
+                    // {
+                    //     classNameSelect:"option",
+                    //     value:"auto",
+                    //     text:"Auto"
+                    // }
                 ]
                 
           },
@@ -92,7 +92,6 @@ export const dataActiveUser = () => {
                 placeholder:"transacciones",
                 options:[
                     {
-                        hidden:true,
                         classNameSelect:"option",
                         value:"DEFAULT",
                         text:"Seleccioná un valor"

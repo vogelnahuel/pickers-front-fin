@@ -10,6 +10,7 @@ import { TableAdmin } from '../../../component/admin/table/TableAdmin'
 import { PendingBlack } from '../../../component/admin/Sub-Title-Image/PendingBlack'
 import {dataActiveUser} from './dataActiveUser'
 import api from '../../../config/api'
+import codificarEmailURIFunction from '../../../tools/encodeMail.js'
 
 export const ActiveUserAdmin = () => {
     /****titulos de la tabla */
@@ -20,18 +21,48 @@ export const ActiveUserAdmin = () => {
     const [data, setData] = useState([])
 
 
+
+    let filter={
+        dni:"",
+        nombre:"",
+        mail:"",
+        vehiculo:"",}
+
+    const onFilter = (e) => {
+        e.preventDefault();
+        filter={
+            dni:e.target.dni.value,
+            nombre:e.target.NyA.value,
+            mail:e.target.Email.value,
+            vehiculo:e.target.Vehículo.value,
+        }
+       getData(filter)
+    }
+
     useEffect(()=>{
         if(!window.localStorage.getItem('token')){
             window.location.href = '/'
         }
-            getData();
+            //getData(filter);
+            const cargarDatos = async () =>  {
+           
+                setData ( await api.get(`ms-admin-rest/api/v1.0/pickers?pickerStatusId=4,5`)
+                .then((res)=>{return res.data.result.items})
+                .catch((err)=>{console.log(err)})  )
+            }
+            cargarDatos();
       },[])
       
-      const getData = async () =>{
-       setData(  await api.get('ms-admin-rest/api/v1.0/pickers?pickerStatusId=4,5')
+      const getData = async (filter) =>{
+
+        filter.mail= codificarEmailURIFunction(filter.mail);
+
+       setData(  await api.get(`ms-admin-rest/api/v1.0/pickers?pickerStatusId=4,5${filter.nombre?`&name=${filter.nombre}`:""}${filter.vehiculo!=="DEFAULT"?`&vehicleTypeId=${filter.vehiculo==="moto"?1:2}`:""}${filter.dni?`&identificationNumber=${parseInt(filter.dni)}`:""}${filter.mail?`&email=${filter.mail}`:""}`)
         .then((res)=>{return res.data.result.items})
         .catch((err)=>{console.log(err)}) )
       }
+
+  
        
     return (
         <div className="background-Grey">
@@ -57,6 +88,7 @@ export const ActiveUserAdmin = () => {
                  
                  <Filter
                  FieldsPart={FieldsPart}
+                 onSubmit={onFilter}
                  />
                  <br/>
                  <TableAdmin
