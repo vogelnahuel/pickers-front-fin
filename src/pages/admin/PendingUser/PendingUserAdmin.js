@@ -9,6 +9,7 @@ import {Filter} from '../../../component/admin/Filter/Filter'
 import { TableAdmin } from '../../../component/admin/table/TableAdmin'
 import {dataPendingUser}  from './dataPendingUser'
 import api from '../../../config/api'
+import codificarEmailURIFunction from '../../../tools/encodeMail.js'
 
 
 export const PendingUserAdmin = () => {
@@ -49,7 +50,8 @@ export const PendingUserAdmin = () => {
     
     const getData = async (filter) =>{
 
-        filter.mail= codificarEmailURI(filter.mail);
+        filter.mail= codificarEmailURIFunction(filter.mail);
+       
 
         setData(  await api.get(`ms-admin-rest/api/v1.0/pickers?pickerStatusId=2,3${filter.nombre?`&name=${filter.nombre}`:""}${filter.vehiculo&&filter.vehiculo!=="DEFAULT"?`&vehicleTypeId=${filter.vehiculo==="moto"?1:2}`:""}${filter.dni?`&identificationNumber=${parseInt(filter.dni)}`:""}${filter.mail?`&email=${filter.mail}`:""}`)
        .then((res)=>{return res.data.result.items})
@@ -58,18 +60,7 @@ export const PendingUserAdmin = () => {
        
       }
 
-      const codificarEmailURI = (mail) => {
-          //busco la primera parte del email a codificar ejemplo  máth.+picker641
-        const  emailCodificar =  (mail).substring(0,mail.indexOf("@"));
-        //guardo despues del arroba sin codificar
-        const  AliasDelMail =  (mail).substring(mail.indexOf("@"),(mail).length);
-        //codifico  para hacer la consulta a la api
-        const mailCodificado= encodeURIComponent(emailCodificar);
-        //uno ambas cadenas
-        mail = mailCodificado.concat(AliasDelMail);
-        return mail;
-      }
-
+     
     useEffect(  ()=>{
         if(!window.localStorage.getItem('token')){
             window.location.href = '/'
