@@ -1,9 +1,14 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import './nav.css'
 
 
 export const Nav = () => {
+
+     let Location="";
+     Location =useParams().id;
+     
+
     return (
       
             <nav className="navAdmin "> 
@@ -15,15 +20,15 @@ export const Nav = () => {
                                  { window.location.pathname  ==="/dashboard"  ? <div className="circle"></div> : null     }  <Link to="/dashboard">Dashboard</Link>
                               </li>
                               <li>
-                                   { window.location.pathname  ==="/pendingUserAdmin" 
-                                   || window.location.pathname  ==="/activeUserAdmin" 
-                                   || window.location.pathname  ==="/pendingUserAdminpicker/:id" 
-                                   || window.location.pathname  ==="/activeUserAdminpicker/:id"  
+                                   {   window.location.pathname  === "/pendingUserAdmin" 
+                                   ||  window.location.pathname === "/activeUserAdmin" 
+                                   || window.location.pathname  ===`/activeUserAdminpicker/${Location}`
+                                   || window.location.pathname  ===`/pendingUserAdminpicker/${Location}`  
                                    ? <div className="circle"></div> :  null  
                                    } <Link to="/pendingUserAdmin">Flota</Link>
                               </li>
                               <li>
-                                   { window.location.pathname  ==="/userAdmin"  ?<div className="circle"></div> : null    }   <Link to="#">Transacciones</Link>
+                                   { Location ==="/userAdmin"  ?<div className="circle"></div> : null    }   <Link to="#">Transacciones</Link>
                               </li>
                               </ul>
                               <ul>
