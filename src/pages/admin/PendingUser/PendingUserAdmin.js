@@ -10,6 +10,7 @@ import { TableAdmin } from '../../../component/admin/table/TableAdmin'
 import {dataPendingUser}  from './dataPendingUser'
 import api from '../../../config/api'
 import codificarEmailURIFunction from '../../../tools/encodeMail.js'
+import createCSV from '../../../tools/createCSV.js'
 
 
 export const PendingUserAdmin = () => {
@@ -18,17 +19,13 @@ export const PendingUserAdmin = () => {
        /****llama a los campos y los envia */
     const [FieldsPart] = dataPendingUser();
 
-    const [data, setData] = useState([])
-    
+    const [data, setData] = useState([])  
 
     let filter={
         dni:"",
         nombre:"",
         mail:"",
         vehiculo:"",}
-
-
- 
 
     const onFilter =   (e) => {
       
@@ -38,49 +35,40 @@ export const PendingUserAdmin = () => {
                 nombre:e.target.NyA.value,
                 mail:e.target.Email.value,
                 vehiculo:e.target.Vehículo.value,
-            }
-            
-        
+            }             
              getData(filter) 
         }
-       
-  
-   
-
     
     const getData = async (filter) =>{
-
-        filter.mail= codificarEmailURIFunction(filter.mail);
-       
-
+        filter.mail= codificarEmailURIFunction(filter.mail);      
         setData(  await api.get(`ms-admin-rest/api/v1.0/pickers?pickerStatusId=2,3${filter.nombre?`&name=${filter.nombre}`:""}${filter.vehiculo&&filter.vehiculo!=="DEFAULT"?`&vehicleTypeId=${filter.vehiculo==="moto"?1:2}`:""}${filter.dni?`&identificationNumber=${parseInt(filter.dni)}`:""}${filter.mail?`&email=${filter.mail}`:""}`)
        .then((res)=>{return res.data.result.items})
-        .catch((err)=>{console.log(err)}) )
-
-       
+        .catch((err)=>{console.log(err)}) )      
       }
-
      
     useEffect(  ()=>{
         if(!window.localStorage.getItem('token')){
             window.location.href = '/'
         }
-
-  
         const cargarDatos = async () =>  {
            
             setData ( await api.get(`ms-admin-rest/api/v1.0/pickers?pickerStatusId=2,3`)
             .then((res)=>{return res.data.result.items})
             .catch((err)=>{console.log(err)})  )
-        }
+       }
         cargarDatos();
-      
-
+        
     },[])
-      
-      
-  
-  
+
+    const Export = async () => {
+        //setDataExport
+        const datosExport =await api.get(`/ms-admin-rest/api/v1.0/pickers.csv?pickerStatusId=2,3`)
+        .then( (res) => {return res})
+        .catch((err) => {console.log(err)})
+
+        createCSV(datosExport);     
+    }
+
     return (
         <div className="background-Grey">
             <Header/>
@@ -93,7 +81,7 @@ export const PendingUserAdmin = () => {
                      className="mainContainerFlex">
                          <h2 className="subTitle-pending"><p className="subtitle-pendingUser-h2">Solicitudes pendientes</p></h2>
                          <button 
-                            
+                            onClick={Export}
                             className="export"
                             name="export"
                             >
