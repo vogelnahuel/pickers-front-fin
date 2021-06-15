@@ -28,9 +28,11 @@
 }
 .color-state-red{
     color: #FF1515;
+    font-weight: 700;
 }
 .color-state-green{
     color: #27AE60;
+    font-weight: 700;
 }
 .admin-table-correction{
     margin-left: 1.464vw;
