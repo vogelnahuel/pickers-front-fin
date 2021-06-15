@@ -9,13 +9,28 @@ import or from '../../../assets/admin/PendingUser/or.svg'
 import motorcycle from '../../../assets/admin/PendingUserAdminPicker/motorcycle.svg'
 import { Part } from '../../../component/admin/pendingUserAdminPicker/Part'
 import {data} from './data'
+import api  from '../../../config/api'
+import { useParams } from 'react-router-dom'
+import codificarEmailURIFunction from '../../../tools/encodeMail.js'
+import createCSV from '../../../tools/createCSV'
+
 
 
 export const PendingUserAdminPicker = () => {
-
+    const mail = useParams().mail;   
     /****Campos y componentes a mostrar  que se muestran en un part que es parte del diseño*/
-   const [inputsPart1,ComponentesPart1,inputsPart2,ComponentesPart2,inputsPart3,ComponentesPart3,inputsPart4,ComponentesPart4]=data();
+    const [inputsPart1,ComponentesPart1,inputsPart2,ComponentesPart2,inputsPart3,ComponentesPart3,inputsPart4,ComponentesPart4]=data();
         
+            const Export = async () => {                
+                const mailCodificado = codificarEmailURIFunction(mail);
+
+                const datosExport =await api.get(`/ms-admin-rest/api/v1.0/pickers.csv?&email=${mailCodificado}`)
+                .then( (res) => {return res})
+                .catch((err) => {console.log(err)})
+           
+                createCSV(datosExport);           
+            }
+
     return (
         <div className="background-Grey">
             <Header/>
@@ -29,7 +44,7 @@ export const PendingUserAdminPicker = () => {
                          <h2 className="subTitle-pending">Pepito Picker</h2>
                          <img  className="vehiculo-pending-picker" src={motorcycle} alt="vehiculo" />
                          <button 
-                            
+                            onClick={Export}
                             className="export"
                             name="export"
                             >

@@ -7,11 +7,11 @@ import { Link, Redirect, useParams } from 'react-router-dom'
 
 export const PendingBlue = () => {
 
-    const {id} = useParams();
+    const {mail} = useParams();
     
 
     const [pendingAdmin, setPending] = useState("/pendingUserAdmin");
-    const [pendingAdminPicker, setPendingPicker] = useState(`/pendingUserAdminpicker/${id}`);
+    const [pendingAdminPicker, setPendingPicker] = useState(`/pendingUserAdminpicker/${mail}`);
     const  handleOnClickredirect =(e) => {
         
     
@@ -19,7 +19,7 @@ export const PendingBlue = () => {
         
         setPending("/activeUserAdmin")
     }
-    if(window.location.pathname===`/pendingUserAdminpicker/${id}`){         
+    if(window.location.pathname===`/pendingUserAdminpicker/${mail}`){         
         setPendingPicker(`/activeUserAdmin`);
     }    
 }
@@ -44,7 +44,7 @@ export const PendingBlue = () => {
                         <Redirect to={pendingAdmin}></Redirect>:<></>
                     }
                     {
-                        window.location.pathname===`/pendingUserAdminpicker/${id}` ?
+                        window.location.pathname===`/pendingUserAdminpicker/${mail}` ?
                         <Redirect to={pendingAdminPicker}></Redirect>:<></>
                     }
 

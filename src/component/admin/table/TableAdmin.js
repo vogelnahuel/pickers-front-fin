@@ -43,9 +43,9 @@ export const TableAdmin = (props) => {
                     ? "bici"
                     : null}
                 </td>
-                <td> {rows.registerDate?getDifDate(rows.registerDate):null} días</td>
+                <td> {rows.registerDate?getDifDate(rows.registerDate):null} días {rows.pickerStatusId===3 ?<div className="admin-table-correction">En correcion</div> : null } </td>
                 <td>
-                  <Link  to ={`/pendingUserAdminpicker/${rows.id}`} > <img src={edit} alt="edit" /></Link>
+                  <Link  to ={`/pendingUserAdminpicker/${rows.email}`} > <img src={edit} alt="edit" /></Link>
                   
                 </td>
               </tr>
@@ -74,7 +74,7 @@ export const TableAdmin = (props) => {
                 )}
 
                 <td>
-                <Link  to ={`/activeUserAdminpicker/${rows.id}`} > <img src={edit} alt="edit" /></Link>
+                <Link  to ={`/activeUserAdminpicker/${rows.email}`} > <img src={edit} alt="edit" /></Link>
                 </td>
               </tr>
             ))

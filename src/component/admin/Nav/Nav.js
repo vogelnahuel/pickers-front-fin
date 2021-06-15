@@ -6,8 +6,8 @@ import './nav.css'
 export const Nav = () => {
 
      let Location="";
-     Location =useParams().id;
-     
+     Location =useParams().mail;
+   
 
     return (
       

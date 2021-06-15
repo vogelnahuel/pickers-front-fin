@@ -8,11 +8,15 @@ import or from '../../../assets/admin/PendingUser/or.svg'
 import { PendingBlack } from '../../../component/admin/Sub-Title-Image/PendingBlack'
 import motorcycle from '../../../assets/admin/PendingUserAdminPicker/motorcycle.svg'
 import button from '../../../assets/admin/ActiveUserAdminPicker/button.svg'
-
 import { Part } from '../../../component/admin/pendingUserAdminPicker/Part'
 import {data} from './data'
+import codificarEmailURIFunction from '../../../tools/encodeMail.js'
+import { useParams } from 'react-router-dom'
+import api from '../../../config/api'
+import createCSV from '../../../tools/createCSV'
 
 export const ActiveUserAdminPicker = () => {
+ 
 
     useEffect(()=>{
         if(!window.localStorage.getItem('token')){
@@ -20,9 +24,16 @@ export const ActiveUserAdminPicker = () => {
         }
     
       })
-
     const [inputsPart1,ComponentesPart1,inputsPart2,ComponentesPart2,inputsPart3,ComponentesPart3,inputsPart4,ComponentesPart4]=data();
-       
+    const mail = useParams().mail;  
+    const Export = async () => {              
+        const mailCodificado = codificarEmailURIFunction(mail);
+        const datosExport =await api.get(`/ms-admin-rest/api/v1.0/pickers.csv?&email=${mailCodificado}`)
+        .then( (res) => {return res})
+        .catch((err) => {console.log(err)})
+   
+        createCSV(datosExport);   
+    }
 
     return (
         <div className="background-Grey">
@@ -47,6 +58,7 @@ export const ActiveUserAdminPicker = () => {
                         
                         className="export"
                         name="export"
+                        onClick={Export}
                         >
                         <img  src={exportar} alt="export" />
                         <img className="or-pending" src={or} alt="or" />
