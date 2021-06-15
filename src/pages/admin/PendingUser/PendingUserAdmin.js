@@ -18,6 +18,12 @@ export const PendingUserAdmin = () => {
     const titulosAdminPending = ['Nombre','DNI','Email','vehiculo','Pendiente hace','Editar'];
        /****llama a los campos y los envia */
     const [FieldsPart] = dataPendingUser();
+    const [dataExport, setdataExport] = useState({
+        dni:"",
+        nombre:"",
+        mail:"",
+        vehiculo:""
+    });
 
     const [data, setData] = useState([])  
 
@@ -43,7 +49,9 @@ export const PendingUserAdmin = () => {
         filter.mail= codificarEmailURIFunction(filter.mail);      
         setData(  await api.get(`ms-admin-rest/api/v1.0/pickers?pickerStatusId=2,3${filter.nombre?`&name=${filter.nombre}`:""}${filter.vehiculo&&filter.vehiculo!=="DEFAULT"?`&vehicleTypeId=${filter.vehiculo==="moto"?1:2}`:""}${filter.dni?`&identificationNumber=${parseInt(filter.dni)}`:""}${filter.mail?`&email=${filter.mail}`:""}`)
        .then((res)=>{return res.data.result.items})
-        .catch((err)=>{console.log(err)}) )      
+        .catch((err)=>{console.log(err)}) )    
+        
+        setdataExport(filter);
       }
      
     useEffect(  ()=>{
@@ -61,8 +69,8 @@ export const PendingUserAdmin = () => {
     },[])
 
     const Export = async () => {
-        //setDataExport
-        const datosExport =await api.get(`/ms-admin-rest/api/v1.0/pickers.csv?pickerStatusId=2,3`)
+       
+        const datosExport =await api.get(`/ms-admin-rest/api/v1.0/pickers.csv?pickerStatusId=2,3${dataExport.nombre?`&name=${dataExport.nombre}`:""}${dataExport.vehiculo&&dataExport.vehiculo!=="DEFAULT"?`&vehicleTypeId=${dataExport.vehiculo==="moto"?1:2}`:""}${dataExport.dni?`&identificationNumber=${parseInt(dataExport.dni)}`:""}${dataExport.mail?`&email=${dataExport.mail}`:""}`)
         .then( (res) => {return res})
         .catch((err) => {console.log(err)})
 

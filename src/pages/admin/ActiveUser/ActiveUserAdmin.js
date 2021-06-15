@@ -17,6 +17,12 @@ export const ActiveUserAdmin = () => {
     const titulosAdminActive = ['Nombre','DNI','Email','vehiculo','Estado','Editar'];
      /****llama a los campos y los envia */
     const [FieldsPart] = dataActiveUser();
+    const [dataExport, setdataExport] = useState({
+        dni:"",
+        nombre:"",
+        mail:"",
+        vehiculo:""
+    });
     const [data, setData] = useState([])
     let filter={
         dni:"",
@@ -54,11 +60,13 @@ export const ActiveUserAdmin = () => {
        setData(  await api.get(`ms-admin-rest/api/v1.0/pickers?pickerStatusId=4,5${filter.nombre?`&name=${filter.nombre}`:""}${filter.vehiculo!=="DEFAULT"?`&vehicleTypeId=${filter.vehiculo==="moto"?1:2}`:""}${filter.dni?`&identificationNumber=${parseInt(filter.dni)}`:""}${filter.mail?`&email=${filter.mail}`:""}`)
         .then((res)=>{return res.data.result.items})
         .catch((err)=>{console.log(err)}) )
+
+        setdataExport(filter);
       }
 
       const Export = async () => {
         //setDataExport
-        const datosExport =await api.get(`ms-admin-rest/api/v1.0/pickers.csv?pickerStatusId=4,5`)
+        const datosExport =await api.get(`ms-admin-rest/api/v1.0/pickers.csv?pickerStatusId=4,5${dataExport.nombre?`&name=${dataExport.nombre}`:""}${dataExport.vehiculo!=="DEFAULT"?`&vehicleTypeId=${dataExport.vehiculo==="moto"?1:2}`:""}${dataExport.dni?`&identificationNumber=${parseInt(dataExport.dni)}`:""}${dataExport.mail?`&email=${dataExport.mail}`:""}`)
         .then( (res) => {return res})
         .catch((err) => {console.log(err)})
       
