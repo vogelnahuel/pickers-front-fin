@@ -47,6 +47,10 @@ export const ActiveUserAdmin = () => {
                 .catch((err)=>{console.log(err)})  )
             }
             cargarDatos();
+            
+            return () => {
+                setData({}); 
+              };
       },[])
       
       const getData = async (filter) =>{
