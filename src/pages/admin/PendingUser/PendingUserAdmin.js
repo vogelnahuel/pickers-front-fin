@@ -57,6 +57,9 @@ export const PendingUserAdmin = () => {
             .catch((err)=>{console.log(err)})  )
        }
         cargarDatos();
+        return () => {
+            setData({}); 
+          };
         
     },[])
 
