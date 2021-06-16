@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { LoadAdminPicker } from '../LoadAdminPicker/LoadAdminPicker'
 import {Labels}  from '../../Labels/Labels'
 
+
 import './part.css'
 import { SaveAdminPicker } from '../SaveAdminPicker/SaveAdminPicker'
 
@@ -11,7 +12,8 @@ export const Part = (props) => {
 
     const variables = props.inputsPart;
     const componentes = props.ComponentesPart;
-
+    const dataPicker = props.data;
+    console.log(dataPicker)
     const [info, setInfo] = useState({
         nombre:"",
         apellido:"",
@@ -33,15 +35,45 @@ export const Part = (props) => {
         switch (e.target.name) {
             case "nombre":
                 nombre2+=e.target.value;
-                setInfo( 
-                nombre2
-                 );
+                setInfo( {
+                    ...info,
+                    [e.target.name]:[e.target.value]}
+                     );
             break;
             case "apellido":
                 apellido2+=e.target.value;
-                setInfo( 
-                    apellido2
-                 );
+                setInfo( {
+                    ...info,
+                    [e.target.name]:[e.target.value]}
+                     );
+            break;
+            case "dni":
+                apellido2+=e.target.value;
+                setInfo( {
+                    ...info,
+                    [e.target.name]:[e.target.value]}
+                     );
+            break;
+            case "email":
+                apellido2+=e.target.value;
+                setInfo( {
+                    ...info,
+                    [e.target.name]:[e.target.value]}
+                     );
+            break;
+            case "fechaNac":
+                apellido2+=e.target.value;
+                setInfo( {
+                    ...info,
+                    [e.target.name]:[e.target.value]}
+                     );
+            break;
+            case "telefono":
+                apellido2+=e.target.value;
+                setInfo( {
+                    ...info,
+                    [e.target.name]:[e.target.value]}
+                     );
             break;
 
         
@@ -68,22 +100,22 @@ export const Part = (props) => {
                                                 </div>
                                                 <div >
                                                        {
-                                                         variable.name ==="nombre" && <input value={info.nombre} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>                                                                                                     
+                                                         variable.name ==="nombre" && <input value={info.nombre||''} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>                                                                                                     
                                                        } 
                                                        {
-                                                             variable.name==="apellido" && <input value={info.apellido} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
+                                                             variable.name==="apellido" && <input value={info.apellido||''} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
                                                        }
                                                        {
-                                                             variable.name==="dni" && <input value={info.dni} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
+                                                             variable.name==="dni" && <input value={info.dni||''} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
                                                        }
                                                        {
-                                                             variable.name==="email" && <input value={info.email} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
+                                                             variable.name==="email" && <input value={info.email||''} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
                                                        }
                                                        {
-                                                             variable.name==="fechaNac" && <input value={info.fechaNac} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
+                                                             variable.name==="fechaNac" && <input value={info.fechaNac||''} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
                                                        }
                                                        {
-                                                             variable.name==="telefono" && <input value={info.telefono} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
+                                                             variable.name==="telefono" && <input value={info.telefono||''} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
                                                        }
                                                    
                                                 </div>

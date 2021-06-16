@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {Header} from '../../../component/admin/Header/Header'
 import {Nav} from '../../../component/admin/Nav/Nav'
 import '../PendingUser/PendingUserAdmin.css'
@@ -34,6 +34,14 @@ export const PendingUserAdminPicker = () => {
            
                 createCSV(datosExport);           
             }
+            let dataPicker = {};
+            const getData = async () =>{
+                const mailCodificado = codificarEmailURIFunction(mail);
+                 dataPicker =await api.get(`/ms-admin-rest/api/v1.0/pickers.csv?&email=${mailCodificado}`)
+                .then( (res) => {return res})
+                .catch((err) => {console.log(err)})
+            }
+      
     
     return (
         <div className="background-Grey">
@@ -63,6 +71,7 @@ export const PendingUserAdminPicker = () => {
                         <Part                     
                         inputsPart={inputsPart1}                      
                         ComponentesPart={ComponentesPart1}
+                        data={dataPicker}
                         />
                 </div>
                 
