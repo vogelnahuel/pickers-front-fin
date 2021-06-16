@@ -90,18 +90,18 @@ export const data = () => {
         },];
 
     const ComponentesPart1 = [
-        {
-            componentType:"LoadAdminPicker",
-            title:"Frente del DNI"
-        },
-        {
-            componentType:"LoadAdminPicker",
-            title:"Dorso del DNI"
-        },
-        {
-            componentType:"LoadAdminPicker",
-            title:"Rostro de frente"
-        }
+        // {
+        //     componentType:"LoadAdminPicker",
+        //     title:"Frente del DNI"
+        // },
+        // {
+        //     componentType:"LoadAdminPicker",
+        //     title:"Dorso del DNI"
+        // },
+        // {
+        //     componentType:"LoadAdminPicker",
+        //     title:"Rostro de frente"
+        // }
     ]
 
   const inputsPart2 =
@@ -121,6 +121,7 @@ export const data = () => {
             onChange:"",
             
         },
+           
         {
             label: {
                 labelclassName:"label-Admin-Pickers",
@@ -152,14 +153,14 @@ export const data = () => {
        ];
 
     const ComponentesPart2 = [
-        {
-            componentType:"LoadAdminPicker",
-            title:"Comprobante del alta fiscal"
-        },
-        {
-            componentType:"LoadAdminPicker",
-            title:"Comprobante del CBU"
-        }
+        // {
+        //     componentType:"LoadAdminPicker",
+        //     title:"Comprobante del alta fiscal"
+        // },
+        // {
+        //     componentType:"LoadAdminPicker",
+        //     title:"Comprobante del CBU"
+        // }
     ]
 
 
@@ -173,7 +174,7 @@ export const data = () => {
                 },
             className:"Admin-Pickers-input",
             type:"text",
-            name:"fechaVecLic",
+            name:"vencimientoLicencia",
             id:"fechaVecLic",
             placeholder:" dia / mes / año",
             value:"",
@@ -214,18 +215,18 @@ export const data = () => {
     
 
     const ComponentesPart3 = [
-            {
-                componentType:"LoadAdminPicker",
-                title:"Licencia de conducir"
-            },
-            {
-                componentType:"LoadAdminPicker",
-                title:"Frente de la cédula"
-            },
-            {
-                componentType:"LoadAdminPicker",
-                title:"Dorso de la cédula"
-            },
+            // {
+            //     componentType:"LoadAdminPicker",
+            //     title:"Licencia de conducir"
+            // },
+            // {
+            //     componentType:"LoadAdminPicker",
+            //     title:"Frente de la cédula"
+            // },
+            // {
+            //     componentType:"LoadAdminPicker",
+            //     title:"Dorso de la cédula"
+            // },
             
             
         ];
@@ -277,14 +278,14 @@ export const data = () => {
         ];
 
     const ComponentesPart4 = [
-        {
-            componentType:"LoadAdminPicker",
-            title:"Seguro de automotor",
-            marginButton:22
-        },{
-            componentType:"LoadAdminPicker",
-            title:"Seguro de accidentes personales"
-        },
+        // {
+        //     componentType:"LoadAdminPicker",
+        //     title:"Seguro de automotor",
+        //     marginButton:22
+        // },{
+        //     componentType:"LoadAdminPicker",
+        //     title:"Seguro de accidentes personales"
+        // },
         ]
     return [inputsPart1,ComponentesPart1,inputsPart2,ComponentesPart2,inputsPart3,ComponentesPart3,inputsPart4,ComponentesPart4];
 }
