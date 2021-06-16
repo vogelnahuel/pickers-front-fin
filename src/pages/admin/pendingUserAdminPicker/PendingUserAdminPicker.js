@@ -17,10 +17,14 @@ import createCSV from '../../../tools/createCSV'
 
 
 export const PendingUserAdminPicker = () => {
+
+
+ 
     const mail = useParams().mail;   
     /****Campos y componentes a mostrar  que se muestran en un part que es parte del diseño*/
     const [inputsPart1,ComponentesPart1,inputsPart2,ComponentesPart2,inputsPart3,ComponentesPart3,inputsPart4,ComponentesPart4]=data();
-        
+   
+
             const Export = async () => {                
                 const mailCodificado = codificarEmailURIFunction(mail);
 
@@ -30,7 +34,7 @@ export const PendingUserAdminPicker = () => {
            
                 createCSV(datosExport);           
             }
-
+    
     return (
         <div className="background-Grey">
             <Header/>
@@ -56,7 +60,7 @@ export const PendingUserAdminPicker = () => {
 
              <form className="Admin-Pickers-inputs">
                 <div  className="form-part-1-admin-pickers">
-                        <Part
+                        <Part                     
                         inputsPart={inputsPart1}                      
                         ComponentesPart={ComponentesPart1}
                         />

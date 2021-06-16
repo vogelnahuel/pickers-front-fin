@@ -14,6 +14,8 @@ export const data = () => {
             name:"nombre",
             id:"nombre",
             placeholder:"Ingresá el nombre",
+            onChange:"",
+            value:""
             
         },
         {
@@ -27,6 +29,8 @@ export const data = () => {
             name:"apellido",
             id:"apellido",
             placeholder:"Ingresá el apellido",
+            onChange:"",
+            value:""
         },
         {
             label: {
@@ -39,6 +43,8 @@ export const data = () => {
             name:"dni",
             id:"dni",
             placeholder:"Ingresá el DNI",
+            onChange:"",
+            value:""
         },
         {
             label: {
@@ -51,6 +57,8 @@ export const data = () => {
             name:"email",
             id:"email",
             placeholder:"Ingresá el Email",
+            onChange:"",
+            value:""
         },
         {
             label: {
@@ -63,6 +71,8 @@ export const data = () => {
             name:"fechaNac",
             id:"fechaNac",
             placeholder:"Ingresá la fecha nac",
+            onChange:"",
+            value:""
         },
         {
             label: {
@@ -75,6 +85,8 @@ export const data = () => {
             name:"telefono",
             id:"telefono",
             placeholder:"Ingresá el telefono",
+            onChange:"",
+            value:""
         },];
 
     const ComponentesPart1 = [
@@ -105,6 +117,8 @@ export const data = () => {
             name:"cuit",
             id:"cuit",
             placeholder:"20 - 39589475 - 4",
+            value:"",
+            onChange:"",
             
         },
         {
@@ -118,6 +132,8 @@ export const data = () => {
             name:"cbu",
             id:"cbu",
             placeholder:"20 - 39589475 - 4",
+            value:"",
+            onChange:"",
         },
         {
             label: {
@@ -130,6 +146,8 @@ export const data = () => {
             name:"nombreBanco",
             id:"nombreBanco",
             placeholder:"Ingresá el Nombre",
+            value:"",
+            onChange:"",
         },
        ];
 
@@ -158,6 +176,8 @@ export const data = () => {
             name:"fechaVecLic",
             id:"fechaVecLic",
             placeholder:" dia / mes / año",
+            value:"",
+            onChange:"",
             
         },
         {
@@ -171,6 +191,8 @@ export const data = () => {
             name:"fechaVecCel",
             id:"fechaVecCel",
             placeholder:" dia / mes / año",
+            value:"",
+            onChange:"",
         },
        
         {
@@ -184,6 +206,8 @@ export const data = () => {
             name:"",
             id:"",
             placeholder:"",
+            value:"",
+            onChange:"",
         },
         
         ];
@@ -219,6 +243,8 @@ export const data = () => {
                 name:"fechaVecSeguroAuto",
                 id:"fechaVecSeguroAuto",
                 placeholder:" dia / mes / año",
+                value:"",
+                onChange:"",
             },
             {
                 label: {
@@ -232,6 +258,8 @@ export const data = () => {
                 name:"fechaVecSeguroAccidente",
                 id:"fechaVecSeguroAccidente",
                 placeholder:" dia / mes / año",
+                value:"",
+                onChange:"",
             },{
                 label: {
                     labelclassName:"",
@@ -243,6 +271,8 @@ export const data = () => {
                 name:"",
                 id:"",
                 placeholder:"",
+                value:"",
+                onChange:"",
             },
         ];
 
