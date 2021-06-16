@@ -8,6 +8,7 @@
     height: 83.65416666666667vh;
     width:17.082vw;
     background-color: #FFFFFF;
+    position: fixed;
    
 }
 .tamScroll{
@@ -40,14 +41,14 @@
         line-height: 20px;
         color: #2D2D2D;
 }
-
+/*
 .scroll{
     overflow-y: scroll;
     padding-right: 20px;
     
 }
 .scroll::-webkit-scrollbar {
-    width: 8px;     /* Tamaño del scroll en horizontal */
+    width: 8px;     
     height: 8px;
 }
 .scroll::-webkit-scrollbar-thumb {
@@ -57,14 +58,14 @@
    
 }
 
-/* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+
 .scroll::-webkit-scrollbar-thumb:hover {
     background: #BDBDBD;
     width: 7px;     
     height: 7px;
 }
 
-/* Cambiamos el fondo cuando esté en active */
+
 .scroll::-webkit-scrollbar-thumb:active {
     background-color: #BDBDBD;
     width: 7px;     
@@ -75,7 +76,7 @@
     background: #F1F1F1;
     border-radius: 4px;
 }
-
+*/
 .circle{
     height: 7px;
     width: 7px;

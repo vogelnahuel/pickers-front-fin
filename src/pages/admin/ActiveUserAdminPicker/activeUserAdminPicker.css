@@ -1,7 +1,7 @@
 .vehiculo-active-picker{
     position: absolute;
     margin-left: 20%;
-    margin-top: 2%;
+    margin-top:  3.90625vh;
 }
 .button-active-picker{
     position: absolute;
@@ -78,4 +78,24 @@
     color: #BDBDBD;
     width: 217px;
     height: 50px;
+}
+
+@media (min-width: 1500px) { 
+
+    .vehiculo-active-picker{
+        
+        margin-left: 16%;
+      
+    }
+
+}
+
+@media (min-width: 1850px) { 
+
+    .vehiculo-active-picker{
+        
+        margin-left: 14%;
+      
+    }
+
 }

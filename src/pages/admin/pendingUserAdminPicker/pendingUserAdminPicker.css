@@ -1,7 +1,7 @@
 .vehiculo-pending-picker{
     position: absolute;
-    margin-left: 20%;
-    margin-top: 2%;
+    margin-left: 18.789vw;
+    margin-top:  3.90625vh;
 }
 .form-Admin-Pickers{
     display: flex;
@@ -33,10 +33,10 @@
     font-weight: normal;
     font-size: 16px;
     line-height: 20px;
-    color: #999999;
+    color: #101820;
     border: 0;
     outline: none;
-    border-bottom:  1px solid #E5E5E5;
+    border-bottom:  1px solid #828282;
     margin-bottom: 3.515625vh;
     width: 23vw;
 }
@@ -171,3 +171,11 @@
 .Admin-Pickers-input-clear{
     display: none;
 }
+@media (min-width: 1700px) { 
+
+    .vehiculo-pending-picker{
+        position: absolute;
+        margin-left: 15%;
+       
+    }
+ }
