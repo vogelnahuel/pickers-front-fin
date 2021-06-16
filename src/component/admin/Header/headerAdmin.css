@@ -24,7 +24,7 @@
     width: 4.100vw    ;
 }
 .leftEnd{
-    margin-left: 69.618vw;
+    margin-left: 71.618vw;
 }
 .argentina{
     padding-left: 0.805vw ;
@@ -43,9 +43,9 @@
     width: 4.100vw ;
 }
 
-@media (min-width: 1920px) { 
+@media (min-width: 1880px) { 
     .leftEnd{
-        margin-left: 69.618vw;
+        margin-left: 73.618vw;
     }
 
  }
