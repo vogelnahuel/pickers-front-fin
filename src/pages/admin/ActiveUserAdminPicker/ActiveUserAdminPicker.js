@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {Header} from '../../../component/admin/Header/Header'
 import {Nav} from '../../../component/admin/Nav/Nav'
 import '../PendingUser/PendingUserAdmin.css'
@@ -14,9 +14,12 @@ import codificarEmailURIFunction from '../../../tools/encodeMail.js'
 import { useParams } from 'react-router-dom'
 import api from '../../../config/api'
 import createCSV from '../../../tools/createCSV'
+import  disabledButton  from '../../../assets/admin/ActiveUserAdminPicker/disabledButton.svg' 
 
 export const ActiveUserAdminPicker = () => {
  
+    const [imgEnabled, setimgEnabled] = useState(true);
+
 
     useEffect(()=>{
         if(!window.localStorage.getItem('token')){
@@ -35,6 +38,12 @@ export const ActiveUserAdminPicker = () => {
         createCSV(datosExport);   
     }
 
+    const onCLickImg = () =>{
+
+        setimgEnabled(!imgEnabled);
+       
+    }
+
     return (
         <div className="background-Grey">
         <Header/>
@@ -48,11 +57,22 @@ export const ActiveUserAdminPicker = () => {
                      <h2 className="subTitle-pending">Pepito Picker</h2>
                      <img  className="vehiculo-active-picker" src={motorcycle} alt="vehiculo" />
                     
-                     <p className="admin-active-picker">Deshabilitado</p>
-                        
-                    <img  className="button-active-picker" src={button} alt="vehiculo" />     
-
-                     <p className="admin-active-picker-p">Habilitado</p>
+                     
+                        {
+                            imgEnabled===true ? 
+                            <>
+                             <p className="admin-active-picker">Deshabilitado</p>
+                             <img onClick={onCLickImg}  className="button-active-picker" src={button} alt="vehiculo" />     
+                             <p className="admin-active-picker-p">Habilitado</p>
+                            </>
+                            : 
+                            <> 
+                                <p className="admin-buttonDisabled-picker-disabled">Deshabilitado</p>
+                                <img onClick={onCLickImg}  className="button-active-picker" src={disabledButton} alt="vehiculo" />     
+                                <p className="admin-buttonDisabled-picker-enabled">Habilitado</p>
+                            </>
+                        }
+                   
 
                      <button 
                         
