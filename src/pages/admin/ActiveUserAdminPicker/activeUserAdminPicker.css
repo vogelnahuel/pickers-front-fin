@@ -80,6 +80,38 @@
     height: 50px;
 }
 
+
+.admin-buttonDisabled-picker-disabled{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 19px; 
+    letter-spacing: 0.0025em;
+    color: #FF1515;
+    position: absolute;
+    margin-left: 30%;
+    margin-top: 3%;
+   
+}
+
+.admin-buttonDisabled-picker-enabled{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 19px;
+    letter-spacing: 0.0025em;
+    color: #BDBDBD;
+    position: absolute;
+    margin-left: 45%;
+    margin-top: 3%;
+}
+
+
+
+
+
 @media (min-width: 1500px) { 
 
     .vehiculo-active-picker{
