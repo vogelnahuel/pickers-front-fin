@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {Header} from '../../../component/admin/Header/Header'
 import {Nav} from '../../../component/admin/Nav/Nav'
 import '../PendingUser/PendingUserAdmin.css'
@@ -24,6 +24,23 @@ export const PendingUserAdminPicker = () => {
     /****Campos y componentes a mostrar  que se muestran en un part que es parte del diseño*/
     const [inputsPart1,ComponentesPart1,inputsPart2,ComponentesPart2,inputsPart3,ComponentesPart3,inputsPart4,ComponentesPart4]=data();
    
+    const [dataPicker, setDataPicker] = useState({bankIdentifier: "",
+    bankName: "",
+    dateOfBirth: "",
+    email: "",
+    expirationDateDriverLicense: "",
+    expirationDateIdentificationCar: "",
+    expirationDatePolicyPersonal: "",
+    expirationDatePolicyVehicle: "",
+    fiscalNumber: "",
+    id: "",
+    identificationNumber: "",
+    name: "",
+    phoneNumber: "",
+    pickerStatusId: "",
+    registerDate: null,
+    surname:"",
+    vehicleTypeId: ""})
 
             const Export = async () => {                
                 const mailCodificado = codificarEmailURIFunction(mail);
@@ -34,14 +51,17 @@ export const PendingUserAdminPicker = () => {
            
                 createCSV(datosExport);           
             }
-            let dataPicker = {};
-            const getData = async () =>{
-                const mailCodificado = codificarEmailURIFunction(mail);
-                 dataPicker =await api.get(`/ms-admin-rest/api/v1.0/pickers.csv?&email=${mailCodificado}`)
-                .then( (res) => {return res})
-                .catch((err) => {console.log(err)})
-            }
+    
       
+            useEffect( () => {
+                const mailCodificado = codificarEmailURIFunction(mail);
+            const cargarDatos = async () =>{setDataPicker(
+                await api.get(`/ms-admin-rest/api/v1.0/pickers?email=${mailCodificado}`)
+                .then((res)=>{return res.data.result.items[0]})
+                .catch((err)=>{console.log(err)}) )}
+           
+           cargarDatos()
+            }, [mail])
     
     return (
         <div className="background-Grey">
@@ -81,6 +101,7 @@ export const PendingUserAdminPicker = () => {
                         <Part
                         inputsPart={inputsPart2}                 
                         ComponentesPart={ComponentesPart2}
+                        data={dataPicker}
                         />                          
                 </div>
 
@@ -90,11 +111,13 @@ export const PendingUserAdminPicker = () => {
                         <Part
                         inputsPart={inputsPart3}                   
                         ComponentesPart={ComponentesPart3}
+                        data={dataPicker}
                         />  
 
                         <Part
                         inputsPart={inputsPart4}                       
                         ComponentesPart={ComponentesPart4}
+                        data={dataPicker}
                         /> 
                  </div>
                      
