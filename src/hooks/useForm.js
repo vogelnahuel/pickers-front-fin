@@ -70,22 +70,27 @@ export const useForm = ( initialState = {} ) => {
         if(e.target.value.length===0 && e.target.name==='mail'){
             values.errorMail=true;
             values.errorMsgMail='Este campo es requerido';
+            e.target.nextSibling.classList.add('labelError');
         }else if (e.target.value.length!==0 && e.target.name==='mail'){
             values.errorMsgMail=false;
             values.errorMsgPassword='';
         }
-        /*
+        
         if(e.target.value==='' && e.target.name==='password'){
             values.errorPassWord=true;
             values.errorMsgPassword='Este campo es requerido';
+            e.target.classList.add('inputError');
+            e.target.nextSibling.classList.add('labelError');
         }
-        else if(e.target.value.length<7 && e.target.name==='password'){
-            values.errorMsgPassword='la contraseña debe tener mas de 7 caracteres';
-            values.errorPassWord=true;
-        }
+        // else if(e.target.value.length<7 && e.target.name==='password'){
+        //     values.errorMsgPassword='la contraseña debe tener mas de 7 caracteres';
+        //     values.errorPassWord=true;
+        // }
         else if(e.target.value!=='' && e.target.name==='password'){
-            values.errorPassWord=false;           
-        }*/
+            values.errorPassWord=false;   
+            e.target.classList.remove('inputError');
+            e.target.nextSibling.classList.remove('labelError');        
+        }
 
 
         setValues({
@@ -94,7 +99,6 @@ export const useForm = ( initialState = {} ) => {
       
        
     }
-
     const handleSubmit = async (e) => {
 
         e.preventDefault();
@@ -116,27 +120,36 @@ export const useForm = ( initialState = {} ) => {
               
              }
         
-             api.post('/ms-admin-rest/api/v1.0/login',{email:values.mail[0],password:values.password[0]})
+             api.post('/ms-admin-rest/api/v1.0/login',{email:values.mail?values.mail[0]:'',password:values.password?values.password[0]:''})
                  .then((response)=>{
                     window.localStorage.setItem("token",response.data.result.accessToken)
-                    window.location.href= "./dashboard"
+                   window.location.href= "./dashboard"
             })
-            .catch((err)=>console.log(err))
-        
+            .catch((err)=>{
+                e.target.button.parentNode.classList.remove('shineBorder') 
+                values.tipoError="credenciales"
+                err.response.status===400?setValues({modalOpen:true}):setValues({modalOpen2:true})
+                
+                   
+                })
+             //console.log(setValues({modalOpen:true}))
           
             if( window.location.pathname==="/")
             {
                 setTimeout(() => {
                     e.target.button.parentNode.classList.remove('shineBorder') ; 
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'error',
-                        title: 'Hubo un error al cargar la pagina',
-                        showConfirmButton: false,
-                        timer: 3000
-                    })
+                    // Swal.fire({
+                    //     position: 'center',
+                    //     icon: 'error',
+                    //     title: 'Hubo un error al cargar la pagina',
+                    //     showConfirmButton: false,
+                    //     timer: 3000
+                    // })
+                    //setValues({modalOpen2:true})
+                    
+                    //console.log(values)
                 }, 16000);
-            
+                
             
                 } 
             }
