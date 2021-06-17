@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Login.css";
 import pickersLogo from "./../../assets/login/PickersLogo.svg";
@@ -6,7 +6,7 @@ import canguro from "./../../assets/login/Canguro.svg";
 import {Link} from 'react-router-dom'
 import Button from '../../component/Button/Button'
 import {useForm} from '../../hooks/useForm.js'
-
+import {Modal} from 'pickit-components'
 
 
 export const Login = () => {
@@ -18,12 +18,15 @@ export const Login = () => {
       errorMsgMail:'',
       errorPassWord:false,
       errorMsgPassword:'',
+      modalOpen:false,
+      modalOpen2:false,
     });
 
-  const {mail,password,errorMail,errorMsgMail,errorPassWord,errorMsgPassword} = formValues;
-
+  const {mail,password,errorMail,errorMsgMail,errorPassWord,errorMsgPassword,} = formValues;
+    let {modalOpen,modalOpen2} =formValues;
   useEffect(()=>{
     window.localStorage.removeItem('token')
+ 
   },[])
   
   const handleFocusLabel = (e,mail="") => {
@@ -31,7 +34,18 @@ export const Login = () => {
     e.target.nextSibling.classList.add('animationTop');
   }
 
- 
+  const [modalIsOpen, setmodalIsOpen] = useState(null)
+  const [modalIsOpen2, setmodalIsOpen2] = useState(null)
+  const cerrarModalError = () => {
+    setmodalIsOpen(false)
+    modalOpen=false
+
+  }
+  const cerrarModalError2 = () => {
+    setmodalIsOpen2(false)
+    modalOpen2=false
+
+  }
   return (
       < >
     
@@ -102,7 +116,46 @@ export const Login = () => {
           </div>
         </form>
        
-      
+    {    <Modal
+                   width="750px"
+                   height="351px"
+                   isOpen={modalIsOpen===null?modalOpen:modalIsOpen}
+                  >
+                    <div className="container-modal">
+                        <div className="modal-error-title">
+                          <p className="p-modal-error-title">Error password</p>
+                        </div>
+                        <div className="modal-error-subtitle">
+                           <p className="p-modal-error-subtitle">Por favor, reintentalo nuevamente.</p>
+                              <button 
+                                onClick={cerrarModalError}
+                                className="button-modal-error">
+                                <p>Entendido</p>
+                              </button>
+                        </div>
+                    </div>
+                  </Modal>
+            }
+                {    <Modal
+                   width="750px"
+                   height="351px"
+                   isOpen={modalIsOpen2===null?modalOpen2:modalIsOpen2}
+                  >
+                    <div className="container-modal">
+                        <div className="modal-error-title">
+                          <p className="p-modal-error-title">Error en nuestro servidor</p>
+                        </div>
+                        <div className="modal-error-subtitle">
+                           <p className="p-modal-error-subtitle">Por favor, reintentalo nuevamente.</p>
+                              <button 
+                                onClick={cerrarModalError2}
+                                className="button-modal-error">
+                                <p>Entendido</p>
+                              </button>
+                        </div>
+                    </div>
+                  </Modal>
+            }
         </div> 
         <div className="login-image" >
           <img className="img-fluid  myresolution" src={canguro} alt="PickersFooter"></img>

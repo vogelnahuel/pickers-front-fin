@@ -93,11 +93,17 @@ line-height: 1.5;
   display: flex;
 }
 
-
+._3W6ZHoAki_sgbIh3Yq60-a{
+  z-index: 11 !important; 
+  height: 50vh !important;
+}
 .errors{
   font-family: 'Mulish', sans-serif;
   font-style: normal;
   font-weight: 300;
+  margin: 0;
+  padding: 0;
+  top: -2.962962962962963vh;
   font-size: 14px;
   line-height: 18px;
   position: relative;
