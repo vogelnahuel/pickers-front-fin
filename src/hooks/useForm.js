@@ -14,6 +14,9 @@ export const useForm = ( initialState = {} ) => {
     const handleInputChange = (e) => {
         var expresionEmail = /\w+@\w+\.+[a-z]/;
         
+        if(e.target.name==="mail"){
+            e.target.classList.remove('inputReboteAnimation')
+        }
         
 
         if(e.target.value.length>0){
@@ -59,7 +62,7 @@ export const useForm = ( initialState = {} ) => {
 
 
     const handleInputBlur = (e) => {
-
+      
         
         if(e.target.value.length===0 ){
             e.target.nextSibling.classList.remove('animationTop');
@@ -70,10 +73,22 @@ export const useForm = ( initialState = {} ) => {
         if(e.target.value.length===0 && e.target.name==='mail'){
             values.errorMail=true;
             values.errorMsgMail='Este campo es requerido';
+            
         }else if (e.target.value.length!==0 && e.target.name==='mail'){
-            values.errorMsgMail=false;
+            //values.errorMsgMail=false;
             values.errorMsgPassword='';
+            
+           
         }
+       
+        if(e.target.name==='mail' &&  values.errorMail===true){
+            e.target.classList.add('inputReboteAnimation')
+        }
+        else{
+           
+            e.target.classList.remove('inputReboteAnimation')
+        }
+
         /*
         if(e.target.value==='' && e.target.name==='password'){
             values.errorPassWord=true;

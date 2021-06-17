@@ -24,10 +24,9 @@ export const RestorePassword = () => {
 
 const handleSubmit = (e) =>{
   e.preventDefault();
-  const mailCodificado = codificarEmailURIFunction(mail);
   if(password!=="" && password2!=="" && errorNumerosState!==true && errorMayusculasState!==true && errorCaracteresState!==true){
-
-    api.put('ms-admin-rest/api/v1.0/change-password',{email:mailCodificado,verificationCode:cod,password:e.target.password.value})
+    
+    api.put('https://ms-admin.dev.mypickers.com/ms-admin-rest/api/v1.0/admin/change-password',{email:mail,verificationCode:cod,password:e.target.password.value})
     .then((response)=>{console.log(response)})
     .catch((err)=>
         {console.log(err);setModalIsOpen(true) }
