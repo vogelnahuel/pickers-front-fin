@@ -14,6 +14,9 @@ export const useForm = ( initialState = {} ) => {
     const handleInputChange = (e) => {
         var expresionEmail = /\w+@\w+\.+[a-z]/;
         
+        if(e.target.name==="mail"){
+            e.target.classList.remove('inputReboteAnimation')
+        }
         
 
         if(e.target.value.length>0){
@@ -59,7 +62,7 @@ export const useForm = ( initialState = {} ) => {
 
 
     const handleInputBlur = (e) => {
-
+      
         
         if(e.target.value.length===0 ){
             e.target.nextSibling.classList.remove('animationTop');
@@ -72,8 +75,10 @@ export const useForm = ( initialState = {} ) => {
             values.errorMsgMail='Este campo es requerido';
             e.target.nextSibling.classList.add('labelError');
         }else if (e.target.value.length!==0 && e.target.name==='mail'){
-            values.errorMsgMail=false;
+            //values.errorMsgMail=false;
             values.errorMsgPassword='';
+            
+           
         }
         
         if(e.target.value==='' && e.target.name==='password'){
@@ -105,13 +110,14 @@ export const useForm = ( initialState = {} ) => {
         
     
         if(values.mail==='' || values.errorMail===true || values.password==='' || values.errorPassWord===true){
-            Swal.fire({
-              position: 'center',
-              icon: 'error',
-              title: 'Hay errores en los campos',
-              showConfirmButton: false,
-              timer: 3000
-            })
+            // Swal.fire({
+            //   position: 'center',
+            //   icon: 'error',
+            //   title: 'Hay errores en los campos',
+            //   showConfirmButton: false,
+            //   timer: 3000
+            // })
+            //setValues({modalOpen:true})
           }
           else{
             if( window.location.pathname==="/")
