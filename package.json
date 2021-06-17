@@ -11,7 +11,7 @@
     "cors": "^2.8.5",
     "env-cmd": "^10.1.0",
     "moment": "^2.29.1",
-    "pickit-components": "file:./pickit-components-1.0.34.tgz",
+    "pickit-components": "file:pickit-components-1.0.34.tgz",
     "qs": "^6.10.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
