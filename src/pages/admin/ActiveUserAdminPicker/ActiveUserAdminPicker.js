@@ -17,18 +17,42 @@ import createCSV from '../../../tools/createCSV'
 import  disabledButton  from '../../../assets/admin/ActiveUserAdminPicker/disabledButton.svg' 
 
 export const ActiveUserAdminPicker = () => {
- 
+    const mail = useParams().mail;  
     const [imgEnabled, setimgEnabled] = useState(true);
-
+    const [dataPicker, setDataPicker] = useState({bankIdentifier: "",
+    bankName: "",
+    dateOfBirth: "",
+    email: "",
+    expirationDateDriverLicense: "",
+    expirationDateIdentificationCar: "",
+    expirationDatePolicyPersonal: "",
+    expirationDatePolicyVehicle: "",
+    fiscalNumber: "",
+    id: "",
+    identificationNumber: "",
+    name: "",
+    phoneNumber: "",
+    pickerStatusId: "",
+    registerDate: null,
+    surname:"",
+    vehicleTypeId: ""})
 
     useEffect(()=>{
         if(!window.localStorage.getItem('token')){
             window.location.href = '/'
         }
+        const mailCodificado = codificarEmailURIFunction(mail);
+        const cargarDatos = async () =>{setDataPicker(
+            await api.get(`/ms-admin-rest/api/v1.0/pickers?email=${mailCodificado}`)
+            .then((res)=>{return res.data.result.items[0]})
+            .catch((err)=>{console.log(err)}) )}
+       
+       cargarDatos();
     
-      })
+      },[mail])
+
     const [inputsPart1,ComponentesPart1,inputsPart2,ComponentesPart2,inputsPart3,ComponentesPart3,inputsPart4,ComponentesPart4]=data();
-    const mail = useParams().mail;  
+   
     const Export = async () => {              
         const mailCodificado = codificarEmailURIFunction(mail);
         const datosExport =await api.get(`/ms-admin-rest/api/v1.0/pickers.csv?&email=${mailCodificado}`)
@@ -92,6 +116,7 @@ export const ActiveUserAdminPicker = () => {
                         <Part
                         inputsPart={inputsPart1}                      
                         ComponentesPart={ComponentesPart1}
+                        data={dataPicker}
                         />
                 </div>
                 
@@ -101,6 +126,7 @@ export const ActiveUserAdminPicker = () => {
                         <Part
                         inputsPart={inputsPart2}                 
                         ComponentesPart={ComponentesPart2}
+                        data={dataPicker}
                         />                          
                 </div>
 
@@ -110,11 +136,13 @@ export const ActiveUserAdminPicker = () => {
                         <Part
                         inputsPart={inputsPart3}                   
                         ComponentesPart={ComponentesPart3}
+                        data={dataPicker}
                         />  
 
                         <Part
                         inputsPart={inputsPart4}                       
                         ComponentesPart={ComponentesPart4}
+                        data={dataPicker}
                         /> 
                  </div>
                     

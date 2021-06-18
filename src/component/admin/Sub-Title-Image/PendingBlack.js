@@ -32,11 +32,11 @@ export const PendingBlack = () => {
 
                         <div 
                             onClick={handleOnClickredirect}
-                            className="container-pending">
-                            <p className="Pending-paragraph  pending-black">Solicitudes pendientes</p>
+                            className="container-pending pending-blue-border-izq">
+                            <p className="Pending-paragraph  pending-black ">Solicitudes pendientes</p>
                             <img className="img" src={relojOscuro} alt="reloj" />
                         </div>
-                        <div className="container-pending border-pending">
+                        <div className="container-pending border-pending pending-blue-border-der">
                             <p className="Pending-paragraph2 pending-blue">Pickers</p>
                             <img className="img2" src={trabajadorAzul} alt="trabajador" />
                         </div>

@@ -2,13 +2,14 @@
     border-right: 1px solid #145A99;
     border-top: 1px solid #145A99;
     border-radius: 0px 20px 0px 0px;
-    padding-top: 2vh;
+    padding-top: 42px;
     padding-left: 4vh;
     padding-right: 2vh;
-    height: 83.65416666666667vh;
+    height: 86.3vh;
     width:17.082vw;
     background-color: #FFFFFF;
     position: fixed;
+    margin-top: 7.291666666666667vh;
    
 }
 .tamScroll{

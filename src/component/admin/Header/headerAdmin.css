@@ -2,12 +2,15 @@
     background-color: #0098FF;
     color: white;
     height: 9.765625vh;
-
-  
+    position: fixed;
+    width: 100vw;
+    top: 0;
+    z-index: 11;
 }
 .containerHeader{
     display: flex;
-    padding-top: 2vh;
+    height: 9.895833333333334vh;
+   
 }
 .centerHeight{
     margin-top: auto;
@@ -28,11 +31,11 @@
 }
 .argentina{
     padding-left: 0.805vw ;
-    width: 2.489vw;
+    width: 34px;
 }
 .user{
     padding-left: 0.805vw    ;
-    width: 2.489vw    ;
+    width: 34px    ;
 }
 .pickersLogo{
     padding-left: 0.366vw;

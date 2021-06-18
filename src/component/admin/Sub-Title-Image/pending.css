@@ -1,5 +1,6 @@
 .FlexPending{
     display: flex;
+    border-radius: 10px;
 }
 .backGround-pending{
     background-color: white;
@@ -48,6 +49,7 @@
     height: 12.5vh;
     width: 30vw;
     border: 0.823136px solid #E5E5E5;
+   
 }
 .border-pending{
     border-left: 0.823136px solid #E5E5E5;
@@ -96,7 +98,14 @@
     }
     
 }
-
+.pending-blue-border-izq{
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+}
+.pending-blue-border-der{
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+}
 @media (min-height: 800px) { 
 
     .img3{
