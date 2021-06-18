@@ -80,6 +80,9 @@ export const useForm = ( initialState = {} ) => {
             
            
         }
+        if(e.target.name==='mail' && values.errorMail===true){
+            e.target.classList.add('inputReboteAnimation');
+        }
         
         if(e.target.value==='' && e.target.name==='password'){
             values.errorPassWord=true;
