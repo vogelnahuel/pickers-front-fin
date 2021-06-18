@@ -12,6 +12,8 @@ export const useForm = ( initialState = {} ) => {
    
 
     const handleInputChange = (e) => {
+
+        
         var expresionEmail = /\w+@\w+\.+[a-z]/;
         
         if(e.target.name==="mail"){
@@ -79,6 +81,9 @@ export const useForm = ( initialState = {} ) => {
             values.errorMsgPassword='';
             
            
+        }
+        if(e.target.name==='mail' && values.errorMail===true){
+            e.target.classList.add('inputReboteAnimation');
         }
         
         if(e.target.value==='' && e.target.name==='password'){

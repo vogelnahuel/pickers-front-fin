@@ -28,13 +28,13 @@ export const PendingBlue = () => {
             <div className="FlexPending">
                     <div className="FlexPending backGround-pending">
 
-                        <div className="container-pending">
+                        <div className="container-pending pending-blue-border-izq">
                             <p className="Pending-paragraph">Solicitudes pendientes</p>
                             <img className="img" src={relojAzul} alt="reloj" />
                         </div>
                         <div
                             onClick={handleOnClickredirect}
-                             className="container-pending border-pending">
+                             className="container-pending border-pending pending-blue-border-der">
                             <p className="Pending-paragraph2">Pickers</p>
                             <img className="img2" src={trabajadorOscuro} alt="trabajador" />
                         </div>
