@@ -86,7 +86,14 @@ export const  EmailRestore = () => {
                >Enviar correo
                </Button>
               
-               <Modal
+              
+            
+            </div>
+          </form>
+          {
+            ModalIsOpen === true ? 
+            <div className="contendor-modal-login">
+            <Modal
                    width="750px"
                    height="351px"
                    isOpen={ModalIsOpen}
@@ -105,7 +112,16 @@ export const  EmailRestore = () => {
                         </div>
                     </div>
                   </Modal>
-                  <Modal
+                  </div>
+
+                : null
+          }
+
+          
+            {    
+            ModalErrorIsOpen ===true ?
+            <div className="contendor-modal-login">
+            <Modal
                    width="750px"
                    height="351px"
                    isOpen={ModalErrorIsOpen}
@@ -124,10 +140,9 @@ export const  EmailRestore = () => {
                         </div>
                     </div>
                   </Modal>
-            
-            
-            </div>
-          </form>
+                  </div>
+                  : null
+              }
         </div>
       
          
