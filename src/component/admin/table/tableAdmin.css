@@ -31,26 +31,26 @@
 .title-table-nombre{
     /* padding-left: 50px; */
     padding-left: 30px;
-    width: 10vw;
+    width: 13vw;
 }
 .title-table-dni{
-    
-    width: 10vw;
+    width: 12vw;
 }
 .title-table-email{
-  
-    width: 33vw;
+    padding-left: 32px;
+    width: 30vw;
 }
 .title-table-vehiculo{
-    padding-left: 30px;
-    width: 10vw;
+    padding-left: 100px;
+    width: 15vw;
 }
 .title-table-pendding{
-    width: 15vw;
-    padding-left: 30px;
+    padding-left: 50px;
+    width: 18vw;
+  
 }
 .title-table-editar{
-    
+    padding-left: 15px;
     width: 10vw;
 }
 .info{
@@ -95,31 +95,133 @@
 }
 .table-name{
     padding-left: 50px;
-    width: 10vw;
+    width: 12vw;
 }
 .table-dni{
-    width: 10vw;
+    width: 12vw;
 }
 .table-email{
-    width: 33vw;
+    width: 25vw;
 }
 .table-vehiculo{
     width: 10vw;
+    padding-left: 15px;
 }
 .table-registro{
-    width: 15vw;
+    width: 10vw;
 }
 .table-editar{
     width: 10vw;
+    padding-left: 45px;
 }
-@media (min-width: 1800px) { 
 
-    .title-table-vehiculo{
+.active-table-vehiculo{
+    padding-left: 70px;
+}
+.active-table-estado{
+    padding-left: 25px;
+}
+.active-table-email{
+    padding-left: 40px;
+}
+.active-table-dni{
+    padding-left: 5px;
+}
+.table-editar-active{
+    padding-left: 55px;
+}
+@media (min-width: 1400px) { 
+
+    .title-table-nombre{
+        /* padding-left: 50px; */
+        padding-left: 30px;
+        width: 13vw;
+    }
+    .title-table-dni{
         padding-left: 15px;
+        width: 12vw;
+    }
+    .title-table-email{
+        padding-left: 55px;
+        width: 30vw;
+    }
+    .title-table-vehiculo{
+        padding-left: 90px;
+        width: 15vw;
     }
     .title-table-pendding{
-        width: 15vw;
-        padding-left: 15px;
+        padding-left: 30px;
+        width: 18vw;
+      
+    }
+    .title-table-editar{
+        padding-left: 0px;
+        width: 10vw;
     }
 
+
+    .active-table-vehiculo{
+        padding-left: 80px;
+    }
+    .active-table-estado{
+        padding-left: 25px;
+    }
+    .active-table-email{
+        padding-left: 50px;
+    }
+    .active-table-dni{
+        padding-left: 5px;
+    }
+    .table-editar-active{
+        padding-left: 55px;
+    }
+}
+
+@media (min-width: 1800px) { 
+
+    .title-table-nombre{
+        /* padding-left: 50px; */
+        padding-left: 30px;
+        width: 13vw;
+    }
+    .title-table-dni{
+        padding-left: 20px;
+        width: 12vw;
+    }
+    .title-table-email{
+        padding-left: 70px;
+        width: 30vw;
+    }
+    .title-table-vehiculo{
+        padding-left: 100px;
+        width: 15vw;
+    }
+    .title-table-pendding{
+        padding-left: 30px;
+        width: 18vw;
+      
+    }
+    .title-table-editar{
+        padding-left: 0px;
+        width: 10vw;
+    }
+    .table-editar{
+        width: 10vw;
+        padding-left: 55px;
+    }
+    .active-table-vehiculo{
+        padding-left: 100px;
+    }
+    .active-table-estado{
+        padding-left: 35px;
+    }
+    .active-table-email{
+        padding-left: 70px;
+    }
+    .active-table-dni{
+        padding-left: 20px;
+    }
+    .table-editar-active{
+        padding-left: 60px;
+    }
 }
