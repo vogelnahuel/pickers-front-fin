@@ -123,10 +123,10 @@ export const Login = () => {
                   >
                     <div className="container-modal">
                         <div className="modal-error-title">
-                          <p className="p-modal-error-title">Error password</p>
+                          <p className="p-modal-error-title">Usuario y/o contraseña inválidos</p>
                         </div>
                         <div className="modal-error-subtitle">
-                           <p className="p-modal-error-subtitle">Por favor, reintentalo nuevamente.</p>
+                           <p className="p-modal-error-subtitle">Tu usuario y/o contraseña ingresados son incorrectos. Por favor, ingresalos nuevamente.</p>
                               <button 
                                 onClick={cerrarModalError}
                                 className="button-modal-error">

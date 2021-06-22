@@ -19,15 +19,18 @@ export const RestorePassword = () => {
 
   const [ModalIsOpen, setModalIsOpen] = useState(false)
   
+  const [ModalEnviadoIsOpen, setModalEnviadoIsOpen] = useState(false)
 
   const {cod,mail} = useParams();
+  
+
 
 const handleSubmit = (e) =>{
   e.preventDefault();
   if(password!=="" && password2!=="" && errorNumerosState!==true && errorMayusculasState!==true && errorCaracteresState!==true){
     
     api.put('https://ms-admin.dev.mypickers.com/ms-admin-rest/api/v1.0/admin/change-password',{email:mail,verificationCode:cod,password:e.target.password.value})
-    .then((response)=>{console.log(response)})
+    .then((response)=>{setModalEnviadoIsOpen(true)})
     .catch((err)=>
         {console.log(err);setModalIsOpen(true) }
     )
@@ -51,10 +54,6 @@ const handleSubmit = (e) =>{
 
 
   }
-
-
-
-
 
 }
 
@@ -274,6 +273,9 @@ const cerrarModalError = () => {
   setModalIsOpen(false);
 }
 
+const cerrarModalEnviado = () => {
+  setModalEnviadoIsOpen(false);
+}
     return (
         <section>
           <div className="logo">
@@ -385,6 +387,25 @@ const cerrarModalError = () => {
                               <button 
                                 onClick={cerrarModalError}
                                 className="button-modal-error">
+                                <p>Entendido</p>
+                              </button>
+                        </div>
+                    </div>
+                  </Modal>
+                  <Modal
+                   width="750px"
+                   height="351px"
+                   isOpen={ModalEnviadoIsOpen}
+                  >
+                    <div className="container-modal">
+                        <div className="modal-success-title">
+                          <p className="p-modal-error-title">Restauraste tu contraseña exitosamente</p>
+                        </div>
+                        <div className="modal-error-subtitle">
+                           <p className="p-modal-error-subtitle">Ya podés ingresar con tu nueva contraseña.</p>
+                              <button 
+                                onClick={cerrarModalEnviado}
+                                className="button-modal-sucsses">
                                 <p>Entendido</p>
                               </button>
                         </div>

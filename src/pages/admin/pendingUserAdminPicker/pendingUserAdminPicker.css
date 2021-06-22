@@ -92,6 +92,7 @@
     padding-bottom: 20px;
     margin-top: 3vh;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .subTitle-pending-data{
