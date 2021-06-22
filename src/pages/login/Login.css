@@ -191,7 +191,32 @@ transform: translateY(0em) scale(1);
   -webkit-animation: inputRebote .25s linear;
   animation: inputRebote .25s linear;
 }
-
+.button-modal-error2{
+  background: #EB5757;
+  border-radius: 50px;
+  width: 219px;
+  height: 50px;
+  margin-left: 266px;
+  text-decoration: none;
+  border-color: #FFFFFF;
+  border-width: 0px;
+  margin-top: 0px;
+  color: #FFFFFF;
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 18px;
+  text-align: center;
+}
+.contendor-modal-login{
+  background: rgba(0, 0, 0, 0.25);
+  mix-blend-mode: multiply;
+  width: 99.9vw;
+  height: 99.9vh;
+  top: 0;
+  left: 0;
+  position: absolute;
+}
 /***************************animacion inputs***************************/
 @keyframes inputRebote {
     0% {

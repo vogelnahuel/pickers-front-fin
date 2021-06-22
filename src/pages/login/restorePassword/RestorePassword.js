@@ -13,7 +13,8 @@ import Informacion from "../../../assets/login/Informacion.svg";
 import { useParams } from 'react-router';
 import {Modal}  from 'pickit-components'
 
-import codificarEmailURIFunction from './../../../tools/encodeMail'
+
+
 
 export const RestorePassword = () => {
 
@@ -27,12 +28,17 @@ export const RestorePassword = () => {
 
 const handleSubmit = (e) =>{
   e.preventDefault();
+ 
   if(password!=="" && password2!=="" && errorNumerosState!==true && errorMayusculasState!==true && errorCaracteresState!==true){
     
     api.put('https://ms-admin.dev.mypickers.com/ms-admin-rest/api/v1.0/admin/change-password',{email:mail,verificationCode:cod,password:e.target.password.value})
-    .then((response)=>{setModalEnviadoIsOpen(true)})
+    .then((response)=>{
+
+      setModalEnviadoIsOpen(true)
+    })
     .catch((err)=>
-        {console.log(err);setModalIsOpen(true) }
+        {console.log(err);
+          setModalIsOpen(true) }
     )
 
   }
@@ -373,6 +379,15 @@ const cerrarModalEnviado = () => {
                   >Guardar</Button> 
                   </div>
                 
+             
+            </div>
+          </form>
+         
+          </div>
+              
+          {
+                  ModalIsOpen === true ?
+                  <div className="contendor-modal-password">
                   <Modal
                    width="750px"
                    height="351px"
@@ -392,6 +407,14 @@ const cerrarModalEnviado = () => {
                         </div>
                     </div>
                   </Modal>
+                  </div>
+                  : null
+
+                }
+                {
+                  ModalEnviadoIsOpen===true ?
+
+                  <div className="contendor-modal-password">
                   <Modal
                    width="750px"
                    height="351px"
@@ -411,14 +434,9 @@ const cerrarModalEnviado = () => {
                         </div>
                     </div>
                   </Modal>
-            
-              
-             
-            </div>
-          </form>
-         
-          </div>
-              
+                  </div>
+                  : null
+                }
       
           <img className="img-fluid myresolution" src={canguro} alt="PickersFooter"></img>
      

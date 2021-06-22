@@ -5,7 +5,7 @@ import {Labels}  from '../../Labels/Labels'
 
 import './part.css'
 import { SaveAdminPicker } from '../SaveAdminPicker/SaveAdminPicker'
-import { data } from '../../../pages/admin/pendingUserAdminPicker/data'
+
 
 /**** muestro los campos con sus labels y tambien los componentes pasados */
 export const Part = (props) => {
@@ -14,7 +14,7 @@ export const Part = (props) => {
     const variables = props.inputsPart;
     const componentes = props.ComponentesPart;
     const dataPicker = props.data;
-    console.log(dataPicker)
+
     let defaultInfo = {
         nombre:dataPicker.name,
         apellido:dataPicker.surname,
