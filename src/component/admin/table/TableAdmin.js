@@ -71,10 +71,55 @@ return (
                             }
                             
 
-                            {     window.location.pathname === "/activeUserAdmin" &&
-                                titulosAdminActive !== undefined
-                                  ? titulosAdminActive.map((rows) => <div key={rows}> {rows} </div>)
-                                  : null
+                            
+
+{
+                                window.location.pathname === "/activeUserAdmin" &&
+                                titulosAdminActive !== undefined && 
+                                titulosAdminActive[0] === "Nombre" ?
+                                <div className="title-table-nombre active-table-nombre" > Nombre </div>
+                                : null
+                                  
+                            }
+                            {
+                                 window.location.pathname === "/activeUserAdmin" &&
+                                 titulosAdminActive !== undefined && 
+                                 titulosAdminActive[0] === "Nombre" ?
+                                <div className="title-table-dni active-table-dni"> DNI </div>
+                                : null
+                                  
+                            }
+                            {
+                                window.location.pathname === "/activeUserAdmin" &&
+                                titulosAdminActive !== undefined && 
+                                titulosAdminActive[0] === "Nombre" ?
+                                <div className="title-table-email active-table-email"> Email </div>
+                                : null
+                                  
+                            }
+                            {
+                                window.location.pathname === "/activeUserAdmin" &&
+                                titulosAdminActive !== undefined && 
+                                titulosAdminActive[0] === "Nombre" ?
+                                <div className="title-table-vehiculo active-table-vehiculo"> Vehículo </div>
+                                : null
+                                  
+                            }
+                            {
+                                 window.location.pathname === "/activeUserAdmin" &&
+                                 titulosAdminActive !== undefined && 
+                                 titulosAdminActive[0] === "Nombre" ?
+                                <div className="title-table-pendding active-table-estado"> Estado </div>
+                                : null
+                                  
+                            }
+                            {
+                                 window.location.pathname === "/activeUserAdmin" &&
+                                 titulosAdminActive !== undefined && 
+                                 titulosAdminActive[0] === "Nombre" ?
+                                <div className="title-table-editar active-table-editar" > Editar </div>
+                                : null
+                                  
                             }
 
                             </div>
@@ -111,10 +156,10 @@ return (
                   {window.location.pathname === "/activeUserAdmin"
                     ? data.map((rows) => (
                         <tr className="info" key={rows.id}>
-                          <td> {rows.name} </td>
-                          <td> {rows.identificationNumber} </td>
-                          <td> {rows.email}</td>
-                          <td>
+                          <td className="table-name"> {rows.name} </td>
+                          <td className="table-dni"> {rows.identificationNumber} </td>
+                          <td className="table-email"> {rows.email}</td>
+                          <td className="table-vehiculo">
                             {" "}
                             {rows.vehicleTypeId === 1
                               ? "moto"
@@ -124,12 +169,12 @@ return (
                           </td>
                           {/* <td> {rows.Transacciones} </td> */}
                           {rows.pickerStatusId === 1 ? (
-                            <td className="color-state-green"> {"Habilitado"} </td>
+                            <td className="color-state-green table-registro"> {"Habilitado"} </td>
                           ) : (
-                            <td className="color-state-red"> {"Deshabilitado"} </td>
+                            <td className="color-state-red table-registro"> {"Deshabilitado"} </td>
                           )}
           
-                          <td>
+                          <td className="table-editar table-editar-active">
                           <Link  to ={`/activeUserAdminpicker/${rows.email}`} > <img src={edit} alt="edit" /></Link>
                           </td>
                         </tr>
