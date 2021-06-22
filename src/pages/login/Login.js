@@ -5,25 +5,26 @@ import pickersLogo from "./../../assets/login/PickersLogo.svg";
 import canguro from "./../../assets/login/Canguro.svg";
 import {Link} from 'react-router-dom'
 import Button from '../../component/Button/Button'
-import {useForm} from '../../hooks/useForm.js'
 import {Modal} from 'pickit-components'
+import api from '../../config/api'
 
 
 export const Login = () => {
 
-  const [formValues,handleInputBlur,handleInputChange,handleSubmit] = useForm({
-      mail:'',
-      password:'',
-      errorMail:false,
-      errorMsgMail:'',
-      errorPassWord:false,
-      errorMsgPassword:'',
-      modalOpen:false,
-      modalOpen2:false,
-    });
 
-  const {mail,password,errorMail,errorMsgMail,errorPassWord,errorMsgPassword,} = formValues;
-    let {modalOpen,modalOpen2} =formValues;
+
+    const [mail, setmail] = useState("")
+    const [password, setpassword] = useState("");
+    const [errorMail, seterrorMail] = useState(false)
+    const [errorMsgMail, seterrorMsgMail] = useState("")
+    const [errorPassWord, seterrorPassWord] = useState(false)
+    const [errorMsgPassword, seterrorMsgPassword] = useState("")
+    const [modalOpen, setmodalOpen] = useState(false)
+    const [modalOpen2, setmodalOpen2] = useState(false)
+
+  //const {mail,password,errorMail,errorMsgMail,errorPassWord,errorMsgPassword,} = formValues;
+
+
   useEffect(()=>{
     window.localStorage.removeItem('token')
  
@@ -34,18 +35,128 @@ export const Login = () => {
     e.target.nextSibling.classList.add('animationTop');
   }
 
-  const [modalIsOpen, setmodalIsOpen] = useState(null)
-  const [modalIsOpen2, setmodalIsOpen2] = useState(null)
+ 
   const cerrarModalError = () => {
-    setmodalIsOpen(false)
-    modalOpen=false
-
+    setmodalOpen(false)
   }
   const cerrarModalError2 = () => {
-    setmodalIsOpen2(false)
-    modalOpen2=false
-
+    setmodalOpen2(false)
   }
+
+
+  const handleInputChange = (e) => {      
+    var expresionEmail = /\w+@\w+\.+[a-z]/;
+   
+    if(e.target.name==="mail"){
+        e.target.classList.remove('inputReboteAnimation')
+    }
+    if(e.target.value.length>0){
+       e.target.nextSibling.classList.remove('animationOrigin');
+       e.target.nextSibling.classList.add('animationTop');          
+    }else{          
+        e.target.nextSibling.classList.remove('animationTop');
+        e.target.nextSibling.classList.add('animationOrigin');
+    }    
+    if(e.target.value.length===0 && e.target.name==="mail")    {
+        e.target.nextSibling.classList.add('labelError');
+    }      
+    if(e.target.value==='' && e.target.name==='mail'){
+      seterrorMail(true);
+      seterrorMsgMail('Este campo es requerido');
+        e.target.classList.add('inputError');
+        e.target.nextSibling.classList.add('labelError');
+    }else if(!expresionEmail.test(e.target.value) && e.target.name==='mail'){
+        seterrorMail(true);
+        seterrorMsgMail('Debe ingresar un email válido');
+        e.target.classList.add('inputError');   
+        e.target.nextSibling.classList.add('labelError');        
+    }
+    else if(e.target.value!=='' && e.target.name==='mail'){
+      seterrorMail(false);
+        e.target.classList.remove('inputError');
+        e.target.nextSibling.classList.remove('labelError');
+    }
+    if(e.target.name==="mail"){
+      setmail(
+
+        e.target.value
+      )
+    }
+    if(e.target.name==="password"){
+      setpassword(
+        e.target.value
+      )
+    }
+}
+
+
+const handleInputBlur = (e) => {
+  if(e.target.value.length===0 ){
+       e.target.nextSibling.classList.remove('animationTop');
+       e.target.nextSibling.classList.add('animationOrigin');
+   }
+ if(e.target.value.length===0 && e.target.name==='mail'){
+      seterrorMail(true);
+      seterrorMsgMail('Este campo es requerido');
+       e.target.nextSibling.classList.add('labelError');
+       e.target.classList.add('inputError');
+   }else if (e.target.value.length!==0 && e.target.name==='mail'){
+    seterrorMsgPassword('');        
+   }
+   if(e.target.name==='mail' && errorMail===true){
+       e.target.classList.add('inputReboteAnimation');
+   }
+   
+   if(e.target.value==='' && e.target.name==='password'){
+      seterrorPassWord(true);
+       seterrorMsgPassword('Este campo es requerido');
+       e.target.classList.add('inputError');
+       e.target.nextSibling.classList.add('labelError');
+   }
+
+   else if(e.target.value!=='' && e.target.name==='password'){
+      seterrorPassWord(false); 
+       e.target.classList.remove('inputError');
+       e.target.nextSibling.classList.remove('labelError');        
+   }
+         
+}
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+
+ if(mail==='' || errorMail===true || password==='' || errorPassWord===true){
+
+    }
+    else{
+      if( window.location.pathname==="/")
+      {
+         e.target.button.parentNode.classList.add('shineBorder') ;            
+       }     
+       api.post('/ms-admin-rest/api/v1.0/login',{email:mail?mail:'',password:password?password:''})
+           .then((response)=>{
+              window.localStorage.setItem("token",response.data.result.accessToken)
+             window.location.href= "./dashboard"
+      })
+      .catch((err)=>{
+          e.target.button.parentNode.classList.remove('shineBorder') 
+          //values.tipoError="credenciales"
+          err.response.status===400?setmodalOpen(true):setmodalOpen2(true)              
+          })
+    
+      if( window.location.pathname==="/")
+      {
+          setTimeout(() => {
+              e.target.button.parentNode.classList.remove('shineBorder') ; 
+          }, 16000);
+     
+      } 
+  }
+
+}
+
+
   return (
       < >
     
@@ -116,30 +227,40 @@ export const Login = () => {
           </div>
         </form>
        
-    {    <Modal
-                   width="750px"
-                   height="351px"
-                   isOpen={modalIsOpen===null?modalOpen:modalIsOpen}
-                  >
-                    <div className="container-modal">
-                        <div className="modal-error-title">
-                          <p className="p-modal-error-title">Usuario y/o contraseña inválidos</p>
-                        </div>
-                        <div className="modal-error-subtitle">
-                           <p className="p-modal-error-subtitle">Tu usuario y/o contraseña ingresados son incorrectos. Por favor, ingresalos nuevamente.</p>
-                              <button 
-                                onClick={cerrarModalError}
-                                className="button-modal-error">
-                                <p>Entendido</p>
-                              </button>
-                        </div>
-                    </div>
-                  </Modal>
+    {   modalOpen === true ? 
+          <div className="contendor-modal-login">
+            <Modal
+
+                    width="750px"
+                    height="351px"
+                    isOpen={modalOpen}
+                    onClose={cerrarModalError}
+                    >
+                      <div className="container-modal">
+                          <div className="modal-error-title">
+                            <p className="p-modal-error-title">Usuario y/o contraseña inválidos</p>
+                          </div>
+                          <div className="modal-error-subtitle">
+                            <p className="p-modal-error-subtitle">Tu usuario y/o contraseña ingresados son incorrectos. Por favor, ingresalos nuevamente.</p>
+                                <button 
+                                  onClick={cerrarModalError}
+                                  className="button-modal-error2">
+                                    Entendido
+                                </button>
+                          </div>
+                      </div>
+                    </Modal>
+              </div>
+              : null
             }
-                {    <Modal
+                {  
+                modalOpen2===true ?
+               <div className="contendor-modal-login">
+                <Modal
                    width="750px"
                    height="351px"
-                   isOpen={modalIsOpen2===null?modalOpen2:modalIsOpen2}
+                   isOpen={modalOpen2}
+                   onClose={cerrarModalError2}
                   >
                     <div className="container-modal">
                         <div className="modal-error-title">
@@ -149,12 +270,14 @@ export const Login = () => {
                            <p className="p-modal-error-subtitle">Por favor, reintentalo nuevamente.</p>
                               <button 
                                 onClick={cerrarModalError2}
-                                className="button-modal-error">
-                                <p>Entendido</p>
+                                className="button-modal-error2">
+                                Entendido
                               </button>
                         </div>
                     </div>
                   </Modal>
+              </div>
+              :null
             }
         </div> 
         <div className="login-image" >
