@@ -114,3 +114,115 @@
 .container-button-width{
     width: 22vw;
 }
+
+
+
+
+
+
+
+
+/*****************SELECT**********/
+
+
+.filter-admin-select{
+    width: 100%;
+    cursor: pointer;
+}
+
+.filter-admin-selectBox{
+    width: 20vw;
+    margin: auto;
+    position: relative;
+}
+.filter-admin-contenedor{
+    width: 90%;
+    margin: auto;
+    max-width: 1000px;
+    padding: 40px 0;
+}
+
+.filter-admin-parrafoLabel{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 19px;
+    letter-spacing: 0.0025em;
+    color: #4D4D4D;
+    margin-bottom: 5px;
+}
+
+.filter-admin-inputSelect{
+    border: 0;
+    outline: none;
+    border-bottom: 1px solid #828282;
+    width: 20vw;
+    cursor: pointer;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 21px;
+    letter-spacing: 0.005em;
+    color: #828282;
+    background: #FFFFFF;
+    margin-top: 10px;
+}
+.filter-admin-inputSelect p {
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 21px;
+    letter-spacing: 0.005em;
+}
+.filter-admin-Imagen{
+    position: absolute;
+    left: 95%;
+    top: 35px;
+}
+.filter-admin-opcion-parrafo{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 21px;
+    letter-spacing: 0.005em;
+    color: #4D4D4D;
+    padding-top: 10px;
+    padding-left: 9px;
+}
+.filter-admin-opciones{
+    background: #FFFFFF;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 11px;
+    padding: 10px 10px 10px 10px;
+    display: none;
+    width: 280px;
+}
+.filter-admin-opciones.active{
+    position: absolute;
+    display: block;
+}
+.filter-admin-contenido-opcion{
+   height: 40px;
+   overflow: hidden;
+   cursor: pointer;
+}
+.filter-admin-selecionado{
+    background: #95E1BF;
+    mix-blend-mode: multiply;
+    border-radius: 5px;
+}
+.filter-admin-colorSelecionado{
+    color: #101010;
+}
+.filter-admin-contenido-opcion:hover{
+    background: #95E1BF;
+    mix-blend-mode: multiply;
+    border-radius: 5px;
+}
+.filter-admin-filter-value{
+    margin-bottom: 0px;
+}
