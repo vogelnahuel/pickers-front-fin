@@ -16,6 +16,8 @@ export const Fields = (props) => {
     const opciones = document.querySelector('#opciones')
     const contenidoSelect = document.querySelector('#seleccionado')
     const hiddenInput =  document.querySelector('#Vehículo')
+
+   
             e.preventDefault();        
             if(e.target.textContent==="Bicicleta"){
                 contenidoSelect.textContent= "Bicicleta";
@@ -30,17 +32,31 @@ export const Fields = (props) => {
             opciones.style.display="none";
  }
 
- const handleClickSelect  = () => {
-
+ const handleClickSelect  = (e) => {
+     e.preventDefault();
     const opciones = document.querySelector('#opciones')
+    e.stopPropagation();
+    
+   
       if(opciones.style.display==="none"){
             opciones.style.display="block"
             opciones.style.position="absolute";
+            
         }else if(opciones.style.display==="block"){
             opciones.style.display="none"
         }
         opciones.classList.toggle('active') 
+
+
+        window.addEventListener(('click'),()=>{
+            
+             if(opciones.style.display==="block" || opciones.style.display.length===0){
+                 opciones.style.display="none"
+             }
+             
+         })
  }
+
 
 
     
@@ -91,6 +107,7 @@ export const Fields = (props) => {
                                                             <div className="filter-admin-opciones" id="opciones">
                                                                     <div 
                                                                     onClick={handleClickOption}
+                                                                    
                                                                      className="filter-admin-opcion"
                                                                     >
                                                                         <div className="filter-admin-contenido-opcion">

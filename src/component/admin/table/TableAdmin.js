@@ -139,9 +139,9 @@ return (
                           <td className="table-vehiculo">
                             {" "}
                             {rows.vehicleTypeId === 1
-                              ? "moto"
+                              ? "Moto"
                               : rows.vehicleTypeId === 2
-                              ? "bici"
+                              ? "Bici"
                               : null}
                           </td>
                           <td className="table-registro"> {rows.registerDate?getDifDate(rows.registerDate):null} días {rows.pickerStatusId===3 ?<div className="admin-table-correction">En correcion</div> : null } </td>
@@ -162,9 +162,9 @@ return (
                           <td className="table-vehiculo">
                             {" "}
                             {rows.vehicleTypeId === 1
-                              ? "moto"
+                              ? "Moto"
                               : rows.vehicleTypeId === 2
-                              ? "bici"
+                              ? "Bici"
                               : null}
                           </td>
                           {/* <td> {rows.Transacciones} </td> */}
