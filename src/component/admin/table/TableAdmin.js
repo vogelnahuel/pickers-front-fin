@@ -155,7 +155,7 @@ return (
                     : null:null}
           
                   {window.location.pathname === "/activeUserAdmin"
-                    ? data.map((rows) => (
+                    ?JSON.stringify(data)!=='{}'? data.map((rows) => (
                         <tr className="info" key={rows.id}>
                           <td className="table-name"> {rows.name} </td>
                           <td className="table-dni"> {rows.identificationNumber} </td>
@@ -180,7 +180,7 @@ return (
                           </td>
                         </tr>
                       ))
-                    : null}
+                    : null:null}
                 </tbody>
               </table>
               </>
