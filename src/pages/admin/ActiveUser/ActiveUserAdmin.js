@@ -48,7 +48,7 @@ export const ActiveUserAdmin = () => {
             //getData(filter);
             const cargarDatos = async () =>  {
            
-                setData ( await api.get(`ms-admin-rest/api/v1.0/pickers?pickerStatusId=4,5`)
+                setData ( await api.get(`ms-admin-rest/api/v1.0/pickers?pickerStatusId=4,5&limit=15`)
                 .then((res)=>{return res.data.result.items})
                 .catch((err)=>{console.log(err)})  )
             }
