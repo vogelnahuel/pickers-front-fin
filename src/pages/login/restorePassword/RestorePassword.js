@@ -81,7 +81,6 @@ const handleSubmit = (e) =>{
   const [errorMayusculasState, setErrorMayusculas] = useState(false);
   const [errorCaracteresState, setErrorCaracteres] = useState(false);
   const [errorDiferentesPassword, setErrorPassword] = useState(false);
-  const [estadoAnterior, setEstadoAnterior] = useState(0);
 
 const handleInputChange = (e) => {
   
