@@ -29,12 +29,16 @@ export const RestorePassword = () => {
 const handleSubmit = (e) =>{
   e.preventDefault();
  
-  if(password!=="" && password2!=="" && errorNumerosState!==true && errorMayusculasState!==true && errorCaracteresState!==true){
+  if(password!=="" && password2!=="" && errorNumerosState!==true && errorMayusculasState!==true && errorCaracteresState!==true && errorDiferentesPassword!==true){
     
     api.put('https://ms-admin.dev.mypickers.com/ms-admin-rest/api/v1.0/admin/change-password',{email:mail,verificationCode:cod,password:e.target.password.value})
     .then((response)=>{
-
-      setModalEnviadoIsOpen(true)
+      if(response.data.result.successful===true){
+        setModalEnviadoIsOpen(true)
+      }
+      else {
+        setModalIsOpen(true)
+      }
     })
     .catch((err)=>
         {console.log(err);
@@ -76,6 +80,7 @@ const handleSubmit = (e) =>{
   const [errorDiferentesPassword, setErrorPassword] = useState(false);
 
 const handleInputChange = (e) => {
+
     
     validarFormulario(e);
 
@@ -108,26 +113,31 @@ const handleInputChange = (e) => {
 
   const validarFormulario = (e) =>{
 
+
     //donde poner los errores
     const errorCaracteres = document.querySelector('#caracteres');
    
     const errorLetras = document.querySelector('#mayusculas');
     
     const errorNumeros = document.querySelector('#numeros');
+    
    
    
     ///setear errores
-    errorCaracteres.classList.remove('restore-error-p');
-    errorLetras.classList.remove('restore-error-p');
-    errorNumeros.classList.remove('restore-error-p');
-    setErrorCaracteres(false);
-    setErrorMayusculas(false);
-    setErrorNumeros(false);
+    if(e.target.name==="password"){
+      errorCaracteres.classList.remove('restore-error-p');
+      errorLetras.classList.remove('restore-error-p');
+      errorNumeros.classList.remove('restore-error-p');
+      setErrorCaracteres(false);
+      setErrorMayusculas(false);
+      setErrorNumeros(false);
+    }
+  
 
     if(estaVacio(e)!==false){
 
       ///setear errores del inputChange
-      e.target.style.marginBottom="2.6481481481481481vh";
+      e.target.style.marginBottom="1.8625vh";
       if(e.target.name==="password"){
         setError(false);
         setMsgError("");
@@ -165,6 +175,7 @@ const handleInputChange = (e) => {
       if( e.target.name==="password2" && contraseñasIguales(e)===false  ){
         setErrorPassword(true);
         e.target.classList.add('errorInput');
+        e.target.classList.add('inputError'); 
         e.target.nextSibling.classList.add('labelError'); 
       }else{
         setErrorPassword(false);
@@ -173,19 +184,26 @@ const handleInputChange = (e) => {
         e.target.nextSibling.classList.remove('labelError'); 
       }
 
+      if( e.target.name==="password"  && password2 !== "" && errorNumerosState!==true && errorMayusculasState!==true && errorCaracteresState!==true && errorDiferentesPassword!==true) {
+        document.querySelector('#password2').classList.remove('inputError');
+        document.querySelector('#password2').classList.remove('errorInput');
+        document.querySelector('#labelpassword2').classList.remove('labelError'); 
+      }
+      
+
     }else{
       ///// si esta vacio le pongo un error
       if(e.target.name==="password"){
         setError(true);
         setMsgError("Este campo es requerido");
         e.target.classList.add('inputError');
-        e.target.style.marginBottom="0.6481481481481481vh";
+        e.target.style.marginBottom="0.5481481481481481vh";
       }
       if(e.target.name==="password2"){
         setError2(true);
         setMsgError2("Este campo es requerido");
         e.target.classList.add('inputError');
-        e.target.style.marginBottom="0.6481481481481481vh";
+        e.target.style.marginBottom="0.5481481481481481vh";
       }
       
     }
@@ -281,6 +299,8 @@ const cerrarModalError = () => {
 
 const cerrarModalEnviado = () => {
   setModalEnviadoIsOpen(false);
+  window.location.href="/"
+ 
 }
     return (
         <section>
@@ -326,12 +346,12 @@ const cerrarModalEnviado = () => {
             <label id="labelpassword2" htmlFor="password2" className="label login-label-width login-restore-padding">Repetir nueva contraseña</label> 
               {
                 errorPassWord2 ? <div className="errorsContainer">
-                 <p className="errors-restore"> {errorMsgPassword2}  </p>
+                 <p  id="" className="errors-restore"> {errorMsgPassword2}  </p>
                  </div>:<></>   
               }
                {
                 errorDiferentesPassword ? <div className="errorsContainer">
-                 <p className="noEqualsPassword"> Las contraseñas no coinciden </p>
+                 <p id="diferentes" className="noEqualsPassword"> Las contraseñas no coinciden </p>
                  </div>:<></>   
               }
             

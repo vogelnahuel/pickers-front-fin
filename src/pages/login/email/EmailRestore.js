@@ -24,6 +24,7 @@ export const  EmailRestore = () => {
     const [ModalIsOpen, setModalIsOpen] = useState(false)
     const cerrarModal = () => {
       setModalIsOpen(false);
+      window.location.href="/";
     }
     const [ModalErrorIsOpen, setModalErrorIsOpen] = useState(false)
     const cerrarModalError = () => {
