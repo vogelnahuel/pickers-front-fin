@@ -132,7 +132,7 @@ return (
                 <tbody>
                   {console.log("data",props.data)}
                   {window.location.pathname === "/pendingUserAdmin"
-                    ? JSON.stringify(data)!=='{}'?data.map((rows) => (
+                    ? data && JSON.stringify(data)!=='{}'?data.map((rows) => (
                         <tr className="info" key={rows.id}>
                           <td className="table-name"> {rows.name} </td>
                           <td className="table-dni"> {rows.identificationNumber} </td>
