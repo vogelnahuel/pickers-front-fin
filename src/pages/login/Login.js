@@ -127,7 +127,7 @@ const handleSubmit = async (e) => {
 
 
  if(mail==='' || errorMail===true || password==='' || errorPassWord===true){
-
+ 
     }
     else{
       if( window.location.pathname==="/")
