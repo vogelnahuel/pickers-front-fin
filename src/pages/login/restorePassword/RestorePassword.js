@@ -307,7 +307,7 @@ const cerrarModalEnviado = () => {
              <label id="labelPassword" htmlFor="password" className="label login-label-width login-restore-padding2">Nueva contraseña</label>
             {
                     errorPassWord ? <div className="errorsContainer">
-                    <p className="errors"> {errorMsgPassword}  </p>
+                    <p className="errors-restore"> {errorMsgPassword}  </p>
                     </div>:<></>   
                 }
         
@@ -326,7 +326,7 @@ const cerrarModalEnviado = () => {
             <label id="labelpassword2" htmlFor="password2" className="label login-label-width login-restore-padding">Repetir nueva contraseña</label> 
               {
                 errorPassWord2 ? <div className="errorsContainer">
-                 <p className="errors"> {errorMsgPassword2}  </p>
+                 <p className="errors-restore"> {errorMsgPassword2}  </p>
                  </div>:<></>   
               }
                {
