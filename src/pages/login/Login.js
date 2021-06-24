@@ -36,15 +36,30 @@ export const Login = () => {
   }
 
  
-  const cerrarModalError = () => {
+  const cerrarModalError = (e) => {
+    e.preventDefault();
     setmodalOpen(false)
   }
-  const cerrarModalError2 = () => {
+  const cerrarModalError2 = (e) => {
+    e.preventDefault();
     setmodalOpen2(false)
   }
 
 
-  const handleInputChange = (e) => {      
+  const handleInputChange = (e) => {     
+    if(e.target.name==="password" && e.target.value.length>0){
+      seterrorPassWord(false);
+      seterrorMsgPassword('');
+      document.querySelector('#labelpassword').classList.remove('labelError');
+      document.querySelector('#password').classList.remove('inputError'); 
+    }else if (e.target.name==="password" ){
+      seterrorPassWord(true);
+      seterrorMsgPassword('Este campo es requerido');
+      document.querySelector('#labelpassword').classList.add('labelError');
+      document.querySelector('#password').classList.add('inputError');
+    }
+    
+
     var expresionEmail = /\w+@\w+\.+[a-z]/;
    
     if(e.target.name==="mail"){
@@ -122,28 +137,58 @@ const handleInputBlur = (e) => {
          
 }
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
 
+
+const handleSubmit = async (e) => {
+
+  e.preventDefault();
+ 
 
  if(mail==='' || errorMail===true || password==='' || errorPassWord===true){
+      if(mail===''){
+          seterrorMail(true);
+          seterrorMsgMail('Este campo es requerido');
+          document.querySelector('#labelmail').classList.add('labelError');
+          document.querySelector('#mail').classList.add('inputError');
+        }
+      if(password===''){
+        seterrorPassWord(true);
+        seterrorMsgPassword('Este campo es requerido');
+        document.querySelector('#labelpassword').classList.add('labelError');
+        document.querySelector('#password').classList.add('inputError');
+      }
 
-    }
+      
+  }
     else{
+     
       if( window.location.pathname==="/")
       {
          e.target.button.parentNode.classList.add('shineBorder') ;            
-       }     
-       api.post('/ms-admin-rest/api/v1.0/login',{email:mail?mail:'',password:password?password:''})
+       }  
+        
+    await api.post('https://ms-admin.dev.mypickers.com/ms-admin-rest/api/v1.0/login',{email:mail?mail:'',password:password?password:''})
            .then((response)=>{
               window.localStorage.setItem("token",response.data.result.accessToken)
+              if(response.response.status!==403)
              window.location.href= "./dashboard"
+            return response;
       })
       .catch((err)=>{
-          e.target.button.parentNode.classList.remove('shineBorder') 
+        
+           e.target.button.parentNode.classList.remove('shineBorder') 
           //values.tipoError="credenciales"
-          err.response.status===400?setmodalOpen(true):setmodalOpen2(true)              
-          })
+          if(err.response.status===400){
+            setmodalOpen(true);
+          }
+         else  if(err.response.status===403){
+            setmodalOpen(true);
+          }
+          else  {
+            setmodalOpen2(true) 
+          } 
+          return err;
+        })
     
       if( window.location.pathname==="/")
       {
@@ -152,8 +197,9 @@ const handleSubmit = async (e) => {
           }, 16000);
      
       } 
-  }
 
+  }
+  
 }
 
 
@@ -184,7 +230,7 @@ const handleSubmit = async (e) => {
             
             />
        
-       <label htmlFor="mail" className="login-label label">Usuario</label>
+       <label id="labelmail" htmlFor="mail" className="login-label label">Usuario</label>
 
               {
               errorMail ? <div className="errorsContainer">
@@ -205,7 +251,7 @@ const handleSubmit = async (e) => {
             
             
             />
-          <label htmlFor="password" className="login-label label">Contraseña</label>
+          <label id="labelpassword" htmlFor="password" className="login-label label">Contraseña</label>
             {
             errorPassWord ? <div className="errorsContainer">
                 <p className="errors"> {errorMsgPassword}  </p>
@@ -244,7 +290,7 @@ const handleSubmit = async (e) => {
                             <p className="p-modal-error-subtitle">Tu usuario y/o contraseña ingresados son incorrectos. Por favor, ingresalos nuevamente.</p>
                                 <button 
                                   onClick={cerrarModalError}
-                                  className="button-modal-error2">
+                                  className="button-modal-error">
                                     Entendido
                                 </button>
                           </div>

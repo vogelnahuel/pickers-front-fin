@@ -107,7 +107,7 @@ export const  EmailRestore = () => {
                            <p className="p-modal-error-subtitle">Ingresá al mismo para restaurar tu contraseña</p>
                               <button 
                                 onClick={cerrarModal}
-                                className="button-modal-info">
+                                className="button-modal-info2">
                                 <p>Entendido</p>
                               </button>
                         </div>
