@@ -40,7 +40,18 @@ export const ActiveUserAdmin = () => {
         }
        getData(filter)
     }
-
+     const [offset, setoffset] = useState(2)
+    const tamPag=100;
+    const cargarMas =async() =>{
+        
+        setoffset(offset+1)
+        setData ( ...await api.get(`ms-admin-rest/api/v1.0/pickers?pickerStatusId=2,3&limit=${tamPag}&offset=${offset}`)
+                .then((res)=>{
+                    return res.data.result.items
+    
+                })
+                .catch((err)=>{console.log(err)})  )
+    }
     useEffect(()=>{
         if(!window.localStorage.getItem('token')){
             window.location.href = '/'
@@ -48,7 +59,7 @@ export const ActiveUserAdmin = () => {
             //getData(filter);
             const cargarDatos = async () =>  {
            
-                setData ( await api.get(`ms-admin-rest/api/v1.0/pickers?pickerStatusId=4,5`)
+                setData ( await api.get(`ms-admin-rest/api/v1.0/pickers?pickerStatusId=4,5&limit=${tamPag}`)
                 .then((res)=>{return res.data.result.items})
                 .catch((err)=>{console.log(err)})  )
             }
@@ -60,6 +71,7 @@ export const ActiveUserAdmin = () => {
       },[])
       
       const getData = async (filter) =>{
+          setoffset(2)
         filter.mail= codificarEmailURIFunction(filter.mail);
        setData(  await api.get(`ms-admin-rest/api/v1.0/pickers?pickerStatusId=4,5${filter.nombre?`&name=${filter.nombre}`:""}${filter.vehiculo!=="DEFAULT"?`&vehicleTypeId=${filter.vehiculo==="moto"?1:2}`:""}${filter.dni?`&identificationNumber=${parseInt(filter.dni)}`:""}${filter.mail?`&email=${filter.mail}`:""}`)
         .then((res)=>{return res.data.result.items})
@@ -107,6 +119,8 @@ export const ActiveUserAdmin = () => {
                  titulosAdminActive={titulosAdminActive}
                  data={data}
                  />
+                <button onClick={cargarMas} className="paginator-button">Ver más</button>
+
             </div>
             
             

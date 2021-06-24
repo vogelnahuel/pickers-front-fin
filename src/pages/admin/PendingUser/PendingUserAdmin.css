@@ -68,6 +68,18 @@
     width: 40vw;
 }
 
+.paginator-button{
+    position: relative;
+    background: #F2F2F2;
+    border: 1px solid #CCCCCC;
+    width: 100%;
+    color:#0098FF;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    height: 43px;
+    margin-bottom: 20px;
+}
+
 @media (min-width: 1600px) { 
     .export{
         margin-left: 44.7vw;
