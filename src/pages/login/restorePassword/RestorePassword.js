@@ -53,6 +53,7 @@ const handleSubmit = (e) =>{
       setMsgError("Este campo es requerido");
       document.querySelector('#labelPassword').classList.add('labelError');
       document.querySelector('#password').classList.add('inputError');
+      document.querySelector('#password').classList.add('errorInput');
     }
 
     if(password2===""){   
@@ -60,6 +61,8 @@ const handleSubmit = (e) =>{
       setMsgError2("Este campo es requerido");
       document.querySelector('#labelpassword2').classList.add('labelError');
       document.querySelector('#password2').classList.add('inputError');
+      document.querySelector('#password2').classList.add('errorInput');
+   
     }
 
 
@@ -78,8 +81,10 @@ const handleSubmit = (e) =>{
   const [errorMayusculasState, setErrorMayusculas] = useState(false);
   const [errorCaracteresState, setErrorCaracteres] = useState(false);
   const [errorDiferentesPassword, setErrorPassword] = useState(false);
+  const [estadoAnterior, setEstadoAnterior] = useState(0);
 
 const handleInputChange = (e) => {
+  
 
     
     validarFormulario(e);
@@ -120,7 +125,7 @@ const handleInputChange = (e) => {
     const errorLetras = document.querySelector('#mayusculas');
     
     const errorNumeros = document.querySelector('#numeros');
-    
+    setErrorPassword(false);
    
    
     ///setear errores
@@ -141,12 +146,14 @@ const handleInputChange = (e) => {
       if(e.target.name==="password"){
         setError(false);
         setMsgError("");
+        e.target.classList.remove('errorInput');   
         e.target.classList.remove('inputError');   
         e.target.nextSibling.classList.remove('labelError'); 
       }
       if(e.target.name==="password2"){
         setError2(false);
         setMsgError2("");
+        e.target.classList.remove('errorInput');   
         e.target.classList.remove('inputError');   
         e.target.nextSibling.classList.remove('labelError');
       }
@@ -156,6 +163,7 @@ const handleInputChange = (e) => {
       if(tieneMasDeOchoCaracteres(e)===false && e.target.name!=="password2" ){
         errorCaracteres.classList.add('restore-error-p');
         e.target.classList.add('inputError');  
+        e.target.classList.add('errorInput'); 
         e.target.nextSibling.classList.add('labelError');
        
         setErrorCaracteres(true);
@@ -163,28 +171,70 @@ const handleInputChange = (e) => {
       if(TieneMayusculasYminusculas(e)===false && e.target.name!=="password2"){
         errorLetras.classList.add('restore-error-p');
         e.target.classList.add('inputError');  
+        e.target.classList.add('errorInput'); 
         e.target.nextSibling.classList.add('labelError');
         setErrorMayusculas(true);
       }
        if(TieneNumerosYletras(e)===false && e.target.name!=="password2"){
         errorNumeros.classList.add('restore-error-p');
-        e.target.classList.add('inputError'); 
+        e.target.classList.add('inputError');  
+        e.target.classList.add('errorInput');  
         e.target.nextSibling.classList.add('labelError'); 
         setErrorNumeros(true);
       }
+      
+      if(errorNumerosState!==true && errorMayusculasState!==true && errorCaracteresState!==true){
+
+          if(e.target.name==="password"){
+            if(e.target.value!==password2 ){
+              setErrorPassword(true);
+              e.target.classList.add('errorInput');
+              e.target.classList.add('inputError'); 
+              e.target.nextSibling.classList.add('labelError');   
+            }
+            else{ 
+              setErrorPassword(false);
+              e.target.classList.remove('errorInput');
+              e.target.classList.remove('inputError'); 
+              e.target.nextSibling.classList.remove('labelError');    
+            }
+          }
+          if(e.target.name==="password2"){
+            if(e.target.value!==password ){
+              setErrorPassword(true);
+              e.target.classList.add('errorInput');
+              e.target.classList.add('inputError'); 
+              e.target.nextSibling.classList.add('labelError');   
+            }
+            else{ 
+              setErrorPassword(false);
+              e.target.classList.remove('errorInput');
+              e.target.classList.remove('inputError'); 
+              e.target.nextSibling.classList.remove('labelError');    
+            }
+          }
+         
+
+      }
+     
+
       if( e.target.name==="password2" && contraseñasIguales(e)===false  ){
         setErrorPassword(true);
         e.target.classList.add('errorInput');
         e.target.classList.add('inputError'); 
         e.target.nextSibling.classList.add('labelError'); 
       }else{
-        setErrorPassword(false);
-        e.target.classList.remove('errorInput');
-        if( e.target.name==="password2")
-        e.target.nextSibling.classList.remove('labelError'); 
+        
+        if( e.target.name==="password2"){
+          setErrorPassword(false);
+          e.target.classList.remove('errorInput');
+          e.target.classList.remove('inputError');
+          e.target.nextSibling.classList.remove('labelError'); 
+        }
+       
       }
 
-      if( e.target.name==="password"  && password2 !== "" && errorNumerosState!==true && errorMayusculasState!==true && errorCaracteresState!==true && errorDiferentesPassword!==true) {
+      if( e.target.name==="password"  && password2.length>0 && errorNumerosState!==true && errorMayusculasState!==true && errorCaracteresState!==true && errorDiferentesPassword!==true) {
         document.querySelector('#password2').classList.remove('inputError');
         document.querySelector('#password2').classList.remove('errorInput');
         document.querySelector('#labelpassword2').classList.remove('labelError'); 
@@ -421,7 +471,7 @@ const cerrarModalEnviado = () => {
                            <p className="p-modal-error-subtitle">Por favor, reintentalo nuevamente.</p>
                               <button 
                                 onClick={cerrarModalError}
-                                className="button-modal-error">
+                                className="button-modal-error2">
                                 <p>Entendido</p>
                               </button>
                         </div>
@@ -448,7 +498,7 @@ const cerrarModalEnviado = () => {
                            <p className="p-modal-error-subtitle">Ya podés ingresar con tu nueva contraseña.</p>
                               <button 
                                 onClick={cerrarModalEnviado}
-                                className="button-modal-sucsses">
+                                className="button-modal-error2">
                                 <p>Entendido</p>
                               </button>
                         </div>
