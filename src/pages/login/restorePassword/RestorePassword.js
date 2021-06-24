@@ -498,7 +498,7 @@ const cerrarModalEnviado = () => {
                            <p className="p-modal-error-subtitle">Ya podés ingresar con tu nueva contraseña.</p>
                               <button 
                                 onClick={cerrarModalEnviado}
-                                className="button-modal-error2">
+                                className="button-modal-sucsses2">
                                 <p>Entendido</p>
                               </button>
                         </div>
