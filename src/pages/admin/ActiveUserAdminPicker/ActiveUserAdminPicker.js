@@ -17,7 +17,7 @@ import createCSV from '../../../tools/createCSV'
 import  disabledButton  from '../../../assets/admin/ActiveUserAdminPicker/disabledButton.svg' 
 
 export const ActiveUserAdminPicker = () => {
-    const mail = useParams().mail;  
+    const id = useParams().id;  
     const [imgEnabled, setimgEnabled] = useState(true);
     const [dataPicker, setDataPicker] = useState({bankIdentifier: "",
     bankName: "",
@@ -41,20 +41,20 @@ export const ActiveUserAdminPicker = () => {
         if(!window.localStorage.getItem('token')){
             window.location.href = '/'
         }
-        const mailCodificado = codificarEmailURIFunction(mail);
+        const mailCodificado = codificarEmailURIFunction(dataPicker.email);
         const cargarDatos = async () =>{setDataPicker(
-            await api.get(`/ms-admin-rest/api/v1.0/pickers?email=${mailCodificado}`)
-            .then((res)=>{return res.data.result.items[0]})
+            await api.get(`/ms-admin-rest/api/v1.0/pickers/${id}`)
+            .then((res)=>{return res.data.result})
             .catch((err)=>{console.log(err)}) )}
        
        cargarDatos();
     
-      },[mail])
+      },[])
 
     const [inputsPart1,ComponentesPart1,inputsPart2,ComponentesPart2,inputsPart3,ComponentesPart3,inputsPart4,ComponentesPart4]=data();
    
     const Export = async () => {              
-        const mailCodificado = codificarEmailURIFunction(mail);
+        const mailCodificado = codificarEmailURIFunction(dataPicker.email);
         const datosExport =await api.get(`/ms-admin-rest/api/v1.0/pickers.csv?&email=${mailCodificado}`)
         .then( (res) => {return res})
         .catch((err) => {console.log(err)})

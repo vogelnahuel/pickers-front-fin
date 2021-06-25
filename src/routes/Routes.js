@@ -19,8 +19,8 @@ function Routes() {
         <Route path='/Dashboard' exact component={DashboardAdmin}/>
         <Route path='/pendingUserAdmin' exact component={PendingUserAdmin}/>
         <Route path='/activeUserAdmin' exact component={ActiveUserAdmin}/>
-        <Route path='/pendingUserAdminpicker/:mail' exact component={PendingUserAdminPicker}/>
-        <Route path='/activeUserAdminpicker/:mail' exact component={ActiveUserAdminPicker}/>
+        <Route path='/pendingUserAdminpicker/:id' exact component={PendingUserAdminPicker}/>
+        <Route path='/activeUserAdminpicker/:id' exact component={ActiveUserAdminPicker}/>
         
       </Switch>
     </BrowserRouter>

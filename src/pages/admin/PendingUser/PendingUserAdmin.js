@@ -45,8 +45,8 @@ export const PendingUserAdmin = () => {
              getData(filter) 
         }
     
-    const [offset, setoffset] = useState(2)
-    const tamPag=2;
+        const tamPag=2;
+    const [offset, setoffset] = useState(tamPag)
     const getData = async (filter) =>{
         filter.mail= codificarEmailURIFunction(filter.mail);      
         setData(  await api.get(`ms-admin-rest/api/v1.0/pickers?pickerStatusId=2,3${filter.nombre?`&name=${filter.nombre}`:""}${filter.vehiculo&&filter.vehiculo!=="DEFAULT"?`&vehicleTypeId=${filter.vehiculo==="moto"?1:2}`:""}${filter.dni?`&identificationNumber=${parseInt(filter.dni)}`:""}${filter.mail?`&email=${filter.mail}`:""}`)
@@ -74,7 +74,7 @@ export const PendingUserAdmin = () => {
     },[])
 
 const cargarMas =async() =>{
-    setoffset(offset+1)
+    setoffset(offset+tamPag)
     const res=await api.get(`ms-admin-rest/api/v1.0/pickers?pickerStatusId=2,3&limit=${tamPag}&offset=${offset}`)
             .then((res)=>{
                 return res.data.result.items

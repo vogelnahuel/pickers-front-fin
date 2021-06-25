@@ -8,13 +8,12 @@
           export const TableAdmin = (props) => {
             const { titulosAdminPending, titulosAdminActive, data } = props;
             
-            console.log(titulosAdminPending)
             const getDifDate = (date) => {
               var regDate = moment();
               var actualDate = moment(date, "YYYY-MM-DD hh:mm:ss");
              return regDate.diff(actualDate, "days");
             };
-          //   console.log(data);
+        
           
 return (
   <>
@@ -130,9 +129,10 @@ return (
           <table className="table-admin">
                
                 <tbody>
-                  {console.log("data",props.data)}
+                  {console.log("data",Array.isArray(data))}
+                  {console.log("data",data)}
                   {window.location.pathname === "/pendingUserAdmin"
-                    ? data && JSON.stringify(data)!=='{}'?data.map((rows) => (
+                    ? data &&Array.isArray(data)?data.map((rows) => (
                         <tr className="info" key={rows.id}>
                           <td className="table-name"> {rows.name} </td>
                           <td className="table-dni"> {rows.identificationNumber} </td>
@@ -147,7 +147,7 @@ return (
                           </td>
                           <td className="table-registro"> {rows.registerDate?getDifDate(rows.registerDate):null} días {rows.pickerStatusId===3 ?<div className="admin-table-correction">En correcion</div> : null } </td>
                           <td className="table-editar">
-                            <Link  to ={`/pendingUserAdminpicker/${rows.email}`} > <img src={edit} alt="edit" /></Link>
+                            <Link  to ={`/pendingUserAdminpicker/${rows.id}`} > <img src={edit} alt="edit" /></Link>
                             
                           </td>
                         </tr>
@@ -155,7 +155,7 @@ return (
                     : null:null}
           
                   {window.location.pathname === "/activeUserAdmin"
-                    ?JSON.stringify(data)!=='{}'? data.map((rows) => (
+                    ?data && Array.isArray(data)? data.map((rows) => (
                         <tr className="info" key={rows.id}>
                           <td className="table-name"> {rows.name} </td>
                           <td className="table-dni"> {rows.identificationNumber} </td>
@@ -176,7 +176,7 @@ return (
                           )}
           
                           <td className="table-editar table-editar-active">
-                          <Link  to ={`/activeUserAdminpicker/${rows.email}`} > <img src={edit} alt="edit" /></Link>
+                          <Link  to ={`/activeUserAdminpicker/${rows.id}`} > <img src={edit} alt="edit" /></Link>
                           </td>
                         </tr>
                       ))

@@ -45,8 +45,10 @@ export const Part = (props) => {
         fechaVecCel:"",
         fechaVecSeguroAuto:"",
         fechaVecSeguroAccidente:"",
-    });
-
+    }); 
+    const handleSubmit = () =>{
+        console.log("submit")
+    }
  
 
 
@@ -59,6 +61,7 @@ export const Part = (props) => {
                      ); 
 
     }   
+    
     
     return (
        <>
