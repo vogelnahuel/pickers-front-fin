@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { LoadAdminPicker } from '../LoadAdminPicker/LoadAdminPicker'
 import {Labels}  from '../../Labels/Labels'
 
@@ -9,11 +9,29 @@ import { SaveAdminPicker } from '../SaveAdminPicker/SaveAdminPicker'
 
 /**** muestro los campos con sus labels y tambien los componentes pasados */
 export const Part = (props) => {
+/*
+    const [info, setInfo] = useState( {
+        nombre:"",
+        apellido:"",
+        dni:"",
+        email:"",
+        fechaNac:"",
+        telefono:"",
+        vencimientoLicencia:"",
+        nombreBanco:"",
+        cbu:"",
+        cuit:"",
+        fechaVecCel:"",
+        fechaVecSeguroAuto:"",
+        fechaVecSeguroAccidente:"",
+    }); */
 
-
+   
     const variables = props.inputsPart;
     const componentes = props.ComponentesPart;
     const dataPicker = props.data;
+    const setInfo = props.setInfo;
+    const info = props.info;
 
     let defaultInfo = {
         nombre:dataPicker.name,
@@ -31,30 +49,16 @@ export const Part = (props) => {
         fechaVecSeguroAccidente:dataPicker.expirationDatePolicyPersonal,
     }
    
-    const [info, setInfo] = useState( {
-        nombre:"",
-        apellido:"",
-        dni:"",
-        email:"",
-        fechaNac:"",
-        telefono:"",
-        vencimientoLicencia:"",
-        nombreBanco:"",
-        cbu:"",
-        cuit:"",
-        fechaVecCel:"",
-        fechaVecSeguroAuto:"",
-        fechaVecSeguroAccidente:"",
-    }); 
+  /*
     const handleSubmit = () =>{
         console.log("submit")
-    }
+    }*/
  
 
 
     const handleChange=(e,id) => {
 
-
+        
                 setInfo( {
                     ...info,
                     [e.target.name]:[e.target.value]}

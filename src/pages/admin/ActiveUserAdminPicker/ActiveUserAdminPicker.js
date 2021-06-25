@@ -17,6 +17,21 @@ import createCSV from '../../../tools/createCSV'
 import  disabledButton  from '../../../assets/admin/ActiveUserAdminPicker/disabledButton.svg' 
 
 export const ActiveUserAdminPicker = () => {
+    const [info, setInfo] = useState( {
+        nombre:"",
+        apellido:"",
+        dni:"",
+        email:"",
+        fechaNac:"",
+        telefono:"",   
+        nombreBanco:"",
+        cbu:"",
+        cuit:"",
+        vencimientoLicencia:"",
+        fechaVecCel:"",
+        fechaVecSeguroAuto:"",
+        fechaVecSeguroAccidente:"",
+    }); 
     const id = useParams().id;  
     const [imgEnabled, setimgEnabled] = useState(true);
     const [dataPicker, setDataPicker] = useState({bankIdentifier: "",
@@ -41,7 +56,7 @@ export const ActiveUserAdminPicker = () => {
         if(!window.localStorage.getItem('token')){
             window.location.href = '/'
         }
-        const mailCodificado = codificarEmailURIFunction(dataPicker.email);
+       // const mailCodificado = codificarEmailURIFunction(dataPicker.email);
         const cargarDatos = async () =>{setDataPicker(
             await api.get(`/ms-admin-rest/api/v1.0/pickers/${id}`)
             .then((res)=>{return res.data.result})
@@ -49,7 +64,7 @@ export const ActiveUserAdminPicker = () => {
        
        cargarDatos();
     
-      },[])
+      },[id])
 
     const [inputsPart1,ComponentesPart1,inputsPart2,ComponentesPart2,inputsPart3,ComponentesPart3,inputsPart4,ComponentesPart4]=data();
    
@@ -114,6 +129,8 @@ export const ActiveUserAdminPicker = () => {
 
                  <div  className="form-part-1-admin-pickers">
                         <Part
+                         setInfo={setInfo}
+                         info={info}  
                         inputsPart={inputsPart1}                      
                         ComponentesPart={ComponentesPart1}
                         data={dataPicker}
@@ -124,6 +141,8 @@ export const ActiveUserAdminPicker = () => {
 
                 <div  className="form-part-1-admin-pickers">
                         <Part
+                         setInfo={setInfo}
+                         info={info}  
                         inputsPart={inputsPart2}                 
                         ComponentesPart={ComponentesPart2}
                         data={dataPicker}
@@ -134,12 +153,16 @@ export const ActiveUserAdminPicker = () => {
 
                  <div  className="form-part-1-admin-pickers">  
                         <Part
+                         setInfo={setInfo}
+                         info={info}  
                         inputsPart={inputsPart3}                   
                         ComponentesPart={ComponentesPart3}
                         data={dataPicker}
                         />  
 
                         <Part
+                         setInfo={setInfo}
+                         info={info}  
                         inputsPart={inputsPart4}                       
                         ComponentesPart={ComponentesPart4}
                         data={dataPicker}
