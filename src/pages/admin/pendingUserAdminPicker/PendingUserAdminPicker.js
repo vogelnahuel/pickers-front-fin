@@ -13,6 +13,7 @@ import api  from '../../../config/api'
 import { useParams } from 'react-router-dom'
 import codificarEmailURIFunction from '../../../tools/encodeMail.js'
 import createCSV from '../../../tools/createCSV'
+import e from 'cors'
 
 
 
@@ -20,7 +21,8 @@ export const PendingUserAdminPicker = () => {
 
 
  
-    const mail = useParams().mail;   
+   
+    const id= useParams().id  
     /****Campos y componentes a mostrar  que se muestran en un part que es parte del diseño*/
     const [inputsPart1,ComponentesPart1,inputsPart2,ComponentesPart2,inputsPart3,ComponentesPart3,inputsPart4,ComponentesPart4]=data();
    
@@ -43,7 +45,7 @@ export const PendingUserAdminPicker = () => {
     vehicleTypeId: ""})
 
             const Export = async () => {                
-                const mailCodificado = codificarEmailURIFunction(mail);
+                const mailCodificado = codificarEmailURIFunction(dataPicker.email);
 
                 const datosExport =await api.get(`/ms-admin-rest/api/v1.0/pickers.csv?&email=${mailCodificado}`)
                 .then( (res) => {return res})
@@ -54,15 +56,50 @@ export const PendingUserAdminPicker = () => {
     
       
             useEffect( () => {
-                const mailCodificado = codificarEmailURIFunction(mail);
+                const mailCodificado = codificarEmailURIFunction(dataPicker.email);
             const cargarDatos = async () =>{setDataPicker(
-                await api.get(`/ms-admin-rest/api/v1.0/pickers?email=${mailCodificado}`)
-                .then((res)=>{return res.data.result.items[0]})
+                await api.get(`/ms-admin-rest/api/v1.0/pickers/${id}`)
+                .then((res)=>{return res.data.result})
                 .catch((err)=>{console.log(err)}) )}
            
            cargarDatos()
-            }, [mail])
-    
+            }, [])
+    const corregirDocumentos= async (e) =>{
+        e.preventDefault();
+        await api.post(`/ms-admin-rest/api/v1.0/pickers/${dataPicker.id}`,{    
+         "enable": true,
+        //  "vehicleTypeId": dataPicker.vehicleTypeId,
+        //  "name": dataPicker.name,
+        // "surname": dataPicker.surname,
+        // "dateOfBirth": dataPicker.dateOfBirth,
+        // "phoneNumber": dataPicker.phoneNumber,
+        // "identificationNumber":dataPicker.identificationNumber,
+        // "fiscalNumber":dataPicker.identificationNumber,
+        // "bankName":dataPicker.bankName,
+        // "bankIdentifier":dataPicker.bankIdentifier,
+        // "expirationDateDriverLicense": dataPicker.expirationDateDriverLicense,
+        // "expirationDateIdentificationCar":dataPicker.expirationDateIdentificationCar,
+        // "expirationDatePolicyVehicle":dataPicker.expirationDatePolicyVehicle,
+        // "expirationDatePolicyPersonal": dataPicker.expirationDatePolicyPersonal
+
+"vehicleTypeId": 1,
+"name": "Cosme",
+"surname": "Fulanito",
+"dateOfBirth": "2000-06-01",
+"phoneNumber": "32165484",
+"identificationNumber":"12345678",
+"fiscalNumber":"20378885559",
+"bankName":"Macro",
+"bankIdentifier":"1234567891234567891242",
+"expirationDateDriverLicense": null,
+"expirationDateIdentificationCar":"2021-06-22",
+"expirationDatePolicyVehicle":"2021-06-29",
+"expirationDatePolicyPersonal": "2021-06-29"
+            
+    })
+        .then(rs=>{})
+        .catch(e=>{})
+    }
     return (
         <div className="background-Grey">
             <Header/>
@@ -73,7 +110,7 @@ export const PendingUserAdminPicker = () => {
                        
                      <div 
                      className="mainContainerFlex">
-                         <h2 className="subTitle-pending">Pepito Picker</h2>
+                         <h2 className="subTitle-pending">{dataPicker.name} {dataPicker.surname}</h2>
                          <img  className="vehiculo-pending-picker" src={motorcycle} alt="vehiculo" />
                          <button 
                             onClick={Export}
@@ -124,7 +161,7 @@ export const PendingUserAdminPicker = () => {
                     
                     
                     <div className="pending-admin-picker-button">
-                        <button className="corregir-admin-picker">Corregir documentos</button>
+                        <button onClick={corregirDocumentos} className="corregir-admin-picker">Corregir documentos</button>
                         <button className="aprobar-admin-picker">Aprobar picker</button>
                     </div>
                     
