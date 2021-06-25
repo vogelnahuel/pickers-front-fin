@@ -169,25 +169,29 @@ const handleSubmit = async (e) => {
         
     await api.post('https://ms-admin.dev.mypickers.com/ms-admin-rest/api/v1.0/login',{email:mail?mail:'',password:password?password:''})
            .then((response)=>{
+           
               window.localStorage.setItem("token",response.data.result.accessToken)
-              if(response.response.status!==403)
+              //if(response.response.status!==403)
              window.location.href= "./dashboard"
             return response;
       })
       .catch((err)=>{
-        
+       
            e.target.button.parentNode.classList.remove('shineBorder') 
           //values.tipoError="credenciales"
-          if(err.response.status===400){
-            setmodalOpen(true);
+          if(err.response) {
+            if(err.response.status===400){
+              setmodalOpen(true);
+            }
+           else  if(err.response.status===403){
+              setmodalOpen(true);
+            }
+            else  {
+              setmodalOpen2(true) 
+            } 
+            return err;
           }
-         else  if(err.response.status===403){
-            setmodalOpen(true);
-          }
-          else  {
-            setmodalOpen2(true) 
-          } 
-          return err;
+       
         })
     
       if( window.location.pathname==="/")
