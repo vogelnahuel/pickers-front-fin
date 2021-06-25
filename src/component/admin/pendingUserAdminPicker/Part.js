@@ -113,7 +113,7 @@ export const Part = (props) => {
                                                              variable.name==="cuit" && <input value={!info.cuit?defaultInfo.cuit:info.cuit} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
                                                        }
                                                        {
-                                                             variable.name==="fechaVecCel" && <input value={!info.cuifechaVecCelt?defaultInfo.fechaVecCel:info.fechaVecCel} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
+                                                             variable.name==="fechaVecCel" && <input value={!info.fechaVecCel?defaultInfo.fechaVecCel:info.fechaVecCel} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
                                                        }
                                                        {
                                                              variable.name==="fechaVecSeguroAuto" && <input value={!info.fechaVecSeguroAuto?defaultInfo.fechaVecSeguroAuto:info.fechaVecSeguroAutoVecCel} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   

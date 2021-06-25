@@ -142,7 +142,8 @@ const handleInputBlur = (e) => {
 const handleSubmit = async (e) => {
 
   e.preventDefault();
- 
+  e.nativeEvent.stopImmediatePropagation();
+  
 
  if(mail==='' || errorMail===true || password==='' || errorPassWord===true){
       if(mail===''){
@@ -164,7 +165,7 @@ const handleSubmit = async (e) => {
      
       if( window.location.pathname==="/")
       {
-         e.target.button.parentNode.classList.add('shineBorder') ;            
+       //  e.target.button.parentNode.classList.add('shineBorder') ;            
        }  
         
     await api.post('https://ms-admin.dev.mypickers.com/ms-admin-rest/api/v1.0/login',{email:mail?mail:'',password:password?password:''})
@@ -177,7 +178,7 @@ const handleSubmit = async (e) => {
       })
       .catch((err)=>{
        
-           e.target.button.parentNode.classList.remove('shineBorder') 
+          // e.target.button.parentNode.classList.remove('shineBorder') 
           //values.tipoError="credenciales"
           if(err.response) {
             if(err.response.status===400){
@@ -197,7 +198,7 @@ const handleSubmit = async (e) => {
       if( window.location.pathname==="/")
       {
           setTimeout(() => {
-              e.target.button.parentNode.classList.remove('shineBorder') ; 
+           //   e.target.button.parentNode.classList.remove('shineBorder') ; 
           }, 16000);
      
       } 
@@ -264,10 +265,11 @@ const handleSubmit = async (e) => {
           
           <div className="contenedor z-index">
             <div className="contenedor z-index animation">
-              <Button 
+              <button 
+              onClick={handleSubmit}
               className="  button_ mt-4 mb-4 z-index" 
               type="submit" 
-              name="button" ><p className="login-init "> Iniciar sesión </p> </Button>
+              name="button" ><p className="login-init "> Iniciar sesión </p> </button>
             </div>
           </div>
           <div className="separador_"></div>

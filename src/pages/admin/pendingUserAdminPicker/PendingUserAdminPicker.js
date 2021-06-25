@@ -81,11 +81,11 @@ export const PendingUserAdminPicker = () => {
     const corregirDocumentos= async (e) =>{
         e.preventDefault();
         
-        console.log(dataPicker)
+        console.log(info.vencimientoLicencia[0])
+        console.log(info)
         await api.post(`/ms-admin-rest/api/v1.0/pickers/${dataPicker.id}/invalid-documentation`,{    
-         
-          "vehicleTypeId": 2,
-          "name": info.nombre[0] ? info.nombre[0] :dataPicker.name ,
+        "vehicleTypeId": dataPicker.vehicleTypeId,
+        "name": info.nombre[0] ? info.nombre[0] :dataPicker.name ,
          "surname": info.apellido[0] ? info.apellido[0] : dataPicker.surname ,
          "dateOfBirth": info.fechaNac[0] ? info.fechaNac[0] : dataPicker.dateOfBirth ,
          "phoneNumber": info.telefono[0] ? info.telefono[0] : dataPicker.phoneNumber ,
@@ -94,9 +94,9 @@ export const PendingUserAdminPicker = () => {
          "bankName":info.nombreBanco[0]? info.nombreBanco[0] : dataPicker.bankName,
          "bankIdentifier":info.cbu[0] ?info.cbu[0] :  dataPicker.bankIdentifier,
          "expirationDateDriverLicense": info.vencimientoLicencia[0] ? info.vencimientoLicencia[0] : dataPicker.expirationDateDriverLicense,
-         "expirationDateIdentificationCar":dataPicker.expirationDateIdentificationCar,
-         "expirationDatePolicyVehicle":dataPicker.expirationDatePolicyVehicle,
-         "expirationDatePolicyPersonal": dataPicker.expirationDatePolicyPersonal
+         "expirationDateIdentificationCar":info.fechaVecCel[0]?info.fechaVecCel[0]: dataPicker.expirationDateIdentificationCar,
+         "expirationDatePolicyVehicle":info.fechaVecSeguroAuto[0]?info.fechaVecSeguroAuto[0]: dataPicker.expirationDatePolicyVehicle,
+         "expirationDatePolicyPersonal": info.fechaVecSeguroAccidente[0]?info.fechaVecSeguroAccidente[0]: dataPicker.expirationDatePolicyPersonal
 
 
             
