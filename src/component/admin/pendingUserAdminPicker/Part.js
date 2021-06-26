@@ -43,7 +43,7 @@ export const Part = (props) => {
         vencimientoLicencia:dataPicker.expirationDateDriverLicense,
         nombreBanco:dataPicker.bankName,
         cbu:dataPicker.bankIdentifier,
-        cuit:dataPicker.bankIdentifier,
+        cuit:dataPicker.fiscalNumber,
         fechaVecCel:dataPicker.expirationDateIdentificationCar,
         fechaVecSeguroAuto:dataPicker.expirationDatePolicyVehicle,
         fechaVecSeguroAccidente:dataPicker.expirationDatePolicyPersonal,

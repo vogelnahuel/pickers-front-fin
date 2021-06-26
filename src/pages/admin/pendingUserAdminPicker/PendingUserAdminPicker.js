@@ -81,8 +81,7 @@ export const PendingUserAdminPicker = () => {
     const corregirDocumentos= async (e) =>{
         e.preventDefault();
         
-        console.log(info.vencimientoLicencia[0])
-        console.log(info)
+    
         await api.post(`/ms-admin-rest/api/v1.0/pickers/${dataPicker.id}/invalid-documentation`,{    
         "vehicleTypeId": dataPicker.vehicleTypeId,
         "name": info.nombre[0] ? info.nombre[0] :dataPicker.name ,
@@ -90,19 +89,18 @@ export const PendingUserAdminPicker = () => {
          "dateOfBirth": info.fechaNac[0] ? info.fechaNac[0] : dataPicker.dateOfBirth ,
          "phoneNumber": info.telefono[0] ? info.telefono[0] : dataPicker.phoneNumber ,
          "identificationNumber":(info.dni[0]) ? (info.dni[0]) :dataPicker.identificationNumber ,
-         "fiscalNumber": "20-39766402-2",//info.cuit[0] ?info.cuit[0] :  dataPicker.fiscalNumber,
+         "fiscalNumber": info.cuit[0] ?info.cuit[0] :  dataPicker.fiscalNumber,
          "bankName":info.nombreBanco[0]? info.nombreBanco[0] : dataPicker.bankName,
          "bankIdentifier":info.cbu[0] ?info.cbu[0] :  dataPicker.bankIdentifier,
          "expirationDateDriverLicense": info.vencimientoLicencia[0] ? info.vencimientoLicencia[0] : dataPicker.expirationDateDriverLicense,
          "expirationDateIdentificationCar":info.fechaVecCel[0]?info.fechaVecCel[0]: dataPicker.expirationDateIdentificationCar,
          "expirationDatePolicyVehicle":info.fechaVecSeguroAuto[0]?info.fechaVecSeguroAuto[0]: dataPicker.expirationDatePolicyVehicle,
-         "expirationDatePolicyPersonal": info.fechaVecSeguroAccidente[0]?info.fechaVecSeguroAccidente[0]: dataPicker.expirationDatePolicyPersonal
-
-
-            
+         "expirationDatePolicyPersonal": info.fechaVecSeguroAccidente[0]?info.fechaVecSeguroAccidente[0]: dataPicker.expirationDatePolicyPersonal        
     })
         .then(rs=>{})
         .catch(e=>{})
+
+        window.location.href="/pendingUserAdmin"
     }
     return (
         <div className="background-Grey">
@@ -118,7 +116,7 @@ export const PendingUserAdminPicker = () => {
                          <img  className="vehiculo-pending-picker" src={motorcycle} alt="vehiculo" />
                          <button 
                             onClick={Export}
-                            className="export"
+                            className="Admin-Pickers-button"
                             name="export"
                             >
                             <img  src={exportar} alt="export" />

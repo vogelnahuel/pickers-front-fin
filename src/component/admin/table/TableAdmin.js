@@ -129,8 +129,7 @@ return (
           <table className="table-admin">
                
                 <tbody>
-                  {console.log("data",Array.isArray(data))}
-                  {console.log("data",data)}
+                 
                   {window.location.pathname === "/pendingUserAdmin"
                     ? data &&Array.isArray(data)?data.map((rows) => (
                         <tr className="info" key={rows.id}>
