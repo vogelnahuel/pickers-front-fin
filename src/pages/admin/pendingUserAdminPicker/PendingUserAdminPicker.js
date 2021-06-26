@@ -7,6 +7,7 @@ import {PendingBlue} from '../../../component/admin/Sub-Title-Image/PendingBlue'
 import exportar from '../../../assets/admin/PendingUser/exportar.svg'
 import or from '../../../assets/admin/PendingUser/or.svg'
 import motorcycle from '../../../assets/admin/PendingUserAdminPicker/motorcycle.svg'
+import bici from '../../../assets/admin/PendingUserAdminPicker/bici.svg'
 import { Part } from '../../../component/admin/pendingUserAdminPicker/Part'
 import {data} from './data'
 import api  from '../../../config/api'
@@ -113,8 +114,14 @@ export const PendingUserAdminPicker = () => {
                      <div 
                      className="mainContainerFlex">
                          <h2 className="subTitle-pending">{dataPicker.name} {dataPicker.surname}</h2>
-                         <img  className="vehiculo-pending-picker" src={motorcycle} alt="vehiculo" />
-                         <button 
+                         {
+                             dataPicker.vehicleTypeId===1 ? 
+                             <img  className="vehiculo-pending-picker" src={motorcycle} alt="vehiculo" />
+                            :
+                            <img  className="vehiculo-pending-picker" src={bici} alt="vehiculo" />
+                         
+                         }
+                        <button 
                             onClick={Export}
                             className="Admin-Pickers-button"
                             name="export"

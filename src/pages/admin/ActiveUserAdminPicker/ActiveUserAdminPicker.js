@@ -15,6 +15,7 @@ import { useParams } from 'react-router-dom'
 import api from '../../../config/api'
 import createCSV from '../../../tools/createCSV'
 import  disabledButton  from '../../../assets/admin/ActiveUserAdminPicker/disabledButton.svg' 
+import bici from '../../../assets/admin/PendingUserAdminPicker/bici.svg'
 
 export const ActiveUserAdminPicker = () => {
 
@@ -137,8 +138,13 @@ export const ActiveUserAdminPicker = () => {
                  <div 
                  className="mainContainerFlex">
                      <h2 className="subTitle-pending">Pepito Picker</h2>
-                     <img  className="vehiculo-active-picker" src={motorcycle} alt="vehiculo" />
-                    
+                     {
+                             dataPicker.vehicleTypeId===1 ? 
+                             <img  className="vehiculo-pending-picker" src={motorcycle} alt="vehiculo" />
+                            :
+                            <img  className="vehiculo-pending-picker" src={bici} alt="vehiculo" />
+                         
+                         }
                      
                         {
                             dataPicker.pickerStatusId===5 ? 
