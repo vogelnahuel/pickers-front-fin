@@ -82,6 +82,26 @@ export const ActiveUserAdminPicker = () => {
         setimgEnabled(!imgEnabled);
        
     }
+    const corregirDocumentos= async (e) =>{
+        e.preventDefault();
+        
+    
+                await api.post(`/ms-admin-rest/api/v1.0/pickers/${dataPicker.id}/invalid-documentation`,{    
+                "vehicleTypeId": dataPicker.vehicleTypeId,
+                "name": info.nombre[0] ? info.nombre[0] :dataPicker.name ,
+                "surname": info.apellido[0] ? info.apellido[0] : dataPicker.surname ,
+                "dateOfBirth": info.fechaNac[0] ? info.fechaNac[0] : dataPicker.dateOfBirth ,
+                "phoneNumber": info.telefono[0] ? info.telefono[0] : dataPicker.phoneNumber ,
+                "identificationNumber":(info.dni[0]) ? (info.dni[0]) :dataPicker.identificationNumber ,
+                "fiscalNumber": info.cuit[0] ?info.cuit[0] :  dataPicker.fiscalNumber,
+                "bankName":info.nombreBanco[0]? info.nombreBanco[0] : dataPicker.bankName,
+                "bankIdentifier":info.cbu[0] ?info.cbu[0] :  dataPicker.bankIdentifier,
+                "expirationDateDriverLicense": info.vencimientoLicencia[0] ? info.vencimientoLicencia[0] : dataPicker.expirationDateDriverLicense,
+                "expirationDateIdentificationCar":info.fechaVecCel[0]?info.fechaVecCel[0]: dataPicker.expirationDateIdentificationCar,
+                "expirationDatePolicyVehicle":info.fechaVecSeguroAuto[0]?info.fechaVecSeguroAuto[0]: dataPicker.expirationDatePolicyVehicle,
+                "expirationDatePolicyPersonal": info.fechaVecSeguroAccidente[0]?info.fechaVecSeguroAccidente[0]: dataPicker.expirationDatePolicyPersonal        
+            })
+    }
 
     return (
         <div className="background-Grey">
@@ -171,7 +191,7 @@ export const ActiveUserAdminPicker = () => {
                     
                     <div className="pending-admin-picker-button">
                         <button className="corregir-admin-picker-active">Cancelar</button>
-                        <button className="aprobar-admin-picker">Guardar</button>
+                        <button onClick={corregirDocumentos} className="aprobar-admin-picker">Guardar</button>
                     </div>
                     
                 </form>  

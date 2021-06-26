@@ -26,6 +26,7 @@ export const Part = (props) => {
         fechaVecSeguroAccidente:"",
     }); */
 
+    
    
     const variables = props.inputsPart;
     const componentes = props.ComponentesPart;
@@ -83,43 +84,43 @@ export const Part = (props) => {
                                                 </div>
                                                 <div >
                                                        {
-                                                         variable.name ==="nombre" && <input value={!info.nombre?defaultInfo.nombre:info.nombre} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>                                                                                                     
+                                                         variable.name ==="nombre" && <input value={!info.nombre?defaultInfo.nombre ?  defaultInfo.nombre :"" :info.nombre} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>                                                                                                     
                                                        } 
                                                        {
-                                                             variable.name==="apellido" && <input value={!info.apellido?defaultInfo.apellido:info.apellido} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
+                                                             variable.name==="apellido" && <input value={!info.apellido?defaultInfo.apellido ? defaultInfo.apellido:"" :info.apellido} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
                                                        }
                                                        {
-                                                             variable.name==="dni" && <input value={!info.dni?defaultInfo.dni:info.dni} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
+                                                             variable.name==="dni" && <input value={!info.dni?defaultInfo.dni ?defaultInfo.dni:"" :info.dni} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
                                                        }
                                                        {
-                                                             variable.name==="email" && <input value={!info.email?defaultInfo.email:info.email} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
+                                                             variable.name==="email" && <input value={!info.email?defaultInfo.email?defaultInfo.email:""  :info.email} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
                                                        }
                                                        {
-                                                             variable.name==="fechaNac" && <input value={!info.fechaNac?defaultInfo.fechaNac:info.fechaNac} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
+                                                             variable.name==="fechaNac" && <input value={!info.fechaNac?defaultInfo.fechaNac ?  defaultInfo.fechaNac:"" :info.fechaNac} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
                                                        }
                                                        {
-                                                             variable.name==="telefono" && <input value={!info.telefono?defaultInfo.telefono:info.telefono} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
+                                                             variable.name==="telefono" && <input value={!info.telefono?defaultInfo.telefono ? defaultInfo.telefono:""  :info.telefono} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
                                                        }
                                                        {
-                                                             variable.name==="vencimientoLicencia" && <input value={!info.vencimientoLicencia?defaultInfo.vencimientoLicencia:info.vencimientoLicencia} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
+                                                             variable.name==="vencimientoLicencia" && <input value={!info.vencimientoLicencia?defaultInfo.vencimientoLicencia?defaultInfo.vencimientoLicencia:"" :info.vencimientoLicencia} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
                                                        }
                                                          {
-                                                             variable.name==="nombreBanco" && <input value={!info.nombreBanco?defaultInfo.nombreBanco:info.nombreBanco} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
+                                                             variable.name==="nombreBanco" && <input value={!info.nombreBanco?defaultInfo.nombreBanco?defaultInfo.nombreBanco:"":info.nombreBanco} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
                                                        }
                                                         {
-                                                             variable.name==="cbu" && <input value={!info.cbu?defaultInfo.cbu:info.cbu} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
+                                                             variable.name==="cbu" && <input value={!info.cbu?defaultInfo.cbu?defaultInfo.cbu:"":info.cbu} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
                                                        }
                                                        {
-                                                             variable.name==="cuit" && <input value={!info.cuit?defaultInfo.cuit:info.cuit} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
+                                                             variable.name==="cuit" && <input value={!info.cuit?defaultInfo.cuit?defaultInfo.cuit:"":info.cuit} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
                                                        }
                                                        {
-                                                             variable.name==="fechaVecCel" && <input value={!info.fechaVecCel?defaultInfo.fechaVecCel:info.fechaVecCel} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
+                                                             variable.name==="fechaVecCel" && <input value={!info.fechaVecCel?defaultInfo.fechaVecCel?defaultInfo.fechaVecCel:"":info.fechaVecCel} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
                                                        }
                                                        {
-                                                             variable.name==="fechaVecSeguroAuto" && <input value={!info.fechaVecSeguroAuto?defaultInfo.fechaVecSeguroAuto:info.fechaVecSeguroAutoVecCel} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
+                                                             variable.name==="fechaVecSeguroAuto" && <input value={!info.fechaVecSeguroAuto?defaultInfo.fechaVecSeguroAuto?defaultInfo.fechaVecSeguroAuto:"":info.fechaVecSeguroAutoVecCel} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
                                                        }
                                                         {
-                                                             variable.name==="fechaVecSeguroAccidente" && <input value={!info.fechaVecSeguroAccidente?defaultInfo.fechaVecSeguroAccidente:info.fechaVecSeguroAccidente} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
+                                                             variable.name==="fechaVecSeguroAccidente" && <input value={!info.fechaVecSeguroAccidente?defaultInfo.fechaVecSeguroAccidente?defaultInfo.fechaVecSeguroAccidente:"":info.fechaVecSeguroAccidente} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
                                                        }
                                                    
                                                    
