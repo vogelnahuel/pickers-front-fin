@@ -39,14 +39,9 @@ export const dataActiveUser = () => {
                 className:"filter-select",
                 name:"Vehículo",
                 id:"Vehículo",
-                placeholder:"",
+                placeholder:"Seleccioná un tipo de vehículo",
                 options:[
-                    {
-                      
-                        classNameSelect:"option",
-                        value:"DEFAULT",
-                        text:"Seleccioná un tipo de vehículo"
-                    },
+
                     {
                         classNameSelect:"option",
                         value:"bicicleta",
@@ -66,6 +61,7 @@ export const dataActiveUser = () => {
                 ]
                 
           },
+          
             { 
                     label: {
                             labelclassName:"label-filter",

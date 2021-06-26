@@ -17,6 +17,10 @@ import createCSV from '../../../tools/createCSV'
 import  disabledButton  from '../../../assets/admin/ActiveUserAdminPicker/disabledButton.svg' 
 
 export const ActiveUserAdminPicker = () => {
+
+
+
+
     const [info, setInfo] = useState( {
         nombre:"",
         apellido:"",
@@ -31,6 +35,7 @@ export const ActiveUserAdminPicker = () => {
         fechaVecCel:"",
         fechaVecSeguroAuto:"",
         fechaVecSeguroAccidente:"",
+        pickerStatusId: 0,
     }); 
     const id = useParams().id;  
     const [imgEnabled, setimgEnabled] = useState(true);
@@ -47,7 +52,7 @@ export const ActiveUserAdminPicker = () => {
     identificationNumber: "",
     name: "",
     phoneNumber: "",
-    pickerStatusId: "",
+    pickerStatusId: 0,
     registerDate: null,
     surname:"",
     vehicleTypeId: ""})
@@ -65,6 +70,7 @@ export const ActiveUserAdminPicker = () => {
        cargarDatos();
     
       },[id])
+      
 
     const [inputsPart1,ComponentesPart1,inputsPart2,ComponentesPart2,inputsPart3,ComponentesPart3,inputsPart4,ComponentesPart4]=data();
    
@@ -80,8 +86,24 @@ export const ActiveUserAdminPicker = () => {
     const onCLickImg = () =>{
 
         setimgEnabled(!imgEnabled);
-       
+        
+        if(dataPicker.pickerStatusId===4){
+            setDataPicker(
+                dataPicker,
+                dataPicker.pickerStatusId=5
+            )
+        }
+        else if(dataPicker.pickerStatusId===5){
+            setDataPicker(
+                dataPicker,
+                dataPicker.pickerStatusId=4
+            )
+        }
+      
+        
+
     }
+   
     const corregirDocumentos= async (e) =>{
         e.preventDefault();
         
@@ -100,7 +122,8 @@ export const ActiveUserAdminPicker = () => {
                 "expirationDateIdentificationCar":info.fechaVecCel[0]?info.fechaVecCel[0]: dataPicker.expirationDateIdentificationCar,
                 "expirationDatePolicyVehicle":info.fechaVecSeguroAuto[0]?info.fechaVecSeguroAuto[0]: dataPicker.expirationDatePolicyVehicle,
                 "expirationDatePolicyPersonal": info.fechaVecSeguroAccidente[0]?info.fechaVecSeguroAccidente[0]: dataPicker.expirationDatePolicyPersonal        
-            })
+                
+                })
     }
 
     return (
@@ -118,7 +141,7 @@ export const ActiveUserAdminPicker = () => {
                     
                      
                         {
-                            imgEnabled===true ? 
+                            dataPicker.pickerStatusId===5 ? 
                             <>
                              <p className="admin-active-picker">Deshabilitado</p>
                              <img onClick={onCLickImg}  className="button-active-picker" src={button} alt="vehiculo" />     

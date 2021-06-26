@@ -168,7 +168,7 @@ return (
                               : null}
                           </td>
                           {/* <td> {rows.Transacciones} </td> */}
-                          {rows.pickerStatusId === 1 ? (
+                          {rows.pickerStatusId === 5 ? (
                             <td className="color-state-green table-registro"> {"Habilitado"} </td>
                           ) : (
                             <td className="color-state-red table-registro"> {"Deshabilitado"} </td>
