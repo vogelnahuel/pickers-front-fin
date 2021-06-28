@@ -7,38 +7,42 @@ export const Fields = (props) => {
     const variables=props.FieldsPart;
 
 
-    console.log(props.FieldsPart[2])
-    
-
-
  const handleClickOption  =  (e) => {
+    e.preventDefault();        
+    const opciones = document.querySelector('#VehículoOpcion')
+    const contenidoSelect = document.querySelector('#seleccionadoVehículo')
+    const hiddenInput =  document.querySelector('#Vehículo') 
 
-    const opciones = document.querySelector('#opciones')
-    const contenidoSelect = document.querySelector('#seleccionado')
-    const hiddenInput =  document.querySelector('#Vehículo')
+    if(e.target.classList.contains("Vehículo")  ){
+      
+        if(e.target.textContent==="Bicicleta"){
+            contenidoSelect.textContent= "Bicicleta";
+            hiddenInput.value="bici";
+        }
+        if(e.target.textContent==="Moto"){
+            contenidoSelect.textContent= "Moto";
+            hiddenInput.value="moto";
+        }
+   
+        contenidoSelect.style.color="#101010"
+        opciones.style.display="none";
+    }
+   
 
    
-            e.preventDefault();        
-            if(e.target.textContent==="Bicicleta"){
-                contenidoSelect.textContent= "Bicicleta";
-                hiddenInput.value="bici";
-            }
-            if(e.target.textContent==="Moto"){
-                contenidoSelect.textContent= "Moto";
-                hiddenInput.value="moto";
-            }
-       
-            contenidoSelect.style.color="#101010"
-            opciones.style.display="none";
+         
  }
 
  const handleClickSelect  = (e) => {
+
      e.preventDefault();
-    const opciones = document.querySelector('#opciones')
+    const opciones = document.querySelector('#VehículoOpcion')
     e.stopPropagation();
     
    
-      if(opciones.style.display==="none"){
+
+    if(e.target.id==="seleccionadoVehículo"){
+        if(opciones.style.display==="none"){
             opciones.style.display="block"
             opciones.style.position="absolute";
             
@@ -55,6 +59,9 @@ export const Fields = (props) => {
              }
              
          })
+    }
+   
+     
  }
 
 
@@ -95,7 +102,7 @@ export const Fields = (props) => {
                                                                             name="transacciones" 
                                                                             placeholder="Seleccioná un valor" 
                                                                             value="">
-                                                                            <p  id="seleccionado" className="filter-admin-filter-value">{variable.placeholder}</p>
+                                                                            <p  id={"seleccionado"+variable.id} name={variable.name} className="filter-admin-filter-value">{variable.placeholder}</p>
                                                                             
                                                                         </div>    
                                                                         <img  className="filter-admin-Imagen" src={flechaAbajo} alt=""/>    
@@ -104,7 +111,7 @@ export const Fields = (props) => {
                                                                     
                                                             </div>
                                                             
-                                                            <div className="filter-admin-opciones" id="opciones">
+                                                            <div className="filter-admin-opciones"  id={variable.id+`Opcion`} >
                                                                 {
                                                                     variable.options.map(opcion => (
                                                                           
@@ -114,7 +121,7 @@ export const Fields = (props) => {
                                                                                 className="filter-admin-opcion"
                                                                             >
                                                                                     <div className="filter-admin-contenido-opcion">
-                                                                                            <p className="filter-admin-opcion-parrafo">{opcion.text}</p>
+                                                                                            <p className={"filter-admin-opcion-parrafo "+variable.id} >{opcion.text}</p>
                                                                                     </div>
                                                                             </div>
                                                                           
