@@ -12,6 +12,8 @@ export const useForm = ( initialState = {} ) => {
 
 const handleInputChange = (e) => {      
         var expresionEmail = /\w+@\w+\.+[a-z]/;
+    
+    
        
         if(e.target.name==="mail"){
             e.target.classList.remove('inputReboteAnimation')
