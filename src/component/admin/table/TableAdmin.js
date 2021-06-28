@@ -129,8 +129,7 @@ return (
           <table className="table-admin">
                
                 <tbody>
-                  {console.log("data",Array.isArray(data))}
-                  {console.log("data",data)}
+                 
                   {window.location.pathname === "/pendingUserAdmin"
                     ? data &&Array.isArray(data)?data.map((rows) => (
                         <tr className="info" key={rows.id}>
@@ -169,7 +168,7 @@ return (
                               : null}
                           </td>
                           {/* <td> {rows.Transacciones} </td> */}
-                          {rows.pickerStatusId === 1 ? (
+                          {rows.pickerStatusId === 5 ? (
                             <td className="color-state-green table-registro"> {"Habilitado"} </td>
                           ) : (
                             <td className="color-state-red table-registro"> {"Deshabilitado"} </td>

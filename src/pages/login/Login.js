@@ -4,7 +4,7 @@ import "./Login.css";
 import pickersLogo from "./../../assets/login/PickersLogo.svg";
 import canguro from "./../../assets/login/Canguro.svg";
 import {Link} from 'react-router-dom'
-import Button from '../../component/Button/Button'
+
 import {Modal} from 'pickit-components'
 import api from '../../config/api'
 
@@ -142,7 +142,7 @@ const handleInputBlur = (e) => {
 const handleSubmit = async (e) => {
 
   e.preventDefault();
- 
+  
 
  if(mail==='' || errorMail===true || password==='' || errorPassWord===true){
       if(mail===''){
@@ -169,9 +169,9 @@ const handleSubmit = async (e) => {
         
     await api.post('https://ms-admin.dev.mypickers.com/ms-admin-rest/api/v1.0/login',{email:mail?mail:'',password:password?password:''})
            .then((response)=>{
-           
+         
               window.localStorage.setItem("token",response.data.result.accessToken)
-              //if(response.response.status!==403)
+           
              window.location.href= "./dashboard"
             return response;
       })
@@ -264,10 +264,11 @@ const handleSubmit = async (e) => {
           
           <div className="contenedor z-index">
             <div className="contenedor z-index animation">
-              <Button 
+              <button 
+              
               className="  button_ mt-4 mb-4 z-index" 
               type="submit" 
-              name="button" ><p className="login-init "> Iniciar sesión </p> </Button>
+              name="button" ><p className="login-init "> Iniciar sesión </p> </button>
             </div>
           </div>
           <div className="separador_"></div>

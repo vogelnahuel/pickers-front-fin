@@ -35,15 +35,15 @@
     width: 12vw;
 }
 .title-table-email{
-    padding-left: 32px;
+    padding-left: 0px;
     width: 30vw;
 }
 .title-table-vehiculo{
-    padding-left: 100px;
+    padding-left: 70px;
     width: 15vw;
 }
 .title-table-pendding{
-    padding-left: 50px;
+    padding-left: 5px;
     width: 18vw;
   
 }
@@ -74,22 +74,23 @@
     font-weight: 700;
 }
 .admin-table-correction{
-    margin-left: 1.464vw;
     display: inline-block;
     font-family: 'Mulish';
     font-style: normal;
     font-weight: normal;
     font-size: 13px;
     line-height: 16px;
+    margin-left:1vw;
     letter-spacing: 0.004em;
     color: #FF1515;
     background: rgba(255, 21, 21, 0.1);
     border: 1px solid #FF1515;
     box-sizing: border-box;
     border-radius: 5px;
-    height: 3.776041666666667vh;
-    width: 7.247vw;
-    padding-top: 0.78125vh;
+    height: 29px;
+    padding-left: 0.5vw;
+    width: 99px;
+    padding-top: 6px;
 }
 .table-name{
     padding-left: 50px;
@@ -106,7 +107,7 @@
     padding-left: 15px;
 }
 .table-registro{
-    width: 10vw;
+    width: 15vw;
 }
 .table-editar{
     width: 10vw;
@@ -114,13 +115,14 @@
 }
 
 .active-table-vehiculo{
-    padding-left: 70px;
+    padding-left: 40px;
 }
 .active-table-estado{
-    padding-left: 25px;
+    padding-left: 0px;
+    margin-right: 20px;
 }
 .active-table-email{
-    padding-left: 40px;
+    padding-left: 20px;
 }
 .active-table-dni{
     padding-left: 5px;
@@ -140,15 +142,15 @@
         width: 12vw;
     }
     .title-table-email{
-        padding-left: 55px;
+        padding-left: 10px;
         width: 30vw;
     }
     .title-table-vehiculo{
-        padding-left: 90px;
+        padding-left: 50px;
         width: 15vw;
     }
     .title-table-pendding{
-        padding-left: 30px;
+        margin-right: 20px;
         width: 18vw;
       
     }
@@ -163,12 +165,13 @@
     }
     .active-table-estado{
         padding-left: 25px;
+        margin-right: 60px;
     }
     .active-table-email{
-        padding-left: 50px;
+        padding-left:50px;
     }
     .active-table-dni{
-        padding-left: 5px;
+        padding-left: 15px;
     }
     .table-editar-active{
         padding-left: 55px;
@@ -187,15 +190,15 @@
         width: 12vw;
     }
     .title-table-email{
-        padding-left: 70px;
+        margin-left: 60px;
         width: 30vw;
     }
     .title-table-vehiculo{
-        padding-left: 100px;
+        margin-left: 0px;
         width: 15vw;
     }
     .title-table-pendding{
-        padding-left: 30px;
+        margin-right: 100px;
         width: 18vw;
       
     }
@@ -208,16 +211,16 @@
         padding-left: 55px;
     }
     .active-table-vehiculo{
-        padding-left: 100px;
-    }
-    .active-table-estado{
-        padding-left: 35px;
-    }
-    .active-table-email{
         padding-left: 70px;
     }
-    .active-table-dni{
+    .active-table-estado{
         padding-left: 20px;
+    }
+    .active-table-email{
+        padding-left: 10px;
+    }
+    .active-table-dni{
+        padding-left: 30px;
     }
     .table-editar-active{
         padding-left: 60px;

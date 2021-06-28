@@ -1,7 +1,6 @@
 .vehiculo-pending-picker{
-    position: absolute;
-    margin-left: 18.789vw;
-    margin-top:  3.90625vh;
+    display: inline-block;
+    margin-top: 1vh;
 }
 .form-Admin-Pickers{
     display: flex;
@@ -45,13 +44,13 @@
     box-sizing: border-box;
     border-radius: 50px;
     border: 2.5px solid #0098FF;
-    width: 150px;
+    width: 163px;
     height: 50px;
     background-color: white;
     text-align: center;
-    padding-top: 10px;
-    margin-top: 10px;
-    margin-left: 3rem;
+    margin-top: 3.2552083333333335vh;
+    margin-left: 40vw;
+
 }
 .Admin-Pickers-space{
     margin-left: 20px;
@@ -172,11 +171,13 @@
 .Admin-Pickers-input-clear{
     display: none;
 }
+.mainContainerFlex{
+    display: flex;
+    
+}
 @media (min-width: 1700px) { 
 
-    .vehiculo-pending-picker{
-        position: absolute;
-        margin-left: 15%;
-       
+    .Admin-Pickers-button{
+        margin-left: 44vw;
     }
  }

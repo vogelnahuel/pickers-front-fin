@@ -18,7 +18,7 @@ api.interceptors.response.use(
       api.defaults.headers = {
         apiKey: null,
       };
-      window.location.reload();
+     
     }
     return Promise.reject(error);
  },
