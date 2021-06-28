@@ -94,9 +94,10 @@ const handleSubmit = async (e) => {
     }
     console.log(formValues);
     if(formValues.mail[0] && formValues.errorMail!==true){
+
       api.post('ms-admin-rest/api/v1.0/admin/request-change-password',{email:formValues.mail[0]})
       .then((res)=>{setModalIsOpen(true)})
-      .catch((err)=>{console.log(err)})
+      .catch((err)=>{console.log(err); setModalErrorIsOpen(true);})
      
     }else{
         document.querySelector('#mailRestore').classList.add('labelError');
@@ -198,13 +199,13 @@ const handleSubmit = async (e) => {
                   >
                     <div className="container-modal">
                         <div className="modal-error-title">
-                          <p className="p-modal-error-title">Error en nuestro servidor</p>
+                          <p className="p-modal-error-title">Email incorrecto</p>
                         </div>
                         <div className="modal-error-subtitle">
-                           <p className="p-modal-error-subtitle">Restauraste tu contraseña exitosamente</p>
+                           <p className="p-modal-error-subtitle">El email ingresado no corresponde con una cuenta ya creada en pickers. Por favor, ingresá otro.</p>
                               <button 
                                 onClick={cerrarModalError}
-                                className="button-modal-error">
+                                className="button-modal-error mail-incorrecto">
                                 <p>Entendido</p>
                               </button>
                         </div>
