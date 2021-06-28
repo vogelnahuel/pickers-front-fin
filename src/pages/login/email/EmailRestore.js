@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import Button from '../../../component/Button/Button'
 import canguro from "../../../assets/login/Canguro.svg";
 import pickersLogo from "../../../assets/login/PickersLogo.svg";
-import {useForm} from '../../../hooks/useForm.js'
+//import {useForm} from '../../../hooks/useForm.js'
 import './Email.css'
 // import loginService from '../../../services/login/loginService'
 import api from '../../../config/api'
@@ -13,14 +13,62 @@ export const  EmailRestore = () => {
    // console.log(token)
 
 
-    const [formValues,handleInputBlur,handleInputChange] = useForm({
+
+   /* const [formValues,handleInputBlur] = useForm({
       mail:'',
       errorMail:true,
       errorMsgMail:'',
     });
-  
+    */
+    const [formValues, setformValues] = useState({
+      mail:'',
+      errorMail:false,
+      errorMsgMail:'',
+    })
 
-    const {mail,errorMail,errorMsgMail} = formValues;
+ 
+const handleInputChange = (e) => {      
+  var expresionEmail = /\w+@\w+\.+[a-z]/;
+
+
+ 
+  if(e.target.name==="mail"){
+      e.target.classList.remove('inputReboteAnimation')
+  }
+  if(e.target.value.length>0){
+     e.target.nextSibling.classList.remove('animationOrigin');
+     e.target.nextSibling.classList.add('animationTop');          
+  }else{          
+      e.target.nextSibling.classList.remove('animationTop');
+      e.target.nextSibling.classList.add('animationOrigin');
+  }    
+  if(e.target.value.length===0 && e.target.name==="mail")    {
+      e.target.nextSibling.classList.add('labelError');
+  }      
+  if(e.target.value==='' && e.target.name==='mail'){
+       formValues.errorMail=true;
+       formValues.errorMsgMail= 'Este campo es requerido';
+      e.target.classList.add('inputError');
+      e.target.nextSibling.classList.add('labelError');
+  }else if(!expresionEmail.test(e.target.value) && e.target.name==='mail'){
+      formValues.errorMail=true;
+       formValues.errorMsgMail= 'Debe ingresar un mail valido';
+      e.target.classList.add('inputError');   
+      e.target.nextSibling.classList.add('labelError');        
+  }
+  else if(e.target.value!=='' && e.target.name==='mail'){
+    formValues.errorMail=false;
+      e.target.classList.remove('inputError');
+      e.target.nextSibling.classList.remove('labelError');
+  }
+  setformValues({
+      ...formValues,
+      [e.target.name]:[e.target.value]
+
+  });
+}
+
+
     const [ModalIsOpen, setModalIsOpen] = useState(false)
     const cerrarModal = () => {
       setModalIsOpen(false);
@@ -30,14 +78,37 @@ export const  EmailRestore = () => {
     const cerrarModalError = () => {
       setModalErrorIsOpen(false);
     }
-  const handleSubmit = async (e) => {
+
+    
+const handleSubmit = async (e) => {
     e.preventDefault();
-    if(mail!=='' && errorMail!==true){
-      api.post('ms-admin-rest/api/v1.0/admin/request-change-password',{email:mail[0]})
-      .then((res)=>{setModalIsOpen(true)})
-      .catch((err)=>{console.log(err)})
-     
+    
+    if(formValues.mail.length<=0){
+
+      setformValues({
+        ...formValues,
+        errorMail:true,
+        errorMsgMail:"Este campo es requerido"
+      })
+      
     }
+    console.log(formValues);
+    if(formValues.mail[0] && formValues.errorMail!==true){
+
+      api.post('ms-admin-rest/api/v1.0/admin/request-change-password',{email:formValues.mail[0]})
+      .then((res)=>{setModalIsOpen(true)})
+      .catch((err)=>{console.log(err); setModalErrorIsOpen(true);})
+     
+    }else{
+        document.querySelector('#mailRestore').classList.add('labelError');
+        document.querySelector('#mail').classList.add('inputError');
+        setformValues({
+          ...formValues,
+          errorMail:true,
+          errorMsgMail:"Este campo es requerido"
+        })
+    }
+
   }
 
   const handleFocusLabel = (e,mail="") => {
@@ -65,17 +136,16 @@ export const  EmailRestore = () => {
                name="mail" 
                id="mail"
                autoComplete="off"
-               onBlur={(e) => {
-                handleInputBlur(e)
-               }}
-               onChange={(e)=>{handleInputChange(e,mail)}}   
-               value={mail}
-               onFocus={(e) => handleFocusLabel(e,mail)}
+           
+               onChange={handleInputChange}   
+               value={formValues.mail}
+               onFocus={(e) => handleFocusLabel(e,formValues.mail)}
                />
-               <label htmlFor="mail" className="label login-label">Email</label>
-                {
-                errorMail ? <div className="errorsContainer">
-                 <p className="errors"> {errorMsgMail}  </p>
+               <label id="mailRestore" htmlFor="mail" className="label login-label">Email</label>
+
+              {
+                formValues.errorMail===true ? <div className="errorsContainer">
+                 <p id="Test" className="errors"> {formValues.errorMsgMail}  </p>
                  </div>:<></>
                }
               
@@ -129,13 +199,13 @@ export const  EmailRestore = () => {
                   >
                     <div className="container-modal">
                         <div className="modal-error-title">
-                          <p className="p-modal-error-title">Error en nuestro servidor</p>
+                          <p className="p-modal-error-title">Email incorrecto</p>
                         </div>
                         <div className="modal-error-subtitle">
-                           <p className="p-modal-error-subtitle">Restauraste tu contraseña exitosamente</p>
+                           <p className="p-modal-error-subtitle">El email ingresado no corresponde con una cuenta ya creada en pickers. Por favor, ingresá otro.</p>
                               <button 
                                 onClick={cerrarModalError}
-                                className="button-modal-error">
+                                className="button-modal-error mail-incorrecto">
                                 <p>Entendido</p>
                               </button>
                         </div>
