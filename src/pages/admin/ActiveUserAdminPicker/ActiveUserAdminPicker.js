@@ -150,13 +150,13 @@ export const ActiveUserAdminPicker = () => {
                             dataPicker.pickerStatusId===5 ? 
                             <>
                              <p className="admin-active-picker">Deshabilitado</p>
-                             <img onClick={onCLickImg}  className="button-active-picker" src={button} alt="vehiculo" />     
+                             <img onClick={onCLickImg}  className="button-active-picker" src={button} alt="boton" />     
                              <p className="admin-active-picker-p">Habilitado</p>
                             </>
                             : 
                             <> 
                                 <p className="admin-buttonDisabled-picker-disabled">Deshabilitado</p>
-                                <img onClick={onCLickImg}  className="button-active-picker" src={disabledButton} alt="vehiculo" />     
+                                <img onClick={onCLickImg}  className="button-active-picker" src={disabledButton} alt="boton" />     
                                 <p className="admin-buttonDisabled-picker-enabled">Habilitado</p>
                             </>
                         }
