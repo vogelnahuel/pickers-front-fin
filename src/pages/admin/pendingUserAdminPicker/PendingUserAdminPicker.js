@@ -101,7 +101,7 @@ export const PendingUserAdminPicker = () => {
         .then(rs=>{})
         .catch(e=>{})
 
-        window.location.href="/pendingUserAdmin"
+        window.location.reload();
     }
     return (
         <div className="background-Grey">
