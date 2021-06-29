@@ -7,7 +7,7 @@ export const data = () => {
         label: {
                 labelclassName:"label-Admin-Pickers",
                 labelhtmlFor:"nombre",
-                labelparrafo:"Nombre/s"
+                labelparrafo:"Nombre/s *"
                 },
             className:"Admin-Pickers-input",
             type:"text",
@@ -22,7 +22,7 @@ export const data = () => {
             label: {
                 labelclassName:"label-Admin-Pickers",
                 labelhtmlFor:"apellido",
-                labelparrafo:"Apellido/s"
+                labelparrafo:"Apellido/s *"
                 },
             className:"Admin-Pickers-input",
             type:"text",
@@ -36,7 +36,7 @@ export const data = () => {
             label: {
                 labelclassName:"label-Admin-Pickers",
                 labelhtmlFor:"dni",
-                labelparrafo:"DNI"
+                labelparrafo:"DNI *"
                 },
             className:"Admin-Pickers-input",
             type:"text",
@@ -64,7 +64,7 @@ export const data = () => {
             label: {
                 labelclassName:"label-Admin-Pickers",
                 labelhtmlFor:"fechaNac",
-                labelparrafo:"Fecha de nacimiento"
+                labelparrafo:"Fecha de nacimiento *"
                 },
             className:"Admin-Pickers-input",
             type:"text",
@@ -78,7 +78,7 @@ export const data = () => {
             label: {
                 labelclassName:"label-Admin-Pickers",
                 labelhtmlFor:"telefono",
-                labelparrafo:"Teléfono"
+                labelparrafo:"Teléfono *"
                 },
             className:"Admin-Pickers-input",
             type:"text",
@@ -110,7 +110,7 @@ export const data = () => {
         label: {
                 labelclassName:"label-Admin-Pickers",
                 labelhtmlFor:"cuit",
-                labelparrafo:"Número de CUIT/CUIL"
+                labelparrafo:"Número de CUIT/CUIL *"
                 },
             className:"Admin-Pickers-input",
             type:"text",
@@ -126,7 +126,7 @@ export const data = () => {
             label: {
                 labelclassName:"label-Admin-Pickers",
                 labelhtmlFor:"cbu",
-                labelparrafo:"Número de CBU"
+                labelparrafo:"Número de CBU *"
                 },
             className:"Admin-Pickers-input",
             type:"text",
@@ -140,7 +140,7 @@ export const data = () => {
             label: {
                 labelclassName:"label-Admin-Pickers",
                 labelhtmlFor:"nombreBanco",
-                labelparrafo:"Nombre del banco"
+                labelparrafo:"Nombre del banco *"
                 },
             className:"Admin-Pickers-input",
             type:"text",
@@ -170,7 +170,7 @@ export const data = () => {
         label: {
                 labelclassName:"label-Admin-Pickers",
                 labelhtmlFor:"fechaVecLic",
-                labelparrafo:"Vencimiento de la licencia"
+                labelparrafo:"Vencimiento de la licencia *"
                 },
             className:"Admin-Pickers-input",
             type:"text",
@@ -185,7 +185,7 @@ export const data = () => {
             label: {
                 labelclassName:"label-Admin-Pickers",
                 labelhtmlFor:"fechaVecCel",
-                labelparrafo:"Vencimiento de la cédula"
+                labelparrafo:"Vencimiento de la cédula *"
                 },
             className:"Admin-Pickers-input",
             type:"text",
@@ -237,7 +237,7 @@ export const data = () => {
                 label: {
                     labelclassName:"label-Admin-Pickers",
                     labelhtmlFor:"fechaVecSeguroAuto",
-                    labelparrafo:"Vencimiento del seguro de automotor"
+                    labelparrafo:"Vencimiento del seguro de automotor *"
                     },
                 className:"Admin-Pickers-input",
                 type:"text",
@@ -251,7 +251,7 @@ export const data = () => {
                 label: {
                     labelclassName:"label-Admin-Pickers",
                     labelhtmlFor:"fechaVecSeguroAccidente",
-                    labelparrafo:"Vencimiento del seguro de accidentes personales",
+                    labelparrafo:"Vencimiento del seguro de accidentes personales *",
                     labelwidth :39
                     },
                 className:"Admin-Pickers-input",

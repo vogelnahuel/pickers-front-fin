@@ -106,18 +106,18 @@ export const ActiveUserAdminPicker = () => {
                 await api.post(`/ms-admin-rest/api/v1.0/pickers/${dataPicker.id}`,{  
                 "enable": dataPicker.enable,  
                 "vehicleTypeId": dataPicker.vehicleTypeId,
-                "name": info.nombre[0] ? info.nombre[0] :dataPicker.name ,
-                "surname": info.apellido[0] ? info.apellido[0] : dataPicker.surname ,
-                "dateOfBirth": info.fechaNac[0] ? info.fechaNac[0] : dataPicker.dateOfBirth ,
-                "phoneNumber": info.telefono[0] ? info.telefono[0] : dataPicker.phoneNumber ,
-                "identificationNumber":(info.dni[0]) ? (info.dni[0]) :dataPicker.identificationNumber ,
-                "fiscalNumber": info.cuit[0] ?info.cuit[0] :  dataPicker.fiscalNumber,
-                "bankName":info.nombreBanco[0]? info.nombreBanco[0] : dataPicker.bankName,
-                "bankIdentifier":info.cbu[0] ?info.cbu[0] :  dataPicker.bankIdentifier,
-                "expirationDateDriverLicense": info.vencimientoLicencia[0] ? info.vencimientoLicencia[0] : dataPicker.expirationDateDriverLicense,
-                "expirationDateIdentificationCar":info.fechaVecCel[0]?info.fechaVecCel[0]: dataPicker.expirationDateIdentificationCar,
-                "expirationDatePolicyVehicle":info.fechaVecSeguroAuto[0]?info.fechaVecSeguroAuto[0]: dataPicker.expirationDatePolicyVehicle,
-                "expirationDatePolicyPersonal": info.fechaVecSeguroAccidente[0]?info.fechaVecSeguroAccidente[0]: dataPicker.expirationDatePolicyPersonal        
+                "name": info.nombre ? info.nombre :dataPicker.name ,
+                "surname": info.apellido ? info.apellido : dataPicker.surname ,
+                "dateOfBirth": info.fechaNac ? info.fechaNac : dataPicker.dateOfBirth ,
+                "phoneNumber": info.telefono ? info.telefono : dataPicker.phoneNumber ,
+                "identificationNumber":(info.dni) ? (info.dni) :dataPicker.identificationNumber ,
+                "fiscalNumber": info.cuit ?info.cuit :  dataPicker.fiscalNumber,
+                "bankName":info.nombreBanco? info.nombreBanco : dataPicker.bankName,
+                "bankIdentifier":info.cbu ?info.cbu :  dataPicker.bankIdentifier,
+                "expirationDateDriverLicense": info.vencimientoLicencia ? info.vencimientoLicencia: dataPicker.expirationDateDriverLicense,
+                "expirationDateIdentificationCar":info.fechaVecCel?info.fechaVecCel: dataPicker.expirationDateIdentificationCar,
+                "expirationDatePolicyVehicle":info.fechaVecSeguroAuto?info.fechaVecSeguroAuto: dataPicker.expirationDatePolicyVehicle,
+                "expirationDatePolicyPersonal": info.fechaVecSeguroAccidente?info.fechaVecSeguroAccidente: dataPicker.expirationDatePolicyPersonal        
                 
                 }).then(()=>{ window.location.reload()}
                    

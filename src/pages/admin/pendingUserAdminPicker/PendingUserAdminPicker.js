@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import {Header} from '../../../component/admin/Header/Header'
 import {Nav} from '../../../component/admin/Nav/Nav'
 import '../PendingUser/PendingUserAdmin.css'
@@ -21,6 +21,8 @@ import { Modal } from 'pickit-components'
 
 export const PendingUserAdminPicker = () => {
 
+    const [disabledButtonAprobarPicker, setdisabledButtonAprobarPicker] = useState(true)
+    
     const [info, setInfo] = useState( {
         nombre:"",
         apellido:"",
@@ -36,6 +38,7 @@ export const PendingUserAdminPicker = () => {
         fechaVecSeguroAuto:"",
         fechaVecSeguroAccidente:"",
     }); 
+  
  
    
     const id= useParams().id  
@@ -70,64 +73,94 @@ export const PendingUserAdminPicker = () => {
                 createCSV(datosExport);           
             }
     
-      
+            
+            const habilitarBoton   =   useCallback(
+                  (dataPicker) => {
+
+
+                    
+                    
+                    if(dataPicker.vehicleTypeId!==" " && dataPicker.expirationDatePolicyPersonal !== null){
+                        if(dataPicker.vehicleTypeId===2 && dataPicker.expirationDatePolicyPersonal.length>0){
+                            setdisabledButtonAprobarPicker(false)
+                         }
+                         else if(dataPicker.expirationDatePolicyPersonal.length>0 && dataPicker.expirationDatePolicyVehicle.length>0 &&dataPicker.expirationDateDriverLicense.length > 0  && dataPicker.expirationDateIdentificationCar.length > 0 )
+                         {
+                            setdisabledButtonAprobarPicker(false)
+                         }
+                     }
+                    },
+                  
+                [],
+            )
+
             useEffect( () => {
                // const mailCodificado = codificarEmailURIFunction(dataPicker.email);
             const cargarDatos = async () =>{setDataPicker(
                 await api.get(`/ms-admin-rest/api/v1.0/pickers/${id}`)
                 .then((res)=>{return res.data.result})
                 .catch((err)=>{console.log(err)}) )}
-           
-           cargarDatos()
+            
+               cargarDatos()
             }, [id])
+
+          
+          useEffect(() => {
+            habilitarBoton(dataPicker);
+          }, [habilitarBoton,dataPicker])
+            
+
+                
+
+          
+
     const corregirDocumentos= async (e) =>{
         e.preventDefault();
         
     
         await api.post(`/ms-admin-rest/api/v1.0/pickers/${dataPicker.id}/invalid-documentation`,{    
         "vehicleTypeId": dataPicker.vehicleTypeId,
-        "name": info.nombre[0] ? info.nombre[0] :dataPicker.name ,
-         "surname": info.apellido[0] ? info.apellido[0] : dataPicker.surname ,
-         "dateOfBirth": info.fechaNac[0] ? info.fechaNac[0] : dataPicker.dateOfBirth ,
-         "phoneNumber": info.telefono[0] ? info.telefono[0] : dataPicker.phoneNumber ,
-         "identificationNumber":(info.dni[0]) ? (info.dni[0]) :dataPicker.identificationNumber ,
-         "fiscalNumber": info.cuit[0] ?info.cuit[0] :  dataPicker.fiscalNumber,
-         "bankName":info.nombreBanco[0]? info.nombreBanco[0] : dataPicker.bankName,
-         "bankIdentifier":info.cbu[0] ?info.cbu[0] :  dataPicker.bankIdentifier,
-         "expirationDateDriverLicense": info.vencimientoLicencia[0] ? info.vencimientoLicencia[0] : dataPicker.expirationDateDriverLicense,
-         "expirationDateIdentificationCar":info.fechaVecCel[0]?info.fechaVecCel[0]: dataPicker.expirationDateIdentificationCar,
-         "expirationDatePolicyVehicle":info.fechaVecSeguroAuto[0]?info.fechaVecSeguroAuto[0]: dataPicker.expirationDatePolicyVehicle,
-         "expirationDatePolicyPersonal": info.fechaVecSeguroAccidente[0]?info.fechaVecSeguroAccidente[0]: dataPicker.expirationDatePolicyPersonal        
+        "name": info.nombre ? info.nombre :dataPicker.name ,
+         "surname": info.apellido ? info.apellido : dataPicker.surname ,
+         "dateOfBirth": info.fechaNac ? info.fechaNac : dataPicker.dateOfBirth ,
+         "phoneNumber": info.telefono ? info.telefono : dataPicker.phoneNumber ,
+         "identificationNumber":(info.dni) ? (info.dni) :dataPicker.identificationNumber ,
+         "fiscalNumber": info.cuit ?info.cuit :  dataPicker.fiscalNumber,
+         "bankName":info.nombreBanco? info.nombreBanco : dataPicker.bankName,
+         "bankIdentifier":info.cbu ?info.cbu :  dataPicker.bankIdentifier,
+         "expirationDateDriverLicense": info.vencimientoLicencia ? info.vencimientoLicencia : dataPicker.expirationDateDriverLicense,
+         "expirationDateIdentificationCar":info.fechaVecCel?info.fechaVecCel: dataPicker.expirationDateIdentificationCar,
+         "expirationDatePolicyVehicle":info.fechaVecSeguroAuto?info.fechaVecSeguroAuto: dataPicker.expirationDatePolicyVehicle,
+         "expirationDatePolicyPersonal": info.fechaVecSeguroAccidente?info.fechaVecSeguroAccidente: dataPicker.expirationDatePolicyPersonal,        
+         "pickerStatusId":3
+        })
+        .then(rs=>{})
+        .catch(e=>{})
+
+       // window.location.reload();
+    }
+    const aprobarPicker= async (e) =>{
+        e.preventDefault();
+        await api.post(`/ms-admin-rest/api/v1.0/pickers/${dataPicker.id}`,{    
+        "enable": true,
+        "vehicleTypeId": dataPicker.vehicleTypeId,
+        "name": info.nombre ? info.nombre :dataPicker.name ,
+         "surname": info.apellido ? info.apellido : dataPicker.surname ,
+         "dateOfBirth": info.fechaNac ? info.fechaNac : dataPicker.dateOfBirth ,
+         "phoneNumber": info.telefono ? info.telefono : dataPicker.phoneNumber ,
+         "identificationNumber":(info.dni) ? (info.dni) :dataPicker.identificationNumber ,
+         "fiscalNumber": info.cuit ?info.cuit :  dataPicker.fiscalNumber,
+         "bankName":info.nombreBanco? info.nombreBanco : dataPicker.bankName,
+         "bankIdentifier":info.cbu ?info.cbu :  dataPicker.bankIdentifier,
+         "expirationDateDriverLicense": info.vencimientoLicencia ? info.vencimientoLicencia : dataPicker.expirationDateDriverLicense,
+         "expirationDateIdentificationCar":info.fechaVecCel?info.fechaVecCel: dataPicker.expirationDateIdentificationCar,
+         "expirationDatePolicyVehicle":info.fechaVecSeguroAuto?info.fechaVecSeguroAuto: dataPicker.expirationDatePolicyVehicle,
+         "expirationDatePolicyPersonal": info.fechaVecSeguroAccidente?info.fechaVecSeguroAccidente: dataPicker.expirationDatePolicyPersonal        
     })
         .then(rs=>{})
         .catch(e=>{})
 
         window.location.reload();
-    }
-    const aprobarPicker= async (e) =>{
-        e.preventDefault();
-        
-    
-        await api.post(`/ms-admin-rest/api/v1.0/pickers/${dataPicker.id}`,{    
-        "enable": true,
-        "vehicleTypeId": dataPicker.vehicleTypeId,
-        "name": info.nombre[0] ? info.nombre[0] :dataPicker.name ,
-         "surname": info.apellido[0] ? info.apellido[0] : dataPicker.surname ,
-         "dateOfBirth": info.fechaNac[0] ? info.fechaNac[0] : dataPicker.dateOfBirth ,
-         "phoneNumber": info.telefono[0] ? info.telefono[0] : dataPicker.phoneNumber ,
-         "identificationNumber":(info.dni[0]) ? (info.dni[0]) :dataPicker.identificationNumber ,
-         "fiscalNumber": info.cuit[0] ?info.cuit[0] :  dataPicker.fiscalNumber,
-         "bankName":info.nombreBanco[0]? info.nombreBanco[0] : dataPicker.bankName,
-         "bankIdentifier":info.cbu[0] ?info.cbu[0] :  dataPicker.bankIdentifier,
-         "expirationDateDriverLicense": info.vencimientoLicencia[0] ? info.vencimientoLicencia[0] : dataPicker.expirationDateDriverLicense,
-         "expirationDateIdentificationCar":info.fechaVecCel[0]?info.fechaVecCel[0]: dataPicker.expirationDateIdentificationCar,
-         "expirationDatePolicyVehicle":info.fechaVecSeguroAuto[0]?info.fechaVecSeguroAuto[0]: dataPicker.expirationDatePolicyVehicle,
-         "expirationDatePolicyPersonal": info.fechaVecSeguroAccidente[0]?info.fechaVecSeguroAccidente[0]: dataPicker.expirationDatePolicyPersonal        
-    })
-        .then(rs=>{})
-        .catch(e=>{})
-
-        //window.location.reload();
     }
     return (
         <div className="background-Grey">
@@ -166,6 +199,7 @@ export const PendingUserAdminPicker = () => {
                         inputsPart={inputsPart1}                      
                         ComponentesPart={ComponentesPart1}
                         data={dataPicker}
+                        clave={1}
                         />
                 </div>
                 
@@ -178,6 +212,7 @@ export const PendingUserAdminPicker = () => {
                         inputsPart={inputsPart2}                 
                         ComponentesPart={ComponentesPart2}
                         data={dataPicker}
+                        clave={2}
                         />                          
                 </div>
 
@@ -189,7 +224,10 @@ export const PendingUserAdminPicker = () => {
                         info={info}
                         inputsPart={inputsPart3}                   
                         ComponentesPart={ComponentesPart3}
-                        data={dataPicker}
+                        data={dataPicker}   
+                        setdisabledButtonAprobarPicker={setdisabledButtonAprobarPicker}  
+                        disabledButtonAprobarPicker={disabledButtonAprobarPicker}                  
+                        clave={3}
                         />  
 
                         <Part
@@ -198,6 +236,9 @@ export const PendingUserAdminPicker = () => {
                         inputsPart={inputsPart4}                       
                         ComponentesPart={ComponentesPart4}
                         data={dataPicker}
+                        disabledButtonAprobarPicker={disabledButtonAprobarPicker}   
+                        setdisabledButtonAprobarPicker={setdisabledButtonAprobarPicker}  
+                        clave={4}
                         /> 
                  </div>
                      
@@ -205,7 +246,14 @@ export const PendingUserAdminPicker = () => {
                     
                     <div className="pending-admin-picker-button">
                         <button onClick={corregirDocumentos} className="corregir-admin-picker">Corregir documentos</button>
-                        <button onClick={aprobarPicker} className="aprobar-admin-picker">Aprobar picker</button>
+                        {
+                            disabledButtonAprobarPicker===true ?  
+                            <button disabled={true} onClick={aprobarPicker} className="aprobar-admin-picker">Aprobar picker</button>
+                            :
+                            <button disabled={false} onClick={aprobarPicker} className="aprobar-admin-picker-active">Aprobar picker</button>
+                           
+                        }
+                       
                     </div>
                     
                 </form>  
