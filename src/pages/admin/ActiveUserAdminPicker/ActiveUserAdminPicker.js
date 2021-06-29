@@ -40,7 +40,8 @@ export const ActiveUserAdminPicker = () => {
     }); 
     const id = useParams().id;  
     const [imgEnabled, setimgEnabled] = useState(true);
-    const [dataPicker, setDataPicker] = useState({bankIdentifier: "",
+    const [dataPicker, setDataPicker] = useState({
+    bankIdentifier: "",
     bankName: "",
     dateOfBirth: "",
     email: "",
@@ -54,6 +55,7 @@ export const ActiveUserAdminPicker = () => {
     name: "",
     phoneNumber: "",
     pickerStatusId: 0,
+    enable:true,
     registerDate: null,
     surname:"",
     vehicleTypeId: ""})
@@ -65,9 +67,12 @@ export const ActiveUserAdminPicker = () => {
        // const mailCodificado = codificarEmailURIFunction(dataPicker.email);
         const cargarDatos = async () =>{setDataPicker(
             await api.get(`/ms-admin-rest/api/v1.0/pickers/${id}`)
-            .then((res)=>{return res.data.result})
+            .then((res)=>{
+                const result=res.data.result
+                result.enable=res.data.result.pickerStatusId===4?true:false
+                return result})
             .catch((err)=>{console.log(err)}) )}
-       
+            
        cargarDatos();
     
       },[id])
@@ -87,29 +92,19 @@ export const ActiveUserAdminPicker = () => {
     const onCLickImg = () =>{
 
         setimgEnabled(!imgEnabled);
-        
-        if(dataPicker.pickerStatusId===4){
-            setDataPicker(
-                dataPicker,
-                dataPicker.pickerStatusId=5
-            )
+        console.log(dataPicker.enable)
+        setDataPicker(
+            dataPicker,
+            dataPicker.enable=!dataPicker.enable
+        )
         }
-        else if(dataPicker.pickerStatusId===5){
-            setDataPicker(
-                dataPicker,
-                dataPicker.pickerStatusId=4
-            )
-        }
-      
-        
-
-    }
    
-    const corregirDocumentos= async (e) =>{
+    const modificarPicker= async (e) =>{
         e.preventDefault();
         
     
-                await api.post(`/ms-admin-rest/api/v1.0/pickers/${dataPicker.id}/invalid-documentation`,{    
+                await api.post(`/ms-admin-rest/api/v1.0/pickers/${dataPicker.id}`,{  
+                "enable": dataPicker.enable,  
                 "vehicleTypeId": dataPicker.vehicleTypeId,
                 "name": info.nombre[0] ? info.nombre[0] :dataPicker.name ,
                 "surname": info.apellido[0] ? info.apellido[0] : dataPicker.surname ,
@@ -124,7 +119,10 @@ export const ActiveUserAdminPicker = () => {
                 "expirationDatePolicyVehicle":info.fechaVecSeguroAuto[0]?info.fechaVecSeguroAuto[0]: dataPicker.expirationDatePolicyVehicle,
                 "expirationDatePolicyPersonal": info.fechaVecSeguroAccidente[0]?info.fechaVecSeguroAccidente[0]: dataPicker.expirationDatePolicyPersonal        
                 
-                })
+                }).then(()=>{ window.location.reload()}
+                   
+                )
+                .catch(()=>{})
     }
 
     return (
@@ -137,7 +135,7 @@ export const ActiveUserAdminPicker = () => {
                    
                  <div 
                  className="mainContainerFlex">
-                     <h2 className="subTitle-pending">Pepito Picker</h2>
+                     <h2 className="subTitle-pending">{dataPicker.name} {dataPicker.surname}</h2>
                      {
                              dataPicker.vehicleTypeId===1 ? 
                              <img  className="vehiculo-pending-picker" src={motorcycle} alt="vehiculo" />
@@ -147,7 +145,7 @@ export const ActiveUserAdminPicker = () => {
                          }
                      
                         {
-                            dataPicker.pickerStatusId===5 ? 
+                            dataPicker.enable ===true ? 
                             <>
                              <p className="admin-active-picker">Deshabilitado</p>
                              <img onClick={onCLickImg}  className="button-active-picker" src={button} alt="boton" />     
@@ -220,7 +218,7 @@ export const ActiveUserAdminPicker = () => {
                     
                     <div className="pending-admin-picker-button">
                         <button className="corregir-admin-picker-active">Cancelar</button>
-                        <button onClick={corregirDocumentos} className="aprobar-admin-picker">Guardar</button>
+                        <button onClick={modificarPicker} className="aprobar-admin-picker">Guardar</button>
                     </div>
                     
                 </form>  
