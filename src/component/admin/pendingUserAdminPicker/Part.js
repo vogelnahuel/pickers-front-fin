@@ -51,7 +51,67 @@ export const Part = (props) => {
                         [e.target.name]:e.target.value
                         }
                  ); 
-         
+            if(e.target.name==="nombre"){
+                    setInformacion(
+                        {
+                        ...Informacion,
+                        name:e.target.value
+                        }
+                    );
+                }
+            if(e.target.name==="apellido"){
+                    setInformacion(
+                        {
+                        ...Informacion,
+                        surname:e.target.value
+                        }
+                    );
+                }
+
+            if(e.target.name==="fechaNac"){
+            setInformacion(
+                {
+                ...Informacion,
+                dateOfBirth:e.target.value
+                }
+            );
+            }
+            if(e.target.name==="telefono"){
+                    setInformacion(
+                        {
+                        ...Informacion,
+                        phoneNumber:e.target.value
+                        }
+                    );
+            }
+            if(e.target.name==="telefono"){
+                setInformacion(
+                            {
+                            ...Informacion,
+                            phoneNumber:e.target.value
+                            }
+                        );
+                }
+            if(e.target.name==="dni"){
+                    setInformacion(
+                        {
+                        ...Informacion,
+                        identificationNumber:e.target.value
+                        }
+                    );
+            }
+            if(e.target.name==="nombreBanco"){
+                setInformacion(
+                    {
+                    ...Informacion,
+                    bankName:e.target.value
+                    }
+                );
+        }
+
+
+
+
 
            if(e.target.name==="vencimientoLicencia"){
                 setInformacion(
@@ -87,7 +147,7 @@ export const Part = (props) => {
             }
         
        
-         //verificarInformacion(Informacion,e);
+        
 
     }   
     const  verificarInformacion  = useCallback(
@@ -169,26 +229,26 @@ export const Part = (props) => {
                                                                 </div>
                                                                 <div >
                                                                     {
-                                                                        variable.name ==="nombre" && <input value={!info.nombre?defaultInfo.nombre ?  defaultInfo.nombre :"" :info.nombre} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>                                                                                                     
+                                                                        variable.name ==="nombre" && <input value={Informacion.name?Informacion.name:""} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>                                                                                                     
                                                                     } 
                                                                     {
-                                                                            variable.name==="apellido" && <input value={!info.apellido?defaultInfo.apellido ? defaultInfo.apellido:"" :info.apellido} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
+                                                                            variable.name==="apellido" && <input value={Informacion.surname?Informacion.surname:""} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
                                                                     }
                                                                     {
-                                                                            variable.name==="dni" && <input value={!info.dni?defaultInfo.dni ?defaultInfo.dni:"" :info.dni} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
+                                                                            variable.name==="dni" && <input value={Informacion.identificationNumber?Informacion.identificationNumber:""} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
                                                                     }
                                                                     {
-                                                                            variable.name==="email" && <input value={!info.email?defaultInfo.email?defaultInfo.email:""  :info.email} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
+                                                                            variable.name==="email" && <input value={Informacion.email?Informacion.email:""} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
                                                                     }
                                                                     {
-                                                                            variable.name==="fechaNac" && <input value={!info.fechaNac?defaultInfo.fechaNac ?  defaultInfo.fechaNac:"" :info.fechaNac} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
+                                                                            variable.name==="fechaNac" && <input value={Informacion.dateOfBirth?Informacion.dateOfBirth:""} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
                                                                     }
                                                                     {
-                                                                            variable.name==="telefono" && <input value={!info.telefono?defaultInfo.telefono ? defaultInfo.telefono:""  :info.telefono} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
+                                                                            variable.name==="telefono" && <input value={Informacion.phoneNumber?Informacion.phoneNumber:""} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
                                                                     }
                                                                     
                                                                         {
-                                                                            variable.name==="nombreBanco" && <input value={!info.nombreBanco?defaultInfo.nombreBanco?defaultInfo.nombreBanco:"":info.nombreBanco} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
+                                                                            variable.name==="nombreBanco" && <input value={Informacion.bankName?Informacion.bankName:""} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
                                                                     }
                                                                         {
                                                                             variable.name==="cbu" && <input readOnly value={!info.cbu?defaultInfo.cbu?defaultInfo.cbu:"":info.cbu} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   

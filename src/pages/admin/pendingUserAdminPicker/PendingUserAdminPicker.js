@@ -158,7 +158,7 @@ export const PendingUserAdminPicker = () => {
         .then(rs=>{})
         .catch(e=>{})
 
-       // window.location.reload();
+        window.location.reload();
     }
     const aprobarPicker= async (e) =>{
         e.preventDefault();
