@@ -152,7 +152,23 @@
     color: #FFFFFF;
     border: none;
 }
-
+.aprobar-admin-picker-active{
+    margin-left: 15%;
+    width: 191px;
+    height: 50px;
+    background: #0098FF;
+    border-radius: 50px;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 17px;
+    line-height: 21px;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.0125em;
+    color: #FFFFFF;
+    border: none;
+}
 .aprobar-admin-picker-habilitado{
     margin-left: 15%;
     width: 191px;

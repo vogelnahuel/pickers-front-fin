@@ -18,11 +18,11 @@ import  disabledButton  from '../../../assets/admin/ActiveUserAdminPicker/disabl
 import bici from '../../../assets/admin/PendingUserAdminPicker/bici.svg'
 
 export const ActiveUserAdminPicker = () => {
+    const [disabledButtonAprobarPicker, setdisabledButtonAprobarPicker] = useState(true)
+    
+ 
 
-
-
-
-    const [info, setInfo] = useState( {
+    const [Informacion, setInformacion] = useState({
         nombre:"",
         apellido:"",
         dni:"",
@@ -36,8 +36,9 @@ export const ActiveUserAdminPicker = () => {
         fechaVecCel:"",
         fechaVecSeguroAuto:"",
         fechaVecSeguroAccidente:"",
-        pickerStatusId: 0,
-    }); 
+    })
+
+
     const id = useParams().id;  
     const [imgEnabled, setimgEnabled] = useState(true);
     const [dataPicker, setDataPicker] = useState({
@@ -76,6 +77,11 @@ export const ActiveUserAdminPicker = () => {
        cargarDatos();
     
       },[id])
+
+      useEffect(() => {
+              
+        setInformacion(dataPicker);
+      }, [dataPicker])
       
 
     const [inputsPart1,ComponentesPart1,inputsPart2,ComponentesPart2,inputsPart3,ComponentesPart3,inputsPart4,ComponentesPart4]=data();
@@ -92,12 +98,17 @@ export const ActiveUserAdminPicker = () => {
     const onCLickImg = () =>{
 
         setimgEnabled(!imgEnabled);
-        console.log(dataPicker.enable)
+        
         setDataPicker(
             dataPicker,
             dataPicker.enable=!dataPicker.enable
         )
+
+        if(1===0){
+            //para que no tire warning nada
+            console.log(disabledButtonAprobarPicker)
         }
+     }
    
     const modificarPicker= async (e) =>{
         e.preventDefault();
@@ -106,18 +117,18 @@ export const ActiveUserAdminPicker = () => {
                 await api.post(`/ms-admin-rest/api/v1.0/pickers/${dataPicker.id}`,{  
                 "enable": dataPicker.enable,  
                 "vehicleTypeId": dataPicker.vehicleTypeId,
-                "name": info.nombre[0] ? info.nombre[0] :dataPicker.name ,
-                "surname": info.apellido[0] ? info.apellido[0] : dataPicker.surname ,
-                "dateOfBirth": info.fechaNac[0] ? info.fechaNac[0] : dataPicker.dateOfBirth ,
-                "phoneNumber": info.telefono[0] ? info.telefono[0] : dataPicker.phoneNumber ,
-                "identificationNumber":(info.dni[0]) ? (info.dni[0]) :dataPicker.identificationNumber ,
-                "fiscalNumber": info.cuit[0] ?info.cuit[0] :  dataPicker.fiscalNumber,
-                "bankName":info.nombreBanco[0]? info.nombreBanco[0] : dataPicker.bankName,
-                "bankIdentifier":info.cbu[0] ?info.cbu[0] :  dataPicker.bankIdentifier,
-                "expirationDateDriverLicense": info.vencimientoLicencia[0] ? info.vencimientoLicencia[0] : dataPicker.expirationDateDriverLicense,
-                "expirationDateIdentificationCar":info.fechaVecCel[0]?info.fechaVecCel[0]: dataPicker.expirationDateIdentificationCar,
-                "expirationDatePolicyVehicle":info.fechaVecSeguroAuto[0]?info.fechaVecSeguroAuto[0]: dataPicker.expirationDatePolicyVehicle,
-                "expirationDatePolicyPersonal": info.fechaVecSeguroAccidente[0]?info.fechaVecSeguroAccidente[0]: dataPicker.expirationDatePolicyPersonal        
+                "name":Informacion.name ,
+                "surname":Informacion.surname ,
+                "dateOfBirth":Informacion.dateOfBirth ,
+                "phoneNumber":Informacion.phoneNumber ,
+                "identificationNumber":Informacion.identificationNumber ,
+                "fiscalNumber":Informacion.fiscalNumber,
+                "bankName":Informacion.bankName,
+                "bankIdentifier":Informacion.bankIdentifier,
+                "expirationDateDriverLicense": Informacion.expirationDateDriverLicense,
+                "expirationDateIdentificationCar":Informacion.expirationDateIdentificationCar,
+                "expirationDatePolicyVehicle":Informacion.expirationDatePolicyVehicle,
+                "expirationDatePolicyPersonal":Informacion.expirationDatePolicyPersonal        
                 
                 }).then(()=>{ window.location.reload()}
                    
@@ -176,11 +187,14 @@ export const ActiveUserAdminPicker = () => {
 
                  <div  className="form-part-1-admin-pickers">
                         <Part
-                         setInfo={setInfo}
-                         info={info}  
+                      
                         inputsPart={inputsPart1}                      
                         ComponentesPart={ComponentesPart1}
                         data={dataPicker}
+                        clave={1}
+                        Informacion={Informacion}
+                        setInformacion={setInformacion}
+                        setdisabledButtonAprobarPicker={setdisabledButtonAprobarPicker}
                         />
                 </div>
                 
@@ -188,11 +202,14 @@ export const ActiveUserAdminPicker = () => {
 
                 <div  className="form-part-1-admin-pickers">
                         <Part
-                         setInfo={setInfo}
-                         info={info}  
+                       
                         inputsPart={inputsPart2}                 
                         ComponentesPart={ComponentesPart2}
                         data={dataPicker}
+                        clave={2}
+                        Informacion={Informacion}
+                        setInformacion={setInformacion}
+                        setdisabledButtonAprobarPicker={setdisabledButtonAprobarPicker}
                         />                          
                 </div>
 
@@ -200,19 +217,25 @@ export const ActiveUserAdminPicker = () => {
 
                  <div  className="form-part-1-admin-pickers">  
                         <Part
-                         setInfo={setInfo}
-                         info={info}  
+                        
                         inputsPart={inputsPart3}                   
                         ComponentesPart={ComponentesPart3}
                         data={dataPicker}
+                        clave={3}
+                        Informacion={Informacion}
+                        setInformacion={setInformacion}
+                        setdisabledButtonAprobarPicker={setdisabledButtonAprobarPicker}
                         />  
 
                         <Part
-                         setInfo={setInfo}
-                         info={info}  
+                         
                         inputsPart={inputsPart4}                       
                         ComponentesPart={ComponentesPart4}
                         data={dataPicker}
+                        clave={4}
+                        Informacion={Informacion}
+                        setInformacion={setInformacion}
+                        setdisabledButtonAprobarPicker={setdisabledButtonAprobarPicker}
                         /> 
                  </div>
                     
