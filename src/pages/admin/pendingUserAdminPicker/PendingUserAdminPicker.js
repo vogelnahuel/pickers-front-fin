@@ -22,7 +22,23 @@ import { Modal } from 'pickit-components'
 export const PendingUserAdminPicker = () => {
 
     const [disabledButtonAprobarPicker, setdisabledButtonAprobarPicker] = useState(true)
-    
+    const [Informacion, setInformacion] = useState({
+        nombre:"",
+        apellido:"",
+        dni:"",
+        email:"",
+        fechaNac:"",
+        telefono:"",   
+        nombreBanco:"",
+        cbu:"",
+        cuit:"",
+        vencimientoLicencia:"",
+        fechaVecCel:"",
+        fechaVecSeguroAuto:"",
+        fechaVecSeguroAccidente:"",
+    })
+ 
+
     const [info, setInfo] = useState( {
         nombre:"",
         apellido:"",
@@ -102,6 +118,8 @@ export const PendingUserAdminPicker = () => {
                 .catch((err)=>{console.log(err)}) )}
             
                cargarDatos()
+               
+              
             }, [id])
 
           
@@ -109,7 +127,10 @@ export const PendingUserAdminPicker = () => {
             habilitarBoton(dataPicker);
           }, [habilitarBoton,dataPicker])
             
-
+          useEffect(() => {
+              
+            setInformacion(dataPicker);
+          }, [dataPicker])
                 
 
           
@@ -160,7 +181,7 @@ export const PendingUserAdminPicker = () => {
         .then(rs=>{})
         .catch(e=>{})
 
-        window.location.reload();
+        window.location.href="/pendingUserAdmin";
     }
     return (
         <div className="background-Grey">
@@ -200,6 +221,12 @@ export const PendingUserAdminPicker = () => {
                         ComponentesPart={ComponentesPart1}
                         data={dataPicker}
                         clave={1}
+                        setdisabledButtonAprobarPicker={setdisabledButtonAprobarPicker}  
+                        disabledButtonAprobarPicker={disabledButtonAprobarPicker}                  
+             
+                        Informacion={Informacion}
+                        setInformacion={setInformacion}
+
                         />
                 </div>
                 
@@ -213,6 +240,12 @@ export const PendingUserAdminPicker = () => {
                         ComponentesPart={ComponentesPart2}
                         data={dataPicker}
                         clave={2}
+                        
+                        setdisabledButtonAprobarPicker={setdisabledButtonAprobarPicker}  
+                        disabledButtonAprobarPicker={disabledButtonAprobarPicker}                  
+                        
+                        Informacion={Informacion}
+                        setInformacion={setInformacion}
                         />                          
                 </div>
 
@@ -228,6 +261,8 @@ export const PendingUserAdminPicker = () => {
                         setdisabledButtonAprobarPicker={setdisabledButtonAprobarPicker}  
                         disabledButtonAprobarPicker={disabledButtonAprobarPicker}                  
                         clave={3}
+                        Informacion={Informacion}
+                        setInformacion={setInformacion}
                         />  
 
                         <Part
@@ -239,6 +274,8 @@ export const PendingUserAdminPicker = () => {
                         disabledButtonAprobarPicker={disabledButtonAprobarPicker}   
                         setdisabledButtonAprobarPicker={setdisabledButtonAprobarPicker}  
                         clave={4}
+                        Informacion={Informacion}
+                        setInformacion={setInformacion}
                         /> 
                  </div>
                      

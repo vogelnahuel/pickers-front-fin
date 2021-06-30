@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { LoadAdminPicker } from '../LoadAdminPicker/LoadAdminPicker'
 import {Labels}  from '../../Labels/Labels'
 import './part.css'
@@ -16,9 +16,10 @@ export const Part = (props) => {
     const dataPicker = props.data;
     const setInfo = props.setInfo;
     let info = props.info;
-    const setdisabledButtonAprobarPicker=props.setdisabledButtonAprobarPicker;  
+    let Informacion = props.Informacion;
+    const setInformacion = props.setInformacion;
+    const setdisabledButtonAprobarPicker = props.setdisabledButtonAprobarPicker;
 
-    
 
     let defaultInfo = {
         nombre:dataPicker.name,
@@ -41,91 +42,93 @@ export const Part = (props) => {
         console.log("submit")
     }*/
 
+    
 
-    const [vencimientoLicencia2, setvencimientoLicencia2] = useState(false);
-    const [fechaVecCel2, setfechaVecCel2] = useState(false);
-    const [fechaVecSeguroAuto2, setfechaVecSeguroAuto2] = useState(false);
-    const [fechaVecSeguroAccidente2, setfechaVecSeguroAccidente2] = useState(false);
-
-   
-
-    let seguro =  {
-        vencimientoLicencia:  vencimientoLicencia2 ===true ? info.vencimientoLicencia :dataPicker.expirationDateDriverLicense,
-        fechaVecCel:  fechaVecCel2===true  ?info.fechaVecCel: dataPicker.expirationDateIdentificationCar,
-        fechaVecSeguroAuto: fechaVecSeguroAuto2 ===true ?info.fechaVecSeguroAuto: dataPicker.expirationDatePolicyVehicle,
-        fechaVecSeguroAccidente: fechaVecSeguroAccidente2 === true ?info.fechaVecSeguroAccidente:  dataPicker.expirationDatePolicyPersonal,
-    }
-
-
-    const handleChange=(e,id) => {
+    const handleChange=async(e,id) => {
         
-
-            console.log(seguro);
-                
-             seguro  = {
-                vencimientoLicencia:seguro.vencimientoLicencia,
-                fechaVecCel:seguro.fechaVecCel,
-                fechaVecSeguroAuto:seguro.fechaVecSeguroAuto,
-                fechaVecSeguroAccidente:seguro.fechaVecSeguroAccidente,
-                [e.target.name]:e.target.value
-             }    
-
-             console.log(seguro);
-       
-           
-
-             setInfo( {
+            setInfo( {
                         ...info,
                         [e.target.name]:e.target.value
                         }
                  ); 
-                
-   
-       
-        if(dataPicker.vehicleTypeId===1 && (e.target.name==="fechaVecSeguroAccidente"  ||(e.target.name==="vencimientoLicencia" ) || (e.target.name==="fechaVecCel" ) || (e.target.name==="fechaVecSeguroAuto") ) && e.target.value.length<10){
-
-            
-
-            if(seguro.vencimientoLicencia === null  || seguro.vencimientoLicencia.length<10 || seguro.fechaVecCel===null|| seguro.fechaVecCel.length<10 || seguro.fechaVecSeguroAuto===null|| seguro.fechaVecSeguroAuto.length<10 ||  seguro.fechaVecSeguroAccidente === null || seguro.fechaVecSeguroAccidente.length<10 )
-            {
-                setdisabledButtonAprobarPicker(true);
-            }
-            
-            if(e.target.name==="vencimientoLicencia"){
-                
-                setvencimientoLicencia2(true)
-            }
-            if(e.target.name==="fechaVecSeguroAccidente"){
-                
-                setfechaVecSeguroAccidente2(true)
-            }
-            if(e.target.name==="fechaVecCel"){
          
-                setfechaVecCel2(true)
-            }
-            if(e.target.name==="fechaVecSeguroAuto"){
-                setfechaVecSeguroAuto2(true)
-            }
 
-        }
-        else    if(dataPicker.vehicleTypeId===1 && (e.target.name==="fechaVecSeguroAccidente"  ||(e.target.name==="vencimientoLicencia" ) || (e.target.name==="fechaVecCel" ) || (e.target.name==="fechaVecSeguroAuto") ) && e.target.value.length>=10) {
-           
-            if(seguro.vencimientoLicencia !== null && seguro.vencimientoLicencia.length===10 && seguro.fechaVecCel!==null   &&   seguro.fechaVecCel.length===10 && seguro.fechaVecSeguroAuto!==null && seguro.fechaVecSeguroAuto.length===10 && seguro.fechaVecSeguroAccidente === null && seguro.fechaVecSeguroAccidente.length===10 )
-            {
-                setdisabledButtonAprobarPicker(false);
+           if(e.target.name==="vencimientoLicencia"){
+                setInformacion(
+                    {
+                    ...Informacion,
+                    expirationDateDriverLicense:e.target.value
+                    }
+                );
             }
-            
-        }
-
-
-        if(dataPicker.vehicleTypeId===2  && e.target.name==="fechaVecSeguroAccidente" && e.target.value.length<10){
-            setdisabledButtonAprobarPicker(true);   
-        }
-        else if(dataPicker.vehicleTypeId===2 && e.target.name==="fechaVecSeguroAccidente" && e.target.value.length===10) {
-            setdisabledButtonAprobarPicker(false);   
-        }
+             if(e.target.name==="fechaVecCel"){
+                setInformacion(
+                    {
+                    ...Informacion,
+                    expirationDateIdentificationCar:e.target.value
+                    }
+                );
+            }
+             if(e.target.name==="fechaVecSeguroAuto"){
+                setInformacion(
+                    {
+                    ...Informacion,
+                    expirationDatePolicyVehicle:e.target.value
+                    }
+                );
+            }
+              if(e.target.name==="fechaVecSeguroAccidente"){
+                setInformacion(
+                    {
+                    ...Informacion,
+                    expirationDatePolicyPersonal:e.target.value
+                    }
+                );
+            }
+        
+       
+         //verificarInformacion(Informacion,e);
 
     }   
+    const  verificarInformacion  = useCallback(
+
+        (Informacion) => {
+
+            
+            if(Informacion.vehicleTypeId===1) {
+           
+                if(Informacion.expirationDateDriverLicense.length<10 ||Informacion.expirationDateIdentificationCar.length<10 || Informacion.expirationDatePolicyVehicle.length<10 || Informacion.expirationDatePolicyPersonal.length<10 ){
+                    setdisabledButtonAprobarPicker(true);
+                }
+    
+               
+            }
+             if(Informacion.vehicleTypeId===1)  {
+                
+                if(Informacion.expirationDateDriverLicense.length>=10 && Informacion.expirationDateIdentificationCar.length>=10 && Informacion.expirationDatePolicyVehicle.length>=10 && Informacion.expirationDatePolicyPersonal.length>=10 ){
+                    setdisabledButtonAprobarPicker(false);
+                }
+                
+            }
+    
+            if(Informacion.vehicleTypeId===2  ){
+                if(Informacion.expirationDatePolicyPersonal.length<10)
+                setdisabledButtonAprobarPicker(true);
+            }
+             if(Informacion.vehicleTypeId===2) {
+                if(Informacion.expirationDatePolicyPersonal.length>=10)
+                setdisabledButtonAprobarPicker(false);
+            }
+        },
+        [setdisabledButtonAprobarPicker],
+    )
+
+
+    useEffect(() => {
+
+        verificarInformacion(Informacion)
+
+    }, [verificarInformacion,Informacion])
     
     
     return (
@@ -197,16 +200,16 @@ export const Part = (props) => {
                                                                         dataPicker.vehicleTypeId===1 ? 
                                                                         <>
                                                                                 {
-                                                                                        variable.name==="vencimientoLicencia" && <input value={!info.vencimientoLicencia?defaultInfo.vencimientoLicencia?defaultInfo.vencimientoLicencia:"" :info.vencimientoLicencia} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
+                                                                                        variable.name==="vencimientoLicencia" && <input value={Informacion.expirationDateDriverLicense ?  Informacion.expirationDateDriverLicense : ""} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
                                                                                 }
                                                                                 {
-                                                                                        variable.name==="fechaVecCel" && <input value={!info.fechaVecCel?defaultInfo.fechaVecCel?defaultInfo.fechaVecCel:"":info.fechaVecCel} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
+                                                                                        variable.name==="fechaVecCel" && <input value={Informacion.expirationDateIdentificationCar?Informacion.expirationDateIdentificationCar:""} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
                                                                                 }
                                                                                 {
-                                                                                        variable.name==="fechaVecSeguroAuto" && <input key={variable.id} value={!info.fechaVecSeguroAuto?defaultInfo.fechaVecSeguroAuto?defaultInfo.fechaVecSeguroAuto:"":info.fechaVecSeguroAutoVecCel} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
+                                                                                        variable.name==="fechaVecSeguroAuto" && <input key={variable.id} value={Informacion.expirationDatePolicyVehicle?Informacion.expirationDatePolicyVehicle:""} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
                                                                                 }
                                                                                 {
-                                                                                        variable.name==="fechaVecSeguroAccidente" && <input value={!info.fechaVecSeguroAccidente?defaultInfo.fechaVecSeguroAccidente?defaultInfo.fechaVecSeguroAccidente:"":info.fechaVecSeguroAccidente} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
+                                                                                        variable.name==="fechaVecSeguroAccidente" && <input value={Informacion.expirationDatePolicyPersonal?Informacion.expirationDatePolicyPersonal:""} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
                                                                                 }
                                                                             </>
                                                                             :
