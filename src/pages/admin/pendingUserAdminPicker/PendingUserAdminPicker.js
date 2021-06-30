@@ -37,25 +37,7 @@ export const PendingUserAdminPicker = () => {
         fechaVecSeguroAuto:"",
         fechaVecSeguroAccidente:"",
     })
- 
 
-    const [info, setInfo] = useState( {
-        nombre:"",
-        apellido:"",
-        dni:"",
-        email:"",
-        fechaNac:"",
-        telefono:"",   
-        nombreBanco:"",
-        cbu:"",
-        cuit:"",
-        vencimientoLicencia:"",
-        fechaVecCel:"",
-        fechaVecSeguroAuto:"",
-        fechaVecSeguroAccidente:"",
-    }); 
-  
- 
    
     const id= useParams().id  
     /****Campos y componentes a mostrar  que se muestran en un part que es parte del diseño*/
@@ -141,18 +123,18 @@ export const PendingUserAdminPicker = () => {
     
         await api.post(`/ms-admin-rest/api/v1.0/pickers/${dataPicker.id}/invalid-documentation`,{    
         "vehicleTypeId": dataPicker.vehicleTypeId,
-        "name": info.nombre ? info.nombre :dataPicker.name ,
-         "surname": info.apellido ? info.apellido : dataPicker.surname ,
-         "dateOfBirth": info.fechaNac ? info.fechaNac : dataPicker.dateOfBirth ,
-         "phoneNumber": info.telefono ? info.telefono : dataPicker.phoneNumber ,
-         "identificationNumber":(info.dni) ? (info.dni) :dataPicker.identificationNumber ,
-         "fiscalNumber": info.cuit ?info.cuit :  dataPicker.fiscalNumber,
-         "bankName":info.nombreBanco? info.nombreBanco : dataPicker.bankName,
-         "bankIdentifier":info.cbu ?info.cbu :  dataPicker.bankIdentifier,
-         "expirationDateDriverLicense": info.vencimientoLicencia ? info.vencimientoLicencia : dataPicker.expirationDateDriverLicense,
-         "expirationDateIdentificationCar":info.fechaVecCel?info.fechaVecCel: dataPicker.expirationDateIdentificationCar,
-         "expirationDatePolicyVehicle":info.fechaVecSeguroAuto?info.fechaVecSeguroAuto: dataPicker.expirationDatePolicyVehicle,
-         "expirationDatePolicyPersonal": info.fechaVecSeguroAccidente?info.fechaVecSeguroAccidente: dataPicker.expirationDatePolicyPersonal,        
+        "name": Informacion.name  ,
+         "surname": Informacion.surname ,
+         "dateOfBirth": Informacion.dateOfBirth,
+         "phoneNumber": Informacion.phoneNumber,
+         "identificationNumber":Informacion.identificationNumber ,
+         "fiscalNumber":Informacion.fiscalNumber,
+         "bankName":Informacion.bankName,
+         "bankIdentifier":Informacion.bankIdentifier,
+         "expirationDateDriverLicense":Informacion.expirationDateDriverLicense,
+         "expirationDateIdentificationCar":Informacion.expirationDateIdentificationCar,
+         "expirationDatePolicyVehicle":Informacion.expirationDatePolicyVehicle,
+         "expirationDatePolicyPersonal":Informacion.expirationDatePolicyPersonal,        
          "pickerStatusId":3
         })
         .then(rs=>{})
@@ -165,18 +147,18 @@ export const PendingUserAdminPicker = () => {
         await api.post(`/ms-admin-rest/api/v1.0/pickers/${dataPicker.id}`,{    
         "enable": true,
         "vehicleTypeId": dataPicker.vehicleTypeId,
-        "name": info.nombre ? info.nombre :dataPicker.name ,
-         "surname": info.apellido ? info.apellido : dataPicker.surname ,
-         "dateOfBirth": info.fechaNac ? info.fechaNac : dataPicker.dateOfBirth ,
-         "phoneNumber": info.telefono ? info.telefono : dataPicker.phoneNumber ,
-         "identificationNumber":(info.dni) ? (info.dni) :dataPicker.identificationNumber ,
-         "fiscalNumber": info.cuit ?info.cuit :  dataPicker.fiscalNumber,
-         "bankName":info.nombreBanco? info.nombreBanco : dataPicker.bankName,
-         "bankIdentifier":info.cbu ?info.cbu :  dataPicker.bankIdentifier,
-         "expirationDateDriverLicense": info.vencimientoLicencia ? info.vencimientoLicencia : dataPicker.expirationDateDriverLicense,
-         "expirationDateIdentificationCar":info.fechaVecCel?info.fechaVecCel: dataPicker.expirationDateIdentificationCar,
-         "expirationDatePolicyVehicle":info.fechaVecSeguroAuto?info.fechaVecSeguroAuto: dataPicker.expirationDatePolicyVehicle,
-         "expirationDatePolicyPersonal": info.fechaVecSeguroAccidente?info.fechaVecSeguroAccidente: dataPicker.expirationDatePolicyPersonal        
+        "name":Informacion.name ,
+         "surname":Informacion.surname ,
+         "dateOfBirth":Informacion.dateOfBirth ,
+         "phoneNumber":Informacion.phoneNumber ,
+         "identificationNumber":Informacion.identificationNumber ,
+         "fiscalNumber":Informacion.fiscalNumber,
+         "bankName":Informacion.bankName,
+         "bankIdentifier":Informacion.bankIdentifier,
+         "expirationDateDriverLicense":Informacion.expirationDateDriverLicense,
+         "expirationDateIdentificationCar":Informacion.expirationDateIdentificationCar,
+         "expirationDatePolicyVehicle":Informacion.expirationDatePolicyVehicle,
+         "expirationDatePolicyPersonal":Informacion.expirationDatePolicyPersonal        
     })
         .then(rs=>{})
         .catch(e=>{})
@@ -215,8 +197,7 @@ export const PendingUserAdminPicker = () => {
              <form className="Admin-Pickers-inputs">
                 <div  className="form-part-1-admin-pickers">
                         <Part     
-                        setInfo={setInfo}
-                        info={info}                
+                                   
                         inputsPart={inputsPart1}                      
                         ComponentesPart={ComponentesPart1}
                         data={dataPicker}
@@ -234,8 +215,7 @@ export const PendingUserAdminPicker = () => {
 
                 <div  className="form-part-1-admin-pickers">
                         <Part
-                        setInfo={setInfo}
-                        info={info}
+                     
                         inputsPart={inputsPart2}                 
                         ComponentesPart={ComponentesPart2}
                         data={dataPicker}
@@ -253,8 +233,7 @@ export const PendingUserAdminPicker = () => {
 
                  <div  className="form-part-1-admin-pickers">  
                         <Part
-                        setInfo={setInfo}
-                        info={info}
+                      
                         inputsPart={inputsPart3}                   
                         ComponentesPart={ComponentesPart3}
                         data={dataPicker}   
@@ -266,8 +245,7 @@ export const PendingUserAdminPicker = () => {
                         />  
 
                         <Part
-                        setInfo={setInfo}
-                        info={info}
+                      
                         inputsPart={inputsPart4}                       
                         ComponentesPart={ComponentesPart4}
                         data={dataPicker}

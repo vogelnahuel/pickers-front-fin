@@ -14,28 +14,13 @@ export const Part = (props) => {
     const variables = props.inputsPart;
     const componentes = props.ComponentesPart;
     const dataPicker = props.data;
-    const setInfo = props.setInfo;
-    let info = props.info;
+   
     let Informacion = props.Informacion;
     const setInformacion = props.setInformacion;
     const setdisabledButtonAprobarPicker = props.setdisabledButtonAprobarPicker;
 
 
-    let defaultInfo = {
-        nombre:dataPicker.name,
-        apellido:dataPicker.surname,
-        dni:dataPicker.identificationNumber,
-        email:dataPicker.email,
-        fechaNac:dataPicker.dateOfBirth,
-        telefono:dataPicker.phoneNumber,
-        vencimientoLicencia:dataPicker.expirationDateDriverLicense,
-        nombreBanco:dataPicker.bankName,
-        cbu:dataPicker.bankIdentifier,
-        cuit:dataPicker.fiscalNumber,
-        fechaVecCel:dataPicker.expirationDateIdentificationCar,
-        fechaVecSeguroAuto:dataPicker.expirationDatePolicyVehicle,
-        fechaVecSeguroAccidente:dataPicker.expirationDatePolicyPersonal,
-    }
+   
    
   /*
     const handleSubmit = () =>{
@@ -44,13 +29,13 @@ export const Part = (props) => {
 
     
 
-    const handleChange=async(e,id) => {
-        
-            setInfo( {
-                        ...info,
+    const handleChange=(e) => {
+        /*
+        setInformacion( {
+                        ...Informacion,
                         [e.target.name]:e.target.value
                         }
-                 ); 
+                 ); */
             if(e.target.name==="nombre"){
                     setInformacion(
                         {
@@ -84,14 +69,7 @@ export const Part = (props) => {
                         }
                     );
             }
-            if(e.target.name==="telefono"){
-                setInformacion(
-                            {
-                            ...Informacion,
-                            phoneNumber:e.target.value
-                            }
-                        );
-                }
+          
             if(e.target.name==="dni"){
                     setInformacion(
                         {
@@ -155,7 +133,7 @@ export const Part = (props) => {
         (Informacion) => {
 
             
-            if(Informacion.vehicleTypeId===1) {
+            if(Informacion.vehicleTypeId===1 &&Informacion.expirationDateDriverLicense!==null ) {
            
                 if(Informacion.expirationDateDriverLicense.length<10 ||Informacion.expirationDateIdentificationCar.length<10 || Informacion.expirationDatePolicyVehicle.length<10 || Informacion.expirationDatePolicyPersonal.length<10 ){
                     setdisabledButtonAprobarPicker(true);
@@ -163,7 +141,7 @@ export const Part = (props) => {
     
                
             }
-             if(Informacion.vehicleTypeId===1)  {
+             if(Informacion.vehicleTypeId===1 &&Informacion.expirationDateDriverLicense!==null)  {
                 
                 if(Informacion.expirationDateDriverLicense.length>=10 && Informacion.expirationDateIdentificationCar.length>=10 && Informacion.expirationDatePolicyVehicle.length>=10 && Informacion.expirationDatePolicyPersonal.length>=10 ){
                     setdisabledButtonAprobarPicker(false);
@@ -171,11 +149,11 @@ export const Part = (props) => {
                 
             }
     
-            if(Informacion.vehicleTypeId===2  ){
+            if(Informacion.vehicleTypeId===2 && Informacion.expirationDatePolicyPersonal!==null ){
                 if(Informacion.expirationDatePolicyPersonal.length<10)
                 setdisabledButtonAprobarPicker(true);
             }
-             if(Informacion.vehicleTypeId===2) {
+             if(Informacion.vehicleTypeId===2 && Informacion.expirationDatePolicyPersonal!==null) {
                 if(Informacion.expirationDatePolicyPersonal.length>=10)
                 setdisabledButtonAprobarPicker(false);
             }
@@ -210,7 +188,7 @@ export const Part = (props) => {
                                             <Labels width={variable.label.labelwidth} className={variable.label.labelclassName} htmlFor={variable.label.labelhtmlFor} parrafo={variable.label.labelparrafo} />
                                         </div>
                                         <div>
-                                            <input value={!info.fechaVecSeguroAccidente?defaultInfo.fechaVecSeguroAccidente?defaultInfo.fechaVecSeguroAccidente:"":info.fechaVecSeguroAccidente} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
+                                            <input value={Informacion.expirationDatePolicyPersonal?Informacion.expirationDatePolicyPersonal:""} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
                                         </div>  
                                     </div>
                                     : null
@@ -251,10 +229,10 @@ export const Part = (props) => {
                                                                             variable.name==="nombreBanco" && <input value={Informacion.bankName?Informacion.bankName:""} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
                                                                     }
                                                                         {
-                                                                            variable.name==="cbu" && <input readOnly value={!info.cbu?defaultInfo.cbu?defaultInfo.cbu:"":info.cbu} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
+                                                                            variable.name==="cbu" && <input readOnly value={Informacion.bankIdentifier?Informacion.bankIdentifier:""} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
                                                                     }
                                                                     {
-                                                                            variable.name==="cuit" && <input readOnly value={!info.cuit?defaultInfo.cuit?defaultInfo.cuit:"":info.cuit} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
+                                                                            variable.name==="cuit" && <input readOnly value={Informacion.fiscalNumber?Informacion.fiscalNumber:""} onChange={(e)=> {handleChange(e,variable.id)}}   className={variable.className} type={variable.type} name={variable.name} id={variable.id} placeholder={variable.placeholder}/>   
                                                                     }
                                                                     {
                                                                         dataPicker.vehicleTypeId===1 ? 
