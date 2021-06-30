@@ -50,6 +50,7 @@
     position: absolute;
     margin-left: 30%;
     margin-top: 3%;
+    border: none;
 }
 .admin-active-picker-p{
     font-family: 'Mulish';
