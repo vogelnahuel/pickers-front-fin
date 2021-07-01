@@ -40,7 +40,7 @@ export const ActiveUserAdmin = () => {
         }
        getData(filter)
     }
-    const tamPag=100;
+    const tamPag=15;
     const [offset, setoffset] = useState(tamPag)
     const cargarMas =async() =>{
         
