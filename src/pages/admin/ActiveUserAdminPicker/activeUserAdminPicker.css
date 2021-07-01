@@ -80,6 +80,21 @@
     width: 217px;
     height: 50px;
 }
+.corregir-admin-picker-disable{
+    border: 2.5px solid #BDBDBD;
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 50px;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 23px;
+    text-align: center;
+    color: #BDBDBD;
+    width: 217px;
+    height: 50px;
+}
 
 
 .admin-buttonDisabled-picker-disabled{
