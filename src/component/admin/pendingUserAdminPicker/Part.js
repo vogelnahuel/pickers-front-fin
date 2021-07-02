@@ -23,12 +23,18 @@ export const Part = (props) => {
   const activeUser = props.active;
 
 
+
   /*
     const handleSubmit = () =>{
         console.log("submit")
     }*/
 
   const handleChange = (e) => {
+   
+   if(activeUser===true){
+    setdisabledButtonAprobarPicker(true);
+    }
+   
     /*
         setInformacion( {
                         ...Informacion,
@@ -110,6 +116,7 @@ export const Part = (props) => {
     const ex_regular_nomyape =/^[a-z ,.'-]+$/i ;
     const ex_regular_fecha = /\d{4}-\d{2}-\d{2}/;
     const ex_regular_telefono = /^[0-9,-]+$/;
+   
 
     if(ErrorMenorEdad!==true){
       e.target.classList.remove('inputError-part'); 
@@ -124,7 +131,8 @@ export const Part = (props) => {
     
 
 
-    if ((e.target.name==="fechaNac"|| e.target.name==="vencimientoLicencia"|| e.target.name==="fechaVecCel" || e.target.name==="fechaVecSeguroAuto" || e.target.name==="fechaVecSeguroAccidente")   && ex_regular_fecha.test (e.target.value) === true){
+    if ((e.target.name==="fechaNac"|| e.target.name==="vencimientoLicencia"|| e.target.name==="fechaVecCel" || e.target.name==="fechaVecSeguroAuto" || e.target.name==="fechaVecSeguroAccidente")   && ex_regular_fecha.test (e.target.value) === true && e.target.value.length===10){
+      
       
       if(e.target.name==="fechaNac"){
         const regDate = moment();
@@ -132,7 +140,7 @@ export const Part = (props) => {
         
         
         if(regDate.diff(actualDate, "years")<18){
-
+        
           e.target.classList.add('inputError-part');
           e.target.parentNode.previousSibling.firstChild.classList.add('labelError-part');
 
@@ -150,8 +158,8 @@ export const Part = (props) => {
       }
     }
  
-
-    if(e.target.value.length===0 &&  erroresExistentes !==true ){
+    
+    if(e.target.value.length===0){
     
       e.target.classList.add('inputError-part');
       e.target.parentNode.previousSibling.firstChild.classList.add('labelError-part');
@@ -191,22 +199,25 @@ export const Part = (props) => {
       e.target.parentNode.appendChild(div);
      
     }
-    else if( (e.target.name==="fechaNac"|| e.target.name==="vencimientoLicencia"|| e.target.name==="fechaVecCel" || e.target.name==="fechaVecSeguroAuto" || e.target.name==="fechaVecSeguroAccidente")   && ex_regular_fecha.test (e.target.value) !== true  && ErrorMenorEdad!==true )
+    else if( (e.target.name==="fechaNac"|| e.target.name==="vencimientoLicencia"|| e.target.name==="fechaVecCel" || e.target.name==="fechaVecSeguroAuto" || e.target.name==="fechaVecSeguroAccidente")    && ErrorMenorEdad!==true  )
     {
-
-      
-     
-      e.target.classList.add('inputError-part');
-      e.target.parentNode.previousSibling.firstChild.classList.add('labelError-part');
-
-      
+      if(e.target.value.length>10 || ex_regular_fecha.test (e.target.value) !== true ){
+        e.target.classList.add('inputError-part');
+        e.target.parentNode.previousSibling.firstChild.classList.add('labelError-part');
   
-      const div = document.createElement('div');
-      
-      div.innerHTML = `
-        <p class="labelError-part"> ${"El formato es fecha es invalido"} </p>
-      `
-      e.target.parentNode.appendChild(div);
+        
+    
+        const div = document.createElement('div');
+        
+        div.innerHTML = `
+          <p class="labelError-part"> ${"El formato es fecha es invalido"} </p>
+        `
+        e.target.parentNode.appendChild(div);
+      }
+
+    
+     
+     
 
       
       
@@ -240,9 +251,9 @@ export const Part = (props) => {
   const verificarInformacion = useCallback(
     (Informacion) => {
       if (activeUser) {
-        console.log("change");
+  
         if(Informacion.vehicleTypeId === 1){
-            setdisabledButtonAprobarPicker(false);
+            setdisabledButtonAprobarPicker(true);
         }
         if (
           Informacion.vehicleTypeId === 1 &&
@@ -269,7 +280,7 @@ export const Part = (props) => {
             Informacion.expirationDatePolicyPersonal.length >= 10
           ) {
             console.log("2");
-            setdisabledButtonAprobarPicker(false);
+            setdisabledButtonAprobarPicker(true);
           }
         
 
@@ -289,7 +300,7 @@ export const Part = (props) => {
         ) {
           if (Informacion.expirationDatePolicyPersonal.length >= 10)
             console.log("4");
-          setdisabledButtonAprobarPicker(false);
+          setdisabledButtonAprobarPicker(true);
         }
       }
 
@@ -319,7 +330,7 @@ export const Part = (props) => {
             Informacion.expirationDatePolicyPersonal.length >= 10
           ) {
             console.log("2");
-            setdisabledButtonAprobarPicker(false);
+            setdisabledButtonAprobarPicker(true);
           }
         }
 
@@ -337,7 +348,7 @@ export const Part = (props) => {
         ) {
           if (Informacion.expirationDatePolicyPersonal.length >= 10)
             console.log("4");
-          setdisabledButtonAprobarPicker(false);
+          setdisabledButtonAprobarPicker(true);
         }
       }
     }

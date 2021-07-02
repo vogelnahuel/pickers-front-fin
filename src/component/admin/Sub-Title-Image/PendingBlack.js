@@ -5,23 +5,30 @@ import trabajadorAzul from '../../../assets/admin/PendingUser/trabajadorAzul.svg
 import './pending.css'
 import { Link, Redirect, useParams } from 'react-router-dom'
 
-export const PendingBlack = () => {
+export const PendingBlack = (props) => {
+    const setmodalGuardarCambios=props.setmodalGuardarCambios;
+    const setRedirect = props.setRedirect;
 
     const {id} = useParams();
     
 
     const [activedmin, setActive] = useState("/activeUserAdmin");
-    const [activeAdminPicker, setActivePicker] = useState(`/activeUserAdminpicker/${id}`);
+    //const [activeAdminPicker, setActivePicker] = useState(`/activeUserAdminpicker/${id}`);
 
     const  handleOnClickredirect =(e) => {
-
         
+       
+
+       
         if(window.location.pathname==="/activeUserAdmin"){         
             
             setActive("/pendingUserAdmin")
         }
         if(window.location.pathname===`/activeUserAdminpicker/${id}`){         
-            setActivePicker(`/pendingUserAdmin`);
+            //setActivePicker(`/pendingUserAdmin`);
+            e.preventDefault();
+            setmodalGuardarCambios(true);
+            setRedirect("/pendingUserAdmin")
         }    
     }
 
@@ -46,10 +53,7 @@ export const PendingBlack = () => {
                         window.location.pathname==="/activeUserAdmin" ?
                         <Redirect to={activedmin}></Redirect>:<></>
                     }
-                    {
-                        window.location.pathname===`/activeUserAdminpicker/${id}` ?
-                        <Redirect to={activeAdminPicker}></Redirect>:<></>
-                    }
+                    
 
                     <div>
                         <Link to="./dashboard" >

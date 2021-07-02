@@ -16,17 +16,37 @@ import api from '../../../config/api'
 import createCSV from '../../../tools/createCSV'
 import  disabledButton  from '../../../assets/admin/ActiveUserAdminPicker/disabledButton.svg' 
 import bici from '../../../assets/admin/PendingUserAdminPicker/bici.svg'
+import {Modal} from 'pickit-components'
 
 export const ActiveUserAdminPicker = () => {
-    const [disabledButtonAprobarPicker, setdisabledButtonAprobarPicker] = useState(true)
-    const sinWarning = () => {
-        setdisabledButtonAprobarPicker(false);
-        console.log(disabledButtonAprobarPicker);
+
+    const [disableButtons, setdisableButtons] = useState(false);
+    const [Redirect, setRedirect] = useState('/activeUserAdmin')
+    const [modalGuardarCambios, setmodalGuardarCambios] = useState(false)
+    const [activeModalPicker, setactiveModalPicker] = useState(false)
+
+    const handleCancel  = (e) => {
+        e.preventDefault()
+        setmodalGuardarCambios(true);
+        setRedirect(window.location.href)
     }
-    sinWarning();
+
+    const cerrarModalSinGuardar = (e) => {
+        e.preventDefault();
+        
     
-    const [disableButtons, setdisableButtons] = useState(true)
- 
+        window.location.href=Redirect;
+    }
+    const cerrarModalGuardar =  (e) => {
+        e.preventDefault();
+        setmodalGuardarCambios(false);
+    }
+
+    const cerrarGuardarExito =  (e) => {
+        e.preventDefault();
+        setactiveModalPicker(false);
+        window.location.reload();
+    }
 
     const [Informacion, setInformacion] = useState({
         nombre:"",
@@ -131,7 +151,9 @@ export const ActiveUserAdminPicker = () => {
      }
    
     const modificarPicker= async (e) =>{
+       
         e.preventDefault();
+        
         
     
                 await api.post(`/ms-admin-rest/api/v1.0/pickers/${dataPicker.id}`,{  
@@ -150,19 +172,32 @@ export const ActiveUserAdminPicker = () => {
                 "expirationDatePolicyVehicle":Informacion.expirationDatePolicyVehicle,
                 "expirationDatePolicyPersonal":Informacion.expirationDatePolicyPersonal        
                 
-                }).then(()=>{ window.location.reload()}
+                }).then(()=>{ setactiveModalPicker(true);}
                    
                 )
                 .catch(()=>{})
+
+
+                
     }
+
+
+ 
+
 
     return (
         <div className="background-Grey">
         <Header/>
         <div className="mainContainerFlex">
-            <Nav/>
+            <Nav
+                setmodalGuardarCambios={setmodalGuardarCambios}
+                setRedirect={setRedirect}
+            />
             <div className="pending-container">
-                 <PendingBlack/>
+                 <PendingBlack
+                    setmodalGuardarCambios={setmodalGuardarCambios}
+                    setRedirect={setRedirect}
+                 />
                    
                  <div 
                  className="mainContainerFlex">
@@ -264,14 +299,78 @@ export const ActiveUserAdminPicker = () => {
                  </div>
                     
                     <div className="pending-admin-picker-button">
-                        {!disableButtons?<>
-                            <button className="corregir-admin-picker-active">Cancelar</button>
+                        {disableButtons?<>
+                            <button onClick={handleCancel} className="corregir-admin-picker-active">Cancelar</button>
                         <button onClick={modificarPicker} className="aprobar-admin-picker-active">Guardar</button></>:<>
                             <button disabled={true} className="corregir-admin-picker-disable">Cancelar</button>
                         <button disabled={true} className="aprobar-admin-picker-disable">Guardar</button></>}
                     </div>
                     
                 </form>  
+                {   activeModalPicker === true ? 
+                    <div className="contendor-modal-pending-pickers-aprobar">
+                            <Modal
+                            
+
+                                    width="750px"
+                                    height="351px"
+                                    isOpen={activeModalPicker}
+                                   
+                                    >
+                                    <div className="container-modal">
+                                        <div className="modal-success-title">
+                                            <p className="p-modal-error-title">Datos guardados</p>
+                                        </div>
+                                        <div className="modal-error-subtitle">
+                                            <p className="p-modal-error-subtitle">Ya quedaron registrados los cambios en el perfil del picker</p>
+                                                <div className="button-pending-picker-modal">
+                                                        
+                                                        <button 
+                                                            onClick={cerrarGuardarExito}
+                                                            className="button-modal-aprobar">
+                                                                    Entendido
+                                                        </button>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </Modal>
+                        </div>
+              : null
+        }    
+         {   modalGuardarCambios === true ? 
+                    <div className="contendor-modal-pending-pickers-aprobar">
+                            <Modal
+
+                                    width="750px"
+                                    height="351px"
+                                    isOpen={modalGuardarCambios}
+                                   
+                                    >
+                                    <div className="container-modal">
+                                        <div className="modal-error-title">
+                                            <p className="p-modal-error-title">Guardá tus cambios</p>
+                                        </div>
+                                        <div className="modal-error-subtitle">
+                                            <p className="p-modal-error-subtitle">Si te vas sin guardar, tus cambios no van a quedar registrados</p>
+                                                <div className="button-pending-picker-modal">
+                                                        <button 
+                                                            onClick={cerrarModalSinGuardar}
+                                                            className="button-modal-revisar">
+                                                                    No quiero guardarlos
+                                                        </button>
+                                                        <button 
+                                                            onClick={cerrarModalGuardar}
+                                                            className="button-modal-sin-guardar">
+                                                                    Ir a guardar
+                                                        </button>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </Modal>
+                        </div>
+              : null
+        }  
+        
             </div>
             
             
