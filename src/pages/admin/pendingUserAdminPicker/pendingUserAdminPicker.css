@@ -133,6 +133,7 @@
     color: #101820;
     width: 217px;
     height: 50px;
+    background-color: white;
 }
 
 .aprobar-admin-picker{
@@ -190,8 +191,74 @@
 }
 .mainContainerFlex{
     display: flex;
-    
 }
+
+.contendor-modal-pending-pickers-aprobar{
+    background: rgba(0, 0, 0, 0.25);
+    mix-blend-mode: multiply;
+    width: 98.7vw;
+    height: 200vh;
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+.button-modal-revisar{
+    background: white;
+    border-radius: 50px;
+    width: 219px;
+    height: 50px;
+    margin-left: 0px;
+    text-decoration: none;
+    border-color: #00B2E3;
+    border-width: 0px;
+    margin-top: 26px;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 23px;
+    text-align: center;
+    color: #101820;
+    border: 2.5px solid #0098FF;
+    box-sizing: border-box;
+    border-radius: 50px;
+
+  }
+  .button-modal-aprobar{
+    background: #0098FF;
+    border-radius: 50px;
+    width: 219px;
+    height: 50px;
+    margin-left: 0px;
+    text-decoration: none;
+    border-color: #FFFFFF;
+    border-width: 0px;
+    margin-top: 26px;
+    color: #FFFFFF;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    text-align: center;
+  }
+.modal-error-title{
+    background: #00B2E3;
+    border-radius: 25px 25px 0px 0px;
+    height: 137px;
+  }
+  .modal-error-subtitle{
+    background: #FFFFFF;
+    height: 214px;
+    border-radius: 0px 0px 25px 25px;
+   }
+.button-pending-picker-modal{
+   display: flex;
+   justify-content: space-evenly;
+}
+._1kzUAYPdJF41Om61WDkaoa{
+    height: 500px !important;
+}
+
 @media (min-width: 1700px) { 
 
     .Admin-Pickers-button{

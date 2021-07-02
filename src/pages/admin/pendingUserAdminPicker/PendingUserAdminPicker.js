@@ -20,6 +20,7 @@ import { Modal } from 'pickit-components'
 
 
 export const PendingUserAdminPicker = () => {
+    const [modalOpenAprobar, setmodalOpenAprobar] = useState(false);
 
     const [disabledButtonAprobarPicker, setdisabledButtonAprobarPicker] = useState(true)
     const [Informacion, setInformacion] = useState({
@@ -61,7 +62,7 @@ export const PendingUserAdminPicker = () => {
     surname:"",
     vehicleTypeId: ""})
 
-            const Export = async () => {                
+const Export = async () => {                
                 const mailCodificado = codificarEmailURIFunction(dataPicker.email);
 
                 const datosExport =await api.get(`/ms-admin-rest/api/v1.0/pickers.csv?&email=${mailCodificado}`)
@@ -69,16 +70,12 @@ export const PendingUserAdminPicker = () => {
                 .catch((err) => {console.log(err)})
            
                 createCSV(datosExport);           
-            }
-    
+} 
             
-            const habilitarBoton   =   useCallback(
+const habilitarBoton   =   useCallback(
                   (dataPicker) => {
 
-
-                    
-                    
-                    if(dataPicker.vehicleTypeId!==" " && dataPicker.expirationDatePolicyPersonal !== null){
+                  if(dataPicker.vehicleTypeId!==" " && dataPicker.expirationDatePolicyPersonal !== null){
                         if(dataPicker.vehicleTypeId===2 && dataPicker.expirationDatePolicyPersonal.length>0){
                             setdisabledButtonAprobarPicker(false)
                          }
@@ -90,9 +87,9 @@ export const PendingUserAdminPicker = () => {
                     },
                   
                 [],
-            )
+)
 
-            useEffect( () => {
+useEffect( () => {
                // const mailCodificado = codificarEmailURIFunction(dataPicker.email);
             const cargarDatos = async () =>{setDataPicker(
                 await api.get(`/ms-admin-rest/api/v1.0/pickers/${id}`)
@@ -102,22 +99,52 @@ export const PendingUserAdminPicker = () => {
                cargarDatos()
                
               
-            }, [id])
+}, [id])
 
           
-          useEffect(() => {
-            habilitarBoton(dataPicker);
-          }, [habilitarBoton,dataPicker])
+useEffect(() => {
+     habilitarBoton(dataPicker);
+}, [habilitarBoton,dataPicker])
             
-          useEffect(() => {
+useEffect(() => {
               
-            setInformacion(dataPicker);
-          }, [dataPicker])
+ setInformacion(dataPicker);
+ }, [dataPicker])
                 
+const cerrarAprobarPicker = async (e) => {
+    
+    e.preventDefault();
+    
+    await api.post(`/ms-admin-rest/api/v1.0/pickers/${dataPicker.id}`,{    
+        "enable": true,
+        "vehicleTypeId": dataPicker.vehicleTypeId,
+        "name":Informacion.name ,
+         "surname":Informacion.surname ,
+         "dateOfBirth":Informacion.dateOfBirth ,
+         "phoneNumber":Informacion.phoneNumber ,
+         "identificationNumber":Informacion.identificationNumber ,
+         "fiscalNumber":Informacion.fiscalNumber,
+         "bankName":Informacion.bankName,
+         "bankIdentifier":Informacion.bankIdentifier,
+         "expirationDateDriverLicense":Informacion.expirationDateDriverLicense,
+         "expirationDateIdentificationCar":Informacion.expirationDateIdentificationCar,
+         "expirationDatePolicyVehicle":Informacion.expirationDatePolicyVehicle,
+         "expirationDatePolicyPersonal":Informacion.expirationDatePolicyPersonal        
+    })
+        .then(rs=>{})
+        .catch(e=>{})
 
+        window.location.href="/pendingUserAdmin";
+
+}
+
+const cerrarAprobarPickerCorrigiendo  =  (e) => {
+    e.preventDefault();
+    setmodalOpenAprobar(false);
+} 
           
 
-    const corregirDocumentos= async (e) =>{
+const corregirDocumentos= async (e) =>{
         e.preventDefault();
         
     
@@ -141,30 +168,13 @@ export const PendingUserAdminPicker = () => {
         .catch(e=>{})
 
         window.location.reload();
-    }
-    const aprobarPicker= async (e) =>{
-        e.preventDefault();
-        await api.post(`/ms-admin-rest/api/v1.0/pickers/${dataPicker.id}`,{    
-        "enable": true,
-        "vehicleTypeId": dataPicker.vehicleTypeId,
-        "name":Informacion.name ,
-         "surname":Informacion.surname ,
-         "dateOfBirth":Informacion.dateOfBirth ,
-         "phoneNumber":Informacion.phoneNumber ,
-         "identificationNumber":Informacion.identificationNumber ,
-         "fiscalNumber":Informacion.fiscalNumber,
-         "bankName":Informacion.bankName,
-         "bankIdentifier":Informacion.bankIdentifier,
-         "expirationDateDriverLicense":Informacion.expirationDateDriverLicense,
-         "expirationDateIdentificationCar":Informacion.expirationDateIdentificationCar,
-         "expirationDatePolicyVehicle":Informacion.expirationDatePolicyVehicle,
-         "expirationDatePolicyPersonal":Informacion.expirationDatePolicyPersonal        
-    })
-        .then(rs=>{})
-        .catch(e=>{})
+}
+const aprobarPicker= async (e) =>{
+    e.preventDefault();
+    setmodalOpenAprobar(true);           
+}
 
-        window.location.href="/pendingUserAdmin";
-    }
+
     return (
         <div className="background-Grey">
             <Header/>
@@ -272,7 +282,41 @@ export const PendingUserAdminPicker = () => {
                     </div>
                     
                 </form>  
-                     
+
+                
+    {   modalOpenAprobar === true ? 
+                    <div className="contendor-modal-pending-pickers-aprobar">
+                            <Modal
+
+                                    width="750px"
+                                    height="351px"
+                                    isOpen={modalOpenAprobar}
+                                   
+                                    >
+                                    <div className="container-modal">
+                                        <div className="modal-error-title">
+                                            <p className="p-modal-error-title">Aprobar picker</p>
+                                        </div>
+                                        <div className="modal-error-subtitle">
+                                            <p className="p-modal-error-subtitle">Al aprobar la solicitud, va a pasar a la pestaña de pickers</p>
+                                                <div className="button-pending-picker-modal">
+                                                        <button 
+                                                            onClick={cerrarAprobarPickerCorrigiendo}
+                                                            className="button-modal-revisar">
+                                                                    Revisar datos
+                                                        </button>
+                                                        <button 
+                                                            onClick={cerrarAprobarPicker}
+                                                            className="button-modal-aprobar">
+                                                                    Aprobar
+                                                        </button>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </Modal>
+                        </div>
+              : null
+        }                     
                     
                 </div>
                 
