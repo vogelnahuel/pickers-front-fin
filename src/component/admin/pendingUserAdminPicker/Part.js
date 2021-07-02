@@ -3,6 +3,7 @@ import { LoadAdminPicker } from "../LoadAdminPicker/LoadAdminPicker";
 import { Labels } from "../../Labels/Labels";
 import "./part.css";
 import { SaveAdminPicker } from "../SaveAdminPicker/SaveAdminPicker";
+import moment from "moment";
 
 /**** muestro los campos con sus labels y tambien los componentes pasados */
 export const Part = (props) => {
@@ -10,10 +11,19 @@ export const Part = (props) => {
   const componentes = props.ComponentesPart;
   const dataPicker = props.data;
 
+
+ 
+
+  let ErrorMenorEdad = false;
   let Informacion = props.Informacion;
+  let erroresExistentes=props.erroresExistentes;
+  //const seterroresExistentes =props.seterroresExistentes
+ 
   const setInformacion = props.setInformacion;
   const setdisabledButtonAprobarPicker = props.setdisabledButtonAprobarPicker;
   const activeUser = props.active;
+
+
 const [chage, setchage] = useState(false)
   /*
     const handleSubmit = () =>{
@@ -28,11 +38,7 @@ const [chage, setchage] = useState(false)
                         }
                  ); */
                 
-    if(activeUser)
-    {
-        console.log("onchageActivePiker")
-        setchage(true)
-    }
+    
     if (e.target.name === "nombre") {
       setInformacion({
         ...Informacion,
@@ -96,8 +102,138 @@ const [chage, setchage] = useState(false)
         expirationDatePolicyPersonal: e.target.value,
       });
     }
+
+    validaciones(e);
+
   };
 
+  const validaciones =( e) => {
+    const ex_regular_dni = /^\d{6,8}(?:[-\s]\d{4})?$/;
+    const ex_regular_nomyape =/^[a-z ,.'-]+$/i ;
+    const ex_regular_fecha = /\d{4}-\d{2}-\d{2}/;
+    const ex_regular_telefono = /^[0-9,-]+$/;
+    
+    if(ErrorMenorEdad!==true){
+      e.target.classList.remove('inputError-part'); 
+      e.target.parentNode.previousSibling.firstChild.classList.remove('labelError-part');
+    }
+    
+    if(e.target.nextSibling!==null && ErrorMenorEdad!==true){
+      while(e.target.nextSibling)
+      e.target.parentNode.removeChild(e.target.nextSibling);
+    }
+
+    
+
+    if ((e.target.name==="fechaNac"|| e.target.name==="vencimientoLicencia"|| e.target.name==="fechaVecCel" || e.target.name==="fechaVecSeguroAuto" || e.target.name==="fechaVecSeguroAccidente")   && ex_regular_fecha.test (e.target.value) === true){
+      
+      if(e.target.name==="fechaNac"){
+        const regDate = moment();
+        const actualDate = moment(e.target.value, "YYYY-MM-DD");
+        
+        
+        if(regDate.diff(actualDate, "years")<18){
+
+          e.target.classList.add('inputError-part');
+          e.target.parentNode.previousSibling.firstChild.classList.add('labelError-part');
+
+          ErrorMenorEdad=true;
+          const div = document.createElement('div');
+          div.innerHTML = `
+            <p class="labelError-part"> ${"Tenés que ser mayor de 18 años para ser picker."} </p>
+          `
+          e.target.parentNode.appendChild(div);
+        }
+        else{
+          ErrorMenorEdad=false;
+        }
+  
+      }
+    }
+ 
+
+    if(e.target.value.length===0 &&  erroresExistentes !==true ){
+    
+      e.target.classList.add('inputError-part');
+      e.target.parentNode.previousSibling.firstChild.classList.add('labelError-part');
+      const div = document.createElement('div');
+      div.innerHTML = `
+        <p class="labelError-part"> ${"Este campo es requerido"} </p>
+      `
+      e.target.parentNode.appendChild(div);
+
+     
+
+    }else if (e.target.name==="dni" &&  ex_regular_dni.test (e.target.value) !== true )
+    {
+      
+
+      e.target.classList.add('inputError-part');
+      e.target.parentNode.previousSibling.firstChild.classList.add('labelError-part');
+      const div = document.createElement('div');
+      div.innerHTML = `
+        <p class="labelError-part"> ${"El dni tiene que tener entre 6 y 8  numeros sin letras"} </p>
+      `
+      e.target.parentNode.appendChild(div);
+
+    
+    }
+    else if ( (e.target.name==="nombre" || e.target.name==="apellido")  && ex_regular_nomyape.test (e.target.value) !== true  )
+    {
+      e.target.classList.add('inputError-part');
+      e.target.parentNode.previousSibling.firstChild.classList.add('labelError-part');
+
+     
+      
+       const div = document.createElement('div');
+      div.innerHTML = `
+        <p class="labelError-part"> ${`No se admiten numeros en ${e.target.name}`} </p>
+      `
+      e.target.parentNode.appendChild(div);
+     
+    }
+    else if( (e.target.name==="fechaNac"|| e.target.name==="vencimientoLicencia"|| e.target.name==="fechaVecCel" || e.target.name==="fechaVecSeguroAuto" || e.target.name==="fechaVecSeguroAccidente")   && ex_regular_fecha.test (e.target.value) !== true  && ErrorMenorEdad!==true )
+    {
+
+      
+     
+      e.target.classList.add('inputError-part');
+      e.target.parentNode.previousSibling.firstChild.classList.add('labelError-part');
+
+      
+  
+      const div = document.createElement('div');
+      
+      div.innerHTML = `
+        <p class="labelError-part"> ${"El formato es fecha es invalido"} </p>
+      `
+      e.target.parentNode.appendChild(div);
+
+      
+      
+    }
+  
+    else if(e.target.name==="telefono"   && ex_regular_telefono.test (e.target.value) !== true  )
+    {
+      
+      e.target.classList.add('inputError-part');
+      e.target.parentNode.previousSibling.firstChild.classList.add('labelError-part');
+
+      const div = document.createElement('div');
+      div.innerHTML = `
+        <p class="labelError-part"> ${"El formato es inválido. Ingresá tu teléfono"} </p>
+      `
+      e.target.parentNode.appendChild(div);
+
+      
+    }
+
+   
+    
+    
+
+
+  }
 
 
 
@@ -109,35 +245,34 @@ const [chage, setchage] = useState(false)
         if(Informacion.vehicleTypeId === 1){
             setdisabledButtonAprobarPicker(false);
         }
-        // if (
-        //   Informacion.vehicleTypeId === 1 &&
-        //   Informacion.expirationDateDriverLicense !== null
-        // ) {
-        //   if (
-        //     Informacion.expirationDateDriverLicense.length < 10 ||
-        //     Informacion.expirationDateIdentificationCar.length < 10 ||
-        //     Informacion.expirationDatePolicyVehicle.length < 10 ||
-        //     Informacion.expirationDatePolicyPersonal.length < 10
-        //   ) {
-        //     console.log("1");
-        //     setdisabledButtonAprobarPicker(true);
-        //   }
-        // }
-        // if (
-        //   Informacion.vehicleTypeId === 1 &&
-        //   Informacion.expirationDateDriverLicense !== null
-        // ) {
-        //   if (
-        //     Informacion.expirationDateDriverLicense.length >= 10 &&
-        //     Informacion.expirationDateIdentificationCar.length >= 10 &&
-        //     Informacion.expirationDatePolicyVehicle.length >= 10 &&
-        //     Informacion.expirationDatePolicyPersonal.length >= 10
-        //   ) {
-        //     console.log("2");
-        //     setdisabledButtonAprobarPicker(false);
-        //   }
-        // }
-
+        if (
+          Informacion.vehicleTypeId === 1 &&
+          Informacion.expirationDateDriverLicense !== null
+        ) {
+          if (
+            Informacion.expirationDateDriverLicense.length < 10 ||
+            Informacion.expirationDateIdentificationCar.length < 10 ||
+            Informacion.expirationDatePolicyVehicle.length < 10 ||
+            Informacion.expirationDatePolicyPersonal.length < 10
+          ) {
+            console.log("1");
+            setdisabledButtonAprobarPicker(true);
+          }
+        }
+        if (
+          Informacion.vehicleTypeId === 1 &&
+          Informacion.expirationDateDriverLicense !== null
+        ) {
+          if (
+            Informacion.expirationDateDriverLicense.length >= 10 &&
+            Informacion.expirationDateIdentificationCar.length >= 10 &&
+            Informacion.expirationDatePolicyVehicle.length >= 10 &&
+            Informacion.expirationDatePolicyPersonal.length >= 10
+          ) {
+            console.log("2");
+            setdisabledButtonAprobarPicker(false);
+          }
+        
 
 
 
@@ -206,12 +341,14 @@ const [chage, setchage] = useState(false)
           setdisabledButtonAprobarPicker(false);
         }
       }
+    }
     },
-    [setdisabledButtonAprobarPicker]
-  );
+    [setdisabledButtonAprobarPicker,chage,activeUser]
+  )
 
   useEffect(() => {
     verificarInformacion(Informacion);
+
   }, [verificarInformacion, Informacion]);
 
   return (

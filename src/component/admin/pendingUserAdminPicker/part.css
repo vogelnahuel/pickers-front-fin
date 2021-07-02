@@ -12,3 +12,16 @@
     margin-left: 20px;
     width: 77vw;
 }
+.inputError-part{
+    width: 23vw ;
+    border: rgba(153, 24, 20, 0);
+    color: #FF1515;
+    border-bottom: 1px solid #e00404;
+    margin-bottom: 5px;
+}
+.inputError-part::placeholder{
+    color: #FF1515;
+}
+.labelError-part{
+    color: #FF1515;
+}

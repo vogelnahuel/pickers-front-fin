@@ -209,6 +209,10 @@
     display: flex;
     
 }
+.readonly{
+    background-color: #eeeeee;
+
+}
 @media (min-width: 1700px) { 
 
     .Admin-Pickers-button{
