@@ -77,6 +77,8 @@
     border-bottom-right-radius: 10px;
     height: 43px;
     margin-bottom: 20px;
+    font-family: 'Mulish';
+    font-weight: 700;
 }
 
 @media (min-width: 1600px) { 

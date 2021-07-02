@@ -80,7 +80,8 @@
     background-color: white;
     text-align: center;
     margin-top: 10px;
-    margin-left: 3rem;
+    /* position: relative; */
+    margin-left: 9rem;
 }
 .filter-space{
     margin-left: 20px;
@@ -112,7 +113,7 @@
     width: 90%;
 }
 .container-button-width{
-    width: 22vw;
+    /* width: 22vw; */
 }
 
 

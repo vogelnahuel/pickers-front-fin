@@ -144,7 +144,7 @@ return (
                               ? "Bici"
                               : null}
                           </td>
-                          <td className="table-registro"> {rows.registerDate?getDifDate(rows.registerDate):null} días {rows.pickerStatusId===3 ?<div className="admin-table-correction">En correcion</div> : null } </td>
+                          <td className="table-registro"> {rows.registerDate?getDifDate(rows.registerDate):null} {getDifDate(rows.registerDate)===1?"día":"días"} {rows.pickerStatusId===3 ?<div className="admin-table-correction">En correcion</div> : null } </td>
                           <td className="table-editar">
                             <Link  to ={`/pendingUserAdminpicker/${rows.id}`} > <img src={edit} alt="edit" /></Link>
                             

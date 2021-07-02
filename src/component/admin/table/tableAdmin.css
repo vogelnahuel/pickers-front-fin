@@ -30,21 +30,26 @@
     /* padding-left: 50px; */
     padding-left: 30px;
     width: 13vw;
+    font-family: 'Mulish';
 }
 .title-table-dni{
     width: 12vw;
+    font-family: 'Mulish';
 }
 .title-table-email{
     padding-left: 0px;
     width: 30vw;
+    font-family: 'Mulish';
 }
 .title-table-vehiculo{
     padding-left: 70px;
     width: 15vw;
+    font-family: 'Mulish';
 }
 .title-table-pendding{
     padding-left: 5px;
     width: 18vw;
+    font-family: 'Mulish';
   
 }
 .title-table-editar{
