@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import {Header} from '../../../component/admin/Header/Header'
 import {Nav} from '../../../component/admin/Nav/Nav'
 import '../PendingUser/PendingUserAdmin.css'
@@ -19,7 +19,13 @@ import bici from '../../../assets/admin/PendingUserAdminPicker/bici.svg'
 
 export const ActiveUserAdminPicker = () => {
     const [disabledButtonAprobarPicker, setdisabledButtonAprobarPicker] = useState(true)
+    const sinWarning = () => {
+        setdisabledButtonAprobarPicker(false);
+        console.log(disabledButtonAprobarPicker);
+    }
+    sinWarning();
     
+    const [disableButtons, setdisableButtons] = useState(true)
  
 
     const [Informacion, setInformacion] = useState({
@@ -38,7 +44,22 @@ export const ActiveUserAdminPicker = () => {
         fechaVecSeguroAccidente:"",
     })
 
+    const habilitarBoton   =   useCallback(
+        (dataPicker) => {
 
+        //   if(dataPicker.vehicleTypeId!==" " && dataPicker.expirationDatePolicyPersonal !== null){
+        //       if(dataPicker.vehicleTypeId===2 && dataPicker.expirationDatePolicyPersonal.length>0){
+        //         setdisableButtons(false)
+        //        }
+        //        else if(dataPicker.expirationDatePolicyPersonal.length>0 && dataPicker.expirationDatePolicyVehicle.length>0 &&dataPicker.expirationDateDriverLicense.length > 0  && dataPicker.expirationDateIdentificationCar.length > 0 )
+        //        {
+        //         setdisableButtons(false)
+        //        }
+        //    }
+          },
+        
+      [],
+  )
     const id = useParams().id;  
     const [imgEnabled, setimgEnabled] = useState(true);
     const [dataPicker, setDataPicker] = useState({
@@ -79,10 +100,14 @@ export const ActiveUserAdminPicker = () => {
       },[id])
 
       useEffect(() => {
+        habilitarBoton(dataPicker);
+      }, [habilitarBoton,dataPicker])
+
+      useEffect(() => {
               
         setInformacion(dataPicker);
       }, [dataPicker])
-      
+       
 
     const [inputsPart1,ComponentesPart1,inputsPart2,ComponentesPart2,inputsPart3,ComponentesPart3,inputsPart4,ComponentesPart4]=data();
    
@@ -103,11 +128,6 @@ export const ActiveUserAdminPicker = () => {
             dataPicker,
             dataPicker.enable=!dataPicker.enable
         )
-
-        if(1===0){
-            //para que no tire warning nada
-            console.log(disabledButtonAprobarPicker)
-        }
      }
    
     const modificarPicker= async (e) =>{
@@ -194,7 +214,8 @@ export const ActiveUserAdminPicker = () => {
                         clave={1}
                         Informacion={Informacion}
                         setInformacion={setInformacion}
-                        setdisabledButtonAprobarPicker={setdisabledButtonAprobarPicker}
+                        setdisabledButtonAprobarPicker={setdisableButtons}
+                        active={true}
                         />
                 </div>
                 
@@ -209,7 +230,8 @@ export const ActiveUserAdminPicker = () => {
                         clave={2}
                         Informacion={Informacion}
                         setInformacion={setInformacion}
-                        setdisabledButtonAprobarPicker={setdisabledButtonAprobarPicker}
+                        setdisabledButtonAprobarPicker={setdisableButtons}
+                        active={true}
                         />                          
                 </div>
 
@@ -224,7 +246,8 @@ export const ActiveUserAdminPicker = () => {
                         clave={3}
                         Informacion={Informacion}
                         setInformacion={setInformacion}
-                        setdisabledButtonAprobarPicker={setdisabledButtonAprobarPicker}
+                        setdisabledButtonAprobarPicker={setdisableButtons}
+                        active={true}
                         />  
 
                         <Part
@@ -235,13 +258,17 @@ export const ActiveUserAdminPicker = () => {
                         clave={4}
                         Informacion={Informacion}
                         setInformacion={setInformacion}
-                        setdisabledButtonAprobarPicker={setdisabledButtonAprobarPicker}
+                        setdisabledButtonAprobarPicker={setdisableButtons}
+                        active={true}
                         /> 
                  </div>
                     
                     <div className="pending-admin-picker-button">
-                        <button className="corregir-admin-picker-active">Cancelar</button>
-                        <button onClick={modificarPicker} className="aprobar-admin-picker">Guardar</button>
+                        {!disableButtons?<>
+                            <button className="corregir-admin-picker-active">Cancelar</button>
+                        <button onClick={modificarPicker} className="aprobar-admin-picker-active">Guardar</button></>:<>
+                            <button disabled={true} className="corregir-admin-picker-disable">Cancelar</button>
+                        <button disabled={true} className="aprobar-admin-picker-disable">Guardar</button></>}
                     </div>
                     
                 </form>  

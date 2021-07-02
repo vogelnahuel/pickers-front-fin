@@ -52,7 +52,7 @@ export const data = () => {
                 labelhtmlFor:"email",
                 labelparrafo:"E-mail"
                 },
-            className:"Admin-Pickers-input",
+            className:"Admin-Pickers-input readonly",
             type:"text",
             name:"email",
             id:"email",
@@ -112,7 +112,7 @@ export const data = () => {
                 labelhtmlFor:"cuit",
                 labelparrafo:"Número de CUIT/CUIL *"
                 },
-            className:"Admin-Pickers-input",
+            className:"Admin-Pickers-input readonly",
             type:"text",
             name:"cuit",
             id:"cuit",
@@ -128,7 +128,7 @@ export const data = () => {
                 labelhtmlFor:"cbu",
                 labelparrafo:"Número de CBU *"
                 },
-            className:"Admin-Pickers-input",
+            className:"Admin-Pickers-input readonly",
             type:"text",
             name:"cbu",
             id:"cbu",

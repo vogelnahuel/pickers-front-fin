@@ -22,6 +22,10 @@ import { Modal } from 'pickit-components'
 export const PendingUserAdminPicker = () => {
     const [modalOpenAprobar, setmodalOpenAprobar] = useState(false);
 
+  
+
+   
+
     const [disabledButtonAprobarPicker, setdisabledButtonAprobarPicker] = useState(true)
     const [Informacion, setInformacion] = useState({
         nombre:"",
@@ -217,6 +221,8 @@ const aprobarPicker= async (e) =>{
              
                         Informacion={Informacion}
                         setInformacion={setInformacion}
+                       
+                         
 
                         />
                 </div>
@@ -236,6 +242,8 @@ const aprobarPicker= async (e) =>{
                         
                         Informacion={Informacion}
                         setInformacion={setInformacion}
+                       
+                       
                         />                          
                 </div>
 
@@ -252,6 +260,8 @@ const aprobarPicker= async (e) =>{
                         clave={3}
                         Informacion={Informacion}
                         setInformacion={setInformacion}
+                        
+                      
                         />  
 
                         <Part
@@ -264,6 +274,8 @@ const aprobarPicker= async (e) =>{
                         clave={4}
                         Informacion={Informacion}
                         setInformacion={setInformacion}
+                      
+                       
                         /> 
                  </div>
                      
