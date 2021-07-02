@@ -45,7 +45,7 @@ export const PendingUserAdmin = () => {
              getData(filter) 
         }
     
-        const tamPag=2;
+        const tamPag=15;
     const [offset, setoffset] = useState(tamPag)
     const getData = async (filter) =>{
         filter.mail= codificarEmailURIFunction(filter.mail);      
