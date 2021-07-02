@@ -140,7 +140,7 @@ export const Part = (props) => {
         
         
         if(regDate.diff(actualDate, "years")<18){
-        
+          setdisabledButtonAprobarPicker(false);
           e.target.classList.add('inputError-part');
           e.target.parentNode.previousSibling.firstChild.classList.add('labelError-part');
 
