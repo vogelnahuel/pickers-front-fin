@@ -19,6 +19,12 @@ import bici from '../../../assets/admin/PendingUserAdminPicker/bici.svg'
 
 export const ActiveUserAdminPicker = () => {
     const [disabledButtonAprobarPicker, setdisabledButtonAprobarPicker] = useState(true)
+    const sinWarning = () => {
+        setdisabledButtonAprobarPicker(false);
+        console.log(disabledButtonAprobarPicker);
+    }
+    sinWarning();
+    
     const [disableButtons, setdisableButtons] = useState(true)
  
 

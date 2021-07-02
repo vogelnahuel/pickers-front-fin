@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect } from "react";
 import { LoadAdminPicker } from "../LoadAdminPicker/LoadAdminPicker";
 import { Labels } from "../../Labels/Labels";
 import "./part.css";
@@ -17,14 +17,12 @@ export const Part = (props) => {
   let ErrorMenorEdad = false;
   let Informacion = props.Informacion;
   let erroresExistentes=props.erroresExistentes;
-  //const seterroresExistentes =props.seterroresExistentes
  
   const setInformacion = props.setInformacion;
   const setdisabledButtonAprobarPicker = props.setdisabledButtonAprobarPicker;
   const activeUser = props.active;
 
 
-const [chage, setchage] = useState(false)
   /*
     const handleSubmit = () =>{
         console.log("submit")
@@ -112,7 +110,7 @@ const [chage, setchage] = useState(false)
     const ex_regular_nomyape =/^[a-z ,.'-]+$/i ;
     const ex_regular_fecha = /\d{4}-\d{2}-\d{2}/;
     const ex_regular_telefono = /^[0-9,-]+$/;
-    
+
     if(ErrorMenorEdad!==true){
       e.target.classList.remove('inputError-part'); 
       e.target.parentNode.previousSibling.firstChild.classList.remove('labelError-part');
@@ -124,6 +122,7 @@ const [chage, setchage] = useState(false)
     }
 
     
+
 
     if ((e.target.name==="fechaNac"|| e.target.name==="vencimientoLicencia"|| e.target.name==="fechaVecCel" || e.target.name==="fechaVecSeguroAuto" || e.target.name==="fechaVecSeguroAccidente")   && ex_regular_fecha.test (e.target.value) === true){
       
@@ -240,7 +239,7 @@ const [chage, setchage] = useState(false)
 
   const verificarInformacion = useCallback(
     (Informacion) => {
-      if (activeUser && chage) {
+      if (activeUser) {
         console.log("change");
         if(Informacion.vehicleTypeId === 1){
             setdisabledButtonAprobarPicker(false);
@@ -343,7 +342,7 @@ const [chage, setchage] = useState(false)
       }
     }
     },
-    [setdisabledButtonAprobarPicker,chage,activeUser]
+    [setdisabledButtonAprobarPicker,activeUser]
   )
 
   useEffect(() => {

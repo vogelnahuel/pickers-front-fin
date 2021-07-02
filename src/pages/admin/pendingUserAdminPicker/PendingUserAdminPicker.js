@@ -21,32 +21,7 @@ import { Modal } from 'pickit-components'
 
 export const PendingUserAdminPicker = () => {
 
-    /*const [erroresExistentes, seterroresExistentes] = useState(
-        {
-            nombre:false,
-            apellido:false,
-            dni:false,
-            fechaNac:false,
-            telefono:false,
-            nombreBanco:false,
-            fechaLicencia:false,
-            fechaCelula:false,
-            fechaAutomotor:false,
-            fechaAccidentesPersonales:false
-         }
-    )*/
-    let erroresExistentes={
-        nombre:false,
-        apellido:false,
-        dni:false,
-        fechaNac:false,
-        telefono:false,
-        nombreBanco:false,
-        fechaLicencia:false,
-        fechaCelula:false,
-        fechaAutomotor:false,
-        fechaAccidentesPersonales:false
-     }
+  
 
    
 
@@ -236,7 +211,7 @@ export const PendingUserAdminPicker = () => {
              
                         Informacion={Informacion}
                         setInformacion={setInformacion}
-                        erroresExistentes={erroresExistentes}
+                       
                          
 
                         />
@@ -257,7 +232,7 @@ export const PendingUserAdminPicker = () => {
                         
                         Informacion={Informacion}
                         setInformacion={setInformacion}
-                        erroresExistentes={erroresExistentes}
+                       
                        
                         />                          
                 </div>
@@ -275,7 +250,7 @@ export const PendingUserAdminPicker = () => {
                         clave={3}
                         Informacion={Informacion}
                         setInformacion={setInformacion}
-                        erroresExistentes={erroresExistentes}
+                        
                       
                         />  
 
@@ -289,7 +264,7 @@ export const PendingUserAdminPicker = () => {
                         clave={4}
                         Informacion={Informacion}
                         setInformacion={setInformacion}
-                        erroresExistentes={erroresExistentes}
+                      
                        
                         /> 
                  </div>
