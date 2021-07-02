@@ -299,7 +299,7 @@ export const ActiveUserAdminPicker = () => {
                  </div>
                     
                     <div className="pending-admin-picker-button">
-                        {disableButtons?<>
+                        {disableButtons ?<>
                             <button onClick={handleCancel} className="corregir-admin-picker-active">Cancelar</button>
                         <button onClick={modificarPicker} className="aprobar-admin-picker-active">Guardar</button></>:<>
                             <button disabled={true} className="corregir-admin-picker-disable">Cancelar</button>
