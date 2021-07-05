@@ -18,13 +18,21 @@ export const Fields = (props) => {
         if(e.target.textContent==="Bicicleta"){
             contenidoSelect.textContent= "Bicicleta";
             hiddenInput.value="bici";
+            contenidoSelect.style.color="#101010"
         }
         if(e.target.textContent==="Moto"){
             contenidoSelect.textContent= "Moto";
             hiddenInput.value="moto";
+            contenidoSelect.style.color="#101010"
+        }
+        if(e.target.textContent==="Todos"){
+            contenidoSelect.textContent= "Todos";
+            hiddenInput.value="";
+            contenidoSelect.style.color="#101010"
         }
    
-        contenidoSelect.style.color="#101010"
+   
+        
         opciones.style.display="none";
     }
    
@@ -134,7 +142,7 @@ export const Fields = (props) => {
                                                             </div>
                                                     </div>
 
-                                                    <input type="hidden" name={variable.name} id={variable.id} value=""></input>
+                                                    <input type="hidden" name={variable.name} id={variable.id} ></input>
                                     </>
                                 : null
 

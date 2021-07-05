@@ -52,6 +52,17 @@
     border-radius: 50px;
     cursor: pointer;
 }
+.option2{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 23px;
+    color: #828282;
+    border-radius: 10px;
+    border-radius: 50px;
+    cursor: pointer;
+}
 
 .optionHover{
     background-color: #95E1BF;

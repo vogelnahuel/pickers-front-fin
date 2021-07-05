@@ -13,6 +13,7 @@
               var actualDate = moment(date, "YYYY-MM-DD hh:mm:ss");
              return regDate.diff(actualDate, "days");
             };
+            
         
           
 return (
@@ -133,7 +134,7 @@ return (
                   {window.location.pathname === "/pendingUserAdmin"
                     ? data &&Array.isArray(data)?data.map((rows) => (
                         <tr className="info" key={rows.id}>
-                          <td className="table-name"> {rows.name} </td>
+                          <td className="table-name"> {rows.name} {rows.surname} </td>
                           <td className="table-dni"> {rows.identificationNumber} </td>
                           <td className="table-email"> {rows.email}</td>
                           <td className="table-vehiculo">
@@ -144,7 +145,7 @@ return (
                               ? "Bici"
                               : null}
                           </td>
-                          <td className="table-registro"> {rows.registerDate?getDifDate(rows.registerDate):null} {getDifDate(rows.registerDate)===1?"día":"días"} {rows.pickerStatusId===3 ?<div className="admin-table-correction">En correcion</div> : null } </td>
+                          <td className="table-registro"> {rows.registerDate?getDifDate(rows.registerDate):null} {getDifDate(rows.registerDate)===1?"día":"días"} {rows.pickerStatusId===3 ?<div className="admin-table-correction">En corrección</div> : null } </td>
                           <td className="table-editar">
                             <Link  to ={`/pendingUserAdminpicker/${rows.id}`} > <img src={edit} alt="edit" /></Link>
                             
