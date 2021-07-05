@@ -8,6 +8,10 @@ import {PendingUserAdmin} from '../pages/admin/PendingUser/PendingUserAdmin'
 import {ActiveUserAdmin} from '../pages/admin/ActiveUser/ActiveUserAdmin'
 import { PendingUserAdminPicker } from '../pages/admin/pendingUserAdminPicker/PendingUserAdminPicker';
 import { ActiveUserAdminPicker } from '../pages/admin/ActiveUserAdminPicker/ActiveUserAdminPicker';
+import { Transaction } from '../pages/transaction/Transaction';
+import {Liquidation} from '../pages/pre-liquidation/Liquidation'
+import {Planning} from '../pages/planning/Planning'
+import {ConfigPicker} from '../pages/settingPickers/ConfigPicker'
 
 function Routes() {
   return (
@@ -21,6 +25,10 @@ function Routes() {
         <Route path='/activeUserAdmin' exact component={ActiveUserAdmin}/>
         <Route path='/pendingUserAdminpicker/:id' exact component={PendingUserAdminPicker}/>
         <Route path='/activeUserAdminpicker/:id' exact component={ActiveUserAdminPicker}/>
+        <Route path='/transaction' exact component={Transaction}/>
+        <Route path='/planning' exact component={Planning}/>
+        <Route path='/configPicker' exact component={ConfigPicker}/>
+        <Route path='/liquidation' exact component={Liquidation}/>
         
       </Switch>
     </BrowserRouter>
