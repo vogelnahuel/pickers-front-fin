@@ -12,7 +12,7 @@ export const dataPendingUser = () => {
                     type:"text",
                     name:"NyA",
                     id:"NyA",
-                    placeholder:"Ingresá el Nombre y apellido",         
+                    placeholder:"Ingresá el nombre y apellido",         
             
             },
             { 
@@ -40,6 +40,11 @@ export const dataPendingUser = () => {
                 id:"Vehículo",
                 placeholder:"Seleccioná un tipo de vehículo",
                 options:[
+                  {
+                        classNameSelect:"option option2",
+                        value:"",
+                        text:"Todos"
+                    },
                     {
                         classNameSelect:"option",
                         value:"bicicleta",
@@ -69,7 +74,7 @@ export const dataPendingUser = () => {
                         type:"text",
                         name:"Email",
                         id:"Email",
-                        placeholder:"Ingresá el Email",                
+                        placeholder:"Ingresá el email",                
             },
        ];
 

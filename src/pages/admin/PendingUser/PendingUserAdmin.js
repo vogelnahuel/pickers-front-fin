@@ -11,6 +11,7 @@ import {dataPendingUser}  from './dataPendingUser'
 import api from '../../../config/api'
 import codificarEmailURIFunction from '../../../tools/encodeMail.js'
 import createCSV from '../../../tools/createCSV.js'
+import {Modal} from 'pickit-components'
 
 
 export const PendingUserAdmin = () => {
@@ -18,6 +19,13 @@ export const PendingUserAdmin = () => {
     const titulosAdminPending = ['Nombre','DNI','Email','vehiculo','Pendiente hace','Editar'];
        /****llama a los campos y los envia */
     const [FieldsPart] = dataPendingUser();
+    const [ExportModal, setExportModal] = useState(false)
+    const [DatosFiltros, setDatosFiltros] = useState({
+        dni:"",
+        nombre:"",
+        mail:"",
+        vehiculo:""
+    })
     const [dataExport, setdataExport] = useState({
         dni:"",
         nombre:"",
@@ -33,34 +41,45 @@ export const PendingUserAdmin = () => {
         mail:"",
         vehiculo:"",}
 
-    const onFilter =   (e) => {
-      
+const cerrarGuardarExito = (e) => {
+    e.preventDefault();
+    setExportModal(false);
+}
+
+const onFilter =   (e) => {
+
+   
             e.preventDefault();
             filter={
                 dni:e.target.dni.value,
                 nombre:e.target.NyA.value,
                 mail:e.target.Email.value,
                 vehiculo:e.target.Vehículo.value,
-            }             
+            }       
+             
              getData(filter) 
-        }
-    
-        const tamPag=15;
-    const [offset, setoffset] = useState(tamPag)
-    const getData = async (filter) =>{
+             setDatosFiltros(filter);
+}
+  
+const tamPag=5;
+const [offset, setoffset] = useState(tamPag)
+
+const getData = async (filter) =>{
+        
         filter.mail= codificarEmailURIFunction(filter.mail);      
         setData(  await api.get(`ms-admin-rest/api/v1.0/pickers?pickerStatusId=2,3${filter.nombre?`&name=${filter.nombre}`:""}${filter.vehiculo&&filter.vehiculo!=="DEFAULT"?`&vehicleTypeId=${filter.vehiculo==="moto"?1:2}`:""}${filter.dni?`&identificationNumber=${parseInt(filter.dni)}`:""}${filter.mail?`&email=${filter.mail}`:""}`)
        .then((res)=>{return res.data.result.items})
         .catch((err)=>{console.log(err)}) )    
         
         setdataExport(filter);
-      }
+}
      
-    useEffect(  ()=>{
+useEffect(  ()=>{
         if(!window.localStorage.getItem('token')){
             window.location.href = '/'
-        }
-        const cargarDatos = async () =>  {
+}
+
+const cargarDatos = async () =>  {
            
             setData ( await api.get(`ms-admin-rest/api/v1.0/pickers?pickerStatusId=2,3&limit=${tamPag}`)
             .then((res)=>{return res.data.result.items})
@@ -71,11 +90,11 @@ export const PendingUserAdmin = () => {
             setData({}); 
           };
         
-    },[])
+},[])
 
 const cargarMas =async() =>{
     setoffset(offset+tamPag)
-    const res=await api.get(`ms-admin-rest/api/v1.0/pickers?pickerStatusId=2,3&limit=${tamPag}&offset=${offset}`)
+    const res=await api.get(`ms-admin-rest/api/v1.0/pickers?pickerStatusId=2,3${DatosFiltros.nombre?`&name=${DatosFiltros.nombre}`:""}${DatosFiltros.vehiculo&&DatosFiltros.vehiculo!=="DEFAULT"?`&vehicleTypeId=${DatosFiltros.vehiculo==="moto"?1:2}`:""}${DatosFiltros.dni?`&identificationNumber=${parseInt(DatosFiltros.dni)}`:""}${DatosFiltros.mail?`&email=${DatosFiltros.mail}`:""}&limit=${tamPag}&offset=${offset}`)
             .then((res)=>{
                 return res.data.result.items
 
@@ -85,14 +104,14 @@ const cargarMas =async() =>{
             setData(data.concat(res))
 }
 
-    const Export = async () => {
-       
+const Export = async () => {
+    setExportModal(true)
         const datosExport =await api.get(`/ms-admin-rest/api/v1.0/pickers.csv?pickerStatusId=2,3${dataExport.nombre?`&name=${dataExport.nombre}`:""}${dataExport.vehiculo&&dataExport.vehiculo!=="DEFAULT"?`&vehicleTypeId=${dataExport.vehiculo==="moto"?1:2}`:""}${dataExport.dni?`&identificationNumber=${parseInt(dataExport.dni)}`:""}${dataExport.mail?`&email=${dataExport.mail}`:""}`)
         .then( (res) => {return res})
         .catch((err) => {console.log(err)})
 
         createCSV(datosExport);     
-    }
+}
 
     return (
         <div className="background-Grey">
@@ -121,13 +140,43 @@ const cargarMas =async() =>{
                     onSubmit={onFilter}
                      />
                      <br/>
-                     {console.log()}
+                  
                      <TableAdmin
                     titulosAdminPending={titulosAdminPending}
                     data={data}
                      />
                      <button onClick={cargarMas} className="paginator-button">Ver más</button>
                 </div>
+                {   ExportModal === true ? 
+                    <div className="contendor-modal-pending-pickers-aprobar">
+                            <Modal
+                            
+
+                                    width="750px"
+                                    height="351px"
+                                    isOpen={ExportModal}
+                                   
+                                    >
+                                    <div className="container-modal">
+                                        <div className="modal-success-title">
+                                            <p className="p-modal-error-title">Exportaste exitosamente</p>
+                                        </div>
+                                        <div className="modal-error-subtitle">
+                                            <p className="p-modal-error-subtitle">El archivo se descargo correctamente</p>
+                                                <div className="button-pending-picker-modal">
+                                                        
+                                                        <button 
+                                                            onClick={cerrarGuardarExito}
+                                                            className="button-modal-aprobar">
+                                                                    Entendido
+                                                        </button>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </Modal>
+                        </div>
+              : null
+        }    
                 
                 
             </div>

@@ -25,17 +25,19 @@
     line-height: 3rem;
     text-align: right;
     width: 4.100vw    ;
+    
 }
 .leftEnd{
     margin-left: 71.618vw;
 }
 .argentina{
     padding-left: 0.805vw ;
-    width: 34px;
+    width: 40px;
 }
 .user{
     padding-left: 0.805vw    ;
-    width: 34px    ;
+    width: 40px    ;
+  
 }
 .pickersLogo{
     padding-left: 0.366vw;

@@ -72,7 +72,7 @@ export const dataActiveUser = () => {
                         type:"text",
                         name:"Email",
                         id:"Email",
-                        placeholder:"Ingresá el Email",                
+                        placeholder:"Ingresá el email",                
             },
 
         //     { 
