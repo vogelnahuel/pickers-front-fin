@@ -67,15 +67,15 @@ export const ActiveUserAdminPicker = () => {
     const habilitarBoton   =   useCallback(
         (dataPicker) => {
 
-        //   if(dataPicker.vehicleTypeId!==" " && dataPicker.expirationDatePolicyPersonal !== null){
-        //       if(dataPicker.vehicleTypeId===2 && dataPicker.expirationDatePolicyPersonal.length>0){
-        //         setdisableButtons(false)
-        //        }
-        //        else if(dataPicker.expirationDatePolicyPersonal.length>0 && dataPicker.expirationDatePolicyVehicle.length>0 &&dataPicker.expirationDateDriverLicense.length > 0  && dataPicker.expirationDateIdentificationCar.length > 0 )
-        //        {
-        //         setdisableButtons(false)
-        //        }
-        //    }
+           if(dataPicker.vehicleTypeId!==" " && dataPicker.expirationDatePolicyPersonal !== null){
+               if(dataPicker.vehicleTypeId===2 && dataPicker.expirationDatePolicyPersonal.length>0){
+                 setdisableButtons(false)
+               }
+               else if(dataPicker.expirationDatePolicyPersonal.length>0 && dataPicker.expirationDatePolicyVehicle.length>0 &&dataPicker.expirationDateDriverLicense.length > 0  && dataPicker.expirationDateIdentificationCar.length > 0 )
+               {
+                 setdisableButtons(false)
+                }
+            }
           },
         
       [],
@@ -299,7 +299,7 @@ export const ActiveUserAdminPicker = () => {
                  </div>
                     
                     <div className="pending-admin-picker-button">
-                        {disableButtons ?<>
+                        {disableButtons===true ?<>
                             <button onClick={handleCancel} className="corregir-admin-picker-active">Cancelar</button>
                         <button onClick={modificarPicker} className="aprobar-admin-picker-active">Guardar</button></>:<>
                             <button disabled={true} className="corregir-admin-picker-disable">Cancelar</button>
@@ -347,7 +347,7 @@ export const ActiveUserAdminPicker = () => {
                                    
                                     >
                                     <div className="container-modal">
-                                        <div className="modal-error-title">
+                                        <div className="modal-error-title2">
                                             <p className="p-modal-error-title">Guardá tus cambios</p>
                                         </div>
                                         <div className="modal-error-subtitle">

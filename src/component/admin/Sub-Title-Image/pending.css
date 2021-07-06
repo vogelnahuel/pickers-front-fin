@@ -78,6 +78,11 @@
 .pending-blue{
     color: #0098FF;  
 }
+.buttonVolver{
+    background-color: white;
+    border: none;
+}
+
 @media (min-height: 750px) { 
     .img{
       

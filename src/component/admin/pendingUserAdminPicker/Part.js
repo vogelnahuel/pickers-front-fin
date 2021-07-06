@@ -16,7 +16,7 @@ export const Part = (props) => {
 
   let ErrorMenorEdad = false;
   let Informacion = props.Informacion;
-  let erroresExistentes=props.erroresExistentes;
+  //let erroresExistentes=props.erroresExistentes;
  
   const setInformacion = props.setInformacion;
   const setdisabledButtonAprobarPicker = props.setdisabledButtonAprobarPicker;
@@ -30,6 +30,8 @@ export const Part = (props) => {
     }*/
 
   const handleChange = (e) => {
+
+    console.log("entre")
     setdisabledButtonAprobarPicker(true);
   
     /*

@@ -20,11 +20,13 @@ import { Modal } from 'pickit-components'
 
 
 export const PendingUserAdminPicker = () => {
+
+ 
+
+    
+    
+
     const [modalOpenAprobar, setmodalOpenAprobar] = useState(false);
-
-  
-
-   
 
     const [disabledButtonAprobarPicker, setdisabledButtonAprobarPicker] = useState(true)
     const [Informacion, setInformacion] = useState({
@@ -102,7 +104,7 @@ useEffect( () => {
             
                cargarDatos()
                
-              
+                    
 }, [id])
 
           
@@ -114,7 +116,9 @@ useEffect(() => {
               
  setInformacion(dataPicker);
  }, [dataPicker])
-                
+           
+ 
+
 const cerrarAprobarPicker = async (e) => {
     
     e.preventDefault();
@@ -306,7 +310,7 @@ const aprobarPicker= async (e) =>{
                                    
                                     >
                                     <div className="container-modal">
-                                        <div className="modal-error-title">
+                                        <div className="modal-error-title2">
                                             <p className="p-modal-error-title">Aprobar picker</p>
                                         </div>
                                         <div className="modal-error-subtitle">

@@ -3,9 +3,11 @@ import volver from '../../../assets/admin/PendingUser/volver.svg'
 import relojOscuro from '../../../assets/admin/PendingUser/relojOscuro.svg'
 import trabajadorAzul from '../../../assets/admin/PendingUser/trabajadorAzul.svg'
 import './pending.css'
-import { Link, Redirect, useParams } from 'react-router-dom'
+import {Redirect, useHistory, useParams } from 'react-router-dom'
 
 export const PendingBlack = (props) => {
+    const Historial = useHistory();
+
     const setmodalGuardarCambios=props.setmodalGuardarCambios;
     const setRedirect = props.setRedirect;
 
@@ -15,14 +17,13 @@ export const PendingBlack = (props) => {
     const [activedmin, setActive] = useState("/activeUserAdmin");
     //const [activeAdminPicker, setActivePicker] = useState(`/activeUserAdminpicker/${id}`);
 
-    const  handleOnClickredirect =(e) => {
-        
-       
-
-       
+const  handleOnClickredirect =(e) => {
+  
         if(window.location.pathname==="/activeUserAdmin"){         
             
+            Historial.push('pendingUserAdmin');
             setActive("/pendingUserAdmin")
+           // window.location.href="/pendingUserAdmin"
         }
         if(window.location.pathname===`/activeUserAdminpicker/${id}`){         
             //setActivePicker(`/pendingUserAdmin`);
@@ -31,6 +32,19 @@ export const PendingBlack = (props) => {
             setRedirect("/pendingUserAdmin")
         }    
     }
+
+const handleHistory = (e) => {
+    e.preventDefault();   
+  
+    if(window.location.pathname===`/activeUserAdminpicker/${id}`){  
+         
+        setmodalGuardarCambios(true);
+        setRedirect('/activeUserAdmin');
+    } else{
+        Historial.goBack();
+    }
+    
+}
 
     return (
         <div>
@@ -56,12 +70,14 @@ export const PendingBlack = (props) => {
                     
 
                     <div>
-                        <Link to="./dashboard" >
+                        <button  className="buttonVolver" onClick={handleHistory}  >
                             <img className="img3" src={volver} alt="volver"/>
                             <p className="Pending-paragraph3">Volver</p>
-                        </Link>
+
+                        </button>
                         
                     </div>
+                 
             </div>
 
          </div>
