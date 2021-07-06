@@ -44,22 +44,22 @@ export const Nav = (props) => {
                                    } <Link onClick={handleClick} to="/pendingUserAdmin">Flota</Link>
                               </li>
                               <li>
-                                   { Location ==="/userAdmin"  ?<div className="circle"></div> : null    }   <Link to="#">Transacciones</Link>
+                                   { window.location.pathname ==="/transaction"  ?<div className="circle"></div> : null    }   <Link to="/transaction">Transacciones</Link>
                               </li>
                               </ul>
                               <ul>
                               <h3>Operaciones</h3>
                               <li>
-                                   { window.location.pathname  ==="/userAdmin"  ?<div className="circle"></div> : null     }  <Link to="#">Configuración</Link>
+                                   { window.location.pathname  ==="/configPicker"  ?<div className="circle"></div> : null     }  <Link to="/configPicker">Configuración</Link>
                               </li>
                               <li>
-                                   { window.location.pathname  ==="/userAdmin"  ?<div className="circle"></div> : null     }  <Link to="#">Planificación</Link>
+                                   { window.location.pathname  ==="/planning"  ?<div className="circle"></div> : null     }  <Link to="/planning">Planificación</Link>
                               </li>
                               </ul>
                               <ul>
                               <h3>Administracion</h3>
                               <li>
-                                  { window.location.pathname  ==="/userAdmin"  ? <div className="circle"></div> : null     } <Link to="#">Preliquidación</Link>
+                                  { window.location.pathname  ==="/liquidation"  ? <div className="circle"></div> : null     } <Link to="/liquidation">Preliquidación</Link>
                               </li>
                               </ul>
                             
