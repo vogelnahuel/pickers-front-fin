@@ -81,15 +81,15 @@ const Export = async () => {
 const habilitarBoton   =   useCallback(
                   (dataPicker) => {
 
-                  if(dataPicker.vehicleTypeId!==" " && dataPicker.expirationDatePolicyPersonal !== null){
-                        if(dataPicker.vehicleTypeId===2 && dataPicker.expirationDatePolicyPersonal.length>0){
-                            setdisabledButtonAprobarPicker(false)
-                         }
-                         else if(dataPicker.expirationDatePolicyPersonal.length>0 && dataPicker.expirationDatePolicyVehicle.length>0 &&dataPicker.expirationDateDriverLicense.length > 0  && dataPicker.expirationDateIdentificationCar.length > 0 )
-                         {
-                            setdisabledButtonAprobarPicker(false)
-                         }
-                     }
+         //         if(dataPicker.vehicleTypeId!==" " && dataPicker.expirationDatePolicyPersonal !== null){
+           ////             if(dataPicker.vehicleTypeId===2 && dataPicker.expirationDatePolicyPersonal.length>0){
+            //                setdisabledButtonAprobarPicker(false)
+         //                }
+         //                else if(dataPicker.expirationDatePolicyPersonal.length>0 && dataPicker.expirationDatePolicyVehicle.length>0 &&dataPicker.expirationDateDriverLicense.length > 0  && dataPicker.expirationDateIdentificationCar.length > 0 )
+         //                {
+          //                  setdisabledButtonAprobarPicker(false)
+        //                 }
+          //           }
                     },
                   
                 [],

@@ -67,15 +67,15 @@ export const ActiveUserAdminPicker = () => {
     const habilitarBoton   =   useCallback(
         (dataPicker) => {
 
-           if(dataPicker.vehicleTypeId!==" " && dataPicker.expirationDatePolicyPersonal !== null){
-               if(dataPicker.vehicleTypeId===2 && dataPicker.expirationDatePolicyPersonal.length>0){
-                 setdisableButtons(false)
-               }
-               else if(dataPicker.expirationDatePolicyPersonal.length>0 && dataPicker.expirationDatePolicyVehicle.length>0 &&dataPicker.expirationDateDriverLicense.length > 0  && dataPicker.expirationDateIdentificationCar.length > 0 )
-               {
-                 setdisableButtons(false)
-                }
-            }
+        //   if(dataPicker.vehicleTypeId!==" " && dataPicker.expirationDatePolicyPersonal !== null){
+       //        if(dataPicker.vehicleTypeId===2 && dataPicker.expirationDatePolicyPersonal.length>0){
+        //         setdisableButtons(false)
+         //      }
+          //     else if(dataPicker.expirationDatePolicyPersonal.length>0 && dataPicker.expirationDatePolicyVehicle.length>0 &&dataPicker.expirationDateDriverLicense.length > 0  && dataPicker.expirationDateIdentificationCar.length > 0 )
+         //      {
+         //        setdisableButtons(false)
+        //        }
+        //    }
           },
         
       [],
@@ -102,7 +102,7 @@ export const ActiveUserAdminPicker = () => {
     surname:"",
     vehicleTypeId: ""})
 
-    useEffect(()=>{
+useEffect(()=>{
         if(!window.localStorage.getItem('token')){
             window.location.href = '/'
         }
@@ -117,30 +117,30 @@ export const ActiveUserAdminPicker = () => {
             
        cargarDatos();
     
-      },[id])
+},[id])
 
-      useEffect(() => {
+useEffect(() => {
         habilitarBoton(dataPicker);
-      }, [habilitarBoton,dataPicker])
+}, [habilitarBoton,dataPicker])
 
-      useEffect(() => {
+useEffect(() => {
               
         setInformacion(dataPicker);
-      }, [dataPicker])
+}, [dataPicker])
        
 
     const [inputsPart1,ComponentesPart1,inputsPart2,ComponentesPart2,inputsPart3,ComponentesPart3,inputsPart4,ComponentesPart4]=data();
    
-    const Export = async () => {              
+const Export = async () => {              
         const mailCodificado = codificarEmailURIFunction(dataPicker.email);
         const datosExport =await api.get(`/ms-admin-rest/api/v1.0/pickers.csv?&email=${mailCodificado}`)
         .then( (res) => {return res})
         .catch((err) => {console.log(err)})
    
         createCSV(datosExport);   
-    }
+}
 
-    const onCLickImg = () =>{
+const onCLickImg = () =>{
 
         setimgEnabled(!imgEnabled);
         
@@ -148,15 +148,11 @@ export const ActiveUserAdminPicker = () => {
             dataPicker,
             dataPicker.enable=!dataPicker.enable
         )
-     }
+}
    
-    const modificarPicker= async (e) =>{
-       
+const modificarPicker= async (e) =>{
         e.preventDefault();
-        
-        
-    
-                await api.post(`/ms-admin-rest/api/v1.0/pickers/${dataPicker.id}`,{  
+               await api.post(`/ms-admin-rest/api/v1.0/pickers/${dataPicker.id}`,{  
                 "enable": dataPicker.enable,  
                 "vehicleTypeId": dataPicker.vehicleTypeId,
                 "name":Informacion.name ,
@@ -176,10 +172,7 @@ export const ActiveUserAdminPicker = () => {
                    
                 )
                 .catch(()=>{})
-
-
-                
-    }
+}
 
 
  
@@ -249,7 +242,7 @@ export const ActiveUserAdminPicker = () => {
                         clave={1}
                         Informacion={Informacion}
                         setInformacion={setInformacion}
-                        setdisabledButtonAprobarPicker={setdisableButtons}
+                        setdisableButtons={setdisableButtons}
                         active={true}
                         />
                 </div>
@@ -265,7 +258,7 @@ export const ActiveUserAdminPicker = () => {
                         clave={2}
                         Informacion={Informacion}
                         setInformacion={setInformacion}
-                        setdisabledButtonAprobarPicker={setdisableButtons}
+                        setdisableButtons={setdisableButtons}
                         active={true}
                         />                          
                 </div>
@@ -281,7 +274,7 @@ export const ActiveUserAdminPicker = () => {
                         clave={3}
                         Informacion={Informacion}
                         setInformacion={setInformacion}
-                        setdisabledButtonAprobarPicker={setdisableButtons}
+                        setdisableButtons={setdisableButtons}
                         active={true}
                         />  
 
@@ -293,13 +286,13 @@ export const ActiveUserAdminPicker = () => {
                         clave={4}
                         Informacion={Informacion}
                         setInformacion={setInformacion}
-                        setdisabledButtonAprobarPicker={setdisableButtons}
+                        setdisableButtons={setdisableButtons}
                         active={true}
                         /> 
                  </div>
                     
                     <div className="pending-admin-picker-button">
-                        {disableButtons===true ?<>
+                        {disableButtons ===true ?<>
                             <button onClick={handleCancel} className="corregir-admin-picker-active">Cancelar</button>
                         <button onClick={modificarPicker} className="aprobar-admin-picker-active">Guardar</button></>:<>
                             <button disabled={true} className="corregir-admin-picker-disable">Cancelar</button>

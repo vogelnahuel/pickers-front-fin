@@ -4,13 +4,15 @@ import { Labels } from "../../Labels/Labels";
 import "./part.css";
 import { SaveAdminPicker } from "../SaveAdminPicker/SaveAdminPicker";
 import moment from "moment";
+import { useParams } from "react-router-dom";
 
 /**** muestro los campos con sus labels y tambien los componentes pasados */
 export const Part = (props) => {
   const variables = props.inputsPart;
   const componentes = props.ComponentesPart;
   const dataPicker = props.data;
-
+  
+  const id =useParams().id;
 
  
 
@@ -20,6 +22,7 @@ export const Part = (props) => {
  
   const setInformacion = props.setInformacion;
   const setdisabledButtonAprobarPicker = props.setdisabledButtonAprobarPicker;
+  const setdisableButtons=props.setdisableButtons;
   const activeUser = props.active;
 
 
@@ -31,8 +34,16 @@ export const Part = (props) => {
 
   const handleChange = (e) => {
 
-    console.log("entre")
-    setdisabledButtonAprobarPicker(true);
+    if(window.location.pathname===`/pendingUserAdminpicker/${id}`){
+      setdisabledButtonAprobarPicker(false);
+    }
+    
+
+
+    if(window.location.pathname===`/activeUserAdminpicker/${id}`){
+      setdisableButtons(true)
+    }
+    
   
     /*
         setInformacion( {
@@ -142,7 +153,12 @@ export const Part = (props) => {
         
         
         if(regDate.diff(actualDate, "years")<18){
-          setdisabledButtonAprobarPicker(false);
+          if(window.location.pathname===`/pendingUserAdminpicker/${id}`)
+          setdisabledButtonAprobarPicker(true);
+
+          if(window.location.pathname===`/activeUserAdminpicker/${id}`)
+          setdisableButtons(false)
+
           e.target.classList.add('inputError-part');
           e.target.parentNode.previousSibling.firstChild.classList.add('labelError-part');
 
@@ -162,7 +178,13 @@ export const Part = (props) => {
  
     
     if(e.target.value.length===0){
-      setdisabledButtonAprobarPicker(false);
+
+      if(window.location.pathname===`/pendingUserAdminpicker/${id}`)
+      setdisabledButtonAprobarPicker(true);
+
+      if(window.location.pathname===`/activeUserAdminpicker/${id}`)
+      setdisableButtons(false)
+
       e.target.classList.add('inputError-part');
       e.target.parentNode.previousSibling.firstChild.classList.add('labelError-part');
       const div = document.createElement('div');
@@ -175,7 +197,11 @@ export const Part = (props) => {
 
     }else if (e.target.name==="dni" &&  ex_regular_dni.test (e.target.value) !== true )
     {
-      setdisabledButtonAprobarPicker(false);
+      if(window.location.pathname===`/pendingUserAdminpicker/${id}`)
+      setdisabledButtonAprobarPicker(true);
+
+      if(window.location.pathname===`/activeUserAdminpicker/${id}`)
+      setdisableButtons(false)
     
       e.target.classList.add('inputError-part');
       e.target.parentNode.previousSibling.firstChild.classList.add('labelError-part');
@@ -189,7 +215,12 @@ export const Part = (props) => {
     }
     else if ( (e.target.name==="nombre" || e.target.name==="apellido")  && ex_regular_nomyape.test (e.target.value) !== true  )
     {
-      setdisabledButtonAprobarPicker(false);
+      if(window.location.pathname===`/pendingUserAdminpicker/${id}`)
+      setdisabledButtonAprobarPicker(true);
+
+      if(window.location.pathname===`/activeUserAdminpicker/${id}`)
+      setdisableButtons(false)
+
       e.target.classList.add('inputError-part');
       e.target.parentNode.previousSibling.firstChild.classList.add('labelError-part');
 
@@ -206,7 +237,13 @@ export const Part = (props) => {
     {
      
       if(e.target.value.length>10 || ex_regular_fecha.test (e.target.value) !== true ){
-        setdisabledButtonAprobarPicker(false);
+
+        if(window.location.pathname===`/pendingUserAdminpicker/${id}`)
+        setdisabledButtonAprobarPicker(true); 
+
+        if(window.location.pathname===`/activeUserAdminpicker/${id}`)
+        setdisableButtons(false)
+
         e.target.classList.add('inputError-part');
         e.target.parentNode.previousSibling.firstChild.classList.add('labelError-part');
   
@@ -230,7 +267,12 @@ export const Part = (props) => {
   
     else if(e.target.name==="telefono"   && ex_regular_telefono.test (e.target.value) !== true  )
     {
-      setdisabledButtonAprobarPicker(false);
+      if(window.location.pathname===`/pendingUserAdminpicker/${id}`)
+      setdisabledButtonAprobarPicker(true);
+
+      if(window.location.pathname===`/activeUserAdminpicker/${id}`)
+      setdisableButtons(false)
+
       e.target.classList.add('inputError-part');
       e.target.parentNode.previousSibling.firstChild.classList.add('labelError-part');
 
@@ -255,7 +297,7 @@ export const Part = (props) => {
 
   const verificarInformacion = useCallback(
     (Informacion) => {
-      if (activeUser) {
+      if (activeUser===false) {
   
         if(Informacion.vehicleTypeId === 1){
             setdisabledButtonAprobarPicker(true);
