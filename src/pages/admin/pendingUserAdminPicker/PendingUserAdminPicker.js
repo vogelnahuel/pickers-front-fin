@@ -20,11 +20,13 @@ import { Modal } from 'pickit-components'
 
 
 export const PendingUserAdminPicker = () => {
+
+ 
+
+    
+    
+
     const [modalOpenAprobar, setmodalOpenAprobar] = useState(false);
-
-  
-
-   
 
     const [disabledButtonAprobarPicker, setdisabledButtonAprobarPicker] = useState(true)
     const [Informacion, setInformacion] = useState({
@@ -79,15 +81,15 @@ const Export = async () => {
 const habilitarBoton   =   useCallback(
                   (dataPicker) => {
 
-                  if(dataPicker.vehicleTypeId!==" " && dataPicker.expirationDatePolicyPersonal !== null){
-                        if(dataPicker.vehicleTypeId===2 && dataPicker.expirationDatePolicyPersonal.length>0){
-                            setdisabledButtonAprobarPicker(false)
-                         }
-                         else if(dataPicker.expirationDatePolicyPersonal.length>0 && dataPicker.expirationDatePolicyVehicle.length>0 &&dataPicker.expirationDateDriverLicense.length > 0  && dataPicker.expirationDateIdentificationCar.length > 0 )
-                         {
-                            setdisabledButtonAprobarPicker(false)
-                         }
-                     }
+         //         if(dataPicker.vehicleTypeId!==" " && dataPicker.expirationDatePolicyPersonal !== null){
+           ////             if(dataPicker.vehicleTypeId===2 && dataPicker.expirationDatePolicyPersonal.length>0){
+            //                setdisabledButtonAprobarPicker(false)
+         //                }
+         //                else if(dataPicker.expirationDatePolicyPersonal.length>0 && dataPicker.expirationDatePolicyVehicle.length>0 &&dataPicker.expirationDateDriverLicense.length > 0  && dataPicker.expirationDateIdentificationCar.length > 0 )
+         //                {
+          //                  setdisabledButtonAprobarPicker(false)
+        //                 }
+          //           }
                     },
                   
                 [],
@@ -102,7 +104,7 @@ useEffect( () => {
             
                cargarDatos()
                
-              
+                    
 }, [id])
 
           
@@ -114,7 +116,9 @@ useEffect(() => {
               
  setInformacion(dataPicker);
  }, [dataPicker])
-                
+           
+ 
+
 const cerrarAprobarPicker = async (e) => {
     
     e.preventDefault();
@@ -306,7 +310,7 @@ const aprobarPicker= async (e) =>{
                                    
                                     >
                                     <div className="container-modal">
-                                        <div className="modal-error-title">
+                                        <div className="modal-error-title2">
                                             <p className="p-modal-error-title">Aprobar picker</p>
                                         </div>
                                         <div className="modal-error-subtitle">

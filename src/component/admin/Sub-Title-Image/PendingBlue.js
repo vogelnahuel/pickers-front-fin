@@ -3,10 +3,11 @@ import volver from '../../../assets/admin/PendingUser/volver.svg'
 import relojAzul from '../../../assets/admin/PendingUser/relojAzul.svg'
 import trabajadorOscuro from '../../../assets/admin/PendingUser/trabajadorOscuro.svg'
 import './pending.css'
-import { Link, Redirect, useParams } from 'react-router-dom'
+import { Redirect, useHistory, useParams } from 'react-router-dom'
 
 export const PendingBlue = () => {
-
+    
+    const Historial = useHistory();
     const {id} = useParams();
     
 
@@ -16,12 +17,17 @@ export const PendingBlue = () => {
         
     
     if(window.location.pathname==="/pendingUserAdmin"){         
-        
+       // window.location.href="/activeUserAdmin"
+       Historial.push('activeUserAdmin');
         setPending("/activeUserAdmin")
     }
     if(window.location.pathname===`/pendingUserAdminpicker/${id}`){         
         setPendingPicker(`/activeUserAdmin`);
     }    
+}
+
+const handleHistory = () => {
+    Historial.goBack();
 }
     return (
         <div>
@@ -49,10 +55,10 @@ export const PendingBlue = () => {
                     }
 
                     <div>
-                        <Link to="./dashboard" >
-                            <img className="img3" src={volver} alt="volver"/>
-                            <p className="Pending-paragraph3">Volver</p>
-                        </Link>
+                            <button  className="buttonVolver" onClick={handleHistory}  >
+                                    <img className="img3" src={volver} alt="volver"/>
+                                    <p className="Pending-paragraph3">Volver</p>
+                            </button>
                         
                     </div>
             </div>

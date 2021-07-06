@@ -92,6 +92,10 @@ const cargarDatos = async () =>  {
         
 },[])
 
+
+
+
+
 const cargarMas =async() =>{
     setoffset(offset+tamPag)
     const res=await api.get(`ms-admin-rest/api/v1.0/pickers?pickerStatusId=2,3${DatosFiltros.nombre?`&name=${DatosFiltros.nombre}`:""}${DatosFiltros.vehiculo&&DatosFiltros.vehiculo!=="DEFAULT"?`&vehicleTypeId=${DatosFiltros.vehiculo==="moto"?1:2}`:""}${DatosFiltros.dni?`&identificationNumber=${parseInt(DatosFiltros.dni)}`:""}${DatosFiltros.mail?`&email=${DatosFiltros.mail}`:""}&limit=${tamPag}&offset=${offset}`)
@@ -103,15 +107,14 @@ const cargarMas =async() =>{
             
             setData(data.concat(res))
 }
-
 const Export = async () => {
     setExportModal(true)
         const datosExport =await api.get(`/ms-admin-rest/api/v1.0/pickers.csv?pickerStatusId=2,3${dataExport.nombre?`&name=${dataExport.nombre}`:""}${dataExport.vehiculo&&dataExport.vehiculo!=="DEFAULT"?`&vehicleTypeId=${dataExport.vehiculo==="moto"?1:2}`:""}${dataExport.dni?`&identificationNumber=${parseInt(dataExport.dni)}`:""}${dataExport.mail?`&email=${dataExport.mail}`:""}`)
         .then( (res) => {return res})
         .catch((err) => {console.log(err)})
 
-        createCSV(datosExport);     
-}
+        createCSV(datosExport);  
+}   
 
     return (
         <div className="background-Grey">
