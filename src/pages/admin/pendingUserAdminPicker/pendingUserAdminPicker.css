@@ -137,7 +137,7 @@
 }
 
 .aprobar-admin-picker{
-    margin-left: 15%;
+    margin-left: 20px;
     width: 191px;
     height: 50px;
     background: #BDBDBD;
@@ -154,7 +154,7 @@
     border: none;
 }
 .aprobar-admin-picker-active{
-    margin-left: 15%;
+    margin-left: 20px;
     width: 191px;
     height: 50px;
     background: #0098FF;
@@ -171,7 +171,7 @@
     border: none;
 }
 .aprobar-admin-picker-disable{
-    margin-left: 15%;
+    margin-left: 20px;
     width: 191px;
     height: 50px;
     background: #BDBDBD;
@@ -188,7 +188,7 @@
     border: none;
 }
 .aprobar-admin-picker-habilitado{
-    margin-left: 15%;
+    margin-left: 20px;
     width: 191px;
     height: 50px;
     background: #0098FF;

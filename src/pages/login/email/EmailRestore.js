@@ -121,7 +121,7 @@ const handleSubmit = async (e) => {
       <>
      
           <div className="logo">
-            <img src={pickersLogo} alt="PickersLogo"></img>
+            <img src={pickersLogo} className="pickersLogo_login" alt="PickersLogo"></img>
           </div>
 
 

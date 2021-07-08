@@ -15,6 +15,7 @@ import { useParams } from 'react-router-dom'
 import codificarEmailURIFunction from '../../../tools/encodeMail.js'
 import createCSV from '../../../tools/createCSV'
 import { Modal } from 'pickit-components'
+import moment from 'moment'
 
 
 
@@ -99,10 +100,18 @@ useEffect( () => {
                // const mailCodificado = codificarEmailURIFunction(dataPicker.email);
             const cargarDatos = async () =>{setDataPicker(
                 await api.get(`/ms-admin-rest/api/v1.0/pickers/${id}`)
-                .then((res)=>{return res.data.result})
+                .then((res)=>{
+                    
+                    res.data.result.dateOfBirth=res.data.result.dateOfBirth?moment(res.data.result.dateOfBirth).format('DD/MM/YYYY'):
+                    res.data.result.expirationDateDriverLicense=res.data.result.expirationDateDriverLicense?moment(res.data.result.expirationDateDriverLicense).format('DD/MM/YYYY'):res.data.result.expirationDateDriverLicense
+                    res.data.result.expirationDateIdentificationCar=res.data.result.expirationDateIdentificationCar?moment(res.data.result.expirationDateIdentificationCar).format('DD/MM/YYYY'):res.data.result.expirationDateIdentificationCar
+                    res.data.result.expirationDatePolicyPersonal=res.data.result.expirationDatePolicyPersonal?moment(res.data.result.expirationDatePolicyPersonal).format('DD/MM/YYYY'):res.data.result.expirationDatePolicyPersonal
+                    res.data.result.expirationDatePolicyVehicle=res.data.result.expirationDatePolicyVehicle?moment(res.data.result.expirationDatePolicyVehicle).format('DD/MM/YYYY'):res.data.result.expirationDatePolicyVehicle
+                    return res.data.result})
                 .catch((err)=>{console.log(err)}) )}
             
                cargarDatos()
+          
                
                     
 }, [id])
@@ -128,16 +137,16 @@ const cerrarAprobarPicker = async (e) => {
         "vehicleTypeId": dataPicker.vehicleTypeId,
         "name":Informacion.name ,
          "surname":Informacion.surname ,
-         "dateOfBirth":Informacion.dateOfBirth ,
+         "dateOfBirth":Informacion.dateOfBirth?moment(Informacion.dateOfBirth).format('YYYY-MM-DD'):Informacion.dateOfBirth,
          "phoneNumber":Informacion.phoneNumber ,
          "identificationNumber":Informacion.identificationNumber ,
          "fiscalNumber":Informacion.fiscalNumber,
          "bankName":Informacion.bankName,
          "bankIdentifier":Informacion.bankIdentifier,
-         "expirationDateDriverLicense":Informacion.expirationDateDriverLicense,
-         "expirationDateIdentificationCar":Informacion.expirationDateIdentificationCar,
-         "expirationDatePolicyVehicle":Informacion.expirationDatePolicyVehicle,
-         "expirationDatePolicyPersonal":Informacion.expirationDatePolicyPersonal        
+         "expirationDateDriverLicense":Informacion.expirationDateDriverLicense?moment(Informacion.expirationDateDriverLicense).format('YYYY-MM-DD'):Informacion.expirationDateDriverLicense,
+         "expirationDateIdentificationCar":Informacion.expirationDateIdentificationCar?moment(Informacion.expirationDateIdentificationCar).format('YYYY-MM-DD'):Informacion.expirationDateIdentificationCar,
+         "expirationDatePolicyVehicle":Informacion.expirationDatePolicyVehicle?moment(Informacion.expirationDatePolicyVehicle).format('YYYY-MM-DD'):Informacion.expirationDatePolicyVehicle,
+         "expirationDatePolicyPersonal":Informacion.expirationDatePolicyPersonal?moment(Informacion.expirationDatePolicyPersonal).format('YYYY-MM-DD'):Informacion.expirationDatePolicyPersonal      
     })
         .then(rs=>{})
         .catch(e=>{})
@@ -160,16 +169,16 @@ const corregirDocumentos= async (e) =>{
         "vehicleTypeId": dataPicker.vehicleTypeId,
         "name": Informacion.name  ,
          "surname": Informacion.surname ,
-         "dateOfBirth": Informacion.dateOfBirth,
+         "dateOfBirth":Informacion.dateOfBirth?moment(Informacion.dateOfBirth).format('YYYY-MM-DD'):Informacion.dateOfBirth,
          "phoneNumber": Informacion.phoneNumber,
          "identificationNumber":Informacion.identificationNumber ,
          "fiscalNumber":Informacion.fiscalNumber,
          "bankName":Informacion.bankName,
          "bankIdentifier":Informacion.bankIdentifier,
-         "expirationDateDriverLicense":Informacion.expirationDateDriverLicense,
-         "expirationDateIdentificationCar":Informacion.expirationDateIdentificationCar,
-         "expirationDatePolicyVehicle":Informacion.expirationDatePolicyVehicle,
-         "expirationDatePolicyPersonal":Informacion.expirationDatePolicyPersonal,        
+         "expirationDateDriverLicense":Informacion.expirationDateDriverLicense?moment(Informacion.expirationDateDriverLicense).format('YYYY-MM-DD'):Informacion.expirationDateDriverLicense,
+         "expirationDateIdentificationCar":Informacion.expirationDateIdentificationCar?moment(Informacion.expirationDateIdentificationCar).format('YYYY-MM-DD'):Informacion.expirationDateIdentificationCar,
+         "expirationDatePolicyVehicle":Informacion.expirationDatePolicyVehicle?moment(Informacion.expirationDatePolicyVehicle).format('YYYY-MM-DD'):Informacion.expirationDatePolicyVehicle,
+         "expirationDatePolicyPersonal":Informacion.expirationDatePolicyPersonal?moment(Informacion.expirationDatePolicyPersonal).format('YYYY-MM-DD'):Informacion.expirationDatePolicyPersonal,     
          "pickerStatusId":3
         })
         .then(rs=>{})

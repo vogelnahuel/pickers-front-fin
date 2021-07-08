@@ -157,7 +157,7 @@ return (
                   {window.location.pathname === "/activeUserAdmin"
                     ?data && Array.isArray(data)? data.map((rows) => (
                         <tr className="info" key={rows.id}>
-                          <td className="table-name"> {rows.name} </td>
+                          <td className="table-name"> {rows.name} {rows.surname} </td>
                           <td className="table-dni"> {rows.identificationNumber} </td>
                           <td className="table-email"> {rows.email}</td>
                           <td className="table-vehiculo">
