@@ -41,6 +41,11 @@ export const dataActiveUser = () => {
                 id:"Vehículo",
                 placeholder:"Seleccioná un tipo de vehículo",
                 options:[
+                    {
+                        classNameSelect:"option option2",
+                        value:"",
+                        text:"Todos"
+                    },
 
                     {
                         classNameSelect:"option",
