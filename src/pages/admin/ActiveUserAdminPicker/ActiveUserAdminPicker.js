@@ -149,7 +149,7 @@ const Export = async () => {
 const onCLickImg = () =>{
 
         setimgEnabled(!imgEnabled);
-        
+        setdisableButtons(true)
         setDataPicker(
             dataPicker,
             dataPicker.enable=!dataPicker.enable
