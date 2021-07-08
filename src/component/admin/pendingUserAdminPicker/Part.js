@@ -123,7 +123,7 @@ export const Part = (props) => {
 
   const validaciones =( e) => {
     const ex_regular_dni = /^\d{6,8}(?:[-\s]\d{4})?$/;
-    const ex_regular_nomyape =/^[a-z ,.'-]+$/i ;
+    const ex_regular_nomyape =/^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/g;;
     const ex_regular_fecha = /^(0[1-9]|[1-2]\d|3[01])(\/)(0[1-9]|1[012])\2(\d{4})$/
     const ex_regular_telefono = /^[0-9,-]+$/;
     
@@ -149,7 +149,7 @@ export const Part = (props) => {
       if(e.target.name==="fechaNac"){
     
         const regDate = moment();
-        const actualDate = moment(e.target.value, "YYYY-MM-DD");
+        const actualDate = moment(e.target.value, "DD/MM/YYYY");
         
         
         if(regDate.diff(actualDate, "years")<18){
@@ -500,6 +500,7 @@ export const Part = (props) => {
                   )}
                   {variable.name === "dni" && (
                     <input
+                    readOnly
                       value={
                         Informacion.identificationNumber
                           ? Informacion.identificationNumber
@@ -517,6 +518,7 @@ export const Part = (props) => {
                   )}
                   {variable.name === "email" && (
                     <input
+                      readOnly
                       value={Informacion.email ? Informacion.email : ""}
                       onChange={(e) => {
                         handleChange(e, variable.id);

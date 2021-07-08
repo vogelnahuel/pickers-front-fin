@@ -123,11 +123,25 @@
     margin-left: 45%;
     margin-top: 3%;
 }
-/* 
-.button-modal-aprobar{
+
+.button-modal-aprobar-exito{
   
-        background: #6FCF97
-} */
+        background: #6FCF97;
+        border-radius: 50px;
+        width: 219px;
+        height: 50px;
+        margin-left: 0px;
+        text-decoration: none;
+        border-color: #FFFFFF;
+        border-width: 0px;
+        margin-top: 26px;
+        color: #FFFFFF;
+        font-family: 'Mulish';
+        font-style: normal;
+        font-weight: 800;
+        font-size: 18px;
+        text-align: center;
+}
 .button-modal-sin-guardar{
     background: #0098FF;
     border-radius: 50px;

@@ -1,10 +1,11 @@
 .vehiculo-pending-picker{
     display: inline-block;
     margin-top: 1vh;
+    /* padding-left: 20px; */
 }
 .form-Admin-Pickers{
     display: flex;
-    background: #FFFFFF;
+    background: #aca5a5;
     border: 1px solid #E5E5E5;
     box-sizing: border-box;
     border-radius: 10px;
@@ -49,7 +50,7 @@
     background-color: white;
     text-align: center;
     margin-top: 3.2552083333333335vh;
-    margin-left: 40vw;
+    margin-left: 44vw;
 
 }
 .Admin-Pickers-space{
@@ -258,6 +259,21 @@
     font-size: 18px;
     text-align: center;
   }
+  .corregir-admin-picker-disable{
+    border: 2.5px solid #BDBDBD;
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 50px;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 23px;
+    text-align: center;
+    color: #BDBDBD;
+    width: 217px;
+    height: 50px;
+}
 .modal-error-title2{
     background: #00B2E3;
     border-radius: 25px 25px 0px 0px;
@@ -279,6 +295,6 @@
 @media (min-width: 1700px) { 
 
     .Admin-Pickers-button{
-        margin-left: 44vw;
+        margin-left: 53vw;
     }
  }

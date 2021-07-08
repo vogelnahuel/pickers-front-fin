@@ -12,7 +12,8 @@
     line-height: 45px;
     color: #101820;
     margin-top: 5vh;
-    width: 25vw;
+    width: 250px;
+    max-width: 250px;
 }
 .display-inline-block{
     display: inline-block;

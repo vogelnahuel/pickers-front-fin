@@ -38,7 +38,7 @@ export const data = () => {
                 labelhtmlFor:"dni",
                 labelparrafo:"DNI *"
                 },
-            className:"Admin-Pickers-input",
+            className:"Admin-Pickers-input readonly",
             type:"text",
             name:"dni",
             id:"dni",
