@@ -24,7 +24,7 @@ export const ActiveUserAdmin = () => {
   ];
   /****llama a los campos y los envia */
   const [FieldsPart] = dataActiveUser();
-  const tamPag = 2;
+  const tamPag = 15;
   const [offset, setoffset] = useState(0);
   const [dataExport, setdataExport] = useState({
     dni: "",

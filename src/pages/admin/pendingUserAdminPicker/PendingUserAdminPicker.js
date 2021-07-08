@@ -101,8 +101,8 @@ useEffect( () => {
             const cargarDatos = async () =>{setDataPicker(
                 await api.get(`/ms-admin-rest/api/v1.0/pickers/${id}`)
                 .then((res)=>{
-                    
-                    res.data.result.dateOfBirth=res.data.result.dateOfBirth?moment(res.data.result.dateOfBirth).format('DD/MM/YYYY'):
+                    res.data.result.fiscalNumber=res.data.result.fiscalNumber.slice(0,-9)+" - "+res.data.result.fiscalNumber.slice(2,-1)+" - "+res.data.result.fiscalNumber.slice(10)
+                    res.data.result.dateOfBirth=res.data.result.dateOfBirth?moment(res.data.result.dateOfBirth).format('DD/MM/YYYY'):res.data.result.dateOfBirth
                     res.data.result.expirationDateDriverLicense=res.data.result.expirationDateDriverLicense?moment(res.data.result.expirationDateDriverLicense).format('DD/MM/YYYY'):res.data.result.expirationDateDriverLicense
                     res.data.result.expirationDateIdentificationCar=res.data.result.expirationDateIdentificationCar?moment(res.data.result.expirationDateIdentificationCar).format('DD/MM/YYYY'):res.data.result.expirationDateIdentificationCar
                     res.data.result.expirationDatePolicyPersonal=res.data.result.expirationDatePolicyPersonal?moment(res.data.result.expirationDatePolicyPersonal).format('DD/MM/YYYY'):res.data.result.expirationDatePolicyPersonal
@@ -131,22 +131,23 @@ useEffect(() => {
 const cerrarAprobarPicker = async (e) => {
     
     e.preventDefault();
-    
+   
+   
     await api.post(`/ms-admin-rest/api/v1.0/pickers/${dataPicker.id}`,{    
         "enable": true,
         "vehicleTypeId": dataPicker.vehicleTypeId,
         "name":Informacion.name ,
          "surname":Informacion.surname ,
-         "dateOfBirth":Informacion.dateOfBirth?moment(Informacion.dateOfBirth).format('YYYY-MM-DD'):Informacion.dateOfBirth,
+         "dateOfBirth":Informacion.dateOfBirth?moment(Informacion.dateOfBirth,"DD/MM/YYYY").format('YYYY-MM-DD'):Informacion.dateOfBirth,
          "phoneNumber":Informacion.phoneNumber ,
          "identificationNumber":Informacion.identificationNumber ,
-         "fiscalNumber":Informacion.fiscalNumber,
+         "fiscalNumber":Informacion.fiscalNumber.slice(0,-15)+Informacion.fiscalNumber.slice(5,-4)+Informacion.fiscalNumber.slice(16),
          "bankName":Informacion.bankName,
          "bankIdentifier":Informacion.bankIdentifier,
-         "expirationDateDriverLicense":Informacion.expirationDateDriverLicense?moment(Informacion.expirationDateDriverLicense).format('YYYY-MM-DD'):Informacion.expirationDateDriverLicense,
-         "expirationDateIdentificationCar":Informacion.expirationDateIdentificationCar?moment(Informacion.expirationDateIdentificationCar).format('YYYY-MM-DD'):Informacion.expirationDateIdentificationCar,
-         "expirationDatePolicyVehicle":Informacion.expirationDatePolicyVehicle?moment(Informacion.expirationDatePolicyVehicle).format('YYYY-MM-DD'):Informacion.expirationDatePolicyVehicle,
-         "expirationDatePolicyPersonal":Informacion.expirationDatePolicyPersonal?moment(Informacion.expirationDatePolicyPersonal).format('YYYY-MM-DD'):Informacion.expirationDatePolicyPersonal      
+         "expirationDateDriverLicense":Informacion.expirationDateDriverLicense?moment(Informacion.expirationDateDriverLicense,"DD/MM/YYYY").format('YYYY-MM-DD'):Informacion.expirationDateDriverLicense,
+         "expirationDateIdentificationCar":Informacion.expirationDateIdentificationCar?moment(Informacion.expirationDateIdentificationCar,"DD/MM/YYYY").format('YYYY-MM-DD'):Informacion.expirationDateIdentificationCar,
+         "expirationDatePolicyVehicle":Informacion.expirationDatePolicyVehicle?moment(Informacion.expirationDatePolicyVehicle,"DD/MM/YYYY").format('YYYY-MM-DD'):Informacion.expirationDatePolicyVehicle,
+         "expirationDatePolicyPersonal":Informacion.expirationDatePolicyPersonal?moment(Informacion.expirationDatePolicyPersonal,"DD/MM/YYYY").format('YYYY-MM-DD'):Informacion.expirationDatePolicyPersonal,     
     })
         .then(rs=>{})
         .catch(e=>{})
@@ -163,28 +164,27 @@ const cerrarAprobarPickerCorrigiendo  =  (e) => {
 
 const corregirDocumentos= async (e) =>{
         e.preventDefault();
-        
-    
+        console.log( )
         await api.post(`/ms-admin-rest/api/v1.0/pickers/${dataPicker.id}/invalid-documentation`,{    
         "vehicleTypeId": dataPicker.vehicleTypeId,
         "name": Informacion.name  ,
          "surname": Informacion.surname ,
-         "dateOfBirth":Informacion.dateOfBirth?moment(Informacion.dateOfBirth).format('YYYY-MM-DD'):Informacion.dateOfBirth,
+         "dateOfBirth":Informacion.dateOfBirth?moment(Informacion.dateOfBirth,"DD/MM/YYYY").format('YYYY-MM-DD'):Informacion.dateOfBirth,
          "phoneNumber": Informacion.phoneNumber,
          "identificationNumber":Informacion.identificationNumber ,
-         "fiscalNumber":Informacion.fiscalNumber,
+         "fiscalNumber":Informacion.fiscalNumber.replace(/ - /,'').replace(/ - /,''),
          "bankName":Informacion.bankName,
          "bankIdentifier":Informacion.bankIdentifier,
-         "expirationDateDriverLicense":Informacion.expirationDateDriverLicense?moment(Informacion.expirationDateDriverLicense).format('YYYY-MM-DD'):Informacion.expirationDateDriverLicense,
-         "expirationDateIdentificationCar":Informacion.expirationDateIdentificationCar?moment(Informacion.expirationDateIdentificationCar).format('YYYY-MM-DD'):Informacion.expirationDateIdentificationCar,
-         "expirationDatePolicyVehicle":Informacion.expirationDatePolicyVehicle?moment(Informacion.expirationDatePolicyVehicle).format('YYYY-MM-DD'):Informacion.expirationDatePolicyVehicle,
-         "expirationDatePolicyPersonal":Informacion.expirationDatePolicyPersonal?moment(Informacion.expirationDatePolicyPersonal).format('YYYY-MM-DD'):Informacion.expirationDatePolicyPersonal,     
+         "expirationDateDriverLicense":Informacion.expirationDateDriverLicense?moment(Informacion.expirationDateDriverLicense,"DD/MM/YYYY").format('YYYY-MM-DD'):Informacion.expirationDateDriverLicense,
+         "expirationDateIdentificationCar":Informacion.expirationDateIdentificationCar?moment(Informacion.expirationDateIdentificationCar,"DD/MM/YYYY").format('YYYY-MM-DD'):Informacion.expirationDateIdentificationCar,
+         "expirationDatePolicyVehicle":Informacion.expirationDatePolicyVehicle?moment(Informacion.expirationDatePolicyVehicle,"DD/MM/YYYY").format('YYYY-MM-DD'):Informacion.expirationDatePolicyVehicle,
+         "expirationDatePolicyPersonal":Informacion.expirationDatePolicyPersonal?moment(Informacion.expirationDatePolicyPersonal,"DD/MM/YYYY").format('YYYY-MM-DD'):Informacion.expirationDatePolicyPersonal,     
          "pickerStatusId":3
         })
-        .then(rs=>{})
+        .then(rs=>{window.location.href="/pendingUserAdmin";})
         .catch(e=>{})
 
-        window.location.reload();
+        
 }
 const aprobarPicker= async (e) =>{
     e.preventDefault();
@@ -295,13 +295,16 @@ const aprobarPicker= async (e) =>{
                     
                     
                     <div className="pending-admin-picker-button">
-                        <button onClick={corregirDocumentos} className="corregir-admin-picker">Corregir documentos</button>
-                        {
-                            disabledButtonAprobarPicker===true ?  
-                            <button disabled={true} onClick={aprobarPicker} className="aprobar-admin-picker">Aprobar picker</button>
+                    {
+                            disabledButtonAprobarPicker===true ? <>
+                        <button disabled={true} onClick={corregirDocumentos} className="corregir-admin-picker-disable">Corregir documentos</button>
+                        
+                            <button disabled={true} onClick={aprobarPicker} className="aprobar-admin-picker">Aprobar picker</button></>
                             :
+                            <>
+                            <button onClick={corregirDocumentos} className="corregir-admin-picker">Corregir documentos</button>
                             <button disabled={false} onClick={aprobarPicker} className="aprobar-admin-picker-active">Aprobar picker</button>
-                           
+                           </>
                         }
                        
                     </div>

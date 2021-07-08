@@ -111,7 +111,8 @@ useEffect(()=>{
         const cargarDatos = async () =>{setDataPicker(
             await api.get(`/ms-admin-rest/api/v1.0/pickers/${id}`)
             .then((res)=>{
-                res.data.result.dateOfBirth=res.data.result.dateOfBirth?moment(res.data.result.dateOfBirth).format('DD/MM/YYYY'):
+                    //res.data.result.fiscalNumber=res.data.result.fiscalNumber.slice(0,-9)+" - "+res.data.result.fiscalNumber.slice(2,-1)+" - "+res.data.result.fiscalNumber.slice(10)
+                    res.data.result.dateOfBirth=res.data.result.dateOfBirth?moment(res.data.result.dateOfBirth).format('DD/MM/YYYY'):res.data.result.dateOfBirth
                     res.data.result.expirationDateDriverLicense=res.data.result.expirationDateDriverLicense?moment(res.data.result.expirationDateDriverLicense).format('DD/MM/YYYY'):res.data.result.expirationDateDriverLicense
                     res.data.result.expirationDateIdentificationCar=res.data.result.expirationDateIdentificationCar?moment(res.data.result.expirationDateIdentificationCar).format('DD/MM/YYYY'):res.data.result.expirationDateIdentificationCar
                     res.data.result.expirationDatePolicyPersonal=res.data.result.expirationDatePolicyPersonal?moment(res.data.result.expirationDatePolicyPersonal).format('DD/MM/YYYY'):res.data.result.expirationDatePolicyPersonal
@@ -157,21 +158,22 @@ const onCLickImg = () =>{
    
 const modificarPicker= async (e) =>{
         e.preventDefault();
+        console.log(dataPicker)
                await api.post(`/ms-admin-rest/api/v1.0/pickers/${dataPicker.id}`,{  
                 "enable": dataPicker.enable,  
                 "vehicleTypeId": dataPicker.vehicleTypeId,
                 "name":Informacion.name ,
                 "surname":Informacion.surname ,
-                "dateOfBirth":Informacion.dateOfBirth?moment(Informacion.dateOfBirth).format('YYYY-MM-DD'):Informacion.dateOfBirth,
+                "dateOfBirth":Informacion.dateOfBirth?moment(Informacion.dateOfBirth,"DD/MM/YYYY").format('YYYY-MM-DD'):Informacion.dateOfBirth,
                 "phoneNumber":Informacion.phoneNumber ,
                 "identificationNumber":Informacion.identificationNumber ,
                 "fiscalNumber":Informacion.fiscalNumber,
                 "bankName":Informacion.bankName,
                 "bankIdentifier":Informacion.bankIdentifier,
-                "expirationDateDriverLicense":Informacion.expirationDateDriverLicense?moment(Informacion.expirationDateDriverLicense).format('YYYY-MM-DD'):Informacion.expirationDateDriverLicense,
-                "expirationDateIdentificationCar":Informacion.expirationDateIdentificationCar?moment(Informacion.expirationDateIdentificationCar).format('YYYY-MM-DD'):Informacion.expirationDateIdentificationCar,
-                "expirationDatePolicyVehicle":Informacion.expirationDatePolicyVehicle?moment(Informacion.expirationDatePolicyVehicle).format('YYYY-MM-DD'):Informacion.expirationDatePolicyVehicle,
-                "expirationDatePolicyPersonal":Informacion.expirationDatePolicyPersonal?moment(Informacion.expirationDatePolicyPersonal).format('YYYY-MM-DD'):Informacion.expirationDatePolicyPersonal
+                "expirationDateDriverLicense":Informacion.expirationDateDriverLicense?moment(Informacion.expirationDateDriverLicense,"DD/MM/YYYY").format('YYYY-MM-DD'):Informacion.expirationDateDriverLicense,
+                "expirationDateIdentificationCar":Informacion.expirationDateIdentificationCar?moment(Informacion.expirationDateIdentificationCar,"DD/MM/YYYY").format('YYYY-MM-DD'):Informacion.expirationDateIdentificationCar,
+                "expirationDatePolicyVehicle":Informacion.expirationDatePolicyVehicle?moment(Informacion.expirationDatePolicyVehicle,"DD/MM/YYYY").format('YYYY-MM-DD'):Informacion.expirationDatePolicyVehicle,
+                "expirationDatePolicyPersonal":Informacion.expirationDatePolicyPersonal?moment(Informacion.expirationDatePolicyPersonal,"DD/MM/YYYY").format('YYYY-MM-DD'):Informacion.expirationDatePolicyPersonal,   
                 
                 }).then(()=>{ setactiveModalPicker(true);}
                    
@@ -325,7 +327,7 @@ const modificarPicker= async (e) =>{
                                                         
                                                         <button 
                                                             onClick={cerrarGuardarExito}
-                                                            className="button-modal-aprobar">
+                                                            className="button-modal-aprobar-exito">
                                                                     Entendido
                                                         </button>
                                                 </div>
