@@ -1,0 +1,49 @@
+
+.titleTableTransactions { 
+    border-collapse: separate; 
+    border-spacing: 0px;
+    border-top-left-radius: 10px; 
+    border-top-right-radius: 10px; 
+    background: #F7F7F7;
+    border: 1px solid #CCCCCC;
+    width: 78vw;    
+}
+.titleTableTransactions thead tr{
+    border: 1px solid #CCCCCC;
+    height: 86px;
+}
+.titleTableTransactions thead tr td  {
+    border-bottom: 1px solid #CCCCCC;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 23px;
+    color: #4D4D4D;
+}
+.titleTableTransactions tbody tr {
+    background: white;
+  
+    height: 13.020833333333334vh;
+}
+.titleTableTransactions tbody tr td{
+    border-bottom: 1px solid #CCCCCC;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 23px;
+    color: #4F4F4F;
+}
+.titleTableTransactions tbody tr td:first-child{
+    width: 2.928vw;
+}
+.titleTableTransactions thead tr td:first-child{
+    width: 2.928vw;
+}
+.titleTableTransactions thead tr td:nth-child(2){
+    width: 7.833vw;
+}
+
+
+
