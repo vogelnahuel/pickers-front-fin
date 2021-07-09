@@ -3,9 +3,8 @@ import './TableTransaction.css'
 import TreePoints from '../../../assets/transaction/TreePoints.svg'
 
 export const TableTransaction = () => {
-    const titulos = ['1ss','Transacción','Picker','Fecha de entrega','Estado'];
+    const titulos = ['Transacción','Picker','Fecha de entrega','Estado'];
     const api = [
-
         {
             Transacción:'AAA114',
             Picker:'651456321',
@@ -32,40 +31,45 @@ export const TableTransaction = () => {
         }
         
     ]
+
+    const handleClickModal = (e) => {
+        e.preventDefault();
+    }
+
     return (
         <>
            
             <table  className="titleTableTransactions">
                 <thead>
-                        <tr>
+                        <tr> 
                             <td></td>
                             <td></td>
-                            <td>Transacción</td>
-                       
-                            <td>Picker</td>
-                            <td>Fecha de entrega</td>
-                            <td>Estado</td>
+                            {titulos.map(titulo => 
+                                      <td>{titulo}</td>
+                                )
+                            }
+                           
+                           
                         </tr>
                 </thead>
-                <tbody>
-                        <tr>
-                            <td></td>
-                            <td ><img src={TreePoints} alt="TreePoints" /> </td>
-                          
-                            <td >AAA114</td>
-                            <td >651456321</td>
-                            <td >17/06/2021</td>
-                            <td >En retiro</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><img src={TreePoints} alt="TreePoints" /> </td>
+                <tbody> 
+                    
+                    {
+                        api.map(dato => 
+                            <tr>
+                                  <td></td>
+                                    <td ><img onClick={handleClickModal} src={TreePoints} alt="TreePoints" /> </td>
+                                
+                                    <td >{dato.Transacción} </td>
+                                    <td >{dato.Picker}  </td>
+                                    <td > {dato.FechaEntrega} </td>
+                                    <td > {dato.Estado} </td>
+                            </tr>
+                        )
+
+                    }
                        
-                            <td>AAA114</td>
-                            <td>651456321</td>
-                            <td>17/06/2021</td>
-                            <td>En retiro</td>
-                        </tr>
+                     
                 </tbody>
             </table>
         </>
