@@ -11,7 +11,7 @@
 }
 .titleTableTransactions thead tr{
     border: 1px solid #CCCCCC;
-    height: 86px;
+    height: 11.197916666666668vh;
 }
 .titleTableTransactions thead tr td  {
     border-bottom: 1px solid #CCCCCC;
@@ -45,6 +45,8 @@
 .titleTableTransactions thead tr td:nth-child(2){
     width: 7.833vw;
 }
-
+.img-filter-transaction{
+    cursor: pointer;
+}
 
 

@@ -27,7 +27,7 @@
     background-color: white;
     text-align: center;
     margin-top: 5vh;
-    margin-left: 41vw;
+    margin-left: 46vw;
 }
 .p-export{
     font-family: 'Mulish';
@@ -93,8 +93,19 @@
     font-weight: 700;
 }
 
+@media (min-width: 1400px) { 
+    .export{
+        margin-left: 49vw;
+    }
+}
+
 @media (min-width: 1600px) { 
     .export{
-        margin-left: 44.7vw;
+        margin-left: 52vw;
+    }
+}
+@media (min-width: 1800px) { 
+    .export{
+        margin-left: 57vw;
     }
 }

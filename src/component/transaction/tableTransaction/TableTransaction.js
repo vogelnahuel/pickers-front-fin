@@ -41,11 +41,11 @@ export const TableTransaction = () => {
            
             <table  className="titleTableTransactions">
                 <thead>
-                        <tr> 
-                            <td></td>
-                            <td></td>
+                        <tr key="tr-1"> 
+                            <td key="1"></td>
+                            <td key="2"></td>
                             {titulos.map(titulo => 
-                                      <td>{titulo}</td>
+                                      <td key={titulo}>{titulo}</td>
                                 )
                             }
                            
@@ -56,9 +56,9 @@ export const TableTransaction = () => {
                     
                     {
                         api.map(dato => 
-                            <tr>
-                                  <td></td>
-                                    <td ><img onClick={handleClickModal} src={TreePoints} alt="TreePoints" /> </td>
+                            <tr key={dato.Transacción}>
+                                 <td key="1"></td>
+                                    <td ><img id={dato.Transacción} className="img-filter-transaction" onClick={handleClickModal} src={TreePoints} alt="TreePoints" /> </td>
                                 
                                     <td >{dato.Transacción} </td>
                                     <td >{dato.Picker}  </td>

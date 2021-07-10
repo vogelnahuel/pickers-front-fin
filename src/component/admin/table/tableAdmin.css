@@ -29,6 +29,7 @@
 }
 .table-admin thead tr td {
     border-bottom: 1px solid #CCCCCC;
+    height: 11.197916666666668vh;
 }
 .table-admin tbody tr td {
     border-bottom: 1px solid #CCCCCC;
