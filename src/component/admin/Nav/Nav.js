@@ -7,20 +7,25 @@ export const Nav = (props) => {
 
      const setmodalGuardarCambios=props.setmodalGuardarCambios;
      const setRedirect = props.setRedirect;
+     const dataPicker =props.dataPicker;
+     const Informacion=props.Informacion;
+
      let Location="";
      Location =useParams().id;
 
      const handleClick =  (e) => {
 
           
-         
-          
-
+         if(dataPicker!==Informacion){
           if(`/activeUserAdminpicker/${Location}`===window.location.pathname){
                e.preventDefault();
                setmodalGuardarCambios(true);
                setRedirect(e.target.href)
           }
+         }
+          
+
+         
 
      }
    
