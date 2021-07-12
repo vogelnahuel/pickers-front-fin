@@ -130,6 +130,7 @@ const cargarDatos = async () => {
     return () => {
       setData({});
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
 }, []);
 
 
