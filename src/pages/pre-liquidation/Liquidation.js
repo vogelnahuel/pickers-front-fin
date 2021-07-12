@@ -1,8 +1,7 @@
 import React from 'react'
 import {Header} from '../../component/admin/Header/Header'
 import {Nav} from '../../component/admin/Nav/Nav'
-import {Filter} from '../../component/admin/Filter/Filter'
-import { TableAdmin } from '../../component/admin/table/TableAdmin'
+
 import exportar from '../../assets/admin/PendingUser/exportar.svg'
 import or from '../../assets/admin/PendingUser/or.svg'
 

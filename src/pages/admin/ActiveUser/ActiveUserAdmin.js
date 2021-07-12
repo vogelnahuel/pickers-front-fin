@@ -120,7 +120,7 @@ export const ActiveUserAdmin = () => {
     return () => {
       setData({});
     };
-  }, []);
+  }, [offset,filter.nombre,filter.vehiculo,filter.dni,filter.mail]);
 
   const getData = async (filter) => {
     filter.mail = codificarEmailURIFunction(filter.mail);

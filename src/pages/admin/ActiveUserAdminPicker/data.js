@@ -125,7 +125,7 @@ export const data = () => {
             label: {
                 labelclassName:"label-Admin-Pickers",
                 labelhtmlFor:"cbu",
-                labelparrafo:"Número de CBU"
+                labelparrafo:"Número de CBU "
                 },
             className:"Admin-Pickers-input readonly",
             type:"text",

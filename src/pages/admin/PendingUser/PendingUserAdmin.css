@@ -27,7 +27,11 @@
     background-color: white;
     text-align: center;
     margin-top: 5vh;
+<<<<<<< HEAD
     margin-left: 47vw;
+=======
+    margin-left: 46vw;
+>>>>>>> 04b77b99ba42b557504b2c54ca96b7bcba9cdab4
 }
 .p-export{
     font-family: 'Mulish';
@@ -93,8 +97,23 @@
     font-weight: 700;
 }
 
+@media (min-width: 1400px) { 
+    .export{
+        margin-left: 49vw;
+    }
+}
+
 @media (min-width: 1600px) { 
     .export{
+<<<<<<< HEAD
         margin-left: 53vw;
+=======
+        margin-left: 52vw;
+    }
+}
+@media (min-width: 1800px) { 
+    .export{
+        margin-left: 57vw;
+>>>>>>> 04b77b99ba42b557504b2c54ca96b7bcba9cdab4
     }
 }

@@ -129,7 +129,7 @@ export const PendingUserAdmin = () => {
     return () => {
       setData({});
     };
-  }, []);
+  }, [filter.nombre,filter.vehiculo,filter.dni,filter.mail]);
 
   const cargarMas = async () => {
     setoffset(offset + tamPag);

@@ -1,6 +1,7 @@
 
 .table-admin{
     width: 100%;
+    background-color: white;
 }
 
 .thead-table-admin{
@@ -9,55 +10,49 @@
 }
 
 
-.title-table{
-    height: 86px ;
-    padding-top: 30px;
-    padding-left: 0.732vw    ;
-    background: #F7F7F7;
-    border: 1px solid #CCCCCC;
+.table-admin thead tr td {
+    font-family: 'Mulish';
     font-style: normal;
     font-weight: bold;
     font-size: 18px;
     line-height: 23px;
     color: #4D4D4D;
-    text-align: start;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    display: flex;  
+    height: 11.197916666666668vh;
+}
+.table-admin{
+    border-collapse: separate; 
+    border-spacing: 0px;
+    border-top-left-radius: 10px; 
+    border-top-right-radius: 10px; 
+    background-color: #F2F2F2;   
+    border: 1px solid #CCCCCC;
+}
+.table-admin thead tr td {
+    border-bottom: 1px solid #CCCCCC;
+    height: 11.197916666666668vh;
+}
+.table-admin tbody tr td {
+    border-bottom: 1px solid #CCCCCC;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 23px;
+    color: #4F4F4F;
+}
+.table-admin tbody tr td:first-child {
+    width: 3.660vw;
+}
+.table-admin thead tr td:nth-child(2){
+    width: 7.321vw;
+}
+.table-admin thead tr td:last-child {
+    width: 2.635vw;
+}
+.table-admin tbody tr td:last-child {
+    width: 2.635vw;
 }
 
-.title-table-nombre{
-    /* padding-left: 50px; */
-    padding-left: 2.928vw    ;
-    width: 13vw;
-    font-family: 'Mulish';
-}
-.title-table-dni{
-    padding-left: 2.1vw;
-    width: 12vw;
-    font-family: 'Mulish';
-}
-.title-table-email{
-    padding-left: 1.4vw;
-    width: 30vw;
-    font-family: 'Mulish';
-}
-.title-table-vehiculo{
-    padding-left: 7.351vw;
-    width: 15vw;
-    font-family: 'Mulish';
-}
-.title-table-pendding{
-    padding-left: 0.366vw    ;
-    width: 18vw;
-    font-family: 'Mulish';
-    margin-left: 1.098vw    ;
-  
-}
-.title-table-editar{
-    padding-left: 2.562vw;
-    width: 10vw;
-}
 .info{
     text-align: center;
     background: #FFFFFF;
@@ -72,11 +67,11 @@
     text-align: start;
     
 }
-.color-state-red{
+#color-state-red{
     color: #FF1515;
     font-weight: 700;
 }
-.color-state-green{
+#color-state-green{
     color: #27AE60;
     font-weight: 700;
 }
@@ -99,123 +94,4 @@
     width: 99.72px;
     padding-top: 6px;
 }
-.table-name{
-    padding-left: 3.660vw;
-    width: 18vw;
-}
-.table-dni{
-    width: 12vw;
-}
-.table-email{
-    width: 25vw;
-}
-.table-vehiculo{
-    width: 10vw;
-    padding-left: 1.098vw;
-}
-.table-registro{
-    width: 22vw;
-    padding-left: 1.830vw;
-}
-.table-editar{
-    width: 10vw;
-    padding-left: 3.294vw;
-}
 
-.active-table-vehiculo{
-    padding-left: 7.428vw;
-}
-.active-table-estado{
-    padding-left: 1.264vw;
-}
-.active-table-email{
-    padding-left: 1.964vw;
-}
-.active-table-dni{
-    padding-left: 2.656vw;
-}
-.table-editar-active{
-    padding-left: 4.026vw;
-}
-@media (min-width: 1600px) { 
-
-    .title-table-dni{
-        padding-left: 2.8vw;
-        width: 12vw;
-        font-family: 'Mulish';
-    }
-    .title-table-email{
-        padding-left: 2.0vw;
-        width: 30vw;
-        font-family: 'Mulish';
-    }
-    .title-table-vehiculo{
-        padding-left: 4.051vw;
-        width: 15vw;
-        font-family: 'Mulish';
-    }
-    .title-table-pendding{
-        padding-right: 2vw    ;
-        padding-left: 0vw    ;
-        width: 18vw;
-        font-family: 'Mulish';
-        margin-left: 0vw    ;
-      
-    }
-
-    .active-table-vehiculo{
-        padding-left: 4.428vw;
-    }
-    .active-table-estado{
-        padding-left: 0.264vw;
-    }
-    .active-table-email{
-        padding-left: 2.464vw;
-    }
-    .active-table-dni{
-        padding-left: 2.656vw;
-    }
-
- }
-
-
- @media (min-width: 1800px) { 
-
-    .title-table-dni{
-        padding-left: 2.95vw;
-        width: 12vw;
-        font-family: 'Mulish';
-    }
-    .title-table-email{
-        padding-left: 2.45vw;
-        width: 30vw;
-        font-family: 'Mulish';
-    }
-    .title-table-vehiculo{
-        padding-left: 3.751vw;
-        width: 15vw;
-        font-family: 'Mulish';
-    }
-    .title-table-pendding{
-        padding-right: 6vw    ;
-        padding-left: 0vw    ;
-        width: 18vw;
-        font-family: 'Mulish';
-        margin-left: 0vw    ;
-      
-    }
-
-    .active-table-vehiculo{
-        padding-left: 3.728vw;
-    }
-    .active-table-estado{
-        padding-left: 0.264vw;
-    }
-    .active-table-email{
-        padding-left: 2.864vw;
-    }
-    .active-table-dni{
-        padding-left: 3.356vw;
-    }
-
- }

@@ -192,11 +192,15 @@ const modificarPicker= async (e) =>{
             <Nav
                 setmodalGuardarCambios={setmodalGuardarCambios}
                 setRedirect={setRedirect}
+                dataPicker={dataPicker}
+                Informacion={Informacion}
             />
             <div className="pending-container">
                  <PendingBlack
                     setmodalGuardarCambios={setmodalGuardarCambios}
                     setRedirect={setRedirect}
+                    dataPicker={dataPicker}
+                    Informacion={Informacion}
                  />
                    
                  <div 
@@ -337,7 +341,7 @@ const modificarPicker= async (e) =>{
                         </div>
               : null
         }    
-         {   modalGuardarCambios === true ? 
+         {   modalGuardarCambios === true    ? 
                     <div className="contendor-modal-pending-pickers-aprobar">
                             <Modal
 
