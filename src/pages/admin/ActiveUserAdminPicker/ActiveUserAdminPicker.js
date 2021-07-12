@@ -21,6 +21,8 @@ import moment from 'moment'
 
 export const ActiveUserAdminPicker = () => {
 
+    const [ExportModalActivePicker, setExportModalActivePicker] = useState(false);
+
     const [disableButtons, setdisableButtons] = useState(false);
     const [Redirect, setRedirect] = useState('/activeUserAdmin')
     const [modalGuardarCambios, setmodalGuardarCambios] = useState(false)
@@ -137,7 +139,8 @@ useEffect(() => {
 
     const [inputsPart1,ComponentesPart1,inputsPart2,ComponentesPart2,inputsPart3,ComponentesPart3,inputsPart4,ComponentesPart4]=data();
    
-const Export = async () => {              
+const Export = async () => {        
+    setExportModalActivePicker(true);      
         const mailCodificado = codificarEmailURIFunction(dataPicker.email);
         const datosExport =await api.get(`/ms-admin-rest/api/v1.0/pickers.csv?&email=${mailCodificado}`)
         .then( (res) => {return res})
@@ -180,6 +183,10 @@ const modificarPicker= async (e) =>{
                 )
                 .catch(()=>{})
 }
+const cerrarGuardarExitoPicker = (e) => {
+    e.preventDefault();
+    setExportModalActivePicker(false);
+  };
 
 
  
@@ -351,7 +358,7 @@ const modificarPicker= async (e) =>{
                                    
                                     >
                                     <div className="container-modal">
-                                        <div className="modal-error-title2">
+                                        <div className="modal-save-title">
                                             <p className="p-modal-error-title">Guardá tus cambios</p>
                                         </div>
                                         <div className="modal-error-subtitle">
@@ -374,6 +381,30 @@ const modificarPicker= async (e) =>{
                         </div>
               : null
         }  
+         {ExportModalActivePicker === true ? (
+          <div className="contendor-modal-pending-pickers-aprobar">
+            <Modal width="750px" height="351px" isOpen={ExportModalActivePicker}>
+              <div className="container-modal">
+                <div className="modal-success-title">
+                  <p className="p-modal-error-title">Exportaste exitosamente</p>
+                </div>
+                <div className="modal-error-subtitle">
+                  <p className="p-modal-error-subtitle">
+                    El archivo se descargo correctamente
+                  </p>
+                  <div className="button-pending-picker-modal">
+                    <button
+                      onClick={cerrarGuardarExitoPicker}
+                      className="button-modal-aprobar-exito"
+                    >
+                      Entendido
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </Modal>
+          </div>
+        ) : null}
         
             </div>
             

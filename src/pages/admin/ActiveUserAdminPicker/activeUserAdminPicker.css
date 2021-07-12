@@ -163,6 +163,11 @@
     box-sizing: border-box;
     border-radius: 50px;
 }
+.modal-save-title{
+    background: #0098FF;;
+    border-radius: 25px 25px 0px 0px;
+    height: 137px;
+}
 
 
 

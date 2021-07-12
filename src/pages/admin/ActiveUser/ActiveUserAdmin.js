@@ -11,9 +11,11 @@ import { dataActiveUser } from "./dataActiveUser";
 import api from "../../../config/api";
 import codificarEmailURIFunction from "../../../tools/encodeMail.js";
 import createCSV from "../../../tools/createCSV.js";
+import { Modal } from "pickit-components";
 
 export const ActiveUserAdmin = () => {
   /****titulos de la tabla */
+  const [ExportModalActive, setExportModalActive] = useState(false);
   const titulosAdminActive = [
     "Nombre",
     "DNI",
@@ -24,8 +26,7 @@ export const ActiveUserAdmin = () => {
   ];
   /****llama a los campos y los envia */
   const [FieldsPart] = dataActiveUser();
-  const tamPag = 15;
-  const [offset, setoffset] = useState(0);
+
   const [dataExport, setdataExport] = useState({
     dni: "",
     nombre: "",
@@ -45,6 +46,7 @@ export const ActiveUserAdmin = () => {
     mail: "",
     vehiculo: "",
   });
+
   const onFilter = (e) => {
     //  debugger
     e.preventDefault();
@@ -59,7 +61,8 @@ export const ActiveUserAdmin = () => {
     getData(filter);
     setDatosFiltros(filter);
   };
-
+  const tamPag = 15;
+  const [offset, setoffset] = useState(tamPag);
 
   const cargarMas = async () => {
     setoffset(offset + tamPag);
@@ -94,7 +97,7 @@ export const ActiveUserAdmin = () => {
       window.location.href = "/";
     }
 
-    const cargarDatos = async () => {
+const cargarDatos = async () => {
       setData(
         await api
           .get(
@@ -120,16 +123,21 @@ export const ActiveUserAdmin = () => {
     return () => {
       setData({});
     };
-  }, [offset,filter.nombre,filter.vehiculo,filter.dni,filter.mail]);
+  }, []);
 
-  const getData = async (filter) => {
+  const cerrarGuardarExito = (e) => {
+    e.preventDefault();
+    setExportModalActive(false);
+  };
+
+const getData = async (filter) => {
     filter.mail = codificarEmailURIFunction(filter.mail);
     setoffset(0)
     setData([])
     setData(
       await api
         .get(
-            `ms-admin-rest/api/v1.0/pickers?pickerStatusId=4,5&limit=${tamPag}&offset=${offset}${
+            `ms-admin-rest/api/v1.0/pickers?pickerStatusId=4,5&limit=${tamPag}${
                 filter.nombre ? `&name=${filter.nombre}` : ""
               }${
                 filter.vehiculo && filter.vehiculo !== "DEFAULT"
@@ -149,10 +157,12 @@ export const ActiveUserAdmin = () => {
     );
 
     setdataExport(filter);
-  };
+};
 
-  const Export = async () => {
+
+const Export = async () => {
     //setDataExport
+    setExportModalActive(true);
     const datosExport = await api
       .get(
         `ms-admin-rest/api/v1.0/pickers.csv?pickerStatusId=4,5${
@@ -176,6 +186,7 @@ export const ActiveUserAdmin = () => {
 
     createCSV(datosExport);
   };
+
   return (
     <div className="background-Grey">
       <Header />
@@ -200,6 +211,30 @@ export const ActiveUserAdmin = () => {
             Ver más
           </button>
         </div>
+        {ExportModalActive === true ? (
+          <div className="contendor-modal-pending-pickers-aprobar">
+            <Modal width="750px" height="351px" isOpen={ExportModalActive}>
+              <div className="container-modal">
+                <div className="modal-success-title">
+                  <p className="p-modal-error-title">Exportaste exitosamente</p>
+                </div>
+                <div className="modal-error-subtitle">
+                  <p className="p-modal-error-subtitle">
+                    El archivo se descargo correctamente
+                  </p>
+                  <div className="button-pending-picker-modal">
+                    <button
+                      onClick={cerrarGuardarExito}
+                      className="button-modal-aprobar-exito"
+                    >
+                      Entendido
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </Modal>
+          </div>
+        ) : null}
       </div>
     </div>
   );
