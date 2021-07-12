@@ -19,7 +19,7 @@ export const PendingUserAdmin = () => {
     "Nombre",
     "DNI",
     "Email",
-    "vehiculo",
+    "Vehículo",
     "Pendiente hace",
     "Editar",
   ];
@@ -96,14 +96,15 @@ export const PendingUserAdmin = () => {
     );
 
     setdataExport(filter);
-  };
+};
 
   useEffect(() => {
     if (!window.localStorage.getItem("token")) {
       window.location.href = "/";
     }
 
-    const cargarDatos = async () => {
+const cargarDatos = async () => {
+
       setData(
         await api
           .get(
@@ -129,10 +130,13 @@ export const PendingUserAdmin = () => {
     return () => {
       setData({});
     };
-  }, [filter.nombre,filter.vehiculo,filter.dni,filter.mail]);
+}, []);
+
 
   const cargarMas = async () => {
-    setoffset(offset + tamPag);
+
+    
+
     const res = await api
       .get(
         `ms-admin-rest/api/v1.0/pickers?pickerStatusId=2,3${
@@ -147,9 +151,10 @@ export const PendingUserAdmin = () => {
             : ""
         }${
           DatosFiltros.mail ? `&email=${DatosFiltros.mail}` : ""
-        }&limit=${tamPag}&offset=${offset}`
+        }&limit=${tamPag}&offset=${offset+tamPag}`
       )
       .then((res) => {
+        setoffset(offset + tamPag);
         return res.data.result.items;
       })
       .catch((err) => {
@@ -158,6 +163,7 @@ export const PendingUserAdmin = () => {
 
     setData(data.concat(res));
   };
+
   const Export = async () => {
     setExportModal(true);
     const datosExport = await api
@@ -225,7 +231,7 @@ export const PendingUserAdmin = () => {
                   <div className="button-pending-picker-modal">
                     <button
                       onClick={cerrarGuardarExito}
-                      className="button-modal-aprobar"
+                      className="button-modal-aprobar-exito"
                     >
                       Entendido
                     </button>
