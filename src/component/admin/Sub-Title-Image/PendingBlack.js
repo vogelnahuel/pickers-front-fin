@@ -10,12 +10,15 @@ export const PendingBlack = (props) => {
 
     const setmodalGuardarCambios=props.setmodalGuardarCambios;
     const setRedirect = props.setRedirect;
+    const dataPicker =props.dataPicker;
+    const Informacion=props.Informacion;
+
 
     const {id} = useParams();
     
 
     const [activedmin, setActive] = useState("/activeUserAdmin");
-    //const [activeAdminPicker, setActivePicker] = useState(`/activeUserAdminpicker/${id}`);
+    const [activeAdminPicker, setActivePicker] = useState(`/activeUserAdminpicker/${id}`);
 
 const  handleOnClickredirect =(e) => {
   
@@ -25,19 +28,22 @@ const  handleOnClickredirect =(e) => {
             setActive("/pendingUserAdmin")
            // window.location.href="/pendingUserAdmin"
         }
-        if(window.location.pathname===`/activeUserAdminpicker/${id}`){         
+        
+        if(window.location.pathname===`/activeUserAdminpicker/${id}` && dataPicker!==Informacion){         
             //setActivePicker(`/pendingUserAdmin`);
             e.preventDefault();
             setmodalGuardarCambios(true);
             setRedirect("/pendingUserAdmin")
-        }    
+        }else if(window.location.pathname===`/activeUserAdminpicker/${id}`){
+            setActivePicker(`/pendingUserAdmin`);
+        }
     }
 
 const handleHistory = (e) => {
-    e.preventDefault();   
+ 
   
-    if(window.location.pathname===`/activeUserAdminpicker/${id}`){  
-         
+    if(window.location.pathname===`/activeUserAdminpicker/${id}`&& dataPicker!==Informacion){  
+        e.preventDefault();   
         setmodalGuardarCambios(true);
         setRedirect('/activeUserAdmin');
     } else{
@@ -66,6 +72,10 @@ const handleHistory = (e) => {
                     {
                         window.location.pathname==="/activeUserAdmin" ?
                         <Redirect to={activedmin}></Redirect>:<></>
+                    }
+                    {
+                        window.location.pathname===`/activeUserAdminpicker/${id}` ?
+                        <Redirect to={activeAdminPicker}></Redirect>:<></>
                     }
                     
 
