@@ -19,7 +19,7 @@ export const PendingUserAdmin = () => {
     "Nombre",
     "DNI",
     "Email",
-    "vehiculo",
+    "Vehículo",
     "Pendiente hace",
     "Editar",
   ];

@@ -37,14 +37,14 @@ export const FilterTransaction = () => {
                                             <label className="label-filter-transaction" >Fecha de entrega</label>
                                         </div>
                                         <div>
-                                            <Field name="FechaEntrega" component={DatePicker} placeholder="Seleccioná la fecha"/>
+                                            <Field  className="" name="FechaEntrega" component={DatePicker} placeholder="Seleccioná la fecha" />
                                         </div>
                                     </div>
                                     <div>
                                         <div>
                                             <label className="label-filter-transaction" >Estados </label>
                                         </div>
-                                        <div>
+                                        <div >
                                             <Field name="Estados" component="input" placeholder="Seleccioná el estado"/>
                                         </div>
                                     </div>

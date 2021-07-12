@@ -18,7 +18,7 @@ export const ActiveUserAdmin = () => {
     "Nombre",
     "DNI",
     "Email",
-    "vehiculo",
+    "Vehículo",
     "Estado",
     "Editar",
   ];
