@@ -29,7 +29,7 @@ export const PendingUserAdminPicker = () => {
 
     const [modalOpenAprobar, setmodalOpenAprobar] = useState(false);
 
-    const [disabledButtonAprobarPicker, setdisabledButtonAprobarPicker] = useState(true)
+    const [disabledButtonAprobarPicker, setdisabledButtonAprobarPicker] = useState(false)
     const [Informacion, setInformacion] = useState({
         nombre:"",
         apellido:"",

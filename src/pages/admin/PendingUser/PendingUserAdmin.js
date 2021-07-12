@@ -225,7 +225,7 @@ export const PendingUserAdmin = () => {
                   <div className="button-pending-picker-modal">
                     <button
                       onClick={cerrarGuardarExito}
-                      className="button-modal-aprobar"
+                      className="button-modal-aprobar-exito"
                     >
                       Entendido
                     </button>
