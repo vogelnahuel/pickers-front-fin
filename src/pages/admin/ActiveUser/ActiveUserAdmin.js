@@ -50,7 +50,7 @@ export const ActiveUserAdmin = () => {
   const onFilter = (e) => {
     //  debugger
     e.preventDefault();
-    setoffset(0)
+    setoffset2(0)
     filter = {
       dni: e.target.dni.value,
       nombre: e.target.NyA.value,
@@ -61,11 +61,11 @@ export const ActiveUserAdmin = () => {
     getData(filter);
     setDatosFiltros(filter);
   };
-  const tamPag = 15;
-  const [offset, setoffset] = useState(tamPag);
+  const tamPag = 5;
+  const [offset2, setoffset2] = useState(0);
 
   const cargarMas = async () => {
-    setoffset(offset + tamPag);
+   // setoffset(offset + tamPag);
     const res = await api
       .get(
         `ms-admin-rest/api/v1.0/pickers?pickerStatusId=4,5${
@@ -80,9 +80,10 @@ export const ActiveUserAdmin = () => {
               : ""
           }${
             DatosFiltros.mail ? `&email=${DatosFiltros.mail}` : ""
-          }&limit=${tamPag}&offset=${offset}`
+          }&limit=${tamPag}&offset=${offset2+tamPag}`
       )
       .then((res) => {
+        setoffset2(offset2 + tamPag);
         return res.data.result.items;
       })
       .catch((err) => {
@@ -101,7 +102,7 @@ const cargarDatos = async () => {
       setData(
         await api
           .get(
-            `ms-admin-rest/api/v1.0/pickers?pickerStatusId=4,5&limit=${tamPag}&offset=${offset}${
+            `ms-admin-rest/api/v1.0/pickers?pickerStatusId=4,5&limit=${tamPag}&offset=${offset2}${
               filter.nombre ? `&name=${filter.nombre}` : ""
             }${
               filter.vehiculo && filter.vehiculo !== "DEFAULT"
@@ -123,6 +124,7 @@ const cargarDatos = async () => {
     return () => {
       setData({});
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const cerrarGuardarExito = (e) => {
@@ -132,7 +134,7 @@ const cargarDatos = async () => {
 
 const getData = async (filter) => {
     filter.mail = codificarEmailURIFunction(filter.mail);
-    setoffset(0)
+    setoffset2(0)
     setData([])
     setData(
       await api
@@ -148,7 +150,7 @@ const getData = async (filter) => {
               }${filter.mail ? `&email=${filter.mail}` : ""}`
         )
         .then((res) => {
-            setoffset(offset+ tamPag)
+           
           return res.data.result.items;
         })
         .catch((err) => {
