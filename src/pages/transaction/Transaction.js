@@ -1,12 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {Header} from '../../component/admin/Header/Header'
 import {Nav} from '../../component/admin/Nav/Nav'
-import {Filter} from '../../component/admin/Filter/Filter'
-import { TableAdmin } from '../../component/admin/table/TableAdmin'
 import exportar from '../../assets/admin/PendingUser/exportar.svg'
 import or from '../../assets/admin/PendingUser/or.svg'
+import { TableTransaction } from '../../component/transaction/tableTransaction/TableTransaction'
+import './transaction.css'
+import { FilterTransaction } from '../../component/transaction/filterTransaction/FilterTransaction'
+import { Modal } from 'pickit-components'
 
 export const Transaction = () => {
+
+    const [OpenModalTransaction, setOpenModalTransaction] = useState(false);
+    const [IdModalApi, setIdModalApi] = useState("");// devuelve la consulta api
 
 const cargarMas = () => {
 
@@ -21,15 +26,15 @@ const Export = () => {
             <Header/>
           <div className="mainContainerFlex">  
                 <Nav/>
-                <div className="pending-container">
+                <div className="transaction-container">
                  
                        
                      <div 
                      className="mainContainerFlex">
-                         <h2 className="subTitle-pending"><p className="subtitle-pendingUser-h2">Transacciones </p></h2>
+                         <h2 className="subTitle-transaction"><p className="subtitle-pendingUser-h2">Transacciones </p></h2>
                          <button 
                             onClick={Export}
-                            className="export"
+                            className="export-transaction"
                             name="export"
                             >
                             <img  src={exportar} alt="export" />
@@ -37,14 +42,26 @@ const Export = () => {
                             <p className="display-inline-block p-export"> Exportar</p>
                          </button>
                      </div>
-                     <p>  crear nuevo filtro con final form
-                     o usar el mismo pero  en el calendar es un date picker y el otro es un custom select checkbox</p>
-
-                    <p> y crear nuevo componente tabla porque es otro diseño</p>
+                     <FilterTransaction/>
+                    <TableTransaction
+                    setOpenModalTransaction={setOpenModalTransaction}
+                    IdModal={IdModalApi}
+                    setIdModal={setIdModalApi}
+                    />
+                    
+                     <button onClick={cargarMas} className="paginator-button-transaction">Ver más</button>
                      
-                     <button onClick={cargarMas} className="paginator-button">Ver más</button>
                 </div>
-              
+
+                    {
+                        OpenModalTransaction ===true ?
+                        <div>
+                                <Modal>
+
+                                </Modal>
+                        </div>
+                        :null
+                    }
                         
             </div>
             
