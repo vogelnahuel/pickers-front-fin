@@ -26,7 +26,7 @@ export const ActiveUserAdmin = () => {
   ];
   /****llama a los campos y los envia */
   const [FieldsPart] = dataActiveUser();
-
+  const [VerMas, setVerMas] = useState(true)
   const [dataExport, setdataExport] = useState({
     dni: "",
     nombre: "",
@@ -84,6 +84,10 @@ export const ActiveUserAdmin = () => {
       )
       .then((res) => {
         setoffset2(offset2 + tamPag);
+        if(res.data.result.items.length<tamPag)
+        {
+          setVerMas(false)
+        }
         return res.data.result.items;
       })
       .catch((err) => {
@@ -135,6 +139,7 @@ const cargarDatos = async () => {
 const getData = async (filter) => {
     filter.mail = codificarEmailURIFunction(filter.mail);
     setoffset2(0)
+    setVerMas(true)
     setData([])
     setData(
       await api
@@ -209,9 +214,14 @@ const Export = async () => {
           <Filter FieldsPart={FieldsPart} onSubmit={onFilter} />
           <br />
           <TableAdmin titulosAdminActive={titulosAdminActive} data={data} />
+          {VerMas?<>
           <button onClick={cargarMas} className="paginator-button">
             Ver más
-          </button>
+          </button></>:
+          <>
+          <button  className="paginator-button-disabled">
+            Ver más
+          </button></>}
         </div>
         {ExportModalActive === true ? (
           <div className="contendor-modal-pending-pickers-aprobar">
