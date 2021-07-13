@@ -2,7 +2,7 @@ import React from 'react'
 import './TableTransaction.css'
 import TreePoints from '../../../assets/transaction/TreePoints.svg'
 
-export const TableTransaction = () => {
+export const TableTransaction = (props) => {
     const titulos = ['Transacción','Picker','Fecha de entrega','Estado'];
     const api = [
         {
@@ -31,9 +31,11 @@ export const TableTransaction = () => {
         }
         
     ]
+    const setOpenModalTransaction =  props.setOpenModalTransaction;
 
     const handleClickModal = (e) => {
         e.preventDefault();
+        setOpenModalTransaction(true);
     }
 
     return (

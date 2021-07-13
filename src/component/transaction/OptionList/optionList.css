@@ -1,0 +1,102 @@
+.form-filter-transaction{
+    display: flex;
+}
+.modal-transaction-optionContainer-scroll{
+    height: 48vh;
+    overflow-y: scroll;
+}
+.modal-transaction-button-irApicker{
+    height: 50px;
+    width: 176px;
+    border: 2.5px solid #0098FF;
+    box-sizing: border-box;
+    border-radius: 50px;
+    background-color: white;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 23px;
+    text-align: center;
+    color: #101820;
+}
+.modal-transaction-inputs{
+    display: flex;
+    flex-wrap: wrap;
+    width: 65vw;
+}
+.modal-transaction-h3{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 25px;
+    letter-spacing: 0.01em;
+    color: #0098FF;
+}
+
+.modal-transaction-optionContainer-scroll{
+    overflow-y: scroll;
+    padding-right: 20px;
+    
+}
+.modal-transaction-optionContainer-scroll::-webkit-scrollbar {
+    width: 8px;     
+    height: 8px;
+}
+.modal-transaction-optionContainer-scroll::-webkit-scrollbar-thumb {
+    background: #BDBDBD;
+    width: 7px;     
+    height: 7px;
+    border-radius: 4px;
+}
+.modal-transaction-optionContainer-scroll::-webkit-scrollbar-thumb:hover {
+    background: #BDBDBD;
+    width: 7px;     
+    height: 7px;
+    border-radius: 4px;
+}
+.modal-transaction-optionContainer-scroll::-webkit-scrollbar-thumb:active {
+    background-color: #BDBDBD;
+    width: 7px;     
+    height: 7px;
+    border-radius: 4px;
+}
+
+.modal-transaction-optionContainer-scroll::-webkit-scrollbar-track {
+    background: #F1F1F1;
+    border-radius: 4px;
+}
+.modal-transaction-separate-option{
+    width: 100%;
+    border: 1px solid #CCCCCC;
+}
+.modal-transaction-part{
+    display: flex;
+}
+.modal-transaction-part-subtitle{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 17px;
+    line-height: 21px;
+    letter-spacing: 0.0125em;
+    color: #4D4D4D;
+    margin-left: 17px;
+}
+.modal-transaction-part-info{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 19px;
+    margin-left: 15px;
+    color: #BDBDBD;
+    margin-top: 2px;
+}
+.modal-transaction-img-connector{
+    margin-left: 9px;
+}
+.modal-transaction-section-history{
+    height: 880px;
+}
