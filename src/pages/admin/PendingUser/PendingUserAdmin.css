@@ -92,6 +92,19 @@
     font-family: 'Mulish';
     font-weight: 700;
 }
+.paginator-button-disabled{
+    position: relative;
+    background: #F2F2F2;
+    border: 1px solid #CCCCCC;
+    width: 100%;
+    color:rgba(189, 189, 189, 1);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    height: 43px;
+    margin-bottom: 20px;
+    font-family: 'Mulish';
+    font-weight: 700;
+}
 
 @media (min-width: 1400px) { 
     .export{
@@ -101,6 +114,11 @@
 
 @media (min-width: 1600px) { 
     .export{
-        margin-left: 53vw;
+        margin-left: 52vw;
+    }
+}
+@media (min-width: 1800px) { 
+    .export{
+        margin-left: 57vw;
     }
 }
