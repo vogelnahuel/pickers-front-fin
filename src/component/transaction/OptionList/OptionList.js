@@ -22,15 +22,15 @@ export const OptionList = () => {
                                         <div>
                                             <label className="label-filter-transaction">Picker </label>
                                         </div>
-                                        <div>
-                                            <Field name="nroTransaccion" component="input" placeholder="Ingresá el número" value="12345"/>
+                                        <div className="modal-transaction-input">
+                                            <Field name="nroTransaccion" component="input" placeholder="Ingresá el número"/>
                                         </div>
                                     </div>
                                     <div>
                                         <div>
                                             <label className="label-filter-transaction" >Nombre y apellido</label>
                                         </div>
-                                        <div>
+                                        <div className="modal-transaction-input">
                                             <Field name="Picker" component="input" placeholder="Ingresá el número de picker"/>
                                         </div>
                                     </div>
@@ -39,7 +39,7 @@ export const OptionList = () => {
                                         <div>
                                             <label className="label-filter-transaction" >Teléfono </label>
                                         </div>
-                                        <div >
+                                        <div className="modal-transaction-input">
                                             <Field name="Telefono" component="input" placeholder="Seleccioná el estado"/>
                                         </div>
                                     </div>
@@ -48,7 +48,7 @@ export const OptionList = () => {
                                         <div>
                                             <label className="label-filter-transaction" >Dirección de retiro </label>
                                         </div>
-                                        <div >
+                                        <div className="modal-transaction-input" >
                                             <Field name="dirRetiro" component="input" placeholder="Seleccioná el estado"/>
                                         </div>
                                     </div>
@@ -56,7 +56,7 @@ export const OptionList = () => {
                                         <div>
                                             <label className="label-filter-transaction" >Dirección de entrega </label>
                                         </div>
-                                        <div >
+                                        <div className="modal-transaction-input">
                                             <Field name="dirEntrega" component="input" placeholder="Seleccioná el estado"/>
                                         </div>
                                     </div>
@@ -64,7 +64,7 @@ export const OptionList = () => {
                                         <div>
                                             <label className="label-filter-transaction" >Retailer </label>
                                         </div>
-                                        <div >
+                                        <div className="modal-transaction-input">
                                             <Field name="Retailer" component="input" placeholder="Seleccioná el estado"/>
                                         </div>
                                     </div>

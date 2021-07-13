@@ -25,6 +25,9 @@
     flex-wrap: wrap;
     width: 65vw;
 }
+.modal-transaction-input{
+    width: 20.351vw;
+}
 .modal-transaction-h3{
     font-family: 'Mulish';
     font-style: normal;
@@ -82,7 +85,7 @@
     line-height: 21px;
     letter-spacing: 0.0125em;
     color: #4D4D4D;
-    margin-left: 17px;
+    margin-left: 1.458vw;
 }
 .modal-transaction-part-info{
     font-family: 'Mulish';
@@ -92,11 +95,11 @@
     line-height: 19px;
     margin-left: 15px;
     color: #BDBDBD;
-    margin-top: 2px;
+    margin-top:  0.2604166666666667vh;
 }
 .modal-transaction-img-connector{
-    margin-left: 9px;
+    margin-left: 0.702vw;
 }
 .modal-transaction-section-history{
-    height: 880px;
+    height: 127.58333333333334vh;
 }

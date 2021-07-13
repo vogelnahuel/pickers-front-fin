@@ -15,6 +15,54 @@ export const Transaction = () => {
 
     const [OpenModalTransaction, setOpenModalTransaction] = useState(false);
     const [IdModalApi, setIdModalApi] = useState("");// devuelve la consulta api
+    const titulos = ['Transacción','Picker','Fecha de entrega','Estado'];
+    const api = [
+        {
+            Transacción:'AAA114',
+            Picker:'651456321',
+            FechaEntrega:'17/06/2021',
+            Estado:'En retiro',
+            nombre:'Juan perez',
+            telefono:'1130963203',
+            retiro:'JB. Justo 1024 - CABA',
+            entrega:'Cabildo 750, Belgrano - CABA',
+            retailer:'pickit'
+        },
+        {
+            Transacción:'AAA113',
+            Picker:'654321546',
+            FechaEntrega:'17/06/2021',
+            Estado:'En retiro',
+            nombre:'Juan martinez',
+            telefono:'1130963203',
+            retiro:'JB. Justo 1024 - CABA',
+            entrega:'Rivadavia 750, Belgrano - CABA',
+            retailer:'pickit'
+        },
+        {
+            Transacción:'AAA112',
+            Picker:'654321548',
+            FechaEntrega:'17/06/2021',
+            Estado:'Sin asignar',
+            nombre:'miguel perez',
+            telefono:'1130963203',
+            retiro:'Rivadavia 1024 - CABA',
+            entrega:'Cabildo 750, Belgrano - CABA',
+            retailer:'pickit'
+        },
+        {
+            Transacción:'AAA111',
+            Picker:'125485221',
+            FechaEntrega:'17/06/2021',
+            Estado:'Retirado',
+            nombre:'miguel martinez',
+            telefono:'1130963203',
+            retiro:'Rivadavia 1024 - CABA',
+            entrega:'Rivadavia 750, Belgrano - CABA',
+            retailer:'pickit'
+        }
+        
+    ]
 
 const cargarMas = () => {
 
@@ -53,6 +101,8 @@ const onClose = (e) => {
                     setOpenModalTransaction={setOpenModalTransaction}
                     IdModal={IdModalApi}
                     setIdModal={setIdModalApi}
+                    api={api}
+                    titulos={titulos}
                     
                     />
                     
@@ -85,13 +135,19 @@ const onClose = (e) => {
                                             <hr className="modal-transaction-separate"/>
                                         </div>
                                         <div className="modal-transaction-scroll">
-                                                <OptionList/>
+                                                <OptionList
+                                                api={api}
+                                                />
                                                 
                                                     
                                                 
                                         </div>
-                                        <div className="modal-transaction-difuminar">
+                                        <div className="modal-transaction-difuminar1">
+                                        <div className="modal-transaction-difuminar2">
+                                        <div className="modal-transaction-difuminar3">
                                                                         
+                                        </div>
+                                        </div>
                                         </div>
                                         <div className="modal-transaction-buttons-submit">
                                             <button className="modal-transaction-cancel">Cancelar</button>

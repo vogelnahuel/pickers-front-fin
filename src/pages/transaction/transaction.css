@@ -115,7 +115,7 @@
 }
 ._3W6ZHoAki_sgbIh3Yq60-a{
     z-index: 15 !important;
-    height: 600px !important;
+    height: 90.125vh !important;
 }
 .modal-transaction-container{
     width: 94%;
@@ -159,13 +159,32 @@
     margin-left: 26vw;
     margin-top: 5px;
 }
-.modal-transaction-difuminar{
+.modal-transaction-difuminar1{
     position: absolute;
-   
-    top :66.036458333333336vh;
-    width: 80vw;
-    height: 3.90625vh;
-    backdrop-filter: blur(1px);
+    top :66.936458333333336vh;
+    width: 81vw;
+    height: 1.00625vh;
+    backdrop-filter: blur(19px); 
+    background-color: rgb(255, 255, 255);
+    opacity: 0.6;
+}
+.modal-transaction-difuminar2{
+    position: absolute;
+    top :1vh;
+    width: 81vw;
+    height: 1.00625vh;
+    backdrop-filter: blur(19px); 
+    background-color: rgb(255, 255, 255);
+    opacity: 0.8;
+}
+.modal-transaction-difuminar3{
+    position: absolute;
+    top :1vh;
+    width: 81vw;
+    height: 1.00625vh;
+    backdrop-filter: blur(19px); 
+    background-color: rgb(255, 255, 255);
+    opacity: 1;
 }
 .modal-transaction-reload {
     display: flex;
@@ -191,15 +210,42 @@
     .export-transaction{
         margin-left: 49vw;
     }
+    .modal-transaction-difuminar1{
+        position: absolute;
+        top :63.936458333333336vh;
+        width: 81vw;
+        height: 1.00625vh;
+        backdrop-filter: blur(19px); 
+        background-color: rgb(255, 255, 255);
+        opacity: 0.6;
+    }
 }
 
 @media (min-width: 1600px) { 
     .export-transaction{
         margin-left: 52vw;
     }
+    .modal-transaction-difuminar1{
+        position: absolute;
+        top :62.936458333333336vh;
+        width: 81vw;
+        height: 1.00625vh;
+        backdrop-filter: blur(19px); 
+        background-color: rgb(255, 255, 255);
+        opacity: 0.6;
+    }
 }
 @media (min-width: 1800px) { 
     .export-transaction{
         margin-left: 57vw;
+    }
+    .modal-transaction-difuminar1{
+        position: absolute;
+        top :59.936458333333336vh;
+        width: 81vw;
+        height: 1.00625vh;
+        backdrop-filter: blur(19px); 
+        background-color: rgb(255, 255, 255);
+        opacity: 0.6;
     }
 }
