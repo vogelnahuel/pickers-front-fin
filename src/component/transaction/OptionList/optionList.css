@@ -26,7 +26,8 @@
     width: 65vw;
 }
 .modal-transaction-input{
-    width: 20.351vw;
+    width: 19.351vw;
+    margin-right: 20px;
 }
 .modal-transaction-h3{
     font-family: 'Mulish';
