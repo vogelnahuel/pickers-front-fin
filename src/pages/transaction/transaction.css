@@ -205,6 +205,9 @@
     margin-left: 81vw;
     cursor: pointer;
 }
+.flexItems{
+    display: flex;
+}
 
 @media (min-width: 1400px) { 
     .export-transaction{

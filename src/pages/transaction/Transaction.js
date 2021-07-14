@@ -8,7 +8,7 @@ import './transaction.css'
 import { FilterTransaction } from '../../component/transaction/filterTransaction/FilterTransaction'
 import { Modal } from 'pickit-components'
 import {OptionList} from '../../component/transaction/OptionList/OptionList'
-import Reload from '../../assets/transaction/Reload.svg'
+
 import Close from '../../assets/transaction/Close.svg'
 
 export const Transaction = () => {
@@ -142,21 +142,7 @@ const onClose = (e) => {
                                                     
                                                 
                                         </div>
-                                        <div className="modal-transaction-difuminar1">
-                                        <div className="modal-transaction-difuminar2">
-                                        <div className="modal-transaction-difuminar3">
-                                                                        
-                                        </div>
-                                        </div>
-                                        </div>
-                                        <div className="modal-transaction-buttons-submit">
-                                            <button className="modal-transaction-cancel">Cancelar</button>
-                                            <button className="modal-transaction-finish">Finalizar</button>
-                                            <div className="modal-transaction-reload">
-                                                <img src={Reload} alt="reload"/>
-                                                <p>Recargar</p>
-                                            </div>
-                                        </div>
+                                       
 
                                     </div>
 
@@ -164,8 +150,10 @@ const onClose = (e) => {
                         </div>
                         :null
                     }
-                        
+                   
             </div>
+            
+                        
             
         </div>
     )

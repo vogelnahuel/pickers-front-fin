@@ -7,3 +7,29 @@
    /*overflow: hidden;*/
    
 }
+[type="radio"]:checked, [type="radio"]:not(:checked) {
+    left: -9999px;
+    position:static !important;
+    width:15px;
+    height: 15px;
+}
+[type="radio"]:checked+label, [type="radio"]:not(:checked)+label {
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 200;
+    line-height: 20px;
+    padding-left: 0px;
+    position: relative;
+}
+[type="radio"]:checked+label:before, [type="radio"]:not(:checked)+label:before {
+    background: transparent;
+    border: 0px solid;
+    border-radius: 100%;
+    content: '';
+    height: 0px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 0px;
+}
+
