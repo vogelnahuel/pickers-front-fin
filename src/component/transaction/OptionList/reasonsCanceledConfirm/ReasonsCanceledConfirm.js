@@ -15,7 +15,13 @@ export const ReasonsCanceledConfirm = () => {
                     <h3 className="modal-transaction-reasonsCanceledConfirm-subtitle">La transacción está por ser cancelada</h3>
                     <hr className="modal-transaction-reasonsCanceledConfirm-separate"/>
                     <p className="modal-transaction-reasonsCanceledConfirm-p">Al cancelar la transacción, esta va a pasar a blablabla
-                    <br/>¿Querés cancelarla?</p>
+                 
+                   
+                    </p>
+                    <p className="modal-transaction-reasonsCanceledConfirm-p2">
+                        
+                        ¿Querés cancelarla?
+                    </p>
             </div>
             <button className="modal-transaction-reasonsCanceledConfirm-button">Sí, cancelarla</button>
         </div>

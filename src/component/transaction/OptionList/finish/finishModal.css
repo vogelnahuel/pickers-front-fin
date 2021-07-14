@@ -71,7 +71,7 @@
     margin-left:26.134% ;
 }
 .modal-transaction-finish-inputs div{
-    margin-right: 30px;
+    margin-right: 2.521%;
 }
 
 .modal-transaction-finish-label{
@@ -83,3 +83,28 @@
     letter-spacing: 0.005em;
     color: #4D4D4D;
 }
+
+.modal-transaction-finish-button-click{
+    width: 176px;
+    height: 50px;
+    background: #0098FF;
+    border: 4px solid #0098FF;
+    box-sizing: border-box;
+    border-radius: 50px;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 23px;
+    text-align: center;
+    color: #FFFFFF;
+    margin-top: 20px;
+    margin-left: 43.4%;
+}
+
+@media (min-width: 1600px) {
+    .modal-transaction-finish-inputs div{
+        margin-right: 7.521%;
+    }
+
+  }

@@ -38,9 +38,21 @@
     font-weight: normal;
     font-size: 17px;
     line-height: 21px;
-    text-align: center;
     letter-spacing: 0.005em;
     color: #4D4D4D;
+    margin-left: 15.605%;
+    margin-bottom: 1vh;
+}
+.modal-transaction-reasonsCanceledConfirm-p2{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 21px;
+    margin-right: 4.202%;
+    letter-spacing: 0.005em;
+    color: #4D4D4D;
+    margin-left: 35.605%;
 }
 .modal-transaction-reasonsCanceledConfirm-button{
     width: 176px;
@@ -56,6 +68,26 @@
     line-height: 23px;
     text-align: center;
     color: #FFFFFF;
-    margin-top: 15vh;
-    margin-left: 35vw;
+    margin-top: 10vh;
+    margin-left: 42.605%;
+}
+
+@media (min-width: 1600px) {
+   
+    .modal-transaction-reasonsCanceledConfirm-p{
+       
+        margin-left: 19.605%;
+       
+    }
+
+}
+
+@media (min-width: 1800px) {
+   
+    .modal-transaction-reasonsCanceledConfirm-p{
+       
+        margin-left: 21.605%;
+       
+    }
+
 }

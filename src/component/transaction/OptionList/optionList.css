@@ -104,3 +104,12 @@
 .modal-transaction-section-history{
     height: 127.58333333333334vh;
 }
+.modal-transaction-reload-img{
+    margin-top: 0px;
+}
+
+@media (min-width: 1600px) {
+    .modal-transaction-reload-img{
+        margin-top: 10px;
+    }
+}
