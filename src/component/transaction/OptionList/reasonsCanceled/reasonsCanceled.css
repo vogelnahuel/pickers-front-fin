@@ -1,0 +1,81 @@
+.modal-transaction-reasonsCanceled{
+  
+}
+.modal-transaction-volver{
+    display: flex;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 23px;
+    text-align: center;
+    color: #145A99;
+    cursor: pointer;
+}
+.modal-transaction-reasonsCanceled-scroll{
+    height: 40vh;
+    margin-right: 15vw;
+    overflow-y: scroll;
+}
+
+.modal-transaction-reasonsCanceled-scroll::-webkit-scrollbar {
+    width: 8px;     
+    height: 8px;
+}
+.modal-transaction-reasonsCanceled-scroll::-webkit-scrollbar-thumb {
+    background: #BDBDBD;
+    width: 7px;     
+    height: 7px;
+    border-radius: 4px;
+}
+
+
+.modal-transaction-reasonsCanceled-scroll::-webkit-scrollbar-thumb:hover {
+    background: #BDBDBD;
+    width: 7px;     
+    height: 7px;
+    border-radius: 4px;
+}
+
+
+.modal-transaction-reasonsCanceled-scroll::-webkit-scrollbar-thumb:active {
+    background-color: #BDBDBD;
+    width: 7px;     
+    height: 7px;
+    border-radius: 4px;
+}
+
+.modal-transaction-reasonsCanceled-scroll::-webkit-scrollbar-track {
+    background: #F1F1F1;
+    border-radius: 4px;
+}
+
+.modal-transaction-reasonsCanceled-subtitle{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 25px;
+    text-align: center;
+    letter-spacing: 0.01em;
+    color: #4D4D4D;
+    margin-bottom: 20px;
+}
+.modal-transaction-reason-container{
+    height: 60px;
+    border-bottom: 1px solid #CCCCCC;
+    width: 40vw;
+    margin-left: 25vw;
+}
+.modal-transaction-reason-container p {
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.005em; 
+    color: #101820;
+    padding-top: 20px;
+}

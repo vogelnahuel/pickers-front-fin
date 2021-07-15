@@ -36,7 +36,7 @@
 .form-filter-transaction div div input{
     border: 0;
     border-bottom:1px solid #828282;
-    width: 248px;
+    width: 19.69vw ;
     margin-right: 26px;
     outline: none;
     margin-bottom: 36px;
@@ -51,7 +51,7 @@
 }
 .datePicker-filter-transaction div input{
     border: 0;
-    width: 248px;
+    width: 19.69vw ;
     margin-right: 26px;
     outline: none;
     margin-bottom: 36px;

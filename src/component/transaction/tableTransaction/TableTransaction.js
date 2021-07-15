@@ -3,36 +3,11 @@ import './TableTransaction.css'
 import TreePoints from '../../../assets/transaction/TreePoints.svg'
 
 export const TableTransaction = (props) => {
-    const titulos = ['Transacción','Picker','Fecha de entrega','Estado'];
-    const api = [
-        {
-            Transacción:'AAA114',
-            Picker:'651456321',
-            FechaEntrega:'17/06/2021',
-            Estado:'En retiro'
-        },
-        {
-            Transacción:'AAA113',
-            Picker:'654321546',
-            FechaEntrega:'17/06/2021',
-            Estado:'En retiro'
-        },
-        {
-            Transacción:'AAA112',
-            Picker:'654321548',
-            FechaEntrega:'17/06/2021',
-            Estado:'Sin asignar'
-        },
-        {
-            Transacción:'AAA111',
-            Picker:'125485221',
-            FechaEntrega:'17/06/2021',
-            Estado:'Retirado'
-        }
-        
-    ]
+   
+  
     const setOpenModalTransaction =  props.setOpenModalTransaction;
-
+    const api = props.api;
+    const titulos = props.titulos;
     const handleClickModal = (e) => {
         e.preventDefault();
         setOpenModalTransaction(true);
