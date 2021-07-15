@@ -15,8 +15,12 @@ pipelines:
       - step:
           name: Build
           script:
-            - npm install --production
-            - REACT_APP_ENVIRONMENT=production npm run build
+            #- npm install --production
+            #- REACT_APP_ENVIRONMENT=production npm run build
+            - npm install
+            - npm run-script build
+            #- mkdir build
+            #- tar -czvf packaged/package-${BITBUCKET_BUILD_NUMBER}.tar.gz -C build .
           artifacts:
             - build/**
       - step:
