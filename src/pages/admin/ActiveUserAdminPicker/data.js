@@ -184,7 +184,7 @@ export const data = () => {
             label: {
                 labelclassName:"label-Admin-Pickers",
                 labelhtmlFor:"fechaVecCel",
-                labelparrafo:"Vencimiento de la cédulal"
+                labelparrafo:"Vencimiento de la cédula"
                 },
             className:"Admin-Pickers-input",
             type:"text",

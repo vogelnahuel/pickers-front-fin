@@ -61,7 +61,7 @@ return (
                           </td>
                           <td className="table-registro"> {rows.registerDate?getDifDate(rows.registerDate):null} {getDifDate(rows.registerDate)===1?"día":"días"} {rows.pickerStatusId===3 ?<div className="admin-table-correction">En corrección</div> : null } </td>
                           <td className="table-editar">
-                            <Link  to ={`/pendingUserAdminpicker/${rows.id}`} > <img src={edit} alt="edit" /></Link>
+                            <Link  to ={`/pendingUserAdminpicker/${rows.id}`} > <img className="table-admin-img-padding" src={edit} alt="edit" /></Link>
                             
                           </td>
                           <td></td>
@@ -92,7 +92,7 @@ return (
                           )}
           
                           <td className="table-editar table-editar-active">
-                          <Link  to ={`/activeUserAdminpicker/${rows.id}`} > <img src={edit} alt="edit" /></Link>
+                          <Link  to ={`/activeUserAdminpicker/${rows.id}`} > <img  src={edit} alt="edit" /></Link>
                           </td>
                           <td></td>
                         </tr>

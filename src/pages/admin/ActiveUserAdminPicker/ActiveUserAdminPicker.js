@@ -28,11 +28,17 @@ export const ActiveUserAdminPicker = () => {
     const [modalGuardarCambios, setmodalGuardarCambios] = useState(false)
     const [activeModalPicker, setactiveModalPicker] = useState(false)
 
+ 
+
     const handleCancel  = (e) => {
-        e.preventDefault()
-        setmodalGuardarCambios(true);
-        setRedirect(window.location.href)
+            e.preventDefault();
+            setmodalGuardarCambios(true);
+            setRedirect(window.location.href)
     }
+
+   
+
+   
 
     const cerrarModalSinGuardar = (e) => {
         e.preventDefault();
@@ -43,12 +49,13 @@ export const ActiveUserAdminPicker = () => {
     const cerrarModalGuardar =  (e) => {
         e.preventDefault();
         setmodalGuardarCambios(false);
+        window.scroll(0, 1000)
     }
 
     const cerrarGuardarExito =  (e) => {
         e.preventDefault();
         setactiveModalPicker(false);
-        window.location.reload();
+        window.location.href="/activeUserAdmin"
     }
 
     const [Informacion, setInformacion] = useState({
@@ -378,6 +385,7 @@ const cerrarGuardarExitoPicker = (e) => {
                                                             className="button-modal-revisar">
                                                                     No quiero guardarlos
                                                         </button>
+                                                        
                                                         <button 
                                                             onClick={cerrarModalGuardar}
                                                             className="button-modal-sin-guardar">
