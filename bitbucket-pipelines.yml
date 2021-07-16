@@ -16,12 +16,8 @@ pipelines:
       - step:
           name: Build
           script:
-            #- npm install --production
-            #- REACT_APP_ENVIRONMENT=production npm run build
             - npm install
             - npm run build:dev
-            #- mkdir build
-            #- tar -czvf packaged/package-${BITBUCKET_BUILD_NUMBER}.tar.gz -C build .
           artifacts:
             - build/**
       - step:
@@ -45,14 +41,3 @@ pipelines:
 #                AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
 #                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
 #                DISTRIBUTION_ID: $PRODUCTION_DISTRIBUTION_ID
-#  branches:
-#    s3-deploy-test:
-#      - step:
-#          name: Installing & Running Tests
-#          caches:
-#            - node
-#          script:
-#            - rm -rf package-lock.json
-#            - rm -rf node_modules
-#            - npm install
-#            - npm run test
