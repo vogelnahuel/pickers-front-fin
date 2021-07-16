@@ -9,6 +9,7 @@
     font-style: normal;
     font-weight: bold;
     font-size: 36px;
+    display: flex;
     line-height: 45px;
     color: #101820;
     /* margin-top: 5vh; */
