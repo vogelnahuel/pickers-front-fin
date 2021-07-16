@@ -15,7 +15,7 @@ pipelines:
       - step:
           name: Deploy to S3
           trigger: manual
-          deployment: production
+          deployment: develop
           script:
             - pipe: atlassian/aws-s3-deploy:1.0.1
               variables:
