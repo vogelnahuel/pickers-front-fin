@@ -274,7 +274,7 @@ const handleSubmit = async (e) => {
           <div className="separador_"></div>
             <br/>
             <br/>
-            <Link className="forgotPass" to={"./restore"}>¿Olvidaste tu clave?</Link>
+            <Link className="forgotPass" to={"./restore"}>¿Olvidaste tu contraseña?</Link>
           </div>
         </form>
        
