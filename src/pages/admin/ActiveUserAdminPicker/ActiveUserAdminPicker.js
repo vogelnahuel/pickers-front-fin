@@ -28,11 +28,17 @@ export const ActiveUserAdminPicker = () => {
     const [modalGuardarCambios, setmodalGuardarCambios] = useState(false)
     const [activeModalPicker, setactiveModalPicker] = useState(false)
 
+ 
+
     const handleCancel  = (e) => {
-        e.preventDefault()
-        setmodalGuardarCambios(true);
-        setRedirect(window.location.href)
+            e.preventDefault();
+            setmodalGuardarCambios(true);
+            setRedirect(window.location.href)
     }
+
+   
+
+   
 
     const cerrarModalSinGuardar = (e) => {
         e.preventDefault();
@@ -43,12 +49,13 @@ export const ActiveUserAdminPicker = () => {
     const cerrarModalGuardar =  (e) => {
         e.preventDefault();
         setmodalGuardarCambios(false);
+        window.scroll(0, 1000)
     }
 
     const cerrarGuardarExito =  (e) => {
         e.preventDefault();
         setactiveModalPicker(false);
-        window.location.reload();
+        window.location.href="/activeUserAdmin"
     }
 
     const [Informacion, setInformacion] = useState({
@@ -103,7 +110,11 @@ export const ActiveUserAdminPicker = () => {
     enable:true,
     registerDate: null,
     surname:"",
-    vehicleTypeId: ""})
+    vehicleTypeId: "",
+    nya: ""
+    })
+
+
 
 useEffect(()=>{
         if(!window.localStorage.getItem('token')){
@@ -119,8 +130,10 @@ useEffect(()=>{
                     res.data.result.expirationDateIdentificationCar=res.data.result.expirationDateIdentificationCar?moment(res.data.result.expirationDateIdentificationCar).format('DD/MM/YYYY'):res.data.result.expirationDateIdentificationCar
                     res.data.result.expirationDatePolicyPersonal=res.data.result.expirationDatePolicyPersonal?moment(res.data.result.expirationDatePolicyPersonal).format('DD/MM/YYYY'):res.data.result.expirationDatePolicyPersonal
                     res.data.result.expirationDatePolicyVehicle=res.data.result.expirationDatePolicyVehicle?moment(res.data.result.expirationDatePolicyVehicle).format('DD/MM/YYYY'):res.data.result.expirationDatePolicyVehicle
-                res.data.result.enable=res.data.result.pickerStatusId===4?true:false
-                return res.data.result})
+                    res.data.result.enable=res.data.result.pickerStatusId===4?true:false
+                    res.data.result.nya= (res.data.result.name.concat(res.data.result.surname)).length>18?((res.data.result.name.concat(" ").concat(res.data.result.surname)).slice(0,18)).concat("..."):(res.data.result.name.concat(" ").concat(res.data.result.surname))
+                    console.log(res.data.result.nya)
+                    return res.data.result})
             .catch((err)=>{console.log(err)}) )}
             
        cargarDatos();
@@ -212,7 +225,10 @@ const cerrarGuardarExitoPicker = (e) => {
                    
                  <div 
                  className="mainContainerFlex">
-                     <h2 className="subTitle-pending">{dataPicker.name} {dataPicker.surname}</h2>
+                    <h2 className="picker-id">
+                       #125468542321
+                     <h2 className="subTitle-pending">{dataPicker.nya}</h2>
+                    </h2>
                      {
                              dataPicker.vehicleTypeId===1 ? 
                              <img  className="vehiculo-pending-picker" src={motorcycle} alt="vehiculo" />
@@ -369,6 +385,7 @@ const cerrarGuardarExitoPicker = (e) => {
                                                             className="button-modal-revisar">
                                                                     No quiero guardarlos
                                                         </button>
+                                                        
                                                         <button 
                                                             onClick={cerrarModalGuardar}
                                                             className="button-modal-sin-guardar">
