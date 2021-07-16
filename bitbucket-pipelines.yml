@@ -2,7 +2,7 @@ image: node:14.17-slim
 
 pipelines:
   branches:
-    feature/s3-deploy-test:
+    develop:
       - step:
           name: Build
           caches:
