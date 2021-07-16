@@ -175,7 +175,7 @@ export const data = () => {
             type:"text",
             name:"vencimientoLicencia",
             id:"fechaVecLic",
-            placeholder:" dia / mes / año",
+            placeholder:" día / mes / año",
             onChange:"",
             value:""
             
@@ -190,7 +190,7 @@ export const data = () => {
             type:"text",
             name:"fechaVecCel",
             id:"fechaVecCel",
-            placeholder:" dia / mes / año",
+            placeholder:" día / mes / año",
             onChange:"",
             value:""
         },
@@ -242,7 +242,7 @@ export const data = () => {
                 type:"text",
                 name:"fechaVecSeguroAuto",
                 id:"fechaVecSeguroAuto",
-                placeholder:" dia / mes / año",
+                placeholder:" día / mes / año",
                 onChange:"",
                 value:""
             },
@@ -257,7 +257,7 @@ export const data = () => {
                 type:"text",
                 name:"fechaVecSeguroAccidente",
                 id:"fechaVecSeguroAccidente",
-                placeholder:" dia / mes / año",
+                placeholder:" día / mes / año",
                 onChange:"",
                 value:""
                 
