@@ -14,6 +14,7 @@ import createCSV from "../../../tools/createCSV.js";
 import { Modal } from "pickit-components";
 
 export const PendingUserAdmin = () => {
+  const [loader, setloader] = useState(true);
   /****titulos de la tabla */
   const titulosAdminPending = [
     "Nombre",
@@ -72,6 +73,7 @@ export const PendingUserAdmin = () => {
   const [offset, setoffset] = useState(tamPag);
 
   const getData = async (filter) => {
+    setloader(true)
     filter.mail = codificarEmailURIFunction(filter.mail);
     setoffset(0)
     setVerMas(true)
@@ -95,6 +97,9 @@ export const PendingUserAdmin = () => {
         .catch((err) => {
           console.log(err);
         })
+        .finally(
+          setloader(false)
+        )
     );
 
     setdataExport(filter);
@@ -126,6 +131,12 @@ const cargarDatos = async () => {
           .catch((err) => {
             console.log(err);
           })
+          .finally(
+            
+              setloader(false)
+           
+                
+          )
       );
     };
     cargarDatos();
@@ -137,7 +148,7 @@ const cargarDatos = async () => {
 
 
   const cargarMas = async () => {
-
+    setloader(true)
     
 
     const res = await api
@@ -166,7 +177,10 @@ const cargarDatos = async () => {
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(
+        setloader(false)
+      )
 
     setData(data.concat(res));
   };
@@ -254,6 +268,13 @@ const cargarDatos = async () => {
           </div>
         ) : null}
       </div>
+      {
+              loader ===true  ? 
+              <div className="modalLoading">
+                
+              </div>
+              : <></>
+          }
     </div>
   );
 };

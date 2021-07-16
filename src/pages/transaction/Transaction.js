@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {Header} from '../../component/admin/Header/Header'
 import {Nav} from '../../component/admin/Nav/Nav'
 import exportar from '../../assets/admin/PendingUser/exportar.svg'
@@ -12,6 +12,8 @@ import {OptionList} from '../../component/transaction/OptionList/OptionList'
 import Close from '../../assets/transaction/Close.svg'
 
 export const Transaction = () => {
+
+    const [loader, setloader] = useState(true)
 
     const [OpenModalTransaction, setOpenModalTransaction] = useState(false);
     const [IdModalApi, setIdModalApi] = useState("");// devuelve la consulta api
@@ -73,6 +75,14 @@ const Export = () => {
 const onClose = (e) => {
     setOpenModalTransaction(false);
 }
+
+useEffect(() => {
+    setTimeout(() => {
+        setloader(false);
+    }, 500);
+ 
+   
+}, [setloader])
 
     return (
         <div className="background-Grey">
@@ -153,7 +163,11 @@ const onClose = (e) => {
                    
             </div>
             
-                        
+            {   loader ===true ?
+            <div className="modalLoading">
+            </div>
+                :<></>
+        }     
             
         </div>
     )

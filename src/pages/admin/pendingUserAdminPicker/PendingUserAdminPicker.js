@@ -23,7 +23,7 @@ import moment from 'moment'
 export const PendingUserAdminPicker = () => {
 
  
-
+    const [loader, setloader] = useState(true);
     
     
 
@@ -111,7 +111,14 @@ useEffect( () => {
                     res.data.result.expirationDatePolicyVehicle=res.data.result.expirationDatePolicyVehicle?moment(res.data.result.expirationDatePolicyVehicle).format('DD/MM/YYYY'):res.data.result.expirationDatePolicyVehicle
                     res.data.result.nya= (res.data.result.name.concat(res.data.result.surname)).length>14?((res.data.result.name.concat(" ").concat(res.data.result.surname)).slice(0,14)).concat("..."):(res.data.result.name.concat(" ").concat(res.data.result.surname))
                     return res.data.result})
-                .catch((err)=>{console.log(err)}) )}
+                .catch((err)=>{console.log(err)}) 
+                .finally(
+                 
+                    setloader(false)
+                )
+                )
+            
+            }
             
                cargarDatos()
           
@@ -132,7 +139,7 @@ useEffect(() => {
  
 
 const cerrarAprobarPicker = async (e) => {
-    
+    setloader(true);
     e.preventDefault();
    
    
@@ -154,6 +161,7 @@ const cerrarAprobarPicker = async (e) => {
     })
         .then(rs=>{})
         .catch(e=>{})
+        .finally(setloader(false))
 
         window.location.href="/pendingUserAdmin";
 
@@ -166,6 +174,7 @@ const cerrarAprobarPickerCorrigiendo  =  (e) => {
           
 
 const corregirDocumentos= async (e) =>{
+        setloader(true);
         e.preventDefault();
         console.log( )
         await api.post(`/ms-admin-rest/api/v1.0/pickers/${dataPicker.id}/invalid-documentation`,{    
@@ -186,6 +195,9 @@ const corregirDocumentos= async (e) =>{
         })
         .then(rs=>{window.location.href="/pendingUserAdmin";})
         .catch(e=>{})
+        .finally(
+            setloader(false)
+        )
 
         
 }
@@ -207,7 +219,7 @@ const aprobarPicker= async (e) =>{
                      className="mainContainerFlex">
                          <h2 className="picker-id">
                               #125468542321
-                         <h2 className="subTitle-pending">{dataPicker.nya}</h2>
+                         <h2 className="subTitle-pending-picker">{dataPicker.nya}</h2>
                     </h2>
                          {
                              dataPicker.vehicleTypeId===1 ? 
@@ -356,6 +368,13 @@ const aprobarPicker= async (e) =>{
                 
                 
             </div>
+            {
+              loader ===true  ? 
+              <div className="modalLoading">
+                
+              </div>
+              : <></>
+          }
             
         </div>
     )

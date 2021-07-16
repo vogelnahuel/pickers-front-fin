@@ -20,7 +20,7 @@ import {Modal} from 'pickit-components'
 import moment from 'moment'
 
 export const ActiveUserAdminPicker = () => {
-
+    const [loader, setloader] = useState(true);
     const [ExportModalActivePicker, setExportModalActivePicker] = useState(false);
 
     const [disableButtons, setdisableButtons] = useState(false);
@@ -134,7 +134,18 @@ useEffect(()=>{
                     res.data.result.nya= (res.data.result.name.concat(res.data.result.surname)).length>18?((res.data.result.name.concat(" ").concat(res.data.result.surname)).slice(0,18)).concat("..."):(res.data.result.name.concat(" ").concat(res.data.result.surname))
                     console.log(res.data.result.nya)
                     return res.data.result})
-            .catch((err)=>{console.log(err)}) )}
+            .catch((err)=>{console.log(err)
+            
+            })
+            .finally(
+                
+                    setloader(false)
+                
+               
+            )
+            )
+            
+        }
             
        cargarDatos();
     
@@ -173,6 +184,7 @@ const onCLickImg = () =>{
 }
    
 const modificarPicker= async (e) =>{
+        setloader(true);
         e.preventDefault();
         console.log(dataPicker)
                await api.post(`/ms-admin-rest/api/v1.0/pickers/${dataPicker.id}`,{  
@@ -194,7 +206,12 @@ const modificarPicker= async (e) =>{
                 }).then(()=>{ setactiveModalPicker(true);}
                    
                 )
-                .catch(()=>{})
+                .catch(()=>{}
+                
+                )
+                .finally(
+                    setloader(false)
+                )
 }
 const cerrarGuardarExitoPicker = (e) => {
     e.preventDefault();
@@ -227,7 +244,7 @@ const cerrarGuardarExitoPicker = (e) => {
                  className="mainContainerFlex">
                     <h2 className="picker-id">
                        #125468542321
-                     <h2 className="subTitle-pending">{dataPicker.nya}</h2>
+                     <h2 className="subTitle-pending-picker">{dataPicker.nya}</h2>
                     </h2>
                      {
                              dataPicker.vehicleTypeId===1 ? 
@@ -422,11 +439,19 @@ const cerrarGuardarExitoPicker = (e) => {
             </Modal>
           </div>
         ) : null}
+         
         
             </div>
             
             
         </div>
+        {
+              loader ===true  ? 
+              <div className="modalLoading">
+                
+              </div>
+              : <></>
+          }
         
     </div>
     )
