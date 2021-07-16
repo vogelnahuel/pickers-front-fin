@@ -16,7 +16,7 @@ pipelines:
       - step:
           name: Build
           script:
-            - npm install
+            #- npm install
             - npm run build:dev
           artifacts:
             - build/**
