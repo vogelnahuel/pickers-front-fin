@@ -11,9 +11,8 @@
     font-size: 36px;
     line-height: 45px;
     color: #101820;
-    margin-top: 5vh;
-    width: 250px;
-    max-width: 250px;
+    /* margin-top: 5vh; */
+    max-width: 370px;
 }
 .display-inline-block{
     display: inline-block;
@@ -26,8 +25,9 @@
     height: 50px;
     background-color: white;
     text-align: center;
-    margin-top: 5vh;
-    margin-left: 47vw;
+    margin-top: auto;
+    margin-left: auto;
+    margin-bottom: auto;
 }
 .p-export{
     font-family: 'Mulish';
@@ -106,7 +106,7 @@
     font-weight: 700;
 }
 
-@media (min-width: 1400px) { 
+/* @media (min-width: 1400px) { 
     .export{
         margin-left: 49vw;
     }
@@ -121,4 +121,4 @@
     .export{
         margin-left: 57vw;
     }
-}
+} */
