@@ -1,16 +1,24 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Card } from '../../component/admin/DashBoard/Card'
 import {Header} from '../../component/admin/Header/Header'
 import {Nav} from '../../component/admin/Nav/Nav'
 import './Dashboard.css'
+
 export const DashboardAdmin = () => {
-   
+    const [loader, setloader] = useState(true)
     useEffect(()=>{
         if(!window.localStorage.getItem('token')){
             window.location.href = '/'
         }
-    
       })
+
+      useEffect(  () => {
+          setTimeout(() => {
+            setloader(false)
+          }, 500);
+     
+        
+      }, [setloader])
 //
     return (
         <div className="background-Grey">
@@ -54,6 +62,13 @@ export const DashboardAdmin = () => {
                             </div>
               
             </div>
+        {   loader ===true ?
+            <div className="modalLoading">
+            </div>
+                :<></>
+        }
+            
+           
             
         </div>
     )

@@ -15,6 +15,7 @@ import { Modal } from "pickit-components";
 
 export const ActiveUserAdmin = () => {
   /****titulos de la tabla */
+  const [loader, setloader] = useState(true);
   const [ExportModalActive, setExportModalActive] = useState(false);
   const titulosAdminActive = [
     "Nombre",
@@ -65,6 +66,7 @@ export const ActiveUserAdmin = () => {
   const [offset2, setoffset2] = useState(0);
 
   const cargarMas = async () => {
+    setloader(true)
    // setoffset(offset + tamPag);
     const res = await api
       .get(
@@ -83,6 +85,7 @@ export const ActiveUserAdmin = () => {
           }&limit=${tamPag}&offset=${offset2+tamPag}`
       )
       .then((res) => {
+       
         setoffset2(offset2 + tamPag);
         if(res.data.result.items.length<tamPag)
         {
@@ -91,8 +94,12 @@ export const ActiveUserAdmin = () => {
         return res.data.result.items;
       })
       .catch((err) => {
+       
         console.log(err);
-      });
+      })
+      .finally( 
+          setloader(false)
+      )
 
     setData(data.concat(res));
   };
@@ -101,7 +108,7 @@ export const ActiveUserAdmin = () => {
     if (!window.localStorage.getItem("token")) {
       window.location.href = "/";
     }
-
+   
 const cargarDatos = async () => {
       setData(
         await api
@@ -117,9 +124,11 @@ const cargarDatos = async () => {
             }${filter.mail ? `&email=${filter.mail}` : ""}`
           )
           .then((res) => {
+            setloader(false)
             return res.data.result.items;
           })
           .catch((err) => {
+            setloader(false)
             console.log(err);
           })
       );
@@ -137,6 +146,7 @@ const cargarDatos = async () => {
   };
 
 const getData = async (filter) => {
+    setloader(true)
     filter.mail = codificarEmailURIFunction(filter.mail);
     setoffset2(0)
     setVerMas(true)
@@ -161,6 +171,9 @@ const getData = async (filter) => {
         .catch((err) => {
           console.log(err);
         })
+        .finally( 
+            setloader(false)
+      )
     );
 
     setdataExport(filter);
@@ -248,6 +261,15 @@ const Export = async () => {
           </div>
         ) : null}
       </div>
+          {
+              loader ===true  ? 
+              <div className="modalLoading">
+                
+              </div>
+              : <></>
+          }
+     
+
     </div>
   );
 };

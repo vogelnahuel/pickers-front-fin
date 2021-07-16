@@ -164,27 +164,26 @@
     top :66.936458333333336vh;
     width: 81vw;
     height: 1.00625vh;
-    backdrop-filter: blur(19px); 
-    background-color: rgb(255, 255, 255);
-    opacity: 0.6;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(1px);
 }
 .modal-transaction-difuminar2{
+    top :67.936458333333336vh;
     position: absolute;
-    top :1vh;
     width: 81vw;
     height: 1.00625vh;
-    backdrop-filter: blur(19px); 
-    background-color: rgb(255, 255, 255);
-    opacity: 0.8;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(1px);
+   
 }
 .modal-transaction-difuminar3{
+    top :68.936458333333336vh;
     position: absolute;
-    top :1vh;
     width: 81vw;
     height: 1.00625vh;
-    backdrop-filter: blur(19px); 
-    background-color: rgb(255, 255, 255);
-    opacity: 1;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(1px);
+    
 }
 .modal-transaction-reload {
     display: flex;
