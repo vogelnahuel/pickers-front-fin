@@ -1,7 +1,7 @@
 .vehiculo-pending-picker{
     display: inline-block;
-    margin-top: 1vh;
-    /* padding-left: 20px; */
+    /* margin-top: 1vh; */
+    padding-left: 20px;
 }
 .form-Admin-Pickers{
     display: flex;

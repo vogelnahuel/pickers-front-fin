@@ -125,7 +125,7 @@ export const Part = (props) => {
     const ex_regular_dni = /^\d{6,8}(?:[-\s]\d{4})?$/;
     const ex_regular_nomyape =/^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/g;;
     const ex_regular_fecha = /^(0[1-9]|[1-2]\d|3[01])(\/)(0[1-9]|1[012])\2(\d{4})$/
-    const ex_regular_telefono = /^[0-9,-]+$/;
+    const ex_regular_telefono = /^[0-9,-]{14,17}$/;
     
   
     if(ErrorMenorEdad!==true){
@@ -207,7 +207,7 @@ export const Part = (props) => {
       e.target.parentNode.previousSibling.firstChild.classList.add('labelError-part');
       const div = document.createElement('div');
       div.innerHTML = `
-        <p class="labelError-part"> ${"El dni tiene que tener entre 6 y 8  numeros sin letras"} </p>
+        <p class="labelError-part"> ${"El dni tiene que tener entre 6 y 8  números sin letras"} </p>
       `
       e.target.parentNode.appendChild(div);
 
@@ -228,7 +228,7 @@ export const Part = (props) => {
       
        const div = document.createElement('div');
       div.innerHTML = `
-        <p class="labelError-part"> ${`No se admiten numeros en ${e.target.name}`} </p>
+        <p class="labelError-part"> ${`No se admiten números o caracteres especiales en ${e.target.name}`} </p>
       `
       e.target.parentNode.appendChild(div);
      
@@ -278,7 +278,7 @@ export const Part = (props) => {
 
       const div = document.createElement('div');
       div.innerHTML = `
-        <p class="labelError-part"> ${"El formato es inválido. Ingresá tu teléfono"} </p>
+        <p class="labelError-part"> ${"Ingresá el teléfono. Ej: 011-1234-1234"} </p>
       `
       e.target.parentNode.appendChild(div);
 
@@ -541,6 +541,7 @@ export const Part = (props) => {
                       className={variable.className}
                       type={variable.type}
                       name={variable.name}
+                      readOnly
                       id={variable.id}
                       placeholder={variable.placeholder}
                     />
@@ -570,6 +571,7 @@ export const Part = (props) => {
                       className={variable.className}
                       type={variable.type}
                       name={variable.name}
+                      readOnly
                       id={variable.id}
                       placeholder={variable.placeholder}
                     />
