@@ -4,18 +4,11 @@ pipelines:
   branches:
     feature/s3-deploy-test:
       - step:
-          name: Installing & Running Tests
+          name: Build
           caches:
             - node
           script:
-             - npm install
-            #- rm -rf package-lock.json
-            #- rm -rf node_modules
-            #- npm run test
-      - step:
-          name: Build
-          script:
-            #- npm install
+            - npm install
             - npm run build:dev
           artifacts:
             - build/**
