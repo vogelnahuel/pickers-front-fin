@@ -36,7 +36,7 @@ export const data = () => {
             label: {
                 labelclassName:"label-Admin-Pickers",
                 labelhtmlFor:"dni",
-                labelparrafo:"DNI *"
+                labelparrafo:"DNI"
                 },
             className:"Admin-Pickers-input readonly",
             type:"text",
@@ -64,9 +64,9 @@ export const data = () => {
             label: {
                 labelclassName:"label-Admin-Pickers",
                 labelhtmlFor:"fechaNac",
-                labelparrafo:"Fecha de nacimiento *"
+                labelparrafo:"Fecha de nacimiento"
                 },
-            className:"Admin-Pickers-input",
+            className:"Admin-Pickers-input readonly",
             type:"text",
             name:"fechaNac",
             id:"fechaNac",
@@ -126,7 +126,7 @@ export const data = () => {
             label: {
                 labelclassName:"label-Admin-Pickers",
                 labelhtmlFor:"cbu",
-                labelparrafo:"Número de CBU *"
+                labelparrafo:"Número de CBU"
                 },
             className:"Admin-Pickers-input readonly",
             type:"text",
@@ -140,9 +140,9 @@ export const data = () => {
             label: {
                 labelclassName:"label-Admin-Pickers",
                 labelhtmlFor:"nombreBanco",
-                labelparrafo:"Nombre del banco *"
+                labelparrafo:"Nombre del banco"
                 },
-            className:"Admin-Pickers-input",
+            className:"Admin-Pickers-input readonly",
             type:"text",
             name:"nombreBanco",
             id:"nombreBanco",
@@ -176,7 +176,7 @@ export const data = () => {
             type:"text",
             name:"vencimientoLicencia",
             id:"fechaVecLic",
-            placeholder:" dia / mes / año",
+            placeholder:" día / mes / año",
             value:"",
             onChange:"",
             
@@ -191,7 +191,7 @@ export const data = () => {
             type:"text",
             name:"fechaVecCel",
             id:"fechaVecCel",
-            placeholder:" dia / mes / año",
+            placeholder:" día / mes / año",
             value:"",
             onChange:"",
         },
@@ -243,7 +243,7 @@ export const data = () => {
                 type:"text",
                 name:"fechaVecSeguroAuto",
                 id:"fechaVecSeguroAuto",
-                placeholder:" dia / mes / año",
+                placeholder:" día / mes / año",
                 value:"",
                 onChange:"",
             },
@@ -258,7 +258,7 @@ export const data = () => {
                 type:"text",
                 name:"fechaVecSeguroAccidente",
                 id:"fechaVecSeguroAccidente",
-                placeholder:" dia / mes / año",
+                placeholder:" día / mes / año",
                 value:"",
                 onChange:"",
             },{

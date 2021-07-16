@@ -25,8 +25,8 @@ export const PendingUserAdminPicker = () => {
  
 
     
-    
-
+    const [ExportModalActivePicker, setExportModalActivePicker] = useState(false);
+    const [ModalAprobadoExito, setModalAprobadoExito] = useState(false)
     const [modalOpenAprobar, setmodalOpenAprobar] = useState(false);
 
     const [disabledButtonAprobarPicker, setdisabledButtonAprobarPicker] = useState(true)
@@ -75,7 +75,9 @@ const Export = async () => {
                 const mailCodificado = codificarEmailURIFunction(dataPicker.email);
 
                 const datosExport =await api.get(`/ms-admin-rest/api/v1.0/pickers.csv?&email=${mailCodificado}`)
-                .then( (res) => {return res})
+                .then( (res) => {
+                    setExportModalActivePicker(true)
+                    return res})
                 .catch((err) => {console.log(err)})
            
                 createCSV(datosExport);           
@@ -97,6 +99,16 @@ const habilitarBoton   =   useCallback(
                   
                 [],
 )
+const cerrarGuardarExitoPicker = (e) => {
+    e.preventDefault();
+    setExportModalActivePicker(false);
+  };
+
+  const cerrarModalAprobado = (e) => {
+    e.preventDefault();
+    setModalAprobadoExito(false);
+    window.location.href="/pendingUserAdmin"
+  };
 
 useEffect( () => {
                // const mailCodificado = codificarEmailURIFunction(dataPicker.email);
@@ -109,7 +121,7 @@ useEffect( () => {
                     res.data.result.expirationDateIdentificationCar=res.data.result.expirationDateIdentificationCar?moment(res.data.result.expirationDateIdentificationCar).format('DD/MM/YYYY'):res.data.result.expirationDateIdentificationCar
                     res.data.result.expirationDatePolicyPersonal=res.data.result.expirationDatePolicyPersonal?moment(res.data.result.expirationDatePolicyPersonal).format('DD/MM/YYYY'):res.data.result.expirationDatePolicyPersonal
                     res.data.result.expirationDatePolicyVehicle=res.data.result.expirationDatePolicyVehicle?moment(res.data.result.expirationDatePolicyVehicle).format('DD/MM/YYYY'):res.data.result.expirationDatePolicyVehicle
-                    res.data.result.nya= (res.data.result.name.concat(res.data.result.surname)).length>14?((res.data.result.name.concat(" ").concat(res.data.result.surname)).slice(0,14)).concat("..."):(res.data.result.name.concat(" ").concat(res.data.result.surname))
+                    res.data.result.nya= (res.data.result.name.concat(res.data.result.surname)).length>25?((res.data.result.name.concat(" ").concat(res.data.result.surname)).slice(0,25)).concat("..."):(res.data.result.name.concat(" ").concat(res.data.result.surname))
                     return res.data.result})
                 .catch((err)=>{console.log(err)}) )}
             
@@ -132,9 +144,10 @@ useEffect(() => {
  
 
 const cerrarAprobarPicker = async (e) => {
-    
     e.preventDefault();
-   
+    
+
+    setmodalOpenAprobar(false)
    
     await api.post(`/ms-admin-rest/api/v1.0/pickers/${dataPicker.id}`,{    
         "enable": true,
@@ -152,10 +165,12 @@ const cerrarAprobarPicker = async (e) => {
          "expirationDatePolicyVehicle":Informacion.expirationDatePolicyVehicle?moment(Informacion.expirationDatePolicyVehicle,"DD/MM/YYYY").format('YYYY-MM-DD'):Informacion.expirationDatePolicyVehicle,
          "expirationDatePolicyPersonal":Informacion.expirationDatePolicyPersonal?moment(Informacion.expirationDatePolicyPersonal,"DD/MM/YYYY").format('YYYY-MM-DD'):Informacion.expirationDatePolicyPersonal,     
     })
-        .then(rs=>{})
+        .then(rs=>{
+            
+            setModalAprobadoExito(true)})
         .catch(e=>{})
 
-        window.location.href="/pendingUserAdmin";
+       // window.location.href="/pendingUserAdmin";
 
 }
 
@@ -350,7 +365,55 @@ const aprobarPicker= async (e) =>{
                                 </Modal>
                         </div>
               : null
-        }                     
+        }       
+        {ExportModalActivePicker === true ? (
+          <div className="contendor-modal-pending-pickers-aprobar">
+            <Modal width="750px" height="351px" isOpen={ExportModalActivePicker}>
+              <div className="container-modal">
+                <div className="modal-success-title">
+                  <p className="p-modal-error-title">Exportaste exitosamente</p>
+                </div>
+                <div className="modal-error-subtitle">
+                  <p className="p-modal-error-subtitle">
+                    El archivo se descargo correctamente
+                  </p>
+                  <div className="button-pending-picker-modal">
+                    <button
+                      onClick={cerrarGuardarExitoPicker}
+                      className="button-modal-aprobar-exito"
+                    >
+                      Entendido
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </Modal>
+          </div>
+        ) : null}     
+            {ModalAprobadoExito === true ? (
+          <div className="contendor-modal-pending-pickers-aprobar">
+            <Modal width="750px" height="351px" isOpen={ModalAprobadoExito}>
+              <div className="container-modal">
+                <div className="modal-success-title">
+                  <p className="p-modal-error-title">Aprobación exitosa</p>
+                </div>
+                <div className="modal-error-subtitle">
+                  <p className="p-modal-error-subtitle">
+                  Aprobaste al picker {dataPicker.name} {dataPicker.surname}. Ya podés visualizar sus datos en la pestaña “Pickers”
+                  </p>
+                  <div className="button-pending-picker-modal">
+                    <button
+                      onClick={cerrarModalAprobado}
+                      className="button-modal-aprobar-exito"
+                    >
+                      Entendido
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </Modal>
+          </div>
+        ) : null}           
                     
                 </div>
                 
