@@ -133,7 +133,10 @@ const cargarDatos = async () => {
           })
           .finally(
             //
+            setTimeout(() => {
               setloader(false)
+            }, 500)
+       
            
                 
           )
