@@ -240,11 +240,18 @@ export const History = () => {
         </section>
       </div>
 
-      {/* <div className="modal-transaction-difuminar1">
+      { <>
+        <div className="modal-transaction-difuminar1">
+          
+
+        </div> 
         <div className="modal-transaction-difuminar2">
-          <div className="modal-transaction-difuminar3"></div>
+            
         </div>
-      </div> */}
-    </div>
+        <div className="modal-transaction-difuminar3"></div>
+        </>
+        }
+      </div>
+    
   );
 };
