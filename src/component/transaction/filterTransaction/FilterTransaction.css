@@ -127,3 +127,56 @@ div .MKjsMK9DPt5gO-irDsCHa {
     line-height: 20px;
     text-align: center;
 }
+
+
+/****************custom select***/
+
+.ms-choice{
+    border: 0;
+    border-bottom: 1px solid #aaa;
+    border-radius: 0;
+    width: 19.69vw;
+    margin-right: 26px;
+}
+.ms-parent{
+    width: 19.69vw !important;
+    margin-right: 26px;
+}
+.ms-drop.bottom {
+    background: #FFFFFF;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 11px;
+    padding: 15px;
+}
+.ms-drop.bottom ul {
+    overflow: hidden;
+    max-height: 440px !important;
+}
+.ms-drop input[type="radio"], .ms-drop input[type="checkbox"]{
+    width: 20px;
+    height: 20px;
+   
+}
+.ms-drop ul li label span{
+    margin-left: 13px;
+    margin-top: 5px;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 21px;
+    letter-spacing: 0.005em;
+    color: #4D4D4D;
+}
+.ms-choice>span.placeholder{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 21px;
+    letter-spacing: 0.005em;
+    color: #4D4D4D;
+}
+.ms-choice>span{
+    padding-left: 0px;
+}

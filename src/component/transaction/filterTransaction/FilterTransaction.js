@@ -7,6 +7,13 @@ import or from '../../../assets/admin/PendingUser/or.svg'
 import search from  '../../../assets/admin/PendingUser/search.svg'
 
 export const FilterTransaction = () => {
+
+    const es = document.querySelector('.ms-select-all label span');
+    if(es!==null)
+    {
+       es.firstChild.textContent="Todos"
+    }
+
     return (
         <div className="display-filter-transaction">
             <div className="filter-Imagen-width">
@@ -45,7 +52,22 @@ export const FilterTransaction = () => {
                                             <label className="label-filter-transaction" >Estados </label>
                                         </div>
                                         <div >
-                                            <Field name="Estados" component="input" placeholder="Seleccioná el estado"/>
+                                            <Field name="Estados"  placeholder="Seleccioná el estado">
+                                            {() => (
+                                                        <select placeholder="Seleccioná el estado" multiple="multiple">
+                                                            <option value="2">Sin asignar</option>
+                                                            <option value="3">En retiro</option>
+                                                            <option value="4">En punto de retiro</option>
+                                                            <option value="5">Retirado</option>
+                                                            <option value="6">En lugar de entrega</option>
+                                                            <option value="7">Entregado</option>
+                                                            <option value="8">En devolución</option>
+                                                            <option value="9">Devuelto a origen</option>
+                                                            <option value="10">Siniestrado</option>
+                                                            <option value="11">Cancelada</option>
+                                                      </select>
+                                                    )}
+                                            </Field>
                                         </div>
                                     </div>
                                     <div>   
