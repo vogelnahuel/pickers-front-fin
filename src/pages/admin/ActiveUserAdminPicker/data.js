@@ -66,7 +66,7 @@ export const data = () => {
                 labelhtmlFor:"fechaNac",
                 labelparrafo:"Fecha de nacimiento"
                 },
-            className:"Admin-Pickers-input",
+            className:"Admin-Pickers-input readonly",
             type:"text",
             name:"fechaNac",
             id:"fechaNac",
@@ -141,7 +141,7 @@ export const data = () => {
                 labelhtmlFor:"nombreBanco",
                 labelparrafo:"Nombre del banco"
                 },
-            className:"Admin-Pickers-input",
+            className:"Admin-Pickers-input readonly",
             type:"text",
             name:"nombreBanco",
             id:"nombreBanco",
