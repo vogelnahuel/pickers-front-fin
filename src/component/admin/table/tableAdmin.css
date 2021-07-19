@@ -40,6 +40,10 @@
     line-height: 23px;
     color: #4F4F4F;
 }
+.aditar-picker-img{
+    margin-left: 20px;
+    
+}
 .table-admin tbody tr td:first-child {
     width: 3.660vw;
 }
