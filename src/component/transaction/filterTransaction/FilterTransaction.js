@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import './multipleSelect.css'
 import desplegable from '../../../assets/admin/PendingUser/desplegable.svg'
 import './FilterTransaction.css'
 import {DatePicker} from 'pickit-components'
 import {Form,Field} from 'react-final-form'
 import or from '../../../assets/admin/PendingUser/or.svg'
 import search from  '../../../assets/admin/PendingUser/search.svg'
+import $ from 'jquery'
 
 export const FilterTransaction = () => {
 
@@ -13,6 +15,37 @@ export const FilterTransaction = () => {
     {
        es.firstChild.textContent="Todos"
     }
+    
+
+    useEffect(() => {
+        const jqueryMin = document.createElement('script');
+        jqueryMin.src = "https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js";
+        document.body.appendChild(jqueryMin);
+
+        const multipleSelect = document.createElement('script');
+        multipleSelect.src = "https://unpkg.com/multiple-select@1.5.2/dist/multiple-select.min.js";
+        document.body.appendChild(multipleSelect);
+
+        const multipleSelectScript = document.createElement('script');
+        multipleSelectScript.innerHTML=`
+        $(function () {
+            {
+                $('select').multipleSelect()
+            }
+            
+        })
+        `
+        document.body.appendChild(multipleSelectScript);
+      
+
+
+        return () => {
+            document.body.removeChild(jqueryMin);
+            document.body.removeChild(multipleSelect);
+            document.body.removeChild(multipleSelectScript);
+        }
+
+    }, [])
    
 
     return (
@@ -90,6 +123,9 @@ export const FilterTransaction = () => {
                         </form>
                     }
             </Form>
+
+
+
         </div>
     )
 }

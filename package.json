@@ -11,6 +11,7 @@
     "cors": "^2.8.5",
     "env-cmd": "^10.1.0",
     "final-form": "^4.20.2",
+    "jquery": "^3.6.0",
     "moment": "^2.29.1",
     "pickit-components": "file:pickit-components-1.0.34.tgz",
     "qs": "^6.10.1",
