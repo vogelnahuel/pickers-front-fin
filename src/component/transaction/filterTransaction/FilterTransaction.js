@@ -13,6 +13,7 @@ export const FilterTransaction = () => {
     {
        es.firstChild.textContent="Todos"
     }
+   
 
     return (
         <div className="display-filter-transaction">
@@ -55,18 +56,19 @@ export const FilterTransaction = () => {
                                             <Field name="Estados"  placeholder="Seleccioná el estado">
                                             {() => (
                                                         <select placeholder="Seleccioná el estado" multiple="multiple">
-                                                            <option value="2">Sin asignar</option>
-                                                            <option value="3">En retiro</option>
-                                                            <option value="4">En punto de retiro</option>
-                                                            <option value="5">Retirado</option>
-                                                            <option value="6">En lugar de entrega</option>
-                                                            <option value="7">Entregado</option>
-                                                            <option value="8">En devolución</option>
-                                                            <option value="9">Devuelto a origen</option>
-                                                            <option value="10">Siniestrado</option>
-                                                            <option value="11">Cancelada</option>
+                                                            <option value="Sin asignar">Sin asignar</option>
+                                                            <option value="En retiro">En retiro</option>
+                                                            <option value="En punto de retiro">En punto de retiro</option>
+                                                            <option value="Retirado">Retirado</option>
+                                                            <option value="En lugar de entrega">En lugar de entrega</option>
+                                                            <option value="Entregado">Entregado</option>
+                                                            <option value="En devolución">En devolución</option>
+                                                            <option value="Devuelto a origen">Devuelto a origen</option>
+                                                            <option value="Siniestrado">Siniestrado</option>
+                                                            <option value="Cancelada">Cancelada</option>
                                                       </select>
-                                                    )}
+                                                    )
+                                            }
                                             </Field>
                                         </div>
                                     </div>
