@@ -14,7 +14,7 @@ import Close from '../../assets/transaction/Close.svg';
 import api from "../../config/api.js";
 
 export const Transaction = () => {
-
+//
     const [apiFilterTransaction, setapiFilter] = useState({})
     const [FilterSelectedTransaction, setFilterSelectedTransaction] = useState({})
     const [loader, setloader] = useState(true)
@@ -49,6 +49,7 @@ useEffect(() => {
 
 
 useEffect(() => {
+    
     const cargarDatos = async()=> {
      setapiFilter( await  api.get('ms-admin-rest/api/v1.0/transactions') 
 
