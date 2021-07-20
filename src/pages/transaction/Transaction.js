@@ -1,70 +1,33 @@
-import React, { useEffect, useState } from 'react'
-import {Header} from '../../component/admin/Header/Header'
-import {Nav} from '../../component/admin/Nav/Nav'
-import exportar from '../../assets/admin/PendingUser/exportar.svg'
-import or from '../../assets/admin/PendingUser/or.svg'
-import { TableTransaction } from '../../component/transaction/tableTransaction/TableTransaction'
-import './transaction.css'
-import { FilterTransaction } from '../../component/transaction/filterTransaction/FilterTransaction'
-import { Modal } from 'pickit-components'
-import {OptionList} from '../../component/transaction/OptionList/OptionList'
+import React, { useEffect, useState } from 'react';
+import {Header} from '../../component/admin/Header/Header';
+import {Nav} from '../../component/admin/Nav/Nav';
+import exportar from '../../assets/admin/PendingUser/exportar.svg';
+import or from '../../assets/admin/PendingUser/or.svg';
+import { TableTransaction } from '../../component/transaction/tableTransaction/TableTransaction';
+import './transaction.css';
+import { FilterTransaction } from '../../component/transaction/filterTransaction/FilterTransaction';
+import { Modal } from 'pickit-components';
+import {OptionList} from '../../component/transaction/OptionList/OptionList';
 
-import Close from '../../assets/transaction/Close.svg'
+import Close from '../../assets/transaction/Close.svg';
+
+import api from "../../config/api.js";
 
 export const Transaction = () => {
 
+    const [apiFilterTransaction, setapiFilter] = useState({})
+    const [FilterSelectedTransaction, setFilterSelectedTransaction] = useState({})
     const [loader, setloader] = useState(true)
+   
 
     const [OpenModalTransaction, setOpenModalTransaction] = useState(false);
     const [IdModalApi, setIdModalApi] = useState("");// devuelve la consulta api
     const titulos = ['Transacción','Picker','Fecha de entrega','Estado'];
-    const api = [
-        {
-            Transacción:'AAA114',
-            Picker:'651456321',
-            FechaEntrega:'17/06/2021',
-            Estado:'En retiro',
-            nombre:'Juan perez',
-            telefono:'1130963203',
-            retiro:'JB. Justo 1024 - CABA',
-            entrega:'Cabildo 750, Belgrano - CABA',
-            retailer:'pickit'
-        },
-        {
-            Transacción:'AAA113',
-            Picker:'654321546',
-            FechaEntrega:'17/06/2021',
-            Estado:'En retiro',
-            nombre:'Juan martinez',
-            telefono:'1130963203',
-            retiro:'JB. Justo 1024 - CABA',
-            entrega:'Rivadavia 750, Belgrano - CABA',
-            retailer:'pickit'
-        },
-        {
-            Transacción:'AAA112',
-            Picker:'654321548',
-            FechaEntrega:'17/06/2021',
-            Estado:'Sin asignar',
-            nombre:'miguel perez',
-            telefono:'1130963203',
-            retiro:'Rivadavia 1024 - CABA',
-            entrega:'Cabildo 750, Belgrano - CABA',
-            retailer:'pickit'
-        },
-        {
-            Transacción:'AAA111',
-            Picker:'125485221',
-            FechaEntrega:'17/06/2021',
-            Estado:'Retirado',
-            nombre:'miguel martinez',
-            telefono:'1130963203',
-            retiro:'Rivadavia 1024 - CABA',
-            entrega:'Rivadavia 750, Belgrano - CABA',
-            retailer:'pickit'
-        }
-        
-    ]
+
+ 
+   
+
+    
 
 const cargarMas = () => {
 
@@ -80,9 +43,29 @@ useEffect(() => {
     setTimeout(() => {
         setloader(false);
     }, 500);
- 
    
 }, [setloader])
+
+
+
+useEffect(() => {
+    const cargarDatos = async()=> {
+     setapiFilter( await  api.get('ms-admin-rest/api/v1.0/transactions') 
+
+        .then((res) => {
+            
+            return res.data.result.items;
+          })
+          .catch((err) => {
+            console.log(err);
+          }))   
+    }
+    cargarDatos();
+    
+}, [])
+
+
+
 
     return (
         <div className="background-Grey">
@@ -111,8 +94,9 @@ useEffect(() => {
                     setOpenModalTransaction={setOpenModalTransaction}
                     IdModal={IdModalApi}
                     setIdModal={setIdModalApi}
-                    api={api}
+                    api={apiFilterTransaction}
                     titulos={titulos}
+                    setFilterSelectedTransaction={setFilterSelectedTransaction}
                     
                     />
                     
@@ -129,6 +113,10 @@ useEffect(() => {
                                  isOpen={OpenModalTransaction}
                                  onClose={onClose}
                                 >
+
+                                    
+
+                                    
                                     <div className="modal-transaction-container">
                                         <img onClick={onClose} className="modal-transaction-close" src={Close} alt="cerrar"/>
                                         <div>
@@ -138,15 +126,21 @@ useEffect(() => {
                                                 <p className="modal-transaction-fecha">Fecha entrega</p>
                                             </div>
                                             <div className="modal-transaction-subtitle">
-                                                <h2>AAA112</h2>
-                                                <p>En retiro</p>
-                                                <p className="modal-transaction-fecha">17/11/2020 15:30</p>
+                                                
+                                                    
+                                                
+                                                        <h2>{FilterSelectedTransaction.transaction ? FilterSelectedTransaction.transaction.id : ""}</h2>
+                                                        <p> { FilterSelectedTransaction.transaction ?  FilterSelectedTransaction.transaction.state.name : "" } </p>
+                                                                                                                                      
+                                                        <p className="modal-transaction-fecha"> {FilterSelectedTransaction.transaction ? FilterSelectedTransaction.transaction.maxDeliveryDateTime.substring(0,10) : ""} </p>
+                                                   
+                                             
                                             </div>
                                             <hr className="modal-transaction-separate"/>
                                         </div>
                                         <div className="modal-transaction-scroll">
                                                 <OptionList
-                                                api={api}
+                                                FilterSelectedTransaction={FilterSelectedTransaction}
                                                 />
                                                 
                                                     

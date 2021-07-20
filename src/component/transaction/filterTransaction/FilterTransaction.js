@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import $ from 'jquery'
 import './multipleSelect.css'
 import desplegable from '../../../assets/admin/PendingUser/desplegable.svg'
 import './FilterTransaction.css'
@@ -6,10 +7,10 @@ import {DatePicker} from 'pickit-components'
 import {Form,Field} from 'react-final-form'
 import or from '../../../assets/admin/PendingUser/or.svg'
 import search from  '../../../assets/admin/PendingUser/search.svg'
-import $ from 'jquery'
+
 
 export const FilterTransaction = () => {
-
+    $()
     const es = document.querySelector('.ms-select-all label span');
     if(es!==null)
     {
@@ -35,7 +36,10 @@ export const FilterTransaction = () => {
             
         })
         `
-        document.body.appendChild(multipleSelectScript);
+        setTimeout(() => {
+            document.body.appendChild(multipleSelectScript);
+        }, 250);
+       
       
 
 
@@ -46,7 +50,9 @@ export const FilterTransaction = () => {
         }
 
     }, [])
-   
+
+
+ 
 
     return (
         <div className="display-filter-transaction">
@@ -123,6 +129,7 @@ export const FilterTransaction = () => {
                         </form>
                     }
             </Form>
+          
 
 
 
