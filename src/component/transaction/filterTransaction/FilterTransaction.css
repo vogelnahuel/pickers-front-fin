@@ -159,6 +159,7 @@ div .MKjsMK9DPt5gO-irDsCHa {
    
 }
 .ms-drop ul li label span{
+    position: relative;
     margin-left: 13px;
     margin-top: 5px;
     font-family: 'Mulish';
@@ -168,6 +169,7 @@ div .MKjsMK9DPt5gO-irDsCHa {
     line-height: 21px;
     letter-spacing: 0.005em;
     color: #4D4D4D;
+    top: 5px;
 }
 .ms-choice>span.placeholder{
     font-family: 'Mulish';

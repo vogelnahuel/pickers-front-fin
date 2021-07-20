@@ -7,12 +7,14 @@ export const TableTransaction = (props) => {
   
     const setOpenModalTransaction =  props.setOpenModalTransaction;
     const api = props.api;
+   
     const titulos = props.titulos;
     const handleClickModal = (e) => {
         e.preventDefault();
         setOpenModalTransaction(true);
     }
 
+ 
     return (
         <>
            
@@ -32,17 +34,18 @@ export const TableTransaction = (props) => {
                 <tbody> 
                     
                     {
-                        api.map(dato => 
-                            <tr key={dato.Transacción}>
+                       JSON.stringify(api)!=='{}' ? api.map(dato => 
+                            <tr key={dato.transaction.id}>
                                  <td key="1"></td>
                                     <td ><img id={dato.Transacción} className="img-filter-transaction" onClick={handleClickModal} src={TreePoints} alt="TreePoints" /> </td>
                                 
-                                    <td >{dato.Transacción} </td>
-                                    <td >{dato.Picker}  </td>
-                                    <td > {dato.FechaEntrega} </td>
-                                    <td > {dato.Estado} </td>
+                                    <td >{dato.transaction.transactionCode} </td>
+                                    <td >{dato.transaction.externalPickerId}  </td>
+                                    <td > {dato.transaction.maxDeliveryDateTime.substring(0,10)} </td>
+                                    <td > {dato.transaction.state.name} </td>
                             </tr>
                         )
+                        :null
 
                     }
                        
