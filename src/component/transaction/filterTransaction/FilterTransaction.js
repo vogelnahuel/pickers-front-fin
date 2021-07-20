@@ -7,11 +7,15 @@ import {DatePicker} from 'pickit-components'
 import {Form,Field} from 'react-final-form'
 import or from '../../../assets/admin/PendingUser/or.svg'
 import search from  '../../../assets/admin/PendingUser/search.svg'
+import api from '../../../config/api'
 
 
 
 
-export const FilterTransaction = () => {
+export const FilterTransaction = (props) => {
+
+    const setapiFilter = props.setapiFilter;
+
     $()
     const es = document.querySelector('.ms-select-all label span');
     if(es!==null)
@@ -38,7 +42,7 @@ export const FilterTransaction = () => {
         })  `
         setTimeout(() => {
             document.body.appendChild(multipleSelectScript);
-        }, 280);
+        }, 290);
        
         return () => {
             document.body.removeChild(jqueryMin);
@@ -49,11 +53,27 @@ export const FilterTransaction = () => {
     }, [])
 
 
-    const handleSumbit = (e,values) => {
+    const onSubmit =   (values) => {
 
-        e.preventDefault();
+        //setapiFilter(values)
+        const cargarDatos = async()=> {
+            setapiFilter( await  api.get(`ms-admin-rest/api/v1.0/transactions/`) 
+       
+               .then((res) => {
+                   console.log(res)
+                   return res.data.result.items;
+                 })
+                 .catch((err) => {
+                   console.log(err);
+                 }))   
+           }
+           cargarDatos();
+
+
         console.log(values)
     }
+
+ 
  
 
     return (
@@ -62,17 +82,17 @@ export const FilterTransaction = () => {
                     <img className="img-filter-transaction" src={desplegable} alt="desplegable"/>
                     <p className="p-filter-transaction">Filtros</p>
             </div>
-            <Form onSubmit={handleSumbit}>   
-                    {  
-                    
-                    ({handleSumbit}) => 
-                        <form className="form-filter-transaction" onSubmit={handleSumbit}>
+            <Form onSubmit={onSubmit}>  
+
+                    {  ({handleSubmit}) => 
+
+                        <form className="form-filter-transaction" onSubmit={handleSubmit}>
                                     <div>
                                         <div>
                                             <label className="label-filter-transaction">Número de transacción </label>
                                         </div>
                                         <div>
-                                            <Field name="nroTransaccion" component="input" placeholder="Ingresá el número"/>
+                                            <Field type="text" name="nroTransaccion" component="input" placeholder="Ingresá el número"/>
                                         </div>
                                     </div>
                                     <div>
@@ -80,7 +100,7 @@ export const FilterTransaction = () => {
                                             <label className="label-filter-transaction" >Picker</label>
                                         </div>
                                         <div>
-                                            <Field name="Picker" component="input" placeholder="Ingresá el número de picker"/>
+                                            <Field  type="text" name="Picker" component="input" placeholder="Ingresá el número de picker"/>
                                         </div>
                                     </div>
                                     <div className="datePicker-filter-transaction">
@@ -88,7 +108,7 @@ export const FilterTransaction = () => {
                                             <label className="label-filter-transaction" >Fecha de entrega</label>
                                         </div>
                                         <div>
-                                            <Field  className="" name="FechaEntrega" component={DatePicker} placeholder="Seleccioná la fecha" />
+                                            <Field  type="text" className="" name="FechaEntrega" component={DatePicker} placeholder="Seleccioná la fecha" />
                                         </div>
                                     </div>
                                     <div>
@@ -96,7 +116,7 @@ export const FilterTransaction = () => {
                                             <label className="label-filter-transaction" >Estados </label>
                                         </div>
                                         <div >
-                                            <Field name="Estados"  placeholder="Seleccioná el estado">
+                                            <Field  name="Estados"  placeholder="Seleccioná el estado">
                                             {() => (
                                                         <select placeholder="Seleccioná el estado" multiple="multiple">
                                                             <option value="Sin asignar">Sin asignar</option>
@@ -123,13 +143,14 @@ export const FilterTransaction = () => {
                                         <button 
                                                 className="search-button-transaction"
                                                 name="search"
+                                                type="submit"
                                                 >
                                                 <img  src={search} alt="export" />
                                                 <img className="or-filter" src={or} alt="or" />
                                                 <p className="display-inline-block p-export"> Buscar</p>
                                         </button>
                                     </div>
-
+                                       
                         </form>
                     }
             </Form>
