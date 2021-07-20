@@ -23,8 +23,12 @@ export const DashboardAdmin = () => {
         }
         const cargarDatos = async() => {
             settransactionApi(
-                api.get('ms-admin-rest/api/v1.0/transactions/dashboard')
-               .then( (res)=> res.result )
+               await   api.get('ms-admin-rest/api/v1.0/transactions/dashboard')
+               .then( (res)=> { 
+                   
+                   return res.data.result
+                    }
+                )
                .catch((err)=>  err)
                )
              }
@@ -65,20 +69,20 @@ export const DashboardAdmin = () => {
                                             <Card
                                              subtitle="Transacciones"
                                              title="Activas"
-                                             number={transactionApi.result ? transactionApi.result.activeTransactions : 0 }
+                                             number={transactionApi ? transactionApi.activeTransactions : "-" }
                                              backgroundColor="#63E8A8"
                                             />
 
                                              <Card
                                              subtitle="Transacciones"
                                              title="Pendientes de asignación"
-                                             number={transactionApi.result ? transactionApi.result.pendingTransactions : 0 }
+                                             number={transactionApi ? transactionApi.pendingTransactions : "-" }
                                              backgroundColor="#BCB6FF"
                                             />
                                              <Card
                                              subtitle="Transacciones"
                                              title="En alerta"
-                                             number={transactionApi.result ? transactionApi.result.inAlertTransactions : 0 }
+                                             number={transactionApi ? transactionApi.inAlertTransactions : "-" }
                                              backgroundColor="#FF8F76"
                                             />
 

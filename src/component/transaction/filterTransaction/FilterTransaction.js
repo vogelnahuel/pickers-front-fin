@@ -9,6 +9,8 @@ import or from '../../../assets/admin/PendingUser/or.svg'
 import search from  '../../../assets/admin/PendingUser/search.svg'
 
 
+
+
 export const FilterTransaction = () => {
     $()
     const es = document.querySelector('.ms-select-all label span');
@@ -17,7 +19,6 @@ export const FilterTransaction = () => {
        es.firstChild.textContent="Todos"
     }
     
-
     useEffect(() => {
         const jqueryMin = document.createElement('script');
         jqueryMin.src = "https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js";
@@ -34,15 +35,11 @@ export const FilterTransaction = () => {
                 $('select').multipleSelect()
             }
             
-        })
-        `
+        })  `
         setTimeout(() => {
             document.body.appendChild(multipleSelectScript);
-        }, 250);
+        }, 280);
        
-      
-
-
         return () => {
             document.body.removeChild(jqueryMin);
             document.body.removeChild(multipleSelect);
@@ -52,6 +49,11 @@ export const FilterTransaction = () => {
     }, [])
 
 
+    const handleSumbit = (e,values) => {
+
+        e.preventDefault();
+        console.log(values)
+    }
  
 
     return (
@@ -60,8 +62,10 @@ export const FilterTransaction = () => {
                     <img className="img-filter-transaction" src={desplegable} alt="desplegable"/>
                     <p className="p-filter-transaction">Filtros</p>
             </div>
-            <Form onSubmit={()=> {}}>   
-                    {   ({handleSumbit}) => 
+            <Form onSubmit={handleSumbit}>   
+                    {  
+                    
+                    ({handleSumbit}) => 
                         <form className="form-filter-transaction" onSubmit={handleSumbit}>
                                     <div>
                                         <div>
