@@ -1,20 +1,44 @@
-import React from 'react'
+import React, {  } from 'react'
 import './TableTransaction.css'
 import TreePoints from '../../../assets/transaction/TreePoints.svg'
+import api2 from '../../../config/api'
 
 export const TableTransaction = (props) => {
    
   
     const setOpenModalTransaction =  props.setOpenModalTransaction;
     const api = props.api;
+    const setFilterSelectedTransaction = props.setFilterSelectedTransaction;
    
     const titulos = props.titulos;
     const handleClickModal = (e) => {
         e.preventDefault();
         setOpenModalTransaction(true);
+        console.log(e.target.parentNode.id)
+        
+        const cargarDatos = async()=> {
+            setFilterSelectedTransaction( await  api2.get(`ms-admin-rest/api/v1.0/transactions/${Number(e.target.parentNode.id)}`) 
+    
+            .then((res) => {
+                return res.data.result;
+              })
+              .catch((err) => {
+                console.log(err);
+              }))   
+        }
+        cargarDatos();
+       
+    
+        
     }
 
- 
+    
+    
+
+      
+  
+
+
     return (
         <>
            
@@ -36,8 +60,9 @@ export const TableTransaction = (props) => {
                     {
                        JSON.stringify(api)!=='{}' ? api.map(dato => 
                             <tr key={dato.transaction.id}>
+                                
                                  <td key="1"></td>
-                                    <td ><img id={dato.Transacción} className="img-filter-transaction" onClick={handleClickModal} src={TreePoints} alt="TreePoints" /> </td>
+                                    <td  id={dato.transaction.id}><img  id={dato.Transacción} className="img-filter-transaction" onClick={handleClickModal} src={TreePoints} alt="TreePoints" /> </td>
                                 
                                     <td >{dato.transaction.transactionCode} </td>
                                     <td >{dato.transaction.externalPickerId}  </td>

@@ -5,15 +5,19 @@ import Cancel from "../../../../assets/transaction/Cancel.svg";
 import "./history.css";
 import { Form, Field } from "react-final-form";
 
-export const History = () => {
+export const History = (props) => {
+
+  const FilterTransaction = props.FilterTransaction;
+  console.log(FilterTransaction)
+
   return (
     <div className="modal-transaction-optionContainer-scroll">
       <Form
         onSubmit={() => {}}
         initialValues={{
-          nroTransaccion: "651456321",
-          Picker: "Juan Perez",
-          Telefono: "1564854321",
+          nroTransaccion: FilterTransaction.transaction ? FilterTransaction.transaction.id : 0,
+          Picker: FilterTransaction.transaction ? FilterTransaction.client.name+ ' ' +FilterTransaction.client.lastName : "",
+          Telefono: FilterTransaction.transaction ? FilterTransaction.client.phone : "",
           dirRetiro: "JB. Justo 1024 - CABA",
           dirEntrega: "Cabildo 750, Belgrano - CABA",
           Retailer: "pickit",

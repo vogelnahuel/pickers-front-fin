@@ -38,7 +38,7 @@ export const FilterTransaction = () => {
         `
         setTimeout(() => {
             document.body.appendChild(multipleSelectScript);
-        }, 200);
+        }, 250);
        
       
 

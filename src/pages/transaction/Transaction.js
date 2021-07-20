@@ -16,7 +16,9 @@ import api from "../../config/api.js";
 export const Transaction = () => {
 
     const [apiFilterTransaction, setapiFilter] = useState({})
+    const [FilterSelectedTransaction, setFilterSelectedTransaction] = useState({})
     const [loader, setloader] = useState(true)
+   
 
     const [OpenModalTransaction, setOpenModalTransaction] = useState(false);
     const [IdModalApi, setIdModalApi] = useState("");// devuelve la consulta api
@@ -51,6 +53,7 @@ useEffect(() => {
      setapiFilter( await  api.get('ms-admin-rest/api/v1.0/transactions') 
 
         .then((res) => {
+            
             return res.data.result.items;
           })
           .catch((err) => {
@@ -58,8 +61,10 @@ useEffect(() => {
           }))   
     }
     cargarDatos();
-   
+    
 }, [])
+
+
 
 
     return (
@@ -91,6 +96,7 @@ useEffect(() => {
                     setIdModal={setIdModalApi}
                     api={apiFilterTransaction}
                     titulos={titulos}
+                    setFilterSelectedTransaction={setFilterSelectedTransaction}
                     
                     />
                     
@@ -107,6 +113,10 @@ useEffect(() => {
                                  isOpen={OpenModalTransaction}
                                  onClose={onClose}
                                 >
+
+                                    
+
+                                    
                                     <div className="modal-transaction-container">
                                         <img onClick={onClose} className="modal-transaction-close" src={Close} alt="cerrar"/>
                                         <div>
@@ -116,15 +126,21 @@ useEffect(() => {
                                                 <p className="modal-transaction-fecha">Fecha entrega</p>
                                             </div>
                                             <div className="modal-transaction-subtitle">
-                                                <h2>AAA112</h2>
-                                                <p>En retiro</p>
-                                                <p className="modal-transaction-fecha">17/11/2020 15:30</p>
+                                                
+                                                    
+                                                
+                                                        <h2>{FilterSelectedTransaction.transaction ? FilterSelectedTransaction.transaction.id : ""}</h2>
+                                                        <p> { FilterSelectedTransaction.transaction ?  FilterSelectedTransaction.transaction.state.name : "" } </p>
+                                                                                                                                      
+                                                        <p className="modal-transaction-fecha"> {FilterSelectedTransaction.transaction ? FilterSelectedTransaction.transaction.maxDeliveryDateTime.substring(0,10) : ""} </p>
+                                                   
+                                             
                                             </div>
                                             <hr className="modal-transaction-separate"/>
                                         </div>
                                         <div className="modal-transaction-scroll">
                                                 <OptionList
-                                                api={api}
+                                                FilterSelectedTransaction={FilterSelectedTransaction}
                                                 />
                                                 
                                                     

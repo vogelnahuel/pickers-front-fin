@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {  } from 'react'
 import './optionList.css'
 //import { FinishModal } from './finish/FinishModal'
 //import { ReasonsCanceledConfirm } from './reasonsCanceledConfirm/ReasonsCanceledConfirm'
@@ -7,7 +7,12 @@ import { History } from './history/History.js'
 import Reload from '../../../assets/transaction/Reload.svg'
 
 
-export const OptionList = () => {
+
+export const OptionList = (props) => {
+
+    const FilterSelectedTransaction = props.FilterSelectedTransaction
+    
+
 
   
     return (
@@ -16,7 +21,9 @@ export const OptionList = () => {
             {
                 
                 <>
-                <History/>
+                <History
+                FilterTransaction={FilterSelectedTransaction}
+                />
                 <div className="modal-transaction-buttons-submit">
                     <button className="modal-transaction-cancel">Cancelar</button>
                     <button className="modal-transaction-finish">Finalizar</button>
