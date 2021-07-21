@@ -102,8 +102,14 @@ useEffect(() => {
                     setFilterSelectedTransaction={setFilterSelectedTransaction}
                     
                     />
-                    
-                     <button onClick={cargarMas} className="paginator-button-transaction">Ver más</button>
+                    {
+                 
+                      apiFilterTransaction  && apiFilterTransaction.length!==0 ?
+                        <button onClick={cargarMas} className="paginator-button-transaction">Ver más</button>
+                        :
+                        <button onClick={cargarMas} className="paginator-button-transaction-noResult">No obtuvimos resultados de tu búsqueda :(</button>
+                    }
+                     
                      
                 </div>
 

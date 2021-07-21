@@ -28,9 +28,7 @@ export const TableTransaction = (props) => {
               }))   
         }
         cargarDatos();
-       
-    
-        
+
     }
 
     
@@ -60,7 +58,7 @@ export const TableTransaction = (props) => {
                 <tbody> 
                     
                     {
-                        JSON.stringify(api)!=='{}' ? api.map(dato => 
+                        JSON.stringify(api)!=='{}' && api!==undefined ? api.map(dato => 
                             <tr key={dato.transaction.id}>
                                 
                                  <td key="1"></td>
