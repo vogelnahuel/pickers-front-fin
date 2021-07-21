@@ -8,14 +8,14 @@ import {Form,Field} from 'react-final-form'
 import or from '../../../assets/admin/PendingUser/or.svg'
 import search from  '../../../assets/admin/PendingUser/search.svg'
 import api from '../../../config/api'
-
-
-
+import moment from 'moment'
 
 export const FilterTransaction = (props) => {
 
     const setapiFilter = props.setapiFilter;
-
+    
+    
+    /****cambiar el select all a todos */
     $()
     setTimeout(() => {
         const es = document.querySelector('.ms-select-all label span');
@@ -25,8 +25,8 @@ export const FilterTransaction = (props) => {
         }
     }, 200);
  
-    
-    useEffect(() => {
+    /****script dinamicos */
+useEffect(() => {
         const jqueryMin = document.createElement('script');
         jqueryMin.src = "https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js";
         document.body.appendChild(jqueryMin);
@@ -45,7 +45,7 @@ export const FilterTransaction = (props) => {
         })  `
         setTimeout(() => {
             document.body.appendChild(multipleSelectScript);
-        }, 320);
+        }, 400);
        
         return () => {
             document.body.removeChild(jqueryMin);
@@ -55,47 +55,119 @@ export const FilterTransaction = (props) => {
 
     }, [])
 
+/****formatear fecha */
+const formatDate = (values) => {
 
-    const onSubmit =   (values) => {
+    if(values.FechaEntrega){
+ 
+        if(moment(values.FechaEntrega.from,"DD/MM/YYYY").isValid()===true){
+            values.FechaEntrega.from=moment(values.FechaEntrega.from,"DD/MM/YYYY").format('YYYY-MM-DD');
+            values.FechaEntrega.until=moment(values.FechaEntrega.until,"DD/MM/YYYY").format('YYYY-MM-DD');
+        }
+      }
 
-        //setapiFilter(values)
-        /*.get(
-            `ms-admin-rest/api/v1.0/pickers?pickerStatusId=2,3&limit=${tamPag}${
-              filter.nombre ? `&name=${filter.nombre}` : ""
-            }${
-              filter.vehiculo && filter.vehiculo !== "DEFAULT"
-                ? `&vehicleTypeId=${filter.vehiculo === "moto" ? 1 : 2}`
-                : ""
-            }${
-              filter.dni ? `&identificationNumber=${parseInt(filter.dni)}` : ""
-            }${filter.mail ? `&email=${filter.mail}` : ""}`
-          )*/
-          console.log(values)
+      return values;
+}
+/****verificar el custom select checkbox cuales estan seleccionados y generar salida */
+const multipleSelectCheckbox = () => {
 
-            if(values.Picker){
-                console.log("entre")
+    let stringSelected="";
+         const listaUlSelected  = document.querySelectorAll('.ms-drop ul li');
+         let ArraySeleccionados=[];
+         let j =0;
+
+         for(let i =0;  i < listaUlSelected.length ;i ++){
+
+             if(listaUlSelected[i].classList.contains('selected')){
+                    ArraySeleccionados[j]=i;
+                    j++;
              }
-            if(values.nroTransaccion){
-                console.log("entre")
+
+         }
+
+         for(let i =0 ; i < ArraySeleccionados.length;i++){
+
+            switch (ArraySeleccionados[i]) {
+                case 1:
+                    if(i!==0)
+                   stringSelected+=",PENDING_ASSIGNMENT";
+                   else
+                   stringSelected+="PENDING_ASSIGNMENT";
+                    break;
+                case 2:
+                    if(i!==0)
+                   stringSelected+=",IN_PICK_UP";
+                   else
+                   stringSelected+="IN_PICK_UP";
+                  break;
+                case 3:
+                    if(i!==0)
+                   stringSelected+=",IN_PICK_UP_POINT";
+                   else
+                   stringSelected+="IN_PICK_UP";
+                        break;
+                case 4:
+                    if(i!==0)
+                   stringSelected+=",PICKED_UP";
+                   else
+                   stringSelected+="IN_PICK_UP";
+                        break;
+                case 5:
+                    if(i!==0)
+                   stringSelected+=",IN_DELIVERY_POINT";
+                   else
+                   stringSelected+="IN_PICK_UP";
+                        break;
+                case 6:
+                    if(i!==0)
+                   stringSelected+=",DELIVERED";
+                   else
+                   stringSelected+="DELIVERED";
+                        break;          
+                case 7:
+                    if(i!==0)
+                   stringSelected+=",IN_RETURN_TO_SENDER";
+                   else
+                   stringSelected+="IN_RETURN_TO_SENDER";
+                   break;
+                case 8:
+                    if(i!==0)
+                   stringSelected+=",RETURNED_TO_SENDER";
+                   else
+                   stringSelected+="RETURNED_TO_SENDER";
+                      break;
+                case 9:
+                    if(i!==0)
+                   stringSelected+=",LOST";
+                   else
+                   stringSelected+="LOST";
+                       break;
+                case 10:
+                    if(i!==0)
+                   stringSelected+=",CANCEL";
+                   else
+                   stringSelected+="CANCEL";
+                       break;
+                           
+            
+                default:
+                    break;
             }
-            if(values.FechaEntrega){
-                console.log("entre")
-            }
-            if(values.enAlerta){
-                console.log("entre")
-            }
-            /*
-         const listaUlSelected  = document.querySelector('.ms-drop ul');
-            */
 
+        }
 
+        return stringSelected;
+}
 
-        const cargarDatos = async()=> {
+const onSubmit =  async   (values) => {
 
-            setapiFilter( await  api.get(`ms-admin-rest/api/v1.0/transactions/${values.Picker ? values.Picker : '' }  `) 
-       
+values = formatDate(values)
+let stringSelected="";
+stringSelected = multipleSelectCheckbox();
+
+ setapiFilter( await  api.get(`ms-admin-rest/api/v1.0/transactions?${values.nroTransaccion ? `filter.transactionCode=${values.nroTransaccion}`:""}${values.Picker ? `&filter.pickerId=${values.Picker}`:""}${values.enAlerta ?`&filter.inAlert=${values.enAlerta}`:"" }${values.FechaEntrega ? `&filter.minMinDeliveryDate=${values.FechaEntrega.from}`:""}${values.FechaEntrega?`&filter.maxMinDeliveryDate=${values.FechaEntrega.until}`:""}${stringSelected!==""?`&filter.state=${stringSelected}`:""} `)    
                .then((res) => {
-                    
+                   
                    if(typeof res.data.result === 'object' && res.data.result.items===undefined ){
           
                         return [res.data.result]
@@ -105,14 +177,10 @@ export const FilterTransaction = (props) => {
                  .catch((err) => {
                    console.log(err);
                  }))
-           }
-           cargarDatos();
+      
+}
 
 
-        console.log(values)
-    }
-
- 
  
 
     return (

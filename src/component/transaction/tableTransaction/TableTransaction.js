@@ -4,20 +4,13 @@ import TreePoints from '../../../assets/transaction/TreePoints.svg'
 import api2 from '../../../config/api'
 
 export const TableTransaction = (props) => {
-   
   
     const setOpenModalTransaction =  props.setOpenModalTransaction;
     const api = props.api;
     
-    console.log(api)
-
-
     const setFilterSelectedTransaction = props.setFilterSelectedTransaction;
    
     const titulos = props.titulos;
-
-    
-
 
     const handleClickModal = (e) => {
         e.preventDefault();
