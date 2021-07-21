@@ -54,7 +54,7 @@ useEffect(() => {
      setapiFilter( await  api.get('ms-admin-rest/api/v1.0/transactions') 
 
         .then((res) => {
-            console.log(res.data.result.items)
+           
             return res.data.result.items;
           })
           .catch((err) => {

@@ -8,9 +8,17 @@ export const TableTransaction = (props) => {
   
     const setOpenModalTransaction =  props.setOpenModalTransaction;
     const api = props.api;
+    
+    console.log(api)
+
+
     const setFilterSelectedTransaction = props.setFilterSelectedTransaction;
    
     const titulos = props.titulos;
+
+    
+
+
     const handleClickModal = (e) => {
         e.preventDefault();
         setOpenModalTransaction(true);
@@ -47,9 +55,10 @@ export const TableTransaction = (props) => {
                         <tr key="tr-1"> 
                             <td key="1"></td>
                             <td key="2"></td>
-                            {titulos.map(titulo => 
+                            {titulos ?  titulos.map(titulo => 
                                       <td key={titulo}>{titulo}</td>
                                 )
+                                : null
                             }
                            
                            
@@ -58,7 +67,7 @@ export const TableTransaction = (props) => {
                 <tbody> 
                     
                     {
-                       JSON.stringify(api)!=='{}' ? api.map(dato => 
+                        JSON.stringify(api)!=='{}' ? api.map(dato => 
                             <tr key={dato.transaction.id}>
                                 
                                  <td key="1"></td>
@@ -71,6 +80,8 @@ export const TableTransaction = (props) => {
                             </tr>
                         )
                         :null
+
+                        
 
                     }
                        

@@ -17,11 +17,14 @@ export const FilterTransaction = (props) => {
     const setapiFilter = props.setapiFilter;
 
     $()
-    const es = document.querySelector('.ms-select-all label span');
-    if(es!==null)
-    {
-       es.firstChild.textContent="Todos"
-    }
+    setTimeout(() => {
+        const es = document.querySelector('.ms-select-all label span');
+        if(es!==null)
+        {
+           es.firstChild.textContent="Todos"
+        }
+    }, 200);
+ 
     
     useEffect(() => {
         const jqueryMin = document.createElement('script');
@@ -42,7 +45,7 @@ export const FilterTransaction = (props) => {
         })  `
         setTimeout(() => {
             document.body.appendChild(multipleSelectScript);
-        }, 290);
+        }, 320);
        
         return () => {
             document.body.removeChild(jqueryMin);
@@ -56,16 +59,52 @@ export const FilterTransaction = (props) => {
     const onSubmit =   (values) => {
 
         //setapiFilter(values)
+        /*.get(
+            `ms-admin-rest/api/v1.0/pickers?pickerStatusId=2,3&limit=${tamPag}${
+              filter.nombre ? `&name=${filter.nombre}` : ""
+            }${
+              filter.vehiculo && filter.vehiculo !== "DEFAULT"
+                ? `&vehicleTypeId=${filter.vehiculo === "moto" ? 1 : 2}`
+                : ""
+            }${
+              filter.dni ? `&identificationNumber=${parseInt(filter.dni)}` : ""
+            }${filter.mail ? `&email=${filter.mail}` : ""}`
+          )*/
+          console.log(values)
+
+            if(values.Picker){
+                console.log("entre")
+             }
+            if(values.nroTransaccion){
+                console.log("entre")
+            }
+            if(values.FechaEntrega){
+                console.log("entre")
+            }
+            if(values.enAlerta){
+                console.log("entre")
+            }
+            /*
+         const listaUlSelected  = document.querySelector('.ms-drop ul');
+            */
+
+
+
         const cargarDatos = async()=> {
-            setapiFilter( await  api.get(`ms-admin-rest/api/v1.0/transactions/`) 
+
+            setapiFilter( await  api.get(`ms-admin-rest/api/v1.0/transactions/${values.Picker ? values.Picker : '' }  `) 
        
                .then((res) => {
-                   console.log(res)
+                    
+                   if(typeof res.data.result === 'object' && res.data.result.items===undefined ){
+          
+                        return [res.data.result]
+                   }
                    return res.data.result.items;
                  })
                  .catch((err) => {
                    console.log(err);
-                 }))   
+                 }))
            }
            cargarDatos();
 
@@ -136,7 +175,7 @@ export const FilterTransaction = (props) => {
                                         </div>
                                     </div>
                                     <div>   
-                                            <Field id="checkbox-filter-transaction" name="en alerta" component="input" type="checkbox"/>
+                                            <Field id="checkbox-filter-transaction" name="enAlerta" component="input" type="checkbox"/>
                                             <label className="label-filter-transaction display-inline">En alerta</label>                               
                                     </div>
                                     <div className="container-button-width">
