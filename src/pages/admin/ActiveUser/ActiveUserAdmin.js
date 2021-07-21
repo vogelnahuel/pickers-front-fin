@@ -124,13 +124,26 @@ const cargarDatos = async () => {
             }${filter.mail ? `&email=${filter.mail}` : ""}`
           )
           .then((res) => {
-            setloader(false)
+          
+               if(res.data.result.items.length===0)
+              {
+                setVerMas(false)
+              }
             return res.data.result.items;
           })
           .catch((err) => {
-            setloader(false)
+            
             console.log(err);
           })
+          .finally(
+            //
+            setTimeout(() => {
+              setloader(false)
+            }, 500)
+       
+           
+                
+          )
       );
     };
     cargarDatos();
@@ -166,6 +179,10 @@ const getData = async (filter) => {
         )
         .then((res) => {
            
+          if(res.data.result.items.length===0)
+          {
+            setVerMas(false)
+          }
           return res.data.result.items;
         })
         .catch((err) => {
