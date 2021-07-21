@@ -112,7 +112,7 @@
   letter-spacing: 0.005em;
 }
 .admin-buttonDisabled-picker-disabled {
-  font-family: "Mulish";
+  /* font-family: "Mulish";
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
@@ -121,11 +121,21 @@
   color: #ff1515;
   position: absolute;
   margin-left: 30%;
+  margin-top: 3%; */
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 20px;
+  color: #ff1515;
+  position: absolute;
+  margin-left: 34%;
   margin-top: 3%;
+  border: none;
 }
 
 .admin-buttonDisabled-picker-enabled {
-  font-family: "Mulish";
+  /* font-family: "Mulish";
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
@@ -134,6 +144,16 @@
   color: #bdbdbd;
   position: absolute;
   margin-left: 45%;
+  margin-top: 3%; */
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 20px;
+  color: #bdbdbd;
+  opacity: 0.9;
+  position: absolute;
+  margin-left: 49%;
   margin-top: 3%;
 }
 
