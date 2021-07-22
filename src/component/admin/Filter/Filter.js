@@ -1,5 +1,5 @@
 import React from 'react'
-import './filter.css'
+import './filter.scss'
 import desplegable from  '../../../assets/admin/PendingUser/desplegable.svg'
 import or from '../../../assets/admin/PendingUser/or.svg'
 import search from  '../../../assets/admin/PendingUser/search.svg'
