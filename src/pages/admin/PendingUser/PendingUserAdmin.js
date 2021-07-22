@@ -92,7 +92,7 @@ export const PendingUserAdmin = () => {
           }${filter.mail ? `&email=${filter.mail}` : ""}`
         )
         .then((res) => {
-          if(res.data.result.items.length===0)
+          if(res.data.result.items.length<tamPag)
               {
                 setVerMas(false)
               }
@@ -130,7 +130,7 @@ const cargarDatos = async () => {
             }${filter.mail ? `&email=${filter.mail}` : ""}`
           )
           .then((res) => {
-            if(res.data.result.items.length===0)
+            if(res.data.result.items.length<tamPag)
               {
                 setVerMas(false)
               }
