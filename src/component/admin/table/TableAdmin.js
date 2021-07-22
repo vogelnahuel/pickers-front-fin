@@ -1,6 +1,6 @@
 
           import React from "react";
-          import "./tableAdmin.css";
+          import "./tableAdmin.scss";
           import edit from "../../../assets/admin/PendingUser/edit.svg";
           import moment from "moment";
           import { Link } from "react-router-dom";

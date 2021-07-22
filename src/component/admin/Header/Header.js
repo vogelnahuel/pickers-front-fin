@@ -1,5 +1,5 @@
 import React from 'react'
-import './headerAdmin.css'
+import './headerAdmin.scss'
 import  canguroLogo from '../../../assets/admin/canguroLogo.svg'
 import  pickers from '../../../assets/admin/pickers.svg'
 import  argentina from '../../../assets/admin/argentina.svg'
