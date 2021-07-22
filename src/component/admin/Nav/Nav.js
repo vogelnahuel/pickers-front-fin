@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
-import './nav.css'
+import './nav.scss'
 
 
 export const Nav = (props) => {

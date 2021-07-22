@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import volver from '../../../assets/admin/PendingUser/volver.svg'
 import relojOscuro from '../../../assets/admin/PendingUser/relojOscuro.svg'
 import trabajadorAzul from '../../../assets/admin/PendingUser/trabajadorAzul.svg'
-import './pending.css'
+import './pending.scss'
 import {Redirect, useHistory, useParams } from 'react-router-dom'
 
 export const PendingBlack = (props) => {
