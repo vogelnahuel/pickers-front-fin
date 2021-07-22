@@ -18,7 +18,7 @@ export const Transaction = () => {
     const [apiFilterTransaction, setapiFilter] = useState({})
     const [FilterSelectedTransaction, setFilterSelectedTransaction] = useState({})
     const [loader, setloader] = useState(true)
-   
+    
 
     const [OpenModalTransaction, setOpenModalTransaction] = useState(false);
     const [IdModalApi, setIdModalApi] = useState("");// devuelve la consulta api
@@ -54,7 +54,7 @@ useEffect(() => {
      setapiFilter( await  api.get('ms-admin-rest/api/v1.0/transactions') 
 
         .then((res) => {
-            
+           
             return res.data.result.items;
           })
           .catch((err) => {
@@ -90,7 +90,9 @@ useEffect(() => {
                             <p className="display-inline-block p-export"> Exportar</p>
                          </button>
                      </div>
-                     <FilterTransaction/>
+                     <FilterTransaction
+                     setapiFilter={setapiFilter}
+                     />
                     <TableTransaction
                     setOpenModalTransaction={setOpenModalTransaction}
                     IdModal={IdModalApi}
@@ -100,8 +102,14 @@ useEffect(() => {
                     setFilterSelectedTransaction={setFilterSelectedTransaction}
                     
                     />
-                    
-                     <button onClick={cargarMas} className="paginator-button-transaction">Ver más</button>
+                    {
+                 
+                      apiFilterTransaction  && apiFilterTransaction.length!==0 ?
+                        <button onClick={cargarMas} className="paginator-button-transaction">Ver más</button>
+                        :
+                        <button onClick={cargarMas} className="paginator-button-transaction-noResult">No obtuvimos resultados de tu búsqueda :(</button>
+                    }
+                     
                      
                 </div>
 
