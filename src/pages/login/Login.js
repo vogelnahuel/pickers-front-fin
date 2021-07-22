@@ -167,7 +167,7 @@ const handleSubmit = async (e) => {
          e.target.button.parentNode.classList.add('shineBorder') ;            
        }  
         
-    await api.post('https://ms-admin.dev.mypickers.com/ms-admin-rest/api/v1.0/login',{email:mail?mail:'',password:password?password:''})
+    await api.post('/ms-admin-rest/api/v1.0/login',{email:mail?mail:'',password:password?password:''})
            .then((response)=>{
          
               window.localStorage.setItem("token",response.data.result.accessToken)

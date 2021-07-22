@@ -92,7 +92,11 @@ export const PendingUserAdmin = () => {
           }${filter.mail ? `&email=${filter.mail}` : ""}`
         )
         .then((res) => {
-          return res.data.result.items;
+          if(res.data.result.items.length===0)
+              {
+                setVerMas(false)
+              }
+            return res.data.result.items;
         })
         .catch((err) => {
           console.log(err);
@@ -126,6 +130,10 @@ const cargarDatos = async () => {
             }${filter.mail ? `&email=${filter.mail}` : ""}`
           )
           .then((res) => {
+            if(res.data.result.items.length===0)
+              {
+                setVerMas(false)
+              }
             return res.data.result.items;
           })
           .catch((err) => {
@@ -133,7 +141,10 @@ const cargarDatos = async () => {
           })
           .finally(
             //
+            setTimeout(() => {
               setloader(false)
+            }, 500)
+       
            
                 
           )

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, { useState } from 'react'
+=======
+import React, {  } from 'react'
+>>>>>>> develop
 import './optionList.css'
 import { FinishModal } from './finish/FinishModal'
 import { ReasonsCanceledConfirm } from './reasonsCanceledConfirm/ReasonsCanceledConfirm'

@@ -243,7 +243,7 @@ const cerrarGuardarExitoPicker = (e) => {
                  <div 
                  className="mainContainerFlex">
                     <h2 className="picker-id">
-                       #125468542321
+                       #{dataPicker.id}
                      <h2 className="subTitle-pending-picker">{dataPicker.nya}</h2>
                     </h2>
                      {
