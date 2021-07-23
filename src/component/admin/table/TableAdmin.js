@@ -50,7 +50,7 @@ return (
                           <td></td>
                           <td> { (rows.name+' '+rows.surname).length>20 ?  (rows.name+' '+rows.surname).substring(0,20)+'...': (rows.name+' '+rows.surname)} </td>
                           <td> {rows.identificationNumber} </td>
-                          <td> {rows.email.length > 35 ? rows.email.substring(0,35)+'...': rows.email}</td>
+                          <td> {rows.email.length > 30 ? rows.email.substring(0,30)+'...': rows.email}</td>
                           <td>
                             {" "}
                             {rows.vehicleTypeId === 1
@@ -71,7 +71,7 @@ return (
           
                   {window.location.pathname === "/activeUserAdmin"
                     ?data && Array.isArray(data)? data.map((rows) => (
-                        <tr className="info" key={rows.id}>
+                        <tr className="info table-active-correcion" key={rows.id}>
                           <td></td>
                           <td > { (rows.name+' '+rows.surname).length>20 ?  (rows.name+' '+rows.surname).substring(0,20)+'...': (rows.name+' '+rows.surname)} </td>
                           <td > {rows.identificationNumber} </td>

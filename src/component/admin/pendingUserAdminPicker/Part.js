@@ -125,7 +125,7 @@ export const Part = (props) => {
     const ex_regular_dni = /^\d{6,8}(?:[-\s]\d{4})?$/;
     const ex_regular_nomyape =/^[a-zA-ZÀ-ÿ\u00f1\u00d1]*(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/g;;
     const ex_regular_fecha = /^(0[1-9]|[1-2]\d|3[01])(\/)(0[1-9]|1[012])\2(\d{4})$/
-    const ex_regular_telefono = /^[0-9,-]{14,17}$/;
+    const ex_regular_telefono =/^\(?\d{2,3}\)?[\s.-]?\d{3,4}[\s.-]?\d{4}$/;
     
   
     if(ErrorMenorEdad!==true){
@@ -285,7 +285,12 @@ export const Part = (props) => {
       
     }
 
-   
+   if(document.querySelector('.inputError-part')===null){
+    setdisabledButtonAprobarPicker(false);
+   }
+   else{
+    setdisabledButtonAprobarPicker(true);
+   }
     
     
 

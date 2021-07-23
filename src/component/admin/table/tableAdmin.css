@@ -122,3 +122,11 @@
 .table-pending td:nth-child(2){
     width: 12.321vw;
 }
+.table-active-correcion td:nth-child(2){
+    width: 12.221vw;
+}
+.table-active-correcion td:nth-child(3){
+    width: 10.221vw;
+}
+
+
