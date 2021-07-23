@@ -63,10 +63,7 @@ useEffect(() => {
     cargarDatos();
     
 }, [])
-
-
-
-
+//
     return (
         <div className="background-Grey">
             
