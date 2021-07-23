@@ -23,7 +23,7 @@ export const FilterTransaction = (props) => {
         {
            es.firstChild.textContent="Todos"
         }
-    }, 400);
+    }, 800);
  
     /****script dinamicos */
 useEffect(() => {
@@ -45,7 +45,7 @@ useEffect(() => {
         })  `
         setTimeout(() => {
             document.body.appendChild(multipleSelectScript);
-        }, 600);
+        }, 800);
        
         return () => {
             document.body.removeChild(jqueryMin);
