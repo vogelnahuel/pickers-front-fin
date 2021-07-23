@@ -2,6 +2,7 @@ import React, {  } from 'react'
 import './TableTransaction.css'
 import TreePoints from '../../../assets/transaction/TreePoints.svg'
 import api2 from '../../../config/api'
+import moment from 'moment'
 
 export const TableTransaction = (props) => {
   
@@ -66,8 +67,8 @@ export const TableTransaction = (props) => {
                                 
                                     <td >{dato.transaction.transactionCode} </td>
                                     <td >{dato.transaction.externalPickerId}  </td>
-                                    <td > {dato.transaction.maxDeliveryDateTime.substring(0,10)} </td>
-                                    <td > {dato.transaction.state.name} </td>
+                                    <td > {moment(dato.transaction.maxDeliveryDateTime.substring(0,10),"YYYY-MM-DD").format("DD/MM/YYYY")} </td>
+                                    <td > {dato.transaction.state.name} {dato.transaction.inAlert?<div className="admin-table-alerta">En alerta</div>:null}</td>
                             </tr>
                         )
                         :null
