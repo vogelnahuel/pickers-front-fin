@@ -44,7 +44,7 @@ export const OptionList = (props) => {
                     <button onClick={handleClickFinish} className="modal-transaction-finish">Finalizar</button>
                     <div className="modal-transaction-reload">
                         <img className="modal-transaction-reload-img" src={Reload} alt="reload"/>
-                        <p>Recargar</p>
+                        <p>Actualizar</p>
                     </div>
                 </div>
                 </>

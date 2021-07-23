@@ -41,7 +41,7 @@ const onClose = (e) => {
 useEffect(() => {
     setTimeout(() => {
         setloader(false);
-    }, 700);
+    }, 1000);
    
 }, [setloader])
 
