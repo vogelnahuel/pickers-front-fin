@@ -13,6 +13,7 @@
     "final-form": "^4.20.2",
     "jquery": "^3.6.0",
     "moment": "^2.29.1",
+    "node-sass": "^4.14.1",
     "pickit-components": "file:pickit-components-1.0.34.tgz",
     "qs": "^6.10.1",
     "react": "^17.0.2",
@@ -50,5 +51,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {}
 }

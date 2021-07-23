@@ -1,6 +1,6 @@
 
           import React from "react";
-          import "./tableAdmin.css";
+          import "./tableAdmin.scss";
           import edit from "../../../assets/admin/PendingUser/edit.svg";
           import moment from "moment";
           import { Link } from "react-router-dom";
@@ -46,11 +46,11 @@ return (
                  
                   {window.location.pathname === "/pendingUserAdmin"
                     ? data &&Array.isArray(data)?data.map((rows) => (
-                        <tr className="info" key={rows.id}>
+                        <tr className="info table-pending" key={rows.id}>
                           <td></td>
-                          <td> {rows.name} {rows.surname} </td>
+                          <td> { (rows.name+' '+rows.surname).length>20 ?  (rows.name+' '+rows.surname).substring(0,20)+'...': (rows.name+' '+rows.surname)} </td>
                           <td> {rows.identificationNumber} </td>
-                          <td> {rows.email}</td>
+                          <td> {rows.email.length > 30 ? rows.email.substring(0,30)+'...': rows.email}</td>
                           <td>
                             {" "}
                             {rows.vehicleTypeId === 1
@@ -71,11 +71,11 @@ return (
           
                   {window.location.pathname === "/activeUserAdmin"
                     ?data && Array.isArray(data)? data.map((rows) => (
-                        <tr className="info" key={rows.id}>
+                        <tr className="info table-active-correcion" key={rows.id}>
                           <td></td>
-                          <td > {rows.name} {rows.surname} </td>
+                          <td > { (rows.name+' '+rows.surname).length>20 ?  (rows.name+' '+rows.surname).substring(0,20)+'...': (rows.name+' '+rows.surname)} </td>
                           <td > {rows.identificationNumber} </td>
-                          <td> {rows.email}</td>
+                          <td> {rows.email.length > 35 ? rows.email.substring(0,35)+'...': rows.email}</td>
                           <td>
                             {" "}
                             {rows.vehicleTypeId === 1

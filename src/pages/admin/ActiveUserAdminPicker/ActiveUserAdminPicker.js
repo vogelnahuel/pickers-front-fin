@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import {Header} from '../../../component/admin/Header/Header'
 import {Nav} from '../../../component/admin/Nav/Nav'
-import '../PendingUser/PendingUserAdmin.css'
-import './activeUserAdminPicker.css'
+import '../PendingUser/PendingUserAdmin.scss'
+import './activeUserAdminPicker.scss'
 import exportar from '../../../assets/admin/PendingUser/exportar.svg'
 import or from '../../../assets/admin/PendingUser/or.svg'
 import { PendingBlack } from '../../../component/admin/Sub-Title-Image/PendingBlack'
@@ -131,8 +131,8 @@ useEffect(()=>{
                     res.data.result.expirationDatePolicyPersonal=res.data.result.expirationDatePolicyPersonal?moment(res.data.result.expirationDatePolicyPersonal).format('DD/MM/YYYY'):res.data.result.expirationDatePolicyPersonal
                     res.data.result.expirationDatePolicyVehicle=res.data.result.expirationDatePolicyVehicle?moment(res.data.result.expirationDatePolicyVehicle).format('DD/MM/YYYY'):res.data.result.expirationDatePolicyVehicle
                     res.data.result.enable=res.data.result.pickerStatusId===4?true:false
-                    res.data.result.nya= (res.data.result.name.concat(res.data.result.surname)).length>18?((res.data.result.name.concat(" ").concat(res.data.result.surname)).slice(0,18)).concat("..."):(res.data.result.name.concat(" ").concat(res.data.result.surname))
-                    console.log(res.data.result.nya)
+                    res.data.result.nya= (res.data.result.name.concat(res.data.result.surname)).length>22?((res.data.result.name.concat(" ").concat(res.data.result.surname)).slice(0,22)).concat("..."):(res.data.result.name.concat(" ").concat(res.data.result.surname))
+                    
                     return res.data.result})
             .catch((err)=>{console.log(err)
             
@@ -242,10 +242,10 @@ const cerrarGuardarExitoPicker = (e) => {
                    
                  <div 
                  className="mainContainerFlex">
-                    <h2 className="picker-id">
+                    <div className="picker-id">
                        #{dataPicker.id}
                      <h2 className="subTitle-pending-picker">{dataPicker.nya}</h2>
-                    </h2>
+                    </div>
                      {
                              dataPicker.vehicleTypeId===1 ? 
                              <img  className="vehiculo-pending-picker" src={motorcycle} alt="vehiculo" />

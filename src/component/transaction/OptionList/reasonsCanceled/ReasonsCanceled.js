@@ -3,7 +3,19 @@ import volver from '../../../../assets/admin/PendingUser/volver.svg'
 
 import './reasonsCanceled.css'
 
-export const ReasonsCanceled = () => {
+export const ReasonsCanceled = (props) => {
+
+    const setreasonCancelConfirm = props.setreasonCancelConfirm;
+    const setreasonCancel = props.setreasonCancel;
+
+    const handleClickFinish = (e) => {
+        e.preventDefault();
+        setreasonCancel(false);
+        setreasonCancelConfirm(true);
+        
+    }
+
+
     return (
         <div className="modal-transaction-reasonsCanceled">
             <div className="modal-transaction-volver">
@@ -13,7 +25,7 @@ export const ReasonsCanceled = () => {
             <div className="modal-transaction-scroll">
                     <p className="modal-transaction-reasonsCanceled-subtitle">Seleccioná el motivo de la cancelación</p>
 
-                    <div className="modal-transaction-reasonsCanceled-scroll">
+                    <div onClick={handleClickFinish} className="modal-transaction-reasonsCanceled-scroll">
                             
 
                             <div className="modal-transaction-reason-container">

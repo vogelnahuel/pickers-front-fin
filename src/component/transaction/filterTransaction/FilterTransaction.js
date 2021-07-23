@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import $ from 'jquery'
-import './multipleSelect.css'
+import './multipleSelect.scss'
 import desplegable from '../../../assets/admin/PendingUser/desplegable.svg'
-import './FilterTransaction.css'
+import './FilterTransaction.scss'
 import {DatePicker} from 'pickit-components'
 import {Form,Field} from 'react-final-form'
 import or from '../../../assets/admin/PendingUser/or.svg'
@@ -23,7 +23,7 @@ export const FilterTransaction = (props) => {
         {
            es.firstChild.textContent="Todos"
         }
-    }, 200);
+    }, 400);
  
     /****script dinamicos */
 useEffect(() => {
@@ -45,7 +45,7 @@ useEffect(() => {
         })  `
         setTimeout(() => {
             document.body.appendChild(multipleSelectScript);
-        }, 400);
+        }, 600);
        
         return () => {
             document.body.removeChild(jqueryMin);
