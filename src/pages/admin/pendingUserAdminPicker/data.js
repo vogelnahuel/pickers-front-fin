@@ -110,7 +110,7 @@ export const data = () => {
         label: {
                 labelclassName:"label-Admin-Pickers",
                 labelhtmlFor:"cuit",
-                labelparrafo:"Número de CUIT/CUIL *"
+                labelparrafo:"Número de CUIT/CUIL "
                 },
             className:"Admin-Pickers-input readonly",
             type:"text",

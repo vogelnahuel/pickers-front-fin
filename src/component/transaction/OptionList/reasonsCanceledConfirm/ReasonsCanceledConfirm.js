@@ -4,6 +4,11 @@ import Info  from '../../../../assets/transaction/Info.svg'
 import './reasonsCanceledConfirm.css'
 
 export const ReasonsCanceledConfirm = () => {
+
+    const handleClickCancelConfirm = (e)=> {
+        window.location.reload();
+    }
+
     return (
         <div className="modal-transaction-reasonsCanceled">
             <div className="modal-transaction-volver">
@@ -23,7 +28,7 @@ export const ReasonsCanceledConfirm = () => {
                         ¿Querés cancelarla?
                     </p>
             </div>
-            <button className="modal-transaction-reasonsCanceledConfirm-button">Sí, cancelarla</button>
+            <button onClick={handleClickCancelConfirm} className="modal-transaction-reasonsCanceledConfirm-button">Sí, cancelarla</button>
         </div>
     )
 }

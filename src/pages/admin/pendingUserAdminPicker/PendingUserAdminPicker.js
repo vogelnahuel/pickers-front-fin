@@ -26,10 +26,13 @@ export const PendingUserAdminPicker = () => {
     const [loader, setloader] = useState(true);
     
     const [ExportModalActivePicker, setExportModalActivePicker] = useState(false);
-    const [ModalAprobadoExito, setModalAprobadoExito] = useState(false)
+    const [ModalAprobadoExito, setModalAprobadoExito] = useState(false);
     const [modalOpenAprobar, setmodalOpenAprobar] = useState(false);
 
-    const [disabledButtonAprobarPicker, setdisabledButtonAprobarPicker] = useState(true)
+    const [disabledButtonAprobarPicker, setdisabledButtonAprobarPicker] = useState(true);
+
+     
+
     const [Informacion, setInformacion] = useState({
         nombre:"",
         apellido:"",
@@ -87,7 +90,7 @@ const habilitarBoton   =   useCallback(
                   (dataPicker) => {
 
                   if(dataPicker.vehicleTypeId!==" " && dataPicker.expirationDatePolicyPersonal !== null){
-                        if(dataPicker.vehicleTypeId===2 && dataPicker.expirationDatePolicyPersonal.length>0){
+                        if(dataPicker.vehicleTypeId===2  && dataPicker.expirationDatePolicyPersonal.length>0){
                             setdisabledButtonAprobarPicker(false)
                         }
                          else if(dataPicker.expirationDatePolicyPersonal.length>0 && dataPicker.expirationDatePolicyVehicle.length>0 &&dataPicker.expirationDateDriverLicense.length > 0  && dataPicker.expirationDateIdentificationCar.length > 0 )
@@ -233,10 +236,10 @@ const aprobarPicker= async (e) =>{
                        
                      <div 
                      className="mainContainerFlex">
-                         <h2 className="picker-id">
+                         <div className="picker-id">
                               #{dataPicker.id}
                          <h2 className="subTitle-pending-picker">{dataPicker.nya}</h2>
-                    </h2>
+                    </div>
                          {
                              dataPicker.vehicleTypeId===1 ? 
                              <img  className="vehiculo-pending-picker" src={motorcycle} alt="vehiculo" />
@@ -268,8 +271,7 @@ const aprobarPicker= async (e) =>{
              
                         Informacion={Informacion}
                         setInformacion={setInformacion}
-                       
-                         
+                      
 
                         />
                 </div>
@@ -289,8 +291,7 @@ const aprobarPicker= async (e) =>{
                         
                         Informacion={Informacion}
                         setInformacion={setInformacion}
-                       
-                       
+                      
                         />                          
                 </div>
 
@@ -307,8 +308,7 @@ const aprobarPicker= async (e) =>{
                         clave={3}
                         Informacion={Informacion}
                         setInformacion={setInformacion}
-                        
-                      
+              
                         />  
 
                         <Part
@@ -331,8 +331,8 @@ const aprobarPicker= async (e) =>{
                     <div className="pending-admin-picker-button">
                     {
                             disabledButtonAprobarPicker===true ? <>
-                        <button disabled={true} onClick={corregirDocumentos} className="corregir-admin-picker-disable">Corregir documentos</button>
-                        
+                             
+                             <button onClick={corregirDocumentos} className="corregir-admin-picker">Corregir documentos</button>
                             <button disabled={true} onClick={aprobarPicker} className="aprobar-admin-picker">Aprobar picker</button></>
                             :
                             <>
@@ -411,7 +411,7 @@ const aprobarPicker= async (e) =>{
                   <p className="p-modal-error-title">Aprobación exitosa</p>
                 </div>
                 <div className="modal-error-subtitle">
-                  <p className="p-modal-error-subtitle">
+                  <p className="p-modal-pending-subtitle">
                   Aprobaste al picker {dataPicker.name} {dataPicker.surname}. Ya podés visualizar sus datos en la pestaña “Pickers”
                   </p>
                   <div className="button-pending-picker-modal">
