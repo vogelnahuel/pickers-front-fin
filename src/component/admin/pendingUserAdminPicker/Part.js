@@ -285,11 +285,18 @@ export const Part = (props) => {
       
     }
 
-   if(document.querySelector('.inputError-part')===null){
+   if( window.location.pathname===`/pendingUserAdminpicker/${id}` && document.querySelector('.inputError-part')===null){
     setdisabledButtonAprobarPicker(false);
    }
-   else{
+   else if(window.location.pathname===`/pendingUserAdminpicker/${id}`){
     setdisabledButtonAprobarPicker(true);
+   }
+
+   if( window.location.pathname===`/activeUserAdminpicker/${id}` && document.querySelector('.inputError-part')===null){
+    setdisableButtons(true);
+   }
+   else if(window.location.pathname===`/activeUserAdminpicker/${id}`){
+    setdisableButtons(false);
    }
     
     
