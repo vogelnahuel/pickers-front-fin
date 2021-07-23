@@ -12,24 +12,29 @@ import { Transaction } from '../pages/transaction/Transaction';
 import {Liquidation} from '../pages/pre-liquidation/Liquidation'
 import {Planning} from '../pages/planning/Planning'
 import {ConfigPicker} from '../pages/settingPickers/ConfigPicker'
+import { Provider } from 'react-redux';
+import store from '../store';
+
+
 
 function Routes() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path='/' exact component={Login}/>
-        <Route path='/restore/:mail/:cod' exact component={RestorePassword}/>
-        <Route path='/restore' exact component={EmailRestore}/>
-        <Route path='/Dashboard' exact component={DashboardAdmin}/>
-        <Route path='/pendingUserAdmin' exact component={PendingUserAdmin}/>
-        <Route path='/activeUserAdmin' exact component={ActiveUserAdmin}/>
-        <Route path='/pendingUserAdminpicker/:id' exact component={PendingUserAdminPicker}/>
-        <Route path='/activeUserAdminpicker/:id' exact component={ActiveUserAdminPicker}/>
-        <Route path='/transaction' exact component={Transaction}/>
-        <Route path='/planning' exact component={Planning}/>
-        <Route path='/configPicker' exact component={ConfigPicker}/>
-        <Route path='/liquidation' exact component={Liquidation}/>
-        
+        <Provider store={store}>
+          <Route path='/' exact component={Login}/>
+          <Route path='/restore/:mail/:cod' exact component={RestorePassword}/>
+          <Route path='/restore' exact component={EmailRestore}/>
+          <Route path='/Dashboard' exact component={DashboardAdmin}/>
+          <Route path='/pendingUserAdmin' exact component={PendingUserAdmin}/>
+          <Route path='/activeUserAdmin' exact component={ActiveUserAdmin}/>
+          <Route path='/pendingUserAdminpicker/:id' exact component={PendingUserAdminPicker}/>
+          <Route path='/activeUserAdminpicker/:id' exact component={ActiveUserAdminPicker}/>
+          <Route path='/transaction' exact component={Transaction}/>
+          <Route path='/planning' exact component={Planning}/>
+          <Route path='/configPicker' exact component={ConfigPicker}/>
+          <Route path='/liquidation' exact component={Liquidation}/>
+        </Provider>
       </Switch>
     </BrowserRouter>
   );

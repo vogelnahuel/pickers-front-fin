@@ -24,8 +24,7 @@ export const Transaction = () => {
     const [IdModalApi, setIdModalApi] = useState("");// devuelve la consulta api
     const titulos = ['Transacción','Picker','Fecha de entrega','Estado'];
 
- 
-   
+
 
     
 
