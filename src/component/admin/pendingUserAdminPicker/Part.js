@@ -130,7 +130,7 @@ export const Part = (props) => {
   
     if(ErrorMenorEdad!==true){
       e.target.classList.remove('inputError-part'); 
-      e.target.parentNode.previousSibling.firstChild.classList.remove('labelError-part');
+      e.target.parentNode.previousSibling.firstChild.classList.remove('labelError-part-top');
      
     }
     
@@ -160,12 +160,12 @@ export const Part = (props) => {
           setdisableButtons(false)
 
           e.target.classList.add('inputError-part');
-          e.target.parentNode.previousSibling.firstChild.classList.add('labelError-part');
+          e.target.parentNode.previousSibling.firstChild.classList.add('labelError-part-top');
 
           ErrorMenorEdad=true;
           const div = document.createElement('div');
           div.innerHTML = `
-            <p class="labelError-part"> ${"Tenés que ser mayor de 18 años para ser picker."} </p>
+            <p class="labelError-part-bottom"> ${"Tenés que ser mayor de 18 años para ser picker."} </p>
           `
           e.target.parentNode.appendChild(div);
         }
@@ -186,10 +186,10 @@ export const Part = (props) => {
       setdisableButtons(false)
 
       e.target.classList.add('inputError-part');
-      e.target.parentNode.previousSibling.firstChild.classList.add('labelError-part');
+      e.target.parentNode.previousSibling.firstChild.classList.add('labelError-part-top');
       const div = document.createElement('div');
       div.innerHTML = `
-        <p class="labelError-part"> ${"Este campo es requerido"} </p>
+        <p class="labelError-part-bottom"> ${"Este campo es requerido"} </p>
       `
       e.target.parentNode.appendChild(div);
 
@@ -204,10 +204,10 @@ export const Part = (props) => {
       setdisableButtons(false)
     
       e.target.classList.add('inputError-part');
-      e.target.parentNode.previousSibling.firstChild.classList.add('labelError-part');
+      e.target.parentNode.previousSibling.firstChild.classList.add('labelError-part-top');
       const div = document.createElement('div');
       div.innerHTML = `
-        <p class="labelError-part"> ${"El dni tiene que tener entre 6 y 8  números sin letras"} </p>
+        <p class="labelError-part-bottom"> ${"El dni tiene que tener entre 6 y 8  números sin letras"} </p>
       `
       e.target.parentNode.appendChild(div);
 
@@ -222,13 +222,13 @@ export const Part = (props) => {
       setdisableButtons(false)
 
       e.target.classList.add('inputError-part');
-      e.target.parentNode.previousSibling.firstChild.classList.add('labelError-part');
+      e.target.parentNode.previousSibling.firstChild.classList.add('labelError-part-top');
 
      
       
        const div = document.createElement('div');
       div.innerHTML = `
-        <p class="labelError-part"> ${`No se admiten números o caracteres especiales en ${e.target.name}`} </p>
+        <p class="labelError-part-bottom"> ${`No se admiten números o caracteres especiales en ${e.target.name}`} </p>
       `
       e.target.parentNode.appendChild(div);
      
@@ -245,14 +245,14 @@ export const Part = (props) => {
         setdisableButtons(false)
 
         e.target.classList.add('inputError-part');
-        e.target.parentNode.previousSibling.firstChild.classList.add('labelError-part');
+        e.target.parentNode.previousSibling.firstChild.classList.add('labelError-part-top');
   
         
     
         const div = document.createElement('div');
         
         div.innerHTML = `
-          <p class="labelError-part"> ${"El formato es fecha es invalido"} </p>
+          <p class="labelError-part-bottom"> ${"El formato es fecha es invalido"} </p>
         `
         e.target.parentNode.appendChild(div);
       }
@@ -274,11 +274,11 @@ export const Part = (props) => {
       setdisableButtons(false)
 
       e.target.classList.add('inputError-part');
-      e.target.parentNode.previousSibling.firstChild.classList.add('labelError-part');
+      e.target.parentNode.previousSibling.firstChild.classList.add('labelError-part-top');
 
       const div = document.createElement('div');
       div.innerHTML = `
-        <p class="labelError-part"> ${"Ingresá el teléfono. Ej: 011-1234-1234"} </p>
+        <p class="labelError-part-bottom"> ${"Ingresá el teléfono. Ej: 011-1234-1234"} </p>
       `
       e.target.parentNode.appendChild(div);
 

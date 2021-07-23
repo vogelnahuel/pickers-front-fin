@@ -1,11 +1,11 @@
 .label-Admin-Pickers{
     font-family: 'Mulish';
     font-style: normal;
-    font-weight: 300;
-    font-size: 16px;
-    line-height: 20px;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 19px; 
+    letter-spacing: 0.0025em;
     color: #4D4D4D;
-    
     width: 23vw;
 }
 .Admin-Pickers-space-alone{
@@ -18,11 +18,35 @@
     color: #FF1515;
     border-bottom: 1px solid #e00404;
     margin-bottom: 5px;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 21px;
+    letter-spacing: 0.005em;
+    color: #FF1515;
 }
 .inputError-part::placeholder{
     color: #FF1515;
 }
-.labelError-part{
+.labelError-part-top{
+    color: #FF1515;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 16px;
+    letter-spacing: 0.004em;
+    color: #FF1515;
+}
+.labelError-part-bottom{
+    color: #FF1515;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: 0.004em;
     color: #FF1515;
 }
 
