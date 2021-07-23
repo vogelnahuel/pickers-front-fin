@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Header } from "../../../component/admin/Header/Header";
 import { Nav } from "../../../component/admin/Nav/Nav";
-import "./PendingUserAdmin.css";
+import "./PendingUserAdmin.scss";
 import { PendingBlue } from "../../../component/admin/Sub-Title-Image/PendingBlue";
 import exportar from "../../../assets/admin/PendingUser/exportar.svg";
 import or from "../../../assets/admin/PendingUser/or.svg";
@@ -92,7 +92,7 @@ export const PendingUserAdmin = () => {
           }${filter.mail ? `&email=${filter.mail}` : ""}`
         )
         .then((res) => {
-          if(res.data.result.items.length===0)
+          if(res.data.result.items.length<tamPag)
               {
                 setVerMas(false)
               }
@@ -130,7 +130,7 @@ const cargarDatos = async () => {
             }${filter.mail ? `&email=${filter.mail}` : ""}`
           )
           .then((res) => {
-            if(res.data.result.items.length===0)
+            if(res.data.result.items.length<tamPag)
               {
                 setVerMas(false)
               }

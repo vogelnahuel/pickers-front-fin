@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import  Button  from '../../../component/Button/Button'
 import api from '../../../config/api'
 
-import "../Login.css";
-import "./restorePassword.css";
+import "../Login.scss";
+import "./restorePassword.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import pickersLogo from "../../../assets/login/PickersLogo.svg";

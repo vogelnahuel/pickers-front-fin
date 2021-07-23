@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from "react";
 import { LoadAdminPicker } from "../LoadAdminPicker/LoadAdminPicker";
 import { Labels } from "../../Labels/Labels";
-import "./part.css";
+import "./part.scss";
 import { SaveAdminPicker } from "../SaveAdminPicker/SaveAdminPicker";
 import moment from "moment";
 import { useParams } from "react-router-dom";

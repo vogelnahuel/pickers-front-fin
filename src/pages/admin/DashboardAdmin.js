@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Card } from '../../component/admin/DashBoard/Card'
 import {Header} from '../../component/admin/Header/Header'
 import {Nav} from '../../component/admin/Nav/Nav'
-import './Dashboard.css'
+import './Dashboard.scss'
 import api from '../../config/api'
 
 
