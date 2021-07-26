@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { LoadAdminPicker } from "../LoadAdminPicker/LoadAdminPicker";
 import { Labels } from "../../Labels/Labels";
 import "./part.scss";
@@ -12,9 +12,12 @@ export const Part = (props) => {
   const componentes = props.ComponentesPart;
   const dataPicker = props.data;
   
+  
   const id =useParams().id;
 
- 
+  const [ObjFechas, setObjFechas] = useState({
+    fechaVecCel:""
+  })
 
   let ErrorMenorEdad = false;
   let Informacion = props.Informacion;
@@ -26,13 +29,25 @@ export const Part = (props) => {
   const activeUser = props.active;
 
 
+  useEffect(() => {
 
+    if(document.querySelector('#fechaVecCel')!==null){
+      setObjFechas({
+          ...ObjFechas,
+           fechaVecCel: document.querySelector('#fechaVecCel').value
+      });
+    }
+    
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [Informacion] )
   /*
     const handleSubmit = () =>{
         console.log("submit")
     }*/
 
   const handleChange = (e) => {
+
+    
 
     if(window.location.pathname===`/pendingUserAdminpicker/${id}`){
       setdisabledButtonAprobarPicker(false);
@@ -93,24 +108,78 @@ export const Part = (props) => {
     }
 
     if (e.target.name === "vencimientoLicencia") {
+
+      
+
+      if( e.target.value.length===2 && cuantasVecesAparece(e.target.value,'/')===0 ){
+        e.target.value = e.target.value + "/"
+      }else if(e.target.value.length===5 && cuantasVecesAparece(e.target.value,'/') ===1){
+        e.target.value = e.target.value + "/"
+      }
+      
       setInformacion({
         ...Informacion,
         expirationDateDriverLicense: e.target.value,
       });
     }
     if (e.target.name === "fechaVecCel") {
+
+      
+
+      if(ObjFechas.fechaVecCel!==undefined){
+
+      
+
+        if(e.target.value.length===2 && cuantasVecesAparece(e.target.value,'/')===0 ){
+           
+            if(ObjFechas.fechaVecCel.charAt(ObjFechas.fechaVecCel.length-1)==="/" && e.target.value.charAt(( e.target.value.length)-1) !== ObjFechas.fechaVecCel.charAt(ObjFechas.fechaVecCel.length-1))
+                
+            {
+              e.target.value=e.target.value.substring(0,1);
+            }
+            else
+            e.target.value = e.target.value + "/";
+            
+        }else if( e.target.value.length===5 && cuantasVecesAparece(e.target.value,'/') ===1){
+          
+          if(ObjFechas.fechaVecCel.charAt(ObjFechas.fechaVecCel.length-1)==="/" && e.target.value.charAt(( e.target.value.length)-1) !== ObjFechas.fechaVecCel.charAt(ObjFechas.fechaVecCel.length-1))
+                
+          {
+            e.target.value=e.target.value.substring(0,4);
+          }
+          else
+          e.target.value = e.target.value + "/";
+        }
+      }
+
+      
+
       setInformacion({
         ...Informacion,
         expirationDateIdentificationCar: e.target.value,
       });
     }
     if (e.target.name === "fechaVecSeguroAuto") {
+
+      if(e.target.value.length===2 && cuantasVecesAparece(e.target.value,'/')===0 ){
+        e.target.value = e.target.value + "/"
+      }else if(e.target.value.length===5 && cuantasVecesAparece(e.target.value,'/') ===1){
+        e.target.value = e.target.value + "/"
+      }
+
       setInformacion({
         ...Informacion,
         expirationDatePolicyVehicle: e.target.value,
       });
     }
     if (e.target.name === "fechaVecSeguroAccidente") {
+
+      if(e.target.value.length===2 && cuantasVecesAparece(e.target.value,'/')===0 ){
+        e.target.value = e.target.value + "/"
+      }else if(e.target.value.length===5 && cuantasVecesAparece(e.target.value,'/') ===1){
+        e.target.value = e.target.value + "/"
+      }
+
       setInformacion({
         ...Informacion,
         expirationDatePolicyPersonal: e.target.value,
@@ -119,7 +188,17 @@ export const Part = (props) => {
 
     validaciones(e);
 
+
   };
+
+
+  function cuantasVecesAparece(cadena, caracter){
+    var indices = [];
+    for(var i = 0; i < cadena.length; i++) {
+      if (cadena[i].toLowerCase() === caracter) indices.push(i);
+    }
+    return indices.length;
+  }
 
   const validaciones =( e) => {
     const ex_regular_dni = /^\d{6,8}(?:[-\s]\d{4})?$/;

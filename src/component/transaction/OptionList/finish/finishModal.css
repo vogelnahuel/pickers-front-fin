@@ -30,8 +30,9 @@
     line-height: 23px;
     text-align: center;
     color: #FFFFFF;
-    margin-top: 20px;
-    margin-left: 43.4%;
+
+    margin-left: 41.9%;
+    margin-bottom: 44px;
 }
 .modal-transaction-finish-container{
     width: 100%;
@@ -65,7 +66,7 @@
     margin-right: 26.134%    ;
 }
 .modal-transaction-finish-inputs{
-    margin-top: 35px;
+    margin-top: 15px;
     display: flex;
     width: 60vw;
     margin-left:26.134% ;
@@ -98,8 +99,9 @@
     line-height: 23px;
     text-align: center;
     color: #FFFFFF;
-    margin-top: 20px;
-    margin-left: 43.4%;
+  
+    margin-left: 41.9%;
+    margin-bottom: 44px;
 }
 
 @media (min-width: 1600px) {
