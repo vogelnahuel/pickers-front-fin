@@ -37,6 +37,18 @@
     line-height: 23px;
     color: #4F4F4F;
 }
+.titleTableTransactions tbody tr:hover{
+    border-bottom: 1px solid #CCCCCC;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 23px;
+    background: #F2F2F2;
+    mix-blend-mode: multiply;
+    cursor: pointer;
+}
+
 
 .titleTableTransactions thead tr td:first-child{
     width: 0.928vw;
