@@ -11,11 +11,10 @@
     display: flex;
 }
 .modal-transaction-reasonsCanceledConfirm-container{
-    width: 50vw;
-    margin-left: 18vw;
+    width: 100vw;
 }
 .modal-transaction-reasonsCanceledConfirm-img{
-    margin-left: 20vw;
+    margin-left: 38.091vw;
 }
 .modal-transaction-reasonsCanceledConfirm-subtitle{
     font-family: 'Mulish';
@@ -23,14 +22,15 @@
     font-weight: 800;
     font-size: 20px;
     line-height: 25px;
-    text-align: center;
     letter-spacing: 0.01em;
     color: #2D2D2D;
-    padding-right: 5vw;
+    margin-left: 27.090vw;
     margin-top: 2vh;
 }
 .modal-transaction-reasonsCanceledConfirm-separate{
     border: 1px solid #145A99;
+    margin-left: 19.862vw;
+    width: 41.581vw;
 }
 .modal-transaction-reasonsCanceledConfirm-p{
     font-family: 'Mulish';
@@ -40,7 +40,7 @@
     line-height: 21px;
     letter-spacing: 0.005em;
     color: #4D4D4D;
-    margin-left: 15.605%;
+    margin-left: 24.462vw;
     margin-bottom: 1vh;
 }
 .modal-transaction-reasonsCanceledConfirm-p2{
@@ -49,10 +49,9 @@
     font-weight: normal;
     font-size: 17px;
     line-height: 21px;
-    margin-right: 4.202%;
     letter-spacing: 0.005em;
     color: #4D4D4D;
-    margin-left: 35.605%;
+    margin-left: 35.089vw;
 }
 .modal-transaction-reasonsCanceledConfirm-button{
     width: 176px;
@@ -69,25 +68,28 @@
     text-align: center;
     color: #FFFFFF;
     margin-top: 10vh;
-    margin-left: 42.605%;
+    margin-left: 34.211vw;
 }
 
 @media (min-width: 1600px) {
    
     .modal-transaction-reasonsCanceledConfirm-p{
-       
-        margin-left: 19.605%;
-       
+        margin-left: 23.962vw;
     }
+    .modal-transaction-reasonsCanceledConfirm-subtitle{
+        margin-left: 26.890vw;
+    }
+
 
 }
 
 @media (min-width: 1800px) {
    
-    .modal-transaction-reasonsCanceledConfirm-p{
-       
-        margin-left: 21.605%;
-       
+    .modal-transaction-reasonsCanceledConfirm-p{ 
+        margin-left: 27.462vw;
+    }
+    .modal-transaction-reasonsCanceledConfirm-subtitle{
+        margin-left: 29.290vw;
     }
 
 }
