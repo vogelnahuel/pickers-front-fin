@@ -23,7 +23,7 @@ export const FilterTransaction = (props) => {
         {
            es.firstChild.textContent="Todos"
         }
-    }, 800);
+    }, 700);
  
     /****script dinamicos */
 useEffect(() => {
@@ -45,7 +45,7 @@ useEffect(() => {
         })  `
         setTimeout(() => {
             document.body.appendChild(multipleSelectScript);
-        }, 800);
+        }, 1100);
        
         return () => {
             document.body.removeChild(jqueryMin);
@@ -246,7 +246,7 @@ stringSelected = multipleSelectCheckbox();
                                             <Field id="checkbox-filter-transaction" name="enAlerta" component="input" type="checkbox"/>
                                             <label className="label-filter-transaction display-inline">En alerta</label>                               
                                     </div>
-                                    <div className="container-button-width">
+                                    <div className="container-button-width-transaction">
                                         <button 
                                                 className="search-button-transaction"
                                                 name="search"

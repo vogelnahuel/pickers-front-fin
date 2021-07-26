@@ -41,7 +41,7 @@ const onClose = (e) => {
 useEffect(() => {
     setTimeout(() => {
         setloader(false);
-    }, 1000);
+    }, 1300);
    
 }, [setloader])
 
@@ -74,8 +74,8 @@ useEffect(() => {
                  
                        
                      <div 
-                     className="mainContainerFlex">
-                         <h2 className="subTitle-transaction"><p className="subtitle-pendingUser-h2">Transacciones </p></h2>
+                     className="mainContainerFlex-transaction">
+                         <h2 className="subTitle-transaction">Transacciones </h2>
                          <button 
                             onClick={Export}
                             className="export-transaction"
@@ -114,7 +114,7 @@ useEffect(() => {
                         <div className="modal-transaction">
                                 <Modal
                                  width="87.116vw"
-                                 height="80.72916666666667vh"
+                                 height="80.729166666667vh"
                                  isOpen={OpenModalTransaction}
                                  onClose={onClose}
                                 >

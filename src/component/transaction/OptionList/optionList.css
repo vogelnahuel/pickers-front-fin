@@ -1,9 +1,13 @@
 .form-filter-transaction{
+    margin-top: 15px;
     display: flex;
 }
 .modal-transaction-optionContainer-scroll{
-    height: 48vh;
+    margin-top: 16px;
+    height: 45.572916666667vh;
     overflow-y: scroll;
+    width: 80vw;
+    margin-right: 1.830vw;
 }
 .modal-transaction-button-irApicker{
     height: 50px;
@@ -108,8 +112,78 @@
     margin-top: 0px;
 }
 
+.modal-transaction-difuminar1{
+    position: absolute;
+    width: 78vw;
+    height: 1.00625vh;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(1px);
+    margin-top: -16px;
+}
+.modal-transaction-difuminar2{
+    position: absolute;
+    width: 78vw;
+    height: 1.00625vh;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(2px);
+    margin-top: -9px;
+   
+}
+.modal-transaction-difuminar3{
+    position: absolute;
+    width: 78vw;
+    height: 1.00625vh;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(2px);
+    margin-top: -2px;
+}
+.modal-transaction-difuminar4{
+    position: absolute;
+    width: 78vw;
+    height: 1.00625vh;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(1px);
+    margin-top: 5px;
+}
+.modal-transaction-difuminar5{
+    position: absolute;
+    width: 78vw;
+    height: 1.00625vh;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(1px);
+    margin-top: 12px;
+}
+.modal-transaction-difuminar6{
+    position: absolute;
+    width: 78vw;
+    height: 1.00625vh;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(1px);
+    margin-top: 19px;
+}
+
+.animation-left-transaction{
+    background-color: white;
+    margin-left: 3%;
+   
+    animation: 2s moverIzq 1;
+}
+
+@keyframes moverIzq{
+    0%{margin-left: 0; }
+    30%{margin-left: 0;}
+    95%{margin-left: -100%;}
+}
+.options-transaction-flex{
+    display: flex;
+    overflow-x: hidden;
+}
+
 @media (min-width: 1600px) {
     .modal-transaction-reload-img{
         margin-top: 10px;
+    }
+    .modal-transaction-img-connector{
+        margin-left: 0.502vw;
     }
 }
