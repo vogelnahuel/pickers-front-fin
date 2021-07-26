@@ -8,7 +8,7 @@ import { Form, Field } from "react-final-form";
 export const History = (props) => {
 
   const FilterTransaction = props.FilterTransaction;
-  console.log(FilterTransaction)
+  
 
   return (
     <div className="modal-transaction-optionContainer-scroll">

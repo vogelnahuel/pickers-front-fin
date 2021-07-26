@@ -21,30 +21,37 @@ export const OptionList = (props) => {
 
     const handleClickCancel = (e) => {
         e.preventDefault();  
-      /*  sethistory(false);
-        setreasonCancel(true);*/
+
         document.querySelector('.modal-transaction-difuminar1').style.display="none";
         document.querySelector('.modal-transaction-difuminar2').style.display="none";
         document.querySelector('.modal-transaction-difuminar3').style.display="none";
         document.querySelector('.modal-transaction-difuminar4').style.display="none";
         document.querySelector('.modal-transaction-difuminar5').style.display="none";
         document.querySelector('.modal-transaction-difuminar6').style.display="none";
+
+
+      
+       
+
         setreasonCancel(true);
         setTimeout(() => {
             e.target.parentNode.parentNode.classList.add('animation-left-transaction')
-            
+            const insert = document.querySelector('.insertAnimation');
+            const div = document.createElement('div');
+            div.classList.add('animationReasons');
+            setTimeout(() => {
+                insert.appendChild(div)
+            }, 400);
+
             setTimeout(() => {
                 sethistory(false);
-                
-                e.target.parentNode.parentNode.classList.remove('animation-left-transaction')
-            }, 1900);
+                insert.removeChild(insert.firstChild);
+            }, 750);
         }, 0);
        
     }
     const handleClickFinish = (e) => {
        e.preventDefault();
-       /*sethistory(false);
-       setfinishModal(true);*/
        
        document.querySelector('.modal-transaction-difuminar1').style.display="none";
        document.querySelector('.modal-transaction-difuminar2').style.display="none";
@@ -52,15 +59,23 @@ export const OptionList = (props) => {
        document.querySelector('.modal-transaction-difuminar4').style.display="none";
        document.querySelector('.modal-transaction-difuminar5').style.display="none";
        document.querySelector('.modal-transaction-difuminar6').style.display="none";
+
        setfinishModal(true);
        setTimeout(() => {
         e.target.parentNode.parentNode.classList.add('animation-left-transaction')
+        const insert = document.querySelector('.insertAnimation');
+        const div = document.createElement('div');
+        div.classList.add('animationReasons');
+        setTimeout(() => {
+            insert.appendChild(div)
+        }, 100);
         
         setTimeout(() => {
             sethistory(false);
            
             e.target.parentNode.parentNode.classList.remove('animation-left-transaction')
-        }, 1900);
+            insert.removeChild(insert.firstChild);
+        }, 750);
     }, 0);
    
        
@@ -97,17 +112,25 @@ export const OptionList = (props) => {
                                         <p>Recargar</p>
                                     </div>
                                 </div>
+
+                                
                     
                         </div>
                         : null
                         
                     }
+                    
                     {
                     reasonCancel ===true ? 
-                        <ReasonsCanceled
-                        setreasonCancel={setreasonCancel}
-                        setreasonCancelConfirm={setreasonCancelConfirm}
-                        />
+                                <>
+                                <div className="insertAnimation">
+                                </div>
+                                
+                                <ReasonsCanceled
+                                setreasonCancel={setreasonCancel}
+                                setreasonCancelConfirm={setreasonCancelConfirm}
+                                />
+                            </>
                         : null
                     }
                     {
@@ -116,8 +139,12 @@ export const OptionList = (props) => {
                         : null
                     }
                     {
+                        
                         finishModal ===true ? 
-                        <FinishModal/>
+                        <>
+                        <div className="insertAnimation"></div>
+                            <FinishModal/>
+                        </>
                         : null
                     }
        
