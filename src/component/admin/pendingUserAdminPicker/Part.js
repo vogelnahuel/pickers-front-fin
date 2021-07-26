@@ -16,7 +16,11 @@ export const Part = (props) => {
   const id =useParams().id;
 
   const [ObjFechas, setObjFechas] = useState({
-    fechaVecCel:""
+    fechaVecCel:"",
+    vencimientoLicencia:"",
+    fechaVecSeguroAccidente:"",
+    fechaVecSeguroAuto:""
+    
   })
 
   let ErrorMenorEdad = false;
@@ -31,10 +35,18 @@ export const Part = (props) => {
 
   useEffect(() => {
 
-    if(document.querySelector('#fechaVecCel')!==null){
+    if(document.querySelector('#fechaVecCel')!==null &&
+       document.querySelector('#fechaVecLic')!==null &&
+       document.querySelector('#fechaVecSeguroAccidente')!==null &&
+       document.querySelector('#fechaVecSeguroAuto')!==null
+      ){
       setObjFechas({
           ...ObjFechas,
-           fechaVecCel: document.querySelector('#fechaVecCel').value
+           fechaVecCel: document.querySelector('#fechaVecCel').value,
+           vencimientoLicencia:document.querySelector('#fechaVecLic').value,
+           fechaVecSeguroAccidente:document.querySelector('#fechaVecSeguroAccidente').value,
+           fechaVecSeguroAuto:document.querySelector('#fechaVecSeguroAuto').value
+
       });
     }
     
@@ -111,10 +123,30 @@ export const Part = (props) => {
 
       
 
-      if( e.target.value.length===2 && cuantasVecesAparece(e.target.value,'/')===0 ){
-        e.target.value = e.target.value + "/"
-      }else if(e.target.value.length===5 && cuantasVecesAparece(e.target.value,'/') ===1){
-        e.target.value = e.target.value + "/"
+      if(ObjFechas.vencimientoLicencia!==undefined){
+
+      
+
+        if(e.target.value.length===2 && cuantasVecesAparece(e.target.value,'/')===0 ){
+           
+            if(ObjFechas.vencimientoLicencia.charAt(ObjFechas.vencimientoLicencia.length-1)==="/" && e.target.value.charAt(( e.target.value.length)-1) !== ObjFechas.vencimientoLicencia.charAt(ObjFechas.vencimientoLicencia.length-1))
+                
+            {
+              e.target.value=e.target.value.substring(0,1);
+            }
+            else
+            e.target.value = e.target.value + "/";
+            
+        }else if( e.target.value.length===5 && cuantasVecesAparece(e.target.value,'/') ===1){
+          
+          if(ObjFechas.vencimientoLicencia.charAt(ObjFechas.vencimientoLicencia.length-1)==="/" && e.target.value.charAt(( e.target.value.length)-1) !== ObjFechas.vencimientoLicencia.charAt(ObjFechas.vencimientoLicencia.length-1))
+                
+          {
+            e.target.value=e.target.value.substring(0,4);
+          }
+          else
+          e.target.value = e.target.value + "/";
+        }
       }
       
       setInformacion({
@@ -161,12 +193,31 @@ export const Part = (props) => {
     }
     if (e.target.name === "fechaVecSeguroAuto") {
 
-      if(e.target.value.length===2 && cuantasVecesAparece(e.target.value,'/')===0 ){
-        e.target.value = e.target.value + "/"
-      }else if(e.target.value.length===5 && cuantasVecesAparece(e.target.value,'/') ===1){
-        e.target.value = e.target.value + "/"
-      }
+      if(ObjFechas.fechaVecSeguroAuto!==undefined){
 
+      
+
+        if(e.target.value.length===2 && cuantasVecesAparece(e.target.value,'/')===0 ){
+           
+            if(ObjFechas.fechaVecSeguroAuto.charAt(ObjFechas.fechaVecSeguroAuto.length-1)==="/" && e.target.value.charAt(( e.target.value.length)-1) !== ObjFechas.fechaVecSeguroAuto.charAt(ObjFechas.fechaVecSeguroAuto.length-1))
+                
+            {
+              e.target.value=e.target.value.substring(0,1);
+            }
+            else
+            e.target.value = e.target.value + "/";
+            
+        }else if( e.target.value.length===5 && cuantasVecesAparece(e.target.value,'/') ===1){
+          
+          if(ObjFechas.fechaVecSeguroAuto.charAt(ObjFechas.fechaVecSeguroAuto.length-1)==="/" && e.target.value.charAt(( e.target.value.length)-1) !== ObjFechas.fechaVecSeguroAuto.charAt(ObjFechas.fechaVecSeguroAuto.length-1))
+                
+          {
+            e.target.value=e.target.value.substring(0,4);
+          }
+          else
+          e.target.value = e.target.value + "/";
+        }
+      }
       setInformacion({
         ...Informacion,
         expirationDatePolicyVehicle: e.target.value,
@@ -174,10 +225,30 @@ export const Part = (props) => {
     }
     if (e.target.name === "fechaVecSeguroAccidente") {
 
-      if(e.target.value.length===2 && cuantasVecesAparece(e.target.value,'/')===0 ){
-        e.target.value = e.target.value + "/"
-      }else if(e.target.value.length===5 && cuantasVecesAparece(e.target.value,'/') ===1){
-        e.target.value = e.target.value + "/"
+      if(ObjFechas.fechaVecSeguroAccidente!==undefined){
+
+      
+
+        if(e.target.value.length===2 && cuantasVecesAparece(e.target.value,'/')===0 ){
+           
+            if(ObjFechas.fechaVecSeguroAccidente.charAt(ObjFechas.fechaVecSeguroAccidente.length-1)==="/" && e.target.value.charAt(( e.target.value.length)-1) !== ObjFechas.fechaVecSeguroAccidente.charAt(ObjFechas.fechaVecSeguroAccidente.length-1))
+                
+            {
+              e.target.value=e.target.value.substring(0,1);
+            }
+            else
+            e.target.value = e.target.value + "/";
+            
+        }else if( e.target.value.length===5 && cuantasVecesAparece(e.target.value,'/') ===1){
+          
+          if(ObjFechas.fechaVecSeguroAccidente.charAt(ObjFechas.fechaVecSeguroAccidente.length-1)==="/" && e.target.value.charAt(( e.target.value.length)-1) !== ObjFechas.fechaVecSeguroAccidente.charAt(ObjFechas.fechaVecSeguroAccidente.length-1))
+                
+          {
+            e.target.value=e.target.value.substring(0,4);
+          }
+          else
+          e.target.value = e.target.value + "/";
+        }
       }
 
       setInformacion({
