@@ -12,7 +12,7 @@
     color: #145A99;
 }
 .modal-transaction-finish-img{
-    margin-left: 48%;
+    margin-left: 38.3vw;
     margin-bottom: 35px;
 }
 
@@ -30,11 +30,12 @@
     line-height: 23px;
     text-align: center;
     color: #FFFFFF;
-    margin-top: 20px;
-    margin-left: 43.4%;
+
+    margin-left: 34.4vw;
+    margin-bottom: 44px;
 }
 .modal-transaction-finish-container{
-    width: 100%;
+    width: 100vw;
 }
 .modal-transaction-finish-container h3 {
     font-family: 'Mulish';
@@ -42,10 +43,10 @@
     font-weight: 800;
     font-size: 20px;
     line-height: 25px;
-    text-align: center;
     letter-spacing: 0.01em;
     color: #101820;
     margin-bottom: 21px;
+    margin-left: 24vw;
     
 }
 .modal-transaction-finish-container p {
@@ -54,21 +55,20 @@
     font-weight: normal;
     font-size: 17px;
     line-height: 21px;
-    text-align: center;
     letter-spacing: 0.0125em;
     color: #4D4D4D;
+    margin-left: 28vw;
 }
 .modal-transaction-finish-separate{
     border: 1px solid #145A99;
-    width: 48%;
-    margin-left: 26.134%    ;
-    margin-right: 26.134%    ;
+    width: 41.581vw;
+    margin-left: 20vw    ;
 }
 .modal-transaction-finish-inputs{
-    margin-top: 35px;
+    margin-top: 15px;
     display: flex;
     width: 60vw;
-    margin-left:26.134% ;
+    margin-left: 20vw    ;
 }
 .modal-transaction-finish-inputs div{
     margin-right: 2.521%;
@@ -98,13 +98,30 @@
     line-height: 23px;
     text-align: center;
     color: #FFFFFF;
-    margin-top: 20px;
-    margin-left: 43.4%;
+  
+    margin-left: 41.9%;
+    margin-bottom: 44px;
 }
 
 @media (min-width: 1600px) {
     .modal-transaction-finish-inputs div{
         margin-right: 7.521%;
     }
+    .modal-transaction-finish-container p{
+        margin-left: 30vw;
+    }
+    .modal-transaction-finish-container h3{
+        margin-left: 26vw;
+    }
 
-  }
+}
+@media (min-width: 1800px) {
+
+    .modal-transaction-finish-container p{
+        margin-left: 32vw;
+    }
+    .modal-transaction-finish-container h3{
+        margin-left: 28vw;
+    }
+
+}

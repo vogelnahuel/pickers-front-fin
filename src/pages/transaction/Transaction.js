@@ -71,9 +71,12 @@ export const Transaction = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      setloader(false);
-    }, 1000);
-  }, [setloader]);
+        setloader(false);
+    }, 1300);
+   
+}, [setloader])
+
+
 
   useEffect(() => {
     const cargarDatos = async () => {

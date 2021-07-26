@@ -6,7 +6,7 @@
     border-radius: 10px;
     padding-top: 19px;
     margin-top: 40px;
-    padding-right: 30px;
+    padding-right: 5px;
     padding-bottom: 35px;
 }
 .label-filter-transaction{
@@ -33,6 +33,7 @@
 .form-filter-transaction{
     display: flex;
    flex-wrap: wrap;
+   justify-content: space-between;
 }
 .form-filter-transaction div div input{
     border: 0;
@@ -73,7 +74,7 @@
 .display-inline{
     display: inline-block;
     margin-left: 10px;
-    width: 208px;
+    width: 18.155vw;
     margin-right: 26px;
 }
 .search-button-transaction{
@@ -86,9 +87,11 @@
     background-color: white;
     text-align: center;
     margin-top: 10px;
-    margin-left: 9.20vw;
+    margin-left: 7.5vw;
+    margin-right: 26px;
 
 }
+
 
 
 /*** date picker**/

@@ -244,17 +244,7 @@ export const History = (props) => {
         </section>
       </div>
 
-      { <>
-        {/* <div className="modal-transaction-difuminar1">
-          
-
-        </div> 
-        <div className="modal-transaction-difuminar2">
-            
-        </div>
-        <div className="modal-transaction-difuminar3"></div> */}
-        </>
-        }
+     
       </div>
     
   );
