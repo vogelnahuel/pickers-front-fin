@@ -165,7 +165,7 @@ values = formatDate(values)
 let stringSelected="";
 stringSelected = multipleSelectCheckbox();
 
- setapiFilter( await  api.get(`ms-admin-rest/api/v1.0/transactions?${values.nroTransaccion ? `filter.transactionCode=${values.nroTransaccion}`:""}${values.Picker ? `&filter.pickerId=${values.Picker}`:""}${values.enAlerta ?`&filter.inAlert=${values.enAlerta}`:"" }${values.FechaEntrega ? `&filter.minMinDeliveryDate=${values.FechaEntrega.from}`:""}${values.FechaEntrega?`&filter.maxMinDeliveryDate=${values.FechaEntrega.until}`:""}${stringSelected!==""?`&filter.state=${stringSelected}`:""} `)    
+ setapiFilter( await  api.get(`ms-admin-rest/api/v1.0/transactions?${values.nroTransaccion ? `filter.transactionCode=${values.nroTransaccion}`:""}${values.Picker ? `&filter.pickerId=${values.Picker}`:""}${values.enAlerta ?`&filter.inAlert=${values.enAlerta}`:"" }${values.FechaEntrega ? `&filter.minMinDeliveryDate=${values.FechaEntrega.from}`:""}${values.FechaEntrega?`&filter.maxMinDeliveryDate=${values.FechaEntrega.until}`:""}${stringSelected!==""?`&filter.state=${stringSelected}`:""}&limit=3 `)    
                .then((res) => {
                    
                    if(typeof res.data.result === 'object' && res.data.result.items===undefined ){

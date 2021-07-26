@@ -24,8 +24,7 @@ export const Transaction = () => {
     const [IdModalApi, setIdModalApi] = useState("");// devuelve la consulta api
     const titulos = ['Transacción','Picker','Fecha de entrega','Estado'];
 
- 
-   
+
 
     
 
@@ -51,7 +50,7 @@ useEffect(() => {
 useEffect(() => {
     
     const cargarDatos = async()=> {
-     setapiFilter( await  api.get('ms-admin-rest/api/v1.0/transactions') 
+     setapiFilter( await  api.get('ms-admin-rest/api/v1.0/transactions?&limit=2') 
 
         .then((res) => {
            
@@ -64,10 +63,7 @@ useEffect(() => {
     cargarDatos();
     
 }, [])
-
-
-
-
+//
     return (
         <div className="background-Grey">
             

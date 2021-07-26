@@ -19,7 +19,8 @@ export const TableTransaction = (props) => {
         console.log(e.target.parentNode.id)
         
         const cargarDatos = async()=> {
-            setFilterSelectedTransaction( await  api2.get(`ms-admin-rest/api/v1.0/transactions/${Number(e.target.parentNode.id)}`) 
+            console.log("entre")
+            setFilterSelectedTransaction( await  api2.get(`ms-admin-rest/api/v1.0/transactions?${Number(e.target.parentNode.id)}`) 
     
             .then((res) => {
                 return res.data.result;
