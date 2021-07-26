@@ -39,22 +39,22 @@
 }
 
 .titleTableTransactions thead tr td:first-child{
-    width: 3.6vw;
+    width: 0.928vw;
 }
 .titleTableTransactions thead tr td:nth-child(2){
-    
-    width: 9.6vw;
+    width: 9.833vw;
 }
 .titleTableTransactions thead tr td:nth-child(3){
-    
-    width: 9.956vw;
+    width: 14.373vw;
 }
 .titleTableTransactions thead tr td:nth-child(4){
-    
-    width: 12.372vw;
+    width: 8.302vw;
 }
 .titleTableTransactions thead tr td:nth-child(5){
-    width: 15.833vw;
+    width: 18.302vw;
+}
+.titleTableTransactions thead tr td:nth-child(6){
+    width: 21.733vw;
 }
 .img-filter-transaction{
     cursor: pointer;

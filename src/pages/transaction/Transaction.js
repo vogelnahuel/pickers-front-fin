@@ -50,7 +50,7 @@ useEffect(() => {
 useEffect(() => {
     
     const cargarDatos = async()=> {
-     setapiFilter( await  api.get('ms-admin-rest/api/v1.0/transactions') 
+     setapiFilter( await  api.get('ms-admin-rest/api/v1.0/transactions?&limit=2') 
 
         .then((res) => {
            
