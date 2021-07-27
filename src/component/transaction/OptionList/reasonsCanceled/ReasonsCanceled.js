@@ -10,9 +10,25 @@ export const ReasonsCanceled = (props) => {
 
     const handleClickFinish = (e) => {
         e.preventDefault();
-        setreasonCancel(false);
+        
         setreasonCancelConfirm(true);
         
+        setTimeout(() => {
+            e.target.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add('animation-left-transaction')
+            const insert = document.querySelector('.insertAnimation');
+            const div = document.createElement('div');
+            div.classList.add('animationReasons');
+            setTimeout(() => {
+                insert.appendChild(div)
+            }, 200);
+            
+            setTimeout(() => {
+                setreasonCancel(false);
+            
+                e.target.parentNode.parentNode.parentNode.parentNode.parentNode.classList.remove('animation-left-transaction')
+                insert.removeChild(insert.firstChild);
+            }, 500);
+        }, 0);
     }
 
 

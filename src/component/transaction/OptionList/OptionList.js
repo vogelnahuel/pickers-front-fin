@@ -129,17 +129,22 @@ export const OptionList = (props) => {
                                 <>
                                 <div className="insertAnimation">
                                 </div>
-                                
-                                <ReasonsCanceled
-                                setreasonCancel={setreasonCancel}
-                                setreasonCancelConfirm={setreasonCancelConfirm}
-                                />
+                                    <div>
+                                        <ReasonsCanceled
+                                        setreasonCancel={setreasonCancel}
+                                        setreasonCancelConfirm={setreasonCancelConfirm}
+                                        />
+                                    </div>
                             </>
                         : null
                     }
                     {
                         reasonCancelConfirm ===true ? 
-                        <ReasonsCanceledConfirm/>
+                        <>
+                         <div className="insertAnimation"></div>
+
+                         <ReasonsCanceledConfirm/>
+                        </>
                         : null
                     }
                     {
