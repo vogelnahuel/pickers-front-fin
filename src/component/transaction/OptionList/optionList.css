@@ -165,19 +165,33 @@
 .animation-left-transaction{
     background-color: white;
     margin-left: 3%;
-   
-    animation: 2s moverIzq 1;
+    animation: 0.6s moverIzq 1;
 }
 
 @keyframes moverIzq{
     0%{margin-left: 0; }
     30%{margin-left: 0;}
-    95%{margin-left: -100%;}
+    95%{
+        margin-left: -100%;
+        opacity: 0;
+        
+        }
 }
 .options-transaction-flex{
     display: flex;
     overflow-x: hidden;
 }
+
+.animationReasons{
+    width: 75.886vw;
+    height: 51.171875vh;
+    position: absolute;
+    left: 50px;
+    top: 130px;
+    background-color: rgb(255, 255, 255);
+    opacity: 0.5;
+}
+
 
 @media (min-width: 1600px) {
     .modal-transaction-reload-img{

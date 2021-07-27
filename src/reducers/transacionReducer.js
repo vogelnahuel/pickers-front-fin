@@ -7,9 +7,10 @@ import {
 
 //para testear
 const initialState = {
-    nombres:['test','test2'],
-    error:null,
-    loading:false,
+    history:true,
+    ReasonsCanceled:false,
+    ReasonsCanceledConfirm:false,
+    FinishModal:false
 }
 
 
