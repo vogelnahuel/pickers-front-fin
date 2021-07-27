@@ -45,7 +45,7 @@ useEffect(() => {
         })  `
         setTimeout(() => {
             document.body.appendChild(multipleSelectScript);
-        }, 1100);
+        }, 1390);
        
         return () => {
             document.body.removeChild(jqueryMin);

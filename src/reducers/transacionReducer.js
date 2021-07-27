@@ -1,19 +1,21 @@
 //cada reducer tiene su propio state
 import { 
-    AGREGAR_NOMBRE,
-    AGREGAR_NOMBRE_EXITO,
-    AGREGAR_NOMBRE_ERROR
+    CHANGE_HISTORY,
+    CHANGE_REASONS_CANCELED,
+    CHANGE_REASONS_CONFIRM,
+    CHANGE_FINISH_MODAL
 } from '../types/index'
 
 //para testear
 const initialState = {
-    nombres:['test','test2'],
-    error:null,
-    loading:false,
+    history:true,
+    ReasonsCanceled:false,
+    ReasonsCanceledConfirm:false,
+    FinishModal:false
 }
 
 
-export default function(state=initialState,action){
+export const  transactionReducerVolver = (state=initialState,action)=>{
 
     switch (action.type){
         default:
