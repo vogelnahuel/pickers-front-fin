@@ -1,9 +1,8 @@
 //cada reducer tiene su propio state
 import { 
-    CHANGE_HISTORY,
-    CHANGE_REASONS_CANCELED,
-    CHANGE_REASONS_CONFIRM,
-    CHANGE_FINISH_MODAL
+    // AGREGAR_NOMBRE,
+    // AGREGAR_NOMBRE_EXITO,
+    // AGREGAR_NOMBRE_ERROR
 } from '../types/index'
 
 //para testear
@@ -15,7 +14,8 @@ const initialState = {
 }
 
 
-export const  transactionReducerVolver = (state=initialState,action)=>{
+// eslint-disable-next-line import/no-anonymous-default-export
+export default function(state=initialState,action){
 
     switch (action.type){
         default:
