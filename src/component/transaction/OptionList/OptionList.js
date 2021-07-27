@@ -41,12 +41,12 @@ export const OptionList = (props) => {
             div.classList.add('animationReasons');
             setTimeout(() => {
                 insert.appendChild(div)
-            }, 400);
+            }, 200);
 
             setTimeout(() => {
                 sethistory(false);
                 insert.removeChild(insert.firstChild);
-            }, 750);
+            }, 500);
         }, 0);
        
     }
@@ -68,14 +68,14 @@ export const OptionList = (props) => {
         div.classList.add('animationReasons');
         setTimeout(() => {
             insert.appendChild(div)
-        }, 100);
+        }, 200);
         
         setTimeout(() => {
             sethistory(false);
            
             e.target.parentNode.parentNode.classList.remove('animation-left-transaction')
             insert.removeChild(insert.firstChild);
-        }, 750);
+        }, 500);
     }, 0);
    
        
