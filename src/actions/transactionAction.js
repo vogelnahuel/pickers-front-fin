@@ -1,12 +1,10 @@
-import { 
-    AGREGAR_NOMBRE,
-    AGREGAR_NOMBRE_EXITO,
-    AGREGAR_NOMBRE_ERROR
-} from '../types/index'
+import { types } from "../types"
 
-export function agregarNombreAction() {
+export const changeTest = (NuevoTest) => {
 
-    return () => {
-        console.log('desde action')
+    return {
+        type:types.TEST,
+        payload:NuevoTest
     }
+
 }

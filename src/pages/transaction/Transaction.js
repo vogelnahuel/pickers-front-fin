@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import $ from "jquery";
 import { Header } from "../../component/admin/Header/Header";
 import { Nav } from "../../component/admin/Nav/Nav";
 import exportar from "../../assets/admin/PendingUser/exportar.svg";
@@ -14,7 +15,7 @@ import Close from "../../assets/transaction/Close.svg";
 import api from "../../config/api.js";
 
 export const Transaction = () => {
-  //
+  $();
   const [apiFilterTransaction, setapiFilter] = useState({});
   const [FilterSelectedTransaction, setFilterSelectedTransaction] = useState(
     {}
@@ -62,7 +63,7 @@ export const Transaction = () => {
         console.log(err);
       });
 
-    console.log(res);
+   
     setapiFilter(apiFilterTransaction.concat(res));
   };
   const Export = () => {};
