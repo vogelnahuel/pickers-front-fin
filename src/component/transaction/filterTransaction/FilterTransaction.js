@@ -194,6 +194,7 @@ export const FilterTransaction = (props) => {
           alt="desplegable"
         />
         <p className="p-filter-transaction">Filtros</p>
+        
       </div>
       <Form onSubmit={onSubmit}>
         {({ handleSubmit }) => (
