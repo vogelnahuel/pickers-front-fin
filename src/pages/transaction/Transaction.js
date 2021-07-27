@@ -24,7 +24,7 @@ export const Transaction = () => {
   const tamPag = 5;
   const [offset, setoffset] = useState(tamPag);
   const [filter, setfilter] = useState({});
-
+  const [VerMas, setVerMas] = useState(true)
   const [OpenModalTransaction, setOpenModalTransaction] = useState(false);
   const [IdModalApi, setIdModalApi] = useState(""); // devuelve la consulta api
   const titulos = ["Transacción", "Picker", "Fecha de entrega", "Estado"];
@@ -34,28 +34,30 @@ export const Transaction = () => {
     const res = await api
       .get(
         `ms-admin-rest/api/v1.0/transactions?&limit=${tamPag}&offset=${offset}${
-            filter.values.nroTransaccion
+            filter.values && filter.values.nroTransaccion
             ? `filter.transactionCode=${filter.values.nroTransaccion}`
             : ""
-        }${filter.values.Picker ? `&filter.pickerId=${filter.values.Picker}` : ""}
+        }${filter.values && filter.values.Picker ? `&filter.pickerId=${filter.values.Picker}` : ""}
         ${
-            filter.values.enAlerta ? `&filter.inAlert=${filter.values.enAlerta}` : ""
+            filter.values && filter.values.enAlerta ? `&filter.inAlert=${filter.values.enAlerta}` : ""
         }${
-            filter.values.FechaEntrega
+            filter.values && filter.values.FechaEntrega
             ? `&filter.minMinDeliveryDate=${filter.values.FechaEntrega.from}`
             : ""
         }${
-            filter.values.FechaEntrega
+            filter.values && filter.values.FechaEntrega
             ? `&filter.maxMinDeliveryDate=${filter.values.FechaEntrega.until}`
             : ""
         }
         ${
-            filter.stringSelected ? `&filter.state=${filter.stringSelected}` : ""
+            filter.values && filter.stringSelected ? `&filter.state=${filter.stringSelected}` : ""
         }`
         
       )
       .then((res) => {
         setoffset(offset + tamPag);
+        if(res.data.result.items.length<tamPag)
+            setVerMas(false)
         return res.data.result.items;
       })
       .catch((err) => {
@@ -122,6 +124,7 @@ export const Transaction = () => {
             offset={offset}
             setoffset={setoffset}
             setfilter={setfilter}
+            setVerMas={setVerMas}
           />
           <TableTransaction
             setOpenModalTransaction={setOpenModalTransaction}
@@ -131,14 +134,23 @@ export const Transaction = () => {
             titulos={titulos}
             setFilterSelectedTransaction={setFilterSelectedTransaction}
           />
-          {apiFilterTransaction && apiFilterTransaction.length !== 0 ? (
+          {apiFilterTransaction && apiFilterTransaction.length !== 0 ? <>
+             { VerMas?
             <button
               onClick={cargarMas}
               className="paginator-button-transaction"
             >
               Ver más
+            </button>:
+            <button
+              disabled={true}
+              className="paginator-button-transaction-disabled"
+            >
+              Ver más
             </button>
-          ) : (
+            }
+            </>
+           : (
             <button
               onClick={cargarMas}
               className="paginator-button-transaction-noResult"

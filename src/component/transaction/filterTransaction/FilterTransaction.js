@@ -135,6 +135,7 @@ export const FilterTransaction = (props) => {
   };
 
   const onSubmit = async (values) => {
+    
     values = formatDate(values);
     let stringSelected = "";
     stringSelected = multipleSelectCheckbox();
@@ -161,7 +162,13 @@ export const FilterTransaction = (props) => {
           }&limit=${props.tamPag}&offset=${0} `
         )
         .then((res) => {
-          props.setfilter({values,stringSelected:stringSelected});
+            props.setfilter({values,stringSelected:stringSelected});
+            props.setoffset(props.tamPag)
+            props.setVerMas(true)
+          if(res.data.result.items.length<props.tamPag)
+          {
+            props.setVerMas(false)
+          }
           if (
             typeof res.data.result === "object" &&
             res.data.result.items === undefined
