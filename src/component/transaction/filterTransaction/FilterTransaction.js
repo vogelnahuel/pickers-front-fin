@@ -24,6 +24,7 @@ export const FilterTransaction = (props) => {
 
   /****script dinamicos */
   useEffect(() => {
+    
     const jqueryMin = document.createElement("script");
     jqueryMin.src = "https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js";
     document.body.appendChild(jqueryMin);
@@ -40,18 +41,11 @@ export const FilterTransaction = (props) => {
                 $('select').multipleSelect()
             }
             
-        })  `
-        setTimeout(() => {
-            document.body.appendChild(multipleSelectScript);
-        }, 1390);
-       
-        return () => {
-            document.body.removeChild(jqueryMin);
-            document.body.removeChild(multipleSelect);
-            document.body.removeChild(multipleSelectScript);
-        }
+        })  `;
 
-    }, [])
+    setTimeout(() => {
+      document.body.appendChild(multipleSelectScript);
+    }, 1400);
 
     return () => {
       document.body.removeChild(jqueryMin);

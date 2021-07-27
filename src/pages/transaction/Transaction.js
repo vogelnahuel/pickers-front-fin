@@ -73,7 +73,7 @@ export const Transaction = () => {
   useEffect(() => {
     setTimeout(() => {
         setloader(false);
-    }, 1400);
+    }, 1410);
    
 }, [setloader])
 
@@ -102,7 +102,7 @@ export const Transaction = () => {
       <div className="mainContainerFlex">
         <Nav />
         <div className="transaction-container">
-          <div className="mainContainerFlex">
+          <div className="mainContainerFlex-transaction">
             <h2 className="subTitle-transaction">
               <p className="subtitle-pendingUser-h2">Transacciones </p>
             </h2>
