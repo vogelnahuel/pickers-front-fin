@@ -15,7 +15,6 @@ export const ReasonsCanceled = (props) => {
         setreasonCancelConfirm(true);
         
         setTimeout(() => {
-            
             e.target.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add('animation-left-transaction')
             const insert = document.querySelector('.insertAnimation');
             const div = document.createElement('div');
