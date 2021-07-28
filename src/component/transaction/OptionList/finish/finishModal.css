@@ -10,6 +10,7 @@
     line-height: 23px;
     text-align: center;
     color: #145A99;
+    cursor: pointer;
 }
 .modal-transaction-finish-img{
     margin-left: 38.3vw;

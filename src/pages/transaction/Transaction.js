@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
 import $ from "jquery";
+import React, { useEffect, useState } from "react";
 import { Header } from "../../component/admin/Header/Header";
 import { Nav } from "../../component/admin/Nav/Nav";
 import exportar from "../../assets/admin/PendingUser/exportar.svg";
@@ -29,6 +29,23 @@ export const Transaction = () => {
   const [OpenModalTransaction, setOpenModalTransaction] = useState(false);
   const [IdModalApi, setIdModalApi] = useState(""); // devuelve la consulta api
   const titulos = ["Transacción", "Picker", "Fecha de entrega", "Estado"];
+  
+
+  const cargarDatos = async(e)=> {
+            
+    setFilterSelectedTransaction( await  api.get(`/ms-admin-rest/api/v1.0/transactions/${Number(e.target.getAttribute('name'))}`) 
+
+    .then((res) => {
+
+        console.log(res.data.result)
+        return res.data.result;
+      })
+      .catch((err) => {
+        console.log(err);
+      }))   
+      console.log(FilterSelectedTransaction)
+}
+
 
   const cargarMas = async () => {
     console.log(filter);
@@ -133,9 +150,10 @@ export const Transaction = () => {
             setIdModal={setIdModalApi}
             api={apiFilterTransaction}
             titulos={titulos}
+            cargarDatos={cargarDatos}
             setFilterSelectedTransaction={setFilterSelectedTransaction}
           />
-          {apiFilterTransaction && apiFilterTransaction.length !== 0 ? <>
+             {apiFilterTransaction && apiFilterTransaction.length !== 0 ? <>
              { VerMas?
             <button
               onClick={cargarMas}
@@ -179,7 +197,15 @@ export const Transaction = () => {
                 <div>
                   <div className="modal-transaction-title">
                     <h2>Número de transacción</h2>
-                    <p>Estado</p>
+                      <p>Estado 
+                          {  FilterSelectedTransaction.transaction && 
+                              FilterSelectedTransaction.transaction.inAlert===true ? 
+                              <>
+                              <span className="admin-table-alerta">En alerta</span>
+                              </>
+                              : null
+                            }
+                      </p>
                     <p className="modal-transaction-fecha">Fecha entrega</p>
                   </div>
                   <div className="modal-transaction-subtitle">
@@ -189,10 +215,11 @@ export const Transaction = () => {
                         : ""}
                     </h2>
                     <p>
-                      {" "}
+                     
                       {FilterSelectedTransaction.transaction
                         ? FilterSelectedTransaction.transaction.state.name
-                        : ""}{" "}
+                        : ""}
+                        
                     </p>
 
                     <p className="modal-transaction-fecha">
@@ -210,6 +237,8 @@ export const Transaction = () => {
                 <div className="modal-transaction-scroll">
                   <OptionList
                     FilterSelectedTransaction={FilterSelectedTransaction}
+                
+                    setFilterSelectedTransaction={setFilterSelectedTransaction}
                   />
                 </div>
               </div>

@@ -6,6 +6,7 @@ import { ReasonsCanceled } from './reasonsCanceled/ReasonsCanceled'
 import { History } from './history/History.js'
 import Reload from '../../../assets/transaction/Reload.svg'
 import {useDispatch} from 'react-redux'
+import api from '../../../config/api'
 import { changeTest } from '../../../actions/transactionAction'
 
 
@@ -80,18 +81,32 @@ export const OptionList = (props) => {
             e.target.parentNode.parentNode.classList.remove('animation-left-transaction')
             insert.removeChild(insert.firstChild);
         }, 500);
-    }, 0);
+    }, 0);}
    
-       
+    const handleReload = () =>{
+        const reload = async()=> {
+            console.log(props.idTransaction)
+            props.setFilterSelectedTransaction( await  api.get(`/ms-admin-rest/api/v1.0/transactions/${FilterSelectedTransaction.transaction.id}`) 
+            .then((res) => {
+                console.log(res.data.result)
+                return res.data.result;
+              })
+              .catch((err) => {
+                console.log(err);
+              }))   
+        }
+        reload();
     }
-  
+
+
+
     return (
         <div className="options-transaction-flex">
              
                     {
                         history===true ? 
                         
-                        <div>       
+                        <div className="historial">       
                                        
                                  <div>
                                      <div className="modal-transaction-difuminar4"></div>  
@@ -111,9 +126,9 @@ export const OptionList = (props) => {
                                 <div className="modal-transaction-buttons-submit">
                                     <button onClick={handleClickCancel} className="modal-transaction-cancel">Cancelar</button>
                                     <button onClick={handleClickFinish} className="modal-transaction-finish">Finalizar</button>
-                                    <div className="modal-transaction-reload">
+                                    <div onClick={handleReload} className="modal-transaction-reload">
                                         <img className="modal-transaction-reload-img" src={Reload} alt="reload"/>
-                                        <p>Recargar</p>
+                                        <p>Actualizar</p>
                                     </div>
                                 </div>
 
@@ -133,6 +148,7 @@ export const OptionList = (props) => {
                                         <ReasonsCanceled
                                         setreasonCancel={setreasonCancel}
                                         setreasonCancelConfirm={setreasonCancelConfirm}
+                                        sethistory={sethistory}
                                         />
                                     </div>
                             </>
@@ -143,7 +159,10 @@ export const OptionList = (props) => {
                         <>
                          <div className="insertAnimation"></div>
 
-                         <ReasonsCanceledConfirm/>
+                         <ReasonsCanceledConfirm
+                          setreasonCancel={setreasonCancel}
+                          setreasonCancelConfirm={setreasonCancelConfirm}
+                         />
                         </>
                         : null
                     }
@@ -152,7 +171,10 @@ export const OptionList = (props) => {
                         finishModal ===true ? 
                         <>
                         <div className="insertAnimation"></div>
-                            <FinishModal/>
+                            <FinishModal
+                            sethistory={sethistory}
+                            setfinishModal={setfinishModal}
+                            />
                         </>
                         : null
                     }

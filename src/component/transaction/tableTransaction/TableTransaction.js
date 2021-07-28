@@ -12,6 +12,7 @@ export const TableTransaction = (props) => {
     const setFilterSelectedTransaction = props.setFilterSelectedTransaction;
    
     const titulos = props.titulos;
+    const cargarDatos =props.cargarDatos;
 
     const handleClickModal = (e) => {
         e.preventDefault();
@@ -20,19 +21,8 @@ export const TableTransaction = (props) => {
         setOpenModalTransaction(true);
         
         
-        const cargarDatos = async()=> {
-            
-            setFilterSelectedTransaction( await  api2.get(`/ms-admin-rest/api/v1.0/transactions/${Number(e.target.getAttribute('name'))}`) 
-    
-            .then((res) => {
-                
-                return res.data.result;
-              })
-              .catch((err) => {
-                console.log(err);
-              }))   
-        }
-        cargarDatos();
+      
+        cargarDatos(e);
 
     }
 

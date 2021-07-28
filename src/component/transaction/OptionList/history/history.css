@@ -1,0 +1,27 @@
+
+.modal-transaction-a{
+    text-decoration: none;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 19px;
+    letter-spacing: 0.004em;
+    color: #0098FF;
+    margin-left:15px;
+    margin-top: 2px;
+}
+.modal-transaction-a:hover{
+    text-decoration: none;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 19px;
+    letter-spacing: 0.004em;
+    color: #0098FF;
+    margin-left:15px;
+    margin-top: 2px;
+}
+
+
