@@ -29,6 +29,23 @@ export const Transaction = () => {
   const [OpenModalTransaction, setOpenModalTransaction] = useState(false);
   const [IdModalApi, setIdModalApi] = useState(""); // devuelve la consulta api
   const titulos = ["Transacción", "Picker", "Fecha de entrega", "Estado"];
+  
+
+  const cargarDatos = async(e)=> {
+            
+    setFilterSelectedTransaction( await  api.get(`/ms-admin-rest/api/v1.0/transactions/${Number(e.target.getAttribute('name'))}`) 
+
+    .then((res) => {
+
+        console.log(res.data.result)
+        return res.data.result;
+      })
+      .catch((err) => {
+        console.log(err);
+      }))   
+      console.log(FilterSelectedTransaction)
+}
+
 
   const cargarMas = async () => {
     console.log(filter);
@@ -133,6 +150,7 @@ export const Transaction = () => {
             setIdModal={setIdModalApi}
             api={apiFilterTransaction}
             titulos={titulos}
+            cargarDatos={cargarDatos}
             setFilterSelectedTransaction={setFilterSelectedTransaction}
           />
              {apiFilterTransaction && apiFilterTransaction.length !== 0 ? <>
@@ -183,7 +201,7 @@ export const Transaction = () => {
                           {  FilterSelectedTransaction.transaction && 
                               FilterSelectedTransaction.transaction.inAlert===true ? 
                               <>
-                              <div class="admin-table-alerta">En alerta</div>
+                              <span className="admin-table-alerta">En alerta</span>
                               </>
                               : null
                             }
@@ -219,6 +237,8 @@ export const Transaction = () => {
                 <div className="modal-transaction-scroll">
                   <OptionList
                     FilterSelectedTransaction={FilterSelectedTransaction}
+                
+                    setFilterSelectedTransaction={setFilterSelectedTransaction}
                   />
                 </div>
               </div>
