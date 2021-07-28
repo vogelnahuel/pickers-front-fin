@@ -1,7 +1,7 @@
 import React, {  } from 'react'
 import './TableTransaction.css'
 import TreePoints from '../../../assets/transaction/TreePoints.svg'
-import api2 from '../../../config/api'
+
 import moment from 'moment'
 
 export const TableTransaction = (props) => {
@@ -9,7 +9,7 @@ export const TableTransaction = (props) => {
     const setOpenModalTransaction =  props.setOpenModalTransaction;
     const api = props.api;
     
-    const setFilterSelectedTransaction = props.setFilterSelectedTransaction;
+
    
     const titulos = props.titulos;
     const cargarDatos =props.cargarDatos;
