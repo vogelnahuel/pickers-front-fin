@@ -1,14 +1,85 @@
-import React from "react";
+import React, {  } from "react";
 import Okey from "../../../../assets/transaction/Okey.svg";
 import Connector from "../../../../assets/transaction/Connector.svg";
 import Cancel from "../../../../assets/transaction/Cancel.svg";
 import "./history.css";
 import { Form, Field } from "react-final-form";
+import moment from "moment";
+import { Link } from "react-router-dom";
 
 export const History = (props) => {
 
-  const FilterTransaction = props.FilterTransaction;
   
+  const FilterTransaction = props.FilterTransaction;
+  const FilterTransactionHistory = props.FilterTransaction.transactionHistory;
+  
+
+  let FilterTransactionHistoryReverse =  FilterTransactionHistory ? JSON.parse(JSON.stringify(FilterTransactionHistory)) : [];
+  FilterTransactionHistoryReverse = FilterTransactionHistoryReverse.reverse();
+
+
+  console.log(FilterTransactionHistoryReverse)
+
+
+ 
+
+
+  const convertirNombre = (tag) => {
+
+    switch (tag) {
+      case "assigned_picker":
+          tag  = "Pendiente"
+        break;
+      case "un_assigning":
+        tag  = "Sin asignar"
+      break;
+      case "state_pending_assigment":
+        tag  = "Pendiente de asignacion"
+      break;
+      case "state_assigned":
+        tag  = "Asignado"
+      break;
+      case "state_in_pickup":
+        tag  = "En retiro"
+      break;
+      case "state_in_pickup_point":
+        tag  = "En punto de retiro"
+      break;
+      case "state_in_picked_up":
+        tag  = "Retirado"
+      break;
+      case "state_in_delivery":
+        tag  = "En entrega"
+      break;
+      case "state_in_delivery_point":
+        tag  = "En lugar de entrega "
+      break;
+      case "state_in_devolution":
+        tag  = "En devolucion"
+      break;
+      case "state_pickup_cancelled_temporally":
+        tag  = "Cancelado temporalmente"
+      break;
+      case "state_pickup_cancelled_permanently":
+        tag  = "Cancelado permanentemente"
+      break;
+      case "state_delivered":
+        tag  = "Entregado"
+      break;
+      case "state_returned":
+        tag  = "Devuelto"
+      break;
+      case "state_lost":
+        tag  = "Siniestrado"
+      break;
+
+      default:
+        break;
+    }
+    return tag
+  }
+
+ 
 
   return (
     <div className="modal-transaction-optionContainer-scroll">
@@ -113,137 +184,45 @@ export const History = (props) => {
           </form>
         )}
       </Form>
-      <div>
-        <h3 className="modal-transaction-h3">Historial</h3>
-        <hr className="modal-transaction-separate-option" />
-        <section className="modal-transaction-section-history">
-          <div className="modal-transaction-part">
-            <img src={Okey} alt="okey" className="modal-transaction-img-okey" />
-            <p className="modal-transaction-part-subtitle">Entregado</p>
-            <p className="modal-transaction-part-info">01/07/2021 15:04</p>
-          </div>
-          <div className="modal-transaction-part">
-            <img
-              src={Connector}
-              alt="okey"
-              className="modal-transaction-img-connector"
-            />
-          </div>
-          <div className="modal-transaction-part">
-            <img src={Okey} alt="okey" className="modal-transaction-img-okey" />
-            <p className="modal-transaction-part-subtitle">
-              En lugar de entrega
-            </p>
-            <p className="modal-transaction-part-info">01/07/2021 15:50</p>
-          </div>
-          <div className="modal-transaction-part">
-            <img
-              src={Connector}
-              alt="okey"
-              className="modal-transaction-img-connector"
-            />
-          </div>
-          <div className="modal-transaction-part">
-            <img src={Okey} alt="okey" className="modal-transaction-img-okey" />
-            <p className="modal-transaction-part-subtitle">En entrega</p>
-            <p className="modal-transaction-part-info">01/07/2021 15:31</p>
-          </div>
-          <div className="modal-transaction-part">
-            <img
-              src={Connector}
-              alt="okey"
-              className="modal-transaction-img-connector"
-            />
-          </div>
-          <div className="modal-transaction-part">
-            <img src={Okey} alt="okey" className="modal-transaction-img-okey" />
-            <p className="modal-transaction-part-subtitle">
-              En lugar de entrega
-            </p>
-            <p className="modal-transaction-part-info">01/07/2021 15:50</p>
-          </div>
-          <div className="modal-transaction-part">
-            <img
-              src={Connector}
-              alt="okey"
-              className="modal-transaction-img-connector"
-            />
-          </div>
-
-          <div className="modal-transaction-part">
-            <img
-              src={Cancel}
-              alt="okey"
-              className="modal-transaction-img-okey"
-            />
-            <p className="modal-transaction-part-subtitle">Retirado</p>
-            <p className="modal-transaction-part-info">01/07/2021 15:31</p>
-          </div>
-          <div className="modal-transaction-part">
-            <img
-              src={Connector}
-              alt="okey"
-              className="modal-transaction-img-connector"
-            />
-          </div>
-          <div className="modal-transaction-part">
-            <img src={Okey} alt="okey" className="modal-transaction-img-okey" />
-            <p className="modal-transaction-part-subtitle">
-              En lugar de retiro
-            </p>
-            <p className="modal-transaction-part-info">01/07/2021 15:50</p>
-          </div>
-          <div className="modal-transaction-part">
-            <img
-              src={Connector}
-              alt="okey"
-              className="modal-transaction-img-connector"
-            />
-          </div>
-          <div className="modal-transaction-part">
-            <img src={Okey} alt="okey" className="modal-transaction-img-okey" />
-            <p className="modal-transaction-part-subtitle">En retiro</p>
-            <p className="modal-transaction-part-info">01/07/2021 15:50</p>
-          </div>
-          <div className="modal-transaction-part">
-            <img
-              src={Connector}
-              alt="okey"
-              className="modal-transaction-img-connector"
-            />
-          </div>
-          <div className="modal-transaction-part">
-            <img src={Okey} alt="okey" className="modal-transaction-img-okey" />
-            <p className="modal-transaction-part-subtitle">Asignado</p>
-            <p className="modal-transaction-part-info">01/07/2021 15:50</p>
-          </div>
-          <div className="modal-transaction-part">
-            <img
-              src={Connector}
-              alt="okey"
-              className="modal-transaction-img-connector"
-            />
-          </div>
-          <div className="modal-transaction-part">
-            <img src={Okey} alt="okey" className="modal-transaction-img-okey" />
-            <p className="modal-transaction-part-subtitle">Pendiente</p>
-            <p className="modal-transaction-part-info">01/07/2021 15:50</p>
-          </div>
-          <div className="modal-transaction-part">
-            <img
-              src={Connector}
-              alt="okey"
-              className="modal-transaction-img-connector"
-            />
-          </div>
-          <div className="modal-transaction-part">
-            <img src={Okey} alt="okey" className="modal-transaction-img-okey" />
-            <p className="modal-transaction-part-subtitle">Creación</p>
-            <p className="modal-transaction-part-info">01/07/2021 15:50</p>
-          </div>
-        </section>
-      </div>
-
+      <div  key={FilterTransactionHistoryReverse.id}>
+            <h3 className="modal-transaction-h3">Historial</h3>
+            <hr className="modal-transaction-separate-option" />
+            <section className="modal-transaction-section-history">
+          { 
+         
+            FilterTransactionHistoryReverse.map(historial => (
+              <>
+               <div className="modal-transaction-part" key={historial.id}>
+                 {
+                    historial.reasonTag.tag==="state_pending_assigment"  ?
+                    <img src={Cancel} alt="Cancel" className="modal-transaction-img-okey" />
+                     : 
+                     <img src={Okey} alt="okey" className="modal-transaction-img-okey" />
+                   
+                 }
+                   
+                   <p className="modal-transaction-part-subtitle"> { convertirNombre(historial.reasonTag.tag) }  </p>
+                   <p className="modal-transaction-part-info"> {moment(historial.createdAt.substring(0,10),"YYYY-MM-DD").format("DD/MM/YYYY")}  {historial.createdAt.substring(11,19)} </p>
+                  <Link  style={{textDecoration: 'none'}}className="modal-transaction-a" to={FilterTransaction.picker.id!==null ? `activeUserAdminpicker/${FilterTransaction.picker.id}` : "#"}> { historial.reasonTag.tag==="state_assigned"  ? "Ver Picker" : ""}   </Link>  
+               </div>
+                  <div className="modal-transaction-part">
+                      <img
+                        src={Connector}
+                        alt="okey"
+                        className="modal-transaction-img-connector"
+                      />
+                  </div>
+              </>
+            ))
+          }
+            <div className="modal-transaction-part">
+              <img src={Okey} alt="okey" className="modal-transaction-img-okey" />
+              <p className="modal-transaction-part-subtitle">Creación</p>
+              <p className="modal-transaction-part-info"></p>
+            </div>
+          </section>
+    </div>
+      
      
       </div>
     

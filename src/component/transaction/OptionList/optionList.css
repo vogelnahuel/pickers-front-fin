@@ -116,7 +116,7 @@
     position: absolute;
     width: 78vw;
     height: 1.00625vh;
-    background: rgba(255, 255, 255, 0.3);
+
     backdrop-filter: blur(1px);
     margin-top: -16px;
 }

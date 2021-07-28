@@ -91,7 +91,7 @@ export const OptionList = (props) => {
                     {
                         history===true ? 
                         
-                        <div>       
+                        <div className="historial">       
                                        
                                  <div>
                                      <div className="modal-transaction-difuminar4"></div>  
@@ -129,17 +129,23 @@ export const OptionList = (props) => {
                                 <>
                                 <div className="insertAnimation">
                                 </div>
-                                
-                                <ReasonsCanceled
-                                setreasonCancel={setreasonCancel}
-                                setreasonCancelConfirm={setreasonCancelConfirm}
-                                />
+                                    <div>
+                                        <ReasonsCanceled
+                                        setreasonCancel={setreasonCancel}
+                                        setreasonCancelConfirm={setreasonCancelConfirm}
+                                        sethistory={sethistory}
+                                        />
+                                    </div>
                             </>
                         : null
                     }
                     {
                         reasonCancelConfirm ===true ? 
-                        <ReasonsCanceledConfirm/>
+                        <>
+                         <div className="insertAnimation"></div>
+
+                         <ReasonsCanceledConfirm/>
+                        </>
                         : null
                     }
                     {

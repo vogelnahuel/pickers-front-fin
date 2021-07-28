@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
 import $ from "jquery";
+import React, { useEffect, useState } from "react";
 import { Header } from "../../component/admin/Header/Header";
 import { Nav } from "../../component/admin/Nav/Nav";
 import exportar from "../../assets/admin/PendingUser/exportar.svg";
@@ -135,7 +135,7 @@ export const Transaction = () => {
             titulos={titulos}
             setFilterSelectedTransaction={setFilterSelectedTransaction}
           />
-          {apiFilterTransaction && apiFilterTransaction.length !== 0 ? <>
+             {apiFilterTransaction && apiFilterTransaction.length !== 0 ? <>
              { VerMas?
             <button
               onClick={cargarMas}
@@ -179,7 +179,15 @@ export const Transaction = () => {
                 <div>
                   <div className="modal-transaction-title">
                     <h2>Número de transacción</h2>
-                    <p>Estado</p>
+                      <p>Estado 
+                          {  FilterSelectedTransaction.transaction && 
+                              FilterSelectedTransaction.transaction.inAlert===true ? 
+                              <>
+                              <div class="admin-table-alerta">En alerta</div>
+                              </>
+                              : null
+                            }
+                      </p>
                     <p className="modal-transaction-fecha">Fecha entrega</p>
                   </div>
                   <div className="modal-transaction-subtitle">
@@ -189,10 +197,11 @@ export const Transaction = () => {
                         : ""}
                     </h2>
                     <p>
-                      {" "}
+                     
                       {FilterSelectedTransaction.transaction
                         ? FilterSelectedTransaction.transaction.state.name
-                        : ""}{" "}
+                        : ""}
+                        
                     </p>
 
                     <p className="modal-transaction-fecha">
