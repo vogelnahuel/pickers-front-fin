@@ -18,7 +18,7 @@ export const History = (props) => {
   FilterTransactionHistoryReverse = FilterTransactionHistoryReverse.reverse();
 
 
-  console.log(FilterTransactionHistoryReverse)
+  console.log(FilterTransaction)
 
 
  
@@ -89,8 +89,8 @@ export const History = (props) => {
           nroTransaccion: FilterTransaction.transaction ? FilterTransaction.transaction.id : 0,
           Picker: FilterTransaction.transaction ? FilterTransaction.client.name+ ' ' +FilterTransaction.client.lastName : "",
           Telefono: FilterTransaction.transaction ? FilterTransaction.client.phone : "",
-          dirRetiro: "JB. Justo 1024 - CABA",
-          dirEntrega: "Cabildo 750, Belgrano - CABA",
+          dirRetiro: FilterTransaction.destination ? FilterTransaction.destination.formattedAddress : "" ,
+          dirEntrega: FilterTransaction.origin ? FilterTransaction.origin.formattedAddress : "",
           Retailer: "pickit",
         }}
       >
@@ -178,9 +178,9 @@ export const History = (props) => {
                 </div>
               </div>
             </div>
-            <button className="modal-transaction-button-irApicker">
+           <Link target="_blank" rel="noopener noreferrer" to={ FilterTransaction.picker && FilterTransaction.picker.id!==null ? `activeUserAdminpicker/${FilterTransaction.picker.id}` : "#"}><button type="button" className="modal-transaction-button-irApicker">
               Ir a picker
-            </button>
+            </button></Link>
           </form>
         )}
       </Form>
