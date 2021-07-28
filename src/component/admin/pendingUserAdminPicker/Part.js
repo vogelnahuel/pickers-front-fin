@@ -474,7 +474,7 @@ export const Part = (props) => {
             Informacion.expirationDatePolicyVehicle.length < 10 ||
             Informacion.expirationDatePolicyPersonal.length < 10
           ) {
-            console.log("1");
+            // console.log("1");
             setdisabledButtonAprobarPicker(true);
           }
         }
@@ -488,7 +488,7 @@ export const Part = (props) => {
             Informacion.expirationDatePolicyVehicle.length >= 10 &&
             Informacion.expirationDatePolicyPersonal.length >= 10
           ) {
-            console.log("2");
+            // console.log("2");
             setdisabledButtonAprobarPicker(true);
           }
         
@@ -500,7 +500,7 @@ export const Part = (props) => {
           Informacion.expirationDatePolicyPersonal !== null
         ) {
           if (Informacion.expirationDatePolicyPersonal.length < 10)
-            console.log("3");
+            // console.log("3");
           setdisabledButtonAprobarPicker(true);
         }
         if (
@@ -508,7 +508,7 @@ export const Part = (props) => {
           Informacion.expirationDatePolicyPersonal !== null
         ) {
           if (Informacion.expirationDatePolicyPersonal.length >= 10)
-            console.log("4");
+            // console.log("4");
           setdisabledButtonAprobarPicker(true);
         }
       }
@@ -524,7 +524,7 @@ export const Part = (props) => {
             Informacion.expirationDatePolicyVehicle.length < 10 ||
             Informacion.expirationDatePolicyPersonal.length < 10
           ) {
-            console.log("1");
+            // console.log("1");
             setdisabledButtonAprobarPicker(true);
           }
         }
@@ -538,7 +538,7 @@ export const Part = (props) => {
             Informacion.expirationDatePolicyVehicle.length >= 10 &&
             Informacion.expirationDatePolicyPersonal.length >= 10
           ) {
-            console.log("2");
+            // console.log("2");
             setdisabledButtonAprobarPicker(true);
           }
         }
@@ -548,7 +548,7 @@ export const Part = (props) => {
           Informacion.expirationDatePolicyPersonal !== null
         ) {
           if (Informacion.expirationDatePolicyPersonal.length < 10)
-            console.log("3");
+            // console.log("3");
           setdisabledButtonAprobarPicker(true);
         }
         if (
@@ -556,7 +556,7 @@ export const Part = (props) => {
           Informacion.expirationDatePolicyPersonal !== null
         ) {
           if (Informacion.expirationDatePolicyPersonal.length >= 10)
-            console.log("4");
+            // console.log("4");
           setdisabledButtonAprobarPicker(true);
         }
       }

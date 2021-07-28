@@ -37,7 +37,7 @@ export const Transaction = () => {
 
     .then((res) => {
 
-        console.log(res.data.result)
+        // console.log(res.data.result)
         return res.data.result;
       })
       .catch((err) => {
@@ -48,7 +48,7 @@ export const Transaction = () => {
 
 
   const cargarMas = async () => {
-    console.log(filter);
+    // console.log(filter);
     const res = await api
       .get(
         `ms-admin-rest/api/v1.0/transactions?${

@@ -141,7 +141,7 @@ export const FilterTransaction = (props) => {
     values = formatDate(values);
     let stringSelected = "";
     stringSelected = multipleSelectCheckbox();
-    console.log(stringSelected)
+    // console.log(stringSelected)
     setapiFilter(
         
       await api
