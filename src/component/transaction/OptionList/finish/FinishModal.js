@@ -3,17 +3,24 @@ import volver from '../../../../assets/admin/PendingUser/volver.svg'
 import Info  from '../../../../assets/transaction/Info.svg'
 import './finishModal.css'
 
-export const FinishModal = () => {
+export const FinishModal = (props) => {
 
     const [RadioActive, setRadioActive] = useState(false);
+    const sethistory = props.sethistory
+    const setfinishModal = props.setfinishModal;
 
     const handleClick = (e) => {
         setRadioActive(true);
     }
+ 
+    const  handleClickgoBack = (e) => {
+        sethistory(true);
+        setfinishModal(false);
+    }
 
     return (
         <div className="modal-transaction-finishModal">
-            <div className="modal-transaction-finish-volver">
+            <div onClick={handleClickgoBack} className="modal-transaction-finish-volver">
                 <img src={volver} alt ="volver" />
                 <p className="modal-transaction-finish-volver">Volver</p>
             </div>

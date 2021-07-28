@@ -144,7 +144,10 @@ export const OptionList = (props) => {
                         <>
                          <div className="insertAnimation"></div>
 
-                         <ReasonsCanceledConfirm/>
+                         <ReasonsCanceledConfirm
+                          setreasonCancel={setreasonCancel}
+                          setreasonCancelConfirm={setreasonCancelConfirm}
+                         />
                         </>
                         : null
                     }
@@ -153,7 +156,10 @@ export const OptionList = (props) => {
                         finishModal ===true ? 
                         <>
                         <div className="insertAnimation"></div>
-                            <FinishModal/>
+                            <FinishModal
+                            sethistory={sethistory}
+                            setfinishModal={setfinishModal}
+                            />
                         </>
                         : null
                     }

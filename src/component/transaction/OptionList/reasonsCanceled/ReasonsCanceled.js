@@ -7,6 +7,7 @@ export const ReasonsCanceled = (props) => {
 
     const setreasonCancelConfirm = props.setreasonCancelConfirm;
     const setreasonCancel = props.setreasonCancel;
+    const sethistory = props.sethistory;
 
     const handleClickFinish = (e) => {
         e.preventDefault();
@@ -31,12 +32,16 @@ export const ReasonsCanceled = (props) => {
             }, 500);
         }, 0);
     }
+    const handleClickgoBack = () => {
+        sethistory(true);
+        setreasonCancel(false)
+    }
 
  
 
     return (
         <div className="modal-transaction-reasonsCanceled">
-            <div className="modal-transaction-volver">
+            <div onClick={handleClickgoBack} className="modal-transaction-volver">
                 <img src={volver} alt ="volver" />
                 <p>Volver</p>
             </div>
