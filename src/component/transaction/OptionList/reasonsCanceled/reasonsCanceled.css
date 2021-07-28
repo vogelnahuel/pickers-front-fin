@@ -82,3 +82,52 @@
     color: #101820;
     padding-top: 20px;
 }
+
+
+.animationReasonsCancel{
+    width: 75.886vw;
+    height: 51.171875vh;
+    position: absolute;
+    left: 50px;
+    top: 130px;
+    background-color: rgb(255, 255, 255);
+    opacity: 0.5;
+}
+
+.animation-right-transaction{
+    background-color: rgb(255, 255, 255);
+    animation: 0.6s moverDer 1;
+}
+@keyframes moverDer{
+    0%{margin-left: 0; 
+        opacity: 1;}
+    30%{margin-left: 0;}
+    50%{margin-left: 0;
+        opacity: 0.5;}
+    95%{
+        margin-left: 100%;
+        opacity: 0;
+        
+        }
+}
+
+.animation-right-transaction2{
+    position: absolute;
+    left: -900px;
+    background-color: rgb(255, 255, 255);
+    animation: 0.5s moverDer2 1;
+    opacity: 0;
+}
+@keyframes moverDer2{
+    0%{margin-left: 0;}
+    30%{margin-left: 0;
+        opacity: 0;}
+    85%{
+            margin-left: 872px;
+            opacity: 0.2;}
+    95%{
+        margin-left: 922px;
+        opacity: 1;
+        
+        }
+}

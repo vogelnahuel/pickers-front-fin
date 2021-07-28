@@ -32,9 +32,27 @@ export const ReasonsCanceled = (props) => {
             }, 500);
         }, 0);
     }
-    const handleClickgoBack = () => {
+
+
+    const handleClickgoBack = (e) => {
+      
+        
+    e.target.parentNode.parentNode.classList.add('animation-right-transaction')
+    
+    
+     setTimeout(() => {
+        e.target.parentNode.parentNode.classList.remove('animation-right-transaction')
         sethistory(true);
-        setreasonCancel(false)
+         e.target.parentNode.parentNode.parentNode.parentNode.firstChild.classList.add('animation-right-transaction2')
+        e.target.parentNode.parentNode.parentNode.parentNode.firstChild.classList.remove('animation-right-transaction2')
+     
+        
+        setreasonCancel(false);
+     }, 500);
+
+  
+     
+    
     }
 
  

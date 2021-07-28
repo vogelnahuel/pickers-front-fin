@@ -17,13 +17,6 @@ export const History = (props) => {
   let FilterTransactionHistoryReverse =  FilterTransactionHistory ? JSON.parse(JSON.stringify(FilterTransactionHistory)) : [];
   FilterTransactionHistoryReverse = FilterTransactionHistoryReverse.reverse();
 
-
-  console.log(FilterTransaction)
-
-
- 
-
-
   const convertirNombre = (tag) => {
 
     switch (tag) {

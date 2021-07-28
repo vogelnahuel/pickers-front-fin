@@ -109,6 +109,7 @@
     height: 127.58333333333334vh;
 }
 .modal-transaction-reload-img{
+    cursor: pointer;
     margin-top: 0px;
 }
 
