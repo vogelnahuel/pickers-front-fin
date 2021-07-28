@@ -141,8 +141,9 @@ export const FilterTransaction = (props) => {
     values = formatDate(values);
     let stringSelected = "";
     stringSelected = multipleSelectCheckbox();
-
+    console.log(stringSelected)
     setapiFilter(
+        
       await api
         .get(
           `ms-admin-rest/api/v1.0/transactions?${
@@ -161,7 +162,7 @@ export const FilterTransaction = (props) => {
               : ""
           }${
             stringSelected !== "" ? `&filter.state=${stringSelected}` : ""
-          }&limit=${props.tamPag}&offset=${0} `
+          }&limit=${props.tamPag}&offset=${0}`
         )
         .then((res) => {
             props.setfilter({values,stringSelected:stringSelected});
@@ -194,7 +195,7 @@ export const FilterTransaction = (props) => {
           alt="desplegable"
         />
         <p className="p-filter-transaction">Filtros</p>
-        
+
       </div>
       <Form onSubmit={onSubmit}>
         {({ handleSubmit }) => (

@@ -51,25 +51,23 @@ export const Transaction = () => {
     console.log(filter);
     const res = await api
       .get(
-        `ms-admin-rest/api/v1.0/transactions?&limit=${tamPag}&offset=${offset}${
-            filter.values && filter.values.nroTransaccion
-            ? `filter.transactionCode=${filter.values.nroTransaccion}`
-            : ""
-        }${filter.values && filter.values.Picker ? `&filter.pickerId=${filter.values.Picker}` : ""}
-        ${
-            filter.values && filter.values.enAlerta ? `&filter.inAlert=${filter.values.enAlerta}` : ""
-        }${
-            filter.values && filter.values.FechaEntrega
-            ? `&filter.minMinDeliveryDate=${filter.values.FechaEntrega.from}`
-            : ""
-        }${
-            filter.values && filter.values.FechaEntrega
-            ? `&filter.maxMinDeliveryDate=${filter.values.FechaEntrega.until}`
-            : ""
-        }
-        ${
-            filter.values && filter.stringSelected ? `&filter.state=${filter.stringSelected}` : ""
-        }`
+        `ms-admin-rest/api/v1.0/transactions?${
+            filter.nroTransaccion
+              ? `filter.transactionCode=${filter.nroTransaccion}`
+              : ""
+          }${filter.Picker ? `&filter.pickerId=${filter.Picker}` : ""}${
+            filter.enAlerta ? `&filter.inAlert=${filter.enAlerta}` : ""
+          }${
+            filter.FechaEntrega
+              ? `&filter.minMinDeliveryDate=${filter.FechaEntrega.from}`
+              : ""
+          }${
+            filter.FechaEntrega
+              ? `&filter.maxMinDeliveryDate=${filter.FechaEntrega.until}`
+              : ""
+          }${
+            filter.stringSelected !== "" ? `&filter.state=${filter.stringSelected}` : ""
+          }&limit=${tamPag}&offset=${offset}`
         
       )
       .then((res) => {
