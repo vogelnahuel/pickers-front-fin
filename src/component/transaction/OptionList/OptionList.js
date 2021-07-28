@@ -85,10 +85,10 @@ export const OptionList = (props) => {
    
     const handleReload = () =>{
         const reload = async()=> {
-            console.log(props.idTransaction)
+            // console.log(props.idTransaction)
             props.setFilterSelectedTransaction( await  api.get(`/ms-admin-rest/api/v1.0/transactions/${FilterSelectedTransaction.transaction.id}`) 
             .then((res) => {
-                console.log(res.data.result)
+                // console.log(res.data.result)
                 return res.data.result;
               })
               .catch((err) => {

@@ -53,7 +53,7 @@ export const TableTransaction = (props) => {
                 <tbody> 
                     
                     {
-                        JSON.stringify(api)!=='{}' && api!==undefined ? api.map(dato => 
+                        JSON.stringify(api)!=='{}' && api!==undefined ? api.map(dato => dato?<>
                             <tr  onClick={handleClickModal} key={dato.transaction.id}>
                                 
                                     <td  name={dato.transaction.id}  key="1"></td>
@@ -63,7 +63,7 @@ export const TableTransaction = (props) => {
                                     <td  name={dato.transaction.id}> {dato.transaction.externalPickerId}  </td>
                                     <td  name={dato.transaction.id}> {moment(dato.transaction.maxDeliveryDateTime.substring(0,10),"YYYY-MM-DD").format("DD/MM/YYYY")} </td>
                                     <td  name={dato.transaction.id}> {dato.transaction.state.name} {dato.transaction.inAlert?<div className="admin-table-alerta">En alerta</div>:null}</td>
-                            </tr>
+                            </tr></>:null
                         )
                         :null
 
