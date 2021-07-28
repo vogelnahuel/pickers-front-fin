@@ -13,10 +13,23 @@ export const FinishModal = (props) => {
         setRadioActive(true);
     }
  
-    const  handleClickgoBack = (e) => {
-        sethistory(true);
-        setfinishModal(false);
-    }
+    const handleClickgoBack = (e) => {
+      
+        
+        e.target.parentNode.parentNode.classList.add('animation-right-transaction')
+        
+        
+         setTimeout(() => {
+            e.target.parentNode.parentNode.classList.remove('animation-right-transaction')
+            sethistory(true);
+             e.target.parentNode.parentNode.parentNode.parentNode.firstChild.classList.add('animation-right-transaction2')
+            e.target.parentNode.parentNode.parentNode.parentNode.firstChild.classList.remove('animation-right-transaction2')
+         
+            
+            setfinishModal(false);
+         }, 600);
+        
+        }
 
     return (
         <div className="modal-transaction-finishModal">

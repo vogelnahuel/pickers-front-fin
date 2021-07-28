@@ -11,10 +11,25 @@ export const ReasonsCanceledConfirm = (props) => {
     const handleClickCancelConfirm = (e)=> {
         window.location.reload();
     }
-    const  handleClickgoBack = (e) => {
-        setreasonCancel(true)
-        setreasonCancelConfirm(false)
-    }
+
+
+    const handleClickgoBack = (e) => {
+      
+        
+        e.target.parentNode.parentNode.classList.add('animation-right-transaction')
+        
+        
+         setTimeout(() => {
+            e.target.parentNode.parentNode.classList.remove('animation-right-transaction')
+            setreasonCancel(true);
+             e.target.parentNode.parentNode.parentNode.parentNode.firstChild.classList.add('animation-right-transaction2')
+            e.target.parentNode.parentNode.parentNode.parentNode.firstChild.classList.remove('animation-right-transaction2')
+         
+            
+            setreasonCancelConfirm(false);
+         }, 550);
+        
+        }
 
     return (
         <div className="modal-transaction-reasonsCanceled">

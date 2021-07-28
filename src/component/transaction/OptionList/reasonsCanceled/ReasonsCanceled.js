@@ -48,7 +48,7 @@ export const ReasonsCanceled = (props) => {
      
         
         setreasonCancel(false);
-     }, 500);
+     }, 550);
 
   
      
