@@ -1,4 +1,4 @@
-import React, {  } from "react";
+import React, { useState } from "react";
 import Okey from "../../../../assets/transaction/Okey.svg";
 import Connector from "../../../../assets/transaction/Connector.svg";
 import Cancel from "../../../../assets/transaction/Cancel.svg";
@@ -6,6 +6,7 @@ import "./history.css";
 import { Form, Field } from "react-final-form";
 import moment from "moment";
 import { Link } from "react-router-dom";
+
 
 export const History = (props) => {
 
@@ -72,7 +73,7 @@ export const History = (props) => {
     return tag
   }
 
- 
+
 
   return (
     <div className="modal-transaction-optionContainer-scroll">
@@ -187,7 +188,7 @@ export const History = (props) => {
               <>
                <div className="modal-transaction-part" key={historial.id}>
                  {
-                    historial.reasonTag.tag==="state_pending_assigment"  ?
+                    historial.reasonTag.tag==="state_pickup_cancelled_temporally" || historial.reasonTag.tag==="state_pickup_cancelled_permanently"  ?
                     <img src={Cancel} alt="Cancel" className="modal-transaction-img-okey" />
                      : 
                      <img src={Okey} alt="okey" className="modal-transaction-img-okey" />
@@ -196,7 +197,8 @@ export const History = (props) => {
                    
                    <p className="modal-transaction-part-subtitle"> { convertirNombre(historial.reasonTag.tag) }  </p>
                    <p className="modal-transaction-part-info"> {moment(historial.createdAt.substring(0,10),"YYYY-MM-DD").format("DD/MM/YYYY")}  {historial.createdAt.substring(11,19)} </p>
-                  <Link  style={{textDecoration: 'none'}}className="modal-transaction-a" to={FilterTransaction.picker.id!==null ? `activeUserAdminpicker/${FilterTransaction.picker.id}` : "#"}> { historial.reasonTag.tag==="state_assigned"  ? "Ver Picker" : ""}   </Link>  
+                
+                  <Link  style={{textDecoration: 'none'}}className="modal-transaction-a" to={historial.curentValue ? `activeUserAdminpicker/${historial.curentValue}` : "#"}> { historial.reasonTag.tag==="state_assigned"  ? "Ver Picker" : ""}   </Link>  
                </div>
                   <div className="modal-transaction-part">
                       <img
