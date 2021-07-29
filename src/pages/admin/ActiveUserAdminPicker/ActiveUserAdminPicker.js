@@ -186,7 +186,7 @@ const onCLickImg = () =>{
 const modificarPicker= async (e) =>{
         setloader(true);
         e.preventDefault();
-        console.log(dataPicker)
+        // console.log(dataPicker)
                await api.post(`/ms-admin-rest/api/v1.0/pickers/${dataPicker.id}`,{  
                 "enable": dataPicker.enable,  
                 "vehicleTypeId": dataPicker.vehicleTypeId,

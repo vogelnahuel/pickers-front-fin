@@ -1,7 +1,7 @@
 import React, {  } from 'react'
 import './TableTransaction.css'
 import TreePoints from '../../../assets/transaction/TreePoints.svg'
-import api2 from '../../../config/api'
+
 import moment from 'moment'
 
 export const TableTransaction = (props) => {
@@ -9,7 +9,7 @@ export const TableTransaction = (props) => {
     const setOpenModalTransaction =  props.setOpenModalTransaction;
     const api = props.api;
     
-    const setFilterSelectedTransaction = props.setFilterSelectedTransaction;
+
    
     const titulos = props.titulos;
     const cargarDatos =props.cargarDatos;
@@ -53,7 +53,7 @@ export const TableTransaction = (props) => {
                 <tbody> 
                     
                     {
-                        JSON.stringify(api)!=='{}' && api!==undefined ? api.map(dato => 
+                        JSON.stringify(api)!=='{}' && api!==undefined ? api.map(dato => dato?<>
                             <tr  onClick={handleClickModal} key={dato.transaction.id}>
                                 
                                     <td  name={dato.transaction.id}  key="1"></td>
@@ -63,7 +63,7 @@ export const TableTransaction = (props) => {
                                     <td  name={dato.transaction.id}> {dato.transaction.externalPickerId}  </td>
                                     <td  name={dato.transaction.id}> {moment(dato.transaction.maxDeliveryDateTime.substring(0,10),"YYYY-MM-DD").format("DD/MM/YYYY")} </td>
                                     <td  name={dato.transaction.id}> {dato.transaction.state.name} {dato.transaction.inAlert?<div className="admin-table-alerta">En alerta</div>:null}</td>
-                            </tr>
+                            </tr></>:null
                         )
                         :null
 

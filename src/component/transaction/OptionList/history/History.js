@@ -18,6 +18,8 @@ export const History = (props) => {
   let FilterTransactionHistoryReverse =  FilterTransactionHistory ? JSON.parse(JSON.stringify(FilterTransactionHistory)) : [];
   FilterTransactionHistoryReverse = FilterTransactionHistoryReverse.reverse();
 
+  console.log(FilterTransaction)
+
   const convertirNombre = (tag) => {
 
     switch (tag) {
@@ -213,7 +215,7 @@ export const History = (props) => {
             <div className="modal-transaction-part">
               <img src={Okey} alt="okey" className="modal-transaction-img-okey" />
               <p className="modal-transaction-part-subtitle">Creación</p>
-              <p className="modal-transaction-part-info"></p>
+              <p className="modal-transaction-part-info">{ FilterTransaction.transactionHistory ? moment(FilterTransaction.transactionHistory[0].createdAt.substring(0,10),"YYYY-MM-DD").format("DD/MM/YYYY") : ""}  {FilterTransaction.transactionHistory ? FilterTransaction.transactionHistory[0].createdAt.substring(11,19) : ""}  </p>
             </div>
           </section>
     </div>
