@@ -137,16 +137,17 @@ export const FilterTransaction = (props) => {
     return stringSelected;
   };
   
-const EstaVacioFiltro = (values,stringSelected) => {
+const EstaVacioFiltro = (values) => {
   
 
-    if (  (Object.keys(values).length  === 0 && stringSelected ==="") || ( values.enAlerta === false && stringSelected ==="" && Object.keys(values).length)  === 1 )   
-    {
-      return true;
-  }
+   console.log(values.Picker)
 
+    if ( (Object.keys(values).length  >= 1) &&  (values.Picker!==undefined || values.FechaEntrega!==undefined || values.nroTransaccion!==undefined ) )  {
+      return false;
+    }
 
-  return false;
+  return true;
+
 }
 
 
@@ -158,7 +159,7 @@ const EstaVacioFiltro = (values,stringSelected) => {
     values = formatDate(values);
     let stringSelected = "";
     stringSelected = multipleSelectCheckbox();
-    setexportDisabled(EstaVacioFiltro(values,stringSelected));
+    setexportDisabled(EstaVacioFiltro(values));
     
    
 
