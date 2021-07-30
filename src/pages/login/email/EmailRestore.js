@@ -119,7 +119,7 @@ const handleSubmit = async (e) => {
 
     return(
       <>
-     
+     <div className="space-responsive-login"></div>
           <div className="logo">
             <img src={pickersLogo} className="pickersLogo_login" alt="PickersLogo"></img>
           </div>
