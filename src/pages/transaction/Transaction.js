@@ -2,17 +2,20 @@ import $ from "jquery";
 import React, { useEffect, useState } from "react";
 import { Header } from "../../component/admin/Header/Header";
 import { Nav } from "../../component/admin/Nav/Nav";
-import exportar from "../../assets/admin/PendingUser/exportar.svg";
-import or from "../../assets/admin/PendingUser/or.svg";
 import { TableTransaction } from "../../component/transaction/tableTransaction/TableTransaction";
 import "./transaction.scss";
 import { FilterTransaction } from "../../component/transaction/filterTransaction/FilterTransaction";
 import { Modal } from "pickit-components";
 import { OptionList } from "../../component/transaction/OptionList/OptionList";
+import exportar from "../../assets/admin/PendingUser/exportar.svg";
+import or from "../../assets/admin/PendingUser/or.svg";
+import  exportDisabledIcon from "../../assets/transaction/ExportDisabled.svg";
+import orDisabled from "../../assets/transaction/OrDisabled.svg";
 
 import Close from "../../assets/transaction/Close.svg";
 
 import api from "../../config/api.js";
+import createCSV from "../../tools/createCSV";
 
 export const Transaction = () => {
   $();
@@ -21,6 +24,7 @@ export const Transaction = () => {
     {}
   );
   const [loader, setloader] = useState(true);
+  const [exportDisabled, setexportDisabled] = useState(true)
 
   const tamPag = 5;
   const [offset, setoffset] = useState(tamPag);
@@ -43,8 +47,9 @@ export const Transaction = () => {
       .catch((err) => {
         console.log(err);
       }))   
-      console.log(FilterSelectedTransaction)
+     
 }
+
 
 
   const cargarMas = async () => {
@@ -83,7 +88,56 @@ export const Transaction = () => {
    
     setapiFilter(apiFilterTransaction.concat(res));
   };
-  const Export = () => {};
+
+  const construirUrlExport = (url) => {
+
+    let arrayOpciones = [];
+
+    if(filter.values){
+      if(filter.values.nroTransaccion){
+  
+        arrayOpciones.push(`&filter.transactionCode=${filter.values.nroTransaccion}`);
+      }
+      if (filter.values.Picker){
+        arrayOpciones.push(`&filter.pickerId=${filter.values.Picker}`);
+      }
+       if(filter.values.enAlerta){
+        arrayOpciones.push(`&filter.inAlert=${filter.values.enAlerta}`);
+      }
+       if(filter.values.FechaEntrega){
+        arrayOpciones.push(`&filter.minMinDeliveryDate=${filter.values.FechaEntrega.from}`);
+        arrayOpciones.push(`&filter.maxMinDeliveryDate=${filter.values.FechaEntrega.until}`);
+      }
+       if(filter.stringSelected){
+        arrayOpciones.push(`&filter.state=${filter.stringSelected}`);
+      }
+    }
+    arrayOpciones[0] = arrayOpciones[0].replace('&','');
+
+    for(let i =0 ; i < arrayOpciones.length;i++){
+      url+=arrayOpciones[i];
+    }
+
+    return url
+  }
+
+  const Export = async (e) => {
+
+    e.preventDefault();
+
+    let url="/ms-admin-rest/api/v1.0/transactions.csv?";
+    url = construirUrlExport(url)
+    const datosExportTransaction = await api.get(`${url}`)
+    .then(res => res)
+    .catch((err) => {
+      console.log(err);
+    });
+   
+    if(datosExportTransaction!==undefined)
+     createCSV(datosExportTransaction)
+  
+  }
+
   const onClose = (e) => {
     setOpenModalTransaction(false);
   };
@@ -121,18 +175,33 @@ export const Transaction = () => {
         <Nav />
         <div className="transaction-container">
           <div className="mainContainerFlex-transaction">
-            <h2 className="subTitle-transaction">
-              <p className="subtitle-pendingUser-h2">Transacciones </p>
-            </h2>
-            <button
-              onClick={Export}
-              className="export-transaction"
-              name="export"
-            >
-              <img src={exportar} alt="export" />
-              <img className="or-pending" src={or} alt="or" />
-              <p className="display-inline-block p-export"> Exportar</p>
-            </button>
+              <h2 className="subTitle-transaction">
+                <p className="subtitle-pendingUser-h2">Transacciones </p>
+              </h2>
+            {
+              exportDisabled === true  ?  
+                <button
+                disabled={true}
+                onClick={Export}
+                className="export-transaction-disabled"
+                name="export"
+                >
+                  <img src={exportDisabledIcon} alt="export" />
+                  <img className="or-pending" src={orDisabled} alt="or" />
+                  <p className="display-inline-block p-export-transaction-disabled"> Exportar</p>
+                </button>
+             
+            :  <button
+                onClick={Export}
+                className="export-transaction"
+                name="export"
+                >
+                    <img src={exportar} alt="export" />
+                    <img className="or-pending" src={or} alt="or" />
+                    <p className="display-inline-block p-export"> Exportar</p>
+                </button>
+            }
+            
           </div>
           <FilterTransaction
             setapiFilter={setapiFilter}
@@ -141,6 +210,7 @@ export const Transaction = () => {
             setoffset={setoffset}
             setfilter={setfilter}
             setVerMas={setVerMas}
+            setexportDisabled={setexportDisabled}
           />
           <TableTransaction
             setOpenModalTransaction={setOpenModalTransaction}
