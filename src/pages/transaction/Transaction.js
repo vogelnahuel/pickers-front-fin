@@ -71,7 +71,7 @@ export const Transaction = () => {
               ? `&filter.maxMinDeliveryDate=${filter.FechaEntrega.until}`
               : ""
           }${
-            filter.stringSelected !== "" ? `&filter.state=${filter.stringSelected}` : ""
+            filter.stringSelected && filter.stringSelected !== "" ? `&filter.state=${filter.stringSelected}` : ""
           }&limit=${tamPag}&offset=${offset}`
         
       )
