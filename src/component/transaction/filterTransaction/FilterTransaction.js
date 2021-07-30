@@ -12,6 +12,7 @@ import moment from "moment";
 
 export const FilterTransaction = (props) => {
   const setapiFilter = props.setapiFilter;
+  const setexportDisabled = props.setexportDisabled;
 
   /****cambiar el select all a todos */
   $();
@@ -135,13 +136,32 @@ export const FilterTransaction = (props) => {
 
     return stringSelected;
   };
+  
+const EstaVacioFiltro = (values,stringSelected) => {
+  
+
+    if (  (Object.keys(values).length  === 0 && stringSelected ==="") || ( values.enAlerta === false && stringSelected ==="" && Object.keys(values).length)  === 1 )   
+    {
+      return true;
+  }
+
+
+  return false;
+}
+
 
   const onSubmit = async (values) => {
-    
+
+
+  
+
     values = formatDate(values);
     let stringSelected = "";
     stringSelected = multipleSelectCheckbox();
-    // console.log(stringSelected)
+    setexportDisabled(EstaVacioFiltro(values,stringSelected));
+    
+   
+
     setapiFilter(
         
       await api

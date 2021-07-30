@@ -34,13 +34,13 @@ export const TableTransaction = (props) => {
 
 
     return (
-        <>
+        <div >
            
-            <table  className="titleTableTransactions">
-                <thead>
-                        <tr key="tr-1"> 
-                            <td key="1"></td>
-                            <td key="2"></td>
+            <table  className="titleTableTransactions" >
+                <thead >
+                        <tr key={titulos[0]} > 
+                            <td key={titulos[1]}></td>
+                            <td key={titulos[2]}></td>
                             {titulos ?  titulos.map(titulo => 
                                       <td key={titulo}>{titulo}</td>
                                 )
@@ -53,17 +53,20 @@ export const TableTransaction = (props) => {
                 <tbody> 
                     
                     {
-                        JSON.stringify(api)!=='{}' && api!==undefined ? api.map(dato => dato?<>
-                            <tr  onClick={handleClickModal} key={dato.transaction.id}>
+                        JSON.stringify(api)!=='{}' && api!==undefined ? api.map(dato => dato?
+                        
+                            <tr onClick={handleClickModal} key={dato.transaction.id+"0"} >
                                 
-                                    <td  name={dato.transaction.id}  key="1"></td>
-                                    <td  name={dato.transaction.id} id={dato.transaction.id}><img  name={dato.transaction.id} id={dato.Transacción} className="img-filter-transaction"  src={TreePoints} alt="TreePoints" /> </td>
+                                    <td  name={dato.transaction.id} key={dato.transaction.id+"1"}  ></td>
+                                    <td  name={dato.transaction.id} id={dato.transaction.id} key={dato.transaction.id+"2"}  ><img key={dato.transaction.id+"3"}  name={dato.transaction.id} id={dato.Transacción} className="img-filter-transaction"  src={TreePoints} alt="TreePoints" /> </td>
                                 
-                                    <td  name={dato.transaction.id}> {dato.transaction.transactionCode} </td>
-                                    <td  name={dato.transaction.id}> {dato.transaction.externalPickerId}  </td>
-                                    <td  name={dato.transaction.id}> {moment(dato.transaction.maxDeliveryDateTime.substring(0,10),"YYYY-MM-DD").format("DD/MM/YYYY")} </td>
-                                    <td  name={dato.transaction.id}> {dato.transaction.state.name} {dato.transaction.inAlert?<div className="admin-table-alerta">En alerta</div>:null}</td>
-                            </tr></>:null
+                                    <td  name={dato.transaction.id} key={dato.transaction.id+"4"} > {dato.transaction.transactionCode} </td>
+                                    <td  name={dato.transaction.id} key={dato.transaction.id+"5"} > {dato.transaction.externalPickerId}  </td>
+                                    <td  name={dato.transaction.id} key={dato.transaction.id+"6"} > {moment(dato.transaction.maxDeliveryDateTime.substring(0,10),"YYYY-MM-DD").format("DD/MM/YYYY")} </td>
+                                    <td  name={dato.transaction.id} key={dato.transaction.id+"7"} > {dato.transaction.state.name} {dato.transaction.inAlert?<div className="admin-table-alerta">En alerta</div>:null}</td>
+                            </tr>
+                        
+                        :null
                         )
                         :null
 
@@ -74,6 +77,6 @@ export const TableTransaction = (props) => {
                      
                 </tbody>
             </table>
-        </>
+        </div>
     )
 }

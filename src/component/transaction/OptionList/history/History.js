@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {  } from "react";
 import Okey from "../../../../assets/transaction/Okey.svg";
 import Connector from "../../../../assets/transaction/Connector.svg";
 import Cancel from "../../../../assets/transaction/Cancel.svg";

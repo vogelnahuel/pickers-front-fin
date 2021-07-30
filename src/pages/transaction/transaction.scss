@@ -59,6 +59,29 @@
     background-color: white;
     margin-top: 0vh;
 }
+.export-transaction-disabled{
+    background: #FFFFFF;
+    border: 2.5px solid #BDBDBD;
+    box-sizing: border-box;
+    border-radius: 50px;
+    width: 163px;
+    height: 50px;
+    background-color: white;
+    margin-top: 0vh;
+}
+
+.p-export-transaction-disabled{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 23px;
+    text-align: center;
+    color: #BDBDBD;
+    padding-left: 0.8rem;
+}
+
+
 .modal-transaction{
     background: rgba(45, 45, 45, 0.25);
     mix-blend-mode: multiply;
