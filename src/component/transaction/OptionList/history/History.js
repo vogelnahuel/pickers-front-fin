@@ -18,13 +18,13 @@ export const History = (props) => {
   let FilterTransactionHistoryReverse =  FilterTransactionHistory ? JSON.parse(JSON.stringify(FilterTransactionHistory)) : [];
   FilterTransactionHistoryReverse = FilterTransactionHistoryReverse.reverse();
 
-  console.log(FilterTransaction)
+  // console.log(FilterTransaction)
 
   const convertirNombre = (tag) => {
 
     switch (tag) {
       case "assigned_picker":
-          tag  = "Pendiente"
+          tag  = "Asignado"
         break;
       case "un_assigning":
         tag  = "Sin asignar"
@@ -76,7 +76,8 @@ export const History = (props) => {
   }
 
 
-
+  
+  // console.log(FilterTransaction,"transaction")
   return (
     <div className="modal-transaction-optionContainer-scroll">
       <Form
@@ -184,10 +185,11 @@ export const History = (props) => {
             <h3 className="modal-transaction-h3">Historial</h3>
             <hr className="modal-transaction-separate-option" />
             <section className="modal-transaction-section-history">
-          { 
-         
+            {
+     
             FilterTransactionHistoryReverse.map(historial => (
-              <>
+              
+              <>{historial.reasonTag.tag!=="state_assigned"?<>
                <div className="modal-transaction-part" key={historial.id}>
                  {
                     historial.reasonTag.tag==="state_pickup_cancelled_temporally" || historial.reasonTag.tag==="state_pickup_cancelled_permanently"  ?
@@ -197,10 +199,11 @@ export const History = (props) => {
                    
                  }
                    
-                   <p className="modal-transaction-part-subtitle"> { convertirNombre(historial.reasonTag.tag) }  </p>
-                   <p className="modal-transaction-part-info"> {moment(historial.createdAt.substring(0,10),"YYYY-MM-DD").format("DD/MM/YYYY")}  {historial.createdAt.substring(11,19)} </p>
+                   <p className="modal-transaction-part-subtitle"> { convertirNombre(historial.reasonTag.tag) } {historial.metadata[0]? historial.metadata[0].value:null} </p>
+                   
+                   {FilterTransaction.transactionHistory.length!==0?<p className="modal-transaction-part-info"> {moment(historial.createdAt.substring(0,10),"YYYY-MM-DD").format("DD/MM/YYYY")}  {historial.createdAt.substring(11,19)} </p>:null}
                 
-                  <Link  style={{textDecoration: 'none'}}className="modal-transaction-a" to={historial.curentValue ? `activeUserAdminpicker/${historial.curentValue}` : "#"}> { historial.reasonTag.tag==="state_assigned"  ? "Ver Picker" : ""}   </Link>  
+                  <Link  style={{textDecoration: 'none'}}className="modal-transaction-a" to={historial.curentValue ? `activeUserAdminpicker/${historial.curentValue}` : "#"}> { historial.reasonTag.tag==="assigned_picker"  ? "Ver Picker" : ""}   </Link>  
                </div>
                   <div className="modal-transaction-part">
                       <img
@@ -208,15 +211,29 @@ export const History = (props) => {
                         alt="okey"
                         className="modal-transaction-img-connector"
                       />
-                  </div>
+                  </div></>:null}
               </>
             ))
           }
+          <div className="modal-transaction-part">
+              <img src={Okey} alt="okey" className="modal-transaction-img-okey" />
+              <p className="modal-transaction-part-subtitle">Pendiente</p>
+              {FilterTransaction.transactionHistory &&FilterTransaction.transactionHistory.length!==0 ?<p className="modal-transaction-part-info">{ FilterTransaction.transactionHistory ? moment(FilterTransaction.transactionHistory[0].createdAt.substring(0,10),"YYYY-MM-DD").format("DD/MM/YYYY") : ""}  {FilterTransaction.transactionHistory ? FilterTransaction.transactionHistory[0].createdAt.substring(11,19) : ""}  </p>:null}
+            </div>
+            <div className="modal-transaction-part">
+                      <img
+                        src={Connector}
+                        alt="okey"
+                        className="modal-transaction-img-connector"
+                      />
+                  </div>
+            
             <div className="modal-transaction-part">
               <img src={Okey} alt="okey" className="modal-transaction-img-okey" />
               <p className="modal-transaction-part-subtitle">Creación</p>
-              <p className="modal-transaction-part-info">{ FilterTransaction.transactionHistory ? moment(FilterTransaction.transactionHistory[0].createdAt.substring(0,10),"YYYY-MM-DD").format("DD/MM/YYYY") : ""}  {FilterTransaction.transactionHistory ? FilterTransaction.transactionHistory[0].createdAt.substring(11,19) : ""}  </p>
+              {FilterTransaction.transactionHistory &&FilterTransaction.transactionHistory.length!==0 ?<p className="modal-transaction-part-info">{ FilterTransaction.transactionHistory ? moment(FilterTransaction.transactionHistory[0].createdAt.substring(0,10),"YYYY-MM-DD").format("DD/MM/YYYY") : ""}  {FilterTransaction.transactionHistory ? FilterTransaction.transactionHistory[0].createdAt.substring(11,19) : ""}  </p>:null}
             </div>
+            
           </section>
     </div>
       
