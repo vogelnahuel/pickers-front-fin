@@ -5,14 +5,14 @@ import { ReasonsCanceledConfirm } from './reasonsCanceledConfirm/ReasonsCanceled
 import { ReasonsCanceled } from './reasonsCanceled/ReasonsCanceled'
 import { History } from './history/History.js'
 import Reload from '../../../assets/transaction/Reload.svg'
-import {useDispatch} from 'react-redux'
+//import {useDispatch} from 'react-redux'
 import api from '../../../config/api'
-import { changeTest } from '../../../actions/transactionAction'
+//import { changeTest } from '../../../actions/transactionAction'
 
 
 export const OptionList = (props) => {
 
-    const dispatch = useDispatch()
+    //const dispatch = useDispatch()
     const FilterSelectedTransaction = props.FilterSelectedTransaction
     
     const [history, sethistory] = useState(true)

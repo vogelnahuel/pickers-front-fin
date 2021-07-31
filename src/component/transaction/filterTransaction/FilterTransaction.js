@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import $ from "jquery";
+import React, {  useCallback, useEffect, useState } from "react";
 import "./multipleSelect.scss";
 import desplegable from "../../../assets/admin/PendingUser/desplegable.svg";
 import "./FilterTransaction.scss";
@@ -9,51 +8,16 @@ import or from "../../../assets/admin/PendingUser/or.svg";
 import search from "../../../assets/admin/PendingUser/search.svg";
 import api from "../../../config/api";
 import moment from "moment";
+import Flecha from '../../../assets/admin/flechaAbajo.svg'
 
 export const FilterTransaction = (props) => {
   const setapiFilter = props.setapiFilter;
   const setexportDisabled = props.setexportDisabled;
 
-  /****cambiar el select all a todos */
-  $();
-  setTimeout(() => {
-    const es = document.querySelector(".ms-select-all label span");
-    if (es !== null) {
-      es.firstChild.textContent = "Todos";
-    }
-  }, 800);
 
-  /****script dinamicos */
-  useEffect(() => {
-    
-    const jqueryMin = document.createElement("script");
-    jqueryMin.src = "https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js";
-    document.body.appendChild(jqueryMin);
+ 
 
-    const multipleSelect = document.createElement("script");
-    multipleSelect.src =
-      "https://unpkg.com/multiple-select@1.5.2/dist/multiple-select.min.js";
-    document.body.appendChild(multipleSelect);
-
-    const multipleSelectScript = document.createElement("script");
-    multipleSelectScript.innerHTML = `
-        $(function () {
-            {
-                $('select').multipleSelect()
-            }
-            
-        })  `;
-
-    setTimeout(() => {
-      document.body.appendChild(multipleSelectScript);
-    }, 1400);
-
-    return () => {
-      document.body.removeChild(jqueryMin);
-      document.body.removeChild(multipleSelect);
-      document.body.removeChild(multipleSelectScript);
-    };
-  }, []);
+ 
 
   /****formatear fecha */
   const formatDate = (values) => {
@@ -75,7 +39,7 @@ export const FilterTransaction = (props) => {
   /****verificar el custom select checkbox cuales estan seleccionados y generar salida */
   const multipleSelectCheckbox = () => {
     let stringSelected = "";
-    const listaUlSelected = document.querySelectorAll(".ms-drop ul li");
+    const listaUlSelected = document.querySelectorAll(".multiple-labelCheckBox");
     let ArraySeleccionados = [];
     let j = 0;
 
@@ -98,15 +62,15 @@ export const FilterTransaction = (props) => {
           break;
         case 3:
           if (i !== 0) stringSelected += ",IN_PICK_UP_POINT";
-          else stringSelected += "IN_PICK_UP";
+          else stringSelected += "IN_PICK_UP_POINT";
           break;
         case 4:
           if (i !== 0) stringSelected += ",PICKED_UP";
-          else stringSelected += "IN_PICK_UP";
+          else stringSelected += "PICKED_UP";
           break;
         case 5:
           if (i !== 0) stringSelected += ",IN_DELIVERY_POINT";
-          else stringSelected += "IN_PICK_UP";
+          else stringSelected += "IN_DELIVERY_POINT";
           break;
         case 6:
           if (i !== 0) stringSelected += ",DELIVERED";
@@ -207,6 +171,154 @@ const EstaVacioFiltro = (values) => {
     );
   };
 
+
+/**********************multiple select logica******************************* */
+
+
+
+
+const checkboxInputAll = document.querySelectorAll('.multiple-checkboxInput');
+const inputValor = document.querySelector('#valorAmodificar');
+const [stateSeleccionados, setstateSeleccionados] = useState(0)
+let seleccionadosInput=stateSeleccionados;
+
+
+console.log(seleccionadosInput)
+
+
+
+
+const valorModificarFuncion = (e)=> {
+  e.preventDefault()
+  e.stopPropagation()
+ const opciones =  document.querySelector('#opciones');
+  opciones.style.display="block";
+}
+const pararPropagacion = (e)=>{
+  e.stopPropagation();
+}
+
+if(checkboxInputAll!==null)
+checkboxInputAll.forEach(inp => inp.addEventListener('click',  (e)=>{
+    
+  let todos = false;
+
+  if(e.target.checked===true){
+    seleccionadosInput++;
+  }
+  else if(e.target.checked===false){
+    seleccionadosInput--;
+  }
+
+  if(e.target.id==="Todos"){
+      if(e.target.checked===true){
+          checkboxInputAll.forEach(inputs=> inputs.checked=true)
+          inputValor.placeholder="Todos";
+          inputValor.classList.add('multiple-seleccionadoInputColor');
+          todos=true;
+          seleccionadosInput=(checkboxInputAll.length-1);
+         
+      }else  if(e.target.checked===false){
+          checkboxInputAll.forEach(inputs=> inputs.checked=false)
+          inputValor.placeholder="Seleccioná el estado";
+          inputValor.classList.remove('multiple-seleccionadoInputColor');
+          todos=false;
+          seleccionadosInput=(0);
+          
+      }
+  }
+
+  checkboxInputAll.forEach(inp => inp.checked===false  ?  inp.nextElementSibling.classList.remove('selected'):"" )
+
+  if(seleccionadosInput=== (checkboxInputAll.length-1 ) || todos ===true ) {
+      inputValor.placeholder="Todos";
+      inputValor.classList.add('multiple-seleccionadoInputColor');
+      checkboxInputAll[0].checked=true;
+     
+      checkboxInputAll.forEach(inp => inp.checked===true  ?  inp.nextElementSibling.classList.add('selected'):"" )
+  }
+  else if(seleccionadosInput!== (checkboxInputAll.length-1 ) && seleccionadosInput!== 0 && seleccionadosInput <= 3 )  {
+      inputValor.placeholder=""
+      checkboxInputAll.forEach(inp => inp.checked===true  ?  inputValor.placeholder+=inp.value+"," : "" )
+      inputValor.classList.add('multiple-seleccionadoInputColor');
+      checkboxInputAll[0].checked=false;
+      checkboxInputAll.forEach(inp => inp.checked===true  ?  inp.nextElementSibling.classList.add('selected'):"" )
+  }
+  else if(seleccionadosInput!== (checkboxInputAll.length-1 ) && seleccionadosInput!== 0 && seleccionadosInput > 3)  {
+      inputValor.placeholder=""
+      inputValor.placeholder=seleccionadosInput+" Seleccionados";
+      inputValor.classList.add('multiple-seleccionadoInputColor');
+      checkboxInputAll[0].checked=false;
+      checkboxInputAll.forEach(inp => inp.checked===true  ?  inp.nextElementSibling.classList.add('selected'):"" )
+  }
+  else if(seleccionadosInput=== 0 )  {
+      inputValor.placeholder="Seleccioná el estado";
+      inputValor.classList.remove('multiple-seleccionadoInputColor');
+      checkboxInputAll[0].checked=false;
+  }
+ 
+ 
+  if(seleccionadosInput!== 0 && seleccionadosInput!== (checkboxInputAll.length-1) && inputValor.placeholder[inputValor.placeholder.length-1]===","  ){
+      inputValor.placeholder=inputValor.placeholder.substring(0,inputValor.placeholder.length-1);
+  }
+
+}))
+
+
+const cerrarCheckbox = useCallback(
+  () => {
+    
+      const opciones =  document.querySelector('#opciones');
+      opciones.style.display="none";
+      
+       if(seleccionadosInput=== 0 )  {
+         if(inputValor!==null){
+          inputValor.placeholder="Seleccioná el estado";
+          inputValor.classList.remove('multiple-seleccionadoInputColor');
+         }
+         
+         
+        if(checkboxInputAll!==undefined && checkboxInputAll.length!==0){
+          checkboxInputAll[0].checked=false;
+        }
+        
+    }
+    
+    
+    
+    
+    setstateSeleccionados(seleccionadosInput);
+    
+    
+  },
+  [checkboxInputAll,seleccionadosInput,inputValor],
+)
+
+
+useEffect(() => {
+  window.removeEventListener('click',cerrarCheckbox)
+
+}, [cerrarCheckbox])
+
+//cerrar input y escribir las opciones
+window.addEventListener('click',cerrarCheckbox)
+
+
+
+//evitar que se propage el evento de hacer click en cualquier lado excepto en las opc
+if(document.querySelector('#opciones')!==null)
+document.querySelector('#opciones').addEventListener('click',pararPropagacion)
+
+
+
+
+
+
+
+
+
+  
+
   return (
     <div className="display-filter-transaction">
       <div className="filter-Imagen-width">
@@ -266,36 +378,73 @@ const EstaVacioFiltro = (values) => {
               </div>
             </div>
             <div>
-              <div>
-                <label className="label-filter-transaction">Estados </label>
-              </div>
-              <div>
+              
+              
                 <Field name="Estados" placeholder="Seleccioná el estado">
                   {() => (
-                    <select
-                      placeholder="Seleccioná el estado"
-                      multiple="multiple"
-                    >
-                      <option value="Sin asignar">Sin asignar</option>
-                      <option value="En retiro">En retiro</option>
-                      <option value="En punto de retiro">
-                        En punto de retiro
-                      </option>
-                      <option value="Retirado">Retirado</option>
-                      <option value="En lugar de entrega">
-                        En lugar de entrega
-                      </option>
-                      <option value="Entregado">Entregado</option>
-                      <option value="En devolución">En devolución</option>
-                      <option value="Devuelto a origen">
-                        Devuelto a origen
-                      </option>
-                      <option value="Siniestrado">Siniestrado</option>
-                      <option value="Cancelada">Cancelada</option>
-                    </select>
+                    <div className="multiple-selectbox">
+                          <div className="multiple-select" id="select">
+                              <div  onClick={valorModificarFuncion} className="multiple-contenido-select">
+                                  <h1>Estados</h1>
+                                
+                                  <div className="multiple-ContenedorInput">
+                                      <input placeholder="Seleccioná el estado" disabled className="multiple-input" type="text" value="" id="valorAmodificar"/>
+                                      <img className="multiple-flotarImg" src={Flecha} alt="flecha"/>
+                                  </div>
+                              </div>
+                          </div>
+                          <div   className="multiple-opciones" id="opciones">
+                  
+                              <div  className="multiple-contenido-opcion">
+                                  <input className="multiple-checkboxInput" type="checkbox" id="Todos"  value="" />
+                                  <label className="multiple-labelCheckBox" htmlFor="Todos">Todos</label>
+                              </div>
+                              <div className="multiple-contenido-opcion">
+                                  <input   className="multiple-checkboxInput" type="checkbox" id="sinAsignar" value="Sin asignar" />
+                                  <label className="multiple-labelCheckBox" htmlFor="sinAsignar">Sin asignar</label>
+                              </div>
+                              <div className="multiple-contenido-opcion"> 
+                                  <input  className="multiple-checkboxInput" type="checkbox" id="enRetiro" value="En retiro" />
+                                  <label className="multiple-labelCheckBox" htmlFor="enRetiro">En retiro</label>
+                              </div>
+                              <div  className="multiple-contenido-opcion">
+                                  <input  className="multiple-checkboxInput" type="checkbox" id="enPuntoDeRetiro" value="En punto de retiro" />
+                                  <label className="multiple-labelCheckBox" htmlFor="enPuntoDeRetiro">En punto de retiro</label>
+                              </div>
+                              <div  className="multiple-contenido-opcion">
+                                  <input  className="multiple-checkboxInput" type="checkbox" id="Retirado" value="Retirado" />
+                                  <label className="multiple-labelCheckBox" htmlFor="Retirado">Retirado</label>
+                              </div>
+                              <div  className="multiple-contenido-opcion">
+                                  <input  className="multiple-checkboxInput" type="checkbox" id="enLugarDeEntrega" value="En lugar de entrega"/>
+                                  <label className="multiple-labelCheckBox" htmlFor="enLugarDeEntrega">En lugar de entrega</label>
+                              </div>
+                              <div   className="multiple-contenido-opcion">
+                                  <input   className="multiple-checkboxInput" type="checkbox" id="Entregado" value="Entregado" />
+                                  <label className="multiple-labelCheckBox" htmlFor="Entregado">Entregado</label>
+                              </div>
+                              <div   className="multiple-contenido-opcion">
+                                  <input   className="multiple-checkboxInput" type="checkbox" id="enDevolucion" value="En devolución"/>
+                                  <label className="multiple-labelCheckBox" htmlFor="enDevolucion">En devolución</label>
+                              </div>
+                              <div   className="multiple-contenido-opcion">
+                                  <input  className="multiple-checkboxInput" type="checkbox" id="DevueltoAOrigen" value="Devuelto a origen"/>
+                                  <label className="multiple-labelCheckBox" htmlFor="DevueltoAOrigen">Devuelto a origen</label>
+                              </div>
+                              <div  className="multiple-contenido-opcion">
+                                  <input  className="multiple-checkboxInput" type="checkbox" id="Siniestrado" value="Siniestrado" />
+                                  <label className="multiple-labelCheckBox" htmlFor="Siniestrado">Siniestrado</label>
+                              </div>
+                              <div  className="multiple-contenido-opcion">
+                                  <input  className="multiple-checkboxInput" type="checkbox" id="Cancelada" value="Cancelada"/>
+                                  <label className="multiple-labelCheckBox" htmlFor="Cancelada">Cancelada</label>
+                              </div>
+                  
+                          </div>
+                    </div>
                   )}
                 </Field>
-              </div>
+              
             </div>
             <div>
               <Field
