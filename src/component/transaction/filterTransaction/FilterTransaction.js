@@ -53,7 +53,7 @@ export const FilterTransaction = (props) => {
     for (let i = 0; i < ArraySeleccionados.length; i++) {
       switch (ArraySeleccionados[i]) {
         case 1:
-          if (i !== 0) stringSelected += ",PENDING_ASSIGNMENT";
+          if (i !== 0) stringSelected += "PENDING_ASSIGNMENT";
           else stringSelected += "PENDING_ASSIGNMENT";
           break;
         case 2:
