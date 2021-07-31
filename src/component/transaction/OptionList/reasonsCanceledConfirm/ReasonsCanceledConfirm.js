@@ -27,7 +27,7 @@ export const ReasonsCanceledConfirm = (props) => {
          
             
             setreasonCancelConfirm(false);
-         }, 550);
+         }, 600);
         
         }
 

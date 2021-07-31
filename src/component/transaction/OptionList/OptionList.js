@@ -23,7 +23,7 @@ export const OptionList = (props) => {
 
     const handleClickCancel = (e) => {
 
-        dispatch(changeTest ("test2") )
+        //dispatch(changeTest ("test2") )
 
         e.preventDefault();  
 
@@ -33,10 +33,6 @@ export const OptionList = (props) => {
         document.querySelector('.modal-transaction-difuminar4').style.display="none";
         document.querySelector('.modal-transaction-difuminar5').style.display="none";
         document.querySelector('.modal-transaction-difuminar6').style.display="none";
-
-
-      
-       
 
         setreasonCancel(true);
         setTimeout(() => {
@@ -50,6 +46,7 @@ export const OptionList = (props) => {
 
             setTimeout(() => {
                 sethistory(false);
+                e.target.parentNode.parentNode.classList.remove('animation-left-transaction')
                 insert.removeChild(insert.firstChild);
             }, 500);
         }, 0);
@@ -77,7 +74,6 @@ export const OptionList = (props) => {
         
         setTimeout(() => {
             sethistory(false);
-           
             e.target.parentNode.parentNode.classList.remove('animation-left-transaction')
             insert.removeChild(insert.firstChild);
         }, 500);

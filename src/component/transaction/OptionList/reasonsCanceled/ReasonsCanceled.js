@@ -1,15 +1,17 @@
 import React, {useEffect, useState} from 'react'
-import volver from '../../../../assets/admin/PendingUser/volver.svg'
 import api from '../../../../config/api'
-
 import './reasonsCanceled.css'
+import volver from '../../../../assets/admin/PendingUser/volver.svg'
+
+
+
 
 
 
 export const ReasonsCanceled = (props) => {
     const [messages, setmessages] = useState()
   
-    const array = [1,2,3,4,5]
+   
     useEffect(() => {
        const cargarMensajes = async () => {
           setmessages( await api.get(`ms-admin-rest/api/v1.0/transactions/274/message`) 
@@ -26,8 +28,11 @@ export const ReasonsCanceled = (props) => {
 
     const setreasonCancelConfirm = props.setreasonCancelConfirm;
     const setreasonCancel = props.setreasonCancel;
+    const sethistory= props.sethistory;
 
-    const handleClickFinish = (e) => {
+
+const handleClickFinish = (e) => {
+     
         e.preventDefault();
         
         setreasonCancelConfirm(true);
@@ -43,23 +48,46 @@ export const ReasonsCanceled = (props) => {
             
             setTimeout(() => {
                 setreasonCancel(false);
-            
+                if(e.target.parentNode.parentNode.parentNode.parentNode.parentNode!==null)
                 e.target.parentNode.parentNode.parentNode.parentNode.parentNode.classList.remove('animation-left-transaction')
                 insert.removeChild(insert.firstChild);
             }, 500);
         }, 0);
     }
 
+const handleClickgoBack = (e) => {
+      
+        
+        e.target.parentNode.parentNode.parentNode.classList.add('animation-right-transaction')
+        
+        
+         setTimeout(() => {
+             
+            e.target.parentNode.parentNode.parentNode.classList.remove('animation-right-transaction')
+            sethistory(true);
+            if(e.target.parentNode.parentNode.parentNode!==null){
+                e.target.parentNode.parentNode.parentNode.parentNode.firstChild.classList.add('animation-right-transaction2')
+                e.target.parentNode.parentNode.parentNode.parentNode.firstChild.classList.remove('animation-right-transaction2')    
+            }
+           
+            
+            setreasonCancel(false);
+         }, 600);
+        
+}
+
 
     return (
         <div className="modal-transaction-reasonsCanceled">
-            <div className="modal-transaction-volver">
+            <div onClick={handleClickgoBack} className="modal-transaction-volver">
                 <img src={volver} alt ="volver" />
                 <p>Volver</p>
             </div>
             <div className="modal-transaction-scroll">
                     <p className="modal-transaction-reasonsCanceled-subtitle">Seleccioná el motivo de la cancelación</p>
+            {
 
+            
                     <div onClick={handleClickFinish} className="modal-transaction-reasonsCanceled-scroll">
                             
 
@@ -74,8 +102,9 @@ export const ReasonsCanceled = (props) => {
                             :null}
                             
                     </div>
+                     }
             </div>
-            
+                             
         </div>
     )
 }
