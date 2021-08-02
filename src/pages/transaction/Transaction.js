@@ -1,4 +1,4 @@
-import $ from "jquery";
+
 import React, { useEffect, useState } from "react";
 import { Header } from "../../component/admin/Header/Header";
 import { Nav } from "../../component/admin/Nav/Nav";
@@ -18,7 +18,7 @@ import api from "../../config/api.js";
 import createCSV from "../../tools/createCSV";
 
 export const Transaction = () => {
-  $();
+
   const [apiFilterTransaction, setapiFilter] = useState({});
   const [FilterSelectedTransaction, setFilterSelectedTransaction] = useState(
     {}
