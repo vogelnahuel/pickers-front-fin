@@ -293,6 +293,7 @@ const cerrarCheckbox = ()=>{
 }
 
 
+// eslint-disable-next-line react-hooks/exhaustive-deps
 const cerrarSelectBox = useMemo(() => cerrarCheckbox,[])
 
 
