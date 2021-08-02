@@ -1,4 +1,4 @@
-import React, {  useCallback, useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "./multipleSelect.scss";
 import desplegable from "../../../assets/admin/PendingUser/desplegable.svg";
 import "./FilterTransaction.scss";
@@ -293,13 +293,14 @@ const cerrarCheckbox = ()=>{
 }
 
 
-const cerrarSelectBox = useMemo(() => cerrarCheckbox)
+const cerrarSelectBox = useMemo(() => cerrarCheckbox,[])
 
 
 
 
 useEffect(() => {
   window.removeEventListener('click',cerrarSelectBox)
+
 
 }, [cerrarSelectBox])
 
