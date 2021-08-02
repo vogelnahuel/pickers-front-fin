@@ -31,7 +31,7 @@ const handleSubmit = (e) =>{
  
   if(password!=="" && password2!=="" && errorNumerosState!==true && errorMayusculasState!==true && errorCaracteresState!==true && errorDiferentesPassword!==true){
     
-    api.put('https://ms-admin.dev.mypickers.com/ms-admin-rest/api/v1.0/admin/change-password',{email:mail,verificationCode:cod,password:e.target.password.value})
+    api.put('/ms-admin-rest/api/v1.0/admin/change-password',{email:mail,verificationCode:cod,password:e.target.password.value})
     .then((response)=>{
       if(response.data.result.successful===true){
         setModalEnviadoIsOpen(true)
