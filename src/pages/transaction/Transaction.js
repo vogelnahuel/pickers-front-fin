@@ -36,7 +36,8 @@ export const Transaction = () => {
   
 
   const cargarDatos = async(e)=> {
-            
+    
+    setloader(true);
     setFilterSelectedTransaction( await  api.get(`/ms-admin-rest/api/v1.0/transactions/${Number(e.target.getAttribute('name'))}`) 
 
     .then((res) => {
@@ -47,7 +48,10 @@ export const Transaction = () => {
       .catch((err) => {
         console.log(err);
       }))   
+      setloader(false);
+      document.querySelector('.modal-transaction').style.height=`${document.body.scrollHeight+100}px`
      
+      
 }
 
 
@@ -166,7 +170,10 @@ export const Transaction = () => {
       );
     };
     cargarDatos();
+    
   }, []);
+
+  // tamaño  pagina document.body.scrollHeight
   //
   return (
     <div className="background-Grey">

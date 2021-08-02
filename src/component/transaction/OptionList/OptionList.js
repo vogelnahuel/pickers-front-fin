@@ -5,14 +5,14 @@ import { ReasonsCanceledConfirm } from './reasonsCanceledConfirm/ReasonsCanceled
 import { ReasonsCanceled } from './reasonsCanceled/ReasonsCanceled'
 import { History } from './history/History.js'
 import Reload from '../../../assets/transaction/Reload.svg'
-import {useDispatch} from 'react-redux'
+//import {useDispatch} from 'react-redux'
 import api from '../../../config/api'
-import { changeTest } from '../../../actions/transactionAction'
+//import { changeTest } from '../../../actions/transactionAction'
 
 
 export const OptionList = (props) => {
 
-    const dispatch = useDispatch()
+    //const dispatch = useDispatch()
     const FilterSelectedTransaction = props.FilterSelectedTransaction
     
     const [history, sethistory] = useState(true)
@@ -23,7 +23,7 @@ export const OptionList = (props) => {
 
     const handleClickCancel = (e) => {
 
-        dispatch(changeTest ("test2") )
+        //dispatch(changeTest ("test2") )
 
         e.preventDefault();  
 
@@ -33,10 +33,6 @@ export const OptionList = (props) => {
         document.querySelector('.modal-transaction-difuminar4').style.display="none";
         document.querySelector('.modal-transaction-difuminar5').style.display="none";
         document.querySelector('.modal-transaction-difuminar6').style.display="none";
-
-
-      
-       
 
         setreasonCancel(true);
         setTimeout(() => {
@@ -50,6 +46,7 @@ export const OptionList = (props) => {
 
             setTimeout(() => {
                 sethistory(false);
+                e.target.parentNode.parentNode.classList.remove('animation-left-transaction')
                 insert.removeChild(insert.firstChild);
             }, 500);
         }, 0);
@@ -77,7 +74,6 @@ export const OptionList = (props) => {
         
         setTimeout(() => {
             sethistory(false);
-           
             e.target.parentNode.parentNode.classList.remove('animation-left-transaction')
             insert.removeChild(insert.firstChild);
         }, 500);

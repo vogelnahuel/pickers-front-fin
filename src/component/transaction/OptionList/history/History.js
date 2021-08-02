@@ -189,7 +189,7 @@ export const History = (props) => {
      
             FilterTransactionHistoryReverse.map(historial => (
               
-              <>{historial.reasonTag.tag!=="state_assigned"?<>
+              <div key={historial.id} >{historial.reasonTag.tag!=="state_assigned"?<>
                <div className="modal-transaction-part" key={historial.id}>
                  {
                     historial.reasonTag.tag==="state_pickup_cancelled_temporally" || historial.reasonTag.tag==="state_pickup_cancelled_permanently"  ?
@@ -212,7 +212,7 @@ export const History = (props) => {
                         className="modal-transaction-img-connector"
                       />
                   </div></>:null}
-              </>
+              </div>
             ))
           }
           <div className="modal-transaction-part">

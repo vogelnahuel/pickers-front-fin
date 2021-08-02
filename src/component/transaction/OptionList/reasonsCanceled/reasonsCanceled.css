@@ -1,5 +1,6 @@
 .modal-transaction-reasonsCanceled{
     
+    margin-right: 26px;
   
 }
 .modal-transaction-volver{
@@ -16,7 +17,7 @@
 .modal-transaction-reasonsCanceled-scroll{
     height: 40vh;
     margin-right: 15vw;
-    overflow-y: scroll;
+    overflow-y: auto;
   
 }
 
@@ -58,7 +59,7 @@
     font-weight: 800;
     font-size: 20px;
     line-height: 25px;
-    text-align: center;
+    margin-left: 24.5vw;
     letter-spacing: 0.01em;
     color: #4D4D4D;
     margin-bottom: 20px;
