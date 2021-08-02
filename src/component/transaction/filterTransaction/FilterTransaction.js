@@ -1,4 +1,4 @@
-import React, {  useCallback, useEffect, useState } from "react";
+import React, {  useCallback, useEffect, useMemo, useState } from "react";
 import "./multipleSelect.scss";
 import desplegable from "../../../assets/admin/PendingUser/desplegable.svg";
 import "./FilterTransaction.scss";
@@ -265,41 +265,43 @@ checkboxInputAll.forEach(inp => inp.addEventListener('click',  (e)=>{
 }))
 
 
-const cerrarCheckbox = useCallback(
-  () => {
-    if(window.location.pathname==="/transaction"){
-      const opciones =  document.querySelector('#opciones');
-      opciones.style.display="none";
-      console.log("entre")
+const cerrarCheckbox = ()=>{
+  
+  if(window.location.pathname==="/transaction"){
+    const opciones =  document.querySelector('#opciones');
+    opciones.style.display="none";
+    console.log("entre")
+    
+     if(seleccionadosInput=== 0 )  {
+       if(inputValor!==null){
+        inputValor.placeholder="Seleccioná el estado";
+        inputValor.classList.remove('multiple-seleccionadoInputColor');
+       }
+       
+       
+      if(checkboxInputAll!==undefined && checkboxInputAll.length!==0){
+        checkboxInputAll[0].checked=false;
+      }
       
-       if(seleccionadosInput=== 0 )  {
-         if(inputValor!==null){
-          inputValor.placeholder="Seleccioná el estado";
-          inputValor.classList.remove('multiple-seleccionadoInputColor');
-         }
-         
-         
-        if(checkboxInputAll!==undefined && checkboxInputAll.length!==0){
-          checkboxInputAll[0].checked=false;
-        }
-        
-    }
-    }
-    
-    
-    
-    setstateSeleccionados(seleccionadosInput);
-    
-    
-  },
-  [checkboxInputAll,seleccionadosInput,inputValor],
-)
+  }
+  }
+  
+  
+  
+  setstateSeleccionados(seleccionadosInput);
+  
+}
+
+
+const cerrarSelectBox = useMemo(() => cerrarCheckbox)
+
+
 
 
 useEffect(() => {
-  window.removeEventListener('click',cerrarCheckbox)
+  window.removeEventListener('click',cerrarSelectBox)
 
-}, [cerrarCheckbox])
+}, [cerrarSelectBox])
 
 //cerrar input y escribir las opciones
 window.addEventListener('click',cerrarCheckbox)
