@@ -270,6 +270,7 @@ const cerrarCheckbox = useCallback(
     if(window.location.pathname==="/transaction"){
       const opciones =  document.querySelector('#opciones');
       opciones.style.display="none";
+      console.log("entre")
       
        if(seleccionadosInput=== 0 )  {
          if(inputValor!==null){
