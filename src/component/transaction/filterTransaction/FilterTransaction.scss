@@ -17,11 +17,15 @@
     line-height: 19px;
     letter-spacing: 0.0025em;
     color: #4D4D4D;
+    padding-top: 32px;
 }
 .filter-Imagen-width{
     display: inline-block;
     width: 20vw;
 
+}
+.filter-container{
+    display: flex;
 }
 .p-filter-transaction{
     display: inline-block;

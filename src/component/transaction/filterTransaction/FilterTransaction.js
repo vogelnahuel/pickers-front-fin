@@ -104,7 +104,7 @@ export const FilterTransaction = (props) => {
 const EstaVacioFiltro = (values) => {
   
 
-   console.log(values.Picker)
+ 
 
     if ( (Object.keys(values).length  >= 1) &&  (values.Picker!==undefined || values.FechaEntrega!==undefined || values.nroTransaccion!==undefined ) )  {
       return false;
@@ -183,7 +183,7 @@ const [stateSeleccionados, setstateSeleccionados] = useState(0)
 let seleccionadosInput=stateSeleccionados;
 
 
-console.log(seleccionadosInput)
+
 
 
 
@@ -267,7 +267,7 @@ checkboxInputAll.forEach(inp => inp.addEventListener('click',  (e)=>{
 
 const cerrarCheckbox = useCallback(
   () => {
-    
+    if(window.location.pathname==="/transaction"){
       const opciones =  document.querySelector('#opciones');
       opciones.style.display="none";
       
@@ -283,7 +283,7 @@ const cerrarCheckbox = useCallback(
         }
         
     }
-    
+    }
     
     
     
@@ -320,157 +320,157 @@ document.querySelector('#opciones').addEventListener('click',pararPropagacion)
   
 
   return (
-    <div className="display-filter-transaction">
-      <div className="filter-Imagen-width">
-        <img
-          className="img-filter-transaction"
-          src={desplegable}
-          alt="desplegable"
-        />
-        <p className="p-filter-transaction">Filtros</p>
+      <div className="display-filter-transaction">
+        <div className="filter-Imagen-width">
+          <img
+            className="img-filter-transaction"
+            src={desplegable}
+            alt="desplegable"
+          />
+          <p className="p-filter-transaction">Filtros</p>
 
+        </div>
+        <Form onSubmit={onSubmit}>
+          {({ handleSubmit }) => (
+            <form className="form-filter-transaction" onSubmit={handleSubmit}>
+              <div>
+                <div>
+                  <label className="label-filter-transaction">
+                    Número de transacción{" "}
+                  </label>
+                </div>
+                <div>
+                  <Field
+                    type="text"
+                    name="nroTransaccion"
+                    component="input"
+                    placeholder="Ingresá el número"
+                  />
+                </div>
+              </div>
+              <div>
+                <div>
+                  <label className="label-filter-transaction">Picker</label>
+                </div>
+                <div>
+                  <Field
+                    type="text"
+                    name="Picker"
+                    component="input"
+                    placeholder="Ingresá el número de picker"
+                  />
+                </div>
+              </div>
+              <div className="datePicker-filter-transaction">
+                <div>
+                  <label className="label-filter-transaction">
+                    Fecha de entrega
+                  </label>
+                </div>
+                <div>
+                  <Field
+                    type="text"
+                    className=""
+                    name="FechaEntrega"
+                    component={DatePicker}
+                    placeholder="Seleccioná la fecha"
+                  />
+                </div>
+              </div>
+              <div>
+                
+                
+                  <Field name="Estados" placeholder="Seleccioná el estado">
+                    {() => (
+                      <div className="multiple-selectbox">
+                            <div className="multiple-select" id="select">
+                                <div  onClick={valorModificarFuncion} className="multiple-contenido-select">
+                                    <h1>Estados</h1>
+                                  
+                                    <div className="multiple-ContenedorInput">
+                                        <input placeholder="Seleccioná el estado" disabled className="multiple-input" type="text" value="" id="valorAmodificar"/>
+                                        <img className="multiple-flotarImg" src={Flecha} alt="flecha"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div   className="multiple-opciones" id="opciones">
+                    
+                                <div  className="multiple-contenido-opcion">
+                                    <input className="multiple-checkboxInput" type="checkbox" id="Todos"  value="" />
+                                    <label className="multiple-labelCheckBox" htmlFor="Todos">Todos</label>
+                                </div>
+                                <div className="multiple-contenido-opcion">
+                                    <input   className="multiple-checkboxInput" type="checkbox" id="sinAsignar" value="Sin asignar" />
+                                    <label className="multiple-labelCheckBox" htmlFor="sinAsignar">Sin asignar</label>
+                                </div>
+                                <div className="multiple-contenido-opcion"> 
+                                    <input  className="multiple-checkboxInput" type="checkbox" id="enRetiro" value="En retiro" />
+                                    <label className="multiple-labelCheckBox" htmlFor="enRetiro">En retiro</label>
+                                </div>
+                                <div  className="multiple-contenido-opcion">
+                                    <input  className="multiple-checkboxInput" type="checkbox" id="enPuntoDeRetiro" value="En punto de retiro" />
+                                    <label className="multiple-labelCheckBox" htmlFor="enPuntoDeRetiro">En punto de retiro</label>
+                                </div>
+                                <div  className="multiple-contenido-opcion">
+                                    <input  className="multiple-checkboxInput" type="checkbox" id="Retirado" value="Retirado" />
+                                    <label className="multiple-labelCheckBox" htmlFor="Retirado">Retirado</label>
+                                </div>
+                                <div  className="multiple-contenido-opcion">
+                                    <input  className="multiple-checkboxInput" type="checkbox" id="enLugarDeEntrega" value="En lugar de entrega"/>
+                                    <label className="multiple-labelCheckBox" htmlFor="enLugarDeEntrega">En lugar de entrega</label>
+                                </div>
+                                <div   className="multiple-contenido-opcion">
+                                    <input   className="multiple-checkboxInput" type="checkbox" id="Entregado" value="Entregado" />
+                                    <label className="multiple-labelCheckBox" htmlFor="Entregado">Entregado</label>
+                                </div>
+                                <div   className="multiple-contenido-opcion">
+                                    <input   className="multiple-checkboxInput" type="checkbox" id="enDevolucion" value="En devolución"/>
+                                    <label className="multiple-labelCheckBox" htmlFor="enDevolucion">En devolución</label>
+                                </div>
+                                <div   className="multiple-contenido-opcion">
+                                    <input  className="multiple-checkboxInput" type="checkbox" id="DevueltoAOrigen" value="Devuelto a origen"/>
+                                    <label className="multiple-labelCheckBox" htmlFor="DevueltoAOrigen">Devuelto a origen</label>
+                                </div>
+                                <div  className="multiple-contenido-opcion">
+                                    <input  className="multiple-checkboxInput" type="checkbox" id="Siniestrado" value="Siniestrado" />
+                                    <label className="multiple-labelCheckBox" htmlFor="Siniestrado">Siniestrado</label>
+                                </div>
+                                <div  className="multiple-contenido-opcion">
+                                    <input  className="multiple-checkboxInput" type="checkbox" id="Cancelada" value="Cancelada"/>
+                                    <label className="multiple-labelCheckBox" htmlFor="Cancelada">Cancelada</label>
+                                </div>
+                    
+                            </div>
+                      </div>
+                    )}
+                  </Field>
+                
+              </div>
+              <div className="filter-container">
+                <Field
+                  id="checkbox-filter-transaction"
+                  name="enAlerta"
+                  component="input"
+                  type="checkbox"
+                />
+                <label className="label-filter-transaction display-inline">
+                  En alerta
+                </label>
+              </div>
+              <div className="container-button-width">
+                <button
+                  className="search-button-transaction"
+                  name="search"
+                  type="submit"
+                >
+                  <img src={search} alt="export" />
+                  <img className="or-filter" src={or} alt="or" />
+                  <p className="display-inline-block p-export"> Buscar</p>
+                </button>
+              </div>
+            </form>
+          )}
+        </Form>
       </div>
-      <Form onSubmit={onSubmit}>
-        {({ handleSubmit }) => (
-          <form className="form-filter-transaction" onSubmit={handleSubmit}>
-            <div>
-              <div>
-                <label className="label-filter-transaction">
-                  Número de transacción{" "}
-                </label>
-              </div>
-              <div>
-                <Field
-                  type="text"
-                  name="nroTransaccion"
-                  component="input"
-                  placeholder="Ingresá el número"
-                />
-              </div>
-            </div>
-            <div>
-              <div>
-                <label className="label-filter-transaction">Picker</label>
-              </div>
-              <div>
-                <Field
-                  type="text"
-                  name="Picker"
-                  component="input"
-                  placeholder="Ingresá el número de picker"
-                />
-              </div>
-            </div>
-            <div className="datePicker-filter-transaction">
-              <div>
-                <label className="label-filter-transaction">
-                  Fecha de entrega
-                </label>
-              </div>
-              <div>
-                <Field
-                  type="text"
-                  className=""
-                  name="FechaEntrega"
-                  component={DatePicker}
-                  placeholder="Seleccioná la fecha"
-                />
-              </div>
-            </div>
-            <div>
-              
-              
-                <Field name="Estados" placeholder="Seleccioná el estado">
-                  {() => (
-                    <div className="multiple-selectbox">
-                          <div className="multiple-select" id="select">
-                              <div  onClick={valorModificarFuncion} className="multiple-contenido-select">
-                                  <h1>Estados</h1>
-                                
-                                  <div className="multiple-ContenedorInput">
-                                      <input placeholder="Seleccioná el estado" disabled className="multiple-input" type="text" value="" id="valorAmodificar"/>
-                                      <img className="multiple-flotarImg" src={Flecha} alt="flecha"/>
-                                  </div>
-                              </div>
-                          </div>
-                          <div   className="multiple-opciones" id="opciones">
-                  
-                              <div  className="multiple-contenido-opcion">
-                                  <input className="multiple-checkboxInput" type="checkbox" id="Todos"  value="" />
-                                  <label className="multiple-labelCheckBox" htmlFor="Todos">Todos</label>
-                              </div>
-                              <div className="multiple-contenido-opcion">
-                                  <input   className="multiple-checkboxInput" type="checkbox" id="sinAsignar" value="Sin asignar" />
-                                  <label className="multiple-labelCheckBox" htmlFor="sinAsignar">Sin asignar</label>
-                              </div>
-                              <div className="multiple-contenido-opcion"> 
-                                  <input  className="multiple-checkboxInput" type="checkbox" id="enRetiro" value="En retiro" />
-                                  <label className="multiple-labelCheckBox" htmlFor="enRetiro">En retiro</label>
-                              </div>
-                              <div  className="multiple-contenido-opcion">
-                                  <input  className="multiple-checkboxInput" type="checkbox" id="enPuntoDeRetiro" value="En punto de retiro" />
-                                  <label className="multiple-labelCheckBox" htmlFor="enPuntoDeRetiro">En punto de retiro</label>
-                              </div>
-                              <div  className="multiple-contenido-opcion">
-                                  <input  className="multiple-checkboxInput" type="checkbox" id="Retirado" value="Retirado" />
-                                  <label className="multiple-labelCheckBox" htmlFor="Retirado">Retirado</label>
-                              </div>
-                              <div  className="multiple-contenido-opcion">
-                                  <input  className="multiple-checkboxInput" type="checkbox" id="enLugarDeEntrega" value="En lugar de entrega"/>
-                                  <label className="multiple-labelCheckBox" htmlFor="enLugarDeEntrega">En lugar de entrega</label>
-                              </div>
-                              <div   className="multiple-contenido-opcion">
-                                  <input   className="multiple-checkboxInput" type="checkbox" id="Entregado" value="Entregado" />
-                                  <label className="multiple-labelCheckBox" htmlFor="Entregado">Entregado</label>
-                              </div>
-                              <div   className="multiple-contenido-opcion">
-                                  <input   className="multiple-checkboxInput" type="checkbox" id="enDevolucion" value="En devolución"/>
-                                  <label className="multiple-labelCheckBox" htmlFor="enDevolucion">En devolución</label>
-                              </div>
-                              <div   className="multiple-contenido-opcion">
-                                  <input  className="multiple-checkboxInput" type="checkbox" id="DevueltoAOrigen" value="Devuelto a origen"/>
-                                  <label className="multiple-labelCheckBox" htmlFor="DevueltoAOrigen">Devuelto a origen</label>
-                              </div>
-                              <div  className="multiple-contenido-opcion">
-                                  <input  className="multiple-checkboxInput" type="checkbox" id="Siniestrado" value="Siniestrado" />
-                                  <label className="multiple-labelCheckBox" htmlFor="Siniestrado">Siniestrado</label>
-                              </div>
-                              <div  className="multiple-contenido-opcion">
-                                  <input  className="multiple-checkboxInput" type="checkbox" id="Cancelada" value="Cancelada"/>
-                                  <label className="multiple-labelCheckBox" htmlFor="Cancelada">Cancelada</label>
-                              </div>
-                  
-                          </div>
-                    </div>
-                  )}
-                </Field>
-              
-            </div>
-            <div>
-              <Field
-                id="checkbox-filter-transaction"
-                name="enAlerta"
-                component="input"
-                type="checkbox"
-              />
-              <label className="label-filter-transaction display-inline">
-                En alerta
-              </label>
-            </div>
-            <div className="container-button-width">
-              <button
-                className="search-button-transaction"
-                name="search"
-                type="submit"
-              >
-                <img src={search} alt="export" />
-                <img className="or-filter" src={or} alt="or" />
-                <p className="display-inline-block p-export"> Buscar</p>
-              </button>
-            </div>
-          </form>
-        )}
-      </Form>
-    </div>
   );
 };
