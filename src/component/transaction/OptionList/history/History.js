@@ -18,8 +18,6 @@ export const History = (props) => {
   let FilterTransactionHistoryReverse =  FilterTransactionHistory ? JSON.parse(JSON.stringify(FilterTransactionHistory)) : [];
   FilterTransactionHistoryReverse = FilterTransactionHistoryReverse.reverse();
 
-  // console.log(FilterTransaction)
-
   const convertirNombre = (tag) => {
 
     switch (tag) {
@@ -75,9 +73,7 @@ export const History = (props) => {
     return tag
   }
 
-console.log(FilterTransaction)
-  
-  // console.log(FilterTransaction,"transaction")
+
   return (
     <div className="modal-transaction-optionContainer-scroll">
       <Form

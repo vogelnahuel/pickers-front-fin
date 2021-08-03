@@ -291,7 +291,7 @@ const cerrarSelectBox = useMemo(() => cerrarCheckbox,[])
 
 
 useEffect(() => {
-  console.log("entre")
+  
 
   window.addEventListener('click',cerrarCheckbox)
   if(document.querySelector('#opciones')!==null)
