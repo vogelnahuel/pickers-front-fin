@@ -174,18 +174,10 @@ const EstaVacioFiltro = (values) => {
 
 /**********************multiple select logica******************************* */
 
-
-
-
 const checkboxInputAll = document.querySelectorAll('.multiple-checkboxInput');
 const inputValor = document.querySelector('#valorAmodificar');
 const [stateSeleccionados, setstateSeleccionados] = useState(0)
 let seleccionadosInput=stateSeleccionados;
-
-
-
-
-
 
 
 const valorModificarFuncion = (e)=> {
@@ -196,6 +188,7 @@ const valorModificarFuncion = (e)=> {
 }
 const pararPropagacion = (e)=>{
   e.stopPropagation();
+  window.removeEventListener('click',cerrarSelectBox)
 }
 
 if(checkboxInputAll!==null)
@@ -270,7 +263,7 @@ const cerrarCheckbox = ()=>{
   if(window.location.pathname==="/transaction"){
     const opciones =  document.querySelector('#opciones');
     opciones.style.display="none";
-    console.log("entre")
+   
     
      if(seleccionadosInput=== 0 )  {
        if(inputValor!==null){
@@ -285,9 +278,7 @@ const cerrarCheckbox = ()=>{
       
   }
   }
-  
-  
-  
+
   setstateSeleccionados(seleccionadosInput);
   
 }
@@ -300,29 +291,20 @@ const cerrarSelectBox = useMemo(() => cerrarCheckbox,[])
 
 
 useEffect(() => {
-  window.removeEventListener('click',cerrarSelectBox)
+  console.log("entre")
 
+  window.addEventListener('click',cerrarCheckbox)
+  if(document.querySelector('#opciones')!==null)
+  document.querySelector('#opciones').addEventListener('click',pararPropagacion)
+  return(()=>{
+    window.removeEventListener('click',cerrarSelectBox)
+    if(document.querySelector('#opciones')!==null)
+    document.querySelector('#opciones').removeEventListener('click',pararPropagacion)
+  })
+ 
 
-}, [cerrarSelectBox])
+}, )
 
-//cerrar input y escribir las opciones
-window.addEventListener('click',cerrarCheckbox)
-
-
-
-//evitar que se propage el evento de hacer click en cualquier lado excepto en las opc
-if(document.querySelector('#opciones')!==null)
-document.querySelector('#opciones').addEventListener('click',pararPropagacion)
-
-
-
-
-
-
-
-
-
-  
 
   return (
       <div className="display-filter-transaction">
@@ -458,7 +440,7 @@ document.querySelector('#opciones').addEventListener('click',pararPropagacion)
                   component="input"
                   type="checkbox"
                 />
-                <label className="label-filter-transaction display-inline">
+                <label id="padding" className="label-filter-transaction display-inline">
                   En alerta
                 </label>
               </div>
