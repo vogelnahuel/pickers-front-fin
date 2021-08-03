@@ -1,15 +1,21 @@
 import React from 'react'
 import volver from '../../../../assets/admin/PendingUser/volver.svg'
 import Info  from '../../../../assets/transaction/Info.svg'
+import api from '../../../../config/api'
+import { FilterTransaction } from '../../filterTransaction/FilterTransaction'
 import './reasonsCanceledConfirm.css'
 
 export const ReasonsCanceledConfirm = (props) => {
 
     const setreasonCancel = props.setreasonCancel;
     const setreasonCancelConfirm = props.setreasonCancelConfirm;
+    const reasonId = props.reasonId; 
+    const FilterSelectedTransaction = props.FilterSelectedTransaction
 
     const handleClickCancelConfirm = (e)=> {
-        window.location.reload();
+        console.log(FilterSelectedTransaction.transaction.id)
+        api.post(`ms-pickers-rest/api/v1.0/transactions/${FilterSelectedTransaction.transaction.id}/cancel`,{"cancellationReasonId":parseInt(reasonId)}).then(console.log("ok")).catch()
+       // window.location.reload();
     }
 
 

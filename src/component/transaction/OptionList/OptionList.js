@@ -17,6 +17,7 @@ export const OptionList = (props) => {
     
     const [history, sethistory] = useState(true)
     const [reasonCancel, setreasonCancel] = useState(false);
+    const [reasonId, setreasonId] = useState({})
     const [reasonCancelConfirm, setreasonCancelConfirm] = useState(false);
     const [finishModal, setfinishModal] = useState(false);
    
@@ -144,7 +145,9 @@ export const OptionList = (props) => {
                                         <ReasonsCanceled
                                         setreasonCancel={setreasonCancel}
                                         setreasonCancelConfirm={setreasonCancelConfirm}
+                                        setreasonId={setreasonId}
                                         sethistory={sethistory}
+                                        FilterSelectedTransaction={FilterSelectedTransaction}
                                         />
                                     </div>
                             </>
@@ -157,7 +160,9 @@ export const OptionList = (props) => {
 
                          <ReasonsCanceledConfirm
                           setreasonCancel={setreasonCancel}
+                          reasonId={reasonId}
                           setreasonCancelConfirm={setreasonCancelConfirm}
+                          FilterSelectedTransaction={FilterSelectedTransaction}
                          />
                         </>
                         : null
