@@ -14,7 +14,11 @@ export const ReasonsCanceledConfirm = (props) => {
 
     const handleClickCancelConfirm = (e)=> {
         console.log(FilterSelectedTransaction.transaction.id)
-        api.post(`ms-pickers-rest/api/v1.0/transactions/${FilterSelectedTransaction.transaction.id}/cancel`,{"cancellationReasonId":parseInt(reasonId)}).then(console.log("ok")).catch()
+        api.post(`/ms-pickers-rest/api/v1.0/transactions/309/cancel`,{"cancellationReasonId": 3})
+        .then(console.log("ok"))
+        .catch( err => {
+            
+        })
        // window.location.reload();
     }
 
