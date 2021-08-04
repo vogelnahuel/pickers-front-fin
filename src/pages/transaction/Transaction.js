@@ -32,7 +32,7 @@ export const Transaction = () => {
   const [VerMas, setVerMas] = useState(true)
   const [OpenModalTransaction, setOpenModalTransaction] = useState(false);
   const [IdModalApi, setIdModalApi] = useState(""); // devuelve la consulta api
-  const titulos = ["Transacción", "Picker", "Fecha de entrega", "Estado"];
+  const titulos = ["Transacción", "Id de picker", "Vencimiento SLA", "Estado"];
   
 
   const cargarDatos = async(e)=> {
@@ -258,7 +258,7 @@ export const Transaction = () => {
           <div className="modal-transaction">
             <Modal
               width="87.116vw"
-              height="80.72916666666667vh"
+              height="81.72916666666667vh"
               isOpen={OpenModalTransaction}
               onClose={onClose}
             >
@@ -271,17 +271,19 @@ export const Transaction = () => {
                 />
                 <div>
                   <div className="modal-transaction-title">
-                    <h2>Número de transacción</h2>
+                    <h2>Código de transacción</h2>
                       <p>Estado 
-                          {  FilterSelectedTransaction.transaction && 
+                          
+                      </p>
+                    <p className="modal-transaction-fecha">
+                    {  FilterSelectedTransaction.transaction && 
                               FilterSelectedTransaction.transaction.inAlert===true ? 
                               <>
-                              <span className="admin-table-alerta">En alerta</span>
+                              <span className="admin-table-alerta modal-transaction-alerta">En alerta</span>
                               </>
-                              : null
+                              : <span className="modal-transaction-space"></span>
                             }
-                      </p>
-                    <p className="modal-transaction-fecha">Fecha entrega</p>
+                      Vencimiento SLA</p>
                   </div>
                   <div className="modal-transaction-subtitle">
                     <h2>
@@ -303,11 +305,14 @@ export const Transaction = () => {
                         ? FilterSelectedTransaction.transaction.maxDeliveryDateTime.substring(
                             0,
                             10
+                          )+" "+FilterSelectedTransaction.transaction.maxDeliveryDateTime.substring(
+                            11,
+                            16
                           )
                         : ""}{" "}
                     </p>
                   </div>
-                  <hr className="modal-transaction-separate" />
+                  <hr className="modal-transaction-separate" id="modal-transaction-hr-title"/>
                 </div>
                 <div className="modal-transaction-scroll">
                   <OptionList

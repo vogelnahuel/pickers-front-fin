@@ -129,7 +129,9 @@ export const History = (props) => {
                   />
                 </div>
               </div>
-
+              <Link target="_blank" rel="noopener noreferrer" to={ FilterTransaction.picker && FilterTransaction.picker.id!==null ? `activeUserAdminpicker/${FilterTransaction.picker.id}` : "#"}><button type="button" className="modal-transaction-button-irApicker">
+              Ir a picker
+            </button></Link>
               <div>
                 <div>
                   <label className="label-filter-transaction">
@@ -171,14 +173,12 @@ export const History = (props) => {
                 </div>
               </div>
             </div>
-           <Link target="_blank" rel="noopener noreferrer" to={ FilterTransaction.picker && FilterTransaction.picker.id!==null ? `activeUserAdminpicker/${FilterTransaction.picker.id}` : "#"}><button type="button" className="modal-transaction-button-irApicker">
-              Ir a picker
-            </button></Link>
+          
           </form>
         )}
       </Form>
       <div>
-          <h3 className="modal-transaction-h3">Consumidor final</h3>
+          <h3 className="modal-transaction-h3" id="modal-transaction-history-Final">Consumidor final</h3>
           <hr className="modal-transaction-separate-option" />
           <Form onSubmit={()=>{}}
           initialValues={{
@@ -187,7 +187,7 @@ export const History = (props) => {
             
           }}
           >
-          {({  }) => (
+          {({ handleSubmit }) => (
           <form className="form-filter-modal" >
               <div className="modal-transaction-inputs">
                     <div>
@@ -229,7 +229,7 @@ export const History = (props) => {
 
       <div  key={FilterTransactionHistoryReverse.id}>
             <h3 className="modal-transaction-h3">Historial</h3>
-            <hr className="modal-transaction-separate-option" />
+            <hr className="modal-transaction-separate-option " />
             <section className="modal-transaction-section-history">
             {
      

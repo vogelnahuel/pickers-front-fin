@@ -35,7 +35,7 @@
     border: 0;
     border-bottom: 1px solid #828282;
     width: 19.69vw;
-    margin-right: 26px;
+    margin-right: 20px;
     outline: none;
     margin-bottom: 18px;
     font-family: 'Mulish';
@@ -48,13 +48,12 @@
 }
 .form-filter-modal{
     margin-top: 13px;
-    margin-bottom: 10px;
 }
 .form-filter-modal div div input{
     border: 0;
     border-bottom: 1px solid #828282;
     width: 19.69vw;
-    margin-right: 26px;
+    margin-right: 20px;
     outline: none;
     margin-bottom: 25px;
     font-family: 'Mulish';
@@ -64,4 +63,7 @@
     line-height: 21px;
     letter-spacing: 0px;
     color: black;
+}
+#modal-transaction-history-Final{
+    margin-top: 7px;
 }
