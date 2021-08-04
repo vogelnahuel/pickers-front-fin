@@ -262,14 +262,9 @@ const cerrarCheckbox = ()=>{
   
   if(window.location.pathname==="/transaction" ){
     const opciones =  document.querySelector('#opciones');
-<<<<<<< HEAD
     console.log(opciones)
    if(opciones ){ opciones.style.display="none";
 
-=======
-    opciones.style.display="none";
-   
->>>>>>> develop
     
      if(seleccionadosInput=== 0 )  {
        if(inputValor!==null){
@@ -284,13 +279,9 @@ const cerrarCheckbox = ()=>{
       
   }
   }
-<<<<<<< HEAD
   
   }
   
-=======
-
->>>>>>> develop
   setstateSeleccionados(seleccionadosInput);
   
 }
