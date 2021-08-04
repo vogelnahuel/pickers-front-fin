@@ -267,6 +267,8 @@
 .modal-transaction-close{
     margin-left: 81vw;
     cursor: pointer;
+    width: 30px;
+    margin-top: 22px;
 }
 .flexItems{
     display: flex;
@@ -292,12 +294,6 @@
     width: 93.5%;
 }
 
-@media (min-height: 800px) { 
-
-    .modal-transaction-container{
-        margin-top:5vh
-    }
-}
 
 @media (min-width: 1800px) {
 

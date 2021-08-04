@@ -201,11 +201,7 @@ console.log(FilterTransaction)
             
           }}
           >
-<<<<<<< HEAD
           {({ handleSumbit  }) => (
-=======
-          {({ handleSubmit }) => (
->>>>>>> 42fb9f655d8923eba26e8b8feab6419714d1909e
           <form className="form-filter-modal" >
               <div className="modal-transaction-inputs">
                     <div>
