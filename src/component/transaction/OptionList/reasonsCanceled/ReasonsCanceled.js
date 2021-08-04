@@ -14,7 +14,7 @@ export const ReasonsCanceled = (props) => {
    
     useEffect(() => {
        const cargarMensajes = async () => {
-          setmessages( await api.get(`ms-admin-rest/api/v1.0/transactions/274/message`) 
+          setmessages( await api.get(`ms-admin-rest/api/v1.0/transactions/${props.FilterSelectedTransaction.transaction.id}/message`) 
            .then((res) => {
            
             return res.data.result.items;
@@ -24,18 +24,20 @@ export const ReasonsCanceled = (props) => {
           }))
        }
        cargarMensajes();
-    }, [])
+    }, [props.FilterSelectedTransaction.transaction.id])
 
     const setreasonCancelConfirm = props.setreasonCancelConfirm;
     const setreasonCancel = props.setreasonCancel;
     const sethistory= props.sethistory;
-
+    const setreasonId=props.setreasonId;
 
 const handleClickFinish = (e) => {
      
         e.preventDefault();
         
         setreasonCancelConfirm(true);
+       setreasonId( e.target.attributes[0].value)
+        
         
         setTimeout(() => {
             e.target.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add('animation-left-transaction')
@@ -88,18 +90,19 @@ const handleClickgoBack = (e) => {
             {
 
             
-                    <div onClick={handleClickFinish} className="modal-transaction-reasonsCanceled-scroll">
-                            
+                    <div  className="modal-transaction-reasonsCanceled-scroll">
+                          
 
                             {
                               messages? messages.map((message)=>(
 
-                                <div className="modal-transaction-reason-container">
-                                <p>{message.message}</p>
+                                <div  className="modal-transaction-reason-container">
+                                <p  onClick={handleClickFinish} key={message.id} value={message.id}>{message.message}</p>
                             </div>
                                )
                                )
                             :null}
+                             
                             
                     </div>
                      }

@@ -4,7 +4,6 @@ const api = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
   headers: {
     "country-code":"ar",
-    "accessToken": `${window.localStorage.getItem('token')}`,
     "Authorization":`Bearer ${window.localStorage.getItem('token')}`
  
   },
@@ -13,14 +12,7 @@ const api = axios.create({
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response && error.response.status === 403) {
-      window.localStorage.removeItem('token');
-      api.defaults.headers = {
-        apiKey: null,
-      };
-     
-    }
-    return Promise.reject(error);
+   
  },
 );
 
