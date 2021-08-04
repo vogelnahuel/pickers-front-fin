@@ -73,7 +73,7 @@ export const History = (props) => {
     return tag
   }
 
-
+console.log(FilterTransaction)
   return (
     <div className="modal-transaction-optionContainer-scroll">
       <Form
@@ -119,17 +119,33 @@ export const History = (props) => {
 
               <div>
                 <div>
-                  <label className="label-filter-transaction">Teléfono </label>
+                  <label className="label-filter-transaction">Código de área * </label>
                 </div>
-                <div className="modal-transaction-input">
+                <div className="modal-transaction-input-tel" id="modal-transaction-input-tel">
                   <Field
-                    name="Telefono"
+                    name="codArea"
                     component="input"
-                    placeholder="Seleccioná el estado"
+                    placeholder="Seleccioná el cod area"
                   />
                 </div>
               </div>
 
+              <div>
+                <div>
+                  <label className="label-filter-transaction">Teléfono </label>
+                </div>
+                <div className="modal-transaction-input-tel" id="modal-transaction-input-tel2">
+                  <Field
+                    name="Telefono"
+                    component="input"
+                    placeholder="Seleccioná el telefono"
+                  />
+                </div>
+              </div>
+
+              <Link target="_blank" rel="noopener noreferrer" to={ FilterTransaction.picker && FilterTransaction.picker.id!==null ? `activeUserAdminpicker/${FilterTransaction.picker.id}` : "#"}><button type="button" className="modal-transaction-button-irApicker">
+              Ir a picker
+            </button></Link>
               <div>
                 <div>
                   <label className="label-filter-transaction">
@@ -171,14 +187,12 @@ export const History = (props) => {
                 </div>
               </div>
             </div>
-           <Link target="_blank" rel="noopener noreferrer" to={ FilterTransaction.picker && FilterTransaction.picker.id!==null ? `activeUserAdminpicker/${FilterTransaction.picker.id}` : "#"}><button type="button" className="modal-transaction-button-irApicker">
-              Ir a picker
-            </button></Link>
+          
           </form>
         )}
       </Form>
       <div>
-          <h3 className="modal-transaction-h3">Consumidor final</h3>
+          <h3 className="modal-transaction-h3" id="modal-transaction-history-Final">Consumidor final</h3>
           <hr className="modal-transaction-separate-option" />
           <Form onSubmit={()=>{}}
           initialValues={{
@@ -187,7 +201,11 @@ export const History = (props) => {
             
           }}
           >
+<<<<<<< HEAD
           {({ handleSumbit  }) => (
+=======
+          {({ handleSubmit }) => (
+>>>>>>> 42fb9f655d8923eba26e8b8feab6419714d1909e
           <form className="form-filter-modal" >
               <div className="modal-transaction-inputs">
                     <div>
@@ -229,7 +247,7 @@ export const History = (props) => {
 
       <div  key={FilterTransactionHistoryReverse.id}>
             <h3 className="modal-transaction-h3">Historial</h3>
-            <hr className="modal-transaction-separate-option" />
+            <hr className="modal-transaction-separate-option " />
             <section className="modal-transaction-section-history">
             {
      
