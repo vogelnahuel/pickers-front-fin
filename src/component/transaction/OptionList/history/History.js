@@ -18,8 +18,6 @@ export const History = (props) => {
   let FilterTransactionHistoryReverse =  FilterTransactionHistory ? JSON.parse(JSON.stringify(FilterTransactionHistory)) : [];
   FilterTransactionHistoryReverse = FilterTransactionHistoryReverse.reverse();
 
-  // console.log(FilterTransaction)
-
   const convertirNombre = (tag) => {
 
     switch (tag) {
@@ -76,8 +74,6 @@ export const History = (props) => {
   }
 
 
-  
-  // console.log(FilterTransaction,"transaction")
   return (
     <div className="modal-transaction-optionContainer-scroll">
       <Form
@@ -92,7 +88,7 @@ export const History = (props) => {
         }}
       >
         {({ handleSumbit }) => (
-          <form className="form-filter-transaction" onSubmit={handleSumbit}>
+          <form className="form-filter-transaction-modal" onSubmit={handleSumbit}>
             <div className="modal-transaction-inputs">
               <div>
                 <div>
@@ -181,6 +177,56 @@ export const History = (props) => {
           </form>
         )}
       </Form>
+      <div>
+          <h3 className="modal-transaction-h3">Consumidor final</h3>
+          <hr className="modal-transaction-separate-option" />
+          <Form onSubmit={()=>{}}
+          initialValues={{
+            NomyApe: FilterTransaction.client ? FilterTransaction.client.name+" "+ FilterTransaction.client.lastName: "",
+            TelefonoConFinal: FilterTransaction.client ? FilterTransaction.client.phone: "",
+            
+          }}
+          >
+          {({  }) => (
+          <form className="form-filter-modal" >
+              <div className="modal-transaction-inputs">
+                    <div>
+                        <div>
+                          <label className="label-filter-transaction">
+                          Nombre y apellido
+                          </label>
+                        </div>
+                        <div>
+                          <Field
+                            type="text"
+                            name="NomyApe"
+                            component="input"
+                            placeholder="Ingresá el nombre"
+                          />
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                          <label className="label-filter-transaction">
+                              Teléfono
+                          </label>
+                        </div>
+                        <div>
+                          <Field
+                            type="text"
+                            name="TelefonoConFinal"
+                            component="input"
+                            placeholder="Ingresá el telefono"
+                          />
+                        </div>
+                    </div>
+              </div>
+            </form>
+              )}
+          </Form>
+      </div>
+
+
       <div  key={FilterTransactionHistoryReverse.id}>
             <h3 className="modal-transaction-h3">Historial</h3>
             <hr className="modal-transaction-separate-option" />
