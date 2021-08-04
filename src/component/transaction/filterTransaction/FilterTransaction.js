@@ -262,7 +262,6 @@ const cerrarCheckbox = ()=>{
   
   if(window.location.pathname==="/transaction" ){
     const opciones =  document.querySelector('#opciones');
-    console.log(opciones)
    if(opciones ){ opciones.style.display="none";
 
     
@@ -326,7 +325,7 @@ useEffect(() => {
               <div>
                 <div>
                   <label className="label-filter-transaction">
-                    Número de transacción{" "}
+                  Código de transacción {" "}
                   </label>
                 </div>
                 <div>
@@ -334,13 +333,13 @@ useEffect(() => {
                     type="text"
                     name="nroTransaccion"
                     component="input"
-                    placeholder="Ingresá el número"
+                    placeholder="Ingresá el código"
                   />
                 </div>
               </div>
               <div>
                 <div>
-                  <label className="label-filter-transaction">Picker</label>
+                  <label className="label-filter-transaction">Id de picker</label>
                 </div>
                 <div>
                   <Field

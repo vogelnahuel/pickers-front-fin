@@ -187,7 +187,7 @@ export const History = (props) => {
             
           }}
           >
-          {({  }) => (
+          {({ handleSumbit  }) => (
           <form className="form-filter-modal" >
               <div className="modal-transaction-inputs">
                     <div>
