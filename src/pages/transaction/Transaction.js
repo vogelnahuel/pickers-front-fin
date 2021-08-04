@@ -43,6 +43,7 @@ export const Transaction = () => {
     .then((res) => {
 
         // console.log(res.data.result)
+        
         return res.data.result;
       })
       .catch((err) => {
@@ -146,12 +147,12 @@ export const Transaction = () => {
     setOpenModalTransaction(false);
   };
 
-  useEffect(() => {
-    setTimeout(() => {
-        setloader(false);
-    }, 1410);
+//   useEffect(() => {
+//     setTimeout(() => {
+//         setloader(false);
+//     }, 400);
    
-}, [setloader])
+// }, [setloader])
 
 
 
@@ -162,6 +163,7 @@ export const Transaction = () => {
           .get(`ms-admin-rest/api/v1.0/transactions?&limit=${tamPag}`)
 
           .then((res) => {
+            setloader(false)
             return res.data.result.items;
           })
           .catch((err) => {
