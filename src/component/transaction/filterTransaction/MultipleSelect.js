@@ -1,153 +1,126 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import './multipleSelect.scss'
 import Flecha from '../../../assets/admin/flechaAbajo.svg'
 
 
 const MultipleSelect = () => {
+
   const opcionesCheckbox = ['Sin asignar','En retiro','En punto de retiro','Retirado','En lugar de entrega','Entregado','En devolución','Devuelto a origen','Siniestrado','Cancelada']
 
- 
-  const checkboxInputAll = document.querySelectorAll('.multiple-checkboxInput');
+  const checkboxInputAll = document.querySelectorAll('.multiple-contenido-opcion');
   const inputValor = document.querySelector('#valorAmodificar');
   const [stateSeleccionados, setstateSeleccionados] = useState(0)
   let seleccionadosInput=stateSeleccionados;
-  
-  const valorModificarFuncion = (e)=> {
-    e.preventDefault()
-    e.stopPropagation()
-   const opciones =  document.querySelector('#opciones');
-    opciones.style.display="block";
-  }
-  const pararPropagacion = (e)=>{
-    e.stopPropagation();
-    window.removeEventListener('click',cerrarSelectBox)
-  }
-  
-  if(checkboxInputAll!==null)
-  checkboxInputAll.forEach(inp => inp.addEventListener('click',  (e)=>{
+
+  useEffect(() => {
+    window.addEventListener('click',pararPropagacion)
+    return () => {
+      window.removeEventListener('click',pararPropagacion)
+    }
+  }, [])
+
+  useEffect(() => {
+
+    if(checkboxInputAll){
       
-    let todos = false;
+      checkboxInputAll.forEach(inp => inp.addEventListener('click',MultipleSelectCheckbox))
+    }
   
+    return () => {
+      checkboxInputAll.forEach(inp => inp.removeEventListener('click',MultipleSelectCheckbox))
+    }
+
+  }, )
+
+const MultipleSelectCheckbox = (e) => {
+  
+    e.stopPropagation();
+
     if(e.target.checked===true){
       seleccionadosInput++;
     }
-    else if(e.target.checked===false){
+    if(e.target.checked===false){
       seleccionadosInput--;
     }
-  
-    if(e.target.id==="Todos"){
-        if(e.target.checked===true){
-            checkboxInputAll.forEach(inputs=> inputs.checked=true)
-            inputValor.placeholder="Todos";
-            inputValor.classList.add('multiple-seleccionadoInputColor');
-            todos=true;
-            seleccionadosInput=(checkboxInputAll.length-1);
-           
-        }else  if(e.target.checked===false){
-            checkboxInputAll.forEach(inputs=> inputs.checked=false)
-            inputValor.placeholder="Seleccioná el estado";
-            inputValor.classList.remove('multiple-seleccionadoInputColor');
-            todos=false;
-            seleccionadosInput=(0);
-            
-        }
+
+    if(e.target.id==="Todos" && checkboxInputAll[0].firstChild.checked===true  && (seleccionadosInput !== checkboxInputAll.length-1 || seleccionadosInput !== checkboxInputAll.length  ) ){
+      checkboxInputAll.forEach(inp => inp.firstChild.checked=true)
+      seleccionadosInput=checkboxInputAll.length;
     }
-  
-    checkboxInputAll.forEach(inp => inp.checked===false  ?  inp.nextElementSibling.classList.remove('selected'):"" )
-  
-    if(seleccionadosInput=== (checkboxInputAll.length-1 ) || todos ===true ) {
-        inputValor.placeholder="Todos";
-        inputValor.classList.add('multiple-seleccionadoInputColor');
-        checkboxInputAll[0].checked=true;
-       
-        checkboxInputAll.forEach(inp => inp.checked===true  ?  inp.nextElementSibling.classList.add('selected'):"" )
+    else if(e.target.id==="Todos") {
+      checkboxInputAll.forEach(inp => inp.firstChild.checked=false)
+      seleccionadosInput=0;
     }
-    else if(seleccionadosInput!== (checkboxInputAll.length-1 ) && seleccionadosInput!== 0 && seleccionadosInput <= 3 )  {
-        inputValor.placeholder=""
-        checkboxInputAll.forEach(inp => inp.checked===true  ?  inputValor.placeholder+=inp.value+", " : "" )
-        if(inputValor.placeholder.length>32 && window.screen.width <1400){
-          inputValor.placeholder = inputValor.placeholder.substring(0,31)+"..."
-        }
-        else if(inputValor.placeholder.length>35 && window.screen.width <1800){
-          inputValor.placeholder = inputValor.placeholder.substring(0,34)+"..."
-        }
-        else if(inputValor.placeholder.length>44 ){
-          inputValor.placeholder = inputValor.placeholder.substring(0,43)+"..."
-        }
-        inputValor.classList.add('multiple-seleccionadoInputColor');
-        checkboxInputAll[0].checked=false;
-        checkboxInputAll.forEach(inp => inp.checked===true  ?  inp.nextElementSibling.classList.add('selected'):"" )
-    }
-    else if(seleccionadosInput!== (checkboxInputAll.length-1 ) && seleccionadosInput!== 0 && seleccionadosInput > 3)  {
-        inputValor.placeholder=""
-        inputValor.placeholder=seleccionadosInput+" Seleccionados";
-        inputValor.classList.add('multiple-seleccionadoInputColor');
-        checkboxInputAll[0].checked=false;
-        checkboxInputAll.forEach(inp => inp.checked===true  ?  inp.nextElementSibling.classList.add('selected'):"" )
-    }
-    else if(seleccionadosInput=== 0 )  {
-        inputValor.placeholder="Seleccioná el estado";
-        inputValor.classList.remove('multiple-seleccionadoInputColor');
-        checkboxInputAll[0].checked=false;
-    }
+    inputValor.classList.remove('multiple-seleccionadoInputColor')
+    checkboxInputAll[0].firstChild.checked=false;
+
+    checkboxInputAll.forEach(inp => inp.firstChild.checked===false ? inp.firstChild.classList.remove('selected')   :"" )
    
-   
-    if(seleccionadosInput!== 0 && seleccionadosInput!== (checkboxInputAll.length-1) && inputValor.placeholder[inputValor.placeholder.length-1]===","  ){
-        inputValor.placeholder=inputValor.placeholder.substring(0,inputValor.placeholder.length-1);
+    if(seleccionadosInput===checkboxInputAll.length-1 || seleccionadosInput===checkboxInputAll.length ){
+      checkboxInputAll[0].firstChild.checked=true;
+      inputValor.placeholder=""
+      inputValor.placeholder="Todos"
+      inputValor.classList.add('multiple-seleccionadoInputColor')
+      checkboxInputAll.forEach(inp => inp.firstChild.checked===true ? inp.firstChild.classList.add('selected')   :"" )
     }
-  
-  }))
-  
-  
-  const cerrarCheckbox = ()=>{
-    
-    if(window.location.pathname==="/transaction" ){
-      const opciones =  document.querySelector('#opciones');
-     if(opciones ){ opciones.style.display="none";
-  
+    else if(seleccionadosInput>3){
+      inputValor.placeholder=""
+      inputValor.placeholder=seleccionadosInput+" Seleccionados"
+      inputValor.classList.add('multiple-seleccionadoInputColor')
+      checkboxInputAll.forEach(inp => inp.firstChild.checked===true ? inp.firstChild.classList.add('selected')   :"" )
       
-       if(seleccionadosInput=== 0 )  {
-         if(inputValor!==null){
-          inputValor.placeholder="Seleccioná el estado";
-          inputValor.classList.remove('multiple-seleccionadoInputColor');
-         }
-         
-         
-        if(checkboxInputAll!==undefined && checkboxInputAll.length!==0){
-          checkboxInputAll[0].checked=false;
-        }
-        
     }
+    if(seleccionadosInput<=3){
+      inputValor.placeholder=""
+      inputValor.classList.add('multiple-seleccionadoInputColor')
+      checkboxInputAll.forEach(inp => inp.firstChild.checked===true ? inputValor.placeholder+=inp.firstChild.value+", ":"" )
+      checkboxInputAll.forEach(inp => inp.firstChild.checked===true ? inp.firstChild.classList.add('selected')   :"" )
+      
+      inputValor.placeholder= inputValor.placeholder.substring(0,inputValor.placeholder.length-2);
+
+
+      if(window.screen.width<1400 && inputValor.placeholder.length>32){
+
+        inputValor.placeholder =  inputValor.placeholder.substring(0,31)+"..."
+      }
+      else if(window.screen.width<1800 && inputValor.placeholder.length>=39){
+
+        inputValor.placeholder =  inputValor.placeholder.substring(0,38)+"..."
+      }
+      if(window.screen.width>1800 && inputValor.placeholder.length>=45){
+
+        inputValor.placeholder =  inputValor.placeholder.substring(0,44)+"..."
+      }
+
     }
-    
+    if(seleccionadosInput===0){
+      inputValor.classList.remove('multiple-seleccionadoInputColor')
+      inputValor.placeholder="Selecciona el estado"
     }
     
     setstateSeleccionados(seleccionadosInput);
-    
+
+  }
+
+  const valorModificarFuncion = (e) => {
+    e.preventDefault()
+    e.stopPropagation();
+
+    if(window.location.pathname==="/transaction"){
+      document.querySelector('#opciones').style.display="block"
+    }
+ 
   }
   
+
+  const pararPropagacion = (e) => {
   
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const cerrarSelectBox = useMemo(() => cerrarCheckbox,[])
-  
-  
-  
-  
-  useEffect(() => {
-    
-  
-    window.addEventListener('click',cerrarCheckbox)
-    if(document.querySelector('#opciones')!==null)
-    document.querySelector('#opciones').addEventListener('click',pararPropagacion)
-    return(()=>{
-      window.removeEventListener('click',cerrarSelectBox)
-      if(document.querySelector('#opciones')!==null)
-      document.querySelector('#opciones').removeEventListener('click',pararPropagacion)
-    })
-   
-  
-  }, )
-  
+    if(window.location.pathname==="/transaction"){
+      document.querySelector('#opciones').style.display="none"
+    }
+
+
+  }
 
   return ( 
 
@@ -166,13 +139,13 @@ const MultipleSelect = () => {
                             <div   className="multiple-opciones" id="opciones">
                     
                                 <div  className="multiple-contenido-opcion">
-                                    <input className="multiple-checkboxInput" type="checkbox" id="Todos"  value="" />
+                                    <input  className="multiple-checkboxInput" type="checkbox" id="Todos"  value="" />
                                     <label className="multiple-labelCheckBox" htmlFor="Todos">Todos</label>
                                 </div>
                                 {
                                 opcionesCheckbox.map(opcion => (
-                                  <div className="multiple-contenido-opcion" key={opcion}>
-                                      <input   className="multiple-checkboxInput" type="checkbox" id={opcion} value={opcion} />
+                                  <div className="multiple-contenido-opcion" key={opcion} id={opcion}>
+                                      <input   className="multiple-checkboxInput" type="checkbox"  value={opcion} />
                                       <label className="multiple-labelCheckBox" htmlFor={opcion}>{opcion}</label>
                                   </div>
                                 ))

@@ -38,7 +38,7 @@ export const FilterTransaction = (props) => {
   /****verificar el custom select checkbox cuales estan seleccionados y generar salida */
   const multipleSelectCheckbox = () => {
     let stringSelected = "";
-    const listaUlSelected = document.querySelectorAll(".multiple-labelCheckBox");
+    const listaUlSelected = document.querySelectorAll(".multiple-checkboxInput");
     let ArraySeleccionados = [];
     let j = 0;
 
@@ -117,7 +117,7 @@ const EstaVacioFiltro = (values) => {
   const onSubmit = async (values) => {
 
 
-  
+    console.log(values)
 
     values = formatDate(values);
     let stringSelected = "";
