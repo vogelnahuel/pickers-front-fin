@@ -267,10 +267,11 @@ checkboxInputAll.forEach(inp => inp.addEventListener('click',  (e)=>{
 
 const cerrarCheckbox = ()=>{
   
-  if(window.location.pathname==="/transaction"){
+  if(window.location.pathname==="/transaction" ){
     const opciones =  document.querySelector('#opciones');
-    opciones.style.display="none";
-    console.log("entre")
+    console.log(opciones)
+   if(opciones ){ opciones.style.display="none";
+
     
      if(seleccionadosInput=== 0 )  {
        if(inputValor!==null){
@@ -286,7 +287,7 @@ const cerrarCheckbox = ()=>{
   }
   }
   
-  
+  }
   
   setstateSeleccionados(seleccionadosInput);
   

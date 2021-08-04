@@ -2,7 +2,7 @@ import React from 'react'
 import volver from '../../../../assets/admin/PendingUser/volver.svg'
 import Info  from '../../../../assets/transaction/Info.svg'
 import api from '../../../../config/api'
-import { FilterTransaction } from '../../filterTransaction/FilterTransaction'
+// import { FilterTransaction } from '../../filterTransaction/FilterTransaction'
 import './reasonsCanceledConfirm.css'
 
 export const ReasonsCanceledConfirm = (props) => {
@@ -14,8 +14,10 @@ export const ReasonsCanceledConfirm = (props) => {
 
     const handleClickCancelConfirm = (e)=> {
         console.log(FilterSelectedTransaction.transaction.id)
-        api.post(`/ms-pickers-rest/api/v1.0/transactions/${FilterSelectedTransaction.transaction.id}/cancel`,{"cancellationReasonId":parseInt(reasonId)}).then(console.log("ok")).catch()
-       // window.location.reload();
+        api.post(`/ms-admin-rest/api/v1.0/transactions/${FilterSelectedTransaction.transaction.id}/cancel`,{"cancellationReasonId":parseInt(reasonId)})
+        .then(()=>{window.location.reload();})
+        .catch((err)=>{console.log(err)})
+     
     }
 
 

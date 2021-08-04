@@ -121,8 +121,21 @@ export const OptionList = (props) => {
                                 </div>
                                 
                                 <div className="modal-transaction-buttons-submit">
-                                    <button onClick={handleClickCancel} className="modal-transaction-cancel">Cancelar</button>
-                                    <button onClick={handleClickFinish} className="modal-transaction-finish">Finalizar</button>
+                                    
+
+                                    
+                                    {FilterSelectedTransaction.transaction.state.id === 1 || FilterSelectedTransaction.transaction.state.id === 2 || FilterSelectedTransaction.transaction.state.id === 3 || FilterSelectedTransaction.transaction.state.id === 4?
+                                    <>
+                                    <button onClick={handleClickCancel} className="modal-transaction-finish-enabled">Cancelar</button>
+                                    <button disabled={true} onClick={handleClickFinish} className="modal-transaction-cancel-disabled">Finalizar</button>
+                                    </>:FilterSelectedTransaction.transaction.state.id === 5 || FilterSelectedTransaction.transaction.state.id === 6 || FilterSelectedTransaction.transaction.state.id === 7 || FilterSelectedTransaction.transaction.state.id === 8 ? <>
+                                    <button disabled={true} onClick={handleClickCancel} className="modal-transaction-finish-disabled">Cancelar</button>
+                                    <button onClick={handleClickFinish} className="modal-transaction-cancel-enabled">Finalizar</button>
+                                    </>: <>
+                                    <button disabled={true} onClick={handleClickCancel} className="modal-transaction-finish-disabled ">Cancelar</button>
+                                    <button disabled={true} onClick={handleClickFinish} className="modal-transaction-cancel-disabled">Finalizar</button>
+                                    </>}
+                                   
                                     <div onClick={handleReload} className="modal-transaction-reload">
                                         <img className="modal-transaction-reload-img" src={Reload} alt="reload"/>
                                         <p>Actualizar</p>

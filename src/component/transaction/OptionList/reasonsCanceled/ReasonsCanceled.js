@@ -24,7 +24,7 @@ export const ReasonsCanceled = (props) => {
           }))
        }
        cargarMensajes();
-    }, [])
+    }, [props.FilterSelectedTransaction.transaction.id])
 
     const setreasonCancelConfirm = props.setreasonCancelConfirm;
     const setreasonCancel = props.setreasonCancel;
@@ -91,13 +91,13 @@ const handleClickgoBack = (e) => {
 
             
                     <div  className="modal-transaction-reasonsCanceled-scroll">
-                            {console.log(messages)}
+                          
 
                             {
                               messages? messages.map((message)=>(
 
                                 <div  className="modal-transaction-reason-container">
-                                <p  onClick={handleClickFinish} value={message.id}>{message.message}</p>
+                                <p  onClick={handleClickFinish} key={message.id} value={message.id}>{message.message}</p>
                             </div>
                                )
                                )
