@@ -73,7 +73,7 @@ export const History = (props) => {
     return tag
   }
 
-
+console.log(FilterTransaction)
   return (
     <div className="modal-transaction-optionContainer-scroll">
       <Form
@@ -119,16 +119,30 @@ export const History = (props) => {
 
               <div>
                 <div>
-                  <label className="label-filter-transaction">Teléfono </label>
+                  <label className="label-filter-transaction">Código de área * </label>
                 </div>
-                <div className="modal-transaction-input">
+                <div className="modal-transaction-input-tel" id="modal-transaction-input-tel">
                   <Field
-                    name="Telefono"
+                    name="codArea"
                     component="input"
-                    placeholder="Seleccioná el estado"
+                    placeholder="Seleccioná el cod area"
                   />
                 </div>
               </div>
+
+              <div>
+                <div>
+                  <label className="label-filter-transaction">Teléfono </label>
+                </div>
+                <div className="modal-transaction-input-tel" id="modal-transaction-input-tel2">
+                  <Field
+                    name="Telefono"
+                    component="input"
+                    placeholder="Seleccioná el telefono"
+                  />
+                </div>
+              </div>
+
               <Link target="_blank" rel="noopener noreferrer" to={ FilterTransaction.picker && FilterTransaction.picker.id!==null ? `activeUserAdminpicker/${FilterTransaction.picker.id}` : "#"}><button type="button" className="modal-transaction-button-irApicker">
               Ir a picker
             </button></Link>

@@ -67,3 +67,19 @@
 #modal-transaction-history-Final{
     margin-top: 7px;
 }
+
+#modal-transaction-input-tel{
+ width: 9.1vw;
+ margin-right: 1.464vw;
+}
+#modal-transaction-input-tel input {
+ width: 9.1vw;
+}
+
+#modal-transaction-input-tel2{
+    width: 9.1vw;
+    
+}
+#modal-transaction-input-tel2 input {
+    width: 9.1vw;
+}
