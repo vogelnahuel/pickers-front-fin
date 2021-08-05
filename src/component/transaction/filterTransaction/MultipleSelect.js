@@ -33,7 +33,7 @@ const MultipleSelect = () => {
   }, )
 
 const MultipleSelectCheckbox = (e) => {
-  
+
     e.stopPropagation();
 
     if(e.target.checked===true){
@@ -45,7 +45,7 @@ const MultipleSelectCheckbox = (e) => {
 
     if(e.target.id==="Todos" && checkboxInputAll[0].firstChild.checked===true  && (seleccionadosInput !== checkboxInputAll.length-1 || seleccionadosInput !== checkboxInputAll.length  ) ){
       checkboxInputAll.forEach(inp => inp.firstChild.checked=true)
-      seleccionadosInput=checkboxInputAll.length;
+      seleccionadosInput=checkboxInputAll.length-1;
     }
     else if(e.target.id==="Todos") {
       checkboxInputAll.forEach(inp => inp.firstChild.checked=false)
@@ -64,6 +64,7 @@ const MultipleSelectCheckbox = (e) => {
       checkboxInputAll.forEach(inp => inp.firstChild.checked===true ? inp.firstChild.classList.add('selected')   :"" )
     }
     else if(seleccionadosInput>3){
+      checkboxInputAll[0].firstChild.checked=false;
       inputValor.placeholder=""
       inputValor.placeholder=seleccionadosInput+" Seleccionados"
       inputValor.classList.add('multiple-seleccionadoInputColor')
@@ -105,7 +106,7 @@ const MultipleSelectCheckbox = (e) => {
   const valorModificarFuncion = (e) => {
     e.preventDefault()
     e.stopPropagation();
-
+    
     if(window.location.pathname==="/transaction"){
       document.querySelector('#opciones').style.display="block"
     }
@@ -114,7 +115,7 @@ const MultipleSelectCheckbox = (e) => {
   
 
   const pararPropagacion = (e) => {
-  
+
     if(window.location.pathname==="/transaction"){
       document.querySelector('#opciones').style.display="none"
     }
