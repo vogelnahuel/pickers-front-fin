@@ -79,19 +79,19 @@ export const FinishModal = (props) => {
             <form className="form-filter-transaction" onSubmit={handleSubmit} >
                     <div className="modal-transaction-finish-inputs">
                         <div className="flexItems">
-                            <input  onClick={handleClick} className="state" name="estado2"   type="radio" value="Siniestrado" id="Siniestrado2"/>
+                            <input  onClick={handleClick} className="state" name="estado"   type="radio" value="Siniestrado" id="Siniestrado"/>
                             <label htmlFor="Siniestrado2" className="modal-transaction-finish-label"> Siniestrado</label>
                         </div>
                         <div className="flexItems">
-                            <input onClick={handleClick} className="state" name="estado2"  type="radio" value="Entregado" id="Entregado2"/>
+                            <input onClick={handleClick} className="state" name="estado"  type="radio" value="Entregado" id="Entregado"/>
                             <label  htmlFor="Entregado2" className="modal-transaction-finish-label">Entregado</label>
                         </div>
                         <div className="flexItems">
-                            <input  onClick={handleClick}  className="state" name="estado2"  type="radio" value="Devuelto" id="Devuelto2"/>
+                            <input  onClick={handleClick}  className="state" name="estado"  type="radio" value="Devuelto" id="Devuelto"/>
                             <label htmlFor="Devuelto2" className="modal-transaction-finish-label">Devuelto</label>
                         </div>
                         <div className="flexItems">
-                            <input  onClick={handleClick}  className="state" name="estado2"   type="radio" value="Cancelada" id="Cancelada2"/>
+                            <input  onClick={handleClick}  className="state" name="estado"   type="radio" value="Cancelada" id="Cancelada"/>
                             <label htmlFor="Cancelada2" className="modal-transaction-finish-label"> Cancelada</label>
                         </div>
                     
