@@ -34,4 +34,15 @@
     top: 0;
     width: 0px;
 }
+[type="radio"]:checked+label:after, [type="radio"]:not(:checked)+label:after{
+    background: transparent;
+    border: 0px solid;
+    border-radius: 100%;
+    content: '';
+    height: 0px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 0px;
+}
 

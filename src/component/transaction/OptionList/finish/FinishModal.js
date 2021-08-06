@@ -8,9 +8,11 @@ export const FinishModal = (props) => {
     const [RadioActive, setRadioActive] = useState(false);
     const sethistory = props.sethistory
     const setfinishModal = props.setfinishModal;
+    const setdniFinish = props.setdniFinish;
 
     const handleClick = (e) => {
         setRadioActive(true);
+        
     }
  
     const handleClickgoBack = (e) => {
@@ -31,6 +33,36 @@ export const FinishModal = (props) => {
         
         }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        let state;
+        document.querySelectorAll('.state').forEach(estado => estado.checked ===true  ?  state = estado  : "" );
+        
+        if(state.value==="Entregado"){
+
+    
+            setdniFinish(true);
+            setTimeout(() => {
+                e.target.parentNode.classList.add('animation-left-transaction')
+                const insert = document.querySelector('.insertAnimation');
+                const div = document.createElement('div');
+                div.classList.add('animationReasons');
+                setTimeout(() => {
+                    insert.appendChild(div)
+                }, 200);
+                
+                setTimeout(() => {
+                    setfinishModal(false);
+                    if(e.target.parentNode!==null)
+                    e.target.parentNode.classList.remove('animation-left-transaction')
+                    insert.removeChild(insert.firstChild);
+                }, 500);
+            }, 0);
+    
+        }
+
+    }
+
     return (
         <div className="modal-transaction-finishModal">
             <div onClick={handleClickgoBack} className="modal-transaction-finish-volver">
@@ -44,26 +76,23 @@ export const FinishModal = (props) => {
                     <p>La transacción <b>AAA112</b> va a pasar a estado:</p>
             </div>
         
-            <form className="form-filter-transaction" >
+            <form className="form-filter-transaction" onSubmit={handleSubmit} >
                     <div className="modal-transaction-finish-inputs">
                         <div className="flexItems">
-                            <input  onClick={handleClick} name="estado2"   type="radio" value="Siniestrado" id="Siniestrado2"/>
+                            <input  onClick={handleClick} className="state" name="estado2"   type="radio" value="Siniestrado" id="Siniestrado2"/>
                             <label htmlFor="Siniestrado2" className="modal-transaction-finish-label"> Siniestrado</label>
                         </div>
                         <div className="flexItems">
-                            <input onClick={handleClick} name="estado2"  type="radio" value="Entregado" id="Entregado2"/>
+                            <input onClick={handleClick} className="state" name="estado2"  type="radio" value="Entregado" id="Entregado2"/>
                             <label  htmlFor="Entregado2" className="modal-transaction-finish-label">Entregado</label>
                         </div>
                         <div className="flexItems">
-                            <input  onClick={handleClick} name="estado2"  type="radio" value="Devuelto" id="Devuelto2"/>
+                            <input  onClick={handleClick}  className="state" name="estado2"  type="radio" value="Devuelto" id="Devuelto2"/>
                             <label htmlFor="Devuelto2" className="modal-transaction-finish-label">Devuelto</label>
                         </div>
                         <div className="flexItems">
-                            <input  onClick={handleClick} name="estado2"   type="radio" value="Cancelada" id="Cancelada2"/>
-                                
-                            <label htmlFor="Cancelada2" className="modal-transaction-finish-label"> 
-                            Cancelada
-                            </label>
+                            <input  onClick={handleClick}  className="state" name="estado2"   type="radio" value="Cancelada" id="Cancelada2"/>
+                            <label htmlFor="Cancelada2" className="modal-transaction-finish-label"> Cancelada</label>
                         </div>
                     
 
