@@ -7,6 +7,7 @@ import { History } from './history/History.js'
 import Reload from '../../../assets/transaction/Reload.svg'
 //import {useDispatch} from 'react-redux'
 import api from '../../../config/api'
+import { DniFinish } from './dniFinish/DniFinish'
 //import { changeTest } from '../../../actions/transactionAction'
 
 
@@ -15,11 +16,12 @@ export const OptionList = (props) => {
     //const dispatch = useDispatch()
     const FilterSelectedTransaction = props.FilterSelectedTransaction
     
-    const [history, sethistory] = useState(true)
+    const [history, sethistory] = useState(false)
     const [reasonCancel, setreasonCancel] = useState(false);
     const [reasonId, setreasonId] = useState({})
     const [reasonCancelConfirm, setreasonCancelConfirm] = useState(false);
     const [finishModal, setfinishModal] = useState(false);
+    const [dniFinish, setdniFinish] = useState(true)
    
 
     const handleClickCancel = (e) => {
@@ -188,9 +190,21 @@ export const OptionList = (props) => {
                             <FinishModal
                             sethistory={sethistory}
                             setfinishModal={setfinishModal}
+                            setdniFinish={setdniFinish}
                             />
                         </>
                         : null
+                    }
+                    {
+                        dniFinish === true ? 
+                        <>
+                            <div className="insertAnimation"></div>
+                            <DniFinish
+                            setfinishModal={setfinishModal}
+                            setdniFinish={setdniFinish}
+                            />
+                        </>
+                        : null 
                     }
        
         </div>
