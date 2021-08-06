@@ -402,7 +402,7 @@ export const Part = (props) => {
         const div = document.createElement('div');
         
         div.innerHTML = `
-          <p class="labelError-part-bottom"> ${"El formato es fecha es invalido"} </p>
+          <p class="labelError-part-bottom"> ${"El formato es fecha es inválido"} </p>
         `
         e.target.parentNode.appendChild(div);
       }

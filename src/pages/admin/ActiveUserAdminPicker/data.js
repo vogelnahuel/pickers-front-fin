@@ -108,7 +108,7 @@ export const data = () => {
     [   
         { 
         label: {
-                labelclassName:"label-Admin-Pickers",
+                labelclassName:"label-Admin-Pickers readonly",
                 labelhtmlFor:"cuit",
                 labelparrafo:"Número de CUIT/CUIL"
                 },
@@ -123,7 +123,7 @@ export const data = () => {
         },
         {
             label: {
-                labelclassName:"label-Admin-Pickers",
+                labelclassName:"label-Admin-Pickers readonly",
                 labelhtmlFor:"cbu",
                 labelparrafo:"Número de CBU "
                 },
@@ -137,7 +137,7 @@ export const data = () => {
         },
         {
             label: {
-                labelclassName:"label-Admin-Pickers",
+                labelclassName:"label-Admin-Pickers readonly",
                 labelhtmlFor:"nombreBanco",
                 labelparrafo:"Nombre del banco"
                 },
@@ -195,20 +195,6 @@ export const data = () => {
             value:""
         },
        
-        {
-            label: {
-                labelclassName:"",
-                labelhtmlFor:"",
-                labelparrafo:""
-                },
-            className:"",
-            type:"",
-            name:"",
-            id:"",
-            placeholder:"",
-            onChange:"",
-            value:""
-        },
         
         ];
     
@@ -261,20 +247,7 @@ export const data = () => {
                 onChange:"",
                 value:""
                 
-            },{
-                label: {
-                    labelclassName:"",
-                    labelhtmlFor:"",
-                    labelparrafo:""
-                    },
-                className:"",
-                type:"",
-                name:"",
-                id:"",
-                placeholder:"",
-                onChange:"",
-                value:""
-            },
+            }
         ];
 
     const ComponentesPart4 = [

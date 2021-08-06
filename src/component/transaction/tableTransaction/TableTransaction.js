@@ -51,8 +51,9 @@ export const TableTransaction = (props) => {
                         </tr>
                 </thead>
                 <tbody> 
-                    
+                    {console.log(api)}
                     {
+                        
                         JSON.stringify(api)!=='{}' && api!==undefined ? api.map(dato => dato?
                         
                             <tr onClick={handleClickModal} key={dato.transaction.id+"0"} >

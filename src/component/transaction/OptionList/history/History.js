@@ -28,7 +28,7 @@ export const History = (props) => {
         tag  = "Sin asignar"
       break;
       case "state_pending_assigment":
-        tag  = "Pendiente de asignacion"
+        tag  = "Pendiente"
       break;
       case "state_assigned":
         tag  = "Asignado"
@@ -37,7 +37,7 @@ export const History = (props) => {
         tag  = "En retiro"
       break;
       case "state_in_pickup_point":
-        tag  = "En punto de retiro"
+        tag  = "En lugar de retiro"
       break;
       case "state_in_picked_up":
         tag  = "Retirado"
@@ -52,10 +52,10 @@ export const History = (props) => {
         tag  = "En devolucion"
       break;
       case "state_pickup_cancelled_temporally":
-        tag  = "Cancelado temporalmente"
+        tag  = "Cancelado"
       break;
       case "state_pickup_cancelled_permanently":
-        tag  = "Cancelado permanentemente"
+        tag  = "Cancelado"
       break;
       case "state_delivered":
         tag  = "Entregado"
@@ -259,7 +259,7 @@ console.log(FilterTransaction)
                    
                  }
                    
-                   <p className="modal-transaction-part-subtitle"> { convertirNombre(historial.reasonTag.tag) } {historial.metadata[0]? historial.metadata[0].value:null} </p>
+                   <p className="modal-transaction-part-subtitle"> { convertirNombre(historial.reasonTag.tag) } {historial.metadata[0]? "porque "+historial.metadata[0].value:null} </p>
                    
                    {FilterTransaction.transactionHistory.length!==0?<p className="modal-transaction-part-info"> {moment(historial.createdAt.substring(0,10),"YYYY-MM-DD").format("DD/MM/YYYY")}  {historial.createdAt.substring(11,19)} </p>:null}
                 
