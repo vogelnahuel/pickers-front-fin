@@ -12,7 +12,8 @@ export const FinishModal = (props) => {
   const [estado, setestado] = useState("");
 
   const handleClick = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
+    
     switch (estado) {
       case "Entregado2":
         await api.post(
@@ -34,9 +35,12 @@ export const FinishModal = (props) => {
       default:
         break;
     }
+
+  window.location.reload();
   };
 
   const handleClickCheck = (e) => {
+    
     setRadioActive(true);
     setestado(e.target.id);
   };
@@ -141,7 +145,8 @@ export const FinishModal = (props) => {
           </button>
         ) : (
           <button
-            handleClick={handleClick}
+            type="button"
+            onClick={handleClick}
             className="modal-transaction-finish-button-click"
           >
             Finalizarla
