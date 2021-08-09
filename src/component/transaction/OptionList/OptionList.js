@@ -190,6 +190,7 @@ export const OptionList = (props) => {
                             <FinishModal
                             sethistory={sethistory}
                             setfinishModal={setfinishModal}
+                            FilterSelectedTransaction={FilterSelectedTransaction}
                             setdniFinish={setdniFinish}
                             />
                         </>
