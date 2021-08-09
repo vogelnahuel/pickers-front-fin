@@ -4,13 +4,14 @@ import volver from '../../../../assets/admin/PendingUser/volver.svg'
 import Card from '../../../../assets/transaction/Card.svg'
 import {Form,Field} from 'react-final-form'
 import './dniFinish.css'
+import api from '../../../../config/api'
 
 
 export const DniFinish = (props) => {
 
     const setdniFinish = props.setdniFinish;
     const setfinishModal = props.setfinishModal;
-
+    const FilterSelectedTransaction=props.FilterSelectedTransaction
     const handleClickgoBack = (e) => {
         
         e.target.parentNode.parentNode.parentNode.classList.add('animation-right-transaction')
@@ -29,6 +30,8 @@ export const DniFinish = (props) => {
          }, 600);
         
 }
+
+
     
     return (
         <div>
@@ -44,8 +47,15 @@ export const DniFinish = (props) => {
                  <Form
                         onSubmit={()=>{}}
                         >
-                        {({ handleSumbit  }) => (
-                        <form>
+                        {({ handleSumbit = async(e) =>{
+                            e.preventDefault()
+                           
+                             await api.post(
+                                `/ms-admin-rest/api/v1.0/transactions/${FilterSelectedTransaction.transaction.id}/delivered`,
+                                { key: "identificationNumber", value: e.target.dni.value }
+                              );
+                        }  }) => (
+                        <form  onSubmit={handleSumbit}>
                             <div className="modal-input-dni-finish">
                                 <div>
                                     <label htmlFor="dni">Dni *</label>
@@ -60,7 +70,7 @@ export const DniFinish = (props) => {
                             </div>
 
                             <div>
-                                <button className="modal-dni-finish-button">Finalizarla</button>
+                                <button  className="modal-dni-finish-button">Finalizarla</button>
                             </div>
 
                         </form>

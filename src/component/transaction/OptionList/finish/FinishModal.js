@@ -18,22 +18,13 @@ export const FinishModal = (props) => {
     e.preventDefault()
     
     switch (estado) {
-      case "Entregado":
-        await api.post(
-          `/ms-admin-rest/api/v1.0/transactions/${FilterSelectedTransaction.transaction.id}/delivered`,
-          { key: "123", value: "123" }
-        );
-        break;
+  
       case "Siniestrado":
         await api.post(
           `/ms-admin-rest/api/v1.0/transactions/${FilterSelectedTransaction.transaction.id}/lost`,
         );
         break;
-      case "Devuelto":
-        await api.post(
-          `/ms-admin-rest/api/v1.0/transactions/${FilterSelectedTransaction.transaction.id}/returned`,
-        );
-        break;
+  
 
       default:
         break;
