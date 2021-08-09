@@ -21,6 +21,7 @@ line-height: 21px;
 letter-spacing: 0.005em;
 color: #101820;
 margin-left: 35px;
+cursor: pointer;
 }
 .modal-container-height{
     height: 44.5vh;

@@ -32,6 +32,9 @@ const handleClick  = (e) => {
     e.preventDefault();
     window.location.reload();
 }
+const handleCLickOpc = (e)=> {
+    e.preventDefault();
+}
 
     return (
         <div>
@@ -48,7 +51,7 @@ const handleClick  = (e) => {
                         opc ? opc.map(opcion => (
                             <div key={opcion}>
                              
-                                <p className="modal-undelivered-opc"> {opcion}</p>
+                                <p onClick={handleCLickOpc} className="modal-undelivered-opc"> {opcion}</p>
                                 
                                 <hr className="modal-undelivered-hr"/>
                             </div>
@@ -59,7 +62,7 @@ const handleClick  = (e) => {
                 </div>
             </div>
             <div className="modal-dni-center">
-                <button onClick={handleClick} className="modal-undelivered-button" > Finalizarla</button>
+                <button disabled onClick={handleClick} className="modal-undelivered-button" > Finalizarla</button>
             </div>
         </div>
     )
