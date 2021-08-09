@@ -49,12 +49,8 @@ export const ReasonsCanceledConfirm = (props) => {
                     <img className="modal-transaction-reasonsCanceledConfirm-img" src={Info} alt ="informacionIcon" />
                     <h3 className="modal-transaction-reasonsCanceledConfirm-subtitle">La transacción está por ser cancelada</h3>
                     <hr className="modal-transaction-reasonsCanceledConfirm-separate"/>
-                    <p className="modal-transaction-reasonsCanceledConfirm-p">Al cancelar la transacción, esta va a pasar a blablabla
-                 
-                   
-                    </p>
+                    <p className="modal-transaction-reasonsCanceledConfirm-p">Al cancelar la transacción, esta va a pasar a blablabla</p>
                     <p className="modal-transaction-reasonsCanceledConfirm-p2">
-                        
                         ¿Querés cancelarla?
                     </p>
             </div>
