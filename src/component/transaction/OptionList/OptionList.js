@@ -134,8 +134,8 @@ export const OptionList = (props) => {
                                     <button disabled={true} onClick={handleClickCancel} className="modal-transaction-finish-disabled">Cancelar</button>
                                     <button onClick={handleClickFinish} className="modal-transaction-cancel-enabled">Finalizar</button>
                                     </>: <>
-                                    <button disabled={true} onClick={handleClickCancel} className="modal-transaction-finish-disabled ">Cancelar</button>
-                                    <button disabled={true} onClick={handleClickFinish} className="modal-transaction-cancel-disabled">Finalizar</button>
+                                    <button disabled={true} onClick={handleClickCancel} className="modal-transaction-cancel-disabled ">Cancelar</button>
+                                    <button disabled={true} onClick={handleClickFinish} className="modal-transaction-finish-disabled">Finalizar</button>
                                     </>}
                                    
                                     <div onClick={handleReload} className="modal-transaction-reload">

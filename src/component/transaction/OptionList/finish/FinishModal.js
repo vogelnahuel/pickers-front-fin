@@ -36,7 +36,7 @@ export const FinishModal = (props) => {
         break;
     }
 
-  window.location.reload();
+ window.location.reload();
   };
 
   const handleClickCheck = (e) => {
@@ -94,10 +94,10 @@ export const FinishModal = (props) => {
           <div className="flexItems">
             <input
               onClick={handleClickCheck}
-              name="estado2"
+              name="estado"
               type="radio"
               value="Siniestrado"
-              id="Siniestrado2"
+              id="Siniestrado"
             />
             <label
               htmlFor="Siniestrado2"
@@ -110,13 +110,13 @@ export const FinishModal = (props) => {
           <div className="flexItems">
             <input
               onClick={handleClickCheck}
-              name="estado2"
+              name="estado"
               type="radio"
               value="Entregado"
-              id="Entregado2"
+              id="Entregado"
             />
             <label
-              htmlFor="Entregado2"
+              htmlFor="Entregado"
               className="modal-transaction-finish-label"
             >
               Entregado
@@ -125,13 +125,13 @@ export const FinishModal = (props) => {
           <div className="flexItems">
             <input
               onClick={handleClickCheck}
-              name="estado2"
+              name="estado"
               type="radio"
               value="Devuelto"
-              id="Devuelto2"
+              id="Devuelto"
             />
             <label
-              htmlFor="Devuelto2"
+              htmlFor="Devuelto"
               className="modal-transaction-finish-label"
             >
               Devuelto
