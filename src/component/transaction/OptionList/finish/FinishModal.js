@@ -10,6 +10,9 @@ export const FinishModal = (props) => {
   const setfinishModal = props.setfinishModal;
   const FilterSelectedTransaction = props.FilterSelectedTransaction;
   const [estado, setestado] = useState("");
+  const setdniFinish = props.setdniFinish;
+  const setundelivered = props.setundelivered;
+
 
   const handleClick = async (e) => {
     e.preventDefault()
@@ -41,9 +44,54 @@ export const FinishModal = (props) => {
 
   const handleClickCheck = (e) => {
     
-    setRadioActive(true);
-    setestado(e.target.id);
-  };
+            if(e.target.value==="Devuelto"){
+
+              setundelivered(true);
+              setTimeout(() => {
+                  e.target.parentNode.parentNode.parentNode.parentNode.classList.add('animation-left-transaction')
+                  const insert = document.querySelector('.insertAnimation');
+                  const div = document.createElement('div');
+                  div.classList.add('animationReasons');
+                  setTimeout(() => {
+                      insert.appendChild(div)
+                  }, 200);
+                  
+                  setTimeout(() => {
+                      setfinishModal(false);
+                      if(e.target.parentNode.parentNode.parentNode.parentNode!==null)
+                      e.target.parentNode.parentNode.parentNode.parentNode.classList.remove('animation-left-transaction')
+                      insert.removeChild(insert.firstChild);
+                  }, 500);
+              }, 0);
+      
+          }
+          if(e.target.value==="Entregado"){
+  
+              setdniFinish(true);
+              setTimeout(() => {
+                  e.target.parentNode.parentNode.parentNode.parentNode.classList.add('animation-left-transaction')
+                  const insert = document.querySelector('.insertAnimation');
+                  const div = document.createElement('div');
+                  div.classList.add('animationReasons');
+                  setTimeout(() => {
+                      insert.appendChild(div)
+                  }, 200);
+                  
+                  setTimeout(() => {
+                      setfinishModal(false);
+                      if(e.target.parentNode.parentNode.parentNode.parentNode!==null)
+                      e.target.parentNode.parentNode.parentNode.parentNode.classList.remove('animation-left-transaction')
+                      insert.removeChild(insert.firstChild);
+                  }, 500);
+              }, 0);
+      
+          }
+
+      setRadioActive(true);
+      setestado(e.target.id);
+}
+        
+
 
   const handleClickgoBack = (e) => {
     e.target.parentNode.parentNode.classList.add("animation-right-transaction");
@@ -62,7 +110,7 @@ export const FinishModal = (props) => {
 
       setfinishModal(false);
     }, 600);
-  };
+  }
 
   return (
     <div className="modal-transaction-finishModal">
