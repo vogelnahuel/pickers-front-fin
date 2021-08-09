@@ -50,8 +50,10 @@ export const Transaction = () => {
         console.log(err);
       }))   
       setloader(false);
+      if(window.innerHeight < 800)
       document.querySelector('.modal-transaction').style.height=`${document.body.scrollHeight+100}px`
-     
+      if(window.innerHeight > 800)
+      document.querySelector('.modal-transaction').style.height=`${document.body.scrollHeight+400}px`
       
 }
 
