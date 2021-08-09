@@ -20,7 +20,7 @@ export const data = () => {
         },
         {
             label: {
-                labelclassName:"label-Admin-Pickers",
+                labelclassName:"label-Admin-Pickers ",
                 labelhtmlFor:"apellido",
                 labelparrafo:"Apellido/s *"
                 },
@@ -34,7 +34,7 @@ export const data = () => {
         },
         {
             label: {
-                labelclassName:"label-Admin-Pickers",
+                labelclassName:"label-Admin-Pickers readonly",
                 labelhtmlFor:"dni",
                 labelparrafo:"DNI"
                 },
@@ -48,7 +48,7 @@ export const data = () => {
         },
         {
             label: {
-                labelclassName:"label-Admin-Pickers",
+                labelclassName:"label-Admin-Pickers readonly",
                 labelhtmlFor:"email",
                 labelparrafo:"E-mail"
                 },
@@ -62,7 +62,7 @@ export const data = () => {
         },
         {
             label: {
-                labelclassName:"label-Admin-Pickers",
+                labelclassName:"label-Admin-Pickers readonly",
                 labelhtmlFor:"fechaNac",
                 labelparrafo:"Fecha de nacimiento"
                 },
@@ -108,7 +108,7 @@ export const data = () => {
     [   
         { 
         label: {
-                labelclassName:"label-Admin-Pickers",
+                labelclassName:"label-Admin-Pickers readonly",
                 labelhtmlFor:"cuit",
                 labelparrafo:"Número de CUIT/CUIL "
                 },
@@ -124,7 +124,7 @@ export const data = () => {
            
         {
             label: {
-                labelclassName:"label-Admin-Pickers",
+                labelclassName:"label-Admin-Pickers readonly",
                 labelhtmlFor:"cbu",
                 labelparrafo:"Número de CBU"
                 },
@@ -138,7 +138,7 @@ export const data = () => {
         },
         {
             label: {
-                labelclassName:"label-Admin-Pickers",
+                labelclassName:"label-Admin-Pickers readonly",
                 labelhtmlFor:"nombreBanco",
                 labelparrafo:"Nombre del banco"
                 },
@@ -196,20 +196,7 @@ export const data = () => {
             onChange:"",
         },
        
-        {
-            label: {
-                labelclassName:"",
-                labelhtmlFor:"",
-                labelparrafo:""
-                },
-            className:"",
-            type:"",
-            name:"",
-            id:"",
-            placeholder:"",
-            value:"",
-            onChange:"",
-        },
+    
         
         ];
     
@@ -259,19 +246,6 @@ export const data = () => {
                 name:"fechaVecSeguroAccidente",
                 id:"fechaVecSeguroAccidente",
                 placeholder:" día / mes / año",
-                value:"",
-                onChange:"",
-            },{
-                label: {
-                    labelclassName:"",
-                    labelhtmlFor:"",
-                    labelparrafo:""
-                    },
-                className:"",
-                type:"",
-                name:"",
-                id:"",
-                placeholder:"",
                 value:"",
                 onChange:"",
             },

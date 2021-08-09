@@ -57,16 +57,16 @@
     width: 9.833vw;
 }
 .titleTableTransactions thead tr td:nth-child(3){
-    width: 14.373vw;
+    width: 16vw;
 }
 .titleTableTransactions thead tr td:nth-child(4){
-    width: 8.302vw;
+    width: 16vw;
 }
 .titleTableTransactions thead tr td:nth-child(5){
-    width: 18.302vw;
+    width: 20vw;
 }
 .titleTableTransactions thead tr td:nth-child(6){
-    width: 21.733vw;
+    width: 7vw;
 }
 .img-filter-transaction{
     cursor: pointer;
