@@ -8,6 +8,7 @@ import Reload from '../../../assets/transaction/Reload.svg'
 //import {useDispatch} from 'react-redux'
 import api from '../../../config/api'
 import { DniFinish } from './dniFinish/DniFinish'
+import { Undelivered } from './undelivered/Undelivered'
 //import { changeTest } from '../../../actions/transactionAction'
 
 
@@ -22,6 +23,7 @@ export const OptionList = (props) => {
     const [reasonCancelConfirm, setreasonCancelConfirm] = useState(false);
     const [finishModal, setfinishModal] = useState(false);
     const [dniFinish, setdniFinish] = useState(false)
+    const [undelivered, setundelivered] = useState(false)
    
 
     const handleClickCancel = (e) => {
@@ -191,6 +193,7 @@ export const OptionList = (props) => {
                             sethistory={sethistory}
                             setfinishModal={setfinishModal}
                             setdniFinish={setdniFinish}
+                            setundelivered={setundelivered}
                             />
                         </>
                         : null
@@ -202,9 +205,20 @@ export const OptionList = (props) => {
                             <DniFinish
                             setfinishModal={setfinishModal}
                             setdniFinish={setdniFinish}
+
                             />
                         </>
                         : null 
+                    }
+                    {
+                        undelivered === true ? 
+                        <>
+                            <div className="insertAnimation"></div>
+                        <Undelivered
+                         setfinishModal={setfinishModal}
+                        setundelivered={setundelivered}
+                        />
+                        </>  : null 
                     }
        
         </div>

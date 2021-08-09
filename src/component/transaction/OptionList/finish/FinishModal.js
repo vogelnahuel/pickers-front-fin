@@ -9,6 +9,7 @@ export const FinishModal = (props) => {
     const sethistory = props.sethistory
     const setfinishModal = props.setfinishModal;
     const setdniFinish = props.setdniFinish;
+    const setundelivered = props.setundelivered;
 
     const handleClick = (e) => {
         setRadioActive(true);
@@ -42,6 +43,28 @@ export const FinishModal = (props) => {
 
     
             setdniFinish(true);
+            setTimeout(() => {
+                e.target.parentNode.classList.add('animation-left-transaction')
+                const insert = document.querySelector('.insertAnimation');
+                const div = document.createElement('div');
+                div.classList.add('animationReasons');
+                setTimeout(() => {
+                    insert.appendChild(div)
+                }, 200);
+                
+                setTimeout(() => {
+                    setfinishModal(false);
+                    if(e.target.parentNode!==null)
+                    e.target.parentNode.classList.remove('animation-left-transaction')
+                    insert.removeChild(insert.firstChild);
+                }, 500);
+            }, 0);
+    
+        }
+        if(state.value==="Devuelto"){
+
+    
+            setundelivered(true);
             setTimeout(() => {
                 e.target.parentNode.classList.add('animation-left-transaction')
                 const insert = document.querySelector('.insertAnimation');
