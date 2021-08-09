@@ -206,6 +206,7 @@ export const OptionList = (props) => {
                             <DniFinish
                             setfinishModal={setfinishModal}
                             setdniFinish={setdniFinish}
+                            FilterSelectedTransaction={FilterSelectedTransaction}
 
                             />
                         </>
@@ -218,6 +219,7 @@ export const OptionList = (props) => {
                         <Undelivered
                          setfinishModal={setfinishModal}
                         setundelivered={setundelivered}
+                        FilterSelectedTransaction={FilterSelectedTransaction}
                         />
                         </>  : null 
                     }
