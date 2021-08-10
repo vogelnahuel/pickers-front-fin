@@ -41,7 +41,7 @@ export const FinishModal = (props) => {
 
   const handleClickCheck = (e) => {
     
-            if(e.target.value==="Devuelto" && FilterSelectedTransaction.transaction.state.id === 6 || FilterSelectedTransaction.transaction.state.id === 7){
+            if(e.target.value==="Devuelto" && (FilterSelectedTransaction.transaction.state.id === 6 || FilterSelectedTransaction.transaction.state.id === 7)){
 
               setundelivered(true);
               setTimeout(() => {
