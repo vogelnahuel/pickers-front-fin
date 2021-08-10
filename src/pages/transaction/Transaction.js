@@ -41,9 +41,6 @@ export const Transaction = () => {
     setFilterSelectedTransaction( await  api.get(`/ms-admin-rest/api/v1.0/transactions/${Number(e.target.getAttribute('name'))}`) 
 
     .then((res) => {
-
-        // console.log(res.data.result)
-        
         return res.data.result;
       })
       .catch((err) => {
@@ -60,7 +57,6 @@ export const Transaction = () => {
 
 
   const cargarMas = async () => {
-    // console.log(filter);
     const res = await api
       .get(
         `ms-admin-rest/api/v1.0/transactions?${

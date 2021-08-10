@@ -13,7 +13,7 @@ export const ReasonsCanceledConfirm = (props) => {
     const FilterSelectedTransaction = props.FilterSelectedTransaction
 
     const handleClickCancelConfirm = (e)=> {
-        console.log(FilterSelectedTransaction.transaction.id)
+       
         api.post(`/ms-admin-rest/api/v1.0/transactions/${FilterSelectedTransaction.transaction.id}/cancel`,{"cancellationReasonId":parseInt(reasonId)})
         .then(()=>{window.location.reload();})
         .catch((err)=>{console.log(err)})

@@ -117,7 +117,7 @@ const EstaVacioFiltro = (values) => {
   const onSubmit = async (values) => {
 
 
-    console.log(values)
+   
 
     values = formatDate(values);
     let stringSelected = "";

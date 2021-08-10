@@ -9,17 +9,7 @@ import api from '../../../config/api'
 import {Modal}  from 'pickit-components'
 
 export const  EmailRestore = () => {
-    //let token =localStorage.getItem("token")
-   // console.log(token)
 
-
-
-   /* const [formValues,handleInputBlur] = useForm({
-      mail:'',
-      errorMail:true,
-      errorMsgMail:'',
-    });
-    */
     const [formValues, setformValues] = useState({
       mail:'',
       errorMail:false,
@@ -92,7 +82,6 @@ const handleSubmit = async (e) => {
       })
       
     }
-    // console.log(formValues);
     if(formValues.mail[0] && formValues.errorMail!==true){
 
       api.post('ms-admin-rest/api/v1.0/admin/request-change-password',{email:formValues.mail[0]})

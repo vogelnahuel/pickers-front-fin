@@ -65,7 +65,7 @@ export const TableTransaction = (props) => {
                         </tr>
                 </thead>
                 <tbody> 
-                    {console.log(api)}
+                  
                     {
                         
                         JSON.stringify(api)!=='{}' && api!==undefined ? api.map(dato => dato?

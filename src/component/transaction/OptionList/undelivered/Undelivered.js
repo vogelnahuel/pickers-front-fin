@@ -40,7 +40,7 @@ const handleCLickOpc = async(e)=> {
     await api.post(
         `/ms-admin-rest/api/v1.0/transactions/${FilterSelectedTransaction.transaction.id}/returned`,
       );
-    window.location.reload();
+   window.location.reload();
 }
 
     return (
