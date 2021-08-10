@@ -47,7 +47,7 @@ export const DniFinish = (props) => {
                         {({ handleSumbit  }) => (
                         <form>
                             <div className="modal-input-dni-finish">
-                                <div>
+                                <div className="filter-transaction-div-label">
                                     <label htmlFor="dni">Dni *</label>
                                 </div>
                                 <Field

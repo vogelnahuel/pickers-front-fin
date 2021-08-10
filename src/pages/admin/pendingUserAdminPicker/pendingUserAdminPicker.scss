@@ -32,7 +32,7 @@
     font-style: normal;
     font-weight: normal;
     font-size: 17px;
-    line-height: 21px;
+    line-height: 27px;
     letter-spacing: 0.005em;
     color: #101820;
     border: 0;
@@ -88,10 +88,10 @@
     border: 1px solid #E5E5E5;
     box-sizing: border-box;
     border-radius: 10px;
-    padding-left: 15px;
+    padding-left: 19px;
     padding-right: 5px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 32px;
+    padding-bottom: 14px;
     margin-top: 3vh;
     flex-wrap: wrap;
     width: 100%;
@@ -316,7 +316,7 @@
    }
 .button-pending-picker-modal{
    display: flex;
-   justify-content: space-evenly;
+   justify-content: center;
 }
 
 

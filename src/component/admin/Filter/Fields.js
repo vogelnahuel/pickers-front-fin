@@ -85,7 +85,7 @@ export const Fields = (props) => {
                            {
                                variable.type!=="select" && variable.type!=="" ?
                                     <>
-                                     <div>
+                                     <div className="flota-div-label">
                                         <label className={variable.label.labelclassName} htmlFor={variable.label.labelhtmlFor}>{variable.label.labelparrafo}</label>
                                     </div>
                                     <div>

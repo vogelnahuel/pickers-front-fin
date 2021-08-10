@@ -77,7 +77,7 @@ export const PendingUserAdmin = () => {
     filter.mail = codificarEmailURIFunction(filter.mail);
     setoffset(0)
     setVerMas(true)
-    setData([])
+   
     setData(
       await api
         .get(
@@ -222,6 +222,7 @@ const cargarDatos = async () => {
     createCSV(datosExport);
   };
 
+
   return (
     <div className="background-Grey">
       <Header />
@@ -245,15 +246,40 @@ const cargarDatos = async () => {
           <br />
 
           <TableAdmin titulosAdminPending={titulosAdminPending} data={data} />
-          {VerMas?<>
-          <button onClick={cargarMas} className="paginator-button">
-            Ver más
-          </button></>:
-          <>
-          <button  className="paginator-button-disabled">
-            Ver más
-          </button></>}
+          {
+
+            data &&  data.length!==0 ?
+                <>
+                    {
+                        VerMas?
+                        <>
+                          <button onClick={cargarMas} className="paginator-button">
+                            Ver más
+                          </button>
+                        </>
+                        :
+                        <>
+                          <button  className="paginator-button-disabled">
+                            Ver más
+                          </button>
+                        </>
+                    
+                    }
+                </>
+                :
+                (
+                    <button
+                      onClick={cargarMas}
+                      className="paginator-button-transaction-noResult"
+                    >
+                      No obtuvimos resultados de tu búsqueda :(
+                    </button>
+                )
+          }
         </div>
+
+
+
         {ExportModal === true ? (
           <div className="contendor-modal-pending-pickers-aprobar">
             <Modal width="750px" height="351px" isOpen={ExportModal}>

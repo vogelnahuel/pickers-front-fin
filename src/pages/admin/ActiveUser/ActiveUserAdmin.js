@@ -163,7 +163,7 @@ const getData = async (filter) => {
     filter.mail = codificarEmailURIFunction(filter.mail);
     setoffset2(0)
     setVerMas(true)
-    setData([])
+    
     setData(
       await api
         .get(
@@ -244,14 +244,34 @@ const Export = async () => {
           <Filter FieldsPart={FieldsPart} onSubmit={onFilter} />
           <br />
           <TableAdmin titulosAdminActive={titulosAdminActive} data={data} />
-          {VerMas?<>
-          <button onClick={cargarMas} className="paginator-button">
-            Ver más
-          </button></>:
-          <>
-          <button  className="paginator-button-disabled">
-            Ver más
-          </button></>}
+           {
+             data && data.length!==0 ?
+            <>
+              {
+                VerMas?
+                  <>
+                    <button onClick={cargarMas} className="paginator-button">
+                      Ver más
+                    </button>
+                  </>
+                :
+                  <>
+                    <button  className="paginator-button-disabled">
+                      Ver más
+                    </button>
+                  </>
+              }
+              </>
+              :
+                  (
+                    <button
+                      onClick={cargarMas}
+                      className="paginator-button-transaction-noResult"
+                    >
+                      No obtuvimos resultados de tu búsqueda :(
+                    </button>
+                )
+            }
         </div>
         {ExportModalActive === true ? (
           <div className="contendor-modal-pending-pickers-aprobar">

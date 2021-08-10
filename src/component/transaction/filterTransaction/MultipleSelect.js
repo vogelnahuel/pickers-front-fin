@@ -129,7 +129,7 @@ const MultipleSelectCheckbox = (e) => {
               <div className="multiple-selectbox">
                             <div className="multiple-select" id="select">
                                 <div  onClick={valorModificarFuncion} className="multiple-contenido-select">
-                                    <h1>Estados</h1>
+                                    <h1 className="transaction-filter-multipleSelect-label">Estados</h1>
                                   
                                     <div className="multiple-ContenedorInput">
                                         <input placeholder="Seleccioná el estado" disabled className="multiple-input" type="text" value="" id="valorAmodificar"/>

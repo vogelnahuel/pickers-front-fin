@@ -1,4 +1,6 @@
-
+.filter-transaction-div-label{
+    height: 20px;
+}
 .modal-transaction-a{
     text-decoration: none;
     font-family: 'Mulish';
@@ -42,7 +44,7 @@
     font-style: normal;
     font-weight: normal;
     font-size: 17px;
-    line-height: 21px;
+    line-height: 27px;
     letter-spacing: 0px;
     color: black;
 }
@@ -60,7 +62,7 @@
     font-style: normal;
     font-weight: normal;
     font-size: 17px;
-    line-height: 21px;
+    line-height: 27px;
     letter-spacing: 0px;
     color: black;
 }
