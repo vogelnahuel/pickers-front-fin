@@ -565,12 +565,13 @@ const eliminarDivs = ()  => {
   if(deleteDivs){
     if(deleteDivs.parentNode.parentNode.parentNode.nextSibling)
     deleteDivs.parentNode.parentNode.parentNode.nextSibling.remove()
-
-    if(deleteDivs.parentNode.parentNode.parentNode.parentNode.parentNode){
-      deleteDivs.parentNode.parentNode.parentNode.parentNode.parentNode.firstChild.remove()
-      if(deleteDivs.parentNode.parentNode.parentNode.parentNode.parentNode.firstChild!==deleteDivs.parentNode.parentNode.parentNode.parentNode.parentNode.lastChild)
-      deleteDivs.parentNode.parentNode.parentNode.parentNode.parentNode.firstChild.remove()
+    for(let i = 0 ; i < 3 ; i ++){
+      if(deleteDivs.parentNode.parentNode.parentNode.parentNode.parentNode  && (deleteDivs.parentNode.parentNode.parentNode.parentNode.parentNode.firstChild!==deleteDivs.parentNode.parentNode.parentNode.parentNode.parentNode.lastChild) ){
+        deleteDivs.parentNode.parentNode.parentNode.parentNode.parentNode.firstChild.remove()
+      
+      }
     }
+    
   }
 }
  
