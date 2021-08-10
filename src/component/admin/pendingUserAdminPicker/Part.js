@@ -48,15 +48,31 @@ export const Part = (props) => {
            fechaVecSeguroAuto:document.querySelector('#fechaVecSeguroAuto').value
 
       });
+      
+      
+
+
+    }
+    
+    if(document.querySelector('#fechaVecSeguroAccidente')!==null){
+       
+      if(Informacion.vehicleTypeId===2){
+       
+        setObjFechas({
+          ...ObjFechas,
+          fechaVecSeguroAccidente:document.querySelector('#fechaVecSeguroAccidente').value,
+        })
+      }
     }
     
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [Informacion] )
 
 
+
   const handleChange = (e) => {
 
-    
+  
 
     if(window.location.pathname===`/pendingUserAdminpicker/${id}`){
       setdisabledButtonAprobarPicker(false);
@@ -214,9 +230,11 @@ export const Part = (props) => {
       });
     }
     if (e.target.name === "fechaVecSeguroAccidente") {
-
+     
       if(ObjFechas.fechaVecSeguroAccidente!==undefined){
 
+     
+        
       
 
         if(e.target.value.length===2 && cuantasVecesAparece(e.target.value,'/')===0 ){
@@ -240,11 +258,14 @@ export const Part = (props) => {
           e.target.value = e.target.value + "/";
         }
       }
-
+      
+     
       setInformacion({
         ...Informacion,
         expirationDatePolicyPersonal: e.target.value,
       });
+      console.log(Informacion)
+
     }
 
     validaciones(e);
