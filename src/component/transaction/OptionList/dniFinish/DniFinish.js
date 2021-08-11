@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import volver from '../../../../assets/admin/PendingUser/volver.svg'
 import Card from '../../../../assets/transaction/Card.svg'
@@ -12,7 +12,6 @@ export const DniFinish = (props) => {
     const setdniFinish = props.setdniFinish;
     const setfinishModal = props.setfinishModal;
     const FilterSelectedTransaction=props.FilterSelectedTransaction
-    const [disabledFinish, setdisabledFinish] = useState(false)
     
     const handleClickgoBack = (e) => {
         
