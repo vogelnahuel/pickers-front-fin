@@ -101,9 +101,6 @@ export const FilterTransaction = (props) => {
   };
   
 const EstaVacioFiltro = (values) => {
-  
-
- 
 
     if ( (Object.keys(values).length  >= 1) &&  (values.Picker!==undefined || values.FechaEntrega!==undefined || values.nroTransaccion!==undefined ) )  {
       return false;
@@ -113,18 +110,12 @@ const EstaVacioFiltro = (values) => {
 
 }
 
-
-  const onSubmit = async (values) => {
-
-
-   
+const onSubmit = async (values) => {
 
     values = formatDate(values);
     let stringSelected = "";
     stringSelected = multipleSelectCheckbox();
     setexportDisabled(EstaVacioFiltro(values));
-    
-   
 
     setapiFilter(
         
@@ -190,7 +181,7 @@ const EstaVacioFiltro = (values) => {
           {({ handleSubmit }) => (
             <form className="form-filter-transaction" onSubmit={handleSubmit}>
               <div>
-                <div>
+                <div className="transaction-filter-div-label">
                   <label className="label-filter-transaction">
                   Código de transacción {" "}
                   </label>
@@ -205,7 +196,7 @@ const EstaVacioFiltro = (values) => {
                 </div>
               </div>
               <div>
-                <div>
+                <div className="transaction-filter-div-label">
                   <label className="label-filter-transaction">Id de picker</label>
                 </div>
                 <div>
@@ -218,7 +209,7 @@ const EstaVacioFiltro = (values) => {
                 </div>
               </div>
               <div className="datePicker-filter-transaction">
-                <div>
+                <div className="transaction-filter-div-label">
                   <label className="label-filter-transaction">
                     Fecha de entrega
                   </label>

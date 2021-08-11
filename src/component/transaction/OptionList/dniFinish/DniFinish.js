@@ -57,7 +57,7 @@ export const DniFinish = (props) => {
                         }  }) => (
                         <form  onSubmit={handleSumbit}>
                             <div className="modal-input-dni-finish">
-                                <div>
+                                <div className="filter-transaction-div-label">
                                     <label htmlFor="dni">Dni *</label>
                                 </div>
                                 <Field

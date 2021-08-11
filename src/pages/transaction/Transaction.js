@@ -230,30 +230,32 @@ export const Transaction = () => {
             cargarDatos={cargarDatos}
             setFilterSelectedTransaction={setFilterSelectedTransaction}
           />
-             {apiFilterTransaction && apiFilterTransaction.length !== 0 ? <>
-             { VerMas?
-            <button
-              onClick={cargarMas}
-              className="paginator-button-transaction"
-            >
-              Ver más
-            </button>:
-            <button
-              disabled={true}
-              className="paginator-button-transaction-disabled"
-            >
-              Ver más
-            </button>
-            }
+             {
+             apiFilterTransaction && apiFilterTransaction.length !== 0 ?
+              <>
+                  { VerMas?
+                  <button
+                    onClick={cargarMas}
+                    className="paginator-button-transaction"
+                  >
+                    Ver más
+                  </button>:
+                  <button
+                    disabled={true}
+                    className="paginator-button-transaction-disabled"
+                  >
+                    Ver más
+                  </button>
+                  }
             </>
-           : (
-            <button
-              onClick={cargarMas}
-              className="paginator-button-transaction-noResult"
-            >
-              No obtuvimos resultados de tu búsqueda :(
-            </button>
-          )}
+                : (
+                  <button
+                    onClick={cargarMas}
+                    className="paginator-button-transaction-noResult"
+                  >
+                    No obtuvimos resultados de tu búsqueda :(
+                  </button>
+              )}
         </div>
 
         {OpenModalTransaction === true ? (

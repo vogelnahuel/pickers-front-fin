@@ -91,7 +91,7 @@ export const History = (props) => {
           <form className="form-filter-transaction-modal" onSubmit={handleSumbit}>
             <div className="modal-transaction-inputs">
               <div>
-                <div>
+                <div className="filter-transaction-div-label">
                   <label className="label-filter-transaction">Picker </label>
                 </div>
                 <div className="modal-transaction-input">
@@ -103,7 +103,7 @@ export const History = (props) => {
                 </div>
               </div>
               <div>
-                <div>
+                <div className="filter-transaction-div-label">
                   <label className="label-filter-transaction">
                     Nombre y apellido
                   </label>
@@ -118,7 +118,7 @@ export const History = (props) => {
               </div>
 
               <div>
-                <div>
+                <div className="filter-transaction-div-label">
                   <label className="label-filter-transaction">Código de área * </label>
                 </div>
                 <div className="modal-transaction-input-tel" id="modal-transaction-input-tel">
@@ -131,7 +131,7 @@ export const History = (props) => {
               </div>
 
               <div>
-                <div>
+                <div className="filter-transaction-div-label">
                   <label className="label-filter-transaction">Teléfono </label>
                 </div>
                 <div className="modal-transaction-input-tel" id="modal-transaction-input-tel2">
@@ -147,7 +147,7 @@ export const History = (props) => {
               Ir a picker
             </button></Link>
               <div>
-                <div>
+                <div className="filter-transaction-div-label">
                   <label className="label-filter-transaction">
                     Dirección de retiro{" "}
                   </label>
@@ -161,7 +161,7 @@ export const History = (props) => {
                 </div>
               </div>
               <div>
-                <div>
+                <div className="filter-transaction-div-label">
                   <label className="label-filter-transaction">
                     Dirección de entrega{" "}
                   </label>
@@ -175,7 +175,7 @@ export const History = (props) => {
                 </div>
               </div>
               <div>
-                <div>
+                <div className="filter-transaction-div-label">
                   <label className="label-filter-transaction">Retailer </label>
                 </div>
                 <div className="modal-transaction-input">
@@ -205,7 +205,7 @@ export const History = (props) => {
           <form className="form-filter-modal" >
               <div className="modal-transaction-inputs">
                     <div>
-                        <div>
+                        <div className="filter-transaction-div-label">
                           <label className="label-filter-transaction">
                           Nombre y apellido
                           </label>
@@ -220,7 +220,7 @@ export const History = (props) => {
                         </div>
                     </div>
                     <div>
-                        <div>
+                        <div className="filter-transaction-div-label">
                           <label className="label-filter-transaction">
                               Teléfono
                           </label>
