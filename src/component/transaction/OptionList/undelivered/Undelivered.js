@@ -53,8 +53,9 @@ const handleClick  = async (e) => {
 }
 const handleCLickOpc = async(e)=> {
     e.preventDefault();
+  
     await api.post(
-        `/ms-admin-rest/api/v1.0/transactions/${FilterSelectedTransaction.transaction.id}/in-devolution`,
+        `/ms-admin-rest/api/v1.0/transactions/${FilterSelectedTransaction.transaction.id}/in-devolution`,{"impossibleDeliveryReasonId":parseInt(e.target.id)}
       );
    window.location.reload();
 }
@@ -74,7 +75,7 @@ const handleCLickOpc = async(e)=> {
                         messages ? messages.map(opcion => (
                             <div key={opcion.id}>
                              
-                                <p onClick={handleCLickOpc} className="modal-undelivered-opc"> {opcion.message}</p>
+                                <p onClick={handleCLickOpc} id={opcion.id} className="modal-undelivered-opc"> {opcion.message}</p>
                                 
                                 <hr className="modal-undelivered-hr"/>
                             </div>

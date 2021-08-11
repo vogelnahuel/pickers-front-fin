@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import volver from '../../../../assets/admin/PendingUser/volver.svg'
 import Card from '../../../../assets/transaction/Card.svg'
@@ -12,6 +12,8 @@ export const DniFinish = (props) => {
     const setdniFinish = props.setdniFinish;
     const setfinishModal = props.setfinishModal;
     const FilterSelectedTransaction=props.FilterSelectedTransaction
+    const [disabledFinish, setdisabledFinish] = useState(false)
+    
     const handleClickgoBack = (e) => {
         
         e.target.parentNode.parentNode.parentNode.classList.add('animation-right-transaction')
@@ -46,6 +48,7 @@ export const DniFinish = (props) => {
             
                  <Form
                         onSubmit={()=>{}}
+                     
                         >
                         {({ handleSumbit = async(e) =>{
                             e.preventDefault()
@@ -53,7 +56,9 @@ export const DniFinish = (props) => {
                              await api.post(
                                 `/ms-admin-rest/api/v1.0/transactions/${FilterSelectedTransaction.transaction.id}/delivered`,
                                 { key: "identificationNumber", value: e.target.dni.value }
-                              );
+                              ).then(res => {
+                                  window.location.reload()
+                              });
                         }  }) => (
                         <form  onSubmit={handleSumbit}>
                             <div className="modal-input-dni-finish">
@@ -68,10 +73,11 @@ export const DniFinish = (props) => {
                                 >
                                 </Field>
                             </div>
-
-                            <div>
-                                <button  className="modal-dni-finish-button">Finalizarla</button>
-                            </div>
+                            {document.getElementById("dni") && document.getElementById("dni").value!==""?<div>
+                                <button  className="modal-dni-finish-button-habilitado">Finalizarla</button>
+                            </div>:<div>
+                                <button disabled={true} className="modal-dni-finish-button">Finalizarla</button>
+                            </div>}
 
                         </form>
                         )}
