@@ -67,8 +67,11 @@ export const Part = (props) => {
     
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [Informacion] )
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> develop
 
   const handleChange = (e) => {
 
@@ -485,7 +488,7 @@ export const Part = (props) => {
             Informacion.expirationDatePolicyVehicle.length < 10 ||
             Informacion.expirationDatePolicyPersonal.length < 10
           ) {
-            // console.log("1");
+          
             setdisabledButtonAprobarPicker(true);
           }
         }
@@ -499,7 +502,7 @@ export const Part = (props) => {
             Informacion.expirationDatePolicyVehicle.length >= 10 &&
             Informacion.expirationDatePolicyPersonal.length >= 10
           ) {
-            // console.log("2");
+         
             setdisabledButtonAprobarPicker(true);
           }
         
@@ -511,7 +514,7 @@ export const Part = (props) => {
           Informacion.expirationDatePolicyPersonal !== null
         ) {
           if (Informacion.expirationDatePolicyPersonal.length < 10)
-            // console.log("3");
+       
           setdisabledButtonAprobarPicker(true);
         }
         if (
@@ -519,7 +522,7 @@ export const Part = (props) => {
           Informacion.expirationDatePolicyPersonal !== null
         ) {
           if (Informacion.expirationDatePolicyPersonal.length >= 10)
-            // console.log("4");
+         
           setdisabledButtonAprobarPicker(true);
         }
       }
@@ -535,7 +538,7 @@ export const Part = (props) => {
             Informacion.expirationDatePolicyVehicle.length < 10 ||
             Informacion.expirationDatePolicyPersonal.length < 10
           ) {
-            // console.log("1");
+       
             setdisabledButtonAprobarPicker(true);
           }
         }
@@ -549,7 +552,7 @@ export const Part = (props) => {
             Informacion.expirationDatePolicyVehicle.length >= 10 &&
             Informacion.expirationDatePolicyPersonal.length >= 10
           ) {
-            // console.log("2");
+       
             setdisabledButtonAprobarPicker(true);
           }
         }
@@ -559,7 +562,7 @@ export const Part = (props) => {
           Informacion.expirationDatePolicyPersonal !== null
         ) {
           if (Informacion.expirationDatePolicyPersonal.length < 10)
-            // console.log("3");
+      
           setdisabledButtonAprobarPicker(true);
         }
         if (
@@ -567,7 +570,7 @@ export const Part = (props) => {
           Informacion.expirationDatePolicyPersonal !== null
         ) {
           if (Informacion.expirationDatePolicyPersonal.length >= 10)
-            // console.log("4");
+         
           setdisabledButtonAprobarPicker(true);
         }
       }

@@ -195,7 +195,6 @@ const cerrarAprobarPickerCorrigiendo  =  (e) => {
 const corregirDocumentos= async (e) =>{
         setloader(true);
         e.preventDefault();
-        // console.log( )
         await api.post(`/ms-admin-rest/api/v1.0/pickers/${dataPicker.id}/invalid-documentation`,{    
         "vehicleTypeId": dataPicker.vehicleTypeId,
         "name": Informacion.name  ,

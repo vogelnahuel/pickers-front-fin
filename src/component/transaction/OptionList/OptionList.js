@@ -8,6 +8,7 @@ import Reload from '../../../assets/transaction/Reload.svg'
 //import {useDispatch} from 'react-redux'
 import api from '../../../config/api'
 import { DniFinish } from './dniFinish/DniFinish'
+import { Undelivered } from './undelivered/Undelivered'
 //import { changeTest } from '../../../actions/transactionAction'
 
 
@@ -22,6 +23,7 @@ export const OptionList = (props) => {
     const [reasonCancelConfirm, setreasonCancelConfirm] = useState(false);
     const [finishModal, setfinishModal] = useState(false);
     const [dniFinish, setdniFinish] = useState(false)
+    const [undelivered, setundelivered] = useState(false)
    
 
     const handleClickCancel = (e) => {
@@ -84,10 +86,10 @@ export const OptionList = (props) => {
    
     const handleReload = () =>{
         const reload = async()=> {
-            // console.log(props.idTransaction)
+          
             props.setFilterSelectedTransaction( await  api.get(`/ms-admin-rest/api/v1.0/transactions/${FilterSelectedTransaction.transaction.id}`) 
             .then((res) => {
-                // console.log(res.data.result)
+           
                 return res.data.result;
               })
               .catch((err) => {
@@ -134,8 +136,8 @@ export const OptionList = (props) => {
                                     <button disabled={true} onClick={handleClickCancel} className="modal-transaction-finish-disabled">Cancelar</button>
                                     <button onClick={handleClickFinish} className="modal-transaction-cancel-enabled">Finalizar</button>
                                     </>: <>
-                                    <button disabled={true} onClick={handleClickCancel} className="modal-transaction-finish-disabled ">Cancelar</button>
-                                    <button disabled={true} onClick={handleClickFinish} className="modal-transaction-cancel-disabled">Finalizar</button>
+                                    <button disabled={true} onClick={handleClickCancel} className="modal-transaction-cancel-disabled ">Cancelar</button>
+                                    <button disabled={true} onClick={handleClickFinish} className="modal-transaction-finish-disabled">Finalizar</button>
                                     </>}
                                    
                                     <div onClick={handleReload} className="modal-transaction-reload">
@@ -192,6 +194,7 @@ export const OptionList = (props) => {
                             setfinishModal={setfinishModal}
                             FilterSelectedTransaction={FilterSelectedTransaction}
                             setdniFinish={setdniFinish}
+                            setundelivered={setundelivered}
                             />
                         </>
                         : null
@@ -203,9 +206,22 @@ export const OptionList = (props) => {
                             <DniFinish
                             setfinishModal={setfinishModal}
                             setdniFinish={setdniFinish}
+                            FilterSelectedTransaction={FilterSelectedTransaction}
+
                             />
                         </>
                         : null 
+                    }
+                    {
+                        undelivered === true ? 
+                        <>
+                            <div className="insertAnimation"></div>
+                        <Undelivered
+                         setfinishModal={setfinishModal}
+                        setundelivered={setundelivered}
+                        FilterSelectedTransaction={FilterSelectedTransaction}
+                        />
+                        </>  : null 
                     }
        
         </div>

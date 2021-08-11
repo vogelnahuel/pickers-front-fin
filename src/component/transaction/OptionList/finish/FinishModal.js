@@ -10,40 +10,85 @@ export const FinishModal = (props) => {
   const setfinishModal = props.setfinishModal;
   const FilterSelectedTransaction = props.FilterSelectedTransaction;
   const [estado, setestado] = useState("");
+  const setdniFinish = props.setdniFinish;
+  const setundelivered = props.setundelivered;
+
 
   const handleClick = async (e) => {
     e.preventDefault()
     
     switch (estado) {
-      case "Entregado":
-        await api.post(
-          `/ms-admin-rest/api/v1.0/transactions/${FilterSelectedTransaction.transaction.id}/delivered`,
-          { key: "123", value: "123" }
-        );
-        break;
+  
       case "Siniestrado":
         await api.post(
           `/ms-admin-rest/api/v1.0/transactions/${FilterSelectedTransaction.transaction.id}/lost`,
         );
         break;
-      case "Devuelto":
-        await api.post(
-          `/ms-admin-rest/api/v1.0/transactions/${FilterSelectedTransaction.transaction.id}/returned`,
-        );
-        break;
+        case "Devuelto":
+          await api.post(
+            `/ms-admin-rest/api/v1.0/transactions/${FilterSelectedTransaction.transaction.id}/returned`,
+          );
+          break;
+    
+  
 
       default:
         break;
     }
 
-  window.location.reload();
+ window.location.reload();
   };
 
   const handleClickCheck = (e) => {
     
-    setRadioActive(true);
-    setestado(e.target.id);
-  };
+            if(e.target.value==="Devuelto" && (FilterSelectedTransaction.transaction.state.id === 6 || FilterSelectedTransaction.transaction.state.id === 7)){
+
+              setundelivered(true);
+              setTimeout(() => {
+                  e.target.parentNode.parentNode.parentNode.parentNode.classList.add('animation-left-transaction')
+                  const insert = document.querySelector('.insertAnimation');
+                  const div = document.createElement('div');
+                  div.classList.add('animationReasons');
+                  setTimeout(() => {
+                      insert.appendChild(div)
+                  }, 200);
+                  
+                  setTimeout(() => {
+                      setfinishModal(false);
+                      if(e.target.parentNode.parentNode.parentNode.parentNode!==null)
+                      e.target.parentNode.parentNode.parentNode.parentNode.classList.remove('animation-left-transaction')
+                      insert.removeChild(insert.firstChild);
+                  }, 500);
+              }, 0);
+      
+          }
+          if(e.target.value==="Entregado"){
+  
+              setdniFinish(true);
+              setTimeout(() => {
+                  e.target.parentNode.parentNode.parentNode.parentNode.classList.add('animation-left-transaction')
+                  const insert = document.querySelector('.insertAnimation');
+                  const div = document.createElement('div');
+                  div.classList.add('animationReasons');
+                  setTimeout(() => {
+                      insert.appendChild(div)
+                  }, 200);
+                  
+                  setTimeout(() => {
+                      setfinishModal(false);
+                      if(e.target.parentNode.parentNode.parentNode.parentNode!==null)
+                      e.target.parentNode.parentNode.parentNode.parentNode.classList.remove('animation-left-transaction')
+                      insert.removeChild(insert.firstChild);
+                  }, 500);
+              }, 0);
+      
+          }
+
+      setRadioActive(true);
+      setestado(e.target.id);
+}
+        
+
 
   const handleClickgoBack = (e) => {
     e.target.parentNode.parentNode.classList.add("animation-right-transaction");
@@ -62,7 +107,7 @@ export const FinishModal = (props) => {
 
       setfinishModal(false);
     }, 600);
-  };
+  }
 
   return (
     <div className="modal-transaction-finishModal">
@@ -94,10 +139,10 @@ export const FinishModal = (props) => {
           <div className="flexItems">
             <input
               onClick={handleClickCheck}
-              name="estado2"
+              name="estado"
               type="radio"
               value="Siniestrado"
-              id="Siniestrado2"
+              id="Siniestrado"
             />
             <label
               htmlFor="Siniestrado2"
@@ -110,33 +155,34 @@ export const FinishModal = (props) => {
           <div className="flexItems">
             <input
               onClick={handleClickCheck}
-              name="estado2"
+              name="estado"
               type="radio"
               value="Entregado"
-              id="Entregado2"
+              id="Entregado"
             />
             <label
-              htmlFor="Entregado2"
+              htmlFor="Entregado"
               className="modal-transaction-finish-label"
             >
               Entregado
             </label>
           </div>
-          <div className="flexItems">
+         
+          {FilterSelectedTransaction.transaction.state.id!==8?<div className="flexItems">
             <input
               onClick={handleClickCheck}
-              name="estado2"
+              name="estado"
               type="radio"
               value="Devuelto"
-              id="Devuelto2"
+              id="Devuelto"
             />
             <label
-              htmlFor="Devuelto2"
+              htmlFor="Devuelto"
               className="modal-transaction-finish-label"
             >
               Devuelto
             </label>
-          </div>
+          </div>:<></>}
         </div>
 
         {RadioActive === false ? (

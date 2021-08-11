@@ -1,6 +1,7 @@
 import React, {  } from 'react'
 import './TableTransaction.css'
 import TreePoints from '../../../assets/transaction/TreePoints.svg'
+import stateName from './statesNames.js'
 
 import moment from 'moment'
 
@@ -27,17 +28,19 @@ export const TableTransaction = (props) => {
     }
 
     
-    const stateNames = new Map()
-    stateNames.set(1,"Sin asignar")
-    stateNames.set(3,"En retiro")
-    stateNames.set(4,"En punto de retiro")
-    stateNames.set(5,"Retirado")
-    stateNames.set(7,"En lugar de entrega")
-    stateNames.set(10,"Entregado")
-    stateNames.set(8,"En devolución")
-    stateNames.set(11,"Devuelto a origen")
-    stateNames.set(9,"Cancelado")
-    stateNames.set(12,"Siniestrado")
+    // const stateNames = new Map()
+    // stateNames.set(1,"Sin asignar")
+    // stateNames.set(3,"En retiro")
+    // stateNames.set(4,"En punto de retiro")
+    // stateNames.set(2,"Asignado")
+    // stateNames.set(5,"Retirado")
+    // stateNames.set(6,"En entrega")
+    // stateNames.set(7,"En lugar de entrega")
+    // stateNames.set(10,"Entregado")
+    // stateNames.set(8,"En devolución")
+    // stateNames.set(11,"Devuelto a origen")
+    // stateNames.set(9,"Cancelado")
+    // stateNames.set(12,"Siniestrado")
 
 
 
@@ -63,7 +66,7 @@ export const TableTransaction = (props) => {
                         </tr>
                 </thead>
                 <tbody> 
-                    {console.log(api)}
+                  
                     {
                         
                         JSON.stringify(api)!=='{}' && api!==undefined ? api.map(dato => dato?
@@ -76,7 +79,7 @@ export const TableTransaction = (props) => {
                                     <td  name={dato.transaction.id} key={dato.transaction.id+"4"} > {dato.transaction.transactionCode} </td>
                                     <td  name={dato.transaction.id} key={dato.transaction.id+"5"} > {dato.transaction.externalPickerId}  </td>
                                     <td  name={dato.transaction.id} key={dato.transaction.id+"6"} > {moment(dato.transaction.maxDeliveryDateTime.substring(0,10),"YYYY-MM-DD").format("DD/MM/YYYY")} </td>
-                                    <td  name={dato.transaction.id} key={dato.transaction.id+"7"} > {stateNames.get(dato.transaction.state.id)}</td>
+                                    <td  name={dato.transaction.id} key={dato.transaction.id+"7"} > {stateName(dato.transaction.state.id)}</td>
                                     <td  name={"inAlert"} key={dato.transaction.id+"8"} > {dato.transaction.inAlert?<div className="admin-table-alerta">En alerta</div>:null}</td>
                             </tr>
                         

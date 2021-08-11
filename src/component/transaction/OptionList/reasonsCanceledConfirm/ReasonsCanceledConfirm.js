@@ -13,7 +13,7 @@ export const ReasonsCanceledConfirm = (props) => {
     const FilterSelectedTransaction = props.FilterSelectedTransaction
 
     const handleClickCancelConfirm = (e)=> {
-        console.log(FilterSelectedTransaction.transaction.id)
+       
         api.post(`/ms-admin-rest/api/v1.0/transactions/${FilterSelectedTransaction.transaction.id}/cancel`,{"cancellationReasonId":parseInt(reasonId)})
         .then(()=>{window.location.reload();})
         .catch((err)=>{console.log(err)})
@@ -45,19 +45,23 @@ export const ReasonsCanceledConfirm = (props) => {
                 <img src={volver} alt ="volver" />
                 <p className="modal-transaction-reasonsCanceledConfirm-volver">Volver</p>
             </div>
-            <div className="modal-transaction-reasonsCanceledConfirm-container">
+
+          {reasonId!==999?  <div className="modal-transaction-reasonsCanceledConfirm-container">
                     <img className="modal-transaction-reasonsCanceledConfirm-img" src={Info} alt ="informacionIcon" />
-                    <h3 className="modal-transaction-reasonsCanceledConfirm-subtitle">La transacción está por ser cancelada</h3>
+                    <h3 className="modal-transaction-reasonsCanceledConfirm-subtitle">Estás por cancelar la transacción</h3>
                     <hr className="modal-transaction-reasonsCanceledConfirm-separate"/>
-                    <p className="modal-transaction-reasonsCanceledConfirm-p">Al cancelar la transacción, esta va a pasar a blablabla
-                 
-                   
-                    </p>
+                    <p className="modal-transaction-reasonsCanceledConfirm-p">Al hacerlo, ya no va a poder ser asignada</p>
                     <p className="modal-transaction-reasonsCanceledConfirm-p2">
-                        
                         ¿Querés cancelarla?
                     </p>
-            </div>
+            </div>:<div className="modal-transaction-reasonsCanceledConfirm-container">
+                    <img className="modal-transaction-reasonsCanceledConfirm-img" src={Info} alt ="informacionIcon" />
+                    <h3 className="modal-transaction-reasonsCanceledConfirm-subtitle">Estás por cancelar la colecta</h3>
+                    <hr className="modal-transaction-reasonsCanceledConfirm-separate"/>
+                    <p className="modal-transaction-reasonsCanceledConfirm-p">Al desasignar la transacción, va a volver al estado sin asignar</p>
+                    <p className="modal-transaction-reasonsCanceledConfirm-p2">¿Querés cancelar la colecta?
+                    </p>
+            </div>}
             <button onClick={handleClickCancelConfirm} className="modal-transaction-reasonsCanceledConfirm-button">Sí, cancelarla</button>
         </div>
     )

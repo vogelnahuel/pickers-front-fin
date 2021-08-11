@@ -83,7 +83,7 @@ const handleClickgoBack = (e) => {
         <div className="modal-transaction-reasonsCanceled">
             <div onClick={handleClickgoBack} className="modal-transaction-volver">
                 <img src={volver} alt ="volver" />
-                <p>Volver</p>
+                <p className="modal-reasonsCancel-p">Volver</p>
             </div>
             <div className="modal-transaction-scroll">
                     <p className="modal-transaction-reasonsCanceled-subtitle">Seleccioná el motivo de la cancelación</p>

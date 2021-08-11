@@ -16,6 +16,8 @@ import Close from "../../assets/transaction/Close.svg";
 
 import api from "../../config/api.js";
 import createCSV from "../../tools/createCSV";
+import stateName from "../../component/transaction/tableTransaction/statesNames";
+import moment from "moment";
 
 export const Transaction = () => {
 
@@ -41,9 +43,6 @@ export const Transaction = () => {
     setFilterSelectedTransaction( await  api.get(`/ms-admin-rest/api/v1.0/transactions/${Number(e.target.getAttribute('name'))}`) 
 
     .then((res) => {
-
-        // console.log(res.data.result)
-        
         return res.data.result;
       })
       .catch((err) => {
@@ -60,7 +59,6 @@ export const Transaction = () => {
 
 
   const cargarMas = async () => {
-    // console.log(filter);
     const res = await api
       .get(
         `ms-admin-rest/api/v1.0/transactions?${
@@ -294,13 +292,13 @@ export const Transaction = () => {
                   <div className="modal-transaction-subtitle">
                     <h2>
                       {FilterSelectedTransaction.transaction
-                        ? FilterSelectedTransaction.transaction.id
+                        ? FilterSelectedTransaction.transaction.transactionCode
                         : ""}
                     </h2>
                     <p>
                      
                       {FilterSelectedTransaction.transaction
-                        ? FilterSelectedTransaction.transaction.state.name
+                        ? stateName(FilterSelectedTransaction.transaction.state.id)
                         : ""}
                         
                     </p>
@@ -308,13 +306,15 @@ export const Transaction = () => {
                     <p className="modal-transaction-fecha">
                       {" "}
                       {FilterSelectedTransaction.transaction
-                        ? FilterSelectedTransaction.transaction.maxDeliveryDateTime.substring(
-                            0,
-                            10
-                          )+" "+FilterSelectedTransaction.transaction.maxDeliveryDateTime.substring(
-                            11,
-                            16
-                          )
+                        ? FilterSelectedTransaction.transaction.maxDeliveryDateTime.substring(0,10)+" "+(parseInt(FilterSelectedTransaction.transaction.maxDeliveryDateTime.substring( 11,13))-3)+FilterSelectedTransaction.transaction.maxDeliveryDateTime.substring( 13,16)
+                          // .substring(
+                          //   0,
+                          //   10
+                          // )
+                          // +" "+FilterSelectedTransaction.transaction.maxDeliveryDateTime.substring(
+                          //   11,
+                          //   16)
+                          
                         : ""}{" "}
                     </p>
                   </div>
