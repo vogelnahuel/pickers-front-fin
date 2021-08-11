@@ -79,11 +79,12 @@ export const History = (props) => {
       <Form
         onSubmit={() => {}}
         initialValues={{
-          nroTransaccion: FilterTransaction.transaction ? FilterTransaction.transaction.id : 0,
-          Picker: FilterTransaction.transaction ? FilterTransaction.client.name+ ' ' +FilterTransaction.client.lastName : "",
-          Telefono: FilterTransaction.transaction ? FilterTransaction.client.phone : "",
-          dirRetiro: FilterTransaction.destination ? FilterTransaction.destination.formattedAddress : "" ,
-          dirEntrega: FilterTransaction.origin ? FilterTransaction.origin.formattedAddress : "",
+          //nroTransaccion: FilterTransaction.transaction ? FilterTransaction.transaction.id : 0,
+          PickerId: FilterTransaction.picker ? FilterTransaction.picker.id : "",
+          Picker: FilterTransaction.picker ? FilterTransaction.picker.name+ ' ' +FilterTransaction.picker.surname : "",
+          Telefono: FilterTransaction.picker ? FilterTransaction.picker.phone : "",
+          dirEntrega : FilterTransaction.destination ? FilterTransaction.destination.formattedAddress : "" ,
+          dirRetiro : FilterTransaction.origin ? FilterTransaction.origin.formattedAddress : "",
           Retailer: "pickit",
         }}
       >
@@ -96,7 +97,7 @@ export const History = (props) => {
                 </div>
                 <div className="modal-transaction-input">
                   <Field
-                    name="nroTransaccion"
+                    name="PickerId"
                     component="input"
                     placeholder="Ingresá el número"
                   />
