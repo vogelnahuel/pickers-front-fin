@@ -17,7 +17,7 @@ import Close from "../../assets/transaction/Close.svg";
 import api from "../../config/api.js";
 import createCSV from "../../tools/createCSV";
 import stateName from "../../component/transaction/tableTransaction/statesNames";
-import moment from "moment";
+
 
 export const Transaction = () => {
 
