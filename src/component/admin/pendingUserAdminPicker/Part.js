@@ -67,11 +67,8 @@ export const Part = (props) => {
     
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [Informacion] )
-<<<<<<< HEAD
 
 
-=======
->>>>>>> develop
 
   const handleChange = (e) => {
 
