@@ -24,6 +24,12 @@ export const FinishModal = (props) => {
           `/ms-admin-rest/api/v1.0/transactions/${FilterSelectedTransaction.transaction.id}/lost`,
         );
         break;
+        case "Devuelto":
+          await api.post(
+            `/ms-admin-rest/api/v1.0/transactions/${FilterSelectedTransaction.transaction.id}/returned`,
+          );
+          break;
+    
   
 
       default:
@@ -35,7 +41,7 @@ export const FinishModal = (props) => {
 
   const handleClickCheck = (e) => {
     
-            if(e.target.value==="Devuelto"){
+            if(e.target.value==="Devuelto" && (FilterSelectedTransaction.transaction.state.id === 6 || FilterSelectedTransaction.transaction.state.id === 7)){
 
               setundelivered(true);
               setTimeout(() => {
@@ -161,7 +167,8 @@ export const FinishModal = (props) => {
               Entregado
             </label>
           </div>
-          <div className="flexItems">
+         
+          {FilterSelectedTransaction.transaction.state.id!==8?<div className="flexItems">
             <input
               onClick={handleClickCheck}
               name="estado"
@@ -175,7 +182,7 @@ export const FinishModal = (props) => {
             >
               Devuelto
             </label>
-          </div>
+          </div>:<></>}
         </div>
 
         {RadioActive === false ? (
