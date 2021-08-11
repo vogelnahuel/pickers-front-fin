@@ -23,6 +23,7 @@ const [messages, setmessages] = useState([])
             }))
          }
          cargarMensajes();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
   //  const opc = [{key:1,value:'No logro contactar al cliente'},{key:2,value:'El paquete es incorrecto'},{key:3,value:'El cliente rechaza el paquete'}]
 
