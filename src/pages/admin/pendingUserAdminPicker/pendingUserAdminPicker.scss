@@ -39,7 +39,7 @@
     outline: none;
     border-bottom:  1px solid #828282;
     margin-bottom: 3.515625vh;
-    width: 23vw;
+    width: 21.8vw;
 }
 
 .Admin-Pickers-button{
@@ -58,6 +58,7 @@
 .Admin-Pickers-space{
     margin-left: 20px;
     width: 23vw;
+    margin-right: 6px;
 }
 
 .option{
@@ -94,7 +95,7 @@
     padding-bottom: 14px;
     margin-top: 3vh;
     flex-wrap: wrap;
-    width: 100%;
+    width: 77.8vw;
 }
 
 .subTitle-pending-data{
@@ -112,7 +113,7 @@
 }
 
 .pending-admin-picker-button{
-    margin-top: 50px;
+    margin-top: 36px;
     margin-left: 25%;
     margin-bottom: 100px;
     width: 100%;
@@ -309,11 +310,28 @@
     border-radius: 25px 25px 0px 0px;
     height: 137px;
   }
-  .modal-error-subtitle{
+.modal-error-subtitle-buttons{
+    background: #FFFFFF;
+    height: 167px;
+    border-radius: 0px 0px 25px 25px;
+  }
+.modal-error-subtitle{
     background: #FFFFFF;
     height: 214px;
     border-radius: 0px 0px 25px 25px;
    }
+.p-modal-error-subtitle-buttons {
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 30px;
+    text-align: center;
+    letter-spacing: 0.005em;
+    color: #101820;
+    padding-top: 26px;
+  
+}
 .button-pending-picker-modal{
    display: flex;
    justify-content: center;
@@ -333,10 +351,70 @@
     margin-left: 94px;
     margin-right: 94px;
 }
+.pending-admin-picker-container-checkbox{
+    margin-top: 41px;
+}
+.pending-admin-picker-input-checkbox{
+    border: 1px solid #BDBDBD;
+    border-radius: 2px;
+    width: 20px;
+    height: 20px;
+}
+.pending-admin-picker-div-label{
+    vertical-align: middle;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 20px;
+    letter-spacing: 0.005em;
+    color: #4D4D4D;
+    margin-left: 11px;
+}
+
+.Admin-Pickers-input-middle{
+    width: 139px;
+    border: 0;
+    border-bottom: 1px solid #828282;
+    outline: none;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 27px;
+    letter-spacing: 0.005em;
+    color: #101820;
+    border: 0;
+    outline: none;
+    border-bottom: 1px solid #828282;
+    margin-bottom: 3.515625vh;
+}
+.label-Admin-Pickers-middle{
+    width: 138px;
+}
 
 @media (min-width: 1700px) { 
 
     .Admin-Pickers-button{
         margin-left: 53vw;
+    }
+ }
+
+ @media (max-width:1300px){
+    .Admin-Pickers-space{
+        width: 22.4vw;
+        margin-left: 18px;
+    }
+    .Admin-Pickers-input{
+        width: 22.2vw;
+    }
+    .label-Admin-Pickers{
+        width: 22.2vw;
+    }
+    .Admin-Pickers-input-middle{
+        width: 124px;
+    }
+    .label-Admin-Pickers-middle{
+        width: 124px;
     }
  }

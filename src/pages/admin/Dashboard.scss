@@ -31,12 +31,13 @@
     display: flex;
     flex-wrap: wrap;
     z-index: 10;
+    margin-left: 1.4vw;
 }
 .card-body-admin{
     width: 38vw;
     height: 25vh;
-    margin-left: 1.5vw;
     margin-bottom: 2vh;
+    margin-left: 1.5vw;
     border-radius: 10px;
     display: flex;
     z-index: 10;
@@ -104,4 +105,11 @@
     width: 100vw;
     height: 100vh;
     background:  rgba(255, 255, 255, 0.4) url("../../assets/canguro-pickers.gif") 50% 50% no-repeat;
+}
+
+@media (max-width : 1300px){
+
+    .card-admin{
+        margin-left: 2.4vw;
+    }
 }

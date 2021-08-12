@@ -6,7 +6,7 @@
     padding-left: 4vh;
     padding-right: 2vh;
     height: 86.3vh;
-    width:17.082vw;
+    width:247px;
     background-color: #FFFFFF;
     position: fixed;
     margin-top: 7.291666666666667vh
@@ -88,6 +88,14 @@
     position: absolute;
 }
 
+@media (min-height: 700px) { 
+  
+    .circle{
+        left: 2.5vw;
+        margin-top: 1.6vh;
+    }
+  
+}
 
 @media (min-height: 800px) { 
   

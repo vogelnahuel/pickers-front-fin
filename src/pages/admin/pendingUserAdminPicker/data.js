@@ -76,11 +76,25 @@ export const data = () => {
         },
         {
             label: {
-                labelclassName:"label-Admin-Pickers",
+                labelclassName:"label-Admin-Pickers-middle",
+                labelhtmlFor:"CodArea",
+                labelparrafo:"Código de área *"
+                },
+            className:"Admin-Pickers-input-middle",
+            type:"text",
+            name:"CodArea",
+            id:"CodArea",
+            placeholder:"Ingresá el Código de área *",
+            onChange:"",
+            value:""
+        },
+        {
+            label: {
+                labelclassName:"label-Admin-Pickers-middle",
                 labelhtmlFor:"telefono",
                 labelparrafo:"Teléfono *"
                 },
-            className:"Admin-Pickers-input",
+            className:"Admin-Pickers-input-middle",
             type:"text",
             name:"telefono",
             id:"telefono",

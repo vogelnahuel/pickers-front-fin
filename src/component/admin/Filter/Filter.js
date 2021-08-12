@@ -12,24 +12,26 @@ export const Filter = (props) => {
 
     return (
         <div className="form-fiter">
-                
+                <div className="form-filter-img-p">
                     <img className="tamImgFilter" src={desplegable} alt="" />
                     <p className="Filter-p">Filtros</p>
-
+                </div>
                 <form className="filter-inputs" onSubmit={onSubmit}>
-                    <Fields
-                     FieldsPart={props.FieldsPart}
-                    />
-                                
-                   <div className="container-button-width">
-                        <button 
-                                className="filter-button"
-                                name="search"
-                                >
-                                <img  src={search} alt="export" />
-                                <img className="or-filter" src={or} alt="or" />
-                                <p className="display-inline-block p-export"> Buscar</p>
-                        </button>
+                    <div className="filter-padding">
+                            <Fields
+                            FieldsPart={props.FieldsPart}
+                            />
+                                        
+                            <div className="container-button-width">
+                                <button 
+                                        className="filter-button"
+                                        name="search"
+                                        >
+                                        <img  src={search} alt="export" />
+                                        <img className="or-filter" src={or} alt="or" />
+                                        <p className="display-inline-block p-export"> Buscar</p>
+                                </button>
+                        </div>
                     </div>
                     
                 </form>  
