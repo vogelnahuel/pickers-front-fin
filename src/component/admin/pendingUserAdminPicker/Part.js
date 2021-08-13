@@ -5,12 +5,14 @@ import "./part.scss";
 import { SaveAdminPicker } from "../SaveAdminPicker/SaveAdminPicker";
 import moment from "moment";
 import { useParams } from "react-router-dom";
+import { Fragment } from "react";
 
 /**** muestro los campos con sus labels y tambien los componentes pasados */
 export const Part = (props) => {
   const variables = props.inputsPart;
   const componentes = props.ComponentesPart;
   const dataPicker = props.data;
+
   
   
   const id =useParams().id;
@@ -583,26 +585,30 @@ export const Part = (props) => {
 
 const eliminarDivs = ()  => {
   const deleteDivs = document.querySelector('#fechaVecSeguroAccidente');
+  
   if(deleteDivs){
+  
+    
     if(deleteDivs.parentNode.parentNode.parentNode.nextSibling)
     deleteDivs.parentNode.parentNode.parentNode.nextSibling.remove()
     for(let i = 0 ; i < 3 ; i ++){
-      if(deleteDivs.parentNode.parentNode.parentNode.parentNode.parentNode  && (deleteDivs.parentNode.parentNode.parentNode.parentNode.parentNode.firstChild!==deleteDivs.parentNode.parentNode.parentNode.parentNode.parentNode.lastChild) ){
-        deleteDivs.parentNode.parentNode.parentNode.parentNode.parentNode.firstChild.remove()
+      if(deleteDivs.parentNode.parentNode.parentNode.parentNode  && (deleteDivs.parentNode.parentNode.parentNode.parentNode.firstChild!==deleteDivs.parentNode.parentNode.parentNode.parentNode.lastChild) ){
+        deleteDivs.parentNode.parentNode.parentNode.parentNode.firstChild.remove()
       
       }
     }
-    
+   
   }
 }
  
 
 
 
+
   return (
     <>
       { variables.map((variable) => (
-        <div key={variable.id}>
+        <Fragment key={variable.id}>
 
                 {  dataPicker.vehicleTypeId === 2 &&
                    variable.name === "fechaVecSeguroAccidente" ? (
@@ -648,253 +654,305 @@ const eliminarDivs = ()  => {
                     </div>
                   ) : null
               }
-
-              <div key={variable.id} className="Admin-Pickers-space">
-                {variable.type !== "" ? (
-                  <>
-                    <div className="flota-part-div-label">
-                      {dataPicker.vehicleTypeId === 2 &&
-                      variable.name === "fechaVecSeguroAccidente" ? (
-                        <>
-                       
-                        </>
-                      ) : dataPicker.vehicleTypeId === 2 &&
-                        (variable.name === "vencimientoLicencia" ||
-                          variable.name === "fechaVecCel" ||
-                          variable.name === "fechaVecSeguroAuto") ? (
-                        <></>
-                      ) : (
-                        <Labels
-                          width={variable.label.labelwidth}
-                          className={variable.label.labelclassName}
-                          htmlFor={variable.label.labelhtmlFor}
-                          parrafo={variable.label.labelparrafo}
-                        />
-                      )}
-                    </div>
-                    <div>
-                      {variable.name === "nombre" && (
-                        <input
-                          value={Informacion.name ? Informacion.name : ""}
-                          onChange={(e) => {
-                            handleChange(e, variable.id);
-                          }}
-                          className={variable.className}
-                          type={variable.type}
-                          name={variable.name}
-                          id={variable.id}
-                          placeholder={variable.placeholder}
-                        />
-                      )}
-                      {variable.name === "apellido" && (
-                        <input
-                          value={Informacion.surname ? Informacion.surname : ""}
-                          onChange={(e) => {
-                            handleChange(e, variable.id);
-                          }}
-                          className={variable.className}
-                          type={variable.type}
-                          name={variable.name}
-                          id={variable.id}
-                          placeholder={variable.placeholder}
-                        />
-                      )}
-                      {variable.name === "dni" && (
-                        <input
-                        readOnly
-                          value={
-                            Informacion.identificationNumber
-                              ? Informacion.identificationNumber
-                              : ""
-                          }
-                          onChange={(e) => {
-                            handleChange(e, variable.id);
-                          }}
-                          className={variable.className}
-                          type={variable.type}
-                          name={variable.name}
-                          id={variable.id}
-                          placeholder={variable.placeholder}
-                        />
-                      )}
-                      {variable.name === "email" && (
-                        <input
-                          readOnly
-                          value={Informacion.email ? Informacion.email : ""}
-                          onChange={(e) => {
-                            handleChange(e, variable.id);
-                          }}
-                          className={variable.className}
-                          type={variable.type}
-                          name={variable.name}
-                          id={variable.id}
-                          placeholder={variable.placeholder}
-                        />
-                      )}
-                      {variable.name === "fechaNac" && (
-                        <input
-                          value={
-                            Informacion.dateOfBirth ? Informacion.dateOfBirth : ""
-                          }
-                          onChange={(e) => {
-                            handleChange(e, variable.id);
-                          }}
-                          className={variable.className}
-                          type={variable.type}
-                          name={variable.name}
-                          readOnly
-                          id={variable.id}
-                          placeholder={variable.placeholder}
-                        />
-                      )}
-                      {variable.name === "telefono" && (
-                        <input
-                          value={
-                            Informacion.phoneNumber ? Informacion.phoneNumber : ""
-                          }
-                          onChange={(e) => {
-                            handleChange(e, variable.id);
-                          }}
-                          className={variable.className}
-                          type={variable.type}
-                          name={variable.name}
-                          id={variable.id}
-                          placeholder={variable.placeholder}
-                        />
-                      )}
-
-                      {variable.name === "nombreBanco" && (
-                        <input
-                          value={Informacion.bankName ? Informacion.bankName : ""}
-                          onChange={(e) => {
-                            handleChange(e, variable.id);
-                          }}
-                          className={variable.className}
-                          type={variable.type}
-                          name={variable.name}
-                          readOnly
-                          id={variable.id}
-                          placeholder={variable.placeholder}
-                        />
-                      )}
-                      {variable.name === "cbu" && (
-                        <input
-                          readOnly
-                          value={
-                            Informacion.bankIdentifier
-                              ? Informacion.bankIdentifier
-                              : ""
-                          }
-                          onChange={(e) => {
-                            handleChange(e, variable.id);
-                          }}
-                          className={variable.className}
-                          type={variable.type}
-                          name={variable.name}
-                          id={variable.id}
-                          placeholder={variable.placeholder}
-                        />
-                      )}
-                      {variable.name === "cuit" && (
-                        <input
-                          readOnly
-                          value={
-                            Informacion.fiscalNumber ? Informacion.fiscalNumber : ""
-                          }
-                          onChange={(e) => {
-                            handleChange(e, variable.id);
-                          }}
-                          className={variable.className}
-                          type={variable.type}
-                          name={variable.name}
-                          id={variable.id}
-                          placeholder={variable.placeholder}
-                        />
-                      )}
-                      {dataPicker.vehicleTypeId === 1 ? (
-                        <>
-                              {variable.name === "vencimientoLicencia" && (
-                                <input
-                                  value={
-                                    Informacion.expirationDateDriverLicense
-                                      ? Informacion.expirationDateDriverLicense
-                                      : ""
-                                  }
-                                  onChange={(e) => {
-                                    handleChange(e, variable.id);
-                                  }}
-                                  className={variable.className}
-                                  type={variable.type}
-                                  name={variable.name}
-                                  id={variable.id}
-                                  placeholder={variable.placeholder}
-                                />
-                              )}
-
-                              {variable.name === "fechaVecCel" && (
-                                <input
-                                  value={
-                                    Informacion.expirationDateIdentificationCar
-                                      ? Informacion.expirationDateIdentificationCar
-                                      : ""
-                                  }
-                                  onChange={(e) => {
-                                    handleChange(e, variable.id);
-                                  }}
-                                  className={variable.className}
-                                  type={variable.type}
-                                  name={variable.name}
-                                  id={variable.id}
-                                  placeholder={variable.placeholder}
-                                />
-                              )}
-
-                              {variable.name === "fechaVecSeguroAuto" && (
-                                <input
-                                  key={variable.id}
-                                  value={
-                                    Informacion.expirationDatePolicyVehicle
-                                      ? Informacion.expirationDatePolicyVehicle
-                                      : ""
-                                  }
-                                  onChange={(e) => {
-                                    handleChange(e, variable.id);
-                                  }}
-                                  className={variable.className}
-                                  type={variable.type}
-                                  name={variable.name}
-                                  id={variable.id}
-                                  placeholder={variable.placeholder}
-                                />
-                              )}
-
-                              {variable.name === "fechaVecSeguroAccidente" && (
-                                <input
-                                  value={
-                                    Informacion.expirationDatePolicyPersonal
-                                      ? Informacion.expirationDatePolicyPersonal
-                                      : ""
-                                  }
-                                  onChange={(e) => {
-                                    handleChange(e, variable.id);
-                                  }}
-                                  className={variable.className}
-                                  type={variable.type}
-                                  name={variable.name}
-                                  id={variable.id}
-                                  placeholder={variable.placeholder}
-                                />
-                              )}
+               {variable.name === "CodArea" ?
+                      <div className="admin-picker-part-telefono">
+                          <div className="label-Admin-Pickers-middle">
+                            <Labels
+                              width={variable.label.labelwidth}
+                              className={variable.label.labelclassName}
+                              htmlFor={variable.label.labelhtmlFor}
+                              parrafo={variable.label.labelparrafo}
+                            />
+                          </div>
+                          <div className="admin-picker-part-tel">
+                            <input
+                              value=""
+                              onChange={(e) => {
+                                handleChange(e, variable.id);
+                              }}
+                              className={variable.className}
+                              type={variable.type}
+                              name={variable.name}
+                              id={variable.id}
+                              placeholder={variable.placeholder}
+                            />
+                          </div>
+                      </div>
+                        
+                        : null
+                      
+              }
+               
+               {variable.name === "telefono" ?
+                      <div className="admin-picker-part-telefono">
+                          <div className="label-Admin-Pickers-middle">
+                            <Labels
+                              width={variable.label.labelwidth}
+                              className={variable.label.labelclassName}
+                              htmlFor={variable.label.labelhtmlFor}
+                              parrafo={variable.label.labelparrafo}
+                            />
+                          </div>
+                          <div className="admin-picker-part-tel">
+                            <input
+                              value={
+                                Informacion.phoneNumber ? Informacion.phoneNumber : ""
+                              }
+                              onChange={(e) => {
+                                handleChange(e, variable.id);
+                              }}
+                              className={variable.className}
+                              type={variable.type}
+                              name={variable.name}
+                              id={variable.id}
+                              placeholder={variable.placeholder}
+                            />
+                          </div>
+                    </div>   
+                    :
+                              <>
+                              {
+                                variable.name!=="CodArea" ? 
                               
-                        </>
-                      ) : (
-                        <></>
-                      )}
-                    </div>
-                  </>
-                ) : null}
-              </div>
-        </div>
+                          <div key={variable.id} className="Admin-Pickers-space">
+                                  {
+                                  variable.type !== "" ? (
+                                    <>
+                                      <div className="flota-part-div-label">
+                                        {dataPicker.vehicleTypeId === 2 &&
+                                        variable.name === "fechaVecSeguroAccidente" ? (
+                                          <>
+                                        
+                                          </>
+                                        ) : dataPicker.vehicleTypeId === 2 &&
+                                          (variable.name === "vencimientoLicencia" ||
+                                            variable.name === "fechaVecCel" ||
+                                            variable.name === "fechaVecSeguroAuto") ? (
+                                          <></>
+                                        ) : 
+                                        variable.name !== "telefono" && variable.name !=="CodArea" ?
+                                          <Labels
+                                            width={variable.label.labelwidth}
+                                            className={variable.label.labelclassName}
+                                            htmlFor={variable.label.labelhtmlFor}
+                                            parrafo={variable.label.labelparrafo}
+                                          />
+                                          : null
+                                        }
+                                      </div>
+                                      <div>
+                                        {variable.name === "nombre" && (
+                                          <input
+                                            value={Informacion.name ? Informacion.name : ""}
+                                            onChange={(e) => {
+                                              handleChange(e, variable.id);
+                                            }}
+                                            className={variable.className}
+                                            type={variable.type}
+                                            name={variable.name}
+                                            id={variable.id}
+                                            placeholder={variable.placeholder}
+                                          />
+                                        )}
+                                        {variable.name === "apellido" && (
+                                          <input
+                                            value={Informacion.surname ? Informacion.surname : ""}
+                                            onChange={(e) => {
+                                              handleChange(e, variable.id);
+                                            }}
+                                            className={variable.className}
+                                            type={variable.type}
+                                            name={variable.name}
+                                            id={variable.id}
+                                            placeholder={variable.placeholder}
+                                          />
+                                        )}
+                                        {variable.name === "dni" && (
+                                          <input
+                                          readOnly
+                                            value={
+                                              Informacion.identificationNumber
+                                                ? Informacion.identificationNumber
+                                                : ""
+                                            }
+                                            onChange={(e) => {
+                                              handleChange(e, variable.id);
+                                            }}
+                                            className={variable.className}
+                                            type={variable.type}
+                                            name={variable.name}
+                                            id={variable.id}
+                                            placeholder={variable.placeholder}
+                                          />
+                                        )}
+                                        {variable.name === "email" && (
+                                          <input
+                                            readOnly
+                                            value={Informacion.email ? Informacion.email : ""}
+                                            onChange={(e) => {
+                                              handleChange(e, variable.id);
+                                            }}
+                                            className={variable.className}
+                                            type={variable.type}
+                                            name={variable.name}
+                                            id={variable.id}
+                                            placeholder={variable.placeholder}
+                                          />
+                                        )}
+                                        {variable.name === "fechaNac" && (
+                                          <input
+                                            value={
+                                              Informacion.dateOfBirth ? Informacion.dateOfBirth : ""
+                                            }
+                                            onChange={(e) => {
+                                              handleChange(e, variable.id);
+                                            }}
+                                            className={variable.className}
+                                            type={variable.type}
+                                            name={variable.name}
+                                            readOnly
+                                            id={variable.id}
+                                            placeholder={variable.placeholder}
+                                          />
+                                        )}
+                                        
+                                        
+                                      
+
+                                        {variable.name === "nombreBanco" && (
+                                          <input
+                                            value={Informacion.bankName ? Informacion.bankName : ""}
+                                            onChange={(e) => {
+                                              handleChange(e, variable.id);
+                                            }}
+                                            className={variable.className}
+                                            type={variable.type}
+                                            name={variable.name}
+                                            readOnly
+                                            id={variable.id}
+                                            placeholder={variable.placeholder}
+                                          />
+                                        )}
+                                        {variable.name === "cbu" && (
+                                          <input
+                                            readOnly
+                                            value={
+                                              Informacion.bankIdentifier
+                                                ? Informacion.bankIdentifier
+                                                : ""
+                                            }
+                                            onChange={(e) => {
+                                              handleChange(e, variable.id);
+                                            }}
+                                            className={variable.className}
+                                            type={variable.type}
+                                            name={variable.name}
+                                            id={variable.id}
+                                            placeholder={variable.placeholder}
+                                          />
+                                        )}
+                                        {variable.name === "cuit" && (
+                                          <input
+                                            readOnly
+                                            value={
+                                              Informacion.fiscalNumber ? Informacion.fiscalNumber : ""
+                                            }
+                                            onChange={(e) => {
+                                              handleChange(e, variable.id);
+                                            }}
+                                            className={variable.className}
+                                            type={variable.type}
+                                            name={variable.name}
+                                            id={variable.id}
+                                            placeholder={variable.placeholder}
+                                          />
+                                        )}
+                                        {dataPicker.vehicleTypeId === 1 ? (
+                                                  <>
+                                                        {variable.name === "vencimientoLicencia" && (
+                                                          <input
+                                                            value={
+                                                              Informacion.expirationDateDriverLicense
+                                                                ? Informacion.expirationDateDriverLicense
+                                                                : ""
+                                                            }
+                                                            onChange={(e) => {
+                                                              handleChange(e, variable.id);
+                                                            }}
+                                                            className={variable.className}
+                                                            type={variable.type}
+                                                            name={variable.name}
+                                                            id={variable.id}
+                                                            placeholder={variable.placeholder}
+                                                          />
+                                                        )}
+
+                                                        {variable.name === "fechaVecCel" && (
+                                                          <input
+                                                            value={
+                                                              Informacion.expirationDateIdentificationCar
+                                                                ? Informacion.expirationDateIdentificationCar
+                                                                : ""
+                                                            }
+                                                            onChange={(e) => {
+                                                              handleChange(e, variable.id);
+                                                            }}
+                                                            className={variable.className}
+                                                            type={variable.type}
+                                                            name={variable.name}
+                                                            id={variable.id}
+                                                            placeholder={variable.placeholder}
+                                                          />
+                                                        )}
+
+                                                        {variable.name === "fechaVecSeguroAuto" && (
+                                                          <input
+                                                            key={variable.id}
+                                                            value={
+                                                              Informacion.expirationDatePolicyVehicle
+                                                                ? Informacion.expirationDatePolicyVehicle
+                                                                : ""
+                                                            }
+                                                            onChange={(e) => {
+                                                              handleChange(e, variable.id);
+                                                            }}
+                                                            className={variable.className}
+                                                            type={variable.type}
+                                                            name={variable.name}
+                                                            id={variable.id}
+                                                            placeholder={variable.placeholder}
+                                                          />
+                                                        )}
+
+                                                        {variable.name === "fechaVecSeguroAccidente" && (
+                                                          <input
+                                                            value={
+                                                              Informacion.expirationDatePolicyPersonal
+                                                                ? Informacion.expirationDatePolicyPersonal
+                                                                : ""
+                                                            }
+                                                            onChange={(e) => {
+                                                              handleChange(e, variable.id);
+                                                            }}
+                                                            className={variable.className}
+                                                            type={variable.type}
+                                                            name={variable.name}
+                                                            id={variable.id}
+                                                            placeholder={variable.placeholder}
+                                                          />
+                                                        )}
+                                                
+                                                </>
+                                              ) :
+                                                <></>
+                                              }
+                                      </div>
+                                    </>
+                         ) : null}
+                     </div>
+                   : null } </>
+                  }
+        </Fragment>
       ))}
       {componentes
         ? componentes.map((componente) => (

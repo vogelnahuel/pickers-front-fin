@@ -8,6 +8,13 @@
     margin-top: 3vh;
     width: 77.965vw;
     padding-bottom: 0px;
+    padding-top: 16px;
+    padding-right: 25px;
+}
+.filter-padding{
+    padding-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
 }
 .flota-div-label{
     height: 20px;
@@ -20,7 +27,7 @@
     width:  1.4rem;
     height: auto;
     position: absolute;
-    margin-left: 10px;
+    margin-left: 5px;
 }
 .Filter-p{
     font-family: 'Mulish';
@@ -61,7 +68,7 @@
     outline: none;
     border-bottom:  1px solid #828282;
     margin-bottom:  4.6875vh;
-    width: 20vw;
+    width: 20.2vw;
 }
 
     
@@ -95,7 +102,7 @@
     margin-left: 3.660vw    ;
 }
 .filter-space{
-    margin-left: 20px;
+    margin-left: 26px;
 }
 .or-filter{
     margin-left: 0.5rem;
@@ -125,9 +132,13 @@
 }
 .container-button-width{
     /* width: 22vw; */
+    margin-left: 30vw;
 }
 
-
+.form-filter-img-p{
+    display: flex;
+    width: 150px;
+}
 
 
 
@@ -169,7 +180,7 @@
     border: 0;
     outline: none;
     border-bottom: 1px solid #828282;
-    width: 20vw;
+    width: 20.2vw;
     cursor: pointer;
     font-family: 'Mulish';
     font-style: normal;
@@ -239,3 +250,39 @@
 .filter-admin-filter-value{
     margin-bottom: 0px;
 }
+
+
+@media (max-width:1300px){
+    .form-fiter{
+        width: 77vw;
+    }
+    .filter-input{
+        width: 19.4vw;
+    }
+    .filter-admin-inputSelect{
+        width: 19.4vw;
+    }
+    .flota-div-label label{
+        width: 19.4vw;
+    }
+    .filter-admin-Imagen{
+        left: 92%;
+        top: 30px;
+    }
+    .container-button-width{
+        margin-left: 28vw;
+    }
+
+}
+
+ @media (max-width:1270px){
+    .filter-input{
+        width: 18.4vw;
+    }
+    .filter-button{
+        margin-left: 1vw;
+    }
+    .filter-space{
+        margin-left: 15px;
+    }
+ }

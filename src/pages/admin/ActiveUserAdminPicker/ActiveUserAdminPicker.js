@@ -254,20 +254,7 @@ const cerrarGuardarExitoPicker = (e) => {
                          
                          }
                      
-                        {
-                            dataPicker.enable ===true ? 
-                            <>
-                             <p className="admin-active-picker">Deshabilitado</p>
-                             <img onClick={onCLickImg}  className="button-active-picker" src={button} alt="boton" />     
-                             <p className="admin-active-picker-p">Habilitado</p>
-                            </>
-                            : 
-                            <> 
-                                <p className="admin-buttonDisabled-picker-disabled">Deshabilitado</p>
-                                <img onClick={onCLickImg}  className="button-active-picker" src={disabledButton} alt="boton" />     
-                                <p className="admin-buttonDisabled-picker-enabled">Habilitado</p>
-                            </>
-                        }
+                       
                    
 
                      <button 
@@ -341,6 +328,25 @@ const cerrarGuardarExitoPicker = (e) => {
                         active={true}
                         /> 
                  </div>
+
+                 <h3 className="subTitle-pending-data">Estado</h3>
+
+                 <div className="active-admin-picker-estado-container">
+                        {
+                            dataPicker.enable ===true ? 
+                            <>
+                             <p className="admin-active-picker">Deshabilitado</p>
+                             <img onClick={onCLickImg}  className="button-active-picker" src={button} alt="boton" />     
+                             <p className="admin-active-picker-p">Habilitado</p>
+                            </>
+                            : 
+                            <> 
+                                <p className="admin-buttonDisabled-picker-disabled">Deshabilitado</p>
+                                <img onClick={onCLickImg}  className="button-active-picker" src={disabledButton} alt="boton" />     
+                                <p className="admin-buttonDisabled-picker-enabled">Habilitado</p>
+                            </>
+                        }
+                 </div>
                     
                     <div className="pending-admin-picker-button">
                         {disableButtons ===true ?<>
@@ -386,7 +392,7 @@ const cerrarGuardarExitoPicker = (e) => {
                             <Modal
 
                                     width="750px"
-                                    height="351px"
+                                    height="304px"
                                     isOpen={modalGuardarCambios}
                                    
                                     >
@@ -394,8 +400,8 @@ const cerrarGuardarExitoPicker = (e) => {
                                         <div className="modal-save-title">
                                             <p className="p-modal-error-title">Guardá tus cambios</p>
                                         </div>
-                                        <div className="modal-error-subtitle">
-                                            <p className="p-modal-error-subtitle">Si te vas sin guardar, tus cambios no van a quedar registrados</p>
+                                        <div className="modal-error-subtitle-buttons">
+                                            <p className="p-modal-error-subtitle-buttons">Si te vas sin guardar, tus cambios no van a quedar registrados</p>
                                                 <div className="button-pending-picker-modal">
                                                         <button 
                                                             onClick={cerrarModalSinGuardar}

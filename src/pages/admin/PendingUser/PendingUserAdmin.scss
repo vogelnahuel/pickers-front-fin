@@ -1,6 +1,6 @@
 .pending-container{
-    margin-left: 19.059vw;
-    margin-right: 1.977vw;
+    margin-left: 20.059vw;
+    margin-right: 5.977vw;
     width: 78vw;
     margin-top: 7.291666666666667vh;
 }
@@ -107,19 +107,12 @@
     font-weight: 700;
 }
 
-/* @media (min-width: 1400px) { 
-    .export{
-        margin-left: 49vw;
+ @media (max-width: 1300px) { 
+  
+    .pending-container{
+        margin-left: 21.059vw;
+        width: 77vw;
     }
+
 }
 
-@media (min-width: 1600px) { 
-    .export{
-        margin-left: 52vw;
-    }
-}
-@media (min-width: 1800px) { 
-    .export{
-        margin-left: 57vw;
-    }
-} */

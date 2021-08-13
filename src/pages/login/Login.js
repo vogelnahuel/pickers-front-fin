@@ -168,8 +168,8 @@ const handleSubmit = async (e) => {
        }  
         
     await api.post('/ms-admin-rest/api/v1.0/login',{email:mail?mail:'',password:password?password:''})
-           .then((response)=>{
-         
+           .then((response)=>{   
+
               window.localStorage.setItem("token",response.data.result.accessToken)
            
              window.location.href= "./dashboard"
@@ -179,6 +179,7 @@ const handleSubmit = async (e) => {
        
            e.target.button.parentNode.classList.remove('shineBorder') 
           //values.tipoError="credenciales"
+
           if(err.response) {
             if(err.response.status===400){
               setmodalOpen(true);
