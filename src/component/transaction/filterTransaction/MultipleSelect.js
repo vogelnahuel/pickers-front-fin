@@ -107,7 +107,7 @@ const MultipleSelectCheckbox = (e) => {
     e.preventDefault()
     e.stopPropagation();
     
-    if(window.location.pathname==="/transaction"){
+    if(window.location.pathname==="/transaction" || window.location.pathname==="/transaction/inAlert" ||  window.location.pathname==="/transaction/pending" || window.location.pathname==="/transaction/active"){
       document.querySelector('#opciones').style.display="block"
     }
  
@@ -116,7 +116,7 @@ const MultipleSelectCheckbox = (e) => {
 
   const pararPropagacion = (e) => {
 
-    if(window.location.pathname==="/transaction"){
+    if(window.location.pathname==="/transaction" || window.location.pathname==="/transaction/inAlert" ||  window.location.pathname==="/transaction/pending" || window.location.pathname==="/transaction/active"){
       document.querySelector('#opciones').style.display="none"
     }
 

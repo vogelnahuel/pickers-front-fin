@@ -65,12 +65,14 @@ export const DashboardAdmin = () => {
                                              title="En linea"
                                              number="-"
                                              backgroundColor="#63E8A8"
+                                             url="/transaction"
                                             />
                                             <Card
                                              subtitle="Transacciones"
                                              title="Activas"
                                              number={transactionApi ? transactionApi.activeTransactions : "-" }
                                              backgroundColor="#63E8A8"
+                                             url="/transaction/active"
                                             />
 
                                              <Card
@@ -78,12 +80,14 @@ export const DashboardAdmin = () => {
                                              title="Pendientes de asignación"
                                              number={transactionApi ? transactionApi.pendingTransactions : "-" }
                                              backgroundColor="#BCB6FF"
+                                             url="/transaction/pending"
                                             />
                                              <Card
                                              subtitle="Transacciones"
                                              title="En alerta"
                                              number={transactionApi ? transactionApi.inAlertTransactions : "-" }
                                              backgroundColor="#FF8F76"
+                                             url="/transaction/inAlert"
                                             />
 
                                 </div>

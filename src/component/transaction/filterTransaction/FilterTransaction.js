@@ -13,9 +13,20 @@ import MultipleSelect from "./MultipleSelect";
 export const FilterTransaction = (props) => {
   const setapiFilter = props.setapiFilter;
   const setexportDisabled = props.setexportDisabled;
+  const filterParams = props.filterParams;
+  let initialValues={}
 
-
-
+if(filterParams){
+  switch (filterParams) {
+    case "inAlert":
+      initialValues={enAlerta:true}
+      
+      break;
+  
+    default:
+      break;
+  }
+}
  
 
   /****formatear fecha */
@@ -116,28 +127,13 @@ const onSubmit = async (values) => {
     let stringSelected = "";
     stringSelected = multipleSelectCheckbox();
     setexportDisabled(EstaVacioFiltro(values));
+   // console.log(stringSelected)
 
     setapiFilter(
         
       await api
         .get(
-          `ms-admin-rest/api/v1.0/transactions?${
-            values.nroTransaccion
-              ? `filter.transactionCode=${values.nroTransaccion}`
-              : ""
-          }${values.Picker ? `&filter.pickerId=${values.Picker}` : ""}${
-            values.enAlerta ? `&filter.inAlert=${values.enAlerta}` : ""
-          }${
-            values.FechaEntrega
-              ? `&filter.minMinDeliveryDate=${values.FechaEntrega.from}`
-              : ""
-          }${
-            values.FechaEntrega
-              ? `&filter.maxMinDeliveryDate=${values.FechaEntrega.until}`
-              : ""
-          }${
-            stringSelected !== "" ? `&filter.state=${stringSelected}` : ""
-          }&limit=${props.tamPag}&offset=${0}`
+          `ms-admin-rest/api/v1.0/transactions?${values.nroTransaccion?`filter.transactionCode=${values.nroTransaccion}`:""}${values.Picker ? `&filter.pickerId=${values.Picker}` : ""}${values.enAlerta ? `&filter.inAlert=${values.enAlerta}` : "" }${values.FechaEntrega? `&filter.minMinDeliveryDate=${values.FechaEntrega.from}`: ""}${values.FechaEntrega? `&filter.maxMinDeliveryDate=${values.FechaEntrega.until}` : ""}${ stringSelected !== "" ? `&filter.state=${stringSelected}` : ""}&limit=${props.tamPag}&offset=${0}`
         )
         .then((res) => {
             props.setfilter({values,stringSelected:stringSelected});
@@ -177,7 +173,7 @@ const onSubmit = async (values) => {
           <p className="p-filter-transaction">Filtros</p>
 
         </div>
-        <Form onSubmit={onSubmit}>
+        <Form onSubmit={onSubmit} initialValues={initialValues}>
           {({ handleSubmit }) => (
             <form className="form-filter-transaction" onSubmit={handleSubmit}>
               <div>

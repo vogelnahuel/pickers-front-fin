@@ -1,5 +1,6 @@
 
 import React, { useEffect, useState } from "react";
+import {  useParams} from "react-router-dom";
 import { Header } from "../../component/admin/Header/Header";
 import { Nav } from "../../component/admin/Nav/Nav";
 import { TableTransaction } from "../../component/transaction/tableTransaction/TableTransaction";
@@ -19,6 +20,7 @@ import createCSV from "../../tools/createCSV";
 import stateName from "../../component/transaction/tableTransaction/statesNames";
 
 
+
 export const Transaction = () => {
 
   const [apiFilterTransaction, setapiFilter] = useState({});
@@ -36,6 +38,9 @@ export const Transaction = () => {
   const [IdModalApi, setIdModalApi] = useState(""); // devuelve la consulta api
   const titulos = ["Transacción", "Id de picker", "Vencimiento SLA", "Estado"];
   
+
+ 
+  const {filterParams} = useParams();
 
   const cargarDatos = async(e)=> {
     
@@ -59,28 +64,11 @@ export const Transaction = () => {
 
 
   const cargarMas = async () => {
+    console.log("cargar mas",filter)
     const res = await api
-      .get(
-        `ms-admin-rest/api/v1.0/transactions?${
-            filter.nroTransaccion
-              ? `filter.transactionCode=${filter.nroTransaccion}`
-              : ""
-          }${filter.Picker ? `&filter.pickerId=${filter.Picker}` : ""}${
-            filter.enAlerta ? `&filter.inAlert=${filter.enAlerta}` : ""
-          }${
-            filter.FechaEntrega
-              ? `&filter.minMinDeliveryDate=${filter.FechaEntrega.from}`
-              : ""
-          }${
-            filter.FechaEntrega
-              ? `&filter.maxMinDeliveryDate=${filter.FechaEntrega.until}`
-              : ""
-          }${
-            filter.stringSelected && filter.stringSelected !== "" ? `&filter.state=${filter.stringSelected}` : ""
-          }&limit=${tamPag}&offset=${offset}`
-        
-      )
-      .then((res) => {
+    .get( `ms-admin-rest/api/v1.0/transactions?${filter.values && filter.values.nroTransaccion?`filter.transactionCode=${filter.values.nroTransaccion}`:""}${filter.values &&filter.values.Picker ? `&filter.pickerId=${filter.values.Picker}` : ""}${filterParams==="inAlert" || filter.values.enAlerta? `&filter.inAlert=${true}` : ""}${filterParams==="pending" ? `&filter.state=${"PENDING_ASSIGNMENT"}` : ""}${filter.values && filter.values.FechaEntrega? `&filter.minMinDeliveryDate=${filter.values.FechaEntrega.from}`: ""}${filter.values && filter.values.FechaEntrega? `&filter.maxMinDeliveryDate=${filter.values.FechaEntrega.until}` : ""}${ filterParams==="active" && filter.stringSelected && filter.stringSelected===""? `&filter.state=${"PENDING_ASSIGNMENT,IN_PICK_UP,IN_PICK_UP_POINT,PICKED_UP,IN_DELIVERY_POINT"}` : filter.stringSelected? `&filter.state=${filter.stringSelected}`:""}&limit=${tamPag}&offset=${offset}`)
+  
+    .then((res) => {
         setoffset(offset + tamPag);
         if(res.data.result.items.length<tamPag)
             setVerMas(false)
@@ -147,36 +135,36 @@ export const Transaction = () => {
     setOpenModalTransaction(false);
   };
 
-//   useEffect(() => {
-//     setTimeout(() => {
-//         setloader(false);
-//     }, 400);
-   
-// }, [setloader])
 
-
-
-  useEffect(() => {
+  useEffect( () => {
+    
+    
     const cargarDatos = async () => {
-      setapiFilter(
-        await api
-          .get(`ms-admin-rest/api/v1.0/transactions?&limit=${tamPag}`)
+      console.log(filterParams)
 
-          .then((res) => {
-            setloader(false)
-            return res.data.result.items;
-          })
-          .catch((err) => {
-            console.log(err);
-          })
-      );
-    };
+           
+          setapiFilter(
+            await api
+              .get( `ms-admin-rest/api/v1.0/transactions?${filter.Picker ? `&filter.pickerId=${filter.Picker}` : null}${filterParams==="inAlert"? `&filter.inAlert=${true}` : ""}${filterParams==="pending" ? `&filter.state=${"PENDING_ASSIGNMENT"}` : ""}${ filterParams==="active"? `&filter.state=${"PENDING_ASSIGNMENT,IN_PICK_UP,IN_PICK_UP_POINT,PICKED_UP,IN_DELIVERY_POINT"}` :""}&limit=${tamPag}&offset=${offset}`)
+
+              .then((res) => {
+                setloader(false)
+                return res.data.result.items;
+              })
+              .catch((err) => {
+                console.log(err);
+              })
+              )
+          
+  }
+
+
     cargarDatos();
     
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // tamaño  pagina document.body.scrollHeight
-  //
+
   return (
     <div className="background-Grey">
       <Header />
@@ -218,8 +206,10 @@ export const Transaction = () => {
             offset={offset}
             setoffset={setoffset}
             setfilter={setfilter}
+            filter={filter}
             setVerMas={setVerMas}
             setexportDisabled={setexportDisabled}
+            filterParams={filterParams}
           />
           <TableTransaction
             setOpenModalTransaction={setOpenModalTransaction}
@@ -304,15 +294,7 @@ export const Transaction = () => {
                     <p className="modal-transaction-fecha">
                       {" "}
                       {FilterSelectedTransaction.transaction
-                        ? FilterSelectedTransaction.transaction.maxDeliveryDateTime.substring(0,10)+" "+(parseInt(FilterSelectedTransaction.transaction.maxDeliveryDateTime.substring( 11,13))-3)+FilterSelectedTransaction.transaction.maxDeliveryDateTime.substring( 13,16)
-                          // .substring(
-                          //   0,
-                          //   10
-                          // )
-                          // +" "+FilterSelectedTransaction.transaction.maxDeliveryDateTime.substring(
-                          //   11,
-                          //   16)
-                          
+                        ? FilterSelectedTransaction.transaction.maxDeliveryDateTime.substring(0,10)+" "+(parseInt(FilterSelectedTransaction.transaction.maxDeliveryDateTime.substring( 11,13))-3)+FilterSelectedTransaction.transaction.maxDeliveryDateTime.substring( 13,16)  
                         : ""}{" "}
                     </p>
                   </div>
