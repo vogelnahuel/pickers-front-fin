@@ -224,6 +224,7 @@ const onSubmit = async (values) => {
                   />
                 </div>
               </div>
+              
               <div>
                 
                 
@@ -243,7 +244,7 @@ const onSubmit = async (values) => {
                   En alerta
                 </label>
               </div>
-              <div className="container-button-width">
+              <div className="transaction-container-button-width">
                 <button
                   className="search-button-transaction"
                   name="search"
