@@ -85,7 +85,7 @@
     margin-right: 5px;
 }
 #valorAmodificar{
-    margin-right: 15px;
+    margin-right: 14px;
 }
 .multiple-flotarImg{
     position: relative;
@@ -104,6 +104,7 @@
     margin-top: 4px;
     position: absolute;
     z-index: 10;
+    padding-bottom: 0px;
 }
 .multiple-select{
     height: 55px;
@@ -115,7 +116,7 @@
 .multiple-contenido-opcion{
     display: flex;
     margin-bottom: 0px;
-    height: 35px;
+    height: 39px;
 }
 
 .multiple-checkboxInput{
@@ -139,12 +140,8 @@
    
 }
 .multiple-selectbox{
-    width: 304px;
+  
 }
-
-
-
-
 
 .multiple-seleccionadoInputColor::-webkit-input-placeholder {
     font-family: 'Mulish';
