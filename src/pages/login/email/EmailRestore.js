@@ -109,13 +109,13 @@ const handleSubmit = async (e) => {
     return(
       <>
      <div className="space-responsive-login"></div>
-          <div className="logo">
+          <div className="logo-restore">
             <img src={pickersLogo} className="pickersLogo_login" alt="PickersLogo"></img>
           </div>
 
 
           <div className="container centrar">
-          <form className="form size" onSubmit={handleSubmit}>
+          <form className="form size-restore" onSubmit={handleSubmit}>
             <div className="form-group">
             
             
