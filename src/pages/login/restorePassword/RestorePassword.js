@@ -132,6 +132,8 @@ const handleInputChange = (e) => {
       errorCaracteres.classList.remove('restore-error-p');
       errorLetras.classList.remove('restore-error-p');
       errorNumeros.classList.remove('restore-error-p');
+      if(window.screen.width>1500)
+      e.target.style.marginBottom="49px";
       setErrorCaracteres(false);
       setErrorMayusculas(false);
       setErrorNumeros(false);
@@ -141,13 +143,24 @@ const handleInputChange = (e) => {
     if(estaVacio(e)!==false){
 
       ///setear errores del inputChange
-      e.target.style.marginBottom="1.8625vh";
+      if(window.screen.width<1500 &&e.target.name!=="password2" ){
+        e.target.style.marginBottom="1.8625vh";
+      }else if(window.screen.width<1500){
+        e.target.style.marginBottom="1.8625vh";
+      }
+      else if(window.screen.width>1500){
+        e.target.style.marginBottom="10px";
+      }
+
+     
       if(e.target.name==="password"){
         setError(false);
         setMsgError("");
         e.target.classList.remove('errorInput');   
         e.target.classList.remove('inputError');   
         e.target.nextSibling.classList.remove('labelError'); 
+        if(window.screen.width>1500)
+        e.target.style.marginBottom="49px";
       }
       if(e.target.name==="password2"){
         setError2(false);
@@ -164,6 +177,8 @@ const handleInputChange = (e) => {
         e.target.classList.add('inputError');  
         e.target.classList.add('errorInput'); 
         e.target.nextSibling.classList.add('labelError');
+        if(window.screen.width>1500)
+        e.target.style.marginBottom="70px";
        
         setErrorCaracteres(true);
       }
@@ -172,6 +187,8 @@ const handleInputChange = (e) => {
         e.target.classList.add('inputError');  
         e.target.classList.add('errorInput'); 
         e.target.nextSibling.classList.add('labelError');
+        if(window.screen.width>1500)
+        e.target.style.marginBottom="70px";
         setErrorMayusculas(true);
       }
        if(TieneNumerosYletras(e)===false && e.target.name!=="password2"){
@@ -179,12 +196,14 @@ const handleInputChange = (e) => {
         e.target.classList.add('inputError');  
         e.target.classList.add('errorInput');  
         e.target.nextSibling.classList.add('labelError'); 
+        if(window.screen.width>1500)
+        e.target.style.marginBottom="70px";
         setErrorNumeros(true);
       }
       
       if(errorNumerosState!==true && errorMayusculasState!==true && errorCaracteresState!==true){
 
-          if(e.target.name==="password"){
+          if(e.target.name==="password" && e.target.value.length>1){
             if(e.target.value!==password2 ){
               setErrorPassword(true);
               e.target.classList.add('errorInput');
@@ -237,6 +256,8 @@ const handleInputChange = (e) => {
         document.querySelector('#password2').classList.remove('inputError');
         document.querySelector('#password2').classList.remove('errorInput');
         document.querySelector('#labelpassword2').classList.remove('labelError'); 
+       
+        
       }
       
 
@@ -246,13 +267,21 @@ const handleInputChange = (e) => {
         setError(true);
         setMsgError("Este campo es requerido");
         e.target.classList.add('inputError');
+        if(window.screen.width<1500)
         e.target.style.marginBottom="0.5481481481481481vh";
+        else{
+          e.target.style.marginBottom="10px";
+        }
       }
       if(e.target.name==="password2"){
         setError2(true);
         setMsgError2("Este campo es requerido");
         e.target.classList.add('inputError');
+        if(window.screen.width<1500)
         e.target.style.marginBottom="0.5481481481481481vh";
+        else{
+          e.target.style.marginBottom="10px";
+        }
       }
       
     }
@@ -378,7 +407,7 @@ const cerrarModalEnviado = () => {
             />
              <label id="labelPassword" htmlFor="password" className="label login-label-width login-restore-padding2">Nueva contraseña</label>
             {
-                    errorPassWord ? <div className="errorsContainer">
+                    errorPassWord ? <div className="errorsContainer-restore">
                     <p className="errors-restore"> {errorMsgPassword}  </p>
                     </div>:<></>   
                 }
@@ -397,12 +426,12 @@ const cerrarModalEnviado = () => {
               
             <label id="labelpassword2" htmlFor="password2" className="label login-label-width login-restore-padding">Repetir nueva contraseña</label> 
               {
-                errorPassWord2 ? <div className="errorsContainer">
+                errorPassWord2 ? <div className="errorsContainer-restore-password2">
                  <p  id="" className="errors-restore"> {errorMsgPassword2}  </p>
                  </div>:<></>   
               }
                {
-                errorDiferentesPassword ? <div className="errorsContainer">
+                errorDiferentesPassword ? <div className="errorsContainer-restore-noEquals">
                  <p id="diferentes" className="noEqualsPassword"> Las contraseñas no coinciden </p>
                  </div>:<></>   
               }
