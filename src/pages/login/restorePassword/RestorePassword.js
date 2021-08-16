@@ -356,7 +356,7 @@ const cerrarModalEnviado = () => {
       
         <section>
           <div className="space-responsive-login"></div>
-          <div className="logo">
+          <div className="logo pickersLogo_login">
             <img src={pickersLogo} alt="PickersLogo"></img>
           </div>
          
