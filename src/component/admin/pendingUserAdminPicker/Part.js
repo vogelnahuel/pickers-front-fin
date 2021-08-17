@@ -869,6 +869,23 @@ const eliminarDivs = ()  => {
                                         )}
                                         {dataPicker.vehicleTypeId === 1 ? (
                                                   <>
+                                                    { variable.name === "PatenteDelVehiculo" ? 
+                                                       <input
+                                                       value={
+                                                           ""
+                                                       }
+                                                       onChange={(e) => {
+                                                         handleChange(e, variable.id);
+                                                       }}
+                                                       className={variable.className}
+                                                       type={variable.type}
+                                                       name={variable.name}
+                                                       id={variable.id}
+                                                       placeholder={variable.placeholder}
+                                                     />
+                                                     : null
+
+                                                    }
                                                         {variable.name === "vencimientoLicencia" && (
                                                           <input
                                                             value={

@@ -90,13 +90,14 @@ export const TableTransaction = (props) => {
                                     <td  name={dato.transaction.id} key={dato.transaction.id+"5"} > {dato.transaction.externalPickerId}  </td>
                                     <td  name={dato.transaction.id} key={dato.transaction.id+"6"} > {moment(dato.transaction.maxDeliveryDateTime.substring(0,10),"YYYY-MM-DD").format("DD/MM/YYYY")}           
                                      {
-                                       window.innerWidth  < 1350 ?  <>{dato.transaction.inAlert?<div className="admin-table-alerta">En alerta</div>:null}</>: null
+                                       window.innerWidth  < 1900 ?  <>{dato.transaction.inAlert?<div className="admin-table-alerta">En alerta</div>:null}</>: null
                                      }
                                     </td>
                           
                                     <td  name={dato.transaction.id} key={dato.transaction.id+"7"} > {stateName(dato.transaction.state.id)}</td>
+                                   <td></td>
                                    {
-                                       window.innerWidth  > 1350 ? <td  name={"inAlert"} key={dato.transaction.id+"8"} > {dato.transaction.inAlert?<div className="admin-table-alerta">En alerta</div>:null}</td> : null
+                                       window.innerWidth  > 1900 ? <td  name={"inAlert"} key={dato.transaction.id+"8"} > {dato.transaction.inAlert?<div className="admin-table-alerta">En alerta</div>:null}</td> : null
                                    }
                                     
                             </tr>

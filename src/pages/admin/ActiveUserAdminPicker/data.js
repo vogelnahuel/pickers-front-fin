@@ -180,6 +180,21 @@ export const data = () => {
     const inputsPart3 =
     [   
         { 
+            label: {
+                    labelclassName:"label-Admin-Pickers",
+                    labelhtmlFor:"Patente del vehículo",
+                    labelparrafo:"Patente del vehículo *"
+                    },
+                className:"Admin-Pickers-input",
+                type:"text",
+                name:"PatenteDelVehiculo",
+                id:"PatenteDelVehiculo",
+                placeholder:"Ingresá los dígitos de la patente",
+                value:"",
+                onChange:"",
+                
+        },
+        { 
         label: {
                 labelclassName:"label-Admin-Pickers",
                 labelhtmlFor:"fechaVecLic",
