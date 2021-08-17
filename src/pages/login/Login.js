@@ -268,14 +268,14 @@ const handleSubmit = async (e) => {
             <div className="contenedor z-index animation">
               <button 
               
-              className="  button_ mt-4 mb-4 z-index" 
+              className="  button_  z-index" 
               type="submit" 
               name="button" ><p className="login-init "> Iniciar sesión </p> </button>
             </div>
           </div>
           <div className="separador_"></div>
             <br/>
-            <br/>
+           
             <Link className="forgotPass" to={"./restore"}>¿Olvidaste tu contraseña?</Link>
           </div>
         </form>

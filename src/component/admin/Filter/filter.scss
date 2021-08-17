@@ -10,6 +10,7 @@
     padding-bottom: 0px;
     padding-top: 16px;
     padding-right: 25px;
+    margin-bottom: 15px;
 }
 .filter-padding{
     padding-top: 15px;
@@ -34,7 +35,7 @@
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
-    line-height: 23px;
+    line-height: 20px;
     margin-left: 40px;
 }
 .filter-inputs{
@@ -255,6 +256,7 @@
 @media (max-width:1300px){
     .form-fiter{
         width: 77vw;
+        margin-bottom: 15px;
     }
     .filter-input{
         width: 19.4vw;

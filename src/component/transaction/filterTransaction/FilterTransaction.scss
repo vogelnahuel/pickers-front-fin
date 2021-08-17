@@ -7,7 +7,7 @@
     border: 1px solid #E5E5E5;
     box-sizing: border-box;
     border-radius: 10px;
-    padding-top: 19px;
+    padding-top: 16px;
     margin-top: 16px;
     padding-right: 5px;
     padding-bottom: 30px;
@@ -141,3 +141,14 @@ div .MKjsMK9DPt5gO-irDsCHa {
     text-align: center;
 }
 
+@media (max-width:1310px){
+    .form-filter-transaction div div input{
+        width: 248px;
+    }
+    .display-inline{
+        width: 17.155vw;
+    }
+    .search-button-transaction{
+        margin-left: 6vw;
+    }
+}
