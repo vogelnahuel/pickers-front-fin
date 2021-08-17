@@ -31,6 +31,7 @@ function Routes() {
           <Route path='/pendingUserAdminpicker/:id' exact component={PendingUserAdminPicker}/>
           <Route path='/activeUserAdminpicker/:id' exact component={ActiveUserAdminPicker}/>
           <Route path='/transaction' exact component={Transaction}/>
+          <Route path='/transaction/:filterParams' exact component={Transaction}/>
           <Route path='/planning' exact component={Planning}/>
           <Route path='/configPicker' exact component={ConfigPicker}/>
           <Route path='/liquidation' exact component={Liquidation}/>
