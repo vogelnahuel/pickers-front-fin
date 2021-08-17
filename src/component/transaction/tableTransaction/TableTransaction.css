@@ -65,7 +65,7 @@
     width: 20vw;
 }
 .titleTableTransactions thead tr td:nth-child(6){
-    width: 7vw;
+    width: 15vw;
 }
 .img-filter-transaction{
     cursor: pointer;
