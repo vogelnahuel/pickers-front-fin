@@ -137,6 +137,7 @@
     padding-left: 0.5vw;
     width: 74px;
     padding-top: 6px;
+    margin-left: 25px;
 }
 .table-pending td:nth-child(2){
     width: 12.321vw;
@@ -146,6 +147,17 @@
 }
 .table-active-correcion td:nth-child(3){
     width: 10.221vw;
+}
+@media (max-width:1310px){
+    .admin-table-alerta{
+        margin-left: 15px;
+    }
+}
+
+@media (min-width:1800px){
+    .admin-table-alerta{
+        margin-left: 29px;
+    }
 }
 
 
