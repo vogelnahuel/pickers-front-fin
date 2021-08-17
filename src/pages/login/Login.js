@@ -168,8 +168,13 @@ const handleSubmit = async (e) => {
        }  
         
     await api.post('/ms-admin-rest/api/v1.0/login',{email:mail?mail:'',password:password?password:''})
+<<<<<<< HEAD
            .then((response)=>{
             
+=======
+           .then((response)=>{   
+
+>>>>>>> develop
               window.localStorage.setItem("token",response.data.result.accessToken)
            
              window.location.href= "./dashboard"
@@ -179,6 +184,7 @@ const handleSubmit = async (e) => {
         
            e.target.button.parentNode.classList.remove('shineBorder') 
           //values.tipoError="credenciales"
+
           if(err.response) {
            
             if(err.response.status===400){
@@ -268,14 +274,14 @@ const handleSubmit = async (e) => {
             <div className="contenedor z-index animation">
               <button 
               
-              className="  button_ mt-4 mb-4 z-index" 
+              className="  button_  z-index" 
               type="submit" 
               name="button" ><p className="login-init "> Iniciar sesión </p> </button>
             </div>
           </div>
           <div className="separador_"></div>
             <br/>
-            <br/>
+           
             <Link className="forgotPass" to={"./restore"}>¿Olvidaste tu contraseña?</Link>
           </div>
         </form>

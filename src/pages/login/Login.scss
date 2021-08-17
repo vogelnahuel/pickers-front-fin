@@ -211,7 +211,7 @@ transform: translateY(0em) scale(1);
   position: absolute;
 }
 .space-responsive-login{
-  height: 22vh;
+  height: 20vh;
 }
 /***************************animacion inputs***************************/
 @keyframes inputRebote {
@@ -243,18 +243,28 @@ transform: translateY(0em) scale(1);
 
 @media (min-height: 800px){
   .space-responsive-login{
-    height:23vh;
+    height:20vh;
   }
 }
 @media (min-height: 850px){
   .space-responsive-login{
-    height:23.1vh;
+    height:20.1vh;
   }
+  .input{
+    margin-left: 9px;
+  }
+  .errors{
+    margin-left: 12px;
+  }
+  .label{
+    margin-left: 12px;
+    }
+  
 }
 
-@media (min-height: 950px){
+@media (min-height: 990px){
   .space-responsive-login{
-    height:23.2vh;
+    height:20.2vh;
   }
 }
 

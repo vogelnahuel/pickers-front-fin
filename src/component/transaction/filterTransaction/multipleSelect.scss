@@ -55,7 +55,6 @@
     padding-left: 0px;
 }
 
-
 .multiple-contenido-select h1{
     font-family: 'Mulish';
     font-style: normal;
@@ -65,7 +64,10 @@
     letter-spacing: 0.0025em;
     color: #4D4D4D;
 }
-
+.transaction-container-button-width{
+    width: 20.69vw;
+    margin-left: 2vw;
+}
 .multiple-input{
     border: 0;
     outline: none;
@@ -80,10 +82,15 @@
     line-height: 21px;
     letter-spacing: 0.005em;
     color: #BDBDBD;
+    margin-right: 5px;
+}
+#valorAmodificar{
+    margin-right: 14px;
 }
 .multiple-flotarImg{
     position: relative;
-    left: -38px;
+    left: -30px;
+    margin-top: -15px;
 }
 
 .multiple-opciones{
@@ -97,17 +104,19 @@
     margin-top: 4px;
     position: absolute;
     z-index: 10;
+    padding-bottom: 0px;
 }
 .multiple-select{
     height: 55px;
 }
 .multiple-ContenedorInput{
     cursor: pointer;
+    display: flex;
 }
 .multiple-contenido-opcion{
     display: flex;
     margin-bottom: 0px;
-    height: 35px;
+    height: 39px;
 }
 
 .multiple-checkboxInput{
@@ -130,10 +139,9 @@
     margin-left: 13px;
    
 }
-
-
-
-
+.multiple-selectbox{
+  
+}
 
 .multiple-seleccionadoInputColor::-webkit-input-placeholder {
     font-family: 'Mulish';

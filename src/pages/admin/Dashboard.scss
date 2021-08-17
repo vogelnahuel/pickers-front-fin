@@ -31,12 +31,13 @@
     display: flex;
     flex-wrap: wrap;
     z-index: 10;
+    margin-left: 1.4vw;
 }
 .card-body-admin{
     width: 38vw;
     height: 25vh;
-    margin-left: 1.5vw;
     margin-bottom: 2vh;
+    margin-left: 1.5vw;
     border-radius: 10px;
     display: flex;
     z-index: 10;
@@ -104,4 +105,38 @@
     width: 100vw;
     height: 100vh;
     background:  rgba(255, 255, 255, 0.4) url("../../assets/canguro-pickers.gif") 50% 50% no-repeat;
+}
+
+@media (max-width : 1300px){
+
+    .card-admin{
+        margin-left: 2.4vw;
+    }
+}
+
+@media (min-width:1800px){
+    .Admin-container{
+        margin-left: 11.2vw;
+    }
+    .card-body-admin{
+        width: 527px;
+        height: 192px;
+        margin-left: 1.1vw;
+    }
+    .card-admin{
+        margin-left: 310px;
+    }
+    .title_Dashboard_Admin{
+        margin-top: 70px;
+        margin-bottom: 0px;
+    }
+    .subtitle_Dashboard_Admin{
+        margin-bottom: 73px;
+    }
+    .part-1{
+        margin-left: 7.1%;
+    }
+    .part-2{
+        margin-left: 46.2%;
+    }
 }

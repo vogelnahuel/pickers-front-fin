@@ -325,7 +325,17 @@ const aprobarPicker= async (e) =>{
                         /> 
                  </div>
                      
-                    
+                 <div className="pending-admin-picker-container-checkbox">
+                      <div>
+                          
+                          <input className="pending-admin-picker-input-checkbox" type="checkbox" id="enviar" value="enviado" />
+                          <label className="pending-admin-picker-div-label" htmlFor="enviar">Envié la carta oferta</label>
+                      </div>
+                      <div>
+                          <input className="pending-admin-picker-input-checkbox" type="checkbox" id="firmar" value="firmado"/>
+                          <label  className="pending-admin-picker-div-label" htmlFor="firmar">Firmó la carta oferta</label>
+                      </div>
+                </div>
                     
                     <div className="pending-admin-picker-button">
                     {
@@ -342,6 +352,7 @@ const aprobarPicker= async (e) =>{
                        
                     </div>
                     
+
                 </form>  
 
                 
@@ -350,7 +361,7 @@ const aprobarPicker= async (e) =>{
                             <Modal
 
                                     width="750px"
-                                    height="351px"
+                                    height="304px"
                                     isOpen={modalOpenAprobar}
                                    
                                     >
@@ -358,8 +369,8 @@ const aprobarPicker= async (e) =>{
                                         <div className="modal-error-title2">
                                             <p className="p-modal-error-title">Aprobar picker</p>
                                         </div>
-                                        <div className="modal-error-subtitle">
-                                            <p className="p-modal-error-subtitle">Al aprobar la solicitud, va a pasar a la pestaña de pickers</p>
+                                        <div className="modal-error-subtitle-buttons">
+                                            <p className="p-modal-error-subtitle-buttons">Al aprobar la solicitud, va a pasar a la pestaña de pickers</p>
                                                 <div className="button-pending-picker-modal">
                                                         <button 
                                                             onClick={cerrarAprobarPickerCorrigiendo}

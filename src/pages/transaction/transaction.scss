@@ -33,7 +33,7 @@
     
 }
 .transaction-container{
-    margin-left: 19.059vw;
+    margin-left: 20.359vw;
     margin-right: 1.977vw;
     width: 78vw;
     margin-top: 0vh;
@@ -281,7 +281,7 @@
     width: 100%;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    height: 74px;
+    height: 100px;
     margin-bottom: 20px;
     font-family: 'Mulish';
     font-style: normal;
@@ -290,11 +290,17 @@
     line-height: 23px;
     color: #828282;
 }
-
+/**/
 #modal-transaction-hr-title{
     width: 93.5%;
 }
 
+@media (max-width:1310px){
+    .transaction-container{
+        margin-left: 21.059vw;
+        width: 77vw;
+    }
+}
 
 @media (min-width: 1800px) {
 

@@ -11,7 +11,7 @@
 }
 .titleTableTransactions thead tr{
     border: 1px solid #CCCCCC;
-    height: 11.197916666666668vh;
+    height: 12.597916666666668vh;
 }
 
 .titleTableTransactions thead tr td  {
@@ -25,8 +25,7 @@
 }
 .titleTableTransactions tbody tr {
     background: white;
-  
-    height: 13.020833333333334vh;
+    height: 14.820833333333334vh;
 }
 .titleTableTransactions tbody tr td{
     border-bottom: 1px solid #CCCCCC;
@@ -66,10 +65,23 @@
     width: 20vw;
 }
 .titleTableTransactions thead tr td:nth-child(6){
-    width: 7vw;
+    width: 15vw;
 }
 .img-filter-transaction{
     cursor: pointer;
 }
 
+@media(max-width:1310px){
+  .titleTableTransactions{
+      width: 77vw;
+  }
+  .titleTableTransactions thead tr td:nth-child(5){
+    width: 17vw;
+    }
+    .titleTableTransactions thead tr td:nth-child(6){
+        width: 17vw;
+        }
 
+
+ 
+}

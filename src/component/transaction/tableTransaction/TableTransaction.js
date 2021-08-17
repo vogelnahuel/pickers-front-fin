@@ -4,6 +4,7 @@ import TreePoints from '../../../assets/transaction/TreePoints.svg'
 import stateName from './statesNames.js'
 
 import moment from 'moment'
+import { Fragment } from 'react'
 
 export const TableTransaction = (props) => {
   
@@ -56,11 +57,20 @@ export const TableTransaction = (props) => {
                         <tr key={titulos[0]} > 
                             <td key={titulos[1]}></td>
                             <td key={titulos[2]}></td>
+
                             {titulos ?  titulos.map(titulo => 
-                                      <td key={titulo}>{titulo}</td>
-                                )
+                                (
+                                    <Fragment key={titulo}>
+                                        <td key={titulo}>{titulo}</td>
+                                    
+                                        
+                                    </Fragment>
+                                ) )
                                 : null
                             }
+                            <td key={titulos[3]}></td> 
+
+                             
                            
                            
                         </tr>
@@ -78,9 +88,18 @@ export const TableTransaction = (props) => {
                                 
                                     <td  name={dato.transaction.id} key={dato.transaction.id+"4"} > {dato.transaction.transactionCode} </td>
                                     <td  name={dato.transaction.id} key={dato.transaction.id+"5"} > {dato.transaction.externalPickerId}  </td>
-                                    <td  name={dato.transaction.id} key={dato.transaction.id+"6"} > {moment(dato.transaction.maxDeliveryDateTime.substring(0,10),"YYYY-MM-DD").format("DD/MM/YYYY")} </td>
+                                    <td  name={dato.transaction.id} key={dato.transaction.id+"6"} > {moment(dato.transaction.maxDeliveryDateTime.substring(0,10),"YYYY-MM-DD").format("DD/MM/YYYY")}           
+                                     {
+                                       window.innerWidth  < 1900 ?  <>{dato.transaction.inAlert?<div className="admin-table-alerta">En alerta</div>:null}</>: null
+                                     }
+                                    </td>
+                          
                                     <td  name={dato.transaction.id} key={dato.transaction.id+"7"} > {stateName(dato.transaction.state.id)}</td>
-                                    <td  name={"inAlert"} key={dato.transaction.id+"8"} > {dato.transaction.inAlert?<div className="admin-table-alerta">En alerta</div>:null}</td>
+                                   <td></td>
+                                   {
+                                       window.innerWidth  > 1900 ? <td  name={"inAlert"} key={dato.transaction.id+"8"} > {dato.transaction.inAlert?<div className="admin-table-alerta">En alerta</div>:null}</td> : null
+                                   }
+                                    
                             </tr>
                         
                         :null

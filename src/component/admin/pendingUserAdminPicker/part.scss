@@ -56,3 +56,29 @@
 .readonly{
     color: #828282
 }
+.admin-picker-part-tel{
+    width: 138px;
+}
+
+.label-Admin-Pickers-middle{
+    height: 19px;
+    width: 138px;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 19px;
+    letter-spacing: 0.0025em;
+    color: #4D4D4D
+}
+.admin-picker-part-telefono{
+    margin-left: 20px;
+    margin-top: 1px;
+    display: inline-block;
+}
+
+@media (max-width:1300px){
+    .admin-picker-part-tel{
+        width: 129px;
+    }
+}
