@@ -16,12 +16,39 @@ export const FilterTransaction = (props) => {
   const filterParams = props.filterParams;
   let initialValues={}
 
-if(filterParams){
+if(filterParams && window.location.pathname !== "/transaction"){
+  console.log("filterParams",filterParams)
   switch (filterParams) {
     case "inAlert":
-      initialValues={enAlerta:true}
+      initialValues={
+        enAlerta:true,
+        FechaEntrega:{
+          from:moment().subtract(4,"d").format("YYYY-MM-DD"),
+          until:moment().format("YYYY-MM-DD")
+        }
+      }
       
       break;
+          case "pending":
+      initialValues={
+        stringSelected: "PENDING_ASSIGNMENT",
+        FechaEntrega:{
+          from:moment().subtract(4,"d").format("YYYY-MM-DD"),
+          until:moment().format("YYYY-MM-DD")
+        }
+      }
+      
+      break;
+      case "active":
+        initialValues={
+          stringSelected: "PENDING_ASSIGNMENT,IN_RETURN_TO_SENDER,IN_DELIVERY_POINT,PICKED_UP,IN_PICK_UP_POINT,IN_PICK_UP",
+          FechaEntrega:{
+            from:moment().subtract(4,"d").format("YYYY-MM-DD"),
+            until:moment().format("YYYY-MM-DD")
+          }
+        }
+        
+        break;
   
     default:
       break;
@@ -59,7 +86,6 @@ if(filterParams){
         j++;
       }
     }
-
     for (let i = 0; i < ArraySeleccionados.length; i++) {
       switch (ArraySeleccionados[i]) {
         case 1:
@@ -127,7 +153,11 @@ const onSubmit = async (values) => {
     let stringSelected = "";
     stringSelected = multipleSelectCheckbox();
     setexportDisabled(EstaVacioFiltro(values));
-   // console.log(stringSelected)
+     if(filterParams){
+                      window.history.replaceState(null,"","/transaction")
+                      initialValues={}
+                      console.log(window.location.pathname)
+                      }
 
     setapiFilter(
         

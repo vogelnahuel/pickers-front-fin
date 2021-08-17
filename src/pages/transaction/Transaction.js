@@ -18,6 +18,7 @@ import Close from "../../assets/transaction/Close.svg";
 import api from "../../config/api.js";
 import createCSV from "../../tools/createCSV";
 import stateName from "../../component/transaction/tableTransaction/statesNames";
+import moment from "moment";
 
 
 
@@ -37,10 +38,53 @@ export const Transaction = () => {
   const [OpenModalTransaction, setOpenModalTransaction] = useState(false);
   const [IdModalApi, setIdModalApi] = useState(""); // devuelve la consulta api
   const titulos = ["Transacción", "Id de picker", "Vencimiento SLA", "Estado"];
-  
+  let filterParamsFromCars={};
 
  
   const {filterParams} = useParams();
+  if(filterParams){
+    console.log(filterParams)
+    switch (filterParams) {
+      case "inAlert":
+       filterParamsFromCars= {
+          values:{
+          enAlerta:true,
+          FechaEntrega:{
+            from:moment().subtract(4,"d").format("YYYY-MM-DD"),
+            until:moment().format("YYYY-MM-DD")
+          }
+        }
+      }
+        
+        break;
+        case "pending":
+          filterParamsFromCars= {
+            stringSelected: "PENDING_ASSIGNMENT",
+             values:{
+             FechaEntrega:{
+               from:moment().subtract(4,"d").format("YYYY-MM-DD"),
+               until:moment().format("YYYY-MM-DD")
+             }
+           }
+         }
+         break;
+         case "active":
+          filterParamsFromCars= {
+            stringSelected: "PENDING_ASSIGNMENT,IN_RETURN_TO_SENDER,IN_DELIVERY_POINT,PICKED_UP,IN_PICK_UP_POINT,IN_PICK_UP",
+             values:{
+             FechaEntrega:{
+               from:moment().subtract(4,"d").format("YYYY-MM-DD"),
+               until:moment().format("YYYY-MM-DD")
+             }
+           }
+         }
+         break;
+    
+      default:
+        break;
+    }
+  }
+  console.log(filter)
 
   const cargarDatos = async(e)=> {
     
@@ -66,8 +110,7 @@ export const Transaction = () => {
   const cargarMas = async () => {
     console.log("cargar mas",filter)
     const res = await api
-    .get( `ms-admin-rest/api/v1.0/transactions?${filter.values && filter.values.nroTransaccion?`filter.transactionCode=${filter.values.nroTransaccion}`:""}${filter.values &&filter.values.Picker ? `&filter.pickerId=${filter.values.Picker}` : ""}${filterParams==="inAlert" || filter.values.enAlerta? `&filter.inAlert=${true}` : ""}${filterParams==="pending" ? `&filter.state=${"PENDING_ASSIGNMENT"}` : ""}${filter.values && filter.values.FechaEntrega? `&filter.minMinDeliveryDate=${filter.values.FechaEntrega.from}`: ""}${filter.values && filter.values.FechaEntrega? `&filter.maxMinDeliveryDate=${filter.values.FechaEntrega.until}` : ""}${ filterParams==="active" && filter.stringSelected && filter.stringSelected===""? `&filter.state=${"PENDING_ASSIGNMENT,IN_PICK_UP,IN_PICK_UP_POINT,PICKED_UP,IN_DELIVERY_POINT"}` : filter.stringSelected? `&filter.state=${filter.stringSelected}`:""}&limit=${tamPag}&offset=${offset}`)
-  
+    .get( `ms-admin-rest/api/v1.0/transactions?${filter.values && filter.values.nroTransaccion?`filter.transactionCode=${filter.values.nroTransaccion}`:""}${filter.values &&filter.values.Picker ? `&filter.pickerId=${filter.values.Picker}` : ""}${filter.values.enAlerta? `&filter.inAlert=${true}` : ""}${filter.values && filter.values.FechaEntrega? `&filter.minMinDeliveryDate=${filter.values.FechaEntrega.from}`: ""}${filter.values && filter.values.FechaEntrega? `&filter.maxMinDeliveryDate=${filter.values.FechaEntrega.until}` : ""}${ filter.stringSelected && filter.stringSelected!==""? `&filter.state=${filter.stringSelected}`:""}&limit=${tamPag}&offset=${offset}`)
     .then((res) => {
         setoffset(offset + tamPag);
         if(res.data.result.items.length<tamPag)
@@ -137,15 +180,15 @@ export const Transaction = () => {
 
 
   useEffect( () => {
-    
+ 
     
     const cargarDatos = async () => {
-      console.log(filterParams)
+     
 
            
           setapiFilter(
             await api
-              .get( `ms-admin-rest/api/v1.0/transactions?${filter.Picker ? `&filter.pickerId=${filter.Picker}` : null}${filterParams==="inAlert"? `&filter.inAlert=${true}` : ""}${filterParams==="pending" ? `&filter.state=${"PENDING_ASSIGNMENT"}` : ""}${ filterParams==="active"? `&filter.state=${"PENDING_ASSIGNMENT,IN_PICK_UP,IN_PICK_UP_POINT,PICKED_UP,IN_DELIVERY_POINT"}` :""}&limit=${tamPag}&offset=${offset}`)
+            .get( `ms-admin-rest/api/v1.0/transactions?${filterParamsFromCars.values && filterParamsFromCars.values.nroTransaccion?`filter.transactionCode=${filterParamsFromCars.values.nroTransaccion}`:""}${filterParamsFromCars.values &&filterParamsFromCars.values.Picker ? `&filter.pickerId=${filterParamsFromCars.values.Picker}` : ""}${filterParamsFromCars.values && filterParamsFromCars.values.enAlerta? `&filter.inAlert=${true}` : ""}${filterParamsFromCars.values && filterParamsFromCars.values.FechaEntrega? `&filter.minMinDeliveryDate=${filterParamsFromCars.values.FechaEntrega.from}`: ""}${filterParamsFromCars.values && filterParamsFromCars.values.FechaEntrega? `&filter.maxMinDeliveryDate=${filterParamsFromCars.values.FechaEntrega.until}` : ""}${ filterParamsFromCars.stringSelected && filterParamsFromCars.stringSelected!==""? `&filter.state=${filterParamsFromCars.stringSelected}`:""}&limit=${tamPag}`)
 
               .then((res) => {
                 setloader(false)
