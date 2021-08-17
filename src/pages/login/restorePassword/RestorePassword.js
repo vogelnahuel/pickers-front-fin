@@ -133,7 +133,7 @@ const handleInputChange = (e) => {
       errorLetras.classList.remove('restore-error-p');
       errorNumeros.classList.remove('restore-error-p');
       if(window.screen.width>1500)
-      e.target.style.marginBottom="49px";
+      e.target.style.marginBottom="53px";
       setErrorCaracteres(false);
       setErrorMayusculas(false);
       setErrorNumeros(false);
@@ -160,7 +160,7 @@ const handleInputChange = (e) => {
         e.target.classList.remove('inputError');   
         e.target.nextSibling.classList.remove('labelError'); 
         if(window.screen.width>1500)
-        e.target.style.marginBottom="49px";
+        e.target.style.marginBottom="53px";
       }
       if(e.target.name==="password2"){
         setError2(false);
@@ -178,7 +178,7 @@ const handleInputChange = (e) => {
         e.target.classList.add('errorInput'); 
         e.target.nextSibling.classList.add('labelError');
         if(window.screen.width>1500)
-        e.target.style.marginBottom="70px";
+        e.target.style.marginBottom="53px";
        
         setErrorCaracteres(true);
       }
@@ -188,7 +188,7 @@ const handleInputChange = (e) => {
         e.target.classList.add('errorInput'); 
         e.target.nextSibling.classList.add('labelError');
         if(window.screen.width>1500)
-        e.target.style.marginBottom="70px";
+        e.target.style.marginBottom="53px";
         setErrorMayusculas(true);
       }
        if(TieneNumerosYletras(e)===false && e.target.name!=="password2"){
@@ -197,7 +197,7 @@ const handleInputChange = (e) => {
         e.target.classList.add('errorInput');  
         e.target.nextSibling.classList.add('labelError'); 
         if(window.screen.width>1500)
-        e.target.style.marginBottom="70px";
+        e.target.style.marginBottom="53px";
         setErrorNumeros(true);
       }
       
