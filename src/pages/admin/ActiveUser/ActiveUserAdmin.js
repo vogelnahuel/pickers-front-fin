@@ -179,7 +179,7 @@ const getData = async (filter) => {
         )
         .then((res) => {
            
-          if(res.data.result.items.length===0)
+          if(res.data.result.items.length<tamPag)
           {
             setVerMas(false)
           }
