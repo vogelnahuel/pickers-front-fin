@@ -152,3 +152,14 @@
     letter-spacing: 0.005em;
     color: #000000;
  }
+
+ @media (min-width:1800px){
+    .transaction-container-button-width{
+        width: 178px;
+        margin-left: 0px;
+    }
+    #valorAmodificar{
+        line-height: 28px;
+    }
+    
+ }

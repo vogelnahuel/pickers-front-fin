@@ -81,7 +81,25 @@
     .titleTableTransactions thead tr td:nth-child(6){
         width: 17vw;
         }
-
-
  
+}
+@media (min-width:1800px){
+    .titleTableTransactions{
+        width: 100%;
+    }
+    .titleTableTransactions thead tr{
+        height: 86px;
+    }
+    .titleTableTransactions tbody tr{
+        height: 100px;
+    }
+    .titleTableTransactions thead tr td:nth-child(2){
+        width: 213px;
+    }
+    .titleTableTransactions thead tr td:nth-child(3){
+        width: 361px;
+    }
+    .titleTableTransactions thead tr td:nth-child(4){
+        width: 335px;
+    }
 }
