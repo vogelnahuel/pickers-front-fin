@@ -168,13 +168,8 @@ const handleSubmit = async (e) => {
        }  
         
     await api.post('/ms-admin-rest/api/v1.0/login',{email:mail?mail:'',password:password?password:''})
-<<<<<<< HEAD
            .then((response)=>{
             
-=======
-           .then((response)=>{   
-
->>>>>>> develop
               window.localStorage.setItem("token",response.data.result.accessToken)
            
              window.location.href= "./dashboard"
