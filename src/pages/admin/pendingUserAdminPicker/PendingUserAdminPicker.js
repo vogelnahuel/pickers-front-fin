@@ -234,7 +234,7 @@ const aprobarPicker= async (e) =>{
                      <PendingBlue/>
                        
                      <div 
-                     className="mainContainerFlex">
+                     className="mainContainerFlex-picker">
                          <div className="picker-id">
                               #{dataPicker.id}
                          <h2 className="subTitle-pending-picker">{dataPicker.nya}</h2>
