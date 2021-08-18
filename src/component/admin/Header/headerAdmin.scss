@@ -56,7 +56,7 @@
     width: 4.100vw ;
 }
 
-@media (min-width: 1880px) { 
+@media (min-width: 1800px) { 
     .leftEnd{
         margin-left: 73.618vw;
     }
@@ -65,6 +65,12 @@
     }
     .user{
         width: 50px;
+    }
+    .headerAdmin{
+        height: 75px;
+    }
+    .containerHeader{
+        height: 75px;
     }
 
  }

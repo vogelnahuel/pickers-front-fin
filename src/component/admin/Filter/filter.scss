@@ -288,3 +288,37 @@
         margin-left: 15px;
     }
  }
+
+ @media(min-width:1800px){
+    .form-fiter{
+        width: 100%;
+    }
+    .filter-input{
+        width: 293px;
+    }
+    .label-filter {
+    width: 280px;
+    }
+    .filter-admin-inputSelect{
+        width: 293px;
+    }
+    .filter-admin-selectBox
+    {
+        width: 293px;
+    }
+    .container-button-width{
+        margin-left: 33px;
+    }
+    .form-filter-img-p{
+        width: 95px;
+    }
+    .filter-padding{
+        flex-wrap: nowrap;
+    }
+    .filter-button{
+        margin-left: 0px;
+    }
+    .mainContainerFlex{
+        margin-top: 40px;
+    }
+ }

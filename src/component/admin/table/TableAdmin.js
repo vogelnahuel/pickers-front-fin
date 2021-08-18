@@ -50,7 +50,9 @@ return (
                           <td></td>
                           <td> { (rows.name+' '+rows.surname).length>20 ?  (rows.name+' '+rows.surname).substring(0,20)+'...': (rows.name+' '+rows.surname)} </td>
                           <td> {rows.identificationNumber} </td>
-                          <td> {rows.email.length > 30 ? rows.email.substring(0,30)+'...': rows.email}</td>
+                          <td>
+                            {rows.email.length > 30  &&  window.screen.width<1900 ? rows.email.substring(0,30)+'...': rows.email.length > 40  &&  window.screen.width>1900  ? rows.email.substring(0,38)+'...': rows.email }
+                          </td>
                           <td>
                             {" "}
                             {rows.vehicleTypeId === 1
