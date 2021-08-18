@@ -128,3 +128,31 @@
     }
 
 }
+
+@media(min-width:1800px){
+    .container-pending{
+        width: 537px;
+        height: 95px;
+    }
+    .Pending-paragraph{
+        padding-top: 3.5vh;
+        font-size: 16.4627px;
+    }
+    .Pending-paragraph2{
+        padding-top: 3.65vh;
+        font-size: 16.4627px;
+    }
+    .img{
+        width: 60px;
+        height: 60px;
+        margin-left: 12.2vw;
+    }
+    .img2{
+        width: 61px;
+        height: 60px;
+        margin-left: 18vw;
+    }
+    .img3{
+        margin-left: 23.707vw;
+    }
+}

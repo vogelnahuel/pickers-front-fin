@@ -158,6 +158,21 @@
     .admin-table-alerta{
         margin-left: 29px;
     }
+    .table-admin thead tr td{
+        height: 86px;
+    }
+    .table-admin thead tr td:nth-child(1){
+        width: 76px;
+    }
+    .table-admin thead tr td:nth-child(2){
+        width: 253px;
+    }
+    .table-admin thead tr td:nth-child(3){
+        width: 213px;
+    }
+    .table-admin thead tr td:nth-child(4){
+        width: 400px;
+    }
 }
 
 
