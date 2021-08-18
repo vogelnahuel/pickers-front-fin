@@ -241,7 +241,7 @@ const cerrarGuardarExitoPicker = (e) => {
                  />
                    
                  <div 
-                 className="mainContainerFlex">
+                 className="mainContainerFlex-picker">
                     <div className="picker-id">
                        #{dataPicker.id}
                      <h2 className="subTitle-pending-picker">{dataPicker.nya}</h2>
@@ -350,10 +350,10 @@ const cerrarGuardarExitoPicker = (e) => {
                     
                     <div className="pending-admin-picker-button">
                         {disableButtons ===true ?<>
-                            <button onClick={handleCancel} className="corregir-admin-picker-active">Cancelar</button>
-                        <button onClick={modificarPicker} className="aprobar-admin-picker-active">Guardar</button></>:<>
-                            <button disabled={true} className="corregir-admin-picker-disable">Cancelar</button>
-                        <button disabled={true} className="aprobar-admin-picker-disable">Guardar</button></>}
+                            <button onClick={handleCancel} className="corregir-active-admin-picker-active">Cancelar</button>
+                        <button onClick={modificarPicker} className="aprobar-active-admin-picker-active">Guardar</button></>:<>
+                            <button disabled={true} className="corregir-active-admin-picker-disable">Cancelar</button>
+                        <button disabled={true} className="aprobar-active-admin-picker-disable">Guardar</button></>}
                     </div>
                     
                 </form>  
