@@ -22,30 +22,30 @@ if(filterParams && window.location.pathname !== "/transaction"){
     case "inAlert":
       initialValues={
         enAlerta:true,
-        FechaEntrega:{
-          from:moment().subtract(4,"d").format("YYYY-MM-DD"),
-          until:moment().format("YYYY-MM-DD")
-        }
+        // // FechaEntrega:{
+        // //   from:moment().subtract(4,"d").format("YYYY-MM-DD"),
+        // //   until:moment().format("YYYY-MM-DD")
+        // // }
       }
       
       break;
           case "pending":
       initialValues={
         stringSelected: "PENDING_ASSIGNMENT",
-        FechaEntrega:{
-          from:moment().subtract(4,"d").format("YYYY-MM-DD"),
-          until:moment().format("YYYY-MM-DD")
-        }
+        // FechaEntrega:{
+        //   from:moment().subtract(4,"d").format("YYYY-MM-DD"),
+        //   until:moment().format("YYYY-MM-DD")
+        // }
       }
       
       break;
       case "active":
         initialValues={
           stringSelected: "PENDING_ASSIGNMENT,IN_RETURN_TO_SENDER,IN_DELIVERY_POINT,PICKED_UP,IN_PICK_UP_POINT,IN_PICK_UP",
-          FechaEntrega:{
-            from:moment().subtract(4,"d").format("YYYY-MM-DD"),
-            until:moment().format("YYYY-MM-DD")
-          }
+          // FechaEntrega:{
+          //   from:moment().subtract(4,"d").format("YYYY-MM-DD"),
+          //   until:moment().format("YYYY-MM-DD")
+          // }
         }
         
         break;
