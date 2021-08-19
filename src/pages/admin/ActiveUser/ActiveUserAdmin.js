@@ -51,7 +51,7 @@ export const ActiveUserAdmin = () => {
   const onFilter = (e) => {
     //  debugger
     e.preventDefault();
-    setoffset2(0)
+    setoffSet(0)
     filter = {
       dni: e.target.dni.value,
       nombre: e.target.NyA.value,
@@ -62,8 +62,9 @@ export const ActiveUserAdmin = () => {
     getData(filter);
     setDatosFiltros(filter);
   };
-  const tamPag = 5;
-  const [offset2, setoffset2] = useState(0);
+  const tamPag = 15;
+  const defaultTamPag=window.screen.height<700 || window.screen.height<760 ? 3 : 5;
+  const [offset, setoffSet] = useState(0);
 
   const cargarMas = async () => {
     setloader(true)
@@ -82,11 +83,11 @@ export const ActiveUserAdmin = () => {
               : ""
           }${
             DatosFiltros.mail ? `&email=${DatosFiltros.mail}` : ""
-          }&limit=${tamPag}&offset=${offset2+tamPag}`
+          }&limit=${tamPag}&offset=${offset}`
       )
       .then((res) => {
        
-        setoffset2(offset2 + tamPag);
+        setoffSet(offset + tamPag);
         if(res.data.result.items.length<tamPag)
         {
           setVerMas(false)
@@ -113,7 +114,7 @@ const cargarDatos = async () => {
       setData(
         await api
           .get(
-            `ms-admin-rest/api/v1.0/pickers?pickerStatusId=4,5&limit=${tamPag}&offset=${offset2}${
+            `ms-admin-rest/api/v1.0/pickers?pickerStatusId=4,5&limit=${defaultTamPag}&offset=${offset}${
               filter.nombre ? `&name=${filter.nombre}` : ""
             }${
               filter.vehiculo && filter.vehiculo !== "DEFAULT"
@@ -129,6 +130,7 @@ const cargarDatos = async () => {
               {
                 setVerMas(false)
               }
+              setoffSet(defaultTamPag)
             return res.data.result.items;
           })
           .catch((err) => {
@@ -161,7 +163,7 @@ const cargarDatos = async () => {
 const getData = async (filter) => {
     setloader(true)
     filter.mail = codificarEmailURIFunction(filter.mail);
-    setoffset2(0)
+    setoffSet(0)
     setVerMas(true)
     
     setData(

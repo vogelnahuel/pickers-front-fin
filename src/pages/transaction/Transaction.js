@@ -30,8 +30,8 @@ export const Transaction = () => {
   );
   const [loader, setloader] = useState(true);
   const [exportDisabled, setexportDisabled] = useState(true)
-
-  const tamPag = 5;
+  const defaultTamPag=window.screen.height<700 || window.screen.height<760 ? 3 : 5;
+  const tamPag = 15;
   const [offset, setoffset] = useState(tamPag);
   const [filter, setfilter] = useState({});
   const [VerMas, setVerMas] = useState(true)
@@ -188,10 +188,11 @@ export const Transaction = () => {
            
           setapiFilter(
             await api
-            .get( `ms-admin-rest/api/v1.0/transactions?${filterParamsFromCars.values && filterParamsFromCars.values.nroTransaccion?`filter.transactionCode=${filterParamsFromCars.values.nroTransaccion}`:""}${filterParamsFromCars.values &&filterParamsFromCars.values.Picker ? `&filter.pickerId=${filterParamsFromCars.values.Picker}` : ""}${filterParamsFromCars.values && filterParamsFromCars.values.enAlerta? `&filter.inAlert=${true}` : ""}${filterParamsFromCars.values && filterParamsFromCars.values.FechaEntrega? `&filter.minMinDeliveryDate=${filterParamsFromCars.values.FechaEntrega.from}`: ""}${filterParamsFromCars.values && filterParamsFromCars.values.FechaEntrega? `&filter.maxMinDeliveryDate=${filterParamsFromCars.values.FechaEntrega.until}` : ""}${ filterParamsFromCars.stringSelected && filterParamsFromCars.stringSelected!==""? `&filter.state=${filterParamsFromCars.stringSelected}`:""}&limit=${tamPag}`)
+            .get( `ms-admin-rest/api/v1.0/transactions?${filterParamsFromCars.values && filterParamsFromCars.values.nroTransaccion?`filter.transactionCode=${filterParamsFromCars.values.nroTransaccion}`:""}${filterParamsFromCars.values &&filterParamsFromCars.values.Picker ? `&filter.pickerId=${filterParamsFromCars.values.Picker}` : ""}${filterParamsFromCars.values && filterParamsFromCars.values.enAlerta? `&filter.inAlert=${true}` : ""}${filterParamsFromCars.values && filterParamsFromCars.values.FechaEntrega? `&filter.minMinDeliveryDate=${filterParamsFromCars.values.FechaEntrega.from}`: ""}${filterParamsFromCars.values && filterParamsFromCars.values.FechaEntrega? `&filter.maxMinDeliveryDate=${filterParamsFromCars.values.FechaEntrega.until}` : ""}${ filterParamsFromCars.stringSelected && filterParamsFromCars.stringSelected!==""? `&filter.state=${filterParamsFromCars.stringSelected}`:""}&limit=${defaultTamPag}`)
 
               .then((res) => {
                 setloader(false)
+                setoffset(defaultTamPag)
                 return res.data.result.items;
               })
               .catch((err) => {

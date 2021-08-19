@@ -70,6 +70,7 @@ export const PendingUserAdmin = () => {
   };
 
   const tamPag = 15;
+  const defaultTamPag=window.screen.height<700 || window.screen.height<760 ? 3 : 5;
   const [offset, setoffset] = useState(tamPag);
 
   const getData = async (filter) => {
@@ -81,7 +82,7 @@ export const PendingUserAdmin = () => {
     setData(
       await api
         .get(
-          `ms-admin-rest/api/v1.0/pickers?pickerStatusId=2,3&limit=${tamPag}${
+          `ms-admin-rest/api/v1.0/pickers?pickerStatusId=2,3&limit=${defaultTamPag}${
             filter.nombre ? `&name=${filter.nombre}` : ""
           }${
             filter.vehiculo && filter.vehiculo !== "DEFAULT"
@@ -96,6 +97,7 @@ export const PendingUserAdmin = () => {
               {
                 setVerMas(false)
               }
+          setoffset(defaultTamPag)
             return res.data.result.items;
         })
         .catch((err) => {
@@ -119,7 +121,7 @@ const cargarDatos = async () => {
       setData(
         await api
           .get(
-            `ms-admin-rest/api/v1.0/pickers?pickerStatusId=2,3&limit=${tamPag}${
+            `ms-admin-rest/api/v1.0/pickers?pickerStatusId=2,3&limit=${defaultTamPag}${
               filter.nombre ? `&name=${filter.nombre}` : ""
             }${
               filter.vehiculo && filter.vehiculo !== "DEFAULT"
@@ -176,7 +178,7 @@ const cargarDatos = async () => {
             : ""
         }${
           DatosFiltros.mail ? `&email=${DatosFiltros.mail}` : ""
-        }&limit=${tamPag}&offset=${offset+tamPag}`
+        }&limit=${tamPag}&offset=${offset}`
       )
       .then((res) => {
         setoffset(offset + tamPag);
