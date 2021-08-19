@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import './multipleSelect.scss'
 import Flecha from '../../../assets/admin/flechaAbajo.svg'
 import { useParams } from "react-router-dom";
-
+import { useCallback } from "react";
 
 
 const MultipleSelect = () => {
@@ -11,19 +11,31 @@ const MultipleSelect = () => {
 
   const checkboxInputAll = document.querySelectorAll('.multiple-contenido-opcion');
   const inputValor = document.querySelector('#valorAmodificar');
-  const [stateSeleccionados, setstateSeleccionados] = useState(0)
-  let seleccionadosInput=stateSeleccionados;
   const {filterParams} = useParams()
   let arraySelected= {'Sin asignar':false,'En retiro':false,'En punto de retiro':false,'Retirado':false,'En lugar de entrega':false,'Entregado':false,'En devolución':false,'Devuelto a origen':false,'Siniestrado':false,'Cancelada':false}
+  const [stateSeleccionados, setstateSeleccionados] = useState(filterParams==="pending"?1:filterParams==="active"?6:0)
+  let seleccionadosInput=stateSeleccionados;
   if(filterParams && window.location.pathname!=="/transaction"){
   switch (filterParams) {
     case "pending":
       arraySelected={'Sin asignar':true}
+      if(checkboxInputAll && inputValor){
+      inputValor.classList.add('multiple-seleccionadoInputColor')
+      checkboxInputAll.forEach(inp => inp.firstChild.checked===true ? inputValor.placeholder+=inp.firstChild.value+", ":"" )
+      checkboxInputAll.forEach(inp => inp.firstChild.checked===true ? inp.firstChild.classList.add('selected')   :"" )
+      
+      inputValor.placeholder= inputValor.placeholder.substring(0,inputValor.placeholder.length-2);}
 
       break;
        case "active":
       arraySelected={'Sin asignar':true,'En retiro':true,'En punto de retiro':true,'Retirado':true,'En lugar de entrega':true,'En devolución':true}
+      if(checkboxInputAll && inputValor){
+      inputValor.placeholder=""
+      inputValor.placeholder=seleccionadosInput+" Seleccionados"
+      inputValor.classList.add('multiple-seleccionadoInputColor')
+      checkboxInputAll.forEach(inp => inp.firstChild.checked===true ? inp.firstChild.classList.add('selected')   :"" )
       
+      }
       break;
   
     default:
@@ -36,44 +48,13 @@ const MultipleSelect = () => {
     return () => {
       window.removeEventListener('click',pararPropagacion)
     }
-  },)
+  }, [])
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    setstateSeleccionados(arraySelected.length)
+
     if(checkboxInputAll){
       
-      checkboxInputAll.forEach(inp => {
-        if(arraySelected[inp.id])
-        {inp.firstChild.checked=true}
-
-        inputValor.placeholder=""
-      inputValor.classList.add('multiple-seleccionadoInputColor')
-      checkboxInputAll.forEach(inp => inp.firstChild.checked===true ? inputValor.placeholder+=inp.firstChild.value+", ":"" )
-      checkboxInputAll.forEach(inp => inp.firstChild.checked===true ? inp.firstChild.classList.add('selected')   :"" )
-      
-      inputValor.placeholder= inputValor.placeholder.substring(0,inputValor.placeholder.length-2);
-
-
-      if(window.screen.width<1400 && inputValor.placeholder.length>32){
-
-        inputValor.placeholder =  inputValor.placeholder.substring(0,31)+"..."
-      }
-      else if(window.screen.width<1800 && inputValor.placeholder.length>=39){
-
-        inputValor.placeholder =  inputValor.placeholder.substring(0,38)+"..."
-      }
-      if(window.screen.width>1800 && inputValor.placeholder.length>=45){
-
-        inputValor.placeholder =  inputValor.placeholder.substring(0,44)+"..."
-      }
-   if(inputValor.placeholder===""){
- 
-      inputValor.classList.remove('multiple-seleccionadoInputColor')
-      inputValor.placeholder="Selecciona el estado"
-    }
-    
-        inp.addEventListener('click',MultipleSelectCheckbox)})
+      checkboxInputAll.forEach(inp => inp.addEventListener('click',MultipleSelectCheckbox))
     }
   
     return () => {
@@ -81,13 +62,32 @@ const MultipleSelect = () => {
     }
 
   }, )
-
-const MultipleSelectCheckbox = (e) => {
+  const modificarMultipleSelect  =useCallback( 
+  () => {
+    let  opciones =document.querySelectorAll('.multiple-checkboxInput');
+   console.log(opciones)
+    for (let i = 1; i < opciones.length; i++) {
+      const element = opciones[i];
+      element.checked=arraySelected[element.value]
+     console.log(element)
+   }
     
-     e.stopPropagation();
-    window.history.replaceState(null,"","/transaction")
+ },
+ // eslint-disable-next-line react-hooks/exhaustive-deps
+ [],
+)
+useEffect(() => {
+  modificarMultipleSelect();
 
-    if(e.target.checked===true){
+  
+
+}, [modificarMultipleSelect])
+const MultipleSelectCheckbox = (e) => {
+
+  e.stopPropagation();
+  window.history.replaceState(null,"","/transaction")
+
+  if(e.target.checked===true){
       seleccionadosInput++;
     }
     if(e.target.checked===false){
@@ -102,12 +102,13 @@ const MultipleSelectCheckbox = (e) => {
       checkboxInputAll.forEach(inp => inp.firstChild.checked=false)
       seleccionadosInput=0;
     }
+  
     inputValor.classList.remove('multiple-seleccionadoInputColor')
     checkboxInputAll[0].firstChild.checked=false;
 
     checkboxInputAll.forEach(inp => inp.firstChild.checked===false ? inp.firstChild.classList.remove('selected')   :"" )
    
-    if(seleccionadosInput===checkboxInputAll.length-1 || seleccionadosInput===checkboxInputAll.length ){  
+    if(seleccionadosInput===checkboxInputAll.length-1 || seleccionadosInput===checkboxInputAll.length ){
       checkboxInputAll[0].firstChild.checked=true;
       inputValor.placeholder=""
       inputValor.placeholder="Todos"
@@ -158,7 +159,7 @@ const MultipleSelectCheckbox = (e) => {
     e.preventDefault()
     e.stopPropagation();
     
-    if(window.location.pathname==="/transaction" || window.location.pathname==="/transaction/inAlert" ||  window.location.pathname==="/transaction/pending" || window.location.pathname==="/transaction/active"){
+    if(window.location.pathname==="/transaction" || window.location.pathname==="/transaction/pending" || window.location.pathname==="/transaction/active"){
       document.querySelector('#opciones').style.display="block"
     }
  
@@ -167,7 +168,7 @@ const MultipleSelectCheckbox = (e) => {
 
   const pararPropagacion = (e) => {
 
-    if(window.location.pathname==="/transaction" || window.location.pathname==="/transaction/inAlert" ||  window.location.pathname==="/transaction/pending" || window.location.pathname==="/transaction/active"){
+    if(window.location.pathname==="/transaction" || window.location.pathname==="/transaction/pending" || window.location.pathname==="/transaction/active"){
       document.querySelector('#opciones').style.display="none"
     }
 
@@ -196,8 +197,8 @@ const MultipleSelectCheckbox = (e) => {
                                 </div>
                                 {
                                 opcionesCheckbox.map(opcion => (
-                                  <div className="multiple-contenido-opcion" key={opcion} id={opcion}>                             
-                                      <input   className="multiple-checkboxInput" type="checkbox" value={opcion}/>
+                                  <div className="multiple-contenido-opcion" key={opcion} id={opcion}>
+                                      <input   className="multiple-checkboxInput" type="checkbox"  value={opcion} />
                                       <label className="multiple-labelCheckBox" htmlFor={opcion}>{opcion}</label>
                                   </div>
                                 ))
