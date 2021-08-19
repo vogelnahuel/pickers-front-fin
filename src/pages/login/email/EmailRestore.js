@@ -105,6 +105,14 @@ const handleSubmit = async (e) => {
     e.target.nextSibling.classList.add('animationTop');
   }
 
+  const handleInputBlur = (e) => {
+
+    if(e.target.value.length===0 ){
+         e.target.nextSibling.classList.remove('animationTop');
+         e.target.nextSibling.classList.add('animationOrigin');
+     }
+           
+  }
 
     return(
       <>
@@ -114,18 +122,18 @@ const handleSubmit = async (e) => {
           </div>
 
 
-          <div className="container centrar">
-          <form className="form size-restore" onSubmit={handleSubmit}>
-            <div className="form-group">
+          <div className="centrar">
+          <form className="form size-restore " onSubmit={handleSubmit}>
+          
             
-            
+            <div>
               <input 
                type="mail" 
                className="input" 
                name="mail" 
                id="mail"
                autoComplete="off"
-           
+              onBlur={handleInputBlur}
                onChange={handleInputChange}   
                value={formValues.mail}
                onFocus={(e) => handleFocusLabel(e,formValues.mail)}
@@ -137,10 +145,10 @@ const handleSubmit = async (e) => {
                  <p id="Test" className="errors"> {formValues.errorMsgMail}  </p>
                  </div>:<></>
                }
-              
+            </div>
             
               <Button 
-              className="btn btn-outline-primary button_ " 
+              className="btn button_ " 
               type="submit" 
               name="button" 
               id="email-send"
@@ -149,7 +157,7 @@ const handleSubmit = async (e) => {
               
               
             
-            </div>
+           
           </form>
           {
             ModalIsOpen === true ? 
@@ -206,9 +214,9 @@ const handleSubmit = async (e) => {
               }
         </div>
       
-         
-           <img className="img-fluid myresolution" src={canguro} alt="pickersFooter"></img>
-          
+         <div>
+           <img className="myresolution-email" src={canguro} alt="pickersFooter"></img>
+          </div>
     
          
   

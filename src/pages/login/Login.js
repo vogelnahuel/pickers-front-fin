@@ -51,12 +51,12 @@ export const Login = () => {
       seterrorPassWord(false);
       seterrorMsgPassword('');
       document.querySelector('#labelpassword').classList.remove('labelError');
-      document.querySelector('#password').classList.remove('inputError'); 
+      document.querySelector('#password-login').classList.remove('inputError'); 
     }else if (e.target.name==="password" ){
       seterrorPassWord(true);
       seterrorMsgPassword('Este campo es requerido');
       document.querySelector('#labelpassword').classList.add('labelError');
-      document.querySelector('#password').classList.add('inputError');
+      document.querySelector('#password-login').classList.add('inputError');
     }
     
 
@@ -155,7 +155,7 @@ const handleSubmit = async (e) => {
         seterrorPassWord(true);
         seterrorMsgPassword('Este campo es requerido');
         document.querySelector('#labelpassword').classList.add('labelError');
-        document.querySelector('#password').classList.add('inputError');
+        document.querySelector('#password-login').classList.add('inputError');
       }
 
       
@@ -219,51 +219,54 @@ const handleSubmit = async (e) => {
           <img src={pickersLogo} className="pickersLogo_login" alt="PickersLogo"></img>
         </div>
 
-        <div className="container centrar">
+        <div className="centrar">
         <form className="form size" onSubmit={handleSubmit} >
-          <div className="form-group">
         
-          
-            <input 
-            type="mail"
-             className="input" 
-             name="mail" 
-             id="mail"
-             onBlur={handleInputBlur} 
-             onChange={(e)=>{handleInputChange(e,mail)}}         
-             value={mail}
-             onFocus={(e) => handleFocusLabel(e,mail)}
+        
+          <div>
+                  <input 
+                  type="mail"
+                  className="input" 
+                  name="mail" 
+                  id="mail"
+                  onBlur={handleInputBlur} 
+                  onChange={(e)=>{handleInputChange(e,mail)}}         
+                  value={mail}
+                  onFocus={(e) => handleFocusLabel(e,mail)}
+                  
+                  
+                  />
             
-            
-            />
-       
-       <label id="labelmail" htmlFor="mail" className="login-label label">Usuario</label>
-
+            <label id="labelmail" htmlFor="mail" className="login-label label">Usuario</label>
+         </div>
               {
               errorMail ? <div className="errorsContainer">
                   <p className="errors"> {errorMsgMail}  </p>
               </div>:null
               }
           
-           
-            <input 
-            type="password" 
-            className="input" 
-            name="password" 
-            id="password"
-            onBlur={handleInputBlur}
-            onChange={(e)=>{handleInputChange(e,password)}}  
-            value={password}
-            onFocus={(e) => handleFocusLabel(e,password)}
-            
-            
-            />
-          <label id="labelpassword" htmlFor="password" className="login-label label">Contraseña</label>
-            {
-            errorPassWord ? <div className="errorsContainer">
-                <p className="errors"> {errorMsgPassword}  </p>
-            </div>:<></>
-            }
+           <div >
+              <input 
+              type="password" 
+              className="input" 
+              name="password" 
+              id="password-login"
+              onBlur={handleInputBlur}
+              onChange={(e)=>{handleInputChange(e,password)}}  
+              value={password}
+              onFocus={(e) => handleFocusLabel(e,password)}
+              
+              
+              />
+              <label id="labelpassword" htmlFor="password-login" className="login-label label">Contraseña</label>
+              <div className="password-login">
+                {errorPassWord ? <div className="errorsContainer2">
+                    <p className="errors"> {errorMsgPassword}  </p>
+                </div>:<></>
+                }
+              </div>
+          </div>
+         
           
           <div className="contenedor z-index">
             <div className="contenedor z-index animation">
@@ -274,11 +277,7 @@ const handleSubmit = async (e) => {
               name="button" ><p className="login-init "> Iniciar sesión </p> </button>
             </div>
           </div>
-          <div className="separador_"></div>
-            <br/>
-           
-            <Link className="forgotPass" to={"./restore"}>¿Olvidaste tu contraseña?</Link>
-          </div>
+         
         </form>
        
     {   modalOpen === true ? 
@@ -335,7 +334,12 @@ const handleSubmit = async (e) => {
             }
         </div> 
         <div className="login-image" >
-          <img className="img-fluid  myresolution" src={canguro} alt="PickersFooter"></img>
+
+         
+           <div className="login-pass">
+            <Link className="forgotPass" to={"./restore"}>¿Olvidaste tu contraseña?</Link>
+            </div>
+          <img className="myresolution" src={canguro} alt="PickersFooter"></img>
         </div>
        
          
