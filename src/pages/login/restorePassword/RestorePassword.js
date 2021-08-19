@@ -144,12 +144,12 @@ const handleInputChange = (e) => {
 
       ///setear errores del inputChange
       if(window.screen.width<1500 &&e.target.name!=="password2" ){
-        e.target.style.marginBottom="1.8625vh";
+     
       }else if(window.screen.width<1500){
-        e.target.style.marginBottom="1.8625vh";
+       
       }
       else if(window.screen.width>1500){
-        e.target.style.marginBottom="10px";
+        
       }
 
      
@@ -159,8 +159,8 @@ const handleInputChange = (e) => {
         e.target.classList.remove('errorInput');   
         e.target.classList.remove('inputError');   
         e.target.nextSibling.classList.remove('labelError'); 
-        if(window.screen.width>1500)
-        e.target.style.marginBottom="53px";
+        
+      
       }
       if(e.target.name==="password2"){
         setError2(false);
@@ -177,8 +177,7 @@ const handleInputChange = (e) => {
         e.target.classList.add('inputError');  
         e.target.classList.add('errorInput'); 
         e.target.nextSibling.classList.add('labelError');
-        if(window.screen.width>1500)
-        e.target.style.marginBottom="53px";
+   
        
         setErrorCaracteres(true);
       }
@@ -187,8 +186,7 @@ const handleInputChange = (e) => {
         e.target.classList.add('inputError');  
         e.target.classList.add('errorInput'); 
         e.target.nextSibling.classList.add('labelError');
-        if(window.screen.width>1500)
-        e.target.style.marginBottom="53px";
+       
         setErrorMayusculas(true);
       }
        if(TieneNumerosYletras(e)===false && e.target.name!=="password2"){
@@ -196,8 +194,7 @@ const handleInputChange = (e) => {
         e.target.classList.add('inputError');  
         e.target.classList.add('errorInput');  
         e.target.nextSibling.classList.add('labelError'); 
-        if(window.screen.width>1500)
-        e.target.style.marginBottom="53px";
+     
         setErrorNumeros(true);
       }
       
@@ -267,21 +264,14 @@ const handleInputChange = (e) => {
         setError(true);
         setMsgError("Este campo es requerido");
         e.target.classList.add('inputError');
-        if(window.screen.width<1500)
-        e.target.style.marginBottom="0.5481481481481481vh";
-        else{
-          e.target.style.marginBottom="10px";
-        }
+      
+     
       }
       if(e.target.name==="password2"){
         setError2(true);
         setMsgError2("Este campo es requerido");
         e.target.classList.add('inputError');
-        if(window.screen.width<1500)
-        e.target.style.marginBottom="0.5481481481481481vh";
-        else{
-          e.target.style.marginBottom="10px";
-        }
+    
       }
       
     }
@@ -392,50 +382,52 @@ const cerrarModalEnviado = () => {
         
         <div className="container centrar ">
           <form className="form size" onSubmit={handleSubmit} >
-            <div className="form-group">
-              
-              <input 
-              value={password}
-              type="password"
-               className="input" 
-               name="password" 
-               id="password"
-               onBlur={handleInputBlur} 
-               onChange={(e)=>{handleInputChange(e,password)}}
-               onFocus={(e) => handleFocusLabel(e,password)}          
-               
-            />
-             <label id="labelPassword" htmlFor="password" className="label login-label-width login-restore-padding2">Nueva contraseña</label>
-            {
-                    errorPassWord ? <div className="errorsContainer-restore">
-                    <p className="errors-restore"> {errorMsgPassword}  </p>
-                    </div>:<></>   
-                }
-        
-          
-              <input 
-              type="password" 
-              className="input inputRestore" 
-              name="password2" 
-              id="password2"
-              onBlur={handleInputBlur} 
-              onChange={(e)=>{handleInputChange(e,password2)}}  
-              onFocus={(e) => handleFocusLabel(e,password2)}
-              value={password2} 
-              />
-              
-            <label id="labelpassword2" htmlFor="password2" className="label login-label-width login-restore-padding">Repetir nueva contraseña</label> 
-              {
-                errorPassWord2 ? <div className="errorsContainer-restore-password2">
-                 <p  id="" className="errors-restore"> {errorMsgPassword2}  </p>
-                 </div>:<></>   
-              }
-               {
-                errorDiferentesPassword ? <div className="errorsContainer-restore-noEquals">
-                 <p id="diferentes" className="noEqualsPassword"> Las contraseñas no coinciden </p>
-                 </div>:<></>   
-              }
             
+              <div>
+                    <input 
+                    value={password}
+                    type="password"
+                    className="input" 
+                    name="password" 
+                    id="password"
+                    onBlur={handleInputBlur} 
+                    onChange={(e)=>{handleInputChange(e,password)}}
+                    onFocus={(e) => handleFocusLabel(e,password)}          
+                    
+                  />
+                  <label id="labelPassword" htmlFor="password" className="label login-label-width login-restore-padding2">Nueva contraseña</label>
+                  {
+                          errorPassWord ? <div className="errorsContainer">
+                          <p className="errors-restore"> {errorMsgPassword}  </p>
+                          </div>:<></>   
+                      }
+            
+              </div>
+              <div>
+                    <input 
+                    type="password" 
+                    className="input inputRestore" 
+                    name="password2" 
+                    id="password2"
+                    onBlur={handleInputBlur} 
+                    onChange={(e)=>{handleInputChange(e,password2)}}  
+                    onFocus={(e) => handleFocusLabel(e,password2)}
+                    value={password2} 
+                    />
+                    
+                  <label id="labelpassword2" htmlFor="password2" className="label login-label-width login-restore-padding">Repetir nueva contraseña</label> 
+                      
+                      {
+                        errorPassWord2 ? <div className="errorsContainer-restore-password2">
+                        <p  id="" className="errors-restore"> {errorMsgPassword2}  </p>
+                        </div>:<></>   
+                      }
+                      {
+                        errorDiferentesPassword ? <div className="errorsContainer-restore-noEquals">
+                        <p id="diferentes" className="noEqualsPassword"> Las contraseñas no coinciden </p>
+                        </div>:<></>   
+                      }
+           </div> 
                 <ul name="elementosError" className="ul">
                     La contraseña debe contar con
                     <li className="display-flex">
@@ -474,14 +466,14 @@ const cerrarModalEnviado = () => {
            
                    <div className="Button-Container">
                     <Button 
-                    className="btn btn-outline-primary button_  float centerMybuttonPass" 
+                    className="btn btn-outline-primary button_  centerMybuttonPass" 
                     type="submit" 
                     name="button" 
                   >Guardar</Button> 
                   </div>
                 
              
-            </div>
+         
           </form>
          
           </div>
@@ -539,7 +531,7 @@ const cerrarModalEnviado = () => {
                   : null
                 }
       
-          <img className="img-fluid myresolution" src={canguro} alt="PickersFooter"></img>
+          <img className="myresolution-restore" src={canguro} alt="PickersFooter"></img>
      
           
          

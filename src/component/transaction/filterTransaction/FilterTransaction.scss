@@ -152,3 +152,37 @@ div .MKjsMK9DPt5gO-irDsCHa {
         margin-left: 6vw;
     }
 }
+@media (min-width:1800px){
+    .filter-Imagen-width{
+        width: 154px;
+    }
+    .form-filter-transaction div div input{
+        width: 263px;
+        margin-right: 24px;
+    }
+   
+    .transaction-container-button-width{
+        margin-left: 0px;
+    }
+    .search-button-transaction{
+        margin-left: 0px;
+    }
+    .display-inline{
+        width: 3.5vw;
+    }
+    .display-filter-transaction{
+        padding-bottom: 13px;
+        margin-top: 21px;
+    }
+    #checkbox-filter-transaction{   
+        margin-top: 13px;
+    }
+    #padding{
+        padding-top: 15px;
+    }
+    .search-button-transaction{
+        margin-top: 0px;
+    }
+   
+    
+}
