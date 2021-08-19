@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import './multipleSelect.scss'
 import Flecha from '../../../assets/admin/flechaAbajo.svg'
 import { useParams } from "react-router-dom";
-import e from "cors";
 import { useCallback } from "react";
 
 
@@ -21,7 +20,6 @@ const MultipleSelect = () => {
     case "pending":
       arraySelected={'Sin asignar':true}
       if(checkboxInputAll && inputValor){
-      inputValor.placeholder=""
       inputValor.classList.add('multiple-seleccionadoInputColor')
       checkboxInputAll.forEach(inp => inp.firstChild.checked===true ? inputValor.placeholder+=inp.firstChild.value+", ":"" )
       checkboxInputAll.forEach(inp => inp.firstChild.checked===true ? inp.firstChild.classList.add('selected')   :"" )
@@ -32,8 +30,6 @@ const MultipleSelect = () => {
        case "active":
       arraySelected={'Sin asignar':true,'En retiro':true,'En punto de retiro':true,'Retirado':true,'En lugar de entrega':true,'En devolución':true}
       if(checkboxInputAll && inputValor){
-      console.log("entre")
-      //checkboxInputAll[0].firstChild.checked=false;
       inputValor.placeholder=""
       inputValor.placeholder=seleccionadosInput+" Seleccionados"
       inputValor.classList.add('multiple-seleccionadoInputColor')
@@ -77,6 +73,7 @@ const MultipleSelect = () => {
    }
     
  },
+ // eslint-disable-next-line react-hooks/exhaustive-deps
  [],
 )
 useEffect(() => {
@@ -119,7 +116,6 @@ const MultipleSelectCheckbox = (e) => {
       checkboxInputAll.forEach(inp => inp.firstChild.checked===true ? inp.firstChild.classList.add('selected')   :"" )
     }
     else if(seleccionadosInput>3){
-      console.log("entre")
       checkboxInputAll[0].firstChild.checked=false;
       inputValor.placeholder=""
       inputValor.placeholder=seleccionadosInput+" Seleccionados"
