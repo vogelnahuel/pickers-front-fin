@@ -279,7 +279,7 @@ transform: translateY(0em) scale(1);
 
 @media (min-width:1300px){
   .size{
-    height: 26vh;
+    height: 24vh;
   }
 }
 .forgotPass{
@@ -288,8 +288,14 @@ transform: translateY(0em) scale(1);
 .myresolution{
   position: absolute;
   z-index: -1;
-  height: 46vh;
+  height: 48vh;
   width: 100%;
+}
+
+@media (min-width:1200px){
+  .size{
+    height: 24vh;
+  }
 }
 
 
