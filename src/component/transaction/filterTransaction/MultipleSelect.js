@@ -20,12 +20,11 @@ const MultipleSelect = () => {
     case "pending":
       arraySelected={'Sin asignar':true}
       if(checkboxInputAll && inputValor){
-      inputValor.classList.add('multiple-seleccionadoInputColor')
-      checkboxInputAll.forEach(inp => inp.firstChild.checked===true ? inputValor.placeholder+=inp.firstChild.value+", ":"" )
-      checkboxInputAll.forEach(inp => inp.firstChild.checked===true ? inp.firstChild.classList.add('selected')   :"" )
-      
-      inputValor.placeholder= inputValor.placeholder.substring(0,inputValor.placeholder.length-2);}
-
+        inputValor.placeholder=""
+        inputValor.classList.add('multiple-seleccionadoInputColor')
+        checkboxInputAll.forEach(inp => inp.firstChild.checked===true ? inputValor.placeholder+=inp.firstChild.value:"" )
+        checkboxInputAll.forEach(inp => inp.firstChild.checked===true ? inp.firstChild.classList.add('selected')   :"" )
+      }
       break;
        case "active":
       arraySelected={'Sin asignar':true,'En retiro':true,'En punto de retiro':true,'Retirado':true,'En lugar de entrega':true,'En devolución':true}
@@ -39,7 +38,6 @@ const MultipleSelect = () => {
       break;
   
     default:
-      //arraySelected= {'Sin asignar':false,'En retiro':false,'En punto de retiro':false,'Retirado':false,'En lugar de entrega':false,'Entregado':false,'En devolución':false,'Devuelto a origen':false,'Siniestrado':false,'Cancelada':false}
       break;
   }}
 
