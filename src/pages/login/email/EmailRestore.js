@@ -122,7 +122,7 @@ const handleSubmit = async (e) => {
           </div>
 
 
-          <div className="centrar">
+          <div className="centrar-email">
           <form className="form size-restore " onSubmit={handleSubmit}>
           
             
