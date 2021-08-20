@@ -6,7 +6,6 @@ import './card.scss'
 export const Card = (props) => {
     
     const {subtitle,url,title,number,backgroundColor}=props;
-    console.log(url)
     return (
         <Link to={url} className="card-body-admin"  style={{backgroundColor:`${backgroundColor}` }} >
             <div className="part-1">

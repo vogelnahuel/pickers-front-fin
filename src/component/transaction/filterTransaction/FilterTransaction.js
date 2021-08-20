@@ -17,7 +17,6 @@ export const FilterTransaction = (props) => {
   let initialValues={}
 
 if(filterParams && window.location.pathname !== "/transaction"){
-  console.log("filterParams",filterParams)
   switch (filterParams) {
     case "inAlert":
       initialValues={
@@ -156,7 +155,6 @@ const onSubmit = async (values) => {
      if(filterParams){
                       window.history.replaceState(null,"","/transaction")
                       initialValues={}
-                      console.log(window.location.pathname)
                       }
 
     setapiFilter(

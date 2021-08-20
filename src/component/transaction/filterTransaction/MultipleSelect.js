@@ -63,11 +63,9 @@ const MultipleSelect = () => {
   const modificarMultipleSelect  =useCallback( 
   () => {
     let  opciones =document.querySelectorAll('.multiple-checkboxInput');
-   console.log(opciones)
     for (let i = 1; i < opciones.length; i++) {
       const element = opciones[i];
       element.checked=arraySelected[element.value]
-     console.log(element)
    }
     
  },

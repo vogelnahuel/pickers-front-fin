@@ -47,6 +47,7 @@ export const PendingUserAdminPicker = () => {
         fechaVecCel:"",
         fechaVecSeguroAuto:"",
         fechaVecSeguroAccidente:"",
+        vehicle : ""
     })
 
    
@@ -71,7 +72,8 @@ export const PendingUserAdminPicker = () => {
     registerDate: null,
     surname:"",
     vehicleTypeId: "",
-    nya: ""
+    nya: "",
+   
 })
 
 const Export = async () => {                
@@ -341,11 +343,11 @@ const aprobarPicker= async (e) =>{
                     {
                             disabledButtonAprobarPicker===true ? <>
                              
-                             <button onClick={corregirDocumentos} className="corregir-admin-picker">Corregir documentos</button>
+                             <button onClick={corregirDocumentos} className="corregir-admin-picker">Guardar cambios</button>
                             <button disabled={true} onClick={aprobarPicker} className="aprobar-admin-picker">Aprobar picker</button></>
                             :
                             <>
-                            <button onClick={corregirDocumentos} className="corregir-admin-picker">Corregir documentos</button>
+                            <button onClick={corregirDocumentos} className="corregir-admin-picker">Guardar cambios</button>
                             <button disabled={false} onClick={aprobarPicker} className="aprobar-admin-picker-active">Aprobar picker</button>
                            </>
                         }
