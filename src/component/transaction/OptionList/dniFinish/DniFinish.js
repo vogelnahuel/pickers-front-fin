@@ -37,7 +37,7 @@ export const DniFinish = (props) => {
     return (
         <div>
             <div onClick={handleClickgoBack} className="modal-transaction-finish-volver">
-                <img src={volver} alt ="volver" />
+                <img  className="modal-transaction-finish-volver-img" src={volver} alt ="volver" />
                 <p className="modal-transaction-finish-volver">Volver</p>
             </div>
             

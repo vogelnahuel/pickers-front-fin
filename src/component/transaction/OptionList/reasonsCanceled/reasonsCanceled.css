@@ -14,11 +14,11 @@
     text-align: center;
     color: #145A99;
     cursor: pointer;
-    
+    margin-top: 17px;
 }
 .modal-transaction-reasonsCanceled-scroll{
-    height: 40vh;
-    margin-right: 15vw;
+    height: 22vh;
+    margin-right: 18.8vw;
     overflow-y: auto;
 }
 
@@ -60,16 +60,17 @@
     font-weight: 800;
     font-size: 20px;
     line-height: 25px;
-    margin-left: 24.5vw;
+    text-align: center;
     letter-spacing: 0.01em;
-    color: #4D4D4D;
-    margin-bottom: 20px;
+    color: #101820;
+    width: 1110px;
+    margin-top: 6px;
 }
 .modal-transaction-reason-container{
     height: 60px;
     border-bottom: 1px solid #CCCCCC;
     width: 40vw;
-    margin-left: 25vw;
+    margin-left: 329px;
     cursor: pointer;
 }
 .modal-transaction-reason-container p {
@@ -83,6 +84,7 @@
     letter-spacing: 0.005em; 
     color: #101820;
     padding-top: 20px;
+    margin-left: 38px;
 }
 
 
@@ -95,6 +97,10 @@
     background-color: rgb(255, 255, 255);
     opacity: 0.5;
 }
+.modal-transaction-reasonsCanceled-img-volver{
+    margin-top: 4px;
+}
+
 
 .animation-right-transaction{
     background-color: rgb(255, 255, 255);
@@ -132,4 +138,13 @@
         opacity: 1;
         
         }
+}
+
+@media (max-width:1310px){
+    .modal-transaction-reasonsCanceled-subtitle{
+        margin-top: 3px;
+    }
+    .modal-transaction-volver{
+        margin-top: 9px;
+    }
 }

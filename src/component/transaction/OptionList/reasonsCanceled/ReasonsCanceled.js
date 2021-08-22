@@ -82,11 +82,11 @@ const handleClickgoBack = (e) => {
     return (
         <div className="modal-transaction-reasonsCanceled">
             <div onClick={handleClickgoBack} className="modal-transaction-volver">
-                <img src={volver} alt ="volver" />
+                <img className="modal-transaction-reasonsCanceled-img-volver" src={volver} alt ="volver" />
                 <p className="modal-reasonsCancel-p">Volver</p>
             </div>
             <div className="modal-transaction-scroll">
-                    <p className="modal-transaction-reasonsCanceled-subtitle">Seleccioná el motivo de la cancelación</p>
+                    <p className="modal-transaction-reasonsCanceled-subtitle">Seleccioná el motivo de cancelación de la colecta</p>
             {
 
             
@@ -96,8 +96,9 @@ const handleClickgoBack = (e) => {
                             {
                               messages? messages.map((message)=>(
 
-                                <div  className="modal-transaction-reason-container">
-                                <p  onClick={handleClickFinish} key={message.id} value={message.id}>{message.message}</p>
+                                <div  key={message.id} className="modal-transaction-reason-container">
+                                    
+                                <p  onClick={handleClickFinish}  value={message.id}>{message.message}</p>
                             </div>
                                )
                                )
