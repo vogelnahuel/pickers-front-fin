@@ -80,6 +80,16 @@
     margin-left: 471px;
 }
 
+@media (min-width:1310px){
+    .modal-transaction-reasonsCanceledConfirm-img{
+        margin-top: 18px;
+        margin-bottom: 30px;
+    }
+    .modal-transaction-reasonsCanceledConfirm-button{
+        margin-top: 50px;
+    }
+}
+
 @media (min-width: 1600px) {
    
     .modal-transaction-reasonsCanceledConfirm-img{

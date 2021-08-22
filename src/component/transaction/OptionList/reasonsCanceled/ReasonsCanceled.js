@@ -89,9 +89,11 @@ const handleClickgoBack = (e) => {
                     <p className="modal-transaction-reasonsCanceled-subtitle">Seleccioná el motivo de cancelación de la colecta</p>
             {
 
+             
             
                     <div  className="modal-transaction-reasonsCanceled-scroll">
-                          
+                        
+                                 <hr className="modal-transaction-reasonsCanceled-separate"/>
 
                             {
                               messages? messages.map((message)=>(

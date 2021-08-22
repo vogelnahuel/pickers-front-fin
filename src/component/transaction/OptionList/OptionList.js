@@ -17,12 +17,12 @@ export const OptionList = (props) => {
     //const dispatch = useDispatch()
     const FilterSelectedTransaction = props.FilterSelectedTransaction
     
-    const [history, sethistory] = useState(false)
+    const [history, sethistory] = useState(true)
     const [reasonCancel, setreasonCancel] = useState(false);
     const [reasonCancelConfirm, setreasonCancelConfirm] = useState(false);
     const [finishModal, setfinishModal] = useState(false);
     const [dniFinish, setdniFinish] = useState(false)
-    const [undelivered, setundelivered] = useState(true)
+    const [undelivered, setundelivered] = useState(false)
 
     const [reasonId, setreasonId] = useState({})
 

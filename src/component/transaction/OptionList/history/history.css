@@ -31,7 +31,6 @@
     flex-wrap: wrap;
     justify-content: space-between;
     margin-top: 30px;
-    
 }
 .form-filter-transaction-modal div div input {
     border: 0;
@@ -90,5 +89,13 @@
     .form-filter-transaction-modal div div input {
         line-height: 31px;
         margin-bottom: 23px;
+    }
+}
+@media (min-width:1310px){
+    .form-filter-transaction-modal{
+        margin-top: 25px;
+    }
+    #modal-transaction-history-Final{
+            margin-top: 0px;
     }
 }

@@ -110,6 +110,22 @@
 
 }
 
+@media (min-width:1310px){
+    .modal-transaction-finish-img{
+        margin-top: 15px;
+        margin-bottom: 30px;
+    }
+    .modal-transaction-finish-inputs{
+        margin-top: 18px;
+    }
+    .modal-transaction-finish-button{
+        margin-top: 40px;
+    }
+    .modal-transaction-finish-button-click{
+        margin-top: 40px;
+    }
+}
+
 @media (min-width: 1600px) {
     .modal-transaction-finish-inputs div{
         margin-right: 7.521%;

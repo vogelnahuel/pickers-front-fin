@@ -82,3 +82,18 @@
 .modal-transaction-finish-volver-img{
     margin-top: 16px;
 }
+
+@media (min-width:1310px){
+    .modal-dni-finish-card{
+        margin-top: 15px;
+    }
+    .modal-dni-finish-h3{
+        margin-top: 34px;
+        margin-bottom: 47px;
+    }
+    .modal-dni-finish-button{
+        margin-top: 74px;
+    }
+   
+    
+}

@@ -7,12 +7,19 @@
     text-align: center;
     letter-spacing: 0.01em;
     color: #4D4D4D;
+    margin-bottom: 30px;
 }
 .modal-undelivered-hr{
-
     margin-bottom: 21px;
     width: 445px;
     border: 1px solid #CCCCCC;
+}
+#modal-undelivered-hr{
+    margin-top: 0px;
+    margin-bottom: 21px;
+    width: 445px;
+    border: 1px solid #CCCCCC;
+    margin-left: 335px;
 }
 .modal-undelivered-opc{
 font-family: 'Mulish';
@@ -40,14 +47,14 @@ cursor: pointer;
     line-height: 23px;
     text-align: center;
     color: #FFFFFF;
-    margin-top: 25px;
+    margin-top: 62px;
 }
 
 
 
 
 .modal-container-height{
-    height: 33vh;
+    height: 28vh;
     overflow-y: auto;
     width: 72%;
     overflow-x: hidden;
@@ -85,6 +92,17 @@ cursor: pointer;
     background: #F1F1F1;
     border-radius: 4px;
 }
+@media (min-width:1310px){
+    .modal-undelivered-h3{
+        margin-top: 10px;
+    }
+    .modal-undelivered-button{
+        margin-top: 60px;
+    }
+  
+}
+
+
 
 @media (min-height: 800px) { 
 

@@ -66,11 +66,14 @@ const handleCLickOpc = async(e)=> {
                 <img className="modal-transaction-finish-volver-img" src={volver} alt ="volver" />
                 <p className="modal-transaction-finish-volver">Volver</p>
             </div>
+            <h3 className="modal-undelivered-h3">Seleccioná el motivo de imposible de entrega</h3>
+            
             <div className="modal-container-height">
+            <hr id="modal-undelivered-hr"/>
                 <div className="modal-dni-center">
 
-                    <h3 className="modal-undelivered-h3">Seleccioná el motivo de imposible de entrega</h3>
-                    <hr className="modal-undelivered-hr"/>
+                    
+                   
                     {
                         messages ? messages.map(opcion => (
                             <div key={opcion.id}>
