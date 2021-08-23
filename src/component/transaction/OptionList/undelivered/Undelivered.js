@@ -53,6 +53,8 @@ const handleClick  = async (e) => {
 }
 const handleCLickOpc = async(e)=> {
     e.preventDefault();
+    e.target.style.fontWeight="bold"
+    e.target.parentNode.style.backgroundColor="#F2F2F2"
   
     await api.post(
         `/ms-admin-rest/api/v1.0/transactions/${FilterSelectedTransaction.transaction.id}/in-devolution`,{"impossibleDeliveryReasonId":parseInt(e.target.id)}
@@ -76,7 +78,7 @@ const handleCLickOpc = async(e)=> {
                    
                     {
                         messages ? messages.map(opcion => (
-                            <div key={opcion.id}>
+                            <div key={opcion.id} className="modal-undelivered-opc-div">
                              
                                 <p onClick={handleCLickOpc} id={opcion.id} className="modal-undelivered-opc"> {opcion.message}</p>
                                 

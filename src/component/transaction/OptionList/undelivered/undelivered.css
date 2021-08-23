@@ -92,6 +92,10 @@ cursor: pointer;
     background: #F1F1F1;
     border-radius: 4px;
 }
+.modal-undelivered-opc:hover{
+    background: #F2F2F2;
+    mix-blend-mode: multiply;
+}
 @media (min-width:1310px){
     .modal-undelivered-h3{
         margin-top: 10px;

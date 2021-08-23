@@ -34,11 +34,13 @@ export const ReasonsCanceled = (props) => {
 const handleClickFinish = (e) => {
      
         e.preventDefault();
-        
+        e.target.style.fontWeight="bold"
+        e.target.parentNode.style.backgroundColor="#F2F2F2"
+
+
         setreasonCancelConfirm(true);
-       setreasonId( e.target.attributes[0].value)
-        
-        
+        setreasonId( e.target.attributes[0].value)
+                
         setTimeout(() => {
             e.target.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add('animation-left-transaction')
             const insert = document.querySelector('.insertAnimation');
@@ -79,6 +81,7 @@ const handleClickgoBack = (e) => {
 }
 
 
+
     return (
         <div className="modal-transaction-reasonsCanceled">
             <div onClick={handleClickgoBack} className="modal-transaction-volver">
@@ -109,6 +112,9 @@ const handleClickgoBack = (e) => {
                             
                     </div>
                      }
+            </div>
+            <div className="modal-reasonsCanceled-difuminar">
+
             </div>
                              
         </div>
