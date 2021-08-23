@@ -12,10 +12,16 @@
     color: #145A99;
     cursor: pointer;
     margin-left: 11px;
+    margin-top: 12px;
+}
+.modal-transaction-finish-volver-img{
+    margin-top: 16px;
 }
 .modal-transaction-finish-img{
-    margin-left: 38.3vw;
-    margin-bottom: 35px;
+    position: relative;
+    margin-top: -10px;
+    margin-left: 522px;
+    margin-bottom: 15px;
 }
 
 .modal-transaction-finish-button{
@@ -32,9 +38,8 @@
     line-height: 23px;
     text-align: center;
     color: #FFFFFF;
-
-    margin-left: 34.4vw;
-    margin-bottom: 44px;
+    margin-top: 45px;
+    margin-left: 470px;
 }
 .modal-transaction-finish-container{
     width: 100vw;
@@ -48,7 +53,7 @@
     letter-spacing: 0.01em;
     color: #101820;
     margin-bottom: 21px;
-    margin-left: 24vw;
+    margin-left: 323px;
     
 }
 .modal-transaction-finish-container p {
@@ -59,18 +64,18 @@
     line-height: 21px;
     letter-spacing: 0.0125em;
     color: #4D4D4D;
-    margin-left: 28vw;
+    margin-left: 380px;
 }
 .modal-transaction-finish-separate{
     border: 1px solid #145A99;
-    width: 41.581vw;
-    margin-left: 20vw    ;
+    width: 566px;
+    margin-left: 281px;
 }
 .modal-transaction-finish-inputs{
-    margin-top: 15px;
+    margin-top: 5px;
     display: flex;
-    width: 60vw;
-    margin-left: 25vw    ;
+    width: 100%;
+    margin-left: 353px   ;
 }
 .modal-transaction-finish-inputs div{
     margin-right: 2.521%;
@@ -100,9 +105,25 @@
     line-height: 23px;
     text-align: center;
     color: #FFFFFF;
-  
-    margin-left: 34.4vw;
-    margin-bottom: 44px;
+    margin-top: 45px;
+    margin-left: 470px;
+
+}
+
+@media (min-width:1310px){
+    .modal-transaction-finish-img{
+        margin-top: 15px;
+        margin-bottom: 30px;
+    }
+    .modal-transaction-finish-inputs{
+        margin-top: 18px;
+    }
+    .modal-transaction-finish-button{
+        margin-top: 40px;
+    }
+    .modal-transaction-finish-button-click{
+        margin-top: 40px;
+    }
 }
 
 @media (min-width: 1600px) {

@@ -88,6 +88,13 @@
     position: absolute;
 }
 
+
+@media (min-width:1800px){
+    .navAdmin{
+        height: 90vh;
+    }
+}
+
 @media (min-height: 700px) { 
   
     .circle{

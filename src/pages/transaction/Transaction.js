@@ -39,6 +39,19 @@ export const Transaction = () => {
   const [IdModalApi, setIdModalApi] = useState(""); // devuelve la consulta api
   const titulos = ["Transacción", "Id de picker", "Vencimiento SLA", "Estado"];
   let filterParamsFromCars={};
+  //altura del modal
+  const [resolutionHeightModal, setresolutionHeightModal] = useState(550)
+
+  useEffect(() => {
+
+    if(window.screen.width<1300){
+      setresolutionHeightModal(496)
+    }
+    if(window.screen.width>1900){
+      setresolutionHeightModal(675)
+    }
+   
+  }, [])
 
  
   const {filterParams} = useParams();
@@ -83,7 +96,6 @@ export const Transaction = () => {
         break;
     }
   }
-
 
   const cargarDatos = async(e)=> {
     
@@ -290,8 +302,8 @@ export const Transaction = () => {
         {OpenModalTransaction === true ? (
           <div className="modal-transaction">
             <Modal
-              width="87.116vw"
-              height="81.72916666666667vh"
+              width="1190px"
+              height={resolutionHeightModal}
               isOpen={OpenModalTransaction}
               onClose={onClose}
             >
@@ -312,7 +324,7 @@ export const Transaction = () => {
                     {  FilterSelectedTransaction.transaction && 
                               FilterSelectedTransaction.transaction.inAlert===true ? 
                               <>
-                              <span className="admin-table-alerta modal-transaction-alerta">En alerta</span>
+                              <span className="transaction-modal-alert modal-transaction-alerta">En alerta</span>
                               </>
                               : <span className="modal-transaction-space"></span>
                             }
