@@ -5,7 +5,7 @@ import pickersLogo from "./../../assets/login/PickersLogo.svg";
 import canguro from "./../../assets/login/Canguro.svg";
 import {Link} from 'react-router-dom'
 
-import {Modal} from 'pickit-components'
+import {Modal} from '@pickit/pickit-components'
 import api from '../../config/api'
 
 

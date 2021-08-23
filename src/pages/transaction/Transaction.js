@@ -6,7 +6,7 @@ import { Nav } from "../../component/admin/Nav/Nav";
 import { TableTransaction } from "../../component/transaction/tableTransaction/TableTransaction";
 import "./transaction.scss";
 import { FilterTransaction } from "../../component/transaction/filterTransaction/FilterTransaction";
-import { Modal } from "pickit-components";
+import { Modal } from "@pickit/pickit-components";
 import { OptionList } from "../../component/transaction/OptionList/OptionList";
 import exportar from "../../assets/admin/PendingUser/exportar.svg";
 import or from "../../assets/admin/PendingUser/or.svg";

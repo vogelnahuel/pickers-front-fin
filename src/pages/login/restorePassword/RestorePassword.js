@@ -12,7 +12,7 @@ import canguro from "../../../assets/login/Canguro.svg";
 import Okey from "../../../assets/login/Okey.svg";
 import Informacion from "../../../assets/login/Informacion.svg";
 import { useParams } from 'react-router';
-import {Modal}  from 'pickit-components'
+import {Modal}  from '@pickit/pickit-components'
 
 
 

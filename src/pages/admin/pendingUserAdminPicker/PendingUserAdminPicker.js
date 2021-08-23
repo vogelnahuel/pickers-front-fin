@@ -14,7 +14,7 @@ import api  from '../../../config/api'
 import { useParams } from 'react-router-dom'
 import codificarEmailURIFunction from '../../../tools/encodeMail.js'
 import createCSV from '../../../tools/createCSV'
-import { Modal } from 'pickit-components'
+import { Modal } from '@pickit/pickit-components'
 import moment from 'moment'
 
 

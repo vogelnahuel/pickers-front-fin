@@ -6,7 +6,7 @@ import pickersLogo from "../../../assets/login/PickersLogo.svg";
 import './Email.scss'
 // import loginService from '../../../services/login/loginService'
 import api from '../../../config/api'
-import {Modal}  from 'pickit-components'
+import {Modal}  from '@pickit/pickit-components'
 
 export const  EmailRestore = () => {
 

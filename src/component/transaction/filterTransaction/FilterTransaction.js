@@ -1,7 +1,8 @@
 import React, {} from "react";
 import desplegable from "../../../assets/admin/PendingUser/desplegable.svg";
 import "./FilterTransaction.scss";
-import { DatePicker } from "pickit-components";
+//import { DatePicker } from "pickit-components";
+import {DatePicker} from "@pickit/pickit-components"
 import { Form, Field } from "react-final-form";
 import or from "../../../assets/admin/PendingUser/or.svg";
 import search from "../../../assets/admin/PendingUser/search.svg";
@@ -245,6 +246,7 @@ const onSubmit = async (values) => {
                     name="FechaEntrega"
                     component={DatePicker}
                     placeholder="Seleccioná la fecha"
+                    language="es"
                   />
                 </div>
               </div>
