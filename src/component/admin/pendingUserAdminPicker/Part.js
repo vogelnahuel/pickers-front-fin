@@ -272,7 +272,7 @@ export const Part = (props) => {
         ...Informacion,
         expirationDatePolicyPersonal: e.target.value,
       });
-      console.log(Informacion)
+    
 
     }
 

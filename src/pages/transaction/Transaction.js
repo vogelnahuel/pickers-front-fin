@@ -83,7 +83,7 @@ export const Transaction = () => {
         break;
     }
   }
-  console.log(filter)
+
 
   const cargarDatos = async(e)=> {
     
