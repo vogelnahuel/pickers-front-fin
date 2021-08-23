@@ -107,9 +107,8 @@ export const Transaction = () => {
 
 
   const cargarMas = async () => {
-    console.log("cargar mas",filter)
     const res = await api
-    .get( `ms-admin-rest/api/v1.0/transactions?${filter.values && filter.values.nroTransaccion?`filter.transactionCode=${filter.values.nroTransaccion}`:""}${filter.values &&filter.values.Picker ? `&filter.pickerId=${filter.values.Picker}` : ""}${filter.values && filter.values.enAlerta? `&filter.inAlert=${true}` : ""}${filter.values && filter.values.FechaEntrega? `&filter.minMinDeliveryDate=${filter.values.FechaEntrega.from}`: ""}${filter.values && filter.values.FechaEntrega? `&filter.maxMinDeliveryDate=${filter.values.FechaEntrega.until}` : ""}${ filter.stringSelected && filter.stringSelected!==""? `&filter.state=${filter.stringSelected}`:""}&limit=${tamPag}&offset=${offset}`)
+    .get( `ms-admin-rest/api/v1.0/transactions?${filter.values && filter.values.nroTransaccion?`filter.transactionCode=${filter.values.nroTransaccion}`:""}${filter.values &&filter.values.Picker ? `&filter.pickerId=${filter.values.Picker}` : ""}${filter.values && filter.values.enAlerta? `&filter.inAlert=${true}` : ""}${filterParamsFromCars.values && filterParamsFromCars.values.enAlerta? `&filter.inAlert=${true}` : ""}${filter.values && filter.values.FechaEntrega? `&filter.minMinDeliveryDate=${filter.values.FechaEntrega.from}`: ""}${filter.values && filter.values.FechaEntrega? `&filter.maxMinDeliveryDate=${filter.values.FechaEntrega.until}` : ""}${filterParamsFromCars.values && filterParamsFromCars.values.FechaEntrega? `&filter.minMinDeliveryDate=${filterParamsFromCars.values.FechaEntrega.from}`: ""}${filterParamsFromCars.values && filterParamsFromCars.values.FechaEntrega? `&filter.maxMinDeliveryDate=${filterParamsFromCars.values.FechaEntrega.until}` : ""}${ filter.stringSelected && filter.stringSelected!==""? `&filter.state=${filter.stringSelected}`:""}${ filterParamsFromCars.stringSelected && filterParamsFromCars.stringSelected!==""? `&filter.state=${filterParamsFromCars.stringSelected}`:""}&limit=${tamPag}&offset=${offset}`)
     .then((res) => {
         setoffset(offset + tamPag);
         if(res.data.result.items.length<tamPag)
@@ -117,7 +116,6 @@ export const Transaction = () => {
         return res.data.result.items;
       })
       .catch((err) => {
-        console.log(err);
       });
 
    
