@@ -34,11 +34,13 @@ export const ReasonsCanceled = (props) => {
 const handleClickFinish = (e) => {
      
         e.preventDefault();
-        
+        e.target.style.fontWeight="bold"
+        e.target.parentNode.style.backgroundColor="#F2F2F2"
+
+
         setreasonCancelConfirm(true);
-       setreasonId( e.target.attributes[0].value)
-        
-        
+        setreasonId( e.target.attributes[0].value)
+                
         setTimeout(() => {
             e.target.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add('animation-left-transaction')
             const insert = document.querySelector('.insertAnimation');
@@ -79,25 +81,29 @@ const handleClickgoBack = (e) => {
 }
 
 
+
     return (
         <div className="modal-transaction-reasonsCanceled">
             <div onClick={handleClickgoBack} className="modal-transaction-volver">
-                <img src={volver} alt ="volver" />
+                <img className="modal-transaction-reasonsCanceled-img-volver" src={volver} alt ="volver" />
                 <p className="modal-reasonsCancel-p">Volver</p>
             </div>
             <div className="modal-transaction-scroll">
-                    <p className="modal-transaction-reasonsCanceled-subtitle">Seleccioná el motivo de la cancelación</p>
+                    <p className="modal-transaction-reasonsCanceled-subtitle">Seleccioná el motivo de cancelación de la colecta</p>
             {
 
+             
             
                     <div  className="modal-transaction-reasonsCanceled-scroll">
-                          
+                        
+                                 <hr className="modal-transaction-reasonsCanceled-separate"/>
 
                             {
                               messages? messages.map((message)=>(
 
-                                <div  className="modal-transaction-reason-container">
-                                <p  onClick={handleClickFinish} key={message.id} value={message.id}>{message.message}</p>
+                                <div  key={message.id} className="modal-transaction-reason-container">
+                                    
+                                <p  onClick={handleClickFinish}  value={message.id}>{message.message}</p>
                             </div>
                                )
                                )
@@ -106,6 +112,9 @@ const handleClickgoBack = (e) => {
                             
                     </div>
                      }
+            </div>
+            <div className="modal-reasonsCanceled-difuminar">
+
             </div>
                              
         </div>

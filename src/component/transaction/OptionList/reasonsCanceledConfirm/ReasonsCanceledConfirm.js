@@ -42,7 +42,7 @@ export const ReasonsCanceledConfirm = (props) => {
     return (
         <div className="modal-transaction-reasonsCanceled">
             <div  onClick={handleClickgoBack} className="modal-transaction-volver">
-                <img src={volver} alt ="volver" />
+                <img  className="modal-transaction-reasonsCanceledConfirm-volver-img" src={volver} alt ="volver" />
                 <p className="modal-transaction-reasonsCanceledConfirm-volver">Volver</p>
             </div>
 

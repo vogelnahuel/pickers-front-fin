@@ -115,7 +115,7 @@ export const FinishModal = (props) => {
         onClick={handleClickgoBack}
         className="modal-transaction-finish-volver"
       >
-        <img src={volver} alt="volver" />
+        <img className="modal-transaction-finish-volver-img"  src={volver} alt="volver" />
         <p className="modal-transaction-finish-volver">Volver</p>
       </div>
       <div className="modal-transaction-finish-container">
