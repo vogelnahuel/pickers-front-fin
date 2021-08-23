@@ -169,6 +169,9 @@
     .modal-transaction-volver{
         margin-top: 9px;
     }
+    .modal-reasonsCanceled-difuminar{
+    margin-top: -5px;
+    }
 }
 @media (min-width:1310px){
     .modal-transaction-reasonsCanceled-scroll{
