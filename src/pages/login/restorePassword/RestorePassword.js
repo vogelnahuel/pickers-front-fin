@@ -7,11 +7,12 @@ import "./restorePassword.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import pickersLogo from "../../../assets/login/PickersLogo.svg";
+import voidCheck from "../../../assets/login/void-check.svg"
 import canguro from "../../../assets/login/Canguro.svg";
 import Okey from "../../../assets/login/Okey.svg";
 import Informacion from "../../../assets/login/Informacion.svg";
 import { useParams } from 'react-router';
-import {Modal}  from 'pickit-components'
+import {Modal}  from '@pickit/pickit-components'
 
 
 
@@ -435,7 +436,7 @@ const cerrarModalEnviado = () => {
                         errorCaracteresState 
                         ?  <img   src={Informacion} alt="ok"/>
                        
-                        :  <img  src={Okey} alt="ok"/>
+                        : password===""?<img  src={voidCheck} alt="ok"/> : <img  src={Okey} alt="ok"/>
                       }
                         <p id="caracteres" className="restore-p">8 o más caracteres</p>
                     </li>
@@ -445,7 +446,7 @@ const cerrarModalEnviado = () => {
                           errorMayusculasState 
                         ?  <img   src={Informacion} alt="ok"/>
                        
-                        :  <img  src={Okey} alt="ok"/>
+                        : password===""?<img  src={voidCheck} alt="ok"/> : <img  src={Okey} alt="ok"/>
                       }
                          
                          
@@ -456,7 +457,7 @@ const cerrarModalEnviado = () => {
                           errorNumerosState 
                         ?  <img   src={Informacion} alt="ok"/>
                        
-                        :  <img  src={Okey} alt="ok"/>
+                        : password===""?<img  src={voidCheck} alt="ok"/> : <img  src={Okey} alt="ok"/>
                       }
                        
                          <p id="numeros" className="restore-p"> Números y letras</p>

@@ -11,7 +11,7 @@ import { dataActiveUser } from "./dataActiveUser";
 import api from "../../../config/api";
 import codificarEmailURIFunction from "../../../tools/encodeMail.js";
 import createCSV from "../../../tools/createCSV.js";
-import { Modal } from "pickit-components";
+import { Modal } from "@pickit/pickit-components";
 
 export const ActiveUserAdmin = () => {
   /****titulos de la tabla */

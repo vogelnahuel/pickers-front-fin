@@ -16,7 +16,7 @@ import api from '../../../config/api'
 import createCSV from '../../../tools/createCSV'
 import  disabledButton  from '../../../assets/admin/ActiveUserAdminPicker/disabledButton.svg' 
 import bici from '../../../assets/admin/PendingUserAdminPicker/bici.svg'
-import {Modal} from 'pickit-components'
+import {Modal} from '@pickit/pickit-components'
 import moment from 'moment'
 
 export const ActiveUserAdminPicker = () => {

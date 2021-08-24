@@ -126,6 +126,12 @@ export const Part = (props) => {
         bankName: e.target.value,
       });
     }
+    if (e.target.name === "PatenteDelVehiculo") {
+      setInformacion({
+        ...Informacion,
+        vehicle: e.target.value,
+      });
+    }
 
     if (e.target.name === "vencimientoLicencia") {
 
@@ -266,7 +272,7 @@ export const Part = (props) => {
         ...Informacion,
         expirationDatePolicyPersonal: e.target.value,
       });
-      console.log(Informacion)
+    
 
     }
 
@@ -289,6 +295,7 @@ export const Part = (props) => {
     const ex_regular_nomyape =/^[a-zA-ZÀ-ÿ\u00f1\u00d1]*(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/g;;
     const ex_regular_fecha = /^(0[1-9]|[1-2]\d|3[01])(\/)(0[1-9]|1[012])\2(\d{4})$/
     const ex_regular_telefono =/^\(?\d{2,3}\)?[\s.-]?\d{3,4}[\s.-]?\d{4}$/;
+    const ex_regular_patente= /[a-zA-Z][\s.-][0-9]/;
     
   
     if(ErrorMenorEdad!==true){
@@ -442,6 +449,25 @@ export const Part = (props) => {
       const div = document.createElement('div');
       div.innerHTML = `
         <p class="labelError-part-bottom"> ${"Ingresá el teléfono. Ej: 011-1234-1234"} </p>
+      `
+      e.target.parentNode.appendChild(div);
+
+      
+    }
+    if(e.target.name==="PatenteDelVehiculo" && e.target.value !== "" && ex_regular_patente.test(e.target.value) !== true )
+    {
+      if(window.location.pathname===`/pendingUserAdminpicker/${id}`)
+      setdisabledButtonAprobarPicker(true);
+
+      if(window.location.pathname===`/activeUserAdminpicker/${id}`)
+      setdisableButtons(false)
+
+      e.target.classList.add('inputError-part');
+      e.target.parentNode.previousSibling.firstChild.classList.add('labelError-part-top');
+
+      const div = document.createElement('div');
+      div.innerHTML = `
+        <p class="labelError-part-bottom"> ${"Ingrese una patente valida"} </p>
       `
       e.target.parentNode.appendChild(div);
 
@@ -872,7 +898,7 @@ const eliminarDivs = ()  => {
                                                     { variable.name === "PatenteDelVehiculo" ? 
                                                        <input
                                                        value={
-                                                           ""
+                                                        Informacion.vehicle ? Informacion.vehicle : ""
                                                        }
                                                        onChange={(e) => {
                                                          handleChange(e, variable.id);

@@ -1,7 +1,8 @@
 import React, {} from "react";
 import desplegable from "../../../assets/admin/PendingUser/desplegable.svg";
 import "./FilterTransaction.scss";
-import { DatePicker } from "pickit-components";
+//import { DatePicker } from "pickit-components";
+import {DatePicker} from "@pickit/pickit-components"
 import { Form, Field } from "react-final-form";
 import or from "../../../assets/admin/PendingUser/or.svg";
 import search from "../../../assets/admin/PendingUser/search.svg";
@@ -17,7 +18,6 @@ export const FilterTransaction = (props) => {
   let initialValues={}
 
 if(filterParams && window.location.pathname !== "/transaction"){
-  console.log("filterParams",filterParams)
   switch (filterParams) {
     case "inAlert":
       initialValues={
@@ -156,7 +156,6 @@ const onSubmit = async (values) => {
      if(filterParams){
                       window.history.replaceState(null,"","/transaction")
                       initialValues={}
-                      console.log(window.location.pathname)
                       }
 
     setapiFilter(
@@ -247,6 +246,7 @@ const onSubmit = async (values) => {
                     name="FechaEntrega"
                     component={DatePicker}
                     placeholder="Seleccioná la fecha"
+                    language="es"
                   />
                 </div>
               </div>
