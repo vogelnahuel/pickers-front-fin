@@ -12,10 +12,11 @@ function* getTransactions({ params }) {
         transactionsMiddleware.getTransactions,
         params
     );
+    debugger
     if (response.type === "W") {
         yield put(actions.getTransactionsError());
     } else {
-        const { transactions } = response.data.data;
-        yield put(actions.getTransactionsSuccess(transactions));
+        const { items } = response.data.result;
+        yield put(actions.getTransactionsSuccess(items));
     }
 }

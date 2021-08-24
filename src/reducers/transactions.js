@@ -26,8 +26,8 @@ export const actions = {
 };
 
 export const selectors = {
-    isFetching: ({ transaction }) => transaction.fetching,
-    getTransactions: ({transaction}) => transaction.transactions
+    isFetching: ({ transactions }) => transactions.fetching,
+    getTransactions: ({ transactions }) => transactions.transactions
 };
 
 export default (state = INITIAL_STATE, action = {}) => {
