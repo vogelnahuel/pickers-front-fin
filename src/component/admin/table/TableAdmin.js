@@ -61,7 +61,7 @@ return (
                               ? "Bici"
                               : null}
                           </td>
-                          <td className="table-registro"> {rows.registerDate?getDifDate(rows.registerDate):null} {getDifDate(rows.registerDate)===1?"día":"días"} {rows.pickerStatusId===3 ?<div className="admin-table-correction">En corrección</div> : null } </td>
+                          <td className="table-registro"> <div className="table-admin-enCorrecion-span">{rows.registerDate?getDifDate(rows.registerDate):null} {getDifDate(rows.registerDate)===1?"día":"días"}</div> {rows.pickerStatusId===3 ?<div className="admin-table-correction">En corrección</div> : null } </td>
                           <td className="table-editar">
                             <Link  to ={`/pendingUserAdminpicker/${rows.id}`} > <img src={edit} className="aditar-picker-img"  alt="edit" /></Link>
                             
