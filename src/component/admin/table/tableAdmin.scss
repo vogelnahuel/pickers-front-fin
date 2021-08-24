@@ -148,6 +148,10 @@
 .table-active-correcion td:nth-child(3){
     width: 10.221vw;
 }
+.table-admin-enCorrecion-span{
+    width: 62px;
+    display: inline-block;
+}
 @media (max-width:1310px){
     .admin-table-alerta{
         margin-left: 15px;

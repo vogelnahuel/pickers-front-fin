@@ -126,25 +126,19 @@
     }
 }
 
-@media (min-width: 1600px) {
-    .modal-transaction-finish-inputs div{
-        margin-right: 7.521%;
-    }
-    .modal-transaction-finish-container p{
-        margin-left: 30vw;
-    }
-    .modal-transaction-finish-container h3{
-        margin-left: 26vw;
-    }
 
-}
 @media (min-width: 1800px) {
-
-    .modal-transaction-finish-container p{
-        margin-left: 32vw;
+    .modal-transaction-finish-img{
+        margin-top: 48px;
     }
-    .modal-transaction-finish-container h3{
-        margin-left: 28vw;
+    .modal-transaction-finish-container p{
+        margin-top: 20px;
+    }
+    .modal-transaction-finish-button{
+        margin-top: 107px;
+    }
+    .modal-transaction-finish-button-click{
+        margin-top: 107px;
     }
 
 }

@@ -4,22 +4,24 @@
     font-weight: 800;
     font-size: 20px;
     line-height: 25px;
-    text-align: center;
     letter-spacing: 0.01em;
-    color: #4D4D4D;
+    color: #101820;
     margin-bottom: 30px;
+    margin-left: 335px;
 }
 .modal-undelivered-hr{
     margin-bottom: 21px;
     width: 445px;
     border: 1px solid #CCCCCC;
+    border-top: 0px;
 }
 #modal-undelivered-hr{
     margin-top: 0px;
-    margin-bottom: 21px;
+    margin-bottom: 0px;
     width: 445px;
     border: 1px solid #CCCCCC;
     margin-left: 335px;
+    border-top: 0px;
 }
 .modal-undelivered-opc{
 font-family: 'Mulish';
@@ -30,7 +32,7 @@ line-height: 21px;
 letter-spacing: 0.005em;
 color: #101820;
 margin-left: 35px;
-cursor: pointer;
+margin-top: 20px;
 }
 
 .modal-undelivered-button{
@@ -92,7 +94,13 @@ cursor: pointer;
     background: #F1F1F1;
     border-radius: 4px;
 }
-.modal-undelivered-opc:hover{
+.modal-undelivered-opc-div{
+    height: 60px;
+    width: 454px;
+    border-bottom: 1px solid #CCCCCC;
+    cursor: pointer;
+}
+.modal-undelivered-opc-div:hover{
     background: #F2F2F2;
     mix-blend-mode: multiply;
 }
@@ -106,78 +114,11 @@ cursor: pointer;
   
 }
 
-
-
-@media (min-height: 800px) { 
-
-    .modal-undelivered-h3{
-        font-family: 'Mulish';
-        font-style: normal;
-        font-weight: 800;
-        font-size: 25px;
-        line-height: 25px;
-        text-align: center;
-        letter-spacing: 0.01em;
-        color: #4D4D4D;
-    }
-    .modal-undelivered-hr{
-        width: 550px;
-        border: 1px solid #CCCCCC;
-    }
-    .modal-undelivered-opc{
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 22px;
-    line-height: 21px;
-    letter-spacing: 0.005em;
-    color: #101820;
-    margin-left: 35px;
-    }
-    .modal-container-height{
-        height: 44.5vh;
-    }
+@media (min-width:1800px){
     .modal-undelivered-button{
-        margin-top: 25px;
+        margin-top: 90px;
     }
-    
+}
 
- }
 
- @media (min-height: 950px) { 
 
-    .modal-undelivered-h3{
-        font-family: 'Mulish';
-        font-style: normal;
-        font-weight: 800;
-        font-size: 30px;
-        line-height: 30px;
-        text-align: center;
-        letter-spacing: 0.03em;
-        color: #4D4D4D;
-    }
-    .modal-undelivered-hr{
-        width: 700px;
-        border: 1px solid #CCCCCC;
-    }
-    .modal-undelivered-opc{
-    margin-top: 10px;
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 22px;
-    line-height: 21px;
-    letter-spacing: 0.005em;
-    color: #101820;
-    margin-left: 35px;
-    margin-bottom: 30px;
-    }
-    .modal-container-height{
-        height: 50.5vh;
-    }
-    .modal-undelivered-button{
-        margin-top: 25px;
-    }
-    
-
- }

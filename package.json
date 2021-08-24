@@ -34,6 +34,7 @@
     "start:prod": "PORT=33000 env-cmd -f ./environments/.env.production react-scripts start",
     "start:test": "PORT=33000 env-cmd -f ./environments/.env.test react-scripts start",
     "build:dev": " env-cmd -f ./environments/.env.dev react-scripts build",
+    "build:prod": " env-cmd -f ./environments/.env.production react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
