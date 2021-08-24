@@ -13,7 +13,7 @@ import { types as recoveryPasswordTypes } from "reducers/petersen/recoveryPasswo
 import { types as loanRequestTypes } from "reducers/petersen/loanRequest";
 import { types as changePassTypes } from "reducers/settings";
 import { types as paymentsTypes } from "reducers/petersen/payments";
-import { MAX_FAILED_TIMES } from "constants.js";
+// import { MAX_FAILED_TIMES } from "constants.js";
 import * as I18n from "util/i18n";
 import { types as loadingTypes } from "reducers/petersen/loading";
 import transactions from "sagas/transactions";
