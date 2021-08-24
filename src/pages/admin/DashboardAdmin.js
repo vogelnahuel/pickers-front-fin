@@ -62,10 +62,10 @@ export const DashboardAdmin = () => {
 
                                             <Card
                                              subtitle="Pickers"
-                                             title="En linea"
+                                             title="En línea"
                                              number="-"
                                              backgroundColor="#63E8A8"
-                                             url="/transaction"
+                                             url="#"
                                             />
                                             <Card
                                              subtitle="Transacciones"
