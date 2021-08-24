@@ -8,16 +8,32 @@
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
+    "cors": "^2.8.5",
+    "env-cmd": "^10.1.0",
+    "final-form": "^4.20.2",
+    "moment": "^2.29.1",
+    "node": "^14.17.4",
+    "node-sass": "^4.14.1",
+    "pickit-components": "file:pickit-components-1.0.34.tgz",
+    "qs": "^6.10.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-final-form": "^6.5.3",
+    "react-hook-form": "^7.5.2",
+    "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "redux": "^4.1.0",
+    "redux-thunk": "^2.3.0",
+    "sweetalert2": "^11.0.0",
     "universal-cookie": "^4.0.4",
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start:dev": "PORT=33000 env-cmd -f ./environments/.env.dev react-scripts start",
+    "start:prod": "PORT=33000 env-cmd -f ./environments/.env.production react-scripts start",
+    "start:test": "PORT=33000 env-cmd -f ./environments/.env.test react-scripts start",
+    "build:dev": " env-cmd -f ./environments/.env.dev react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -38,5 +54,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {}
 }

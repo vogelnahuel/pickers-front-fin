@@ -1,25 +1,17 @@
-// import axios from 'axios';
-// //import { getValue, removeItem } from '../utils/localStorage';
+import axios from 'axios';
 
-// const api = axios.create({
-// //   baseURL: process.env.API_BASE_URL,
-// //   headers: {
-// //     apiKey: //getValue('token'),
-// //   },
-// // });
+const api = axios.create({
+  baseURL: process.env.REACT_APP_API_URL,
+  headers: {
+    "country-code":"ar",
+    "Authorization":`Bearer ${window.localStorage.getItem('token')}`
+ 
+  },
+});
 
-// // api.interceptors.response.use(
-// //   (response) => response,
-// //   (error) => {
-// //     if (error.response && error.response.status === 403) {
-// //       //removeItem('token');
-// //       api.defaults.headers = {
-// //         apiKey: null,
-// //       };
-// //       window.location.reload();
-// //     }
-// //     return Promise.reject(error);
-//  },
+// api.interceptors.response.use(
+//   (response) => response,
+//   (err) => err
 // );
 
-// export default api;
+export default api;

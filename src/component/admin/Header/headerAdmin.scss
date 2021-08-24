@@ -1,0 +1,84 @@
+.headerAdmin{
+    background-color: #0098FF;
+    color: white;
+    height: 9.765625vh;
+    position: fixed;
+    width: 100vw;
+    top: 0;
+    z-index: 11;
+}
+.containerHeader{
+    display: flex;
+    height: 9.895833333333334vh;
+   
+}
+.centerHeight{
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+}
+.font-Admin{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 3rem;
+    text-align: right;
+    width: 4.100vw    ;
+    
+}
+.leftEnd{
+    margin-left: 71.618vw;
+}
+.argentina{
+    padding-left: 0.805vw ;
+    width: 40px;
+}
+.user{
+    padding-left: 0.805vw    ;
+    width: 40px    ;
+  
+}
+.pickersLogo{
+    padding-left: 0.366vw;
+    width: 10.395vw;
+}
+
+.pickersLogo_login{
+    padding-left: 0.366vw; 
+    width: 250px;
+    height: 70px;
+    left: -25px;
+    position: relative
+}
+.admin-header-canguro{
+    margin-left: 1.611vw;
+    width: 4.100vw ;
+}
+
+@media (min-width: 1800px) { 
+    .leftEnd{
+        margin-left: 73.618vw;
+    }
+    .argentina{
+        width: 50px;
+    }
+    .user{
+        width: 50px;
+    }
+    .headerAdmin{
+        height: 75px;
+    }
+    .containerHeader{
+        height: 75px;
+    }
+
+ }
+
+ @media (max-width: 1300px) { 
+    .leftEnd{
+        margin-left: 70.718vw;
+        margin-right: 11px;
+    }
+
+ }

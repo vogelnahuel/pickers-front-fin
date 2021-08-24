@@ -1,0 +1,41 @@
+
+
+.button-modal-error p{
+    padding-top: 0px;
+}
+.size-restore{
+    height:22vh;
+}
+
+
+.logo-restore{
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 12.4vh;
+    //margin-top: 25.833333333333332vh;
+    width: 208px;
+    height: 5.833333333333333vh;
+
+  }
+.myresolution-email{
+  position: relative;
+  top: 0;
+  height: 50vh;
+  max-width: 100%;
+}
+.centrar-email{
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+   @media (min-width:1800px){
+    .size-restore{
+      height:13.688889vh;
+     
+    }
+    #email-send{
+      width: 188px;
+    }
+  }

@@ -1,0 +1,101 @@
+.filter-transaction-div-label{
+    height: 20px;
+}
+.modal-transaction-a{
+    text-decoration: none;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 19px;
+    letter-spacing: 0.004em;
+    color: #0098FF;
+    margin-left:15px;
+    margin-top: 2px;
+}
+.modal-transaction-a:hover{
+    text-decoration: none;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 19px;
+    letter-spacing: 0.004em;
+    color: #0098FF;
+    margin-left:15px;
+    margin-top: 2px;
+}
+
+.form-filter-transaction-modal{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+.form-filter-transaction-modal div div input {
+    border: 0;
+    border-bottom: 1px solid #828282;
+    width: 19.69vw;
+    margin-right: 20px;
+    outline: none;
+    margin-bottom: 18px;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 27px;
+    letter-spacing: 0px;
+    color: black;
+}
+.form-filter-modal{
+    margin-top: 13px;
+}
+.form-filter-modal div div input{
+    border: 0;
+    border-bottom: 1px solid #828282;
+    width: 19.69vw;
+    margin-right: 20px;
+    outline: none;
+    margin-bottom: 25px;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 27px;
+    letter-spacing: 0px;
+    color: black;
+}
+#modal-transaction-history-Final{
+    margin-top: 7px;
+}
+
+#modal-transaction-input-tel{
+ width: 9.1vw;
+ margin-right: 1.464vw;
+}
+#modal-transaction-input-tel input {
+ width: 9.1vw;
+}
+
+#modal-transaction-input-tel2{
+    width: 9.1vw;
+    
+}
+#modal-transaction-input-tel2 input {
+    width: 9.1vw;
+}
+
+@media (max-width:1310px){
+    .form-filter-transaction-modal div div input {
+        line-height: 31px;
+        margin-bottom: 23px;
+    }
+}
+@media (min-width:1310px){
+    .form-filter-transaction-modal{
+        margin-top: 25px;
+    }
+    #modal-transaction-history-Final{
+            margin-top: 0px;
+    }
+}

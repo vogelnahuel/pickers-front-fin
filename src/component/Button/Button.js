@@ -1,26 +1,18 @@
 import React from 'react'
 import './style.css'
 
-const ButtonSend = ({name, text,}) => {
+const ButtonSend = ({className,type, name,children,onClick}) => {
 
-    const onClick = (e) => {
-        e.preventDefault();
-        console.log("click")
-
-
-        e.target.classList.add('blue','shine');
-
-    }
 
     return (
         <>
                 <button 
-                 className="button"
-                 type="submit"
-                 name={name}
+                 className={className}
+                 type={type}
                  onClick={onClick}
+                 name={name}
                  >
-                     {text}
+                     {children}
                 </button>
        </>
     ) 

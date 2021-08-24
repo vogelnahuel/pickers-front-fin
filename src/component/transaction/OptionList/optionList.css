@@ -1,0 +1,248 @@
+.form-filter-transaction{
+    margin-top: 11px;
+    display: flex;
+}
+.modal-transaction-optionContainer-scroll{
+    height: 340px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 82.4vw;
+    margin-right: 1.964vw;
+}
+.modal-transaction-button-irApicker{
+    height: 50px;
+    width: 176px;
+    border: 2.5px solid #0098FF;
+    box-sizing: border-box;
+    border-radius: 50px;
+    background-color: white;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 23px;
+    text-align: center;
+    color: #101820;
+    margin-left: 3.7vw;
+}
+.modal-transaction-inputs{
+    display: flex;
+    flex-wrap: wrap;
+    width: 80vw;
+}
+.modal-transaction-input{
+    width: 19.351vw;
+    margin-right: 22px;
+}
+.modal-transaction-h3{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 25px;
+    letter-spacing: 0.01em;
+    color: #0098FF;
+}
+
+.modal-transaction-optionContainer-scroll{
+    overflow-y: scroll;
+    padding-right: 20px;
+}
+.modal-transaction-optionContainer-scroll::-webkit-scrollbar {
+    width: 8px;     
+    height: 8px;
+}
+.modal-transaction-optionContainer-scroll::-webkit-scrollbar-thumb {
+    background: #BDBDBD;
+    width: 7px;     
+    height: 7px;
+    border-radius: 4px;
+}
+.modal-transaction-optionContainer-scroll::-webkit-scrollbar-thumb:hover {
+    background: #BDBDBD;
+    width: 7px;     
+    height: 7px;
+    border-radius: 4px;
+}
+.modal-transaction-optionContainer-scroll::-webkit-scrollbar-thumb:active {
+    background-color: #BDBDBD;
+    width: 7px;     
+    height: 7px;
+    border-radius: 4px;
+}
+
+.modal-transaction-optionContainer-scroll::-webkit-scrollbar-track {
+    background: #F1F1F1;
+    border-radius: 4px;
+}
+.modal-transaction-separate-option{
+    width: 98.5%;
+    border: 1px solid #CCCCCC;
+}
+.modal-transaction-part{
+    display: flex;
+}
+.modal-transaction-part-subtitle{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 17px;
+    line-height: 21px;
+    letter-spacing: 0.0125em;
+    color: #4D4D4D;
+    margin-left: 1.458vw;
+}
+.modal-transaction-part-info{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 19px;
+    margin-left: 15px;
+    color: #BDBDBD;
+    margin-top:  0.2604166666666667vh;
+}
+.modal-transaction-img-connector{
+    margin-left: 0.702vw;
+}
+.modal-transaction-section-history{
+   margin-bottom: 30px;
+}
+.modal-transaction-reload-img{
+    cursor: pointer;
+    margin-top: 0px;
+}
+
+.modal-transaction-difuminar1{
+    position: absolute;
+    width: 81vw;
+    height: 15px;
+    backdrop-filter: blur(1px);
+    margin-top: -26px;
+}
+.modal-transaction-difuminar2{
+    position: absolute;
+    width: 81vw;
+    height: 15px;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(2px);
+    margin-top: -19px; 
+}
+.modal-transaction-difuminar3{
+    position: absolute;
+    width: 81vw;
+    height: 15px;
+    background: rgba(255, 255, 255, 1);
+    backdrop-filter: blur(2px);
+    margin-top: -12px;
+}
+.modal-transaction-difuminar4{
+    position: absolute;
+    width: 81vw;
+    height: 15px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(1px);
+    margin-top: 0px;
+}
+.modal-transaction-difuminar5{
+    position: absolute;
+    width: 81vw;
+    height: 15px;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(1px);
+    margin-top: 14px;
+}
+.modal-transaction-difuminar6{
+    position: absolute;
+    width: 81vw;
+    height: 0px;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(1px);
+    margin-top: 3px;
+}
+
+.animation-left-transaction{
+    background-color: white;
+    margin-left: 3%;
+    animation: 0.6s moverIzq 1;
+    height: 100%;
+}
+
+@keyframes moverIzq{
+    0%{margin-left: 0; }
+    30%{margin-left: 0;}
+    95%{
+        margin-left: -100%;
+        opacity: 0;
+        
+        }
+}
+.options-transaction-flex{
+    display: flex;
+    overflow-x: hidden;
+}
+
+.animationReasons{
+    width: 75.886vw;
+    height: 52.171875vh;
+    position: absolute;
+    left: 50px;
+    top: 130px;
+    background-color: rgb(255, 255, 255);
+    opacity: 0.5;
+}
+
+
+@media (min-width: 1310px) {
+    .modal-transaction-button-irApicker{
+        margin-top: 5px;
+    }
+}
+
+
+@media (min-width: 1850px) {
+  
+    .modal-transaction-button-irApicker{
+        margin-left: 9.7vw;
+    }
+    .modal-transaction-difuminar4{
+        position: absolute;
+        width: 81vw;
+        height: 1.00625vh;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(1px);
+        margin-top: -10px;
+    }
+    .modal-transaction-difuminar5{
+        position: absolute;
+        width: 81vw;
+        height: 1.00625vh;
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(1px);
+        margin-top: -7px;
+    }
+    .modal-transaction-difuminar6{
+        position: absolute;
+        width: 81vw;
+        height: 1.00625vh;
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(1px);
+        margin-top: -3px;
+    }
+}
+
+@media (max-width:1310px){
+    .modal-transaction-optionContainer-scroll{
+        height: 39.572917vh;
+        width: 88.1vw;
+    }
+    .modal-transaction-separate-option{
+        width: 98.6%;
+    }
+}
+@media (min-width:1310px){
+    .modal-transaction-optionContainer-scroll{
+        height: 354px;
+    }
+}
+
