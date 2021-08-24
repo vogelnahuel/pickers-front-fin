@@ -6,7 +6,7 @@ import { Nav } from "../../component/admin/Nav/Nav";
 import { TableTransaction } from "../../component/transaction/tableTransaction/TableTransaction";
 import "./transaction.scss";
 import { FilterTransaction } from "../../component/transaction/filterTransaction/FilterTransaction";
-import { Modal } from "pickit-components";
+import { Modal } from "@pickit/pickit-components";
 import { OptionList } from "../../component/transaction/OptionList/OptionList";
 import exportar from "../../assets/admin/PendingUser/exportar.svg";
 import or from "../../assets/admin/PendingUser/or.svg";
@@ -56,7 +56,6 @@ export const Transaction = () => {
  
   const {filterParams} = useParams();
   if(filterParams){
-    console.log(filterParams)
     switch (filterParams) {
       case "inAlert":
        filterParamsFromCars= {
@@ -97,7 +96,6 @@ export const Transaction = () => {
         break;
     }
   }
-  
 
   const cargarDatos = async(e)=> {
     
@@ -121,9 +119,8 @@ export const Transaction = () => {
 
 
   const cargarMas = async () => {
-    console.log("cargar mas",filter)
     const res = await api
-    .get( `ms-admin-rest/api/v1.0/transactions?${filter.values && filter.values.nroTransaccion?`filter.transactionCode=${filter.values.nroTransaccion}`:""}${filter.values &&filter.values.Picker ? `&filter.pickerId=${filter.values.Picker}` : ""}${filter.value && filter.values.enAlerta? `&filter.inAlert=${true}` : ""}${filter.values && filter.values.FechaEntrega? `&filter.minMinDeliveryDate=${filter.values.FechaEntrega.from}`: ""}${filter.values && filter.values.FechaEntrega? `&filter.maxMinDeliveryDate=${filter.values.FechaEntrega.until}` : ""}${ filter.stringSelected && filter.stringSelected!==""? `&filter.state=${filter.stringSelected}`:""}&limit=${tamPag}&offset=${offset}`)
+    .get( `ms-admin-rest/api/v1.0/transactions?${filter.values && filter.values.nroTransaccion?`filter.transactionCode=${filter.values.nroTransaccion}`:""}${filter.values &&filter.values.Picker ? `&filter.pickerId=${filter.values.Picker}` : ""}${filter.values && filter.values.enAlerta? `&filter.inAlert=${true}` : ""}${filterParamsFromCars.values && filterParamsFromCars.values.enAlerta? `&filter.inAlert=${true}` : ""}${filter.values && filter.values.FechaEntrega? `&filter.minMinDeliveryDate=${filter.values.FechaEntrega.from}`: ""}${filter.values && filter.values.FechaEntrega? `&filter.maxMinDeliveryDate=${filter.values.FechaEntrega.until}` : ""}${filterParamsFromCars.values && filterParamsFromCars.values.FechaEntrega? `&filter.minMinDeliveryDate=${filterParamsFromCars.values.FechaEntrega.from}`: ""}${filterParamsFromCars.values && filterParamsFromCars.values.FechaEntrega? `&filter.maxMinDeliveryDate=${filterParamsFromCars.values.FechaEntrega.until}` : ""}${ filter.stringSelected && filter.stringSelected!==""? `&filter.state=${filter.stringSelected}`:""}${ filterParamsFromCars.stringSelected && filterParamsFromCars.stringSelected!==""? `&filter.state=${filterParamsFromCars.stringSelected}`:""}&limit=${tamPag}&offset=${offset}`)
     .then((res) => {
         setoffset(offset + tamPag);
         if(res.data.result.items.length<tamPag)
@@ -131,7 +128,6 @@ export const Transaction = () => {
         return res.data.result.items;
       })
       .catch((err) => {
-        console.log(err);
       });
 
    

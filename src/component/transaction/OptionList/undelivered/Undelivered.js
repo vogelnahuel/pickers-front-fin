@@ -8,6 +8,7 @@ export const Undelivered = (props) => {
     const setundelivered = props.setundelivered;
     const setfinishModal = props.setfinishModal;
     const FilterSelectedTransaction=props.FilterSelectedTransaction
+
 const [messages, setmessages] = useState([])
 
 
@@ -23,6 +24,7 @@ const [messages, setmessages] = useState([])
             }))
          }
          cargarMensajes();
+         setmessages(['123','123','123'])
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
   //  const opc = [{key:1,value:'No logro contactar al cliente'},{key:2,value:'El paquete es incorrecto'},{key:3,value:'El cliente rechaza el paquete'}]
@@ -82,7 +84,7 @@ const handleCLickOpc = async(e)=> {
                              
                                 <p onClick={handleCLickOpc} id={opcion.id} className="modal-undelivered-opc"> {opcion.message}</p>
                                 
-                                <hr className="modal-undelivered-hr"/>
+                             
                             </div>
                         ))
                         : null

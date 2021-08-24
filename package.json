@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@pickit/pickit-components": "^1.1.39",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
@@ -14,7 +15,6 @@
     "moment": "^2.29.1",
     "node": "^14.17.4",
     "node-sass": "^4.14.1",
-    "pickit-components": "file:pickit-components-1.0.34.tgz",
     "qs": "^6.10.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -35,6 +35,7 @@
     "start:prod": "PORT=33000 env-cmd -f ./environments/.env.production react-scripts start",
     "start:test": "PORT=33000 env-cmd -f ./environments/.env.test react-scripts start",
     "build:dev": " env-cmd -f ./environments/.env.dev react-scripts build",
+    "build:prod": " env-cmd -f ./environments/.env.production react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

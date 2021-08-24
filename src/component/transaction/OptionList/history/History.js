@@ -100,6 +100,7 @@ export const History = (props) => {
                     name="PickerId"
                     component="input"
                     placeholder="Ingresá el número"
+                    disabled={true}
                   />
                 </div>
               </div>
@@ -114,6 +115,7 @@ export const History = (props) => {
                     name="Picker"
                     component="input"
                     placeholder="Ingresá el número de picker"
+                    disabled={true}
                   />
                 </div>
               </div>
@@ -127,6 +129,7 @@ export const History = (props) => {
                     name="codArea"
                     component="input"
                     placeholder="Seleccioná el cod area"
+                    disabled={true}
                   />
                 </div>
               </div>
@@ -140,6 +143,7 @@ export const History = (props) => {
                     name="Telefono"
                     component="input"
                     placeholder="Seleccioná el telefono"
+                    disabled={true}
                   />
                 </div>
               </div>
@@ -158,6 +162,7 @@ export const History = (props) => {
                     name="dirRetiro"
                     component="input"
                     placeholder="Seleccioná el estado"
+                    disabled={true}
                   />
                 </div>
               </div>
@@ -172,6 +177,7 @@ export const History = (props) => {
                     name="dirEntrega"
                     component="input"
                     placeholder="Seleccioná el estado"
+                    disabled={true}
                   />
                 </div>
               </div>
@@ -184,6 +190,7 @@ export const History = (props) => {
                     name="Retailer"
                     component="input"
                     placeholder="Seleccioná el estado"
+                    disabled={true}
                   />
                 </div>
               </div>
@@ -217,6 +224,7 @@ export const History = (props) => {
                             name="NomyApe"
                             component="input"
                             placeholder="Ingresá el nombre"
+                            disabled={true}
                           />
                         </div>
                     </div>
@@ -232,6 +240,7 @@ export const History = (props) => {
                             name="TelefonoConFinal"
                             component="input"
                             placeholder="Ingresá el telefono"
+                            disabled={true}
                           />
                         </div>
                     </div>

@@ -97,3 +97,11 @@
    
     
 }
+@media (min-width:1800px){
+    .modal-dni-finish-card{
+        margin-top: 54px;
+    }
+    .modal-dni-finish-button{
+        margin-top: 139px;
+    }
+}
