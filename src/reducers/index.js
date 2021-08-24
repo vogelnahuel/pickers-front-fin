@@ -1,7 +1,11 @@
 import { combineReducers } from "redux";
-import { modalTransactionReducer } from "./transactionReducer";
+// import { routerReducer } from "react-router-redux";
 
+import transactions from "reducers/transactions";
 
-export default combineReducers({
-    modalTransactionReducer:modalTransactionReducer
-})
+const rootReducer = combineReducers({
+    // router: routerReducer,
+    transactions,
+});
+
+export default rootReducer;

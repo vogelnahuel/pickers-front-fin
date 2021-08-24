@@ -209,6 +209,7 @@ export const Transaction = () => {
                 return res.data.result.items;
               })
               .catch((err) => {
+                setloader(false)
                 console.log(err);
               })
               )

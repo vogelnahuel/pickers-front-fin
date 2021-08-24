@@ -1,0 +1,4 @@
+import * as API from "config/api";
+
+export const getPDF = (params) =>
+    API.get("/ms-admin-rest/api/v1.0/transactions", null, params);
