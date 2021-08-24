@@ -22,7 +22,11 @@ import moment from "moment";
 
 
 
-export const Transaction = () => {
+export const Transaction = ({getTransactions, isFetching, transactions}) => {
+
+    console.log(getTransactions)
+    console.log(isFetching)
+    console.log(transactions)
 
   const [apiFilterTransaction, setapiFilter] = useState({});
   const [FilterSelectedTransaction, setFilterSelectedTransaction] = useState(
