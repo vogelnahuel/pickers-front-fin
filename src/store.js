@@ -37,10 +37,11 @@ const store =
 //     store.dispatch({ type: globalTypes.INIT });
 // }
 
-sagaMiddleware.run(rootSaga).done.catch((e) => {
-    // eslint-disable-next-line no-console
-    console.error("[Run Root Saga]", e.message);
-});
+sagaMiddleware.run(rootSaga);
+// .done.catch((e) => {
+//     // eslint-disable-next-line no-console
+//     console.error("[Run Root Saga]", e.message);
+// });
 
 // persistStore(store, null, storeRehydrationFinished);
 

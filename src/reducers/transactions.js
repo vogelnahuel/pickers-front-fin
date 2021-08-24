@@ -10,6 +10,26 @@ export const INITIAL_STATE = {
     fetching: false,
     transactions: [],
 };
+
+export const actions = {
+    getTransactionsRequest: (params) => ({
+        type: types.TRANSACTIONS_GET_REQUEST,
+        params,
+    }),
+    getTransactionsSuccess: (transactions) => ({
+        type: types.TRANSACTIONS_GET_SUCCESS,
+        transactions
+    }),
+    getTransactionsError: () => ({
+        type: types.TRANSACTIONS_GET_ERROR,
+    }),
+};
+
+export const selectors = {
+    isFetching: ({ transaction }) => transaction.fetching,
+    getTransactions: ({transaction}) => transaction.transactions
+};
+
 export default (state = INITIAL_STATE, action = {}) => {
     switch (action.type) {
         case types.TRANSACTIONS_GET_REQUEST:
@@ -31,23 +51,4 @@ export default (state = INITIAL_STATE, action = {}) => {
         default:
             return state;
     }
-};
-
-export const actions = {
-    getTransactionsRequest: (params) => ({
-        type: types.TRANSACTIONS_GET_REQUEST,
-        params,
-    }),
-    getTransactionsSuccess: (transactions) => ({
-        type: types.TRANSACTIONS_GET_SUCCESS,
-        transactions
-    }),
-    getTransactionsError: () => ({
-        type: types.TRANSACTIONS_GET_ERROR,
-    }),
-};
-
-export const selectors = {
-    isFetching: ({ transaction }) => transaction.fetching,
-    getTransactions: ({transaction}) => transaction.transactions
 };
