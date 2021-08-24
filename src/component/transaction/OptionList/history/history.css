@@ -45,7 +45,7 @@
     font-size: 17px;
     line-height: 27px;
     letter-spacing: 0px;
-    color: black;
+    color: #828282;
 }
 .form-filter-modal{
     margin-top: 13px;
@@ -63,7 +63,7 @@
     font-size: 17px;
     line-height: 27px;
     letter-spacing: 0px;
-    color: black;
+    color: #828282;
 }
 #modal-transaction-history-Final{
     margin-top: 7px;
@@ -79,7 +79,6 @@
 
 #modal-transaction-input-tel2{
     width: 9.1vw;
-    
 }
 #modal-transaction-input-tel2 input {
     width: 9.1vw;
@@ -91,6 +90,7 @@
         margin-bottom: 23px;
     }
 }
+
 @media (min-width:1310px){
     .form-filter-transaction-modal{
         margin-top: 25px;
@@ -98,4 +98,39 @@
     #modal-transaction-history-Final{
             margin-top: 0px;
     }
+}
+@media (min-width:1800px){
+    .form-filter-transaction-modal{
+        margin-top: 35px;
+    }
+    .form-filter-transaction-modal div div input{
+        width: 278px;
+    }
+    .modal-transaction-input{
+        width: 278px;
+    }
+    #modal-transaction-input-tel input{
+        width: 125px;
+        margin-right: 20px;
+    }
+    #modal-transaction-input-tel2{
+        width: 125px;
+        margin-right: 20px;
+    }
+    #modal-transaction-input-tel{
+        width: 133px;
+        margin-right: 20px;
+    }
+    #modal-transaction-input-tel2 input{
+        width: 125px;
+        margin-right: 20px;
+    }
+    #modal-transaction-history-Final{
+        margin-top: 7px;
+        margin-bottom: 0px;
+    }
+    .form-filter-modal div div input{
+        width: 278px;
+    }
+  
 }
