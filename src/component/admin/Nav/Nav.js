@@ -49,7 +49,7 @@ export const Nav = (props) => {
                                    } <Link onClick={handleClick} to="/pendingUserAdmin">Flota</Link>
                               </li>
                               <li>
-                                   { window.location.pathname ==="/transaction"  ?<div className="circle"></div> : null    }   <Link  onClick={handleClick} to="/transaction">Transacciones</Link>
+                                   { window.location.pathname.includes("/transaction") ?<div className="circle"></div> : null    }   <Link  onClick={handleClick} to="/transaction">Transacciones</Link>
                               </li>
                               </ul>
                               { 
