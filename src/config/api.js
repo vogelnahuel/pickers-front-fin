@@ -100,26 +100,25 @@ const api = axios.create({
 //   (err) => err
 // );
 
-export const get = (path, params, query) => {
+export const get = (path, query) => {
     return api.get(
         path,
-        params,
-        query
+       {params: query}
     );
 };
 
-export const post = (path, params, query) => {
+export const post = (path, body, query) => {
     return api.post(
         path,
-        params,
+        body,
         query
     );
 };
 
-export const put = (path, params, query) => {
+export const put = (path, body, query) => {
     return api.put(
         path,
-        params,
+        body,
         query
     );
 };

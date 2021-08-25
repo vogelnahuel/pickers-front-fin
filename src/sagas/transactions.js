@@ -1,7 +1,7 @@
 import { call, takeLatest, put } from "redux-saga/effects";
 import { types, actions } from "reducers/transactions";
-import { actions as notificationActions } from "reducers/notification";
-import * as transactionsMiddleware from "middleware/petersen/pdfMaker";
+// import { actions as notificationActions } from "reducers/notification";
+import * as transactionsMiddleware from "middleware/transactions";
 
 const sagas = [takeLatest(types.TRANSACTIONS_GET_REQUEST, getTransactions)];
 
@@ -15,7 +15,7 @@ function* getTransactions({ params }) {
     if (response.type === "W") {
         yield put(actions.getTransactionsError());
     } else {
-        const { transactions } = response.data.data;
-        yield put(actions.getTransactionsSuccess(transactions));
+        const { items } = response.data.result;
+        yield put(actions.getTransactionsSuccess(items));
     }
 }
