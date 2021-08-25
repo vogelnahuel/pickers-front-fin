@@ -52,21 +52,26 @@ export const Nav = (props) => {
                                    { window.location.pathname.includes("/transaction") ?<div className="circle"></div> : null    }   <Link  onClick={handleClick} to="/transaction">Transacciones</Link>
                               </li>
                               </ul>
+                              { 
+                              /*
                               <ul>
-                              <h3>Operaciones</h3>
-                              <li className="unclickable">
-                                   { window.location.pathname  ==="/configPicker"  ?<div className="circle"></div> : null     }  <Link onClick={handleClick}  to="#">Configuración</Link>
-                              </li>
-                              <li className="unclickable">
-                                   { window.location.pathname  ==="/planning"  ?<div className="circle"></div> : null     }  <Link  onClick={handleClick} to="#">Planificación</Link>
-                              </li>
-                              </ul>
-                              <ul>
-                              <h3>Administración</h3>
-                              <li className="unclickable">
-                                  { window.location.pathname  ==="/liquidation"  ? <div className="circle"></div> : null     } <Link  onClick={handleClick}  to="#">Preliquidación</Link>
-                              </li>
-                              </ul>
+                                   <h3>Operaciones</h3>
+                                   <li>
+                                        { window.location.pathname  ==="/configPicker"  ?<div className="circle"></div> : null     }  <Link onClick={handleClick}  to="#">Configuración</Link>
+                                   </li>
+                                   <li>
+                                        { window.location.pathname  ==="/planning"  ?<div className="circle"></div> : null     }  <Link  onClick={handleClick} to="#">Planificación</Link>
+                                   </li>
+                                   </ul>
+                                   <ul>
+                                   <h3>Administracion</h3>
+                                   <li>
+                                   { window.location.pathname  ==="/liquidation"  ? <div className="circle"></div> : null     } <Link  onClick={handleClick}  to="#">Preliquidación</Link>
+                                   </li>
+                                   </ul>
+                              */
+                              }
+                              
                             
                          </div>
             </nav>
