@@ -79,7 +79,7 @@
     margin-top: 42px;
     margin-left: 471px;
 }
-.modal-transaction-reasonsCanceledConfirm-subtitle-colecta{
+.modal-transaction-reasonsCanceledConfirm-subtitle-collection{
     font-family: 'Mulish';
     font-style: normal;
     font-weight: 800;
@@ -90,7 +90,7 @@
     margin-left: 414px;
     margin-bottom: 20px;
 }
-.modal-transaction-reasonsCanceledConfirm-p-colecta{
+.modal-transaction-reasonsCanceledConfirm-p-collection{
     font-family: 'Mulish';
     font-style: normal;
     font-weight: normal;
@@ -102,7 +102,7 @@
     margin-bottom: 1vh;
     margin-top: 25px;
 }
-.modal-transaction-reasonsCanceledConfirm-p2-colecta{
+.modal-transaction-reasonsCanceledConfirm-p2-collection{
     font-family: 'Mulish';
     font-style: normal;
     font-weight: normal;
@@ -139,13 +139,13 @@
     .modal-transaction-reasonsCanceledConfirm-subtitle{
         margin-bottom: 20px;
     }
-    .modal-transaction-reasonsCanceledConfirm-p-colecta{ 
+    .modal-transaction-reasonsCanceledConfirm-p-collection{ 
         margin-top: 25px;
     }
-    .modal-transaction-reasonsCanceledConfirm-p2-colecta{
+    .modal-transaction-reasonsCanceledConfirm-p2-collection{
         margin-top: 25px;
     }
-    .modal-transaction-reasonsCanceledConfirm-subtitle-colecta{
+    .modal-transaction-reasonsCanceledConfirm-subtitle-collection{
         margin-bottom: 20px;
     }
     .modal-transaction-reasonsCanceledConfirm-button{

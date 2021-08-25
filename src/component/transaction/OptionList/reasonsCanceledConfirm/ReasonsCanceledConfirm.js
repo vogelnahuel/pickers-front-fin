@@ -40,7 +40,7 @@ export const ReasonsCanceledConfirm = (props) => {
          }, 600);
         
         }
-
+//
     return (
         <div className="modal-transaction-reasonsCanceled">
             <div  onClick={handleClickgoBack} className="modal-transaction-volver">
@@ -60,10 +60,10 @@ export const ReasonsCanceledConfirm = (props) => {
             </div>:
            <div className="modal-transaction-reasonsCanceledConfirm-container">
                     <img className="modal-transaction-reasonsCanceledConfirm-img" src={Info} alt ="informacionIcon" />
-                    <h3 className="modal-transaction-reasonsCanceledConfirm-subtitle-colecta">Estás por cancelar la colecta</h3>
+                    <h3 className="modal-transaction-reasonsCanceledConfirm-subtitle-collection">Estás por cancelar la colecta</h3>
                     <hr className="modal-transaction-reasonsCanceledConfirm-separate"/>
-                    <p className="modal-transaction-reasonsCanceledConfirm-p-colecta">Al desasignar la transacción, va a volver al estado sin asignar </p>
-                    <p className="modal-transaction-reasonsCanceledConfirm-p2-colecta">
+                    <p className="modal-transaction-reasonsCanceledConfirm-p-collection">Al desasignar la transacción, va a volver al estado sin asignar </p>
+                    <p className="modal-transaction-reasonsCanceledConfirm-p2-collection">
                         ¿Querés cancelar la colecta?
                     </p>
             </div>
