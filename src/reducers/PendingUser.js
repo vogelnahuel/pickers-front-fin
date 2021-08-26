@@ -13,7 +13,7 @@ export const INITIAL_STATE = {
 };
 
 export const actions = {
-    getPendingUserRequest: (params) => (console.log("pepe"),{
+    getPendingUserRequest: (params) => ({
         type: types.PENDING_USER_GET_REQUEST,
         params,
     }),

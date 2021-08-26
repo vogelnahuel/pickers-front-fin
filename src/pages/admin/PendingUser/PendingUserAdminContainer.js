@@ -13,7 +13,7 @@ const PendingUserAdminContainer = (props) => {
     }, [])
 
     return (
-        <PendingUserAdmin/>
+        <PendingUserAdmin {...props}/>
     );
 }
 
