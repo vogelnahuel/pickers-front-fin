@@ -18,7 +18,9 @@
 .navAdmin ul{
     padding-right: 2vh;
 }
-
+.unclickable{
+    pointer-events: none;
+}
 
 .navAdmin ul li{
         margin-bottom: 1vh;
