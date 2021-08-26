@@ -114,6 +114,9 @@ export const Transaction = ({getTransactions, isFetching, transactions, filters}
                 console.log(err);
             }))
         setloader(false);
+
+        //preguntar a nahu
+
         // if(window.innerHeight < 800)
         //     document.querySelector('.modal-transaction').style.height=`${document.body.scrollHeight+100}px`
         // if(window.innerHeight > 800)
@@ -122,7 +125,7 @@ export const Transaction = ({getTransactions, isFetching, transactions, filters}
     }
 
 
-
+  //todo: extraer al reducer
     const cargarMas = async () => {
         console.log("cargar mas",filter)
         const res = await api
@@ -140,7 +143,7 @@ export const Transaction = ({getTransactions, isFetching, transactions, filters}
 
         setapiFilter(apiFilterTransaction.concat(res));
     };
-
+    
     const construirUrlExport = (url) => {
 
         let arrayOpciones = [];
