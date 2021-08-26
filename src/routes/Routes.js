@@ -4,7 +4,7 @@ import { DashboardAdmin } from '../pages/admin/DashboardAdmin';
 import {EmailRestore} from '../pages/login/email/EmailRestore';
 import Login from '../pages/login/Login'
 import { RestorePassword } from '../pages/login/restorePassword/RestorePassword';
-import {PendingUserAdmin} from '../pages/admin/PendingUser/PendingUserAdmin'
+import PendingUserAdmin from 'pages/admin/PendingUser/PendingUserAdminContainer'
 import {ActiveUserAdmin} from '../pages/admin/ActiveUser/ActiveUserAdmin'
 import { PendingUserAdminPicker } from '../pages/admin/pendingUserAdminPicker/PendingUserAdminPicker';
 import { ActiveUserAdminPicker } from '../pages/admin/ActiveUserAdminPicker/ActiveUserAdminPicker';
