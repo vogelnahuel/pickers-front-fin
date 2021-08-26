@@ -8,8 +8,6 @@ import './Dashboard.scss'
 
 export const DashboardAdmin = ({dashboard,isFetching}) => {
 
-
-//
     return (
         <div className="background-Grey">
             <Header/>
