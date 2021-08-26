@@ -18,4 +18,5 @@ function* getTransactions({ params }) {
         const { items } = response.data.result;
         yield put(actions.getTransactionsSuccess(items));
     }
+
 }

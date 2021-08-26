@@ -5,7 +5,7 @@ import { Header } from "../../component/admin/Header/Header";
 import { Nav } from "../../component/admin/Nav/Nav";
 import { TableTransaction } from "../../component/transaction/tableTransaction/TableTransaction";
 import "./transaction.scss";
-import { FilterTransaction } from "../../component/transaction/filterTransaction/FilterTransaction";
+import { FilterTransaction } from "pages/transaction/filterTransaction/FilterTransaction";
 import { Modal } from "@pickit/pickit-components";
 import { OptionList } from "../../component/transaction/OptionList/OptionList";
 import exportar from "../../assets/admin/PendingUser/exportar.svg";
@@ -22,7 +22,7 @@ import moment from "moment";
 
 
 
-export const Transaction = ({getTransactions, isFetching, transactions, pepe}) => {
+export const Transaction = ({getTransactions, isFetching, transactions, filters}) => {
 
 
     const [apiFilterTransaction, setapiFilter] = useState({});
@@ -43,6 +43,8 @@ export const Transaction = ({getTransactions, isFetching, transactions, pepe}) =
     //altura del modal
     const [resolutionHeightModal, setresolutionHeightModal] = useState(550)
 
+
+    //todo: extraer a container
     useEffect(() => {
 
         if(window.screen.width<1300){
@@ -56,50 +58,50 @@ export const Transaction = ({getTransactions, isFetching, transactions, pepe}) =
 
 
     const {filterParams} = useParams();
-    if(filterParams){
-        console.log(filterParams)
-        switch (filterParams) {
-            case "inAlert":
-                filterParamsFromCars= {
-                    values:{
-                        enAlerta:true,
-                        FechaEntrega:{
-                            from:moment().subtract(4,"d").format("YYYY-MM-DD"),
-                            until:moment().format("YYYY-MM-DD")
-                        }
-                    }
-                }
+    // if(filterParams){
+    //     console.log(filterParams)
+    //     switch (filterParams) {
+    //         case "inAlert":
+    //             filterParamsFromCars= {
+    //                 values:{
+    //                     enAlerta:true,
+    //                     FechaEntrega:{
+    //                         from:moment().subtract(4,"d").format("YYYY-MM-DD"),
+    //                         until:moment().format("YYYY-MM-DD")
+    //                     }
+    //                 }
+    //             }
 
-                break;
-            case "pending":
-                filterParamsFromCars= {
-                    stringSelected: "PENDING_ASSIGNMENT",
-                    values:{
-                        FechaEntrega:{
-                            from:moment().subtract(4,"d").format("YYYY-MM-DD"),
-                            until:moment().format("YYYY-MM-DD")
-                        }
-                    }
-                }
-                break;
-            case "active":
-                filterParamsFromCars= {
-                    stringSelected: "PENDING_ASSIGNMENT,IN_RETURN_TO_SENDER,IN_DELIVERY_POINT,PICKED_UP,IN_PICK_UP_POINT,IN_PICK_UP",
-                    values:{
-                        FechaEntrega:{
-                            from:moment().subtract(4,"d").format("YYYY-MM-DD"),
-                            until:moment().format("YYYY-MM-DD")
-                        }
-                    }
-                }
-                break;
+    //             break;
+    //         case "pending":
+    //             filterParamsFromCars= {
+    //                 stringSelected: "PENDING_ASSIGNMENT",
+    //                 values:{
+    //                     FechaEntrega:{
+    //                         from:moment().subtract(4,"d").format("YYYY-MM-DD"),
+    //                         until:moment().format("YYYY-MM-DD")
+    //                     }
+    //                 }
+    //             }
+    //             break;
+    //         case "active":
+    //             filterParamsFromCars= {
+    //                 stringSelected: "PENDING_ASSIGNMENT,IN_RETURN_TO_SENDER,IN_DELIVERY_POINT,PICKED_UP,IN_PICK_UP_POINT,IN_PICK_UP",
+    //                 values:{
+    //                     FechaEntrega:{
+    //                         from:moment().subtract(4,"d").format("YYYY-MM-DD"),
+    //                         until:moment().format("YYYY-MM-DD")
+    //                     }
+    //                 }
+    //             }
+    //             break;
 
-            default:
-                break;
-        }
-    }
+    //         default:
+    //             break;
+    //     }
+    // }
 
-
+    //todo: extraer al reducer
     const cargarDatos = async(e)=> {
 
         setloader(true);
@@ -112,10 +114,10 @@ export const Transaction = ({getTransactions, isFetching, transactions, pepe}) =
                 console.log(err);
             }))
         setloader(false);
-        if(window.innerHeight < 800)
-            document.querySelector('.modal-transaction').style.height=`${document.body.scrollHeight+100}px`
-        if(window.innerHeight > 800)
-            document.querySelector('.modal-transaction').style.height=`${document.body.scrollHeight+400}px`
+        // if(window.innerHeight < 800)
+        //     document.querySelector('.modal-transaction').style.height=`${document.body.scrollHeight+100}px`
+        // if(window.innerHeight > 800)
+        //     document.querySelector('.modal-transaction').style.height=`${document.body.scrollHeight+400}px`
 
     }
 
@@ -193,23 +195,23 @@ export const Transaction = ({getTransactions, isFetching, transactions, pepe}) =
     };
 
 
-    // useEffect( () => {
-    // //
-    // //
+    useEffect( () => {
+    //
+    //
     //     const cargarDatos = async () => {
     // //
     // //
     // //
     //         setapiFilter(
     //             await api
-    //                 .get( `ms-admin-rest/api/v1.0/asd?
-    //                 ${filterParamsFromCars.values && filterParamsFromCars.values.nroTransaccion?`filter.transactionCode=${filterParamsFromCars.values.nroTransaccion}`:""}
-    //                 ${filterParamsFromCars.values &&filterParamsFromCars.values.Picker ? `&filter.pickerId=${filterParamsFromCars.values.Picker}` : ""}
-    //                 ${filterParamsFromCars.values && filterParamsFromCars.values.enAlerta? `&filter.inAlert=${true}` : ""}
-    //                 ${filterParamsFromCars.values && filterParamsFromCars.values.FechaEntrega? `&filter.minMinDeliveryDate=${filterParamsFromCars.values.FechaEntrega.from}`: ""}
-    //                 ${filterParamsFromCars.values && filterParamsFromCars.values.FechaEntrega? `&filter.maxMinDeliveryDate=${filterParamsFromCars.values.FechaEntrega.until}` : ""}
-    //                 ${ filterParamsFromCars.stringSelected && filterParamsFromCars.stringSelected!==""? `&filter.state=${filterParamsFromCars.stringSelected}`:""}
-    //                 &limit=${defaultTamPag}`)
+                //    .get( `ms-admin-rest/api/v1.0/asd?
+                //     ${filterParamsFromCars.values && filterParamsFromCars.values.nroTransaccion?`filter.transactionCode=${filterParamsFromCars.values.nroTransaccion}`:""}
+                //     ${filterParamsFromCars.values &&filterParamsFromCars.values.Picker ? `&filter.pickerId=${filterParamsFromCars.values.Picker}` : ""}
+                //     ${filterParamsFromCars.values && filterParamsFromCars.values.enAlerta? `&filter.inAlert=${true}` : ""}
+                //     ${filterParamsFromCars.values && filterParamsFromCars.values.FechaEntrega? `&filter.minMinDeliveryDate=${filterParamsFromCars.values.FechaEntrega.from}`: ""}
+                //     ${filterParamsFromCars.values && filterParamsFromCars.values.FechaEntrega? `&filter.maxMinDeliveryDate=${filterParamsFromCars.values.FechaEntrega.until}` : ""}
+                //     ${ filterParamsFromCars.stringSelected && filterParamsFromCars.stringSelected!==""? `&filter.state=${filterParamsFromCars.stringSelected}`:""}
+                //     &limit=${defaultTamPag}`)
     
     //                 .then((res) => {
     //                     setloader(false)
@@ -223,12 +225,12 @@ export const Transaction = ({getTransactions, isFetching, transactions, pepe}) =
     //         )
     
     //     }
-    // //
+    //
 
-    //     getTransactions(pepe);
+        getTransactions(filters);
 
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, []);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
 
     return (

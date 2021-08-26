@@ -4,6 +4,7 @@ export const types = {
     TRANSACTIONS_GET_REQUEST: `${TRANSACTIONS}_GET_REQUEST`,
     TRANSACTIONS_GET_SUCCESS: `${TRANSACTIONS}_GET_SUCCESS`,
     TRANSACTIONS_GET_ERROR: `${TRANSACTIONS}_GET_ERROR`,
+    TRANSACTIONS_SET_FILTERS: `${TRANSACTIONS}_SET_FILTERS`,
 };
 
 export const INITIAL_STATE = {
@@ -11,6 +12,7 @@ export const INITIAL_STATE = {
     transactions: [],
     filters:{
         limit:4,
+        "filter.inAlert": false,
     },
 };
 
@@ -25,6 +27,10 @@ export const actions = {
     }),
     getTransactionsError: () => ({
         type: types.TRANSACTIONS_GET_ERROR,
+    }),
+    setTransactionFilters: (filters) => ({
+        type: types.TRANSACTIONS_SET_FILTERS,
+        filters
     }),
 };
 
@@ -52,6 +58,11 @@ const reducer =(state = INITIAL_STATE, action = {}) => {
             return {
                 ...state,
                 fetching: false,
+            };
+        case types.TRANSACTIONS_SET_FILTERS:
+            return {
+                ...state,
+                filters:action.filters,
             };
         default:
             return state;
