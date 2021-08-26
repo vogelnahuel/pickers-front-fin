@@ -5,7 +5,7 @@ import './card.scss'
 
 export const Card = (props) => {
     
-    const {subtitle,url,title,number,backgroundColor}=props;
+    const {subtitle,url,title,number="-",backgroundColor}=props;
     return (
         <Link to={url} className="card-body-admin"  style={{backgroundColor:`${backgroundColor}` }} >
             <div className="part-1">
@@ -13,7 +13,7 @@ export const Card = (props) => {
                 <p className="admin-black">{title}</p>
             </div>
             <div className="part-2">
-                <p className="number-admin">{number ? number : "-"}</p>
+                <p className="number-admin">{number}</p>
             </div>
          </Link>
     )
