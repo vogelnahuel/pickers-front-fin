@@ -1,53 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import { Card } from '../../component/admin/DashBoard/Card'
-import {Header} from '../../component/admin/Header/Header'
-import {Nav} from '../../component/admin/Nav/Nav'
+import React from 'react'
+import { Card } from 'component/admin/DashBoard/Card'
+import {Header} from 'component/admin/Header/Header'
+import {Nav} from 'component/admin/Nav/Nav'
 import './Dashboard.scss'
-import api from '../../config/api'
 
 
-export const DashboardAdmin = () => {
-    const [loader, setloader] = useState(true)
-    const [transactionApi, settransactionApi] = useState({
-        "result": {
-            "activeTransactions": 0,
-            "pendingTransactions": 0,
-            "inAlertTransactions": 0
-        }
-      })
 
-    useEffect( ()=>{
-
-        if(!window.localStorage.getItem('token')){
-            window.location.href = '/'
-        }
-        const cargarDatos = async() => {
-            settransactionApi(
-               await   api.get('ms-admin-rest/api/v1.0/transactions/dashboard')
-               .then( (res)=> { 
-                   
-                   return res.data.result
-                    }
-                )
-               .catch((err)=>  err)
-               )
-             }
-             cargarDatos();
-        },[])
-     
-       
-
-      useEffect(  () => {
-          setTimeout(() => {
-            setloader(false)
-          }, 500);
-     
-        
-      }, [])
+export const DashboardAdmin = ({dashboard,isFetching}) => {
 
 
-      
-//
     return (
         <div className="background-Grey">
             <Header/>
@@ -70,34 +31,33 @@ export const DashboardAdmin = () => {
                                             <Card
                                              subtitle="Transacciones"
                                              title="Activas"
-                                             number={transactionApi ? transactionApi.activeTransactions : "-" }
+                                             number={dashboard.activeTransactions}
                                              backgroundColor="#63E8A8"
-                                             url="/transaction/active"
+                                             url="/transaction?state=IN_RETURN_TO_SENDER,IN_DELIVERY_POINT,PICKED_UP,IN_PICK_UP_POINT,IN_PICK_UP"
                                             />
 
                                              <Card
                                              subtitle="Transacciones"
                                              title="Pendientes de asignación"
-                                             number={transactionApi ? transactionApi.pendingTransactions : "-" }
+                                             number={dashboard.pendingTransactions}
                                              backgroundColor="#BCB6FF"
-                                             url="/transaction/pending"
+                                             url="/transaction?state=PENDING_ASSIGNMENT"
                                             />
                                              <Card
                                              subtitle="Transacciones"
                                              title="En alerta"
-                                             number={transactionApi ? transactionApi.inAlertTransactions : "-" }
+                                             number={dashboard.inAlertTransactions}
                                              backgroundColor="#FF8F76"
-                                             url="/transaction/inAlert"
+                                             url="/transaction?inAlert=true"
                                             />
 
                                 </div>
                             </div>
               
             </div>
-        {   loader ===true ?
-            <div className="modalLoading">
-            </div>
-                :<></>
+        {   isFetching &&
+            <div className="modalLoading"></div>
+
         }
             
            
