@@ -13,7 +13,7 @@ const MultipleSelect = () => {
   const inputValor = document.querySelector('#valorAmodificar');
   const {filterParams} = useParams()
   let arraySelected= {'Sin asignar':false,'En retiro':false,'En punto de retiro':false,'Retirado':false,'En lugar de entrega':false,'Entregado':false,'En devolución':false,'Devuelto a origen':false,'Siniestrado':false,'Cancelada':false}
-  const [stateSeleccionados, setstateSeleccionados] = useState(filterParams==="pending"?1:filterParams==="active"?6:0)
+  const [stateSeleccionados, setstateSeleccionados] = useState(filterParams==="pending"?1:filterParams==="active"?5:0)
   let seleccionadosInput=stateSeleccionados;
   if(filterParams && window.location.pathname!=="/transaction"){
   switch (filterParams) {
@@ -27,7 +27,7 @@ const MultipleSelect = () => {
       }
       break;
        case "active":
-      arraySelected={'Sin asignar':true,'En retiro':true,'En punto de retiro':true,'Retirado':true,'En lugar de entrega':true,'En devolución':true}
+      arraySelected={'En retiro':true,'En punto de retiro':true,'Retirado':true,'En lugar de entrega':true,'En devolución':true}
       if(checkboxInputAll && inputValor){
       inputValor.placeholder=""
       inputValor.placeholder=seleccionadosInput+" Seleccionados"

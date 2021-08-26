@@ -41,7 +41,7 @@ if(filterParams && window.location.pathname !== "/transaction"){
       break;
       case "active":
         initialValues={
-          stringSelected: "PENDING_ASSIGNMENT,IN_RETURN_TO_SENDER,IN_DELIVERY_POINT,PICKED_UP,IN_PICK_UP_POINT,IN_PICK_UP",
+          stringSelected: "IN_PICK_UP,IN_PICK_UP_POINT,PICKED_UP,IN_DELIVERY_POINT,IN_RETURN_TO_SENDER",
           // FechaEntrega:{
           //   from:moment().subtract(4,"d").format("YYYY-MM-DD"),
           //   until:moment().format("YYYY-MM-DD")
