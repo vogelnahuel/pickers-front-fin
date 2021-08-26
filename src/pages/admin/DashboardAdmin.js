@@ -8,6 +8,7 @@ import './Dashboard.scss'
 
 export const DashboardAdmin = ({dashboard,isFetching}) => {
 
+
     return (
         <div className="background-Grey">
             <Header/>
@@ -32,7 +33,7 @@ export const DashboardAdmin = ({dashboard,isFetching}) => {
                                              title="Activas"
                                              number={dashboard.activeTransactions}
                                              backgroundColor="#63E8A8"
-                                             url="/transaction?state=PENDING_ASSIGNMENT,IN_RETURN_TO_SENDER,IN_DELIVERY_POINT,PICKED_UP,IN_PICK_UP_POINT,IN_PICK_UP"
+                                             url="/transaction?state=IN_RETURN_TO_SENDER,IN_DELIVERY_POINT,PICKED_UP,IN_PICK_UP_POINT,IN_PICK_UP"
                                             />
 
                                              <Card
