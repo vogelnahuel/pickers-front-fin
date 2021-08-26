@@ -32,7 +32,7 @@ export const DashboardAdmin = ({dashboard,isFetching}) => {
                                              title="Activas"
                                              number={dashboard.activeTransactions}
                                              backgroundColor="#63E8A8"
-                                             url="/transaction?filter.state=PENDING_ASSIGNMENT,IN_RETURN_TO_SENDER,IN_DELIVERY_POINT,PICKED_UP,IN_PICK_UP_POINT,IN_PICK_UP"
+                                             url="/transaction?state=PENDING_ASSIGNMENT,IN_RETURN_TO_SENDER,IN_DELIVERY_POINT,PICKED_UP,IN_PICK_UP_POINT,IN_PICK_UP"
                                             />
 
                                              <Card
@@ -40,14 +40,14 @@ export const DashboardAdmin = ({dashboard,isFetching}) => {
                                              title="Pendientes de asignación"
                                              number={dashboard.pendingTransactions}
                                              backgroundColor="#BCB6FF"
-                                             url="/transaction?filter.state=PENDING_ASSIGNMENT"
+                                             url="/transaction?state=PENDING_ASSIGNMENT"
                                             />
                                              <Card
                                              subtitle="Transacciones"
                                              title="En alerta"
                                              number={dashboard.inAlertTransactions}
                                              backgroundColor="#FF8F76"
-                                             url="/transaction?filter.inAlert=true"
+                                             url="/transaction?inAlert=true"
                                             />
 
                                 </div>
