@@ -13,7 +13,7 @@ export const Card = (props) => {
                 <p className="admin-black">{title}</p>
             </div>
             <div className="part-2">
-                <p className="number-admin">{number}</p>
+                <p className="number-admin">{number ? number : "-"}</p>
             </div>
          </Link>
     )
