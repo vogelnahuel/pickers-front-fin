@@ -162,7 +162,7 @@ const onSubmit = async (values) => {
         
       await api
         .get(
-          `ms-admin-rest/api/v1.0/transactions?${values.nroTransaccion?`filter.transactionCode=${values.nroTransaccion}`:""}${values.Picker ? `&filter.pickerId=${values.Picker}` : ""}${values.enAlerta ? `&filter.inAlert=${values.enAlerta}` : "" }${values.FechaEntrega? `&filter.minMinDeliveryDate=${values.FechaEntrega.from}`: ""}${values.FechaEntrega? `&filter.maxMinDeliveryDate=${values.FechaEntrega.until}` : ""}${ stringSelected !== "" ? `&filter.state=${stringSelected}` : ""}&limit=${props.tamPag}&offset=${0}`
+          `ms-admin-rest/api/v1.0/transactions?${values.nroTransaccion?`transactionCode=${values.nroTransaccion}`:""}${values.Picker ? `&pickerId=${values.Picker}` : ""}${values.enAlerta ? `&inAlert=${values.enAlerta}` : "" }${values.FechaEntrega? `&minMinDeliveryDate=${values.FechaEntrega.from}`: ""}${values.FechaEntrega? `&maxMinDeliveryDate=${values.FechaEntrega.until}` : ""}${ stringSelected !== "" ? `&state=${stringSelected}` : ""}&limit=${props.tamPag}&offset=${0}`
         )
         .then((res) => {
             props.setfilter({values,stringSelected:stringSelected});
