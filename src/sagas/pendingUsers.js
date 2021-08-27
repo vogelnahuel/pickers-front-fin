@@ -13,10 +13,10 @@ function* getPendingUser({ params }) {
         params
         );
     if (response.type === "W") {
-        yield put(actions.getTransactionsError());
+        yield put(actions.getPendingUserError());
     } else {
         const { items } = response.data.result;
-        yield put(actions.getTransactionsSuccess(items));
+        yield put(actions.getPendingUserSuccess(items));
     }
 
 }

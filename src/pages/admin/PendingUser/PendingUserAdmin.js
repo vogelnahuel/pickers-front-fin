@@ -13,8 +13,11 @@ import codificarEmailURIFunction from "../../../tools/encodeMail.js";
 import createCSV from "../../../tools/createCSV.js";
 import { Modal } from "@pickit/pickit-components";
 
-export const PendingUserAdmin = () => {
-  const [loader, setloader] = useState(true);
+export const PendingUserAdmin = (props) => {
+  debugger
+  console.log(props)
+  let loader = props.fetching;
+ // const [loader, setloader] = useState(false);
   /****titulos de la tabla */
   const titulosAdminPending = [
     "Nombre",
@@ -74,82 +77,82 @@ export const PendingUserAdmin = () => {
   const [offset, setoffset] = useState(tamPag);
 
   const getData = async (filter) => {
-    setloader(true)
+   // setloader(true)
     filter.mail = codificarEmailURIFunction(filter.mail);
     setoffset(0)
     setVerMas(true)
    
     setData(
-      await api
-        .get(
-          `ms-admin-rest/api/v1.0/pickers?pickerStatusId=2,3&limit=${defaultTamPag}${
-            filter.nombre ? `&name=${filter.nombre}` : ""
-          }${
-            filter.vehiculo && filter.vehiculo !== "DEFAULT"
-              ? `&vehicleTypeId=${filter.vehiculo === "moto" ? 1 : 2}`
-              : ""
-          }${
-            filter.dni ? `&identificationNumber=${parseInt(filter.dni)}` : ""
-          }${filter.mail ? `&email=${filter.mail}` : ""}`
-        )
-        .then((res) => {
-          if(res.data.result.items.length<tamPag)
-              {
-                setVerMas(false)
-              }
-          setoffset(defaultTamPag)
-            return res.data.result.items;
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-        .finally(
-          setloader(false)
-        )
+      // await api
+      //   .get(
+      //     `ms-admin-rest/api/v1.0/pickers?pickerStatusId=2,3&limit=${defaultTamPag}${
+      //       filter.nombre ? `&name=${filter.nombre}` : ""
+      //     }${
+      //       filter.vehiculo && filter.vehiculo !== "DEFAULT"
+      //         ? `&vehicleTypeId=${filter.vehiculo === "moto" ? 1 : 2}`
+      //         : ""
+      //     }${
+      //       filter.dni ? `&identificationNumber=${parseInt(filter.dni)}` : ""
+      //     }${filter.mail ? `&email=${filter.mail}` : ""}`
+      //   )
+      //   .then((res) => {
+      //     if(res.data.result.items.length<tamPag)
+      //         {
+      //           setVerMas(false)
+      //         }
+      //     setoffset(defaultTamPag)
+      //       return res.data.result.items;
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   })
+      //   .finally(
+      //     setloader(false)
+      //   )
     );
 
     setdataExport(filter);
 };
 
   useEffect(() => {
-    if (!window.localStorage.getItem("token")) {
-      window.location.href = "/";
-    }
+    // if (!window.localStorage.getItem("token")) {
+    //   window.location.href = "/";
+    // }
 
 const cargarDatos = async () => {
 
       setData(
-        await api
-          .get(
-            `ms-admin-rest/api/v1.0/pickers?pickerStatusId=2,3&limit=${defaultTamPag}${
-              filter.nombre ? `&name=${filter.nombre}` : ""
-            }${
-              filter.vehiculo && filter.vehiculo !== "DEFAULT"
-                ? `&vehicleTypeId=${filter.vehiculo === "moto" ? 1 : 2}`
-                : ""
-            }${
-              filter.dni ? `&identificationNumber=${parseInt(filter.dni)}` : ""
-            }${filter.mail ? `&email=${filter.mail}` : ""}`
-          )
-          .then((res) => {
-            if(res.data.result.items.length<tamPag)
-              {
-                setVerMas(false)
-              }
-            return res.data.result.items;
-          })
-          .catch((err) => {
-            console.log(err);
-          })
-          .finally(
-            //
-            setTimeout(() => {
-              setloader(false)
-            }, 500)
+        // await api
+        //   .get(
+        //     `ms-admin-rest/api/v1.0/pickers?pickerStatusId=2,3&limit=${defaultTamPag}${
+        //       filter.nombre ? `&name=${filter.nombre}` : ""
+        //     }${
+        //       filter.vehiculo && filter.vehiculo !== "DEFAULT"
+        //         ? `&vehicleTypeId=${filter.vehiculo === "moto" ? 1 : 2}`
+        //         : ""
+        //     }${
+        //       filter.dni ? `&identificationNumber=${parseInt(filter.dni)}` : ""
+        //     }${filter.mail ? `&email=${filter.mail}` : ""}`
+        //   )
+        //   .then((res) => {
+        //     if(res.data.result.items.length<tamPag)
+        //       {
+        //         setVerMas(false)
+        //       }
+        //     return res.data.result.items;
+        //   })
+        //   .catch((err) => {
+        //     console.log(err);
+        //   })
+        //   .finally(
+        //     //
+        //     setTimeout(() => {
+        //       setloader(false)
+        //     }, 500)
        
            
                 
-          )
+          // )
       );
     };
     cargarDatos();
@@ -161,41 +164,41 @@ const cargarDatos = async () => {
 
 
   const cargarMas = async () => {
-    setloader(true)
+   // setloader(true)
     
 
-    const res = await api
-      .get(
-        `ms-admin-rest/api/v1.0/pickers?pickerStatusId=2,3${
-          DatosFiltros.nombre ? `&name=${DatosFiltros.nombre}` : ""
-        }${
-          DatosFiltros.vehiculo && DatosFiltros.vehiculo !== "DEFAULT"
-            ? `&vehicleTypeId=${DatosFiltros.vehiculo === "moto" ? 1 : 2}`
-            : ""
-        }${
-          DatosFiltros.dni
-            ? `&identificationNumber=${parseInt(DatosFiltros.dni)}`
-            : ""
-        }${
-          DatosFiltros.mail ? `&email=${DatosFiltros.mail}` : ""
-        }&limit=${tamPag}&offset=${offset}`
-      )
-      .then((res) => {
-        setoffset(offset + tamPag);
-         if(res.data.result.items.length<tamPag)
-        {
-          setVerMas(false)
-        }
-        return res.data.result.items;
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(
-        setloader(false)
-      )
+    // const res = await api
+    //   .get(
+    //     `ms-admin-rest/api/v1.0/pickers?pickerStatusId=2,3${
+    //       DatosFiltros.nombre ? `&name=${DatosFiltros.nombre}` : ""
+    //     }${
+    //       DatosFiltros.vehiculo && DatosFiltros.vehiculo !== "DEFAULT"
+    //         ? `&vehicleTypeId=${DatosFiltros.vehiculo === "moto" ? 1 : 2}`
+    //         : ""
+    //     }${
+    //       DatosFiltros.dni
+    //         ? `&identificationNumber=${parseInt(DatosFiltros.dni)}`
+    //         : ""
+    //     }${
+    //       DatosFiltros.mail ? `&email=${DatosFiltros.mail}` : ""
+    //     }&limit=${tamPag}&offset=${offset}`
+    //   )
+    //   .then((res) => {
+    //     setoffset(offset + tamPag);
+    //      if(res.data.result.items.length<tamPag)
+    //     {
+    //       setVerMas(false)
+    //     }
+    //     return res.data.result.items;
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   })
+    //   .finally(
+    //     setloader(false)
+    //   )
 
-    setData(data.concat(res));
+    // setData(data.concat(res));
   };
 
   const Export = async () => {
@@ -224,8 +227,9 @@ const cargarDatos = async () => {
     createCSV(datosExport);
   };
 
-
+debugger
   return (
+  
     <div className="background-Grey">
       <Header />
       <div className="mainContainerFlex">
@@ -246,11 +250,10 @@ const cargarDatos = async () => {
 
           <Filter FieldsPart={FieldsPart} onSubmit={onFilter} />
           <br />
-
-          <TableAdmin titulosAdminPending={titulosAdminPending} data={data} />
+          <TableAdmin titulosAdminPending={titulosAdminPending} data={props.PendingUsers} />
           {
 
-            data &&  data.length!==0 ?
+          props.PendingUsers &&  props.PendingUsers.length!==0 ?
                 <>
                     {
                         VerMas?
