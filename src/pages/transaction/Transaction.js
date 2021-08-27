@@ -259,13 +259,13 @@ export const Transaction = ({isExportDisabled, isFetching, transactions, filters
 
                     </div>
                     <FilterTransaction
-                        setapiFilter={setapiFilter}
-                        tamPag={tamPag}
-                        offset={offset}
-                        setoffset={setoffset}
-                        setfilter={setfilter}
-                        filter={filter}
-                        setVerMas={setVerMas}
+                        // setapiFilter={setapiFilter}
+                        // tamPag={tamPag}
+                        // offset={offset}
+                        // setoffset={setoffset}
+                        // setfilter={setfilter}
+                        // filter={filter}
+                        // setVerMas={setVerMas}
                         // setexportDisabled={setexportDisabled}
                         // filterParams={filterParams}
                     />

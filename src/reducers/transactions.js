@@ -78,7 +78,7 @@ const reducer =(state = INITIAL_STATE, action = {}) => {
         case types.TRANSACTIONS_SET_FILTERS:
             return {
                 ...state,
-                filters:action.filters,
+                filters: { ...state.filters, ...action.filters },
             };
         case types.TRANSACTIONS_EXPORT_ENABLED:
             return {
