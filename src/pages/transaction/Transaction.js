@@ -120,7 +120,7 @@ export const Transaction = () => {
 
   const cargarMas = async () => {
     const res = await api
-    .get( `ms-admin-rest/api/v1.0/transactions?${filter.values && filter.values.nroTransaccion?`filter.transactionCode=${filter.values.nroTransaccion}`:""}${filter.values &&filter.values.Picker ? `&filter.pickerId=${filter.values.Picker}` : ""}${filter.values && filter.values.enAlerta? `&filter.inAlert=${true}` : ""}${filterParamsFromCars.values && filterParamsFromCars.values.enAlerta? `&filter.inAlert=${true}` : ""}${filter.values && filter.values.FechaEntrega? `&filter.minMinDeliveryDate=${filter.values.FechaEntrega.from}`: ""}${filter.values && filter.values.FechaEntrega? `&filter.maxMinDeliveryDate=${filter.values.FechaEntrega.until}` : ""}${filterParamsFromCars.values && filterParamsFromCars.values.FechaEntrega? `&filter.minMinDeliveryDate=${filterParamsFromCars.values.FechaEntrega.from}`: ""}${filterParamsFromCars.values && filterParamsFromCars.values.FechaEntrega? `&filter.maxMinDeliveryDate=${filterParamsFromCars.values.FechaEntrega.until}` : ""}${ filter.stringSelected && filter.stringSelected!==""? `&filter.state=${filter.stringSelected}`:""}${ filterParamsFromCars.stringSelected && filterParamsFromCars.stringSelected!==""? `&filter.state=${filterParamsFromCars.stringSelected}`:""}&limit=${tamPag}&offset=${offset}`)
+    .get( `ms-admin-rest/api/v1.0/transactions?${filter.values && filter.values.nroTransaccion?`transactionCode=${filter.values.nroTransaccion}`:""}${filter.values &&filter.values.Picker ? `&pickerId=${filter.values.Picker}` : ""}${filter.values && filter.values.enAlerta? `&inAlert=${true}` : ""}${filterParamsFromCars.values && filterParamsFromCars.values.enAlerta? `&inAlert=${true}` : ""}${filter.values && filter.values.FechaEntrega? `&minMinDeliveryDate=${filter.values.FechaEntrega.from}`: ""}${filter.values && filter.values.FechaEntrega? `&maxMinDeliveryDate=${filter.values.FechaEntrega.until}` : ""}${filterParamsFromCars.values && filterParamsFromCars.values.FechaEntrega? `&minMinDeliveryDate=${filterParamsFromCars.values.FechaEntrega.from}`: ""}${filterParamsFromCars.values && filterParamsFromCars.values.FechaEntrega? `&maxMinDeliveryDate=${filterParamsFromCars.values.FechaEntrega.until}` : ""}${ filter.stringSelected && filter.stringSelected!==""? `&state=${filter.stringSelected}`:""}${ filterParamsFromCars.stringSelected && filterParamsFromCars.stringSelected!==""? `&state=${filterParamsFromCars.stringSelected}`:""}&limit=${tamPag}&offset=${offset}`)
     .then((res) => {
         setoffset(offset + tamPag);
         if(res.data.result.items.length<tamPag)
@@ -141,20 +141,20 @@ export const Transaction = () => {
     if(filter.values){
       if(filter.values.nroTransaccion){
   
-        arrayOpciones.push(`&filter.transactionCode=${filter.values.nroTransaccion}`);
+        arrayOpciones.push(`&transactionCode=${filter.values.nroTransaccion}`);
       }
       if (filter.values.Picker){
-        arrayOpciones.push(`&filter.pickerId=${filter.values.Picker}`);
+        arrayOpciones.push(`&pickerId=${filter.values.Picker}`);
       }
        if(filter.values.enAlerta){
-        arrayOpciones.push(`&filter.inAlert=${filter.values.enAlerta}`);
+        arrayOpciones.push(`&inAlert=${filter.values.enAlerta}`);
       }
        if(filter.values.FechaEntrega){
-        arrayOpciones.push(`&filter.minMinDeliveryDate=${filter.values.FechaEntrega.from}`);
-        arrayOpciones.push(`&filter.maxMinDeliveryDate=${filter.values.FechaEntrega.until}`);
+        arrayOpciones.push(`&minMinDeliveryDate=${filter.values.FechaEntrega.from}`);
+        arrayOpciones.push(`&maxMinDeliveryDate=${filter.values.FechaEntrega.until}`);
       }
        if(filter.stringSelected){
-        arrayOpciones.push(`&filter.state=${filter.stringSelected}`);
+        arrayOpciones.push(`&state=${filter.stringSelected}`);
       }
     }
     arrayOpciones[0] = arrayOpciones[0].replace('&','');
@@ -197,7 +197,7 @@ export const Transaction = () => {
            
           setapiFilter(
             await api
-            .get( `ms-admin-rest/api/v1.0/transactions?${filterParamsFromCars.values && filterParamsFromCars.values.nroTransaccion?`filter.transactionCode=${filterParamsFromCars.values.nroTransaccion}`:""}${filterParamsFromCars.values &&filterParamsFromCars.values.Picker ? `&filter.pickerId=${filterParamsFromCars.values.Picker}` : ""}${filterParamsFromCars.values && filterParamsFromCars.values.enAlerta? `&filter.inAlert=${true}` : ""}${filterParamsFromCars.values && filterParamsFromCars.values.FechaEntrega? `&filter.minMinDeliveryDate=${filterParamsFromCars.values.FechaEntrega.from}`: ""}${filterParamsFromCars.values && filterParamsFromCars.values.FechaEntrega? `&filter.maxMinDeliveryDate=${filterParamsFromCars.values.FechaEntrega.until}` : ""}${ filterParamsFromCars.stringSelected && filterParamsFromCars.stringSelected!==""? `&filter.state=${filterParamsFromCars.stringSelected}`:""}&limit=${defaultTamPag}`)
+            .get( `ms-admin-rest/api/v1.0/transactions?${filterParamsFromCars.values && filterParamsFromCars.values.nroTransaccion?`transactionCode=${filterParamsFromCars.values.nroTransaccion}`:""}${filterParamsFromCars.values &&filterParamsFromCars.values.Picker ? `&pickerId=${filterParamsFromCars.values.Picker}` : ""}${filterParamsFromCars.values && filterParamsFromCars.values.enAlerta? `&inAlert=${true}` : ""}${filterParamsFromCars.values && filterParamsFromCars.values.FechaEntrega? `&minMinDeliveryDate=${filterParamsFromCars.values.FechaEntrega.from}`: ""}${filterParamsFromCars.values && filterParamsFromCars.values.FechaEntrega? `&maxMinDeliveryDate=${filterParamsFromCars.values.FechaEntrega.until}` : ""}${ filterParamsFromCars.stringSelected && filterParamsFromCars.stringSelected!==""? `&state=${filterParamsFromCars.stringSelected}`:""}&limit=${defaultTamPag}`)
 
               .then((res) => {
                 setloader(false)
