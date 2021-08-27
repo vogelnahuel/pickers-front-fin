@@ -1,19 +1,19 @@
 import React from 'react'
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
-import  DashboardContainer  from 'pages/admin/DashboardAdminContainer';
-import {EmailRestore} from '../pages/login/email/EmailRestore';
-import Login from '../pages/login/Login'
-import { RestorePassword } from '../pages/login/restorePassword/RestorePassword';
+import  DashboardContainer  from 'pages/dashboard/DashboardAdminContainer';
+import {EmailRestore} from 'pages/login/email/EmailRestore';
+import Login from 'pages/login/Login'
+import { RestorePassword } from 'pages/login/restorePassword/RestorePassword';
 import PendingUserAdmin from 'pages/admin/PendingUser/PendingUserAdminContainer'
-import {ActiveUserAdmin} from '../pages/admin/ActiveUser/ActiveUserAdmin'
-import { PendingUserAdminPicker } from '../pages/admin/pendingUserAdminPicker/PendingUserAdminPicker';
-import { ActiveUserAdminPicker } from '../pages/admin/ActiveUserAdminPicker/ActiveUserAdminPicker';
-import Transaction from '../pages/transaction/TransactionContainer';
-import {Liquidation} from '../pages/pre-liquidation/Liquidation'
-import {Planning} from '../pages/planning/Planning'
-import {ConfigPicker} from '../pages/settingPickers/ConfigPicker'
+import {ActiveUserAdmin} from 'pages/admin/ActiveUser/ActiveUserAdmin'
+import { PendingUserAdminPicker } from 'pages/admin/pendingUserAdminPicker/PendingUserAdminPicker';
+import { ActiveUserAdminPicker } from 'pages/admin/ActiveUserAdminPicker/ActiveUserAdminPicker';
+import Transaction from 'pages/transaction/TransactionContainer';
+import {Liquidation} from 'pages/pre-liquidation/Liquidation'
+import {Planning} from 'pages/planning/Planning'
+import {ConfigPicker} from 'pages/settingPickers/ConfigPicker'
 import { Provider } from 'react-redux';
-import store from '../store';
+import store from 'store';
 
 
 
