@@ -1,36 +1,36 @@
 
 import React, { useEffect, useState } from "react";
 import {  useParams} from "react-router-dom";
-import { Header } from "../../component/admin/Header/Header";
-import { Nav } from "../../component/admin/Nav/Nav";
-import { TableTransaction } from "../../component/transaction/tableTransaction/TableTransaction";
+import { Header } from "component/admin/Header/Header";
+import { Nav } from "component/admin/Nav/Nav";
+import { TableTransaction } from "component/transaction/tableTransaction/TableTransaction";
 import "./transaction.scss";
-import { FilterTransaction } from "pages/transaction/filterTransaction/FilterTransaction";
+import FilterTransaction from "pages/transaction/filterTransaction/FilterTransactionContainer";
 import { Modal } from "@pickit/pickit-components";
-import { OptionList } from "../../component/transaction/OptionList/OptionList";
-import exportar from "../../assets/admin/PendingUser/exportar.svg";
-import or from "../../assets/admin/PendingUser/or.svg";
-import  exportDisabledIcon from "../../assets/transaction/ExportDisabled.svg";
-import orDisabled from "../../assets/transaction/OrDisabled.svg";
+import { OptionList } from "component/transaction/OptionList/OptionList";
+import exportar from "assets/admin/PendingUser/exportar.svg";
+import or from "assets/admin/PendingUser/or.svg";
+import  exportDisabledIcon from "assets/transaction/ExportDisabled.svg";
+import orDisabled from "assets/transaction/OrDisabled.svg";
 
-import Close from "../../assets/transaction/Close.svg";
+import Close from "assets/transaction/Close.svg";
 
-import api from "../../config/api.js";
-import createCSV from "../../tools/createCSV";
-import stateName from "../../component/transaction/tableTransaction/statesNames";
+import api from "config/api.js";
+import createCSV from "tools/createCSV";
+import stateName from "component/transaction/tableTransaction/statesNames";
 import moment from "moment";
 
 
 
-export const Transaction = ({getTransactions, isFetching, transactions, filters}) => {
+export const Transaction = ({isExportDisabled, isFetching, transactions, filters}) => {
 
 
     const [apiFilterTransaction, setapiFilter] = useState({});
     const [FilterSelectedTransaction, setFilterSelectedTransaction] = useState(
         {}
     );
-    const [loader, setloader] = useState(true);
-    const [exportDisabled, setexportDisabled] = useState(true)
+    // const [loader, setloader] = useState(true);
+    // const [exportDisabled, setexportDisabled] = useState(true)
     const defaultTamPag=window.screen.height<700 || window.screen.height<760 ? 3 : 5;
     const tamPag = 15;
     const [offset, setoffset] = useState(tamPag);
@@ -41,20 +41,20 @@ export const Transaction = ({getTransactions, isFetching, transactions, filters}
     const titulos = ["Transacción", "Id de picker", "Vencimiento SLA", "Estado"];
     let filterParamsFromCars={};
     //altura del modal
-    const [resolutionHeightModal, setresolutionHeightModal] = useState(550)
-
-
-    //todo: extraer a container
-    useEffect(() => {
-
-        if(window.screen.width<1300){
-            setresolutionHeightModal(496)
-        }
-        if(window.screen.width>1900){
-            setresolutionHeightModal(675)
-        }
-
-    }, [])
+    // const [resolutionHeightModal, setresolutionHeightModal] = useState(550)
+    //
+    //
+    // //todo: extraer a container
+    // useEffect(() => {
+    //
+    //     if(window.screen.width<1300){
+    //         setresolutionHeightModal(496)
+    //     }
+    //     if(window.screen.width>1900){
+    //         setresolutionHeightModal(675)
+    //     }
+    //
+    // }, [])
 
 
     const {filterParams} = useParams();
@@ -104,7 +104,7 @@ export const Transaction = ({getTransactions, isFetching, transactions, filters}
     //todo: extraer al reducer
     const cargarDatos = async(e)=> {
 
-        setloader(true);
+        // setloader(true);
         setFilterSelectedTransaction( await  api.get(`/ms-admin-rest/api/v1.0/transactions/${Number(e.target.getAttribute('name'))}`)
 
             .then((res) => {
@@ -113,7 +113,7 @@ export const Transaction = ({getTransactions, isFetching, transactions, filters}
             .catch((err) => {
                 console.log(err);
             }))
-        setloader(false);
+        // setloader(false);
 
         //preguntar a nahu
 
@@ -125,7 +125,7 @@ export const Transaction = ({getTransactions, isFetching, transactions, filters}
     }
 
 
-  //todo: extraer al reducer
+    //todo: extraer al reducer
     const cargarMas = async () => {
         console.log("cargar mas",filter)
         const res = await api
@@ -143,7 +143,7 @@ export const Transaction = ({getTransactions, isFetching, transactions, filters}
 
         setapiFilter(apiFilterTransaction.concat(res));
     };
-    
+
     const construirUrlExport = (url) => {
 
         let arrayOpciones = [];
@@ -198,7 +198,7 @@ export const Transaction = ({getTransactions, isFetching, transactions, filters}
     };
 
 
-    useEffect( () => {
+    // useEffect( () => {
     //
     //
     //     const cargarDatos = async () => {
@@ -207,15 +207,15 @@ export const Transaction = ({getTransactions, isFetching, transactions, filters}
     // //
     //         setapiFilter(
     //             await api
-                //    .get( `ms-admin-rest/api/v1.0/asd?
-                //     ${filterParamsFromCars.values && filterParamsFromCars.values.nroTransaccion?`filter.transactionCode=${filterParamsFromCars.values.nroTransaccion}`:""}
-                //     ${filterParamsFromCars.values &&filterParamsFromCars.values.Picker ? `&filter.pickerId=${filterParamsFromCars.values.Picker}` : ""}
-                //     ${filterParamsFromCars.values && filterParamsFromCars.values.enAlerta? `&filter.inAlert=${true}` : ""}
-                //     ${filterParamsFromCars.values && filterParamsFromCars.values.FechaEntrega? `&filter.minMinDeliveryDate=${filterParamsFromCars.values.FechaEntrega.from}`: ""}
-                //     ${filterParamsFromCars.values && filterParamsFromCars.values.FechaEntrega? `&filter.maxMinDeliveryDate=${filterParamsFromCars.values.FechaEntrega.until}` : ""}
-                //     ${ filterParamsFromCars.stringSelected && filterParamsFromCars.stringSelected!==""? `&filter.state=${filterParamsFromCars.stringSelected}`:""}
-                //     &limit=${defaultTamPag}`)
-    
+    //    .get( `ms-admin-rest/api/v1.0/asd?
+    //     ${filterParamsFromCars.values && filterParamsFromCars.values.nroTransaccion?`filter.transactionCode=${filterParamsFromCars.values.nroTransaccion}`:""}
+    //     ${filterParamsFromCars.values &&filterParamsFromCars.values.Picker ? `&filter.pickerId=${filterParamsFromCars.values.Picker}` : ""}
+    //     ${filterParamsFromCars.values && filterParamsFromCars.values.enAlerta? `&filter.inAlert=${true}` : ""}
+    //     ${filterParamsFromCars.values && filterParamsFromCars.values.FechaEntrega? `&filter.minMinDeliveryDate=${filterParamsFromCars.values.FechaEntrega.from}`: ""}
+    //     ${filterParamsFromCars.values && filterParamsFromCars.values.FechaEntrega? `&filter.maxMinDeliveryDate=${filterParamsFromCars.values.FechaEntrega.until}` : ""}
+    //     ${ filterParamsFromCars.stringSelected && filterParamsFromCars.stringSelected!==""? `&filter.state=${filterParamsFromCars.stringSelected}`:""}
+    //     &limit=${defaultTamPag}`)
+
     //                 .then((res) => {
     //                     setloader(false)
     //                     setoffset(defaultTamPag)
@@ -226,14 +226,14 @@ export const Transaction = ({getTransactions, isFetching, transactions, filters}
     //                     console.log(err);
     //                 })
     //         )
-    
+
     //     }
     //
 
-        getTransactions(filters);
+    // getTransactions(filters);
 
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, []);
 
 
     return (
@@ -246,29 +246,16 @@ export const Transaction = ({getTransactions, isFetching, transactions, filters}
                         <h2 className="subTitle-transaction">
                             <p className="subtitle-pendingUser-h2">Transacciones </p>
                         </h2>
-                        {
-                            exportDisabled === true  ?
-                                <button
-                                    disabled={true}
-                                    onClick={Export}
-                                    className="export-transaction-disabled"
-                                    name="export"
-                                >
-                                    <img src={exportDisabledIcon} alt="export" />
-                                    <img className="or-pending" src={orDisabled} alt="or" />
-                                    <p className="display-inline-block p-export-transaction-disabled"> Exportar</p>
-                                </button>
-
-                                :  <button
-                                    onClick={Export}
-                                    className="export-transaction"
-                                    name="export"
-                                >
-                                    <img src={exportar} alt="export" />
-                                    <img className="or-pending" src={or} alt="or" />
-                                    <p className="display-inline-block p-export"> Exportar</p>
-                                </button>
-                        }
+                        <button
+                            disabled={isExportDisabled}
+                            onClick={Export}
+                            className={isExportDisabled ? "export-transaction-disabled" : "export-transaction" }
+                            name="export"
+                        >
+                            <img src={ isExportDisabled ? exportDisabledIcon : exportar} alt="export" />
+                            <img className="or-pending" src={ isExportDisabled ? orDisabled : or} alt="or" />
+                            <p className={"display-inline-block " + (isExportDisabled ? "p-export-transaction-disabled" : "p-export")}> Exportar</p>
+                        </button>
 
                     </div>
                     <FilterTransaction
@@ -279,8 +266,8 @@ export const Transaction = ({getTransactions, isFetching, transactions, filters}
                         setfilter={setfilter}
                         filter={filter}
                         setVerMas={setVerMas}
-                        setexportDisabled={setexportDisabled}
-                        filterParams={filterParams}
+                        // setexportDisabled={setexportDisabled}
+                        // filterParams={filterParams}
                     />
                     <TableTransaction
                         setOpenModalTransaction={setOpenModalTransaction}
@@ -317,74 +304,74 @@ export const Transaction = ({getTransactions, isFetching, transactions, filters}
                         )}
                 </div>
 
-                {OpenModalTransaction === true ? (
-                    <div className="modal-transaction">
-                        <Modal
-                            width="1190px"
-                            height={resolutionHeightModal}
-                            isOpen={OpenModalTransaction}
-                            onClose={onClose}
-                        >
-                            <div className="modal-transaction-container">
-                                <img
-                                    onClick={onClose}
-                                    className="modal-transaction-close"
-                                    src={Close}
-                                    alt="cerrar"
-                                />
-                                <div>
-                                    <div className="modal-transaction-title">
-                                        <h2>Código de transacción</h2>
-                                        <p>Estado
+                {/*{OpenModalTransaction === true ? (*/}
+                {/*    <div className="modal-transaction">*/}
+                {/*        <Modal*/}
+                {/*            width="1190px"*/}
+                {/*            height={resolutionHeightModal}*/}
+                {/*            isOpen={OpenModalTransaction}*/}
+                {/*            onClose={onClose}*/}
+                {/*        >*/}
+                {/*            <div className="modal-transaction-container">*/}
+                {/*                <img*/}
+                {/*                    onClick={onClose}*/}
+                {/*                    className="modal-transaction-close"*/}
+                {/*                    src={Close}*/}
+                {/*                    alt="cerrar"*/}
+                {/*                />*/}
+                {/*                <div>*/}
+                {/*                    <div className="modal-transaction-title">*/}
+                {/*                        <h2>Código de transacción</h2>*/}
+                {/*                        <p>Estado*/}
 
-                                        </p>
-                                        <p className="modal-transaction-fecha">
-                                            {  FilterSelectedTransaction.transaction &&
-                                            FilterSelectedTransaction.transaction.inAlert===true ?
-                                                <>
-                                                    <span className="transaction-modal-alert modal-transaction-alerta">En alerta</span>
-                                                </>
-                                                : <span className="modal-transaction-space"></span>
-                                            }
-                                            Vencimiento SLA</p>
-                                    </div>
-                                    <div className="modal-transaction-subtitle">
-                                        <h2>
-                                            {FilterSelectedTransaction.transaction
-                                                ? FilterSelectedTransaction.transaction.transactionCode
-                                                : ""}
-                                        </h2>
-                                        <p>
+                {/*                        </p>*/}
+                {/*                        <p className="modal-transaction-fecha">*/}
+                {/*                            {  FilterSelectedTransaction.transaction &&*/}
+                {/*                            FilterSelectedTransaction.transaction.inAlert===true ?*/}
+                {/*                                <>*/}
+                {/*                                    <span className="transaction-modal-alert modal-transaction-alerta">En alerta</span>*/}
+                {/*                                </>*/}
+                {/*                                : <span className="modal-transaction-space"></span>*/}
+                {/*                            }*/}
+                {/*                            Vencimiento SLA</p>*/}
+                {/*                    </div>*/}
+                {/*                    <div className="modal-transaction-subtitle">*/}
+                {/*                        <h2>*/}
+                {/*                            {FilterSelectedTransaction.transaction*/}
+                {/*                                ? FilterSelectedTransaction.transaction.transactionCode*/}
+                {/*                                : ""}*/}
+                {/*                        </h2>*/}
+                {/*                        <p>*/}
 
-                                            {FilterSelectedTransaction.transaction
-                                                ? stateName(FilterSelectedTransaction.transaction.state.id)
-                                                : ""}
+                {/*                            {FilterSelectedTransaction.transaction*/}
+                {/*                                ? stateName(FilterSelectedTransaction.transaction.state.id)*/}
+                {/*                                : ""}*/}
 
-                                        </p>
+                {/*                        </p>*/}
 
-                                        <p className="modal-transaction-fecha">
-                                            {" "}
-                                            {FilterSelectedTransaction.transaction
-                                                ? FilterSelectedTransaction.transaction.maxDeliveryDateTime.substring(0,10)+" "+(parseInt(FilterSelectedTransaction.transaction.maxDeliveryDateTime.substring( 11,13))-3)+FilterSelectedTransaction.transaction.maxDeliveryDateTime.substring( 13,16)
-                                                : ""}{" "}
-                                        </p>
-                                    </div>
-                                    <hr className="modal-transaction-separate" id="modal-transaction-hr-title"/>
-                                </div>
-                                <div className="modal-transaction-scroll">
-                                    <OptionList
-                                        FilterSelectedTransaction={FilterSelectedTransaction}
+                {/*                        <p className="modal-transaction-fecha">*/}
+                {/*                            {" "}*/}
+                {/*                            {FilterSelectedTransaction.transaction*/}
+                {/*                                ? FilterSelectedTransaction.transaction.maxDeliveryDateTime.substring(0,10)+" "+(parseInt(FilterSelectedTransaction.transaction.maxDeliveryDateTime.substring( 11,13))-3)+FilterSelectedTransaction.transaction.maxDeliveryDateTime.substring( 13,16)*/}
+                {/*                                : ""}{" "}*/}
+                {/*                        </p>*/}
+                {/*                    </div>*/}
+                {/*                    <hr className="modal-transaction-separate" id="modal-transaction-hr-title"/>*/}
+                {/*                </div>*/}
+                {/*                <div className="modal-transaction-scroll">*/}
+                {/*                    <OptionList*/}
+                {/*                        FilterSelectedTransaction={FilterSelectedTransaction}*/}
 
-                                        setFilterSelectedTransaction={setFilterSelectedTransaction}
-                                    />
-                                </div>
-                            </div>
-                        </Modal>
-                    </div>
-                ) : null}
+                {/*                        setFilterSelectedTransaction={setFilterSelectedTransaction}*/}
+                {/*                    />*/}
+                {/*                </div>*/}
+                {/*            </div>*/}
+                {/*        </Modal>*/}
+                {/*    </div>*/}
+                {/*) : null}*/}
             </div>
 
-            {isFetching === true ? <div className="modalLoading"></div> : <></>}
+            { isFetching && <div className="modalLoading"/>}
         </div>
     );
 };

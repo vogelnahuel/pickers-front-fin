@@ -12,15 +12,14 @@ import parseQueryParams from "utils/queryParams/parseQueryParams"
 const TransactionContainer = (props) => {
     const params = useLocation()
     useEffect(() => {
-       
+        // props.reset();
         const filters = parseQueryParams(params.search)
-        console.log(filters)
-        props.getTransactions(filters);
+        props.getTransactions({...props.filtersExtra, ...filters});
+        props.setFilters(filters);
     }, [])
     
     return (
         <Transaction {...props}/>
-
     );
 }
 
@@ -28,13 +27,21 @@ const TransactionContainer = (props) => {
 const mapStateToProps = (state) => ({
     transactions: transactionSelectors.getTransactions(state),
     isFetching: transactionSelectors.isFetching(state),
+    isExportDisabled: transactionSelectors.isExportDisabled(state),
     filters: transactionSelectors.getFilters(state),
+    filtersExtra: transactionSelectors.getFiltersExtra(state),
 });
 
 
 const mapDispatchToProps = (dispatch) => ({
     getTransactions: (params) => {
         dispatch(transactionActions.getTransactionsRequest(params));
+    },
+    reset: () => {
+        dispatch(transactionActions.reset());
+    },
+    setFilters: (filters) => {
+        dispatch(transactionActions.setTransactionFilters(filters));
     },
 });
 

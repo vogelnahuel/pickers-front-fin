@@ -11,67 +11,68 @@ import moment from "moment";
 import MultipleSelect from "./MultipleSelect";
 
 
-export const FilterTransaction = (props) => {
-  const setapiFilter = props.setapiFilter;
-  const setexportDisabled = props.setexportDisabled;
-  const filterParams = props.filterParams;
-  let initialValues={}
+export const FilterTransaction = ({ filters, getTransactions, setExportEnabled, setFilters }) => {
+  // const setapiFilter = props.setapiFilter;
+  // const setexportDisabled = props.setexportDisabled;
+  // const filterParams = props.filterParams;
+  // let initialValues={}
 
-if(filterParams && window.location.pathname !== "/transaction"){
-  switch (filterParams) {
-    case "inAlert":
-      initialValues={
-        enAlerta:true,
-        // // FechaEntrega:{
-        // //   from:moment().subtract(4,"d").format("YYYY-MM-DD"),
-        // //   until:moment().format("YYYY-MM-DD")
-        // // }
-      }
-      
-      break;
-          case "pending":
-      initialValues={
-        stringSelected: "PENDING_ASSIGNMENT",
-        // FechaEntrega:{
-        //   from:moment().subtract(4,"d").format("YYYY-MM-DD"),
-        //   until:moment().format("YYYY-MM-DD")
-        // }
-      }
-      
-      break;
-      case "active":
-        initialValues={
-          stringSelected: "IN_PICK_UP,IN_PICK_UP_POINT,PICKED_UP,IN_DELIVERY_POINT,IN_RETURN_TO_SENDER",
-          // FechaEntrega:{
-          //   from:moment().subtract(4,"d").format("YYYY-MM-DD"),
-          //   until:moment().format("YYYY-MM-DD")
-          // }
-        }
-        
-        break;
-  
-    default:
-      break;
-  }
-}
+// if(filterParams && window.location.pathname !== "/transaction"){
+//   switch (filterParams) {
+//     case "inAlert":
+//       initialValues={
+//         enAlerta:true,
+//         // // FechaEntrega:{
+//         // //   from:moment().subtract(4,"d").format("YYYY-MM-DD"),
+//         // //   until:moment().format("YYYY-MM-DD")
+//         // // }
+//       }
+//
+//       break;
+//           case "pending":
+//       initialValues={
+//         stringSelected: "PENDING_ASSIGNMENT",
+//         // FechaEntrega:{
+//         //   from:moment().subtract(4,"d").format("YYYY-MM-DD"),
+//         //   until:moment().format("YYYY-MM-DD")
+//         // }
+//       }
+//
+//       break;
+//       case "active":
+//         initialValues={
+//           stringSelected: "IN_PICK_UP,IN_PICK_UP_POINT,PICKED_UP,IN_DELIVERY_POINT,IN_RETURN_TO_SENDER",
+//           // FechaEntrega:{
+//           //   from:moment().subtract(4,"d").format("YYYY-MM-DD"),
+//           //   until:moment().format("YYYY-MM-DD")
+//           // }
+//         }
+//
+//         break;
+//
+//     default:
+//       break;
+//   }
+// }
  
 
   /****formatear fecha */
-  const formatDate = (values) => {
-    if (values.FechaEntrega) {
-      if (moment(values.FechaEntrega.from, "DD/MM/YYYY").isValid() === true) {
-        values.FechaEntrega.from = moment(
-          values.FechaEntrega.from,
+  const formatDate = (date) => {
+    let result ={};
+    if (date) {
+      if (moment(date.from, "DD/MM/YYYY").isValid()) {
+        result.minMinDeliveryDate = moment(
+          date.from,
           "DD/MM/YYYY"
         ).format("YYYY-MM-DD");
-        values.FechaEntrega.until = moment(
-          values.FechaEntrega.until,
+        result.maxMinDeliveryDate = moment(
+          date.until,
           "DD/MM/YYYY"
         ).format("YYYY-MM-DD");
       }
     }
 
-    return values;
+    return result;
   };
   /****verificar el custom select checkbox cuales estan seleccionados y generar salida */
   const multipleSelectCheckbox = () => {
@@ -146,44 +147,72 @@ const EstaVacioFiltro = (values) => {
   return true;
 
 }
+const takeFilters = (values) => {
+  let formatedDate = formatDate(values.date);
+    let result = {
+      ... filters,
+      ...formatedDate,
+      state: values.state,
+      pickerId: values.pickerId,
+      inAlert: values.inAlert,
+      transactionCode: values.transactionCode,
+    };
+
+  return result;
+
+}
 
 const onSubmit = async (values) => {
 
-    values = formatDate(values);
-    let stringSelected = "";
-    stringSelected = multipleSelectCheckbox();
-    setexportDisabled(EstaVacioFiltro(values));
-     if(filterParams){
-                      window.history.replaceState(null,"","/transaction")
-                      initialValues={}
-                      }
+  // "filter.state": "PENDING_ASSIGNMENT,IN_PICK_UP_POINT,PICKED_UP";
+  // "filter.pickerId": "3";
+  // "filter.transactionCode": "000001";
+  // "filter.inAlert": true | false;
+  // "filter.minMinDeliveryDate": "2021-07-18"; //requerido si filter.maxMinDeliveryDate está definido
+  // "filter.maxMinDeliveryDate":
 
-    setapiFilter(
-        
-      await api
-        .get(
-          `ms-admin-rest/api/v1.0/transactions?${values.nroTransaccion?`filter.transactionCode=${values.nroTransaccion}`:""}${values.Picker ? `&filter.pickerId=${values.Picker}` : ""}${values.enAlerta ? `&filter.inAlert=${values.enAlerta}` : "" }${values.FechaEntrega? `&filter.minMinDeliveryDate=${values.FechaEntrega.from}`: ""}${values.FechaEntrega? `&filter.maxMinDeliveryDate=${values.FechaEntrega.until}` : ""}${ stringSelected !== "" ? `&filter.state=${stringSelected}` : ""}&limit=${props.tamPag}&offset=${0}`
-        )
-        .then((res) => {
-            props.setfilter({values,stringSelected:stringSelected});
-            props.setoffset(props.tamPag)
-            props.setVerMas(true)
-          if(res.data.result.items.length<props.tamPag)
-          {
-            props.setVerMas(false)
-          }
-          if (
-            typeof res.data.result === "object" &&
-            res.data.result.items === undefined
-          ) {
-            return [res.data.result];
-          }
-          return res.data.result.items;
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-    );
+
+  let filtersApplied = takeFilters(values);
+  console.log(filtersApplied)
+
+  getTransactions(filtersApplied);
+  setExportEnabled();
+  setFilters(filtersApplied);
+  //   values = formatDate(values);
+  //   let stringSelected = "";
+  //   stringSelected = multipleSelectCheckbox();
+  //   setexportDisabled(EstaVacioFiltro(values));
+  //    if(filterParams){
+  //                     window.history.replaceState(null,"","/transaction")
+  //                     initialValues={}
+  //                     }
+  //
+  //   setapiFilter(
+  //
+  //     await api
+  //       .get(
+  //         `ms-admin-rest/api/v1.0/transactions?${values.nroTransaccion?`filter.transactionCode=${values.nroTransaccion}`:""}${values.Picker ? `&filter.pickerId=${values.Picker}` : ""}${values.enAlerta ? `&filter.inAlert=${values.enAlerta}` : "" }${values.FechaEntrega? `&filter.minMinDeliveryDate=${values.FechaEntrega.from}`: ""}${values.FechaEntrega? `&filter.maxMinDeliveryDate=${values.FechaEntrega.until}` : ""}${ stringSelected !== "" ? `&filter.state=${stringSelected}` : ""}&limit=${props.tamPag}&offset=${0}`
+  //       )
+  //       .then((res) => {
+  //           props.setfilter({values,stringSelected:stringSelected});
+  //           props.setoffset(props.tamPag)
+  //           props.setVerMas(true)
+  //         if(res.data.result.items.length<props.tamPag)
+  //         {
+  //           props.setVerMas(false)
+  //         }
+  //         if (
+  //           typeof res.data.result === "object" &&
+  //           res.data.result.items === undefined
+  //         ) {
+  //           return [res.data.result];
+  //         }
+  //         return res.data.result.items;
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       })
+  //   );
   };
 
 
@@ -202,7 +231,7 @@ const onSubmit = async (values) => {
           <p className="p-filter-transaction">Filtros</p>
 
         </div>
-        <Form onSubmit={onSubmit} initialValues={initialValues}>
+        <Form onSubmit={onSubmit} initialValues={filters}>
           {({ handleSubmit }) => (
             <form className="form-filter-transaction" onSubmit={handleSubmit}>
               <div>
@@ -214,7 +243,7 @@ const onSubmit = async (values) => {
                 <div>
                   <Field
                     type="text"
-                    name="nroTransaccion"
+                    name="transactionCode"
                     component="input"
                     placeholder="Ingresá el código"
                   />
@@ -227,7 +256,7 @@ const onSubmit = async (values) => {
                 <div>
                   <Field
                     type="text"
-                    name="Picker"
+                    name="pickerId"
                     component="input"
                     placeholder="Ingresá el número de picker"
                   />
@@ -243,7 +272,7 @@ const onSubmit = async (values) => {
                   <Field
                     type="text"
                     className=""
-                    name="FechaEntrega"
+                    name="date"
                     component={DatePicker}
                     placeholder="Seleccioná la fecha"
                     language="es"
@@ -254,7 +283,7 @@ const onSubmit = async (values) => {
               <div>
                 
                 
-                  <Field name="Estados" placeholder="Seleccioná el estado" component={MultipleSelect}>
+                  <Field name="state" placeholder="Seleccioná el estado" component={MultipleSelect}>
                  
                   </Field>
                 
@@ -262,7 +291,7 @@ const onSubmit = async (values) => {
               <div className="filter-container">
                 <Field
                   id="checkbox-filter-transaction"
-                  name="enAlerta"
+                  name="inAlert"
                   component="input"
                   type="checkbox"
                 />
