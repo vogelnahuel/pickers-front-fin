@@ -1,6 +1,6 @@
 import React from 'react'
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
-import { DashboardAdmin } from '../pages/admin/DashboardAdmin';
+import  DashboardContainer  from 'pages/admin/DashboardAdminContainer';
 import {EmailRestore} from '../pages/login/email/EmailRestore';
 import Login from '../pages/login/Login'
 import { RestorePassword } from '../pages/login/restorePassword/RestorePassword';
@@ -25,13 +25,13 @@ function Routes() {
           <Route path='/' exact component={Login}/>
           <Route path='/restore/:mail/:cod' exact component={RestorePassword}/>
           <Route path='/restore' exact component={EmailRestore}/>
-          <Route path='/Dashboard' exact component={DashboardAdmin}/>
+          <Route path='/Dashboard' exact component={DashboardContainer}/>
           <Route path='/pendingUserAdmin' exact component={PendingUserAdmin}/>
           <Route path='/activeUserAdmin' exact component={ActiveUserAdmin}/>
           <Route path='/pendingUserAdminpicker/:id' exact component={PendingUserAdminPicker}/>
           <Route path='/activeUserAdminpicker/:id' exact component={ActiveUserAdminPicker}/>
           <Route path='/transaction' exact component={Transaction}/>
-          <Route path='/transaction/:filterParams' exact component={Transaction}/>
+          {/* <Route path='/transaction/:filterParams' exact component={Transaction}/> */}
           <Route path='/planning' exact component={Planning}/>
           <Route path='/configPicker' exact component={ConfigPicker}/>
           <Route path='/liquidation' exact component={Liquidation}/>
