@@ -10,6 +10,7 @@ const PendingUserAdminContainer = (props) => {
         // const filters = parseQueryParams(params.search)
         // console.log(filters)
         props.getPendingUser({});
+        
     }, [])
 
     return (
