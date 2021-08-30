@@ -93,14 +93,14 @@
     margin-top: -15px;
 }
 
-.multiple-opciones{
+.multiple-options{
     background-color: white;
     background: #FFFFFF;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
     border-radius: 11px;
     width: 19.69vw;
     padding: 1.098vw;
-    display: none;
+    display: block;
     margin-top: 4px;
     position: absolute;
     z-index: 10;
@@ -161,7 +161,7 @@
     #valorAmodificar{
         line-height: 28px;
     }
-    .multiple-opciones{
+    .multiple-options{
         width: 265px;
     }
     

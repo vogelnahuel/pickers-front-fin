@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { actions as transactionActions, selectors as transactionSelectors} from "reducers/transactions";
 import { Transaction } from "pages/transaction/Transaction"
 import { useLocation } from "react-router-dom";
-import parseQueryParams from "utils/queryParams/parseQueryParams" 
+import parseQueryParams from "utils/queryParams/parseQueryParams"
 
 const TransactionContainer = (props) => {
     const params = useLocation()
@@ -12,7 +12,7 @@ const TransactionContainer = (props) => {
         props.getTransactions({...props.filtersExtra, ...filters});
         props.setFilters(filters);
     }, [])
-    
+
     return (
         <Transaction {...props}/>
     );
@@ -25,10 +25,18 @@ const mapStateToProps = (state) => ({
     isExportDisabled: transactionSelectors.isExportDisabled(state),
     filters: transactionSelectors.getFilters(state),
     filtersExtra: transactionSelectors.getFiltersExtra(state),
+    filtersExtraSeeMore: transactionSelectors.getFiltersExtraSeeMore(state),
+    openExportModal: transactionSelectors.getOpenExportModal(state),
 });
 
 
 const mapDispatchToProps = (dispatch) => ({
+    getTransactionsExportRequest: (params) => {
+        dispatch(transactionActions.getTransactionsExportRequest(params));
+    },
+    closeExportModal: () => {
+        dispatch(transactionActions.getCloseExportModal());
+    },
     getTransactions: (params) => {
         dispatch(transactionActions.getTransactionsRequest(params));
     },

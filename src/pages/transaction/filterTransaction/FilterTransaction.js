@@ -8,7 +8,10 @@ import search from "assets/admin/PendingUser/search.svg";
 import MultipleSelect from "pages/transaction/filterTransaction/MultipleSelect";
 
 
-export const FilterTransaction = ({ onSubmit, filters }) => {
+export const FilterTransaction = ({ onSubmit, filters, setFilters}) => {
+    const handleronChange = (value ) => {
+        setFilters({...filters, state: value===''? undefined : value});
+    };
 
   return (
       <div className="display-filter-transaction">
@@ -71,9 +74,7 @@ export const FilterTransaction = ({ onSubmit, filters }) => {
               </div>
               
               <div>
-                
-                
-                  <Field name="state" placeholder="Seleccioná el estado" component={MultipleSelect}>
+                  <Field name="state" onChange={ handleronChange} placeholder="Seleccioná el estado" component={MultipleSelect}>
                  
                   </Field>
                 

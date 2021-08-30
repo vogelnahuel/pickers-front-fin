@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import  Button  from '../../../component/Button/Button'
-import api from '../../../config/api'
+import React, { useState } from 'react';
+import  Button  from '../../../component/Button/Button';
+import api from '../../../config/api';
 
 import "../Login.scss";
 import "./restorePassword.scss";

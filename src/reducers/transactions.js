@@ -4,8 +4,12 @@ export const types = {
     TRANSACTIONS_GET_REQUEST: `${TRANSACTIONS}_GET_REQUEST`,
     TRANSACTIONS_GET_SUCCESS: `${TRANSACTIONS}_GET_SUCCESS`,
     TRANSACTIONS_GET_ERROR: `${TRANSACTIONS}_GET_ERROR`,
+    TRANSACTIONS_EXPORT_REQUEST: `${TRANSACTIONS}_EXPORT_REQUEST`,
+    TRANSACTIONS_EXPORT_SUCCESS: `${TRANSACTIONS}_EXPORT_SUCCESS`,
+    TRANSACTIONS_EXPORT_ERROR: `${TRANSACTIONS}_EXPORT_ERROR`,
     TRANSACTIONS_SET_FILTERS: `${TRANSACTIONS}_SET_FILTERS`,
     TRANSACTIONS_EXPORT_ENABLED: `${TRANSACTIONS}_EXPORT_ENABLED`,
+    TRANSACTIONS_CLOSE_EXPORT_MODAL: `${TRANSACTIONS}_CLOSE_EXPORT_MODAL`,
     TRANSACTIONS_RESET: `${TRANSACTIONS}_RESET`,
 };
 
@@ -13,11 +17,16 @@ export const INITIAL_STATE = {
     fetching: false,
     exportDisabled: true,
     transactions: [],
+    openExportModal: false,
     filters: {},
     filtersExtra:{
         limit: 5,
         offset: 0
     },
+    filtersExtraSeeMore: {
+        limit:15,
+        offset: 0
+    }
 };
 
 export const actions = {
@@ -39,8 +48,22 @@ export const actions = {
         type: types.TRANSACTIONS_SET_FILTERS,
         filters
     }),
-    setExportEnabled: () => ({
+    setExportEnabled: (enabled) => ({
         type: types.TRANSACTIONS_EXPORT_ENABLED,
+        enabled
+    }),
+    getCloseExportModal: () => ({
+        type: types.TRANSACTIONS_CLOSE_EXPORT_MODAL,
+    }),
+    getTransactionsExportRequest: (params) => ({
+        type: types.TRANSACTIONS_EXPORT_REQUEST,
+        params
+    }),
+    getTransactionsExportSuccess: () => ({
+        type: types.TRANSACTIONS_EXPORT_SUCCESS,
+    }),
+    getTransactionsExportError: () => ({
+        type: types.TRANSACTIONS_EXPORT_ERROR,
     }),
 };
 
@@ -50,6 +73,8 @@ export const selectors = {
     getTransactions: ({ transactions }) => transactions.transactions,
     getFilters:({transactions}) => transactions.filters,
     getFiltersExtra:({transactions}) => transactions.filtersExtra,
+    getFiltersExtraSeeMore:({transactions}) => transactions.filtersExtraSeeMore,
+    getOpenExportModal:({transactions}) => transactions.openExportModal,
 };
 
 
@@ -67,7 +92,11 @@ const reducer =(state = INITIAL_STATE, action = {}) => {
         case types.TRANSACTIONS_GET_SUCCESS:
             return {
                 ...state,
-                transactions: action.transactions,
+                transactions: action.transactions.items,
+                filtersExtraSeeMore: {
+                    ...state.filtersExtraSeeMore,
+                    offset: action.transactions.offset + action.transactions.limit
+                },
                 fetching: false,
             };
         case types.TRANSACTIONS_GET_ERROR:
@@ -83,7 +112,28 @@ const reducer =(state = INITIAL_STATE, action = {}) => {
         case types.TRANSACTIONS_EXPORT_ENABLED:
             return {
                 ...state,
-                exportDisabled: false,
+                exportDisabled: action.enabled === undefined,
+            };
+        case types.TRANSACTIONS_EXPORT_REQUEST:
+            return {
+                ...state,
+                fetching: true,
+            };
+        case types.TRANSACTIONS_EXPORT_SUCCESS:
+            return {
+                ...state,
+                openExportModal: true,
+                fetching: false,
+            };
+        case types.TRANSACTIONS_EXPORT_ERROR:
+            return {
+                ...state,
+                fetching: false,
+            };
+        case types.TRANSACTIONS_CLOSE_EXPORT_MODAL:
+            return {
+                ...state,
+                openExportModal: false,
             };
         default:
             return state;

@@ -19,10 +19,21 @@ import api from "config/api.js";
 import createCSV from "tools/createCSV";
 import stateName from "component/transaction/tableTransaction/statesNames";
 import moment from "moment";
+import button from "../../assets/admin/ActiveUserAdminPicker/button.svg";
 
 
 
-export const Transaction = ({isExportDisabled, isFetching, transactions, filters}) => {
+export const Transaction = ({
+                                isExportDisabled,
+                                isFetching,
+                                transactions,
+                                openExportModal,
+                                getTransactions,
+                                getTransactionsExportRequest,
+                                closeExportModal,
+                                filters,
+                                filtersExtraSeeMore
+                            }) => {
 
 
     const [apiFilterTransaction, setapiFilter] = useState({});
@@ -57,7 +68,7 @@ export const Transaction = ({isExportDisabled, isFetching, transactions, filters
     // }, [])
 
 
-    const {filterParams} = useParams();
+    // const {filterParams} = useParams();
     // if(filterParams){
     //     console.log(filterParams)
     //     switch (filterParams) {
@@ -144,54 +155,54 @@ export const Transaction = ({isExportDisabled, isFetching, transactions, filters
         setapiFilter(apiFilterTransaction.concat(res));
     };
 
-    const construirUrlExport = (url) => {
+    // const construirUrlExport = (url) => {
+    //
+    //     let arrayOpciones = [];
+    //
+    //     if(filter.values){
+    //         if(filter.values.nroTransaccion){
+    //
+    //             arrayOpciones.push(`&filter.transactionCode=${filter.values.nroTransaccion}`);
+    //         }
+    //         if (filter.values.Picker){
+    //             arrayOpciones.push(`&filter.pickerId=${filter.values.Picker}`);
+    //         }
+    //         if(filter.values.enAlerta){
+    //             arrayOpciones.push(`&filter.inAlert=${filter.values.enAlerta}`);
+    //         }
+    //         if(filter.values.FechaEntrega){
+    //             arrayOpciones.push(`&filter.minMinDeliveryDate=${filter.values.FechaEntrega.from}`);
+    //             arrayOpciones.push(`&filter.maxMinDeliveryDate=${filter.values.FechaEntrega.until}`);
+    //         }
+    //         if(filter.stringSelected){
+    //             arrayOpciones.push(`&filter.state=${filter.stringSelected}`);
+    //         }
+    //     }
+    //     arrayOpciones[0] = arrayOpciones[0].replace('&','');
+    //
+    //     for(let i =0 ; i < arrayOpciones.length;i++){
+    //         url+=arrayOpciones[i];
+    //     }
+    //
+    //     return url
+    // }
 
-        let arrayOpciones = [];
-
-        if(filter.values){
-            if(filter.values.nroTransaccion){
-
-                arrayOpciones.push(`&filter.transactionCode=${filter.values.nroTransaccion}`);
-            }
-            if (filter.values.Picker){
-                arrayOpciones.push(`&filter.pickerId=${filter.values.Picker}`);
-            }
-            if(filter.values.enAlerta){
-                arrayOpciones.push(`&filter.inAlert=${filter.values.enAlerta}`);
-            }
-            if(filter.values.FechaEntrega){
-                arrayOpciones.push(`&filter.minMinDeliveryDate=${filter.values.FechaEntrega.from}`);
-                arrayOpciones.push(`&filter.maxMinDeliveryDate=${filter.values.FechaEntrega.until}`);
-            }
-            if(filter.stringSelected){
-                arrayOpciones.push(`&filter.state=${filter.stringSelected}`);
-            }
-        }
-        arrayOpciones[0] = arrayOpciones[0].replace('&','');
-
-        for(let i =0 ; i < arrayOpciones.length;i++){
-            url+=arrayOpciones[i];
-        }
-
-        return url
-    }
-
-    const Export = async (e) => {
-
-        e.preventDefault();
-
-        let url="/ms-admin-rest/api/v1.0/transactions.csv?";
-        url = construirUrlExport(url)
-        const datosExportTransaction = await api.get(`${url}`)
-            .then(res => res)
-            .catch((err) => {
-                console.log(err);
-            });
-
-        if(datosExportTransaction!==undefined)
-            createCSV(datosExportTransaction)
-
-    }
+    // const Export = async (e) => {
+    //
+    //     e.preventDefault();
+    //
+    //     let url="/ms-admin-rest/api/v1.0/transactions.csv?";
+    //     url = construirUrlExport(url)
+    //     const datosExportTransaction = await api.get(`${url}`)
+    //         .then(res => res)
+    //         .catch((err) => {
+    //             console.log(err);
+    //         });
+    //
+    //     if(datosExportTransaction!==undefined)
+    //         createCSV(datosExportTransaction)
+    //
+    // }
 
     const onClose = (e) => {
         setOpenModalTransaction(false);
@@ -248,7 +259,7 @@ export const Transaction = ({isExportDisabled, isFetching, transactions, filters
                         </h2>
                         <button
                             disabled={isExportDisabled}
-                            onClick={Export}
+                            onClick={()=>getTransactionsExportRequest(filters)}
                             className={isExportDisabled ? "export-transaction-disabled" : "export-transaction" }
                             name="export"
                         >
@@ -278,10 +289,10 @@ export const Transaction = ({isExportDisabled, isFetching, transactions, filters
                         cargarDatos={cargarDatos}
                         setFilterSelectedTransaction={setFilterSelectedTransaction}
                     />
-                    {apiFilterTransaction && apiFilterTransaction.length !== 0 ? <>
+                    {transactions && transactions.length !== 0 ? <>
                             { VerMas?
                                 <button
-                                    onClick={cargarMas}
+                                    onClick={()=>getTransactions({...filtersExtraSeeMore, ...filters})}
                                     className="paginator-button-transaction"
                                 >
                                     Ver más
@@ -303,7 +314,30 @@ export const Transaction = ({isExportDisabled, isFetching, transactions, filters
                             </button>
                         )}
                 </div>
-
+                {openExportModal && (
+                    <div className="contendor-modal-pending-pickers-aprobar">
+                        <Modal width="750px" height="351px" isOpen={openExportModal} onClose={closeExportModal}>
+                            <div className="container-modal">
+                                <div className="modal-success-title">
+                                    <p className="p-modal-error-title">Exportaste exitosamente</p>
+                                </div>
+                                <div className="modal-error-subtitle">
+                                    <p className="p-modal-error-subtitle">
+                                        El archivo se descargo correctamente
+                                    </p>
+                                    <div className="button-pending-picker-modal">
+                                        <button
+                                            onClick={closeExportModal}
+                                            className="button-modal-aprobar-exito"
+                                        >
+                                            Entendido
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </Modal>
+                    </div>
+                )}
                 {/*{OpenModalTransaction === true ? (*/}
                 {/*    <div className="modal-transaction">*/}
                 {/*        <Modal*/}

@@ -26,7 +26,6 @@ const FilterTransactionContainer = (props) => {
         let formatedDate = formatDate(values.date);
         return {
             ... props.filters,
-            ...props.filtersExtra,
             ...formatedDate,
             state: values.state,
             pickerId: values.pickerId,
@@ -37,10 +36,9 @@ const FilterTransactionContainer = (props) => {
 
     const onSubmit = (values) => {
         let filtersApplied = takeFilters(values);
-        console.log(filtersApplied)
 
-        props.getTransactions(filtersApplied);
-        props.setExportEnabled();
+        props.getTransactions({...filtersApplied, ...props.filtersExtra});
+        props.setExportEnabled(filtersApplied.pickerId || filtersApplied.transactionCode || filtersApplied.minMinDeliveryDate);
         props.setFilters(filtersApplied);
     }
 
@@ -63,8 +61,8 @@ const mapDispatchToProps = (dispatch) => ({
     setFilters: (filters) => {
         dispatch(transactionActions.setTransactionFilters(filters));
     },
-    setExportEnabled: () => {
-        dispatch(transactionActions.setExportEnabled());
+    setExportEnabled: (enabled) => {
+        dispatch(transactionActions.setExportEnabled(enabled));
     },
 });
 
