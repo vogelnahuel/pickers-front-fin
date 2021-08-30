@@ -20,14 +20,14 @@ import moment from 'moment'
 
 
 
-export const PendingUserAdminPicker = ({isFetching,pendingUserAdminPicker}) => {
+export const PendingUserAdminPicker = ({isFetching,pendingUserAdminPicker,getPendingUserPickerExport,modalExportPicker,getPendingUserPickerExportCloseModal}) => {
 
   
  
  
     const [loader, setloader] = useState(true);
     
-    const [ExportModalActivePicker, setExportModalActivePicker] = useState(false);
+  
     const [ModalAprobadoExito, setModalAprobadoExito] = useState(false);
     const [modalOpenAprobar, setmodalOpenAprobar] = useState(false);
 
@@ -62,19 +62,6 @@ export const PendingUserAdminPicker = ({isFetching,pendingUserAdminPicker}) => {
    
 })
 
-const Export = async () => {                
-                const mailCodificado = codificarEmailURIFunction(Informacion.email);
-
-                const datosExport =await api.get(`/ms-admin-rest/api/v1.0/pickers.csv?&email=${mailCodificado}`)
-                .then( (res) => {
-                    setExportModalActivePicker(true)
-                    return res})
-                .catch((err) => {console.log(err)})
-                  
-                console.log(datosExport.data)
-                //createCSV(datosExport);           
-} 
-
             
 const habilitarBoton   =   useCallback(
                   (dataPicker) => {
@@ -92,10 +79,7 @@ const habilitarBoton   =   useCallback(
                   
                 [],
 )
-const cerrarGuardarExitoPicker = (e) => {
-    e.preventDefault();
-    setExportModalActivePicker(false);
-  };
+
 
   const cerrarModalAprobado = (e) => {
     e.preventDefault();
@@ -146,6 +130,7 @@ const cerrarAprobarPicker = async (e) => {
        // window.location.href="/pendingUserAdmin";
 
 }
+
 
 const cerrarAprobarPickerCorrigiendo  =  (e) => {
     e.preventDefault();
@@ -216,7 +201,7 @@ const aprobarPicker= async (e) =>{
                          
                          }
                         <button 
-                            onClick={Export}
+                            onClick={()=>{getPendingUserPickerExport({email:(pendingUserAdminPicker.email)})}}
                             className="export"
                             name="export"
                             >
@@ -342,9 +327,9 @@ const aprobarPicker= async (e) =>{
                         </div>
               : null
         }       
-        {ExportModalActivePicker === true ? (
+        {modalExportPicker && (
           <div className="contendor-modal-pending-pickers-aprobar">
-            <Modal width="750px" height="351px" isOpen={ExportModalActivePicker}>
+            <Modal width="750px" height="351px" isOpen={modalExportPicker}>
               <div className="container-modal">
                 <div className="modal-success-title">
                   <p className="p-modal-error-title">Exportaste exitosamente</p>
@@ -355,7 +340,7 @@ const aprobarPicker= async (e) =>{
                   </p>
                   <div className="button-pending-picker-modal">
                     <button
-                      onClick={cerrarGuardarExitoPicker}
+                      onClick={getPendingUserPickerExportCloseModal}
                       className="button-modal-aprobar-exito"
                     >
                       Entendido
@@ -365,7 +350,7 @@ const aprobarPicker= async (e) =>{
               </div>
             </Modal>
           </div>
-        ) : null}     
+        ) }     
             {ModalAprobadoExito === true ? (
           <div className="contendor-modal-pending-pickers-aprobar">
             <Modal width="750px" height="351px" isOpen={ModalAprobadoExito}>

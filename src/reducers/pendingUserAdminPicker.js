@@ -7,12 +7,15 @@ export const types = {
     PENDING_USER_ADMIN_PICKER_EXPORT_GET_REQUEST: `PENDING_USER_ADMIN_PICKER_EXPORT_GET_REQUEST`,
     PENDING_USER_ADMIN_PICKER_EXPORT_GET_SUCCESS: `PENDING_USER_ADMIN_PICKER_EXPORT_GET_SUCCESS`,
     PENDING_USER_ADMIN_PICKER_EXPORT_GET_ERROR: `PENDING_USER_ADMIN_PICKER_EXPORT_GET_ERROR`,
+    
+    PENDING_USER_ADMIN_PICKER_MODAL_EXPORT_CLOSE: `PENDING_USER_ADMIN_PICKER_MODAL_EXPORT_CLOSE`,
 };
 
 export const INITIAL_STATE = {
     fetching: false,
+    modalExportPicker:false,
     pendingUserAdminPicker: {},
-    pendingUserAdminPickerExport:{}
+    pendingUserAdminPickerExport:{},
 };
 
 export const actions = {
@@ -41,12 +44,16 @@ export const actions = {
         type: types.PENDING_USER_ADMIN_PICKER_EXPORT_GET_ERROR,
     }),
 
+    getPendingUserPickerExportCloseModal: () => ({
+        type: types.PENDING_USER_ADMIN_PICKER_MODAL_EXPORT_CLOSE,
+    }),
+
 };
 
 export const selectors = {
     isFetching: ({ pendingUserAdminPicker }) => pendingUserAdminPicker.fetching,
+    getModalExportPicker: ({ pendingUserAdminPicker }) => pendingUserAdminPicker.modalExportPicker,
     getPendingUserPicker: ({ pendingUserAdminPicker }) => pendingUserAdminPicker.pendingUserAdminPicker,
-    getPendingUserExportPicker: ({ pendingUserAdminPickerExport }) => pendingUserAdminPickerExport,
 };
 
 
@@ -73,18 +80,24 @@ const reducer =(state = INITIAL_STATE, action = {}) => {
                 return {
                     ...state,
                     fetching: true,
+                    
                 };
         case types.PENDING_USER_ADMIN_PICKER_EXPORT_GET_SUCCESS:
                 return {
                     ...state,
-                    pendingUserAdminPickerExport: action.pendingUserAdminPickerExport,
                     fetching: false,
+                    modalExportPicker:true
                 };
         case types.PENDING_USER_ADMIN_PICKER_EXPORT_GET_ERROR:
                 return {
                     ...state,
                     fetching: false,
                 };
+        case types.PENDING_USER_ADMIN_PICKER_MODAL_EXPORT_CLOSE:
+            return{
+                ...state,
+                modalExportPicker:false
+            };
 
         default:
             return state;
