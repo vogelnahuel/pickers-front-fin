@@ -6,14 +6,22 @@ export const types = {
     PENDING_USER_GET_SUCCESS: `${PENDING_USER}_GET_SUCCESS`,
     PENDING_USER_GET_ERROR: `${PENDING_USER}_GET_ERROR`,
     PENDING_USER_SET_FILTERS: `${PENDING_USER}_SET_FILTER`,
+    PENDING_USER_SET_EXTRA_FILTERS:`${PENDING_USER}_SET_EXTRA_FILTER`,
+    PENDING_USER_SET_ACTUAL_PAGE: `${PENDING_USER}_SET_ACTUAL_PAGE`,
+    
 };
 
 export const INITIAL_STATE = {
     fetching: false,
     users: [],
-    filters:{
-        limit:5,
+    filters:{},
+    filtersExtra:{
+        limit: 5,
+        offset: 0
     },
+    seeMore:true,
+    pag:15,
+    actualPage:"PENDING",
 };
 
 export const actions = {
@@ -32,12 +40,24 @@ export const actions = {
         type: types.PENDING_USER_SET_FILTERS,
         filters,
     }),
+    setActualPage: (page) => ({
+        type: types.PENDING_USER_SET_ACTUAL_PAGE,
+        page,
+    }),
+    setPendingUserExtraFilters: (extraFilters) => ({
+        type: types.PENDING_USER_SET_EXTRA_FILTERS,
+        extraFilters,
+    }),
 };
 
 export const selectors = {
     isFetching: ({ pendingUser }) => pendingUser,
     getPendingUser: ({ pendingUser }) => pendingUser.users,
     getFilters:({pendingUser}) => pendingUser.filters,
+    getFiltersExtra:({pendingUser}) => pendingUser.filtersExtra,
+    getSeeMore:({pendingUser}) => pendingUser.seeMore,
+    getPag:({pendingUser}) => pendingUser.pag,
+    getActualPage:({pendingUser}) => pendingUser.actualPage,
 };
 
 const reducer =(state = INITIAL_STATE, action = {}) => {
@@ -52,6 +72,7 @@ const reducer =(state = INITIAL_STATE, action = {}) => {
                 ...state,
                 users: action.pendingUsers,
                 fetching: false,
+                seeMore:!(action.pendingUsers.length<state.filtersExtra.limit)
             };
         case types.PENDING_USER_GET_ERROR:
             return {
@@ -59,11 +80,20 @@ const reducer =(state = INITIAL_STATE, action = {}) => {
                 fetching: false,
             };
             case types.PENDING_USER_SET_FILTERS:
-                console.log("PENDING_USER_SET_FILTERS")
             return {
                 ...state,
-                filters: action.filters
+                filters: { ...state.filters, ...action.filters },
             };
+            case types.PENDING_USER_SET_ACTUAL_PAGE:
+                return {
+                    ...state,
+                    actualPage:action.page,
+                };
+            case types.PENDING_USER_SET_EXTRA_FILTERS:
+                return {
+                    ...state,
+                    filtersExtra:{ ...state.filtersExtra, ...action.extraFilters },
+                };
         default:
             return state;
     }
