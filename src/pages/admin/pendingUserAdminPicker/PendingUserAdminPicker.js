@@ -1,7 +1,7 @@
-import React, {useCallback, useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import {Header} from '../../../component/admin/Header/Header'
 import {Nav} from '../../../component/admin/Nav/Nav'
-import '../PendingUser/PendingUserAdmin.scss'
+import '../PendingUser/Pickers.scss'
 import './pendingUserAdminPicker.scss'
 import {PendingBlue} from '../../../component/admin/Sub-Title-Image/PendingBlue'
 import exportar from '../../../assets/admin/PendingUser/exportar.svg'
@@ -11,103 +11,58 @@ import bici from '../../../assets/admin/PendingUserAdminPicker/bici.svg'
 import { Part } from '../../../component/admin/pendingUserAdminPicker/Part'
 import {data} from './data'
 import api  from '../../../config/api'
-import { useParams } from 'react-router-dom'
-import codificarEmailURIFunction from '../../../tools/encodeMail.js'
-import createCSV from '../../../tools/createCSV'
 import { Modal } from '@pickit/pickit-components'
 import moment from 'moment'
 
 
 
 
-export const PendingUserAdminPicker = () => {
+export const PendingUserAdminPicker = ({isFetching,pendingUserAdminPicker,getPendingUserPickerExport,modalExportPicker,getPendingUserPickerExportCloseModal,postPendingUserDocumentsEdit}) => {
 
+  
+    console.log(pendingUserAdminPicker)
  
     const [loader, setloader] = useState(true);
     
-    const [ExportModalActivePicker, setExportModalActivePicker] = useState(false);
+  
     const [ModalAprobadoExito, setModalAprobadoExito] = useState(false);
     const [modalOpenAprobar, setmodalOpenAprobar] = useState(false);
-
     const [disabledButtonAprobarPicker, setdisabledButtonAprobarPicker] = useState(true);
 
      
 
-    const [Informacion, setInformacion] = useState({
-        nombre:"",
-        apellido:"",
-        dni:"",
-        email:"",
-        fechaNac:"",
-        telefono:"",   
-        nombreBanco:"",
-        cbu:"",
-        cuit:"",
-        vencimientoLicencia:"",
-        fechaVecCel:"",
-        fechaVecSeguroAuto:"",
-        fechaVecSeguroAccidente:"",
-        vehicle : ""
-    })
+    const [Informacion, setInformacion] = useState(pendingUserAdminPicker)
 
-   
-    const id= useParams().id  
-    /****Campos y componentes a mostrar  que se muestran en un part que es parte del diseño*/
+
+
     const [inputsPart1,ComponentesPart1,inputsPart2,ComponentesPart2,inputsPart3,ComponentesPart3,inputsPart4,ComponentesPart4]=data();
-   
-    const [dataPicker, setDataPicker] = useState({bankIdentifier: "",
-    bankName: "",
-    dateOfBirth: "",
-    email: "",
-    expirationDateDriverLicense: "",
-    expirationDateIdentificationCar: "",
-    expirationDatePolicyPersonal: "",
-    expirationDatePolicyVehicle: "",
-    fiscalNumber: "",
-    id: "",
-    identificationNumber: "",
-    name: "",
-    phoneNumber: "",
-    pickerStatusId: "",
-    registerDate: null,
-    surname:"",
-    vehicleTypeId: "",
-    nya: "",
-   
-})
+ 
 
-const Export = async () => {                
-                const mailCodificado = codificarEmailURIFunction(dataPicker.email);
-
-                const datosExport =await api.get(`/ms-admin-rest/api/v1.0/pickers.csv?&email=${mailCodificado}`)
-                .then( (res) => {
-                    setExportModalActivePicker(true)
-                    return res})
-                .catch((err) => {console.log(err)})
-           
-                createCSV(datosExport);           
-} 
-            
+/*   
 const habilitarBoton   =   useCallback(
-                  (dataPicker) => {
+                  (pendingUserAdminPicker) => {
+                    if(pendingUserAdminPicker!==null){
 
-                  if(dataPicker.vehicleTypeId!==" " && dataPicker.expirationDatePolicyPersonal !== null){
-                        if(dataPicker.vehicleTypeId===2  && dataPicker.expirationDatePolicyPersonal.length>0){
+                      if(pendingUserAdminPicker.vehicleTypeId!==" " && pendingUserAdminPicker.expirationDatePolicyPersonal !== null){
+                        if(pendingUserAdminPicker.vehicleTypeId===2  && pendingUserAdminPicker?.expirationDatePolicyPersonal.length>0){
                             setdisabledButtonAprobarPicker(false)
                         }
-                         else if(dataPicker.expirationDatePolicyPersonal.length>0 && dataPicker.expirationDatePolicyVehicle.length>0 &&dataPicker.expirationDateDriverLicense.length > 0  && dataPicker.expirationDateIdentificationCar.length > 0 )
+                         else if( pendingUserAdminPicker && pendingUserAdminPicker?.expirationDatePolicyPersonal.length>0 && pendingUserAdminPicker?.expirationDatePolicyVehicle.length>0 &&pendingUserAdminPicker?.expirationDateDriverLicense.length > 0  && pendingUserAdminPicker?.expirationDateIdentificationCar.length > 0 )
                          {
                           setdisabledButtonAprobarPicker(false)
                          }
-                     }
+                     }}
+
                     },
                   
-                [],
-)
-const cerrarGuardarExitoPicker = (e) => {
-    e.preventDefault();
-    setExportModalActivePicker(false);
-  };
+                [],);
+
+*/
+/*
+useEffect(() => {
+     habilitarBoton(pendingUserAdminPicker);
+}, [habilitarBoton,pendingUserAdminPicker])
+*/    
 
   const cerrarModalAprobado = (e) => {
     e.preventDefault();
@@ -115,43 +70,11 @@ const cerrarGuardarExitoPicker = (e) => {
     window.location.href="/pendingUserAdmin"
   };
 
-useEffect( () => {
-               // const mailCodificado = codificarEmailURIFunction(dataPicker.email);
-            const cargarDatos = async () =>{setDataPicker(
-                await api.get(`/ms-admin-rest/api/v1.0/pickers/${id}`)
-                .then((res)=>{
-                    res.data.result.fiscalNumber=res.data.result.fiscalNumber.slice(0,-9)+" - "+res.data.result.fiscalNumber.slice(2,-1)+" - "+res.data.result.fiscalNumber.slice(10)
-                    res.data.result.dateOfBirth=res.data.result.dateOfBirth?moment(res.data.result.dateOfBirth).format('DD/MM/YYYY'):res.data.result.dateOfBirth
-                    res.data.result.expirationDateDriverLicense=res.data.result.expirationDateDriverLicense?moment(res.data.result.expirationDateDriverLicense).format('DD/MM/YYYY'):res.data.result.expirationDateDriverLicense
-                    res.data.result.expirationDateIdentificationCar=res.data.result.expirationDateIdentificationCar?moment(res.data.result.expirationDateIdentificationCar).format('DD/MM/YYYY'):res.data.result.expirationDateIdentificationCar
-                    res.data.result.expirationDatePolicyPersonal=res.data.result.expirationDatePolicyPersonal?moment(res.data.result.expirationDatePolicyPersonal).format('DD/MM/YYYY'):res.data.result.expirationDatePolicyPersonal
-                    res.data.result.expirationDatePolicyVehicle=res.data.result.expirationDatePolicyVehicle?moment(res.data.result.expirationDatePolicyVehicle).format('DD/MM/YYYY'):res.data.result.expirationDatePolicyVehicle
-                    res.data.result.nya= (res.data.result.name.concat(res.data.result.surname)).length>25?((res.data.result.name.concat(" ").concat(res.data.result.surname)).slice(0,25)).concat("..."):(res.data.result.name.concat(" ").concat(res.data.result.surname))
-                    return res.data.result})
-                .catch((err)=>{console.log(err)}) 
-                .finally(
-                 
-                    setloader(false)
-                )
-                )
-            
-            }
-            
-               cargarDatos()
-          
-               
-                    
-}, [id])
 
           
-useEffect(() => {
-     habilitarBoton(dataPicker);
-}, [habilitarBoton,dataPicker])
-            
-useEffect(() => {
-              
- setInformacion(dataPicker);
- }, [dataPicker])
+ 
+
+
            
  
 
@@ -159,12 +82,11 @@ const cerrarAprobarPicker = async (e) => {
     setloader(true);
     e.preventDefault();
     
-
     setmodalOpenAprobar(false)
    
-    await api.post(`/ms-admin-rest/api/v1.0/pickers/${dataPicker.id}`,{    
+    await api.post(`/ms-admin-rest/api/v1.0/pickers/${pendingUserAdminPicker.id}`,{    
         "enable": true,
-        "vehicleTypeId": dataPicker.vehicleTypeId,
+        "vehicleTypeId": pendingUserAdminPicker.vehicleTypeId,
         "name":Informacion.name ,
          "surname":Informacion.surname ,
          "dateOfBirth":Informacion.dateOfBirth?moment(Informacion.dateOfBirth,"DD/MM/YYYY").format('YYYY-MM-DD'):Informacion.dateOfBirth,
@@ -188,32 +110,32 @@ const cerrarAprobarPicker = async (e) => {
 
 }
 
+
 const cerrarAprobarPickerCorrigiendo  =  (e) => {
     e.preventDefault();
     setmodalOpenAprobar(false);
 } 
           
-
+/*
 const corregirDocumentos= async (e) =>{
+
         setloader(true);
         e.preventDefault();
-        await api.post(`/ms-admin-rest/api/v1.0/pickers/${dataPicker.id}/invalid-documentation`,{    
-        "vehicleTypeId": dataPicker.vehicleTypeId,
-        "name": Informacion.name  ,
+        console.log(Informacion)
+   
+        await api.post(`/ms-admin-rest/api/v1.0/pickers/${Informacion.id}/invalid-documentation`,{    
+         "vehicleType": Informacion.vehicleType,
+         "accountingData": Informacion.accountingData,
+         "vehicle": Informacion.vehicle,
+         "name": Informacion.name  ,
          "surname": Informacion.surname ,
-         "dateOfBirth":Informacion.dateOfBirth?moment(Informacion.dateOfBirth,"DD/MM/YYYY").format('YYYY-MM-DD'):Informacion.dateOfBirth,
-         "phoneNumber": Informacion.phoneNumber,
-         "identificationNumber":Informacion.identificationNumber ,
-         "fiscalNumber":Informacion.fiscalNumber.replace(/ - /,'').replace(/ - /,''),
-         "bankName":Informacion.bankName,
-         "bankIdentifier":Informacion.bankIdentifier,
-         "expirationDateDriverLicense":Informacion.expirationDateDriverLicense?moment(Informacion.expirationDateDriverLicense,"DD/MM/YYYY").format('YYYY-MM-DD'):Informacion.expirationDateDriverLicense,
-         "expirationDateIdentificationCar":Informacion.expirationDateIdentificationCar?moment(Informacion.expirationDateIdentificationCar,"DD/MM/YYYY").format('YYYY-MM-DD'):Informacion.expirationDateIdentificationCar,
-         "expirationDatePolicyVehicle":Informacion.expirationDatePolicyVehicle?moment(Informacion.expirationDatePolicyVehicle,"DD/MM/YYYY").format('YYYY-MM-DD'):Informacion.expirationDatePolicyVehicle,
-         "expirationDatePolicyPersonal":Informacion.expirationDatePolicyPersonal?moment(Informacion.expirationDatePolicyPersonal,"DD/MM/YYYY").format('YYYY-MM-DD'):Informacion.expirationDatePolicyPersonal,     
-         "pickerStatusId":3
+         "dateOfBirth":Informacion.dateOfBirth,
+         "phone": Informacion.phone,
+         "identificationNumber":(Informacion.identificationNumber),
+         "pickerStatusId":3,
+         "expirationDatePolicyPersonal":Informacion.expirationDatePolicyPersonal
         })
-        .then(rs=>{window.location.href="/pendingUserAdmin";})
+      .then(rs=>{window.location.href="/pendingUserAdmin";})
         .catch(e=>{})
         .finally(
             setloader(false)
@@ -221,6 +143,9 @@ const corregirDocumentos= async (e) =>{
 
         
 }
+*/
+
+
 const aprobarPicker= async (e) =>{
     e.preventDefault();
     setmodalOpenAprobar(true);           
@@ -238,18 +163,18 @@ const aprobarPicker= async (e) =>{
                      <div 
                      className="mainContainerFlex-picker">
                          <div className="picker-id">
-                              #{dataPicker.id}
-                         <h2 className="subTitle-pending-picker">{dataPicker.nya}</h2>
+                              #{pendingUserAdminPicker.id}
+                         <h2 className="subTitle-pending-picker">{pendingUserAdminPicker.name+" "+pendingUserAdminPicker.surname}</h2>
                     </div>
                          {
-                             dataPicker.vehicleTypeId===1 ? 
+                             pendingUserAdminPicker.vehicleType==="motorcycle" ? 
                              <img  className="vehiculo-pending-picker" src={motorcycle} alt="vehiculo" />
                             :
                             <img  className="vehiculo-pending-picker" src={bici} alt="vehiculo" />
                          
                          }
                         <button 
-                            onClick={Export}
+                            onClick={()=>{getPendingUserPickerExport({email:(pendingUserAdminPicker.email)})}}
                             className="export"
                             name="export"
                             >
@@ -261,19 +186,14 @@ const aprobarPicker= async (e) =>{
 
              <form className="Admin-Pickers-inputs">
                 <div  className="form-part-1-admin-pickers">
-                        <Part     
-                                   
+                        <Part      
                         inputsPart={inputsPart1}                      
                         ComponentesPart={ComponentesPart1}
-                        data={dataPicker}
                         clave={1}
                         setdisabledButtonAprobarPicker={setdisabledButtonAprobarPicker}  
                         disabledButtonAprobarPicker={disabledButtonAprobarPicker}                  
-             
-                        Informacion={Informacion}
+                        Informacion={pendingUserAdminPicker}
                         setInformacion={setInformacion}
-                      
-
                         />
                 </div>
                 
@@ -281,18 +201,13 @@ const aprobarPicker= async (e) =>{
 
                 <div  className="form-part-1-admin-pickers">
                         <Part
-                     
                         inputsPart={inputsPart2}                 
                         ComponentesPart={ComponentesPart2}
-                        data={dataPicker}
                         clave={2}
-                        
                         setdisabledButtonAprobarPicker={setdisabledButtonAprobarPicker}  
                         disabledButtonAprobarPicker={disabledButtonAprobarPicker}                  
-                        
-                        Informacion={Informacion}
+                        Informacion={pendingUserAdminPicker}
                         setInformacion={setInformacion}
-                      
                         />                          
                 </div>
 
@@ -303,27 +218,21 @@ const aprobarPicker= async (e) =>{
                       
                         inputsPart={inputsPart3}                   
                         ComponentesPart={ComponentesPart3}
-                        data={dataPicker}   
                         setdisabledButtonAprobarPicker={setdisabledButtonAprobarPicker}  
                         disabledButtonAprobarPicker={disabledButtonAprobarPicker}                  
                         clave={3}
-                        Informacion={Informacion}
+                        Informacion={pendingUserAdminPicker}
                         setInformacion={setInformacion}
-              
                         />  
 
                         <Part
-                      
                         inputsPart={inputsPart4}                       
                         ComponentesPart={ComponentesPart4}
-                        data={dataPicker}
                         disabledButtonAprobarPicker={disabledButtonAprobarPicker}   
                         setdisabledButtonAprobarPicker={setdisabledButtonAprobarPicker}  
                         clave={4}
-                        Informacion={Informacion}
+                        Informacion={pendingUserAdminPicker}
                         setInformacion={setInformacion}
-                      
-                       
                         /> 
                  </div>
                      
@@ -340,14 +249,16 @@ const aprobarPicker= async (e) =>{
                 </div>
                     
                     <div className="pending-admin-picker-button">
-                    {
+                    {         
                             disabledButtonAprobarPicker===true ? <>
+                            
                              
-                             <button onClick={corregirDocumentos} className="corregir-admin-picker">Guardar cambios</button>
+                             <button onClick={()=>{ postPendingUserDocumentsEdit(pendingUserAdminPicker)} } className="corregir-admin-picker">Guardar cambios</button>
                             <button disabled={true} onClick={aprobarPicker} className="aprobar-admin-picker">Aprobar picker</button></>
                             :
                             <>
-                            <button onClick={corregirDocumentos} className="corregir-admin-picker">Guardar cambios</button>
+          
+                            <button onClick={()=>{ postPendingUserDocumentsEdit(pendingUserAdminPicker)} } className="corregir-admin-picker">Guardar cambios</button>
                             <button disabled={false} onClick={aprobarPicker} className="aprobar-admin-picker-active">Aprobar picker</button>
                            </>
                         }
@@ -391,9 +302,9 @@ const aprobarPicker= async (e) =>{
                         </div>
               : null
         }       
-        {ExportModalActivePicker === true ? (
+        {modalExportPicker && (
           <div className="contendor-modal-pending-pickers-aprobar">
-            <Modal width="750px" height="351px" isOpen={ExportModalActivePicker}>
+            <Modal width="750px" height="351px" isOpen={modalExportPicker}>
               <div className="container-modal">
                 <div className="modal-success-title">
                   <p className="p-modal-error-title">Exportaste exitosamente</p>
@@ -404,7 +315,7 @@ const aprobarPicker= async (e) =>{
                   </p>
                   <div className="button-pending-picker-modal">
                     <button
-                      onClick={cerrarGuardarExitoPicker}
+                      onClick={getPendingUserPickerExportCloseModal}
                       className="button-modal-aprobar-exito"
                     >
                       Entendido
@@ -414,7 +325,7 @@ const aprobarPicker= async (e) =>{
               </div>
             </Modal>
           </div>
-        ) : null}     
+        ) }     
             {ModalAprobadoExito === true ? (
           <div className="contendor-modal-pending-pickers-aprobar">
             <Modal width="750px" height="351px" isOpen={ModalAprobadoExito}>
@@ -424,7 +335,7 @@ const aprobarPicker= async (e) =>{
                 </div>
                 <div className="modal-error-subtitle">
                   <p className="p-modal-pending-subtitle">
-                  Aprobaste al picker {dataPicker.name} {dataPicker.surname}. Ya podés visualizar sus datos en la pestaña “Pickers”
+                  Aprobaste al picker {pendingUserAdminPicker.name} {pendingUserAdminPicker.surname}. Ya podés visualizar sus datos en la pestaña “Pickers”
                   </p>
                   <div className="button-pending-picker-modal">
                     <button
@@ -445,11 +356,7 @@ const aprobarPicker= async (e) =>{
                 
             </div>
             {
-              loader ===true  ? 
-              <div className="modalLoading">
-                
-              </div>
-              : <></>
+              isFetching  && <div className="modalLoading"></div>
           }
             
         </div>

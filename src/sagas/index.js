@@ -20,10 +20,13 @@ import transactions from "sagas/transactions";
 import pendingUser from "sagas/pendingUsers";
 import dashboard from "sagas/dashboard";
 
+import pendingUserAdminPicker from "sagas/pendingUserAdminPicker"
+
 const sagas = [
     ...transactions,
     ...pendingUser,
-    ...dashboard,
+    ...dashboard,  
+    ...pendingUserAdminPicker
 ];
 
 export default function* rootSaga() {
