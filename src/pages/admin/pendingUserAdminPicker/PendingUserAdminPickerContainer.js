@@ -2,8 +2,7 @@ import React, { useEffect} from "react";
 import { connect } from "react-redux";
 import { actions as pendingUserAdminPickerActions, selectors as pendingUserAdminPickerSelectors} from "reducers/pendingUserAdminPicker";
 import { PendingUserAdminPicker } from "pages/admin/pendingUserAdminPicker/PendingUserAdminPicker"
-import URLid from "utils/URLid/urlId";
-
+import {useParams} from "react-router-dom";
 
 const PendingUserAdminPickerContainer = (props) => {
     const params = useParams();
@@ -12,10 +11,8 @@ const PendingUserAdminPickerContainer = (props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    
     return (
         <PendingUserAdminPicker {...props}/>
-
     );
 }
 

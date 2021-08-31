@@ -5,6 +5,7 @@ import Arrow from 'assets/admin/flechaAbajo.svg'
 const MultipleSelect = (
     { input: { value }, options = [], onChange }
 ) => {
+  //TODO extraer a constantes
   const optionsCheckbox = [
     {
       label: 'Sin asignar',
@@ -60,10 +61,10 @@ const MultipleSelect = (
 
   const [open, setOpen] = useState(false);
   const [all, setAll] = useState(false);
-  const [optionsState, setoptions] = useState();
+  const [optionsState, setOptions] = useState([]);
 
   useEffect( ()=>{
-    setoptions(optionsCheckbox.map(ob => {
+    setOptions(optionsCheckbox.map(ob => {
       return {...ob, selected: value.includes(ob.id)};
     }));
   },[value]);
@@ -225,12 +226,25 @@ const MultipleSelect = (
   //   setOpen(!open);
   // };
 
+  const reduceValue = () => {
+    if (all) {
+      return 'Todos';
+    } else {
+      let length = optionsState.filter((ob)=>ob.selected).length;
+      if (length > 3) {
+        return `${length} Selecionados`;
+      } else {
+        return reduceState(optionsState, 'label');
+      }
+    }
+  };
+
   const checkAll = () => {
     return setAll(optionsState.every((ob)=>ob.selected));
   };
 
-  const reduceState = (map) => {
-    return map.filter((ob)=>ob.selected).map(ob => ob.id).join();
+  const reduceState = (map, name = 'id') => {
+    return map.filter((ob)=>ob.selected).map(ob => ob[name]).join();
   };
 
   const onChangeHandler = (option) => {
@@ -241,7 +255,7 @@ const MultipleSelect = (
 
   const onChangeHandlerAll = () => {
     let map = optionsState.map(ob=>{return {...ob,selected:!all}});
-    setoptions(map)
+    setOptions(map)
     setAll(!all);
     onChange(reduceState(map));
   };
@@ -252,7 +266,7 @@ const MultipleSelect = (
           <div  onClick={()=>setOpen(!open)} className="multiple-contenido-select">
             <h1 className="transaction-filter-multipleSelect-label">Estados</h1>
             <div className="multiple-ContenedorInput">
-              <input placeholder="Seleccioná el estado" disabled className="multiple-input" type="text"/>
+              <input placeholder="Seleccioná el estado" value={reduceValue()} disabled className="multiple-input" type="text"/>
               <img className="multiple-flotarImg" src={Arrow} alt="arrow"/>
             </div>
           </div>

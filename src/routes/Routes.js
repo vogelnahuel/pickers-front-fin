@@ -6,7 +6,7 @@ import Login from 'pages/login/Login'
 import { RestorePassword } from 'pages/login/restorePassword/RestorePassword';
 import PendingUserAdmin from 'pages/admin/PendingUser/PickersContainer'
 // import {ActiveUserAdmin} from 'pages/admin/ActiveUser/ActiveUserAdmin'
-import { PendingUserAdminPicker } from 'pages/admin/pendingUserAdminPicker/PendingUserAdminPicker';
+import PendingUserAdminPicker from 'pages/admin/pendingUserAdminPicker/PendingUserAdminPickerContainer';
 //import { ActiveUserAdminPicker } from 'pages/admin/ActiveUserAdminPicker/ActiveUserAdminPicker';
 import Transaction from 'pages/transaction/TransactionContainer';
 import {Liquidation} from 'pages/pre-liquidation/Liquidation'
