@@ -73,7 +73,6 @@ export const selectors = {
     isFetching: ({ pendingUserAdminPicker }) => pendingUserAdminPicker.fetching,
     getModalExportPicker: ({ pendingUserAdminPicker }) => pendingUserAdminPicker.modalExportPicker,
     getPendingUserPicker: ({ pendingUserAdminPicker }) => pendingUserAdminPicker.pendingUserAdminPicker,
-    getPendingUserDocumentsEdit: ({ pendingUserAdminPicker }) => pendingUserAdminPicker.pendingUserAdminPicker,
 };
 
 

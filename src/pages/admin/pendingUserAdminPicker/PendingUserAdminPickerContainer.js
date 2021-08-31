@@ -6,16 +6,11 @@ import URLid from "utils/URLid/urlId";
 
 
 const PendingUserAdminPickerContainer = (props) => {
-    const id = URLid();
-
-    
+    const params = useParams();
     useEffect(() => {
-
-      
-     props.getPendingUserPicker(id);
-  
+        props.getPendingUserPicker(params.id);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, []);
 
     
     return (
@@ -29,7 +24,6 @@ const mapStateToProps = (state) => ({
     pendingUserAdminPicker: pendingUserAdminPickerSelectors.getPendingUserPicker(state),
     modalExportPicker: pendingUserAdminPickerSelectors.getModalExportPicker(state),
     isFetching: pendingUserAdminPickerSelectors.isFetching(state),
-    postPendingUserDocumentsEdit:pendingUserAdminPickerSelectors.getPendingUserDocumentsEdit(state)
 });
 
 

@@ -60,12 +60,12 @@ function* postPendingUserDocumentsEdit({ params }) {
     
     if (response.type === "W") {
        
-        yield put(actions.postPendingUserPickerDocumentsEditError());
+        yield put(actions.getPendingUserPickerDocumentsEditError());
    
     } else {
  
         window.location.href="/pendingUserAdmin";
-        yield put(actions.postPendingUserPickerDocumentsEditSuccess(response));
+        yield put(actions.getPendingUserPickerDocumentsEditSuccess(response));
     }                     
     
 }
