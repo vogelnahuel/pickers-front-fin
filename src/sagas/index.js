@@ -17,11 +17,16 @@ import { call, spawn, all } from "redux-saga/effects";
 // import * as I18n from "util/i18n";
 // import { types as loadingTypes } from "reducers/petersen/loading";
 import transactions from "sagas/transactions";
+import pendingUser from "sagas/pendingUsers";
 import dashboard from "sagas/dashboard";
+
+import pendingUserAdminPicker from "sagas/pendingUserAdminPicker"
 
 const sagas = [
     ...transactions,
-    ...dashboard
+    ...pendingUser,
+    ...dashboard,  
+    ...pendingUserAdminPicker
 ];
 
 export default function* rootSaga() {

@@ -6,7 +6,7 @@
           import { Link } from "react-router-dom";
           
           export const TableAdmin = (props) => {
-            const { titulosAdminPending, titulosAdminActive, data } = props;
+            const { tableTitles, actualPage,data } = props;
             
             const getDifDate = (date) => {
               var regDate = moment();
@@ -24,16 +24,16 @@ return (
           <table className="table-admin">
                     <thead>
                              <tr>
-                                  <td></td>
+                                  <td></td>{console.log(actualPage)}
                                
                                   { 
                                      
-                                      window.location.pathname==="/pendingUserAdmin"  ?
-                                      titulosAdminPending.map(titulo=>
+                                     actualPage==="PENDING"  ?
+                                     tableTitles.map(titulo=>
                                         <td key={titulo}>{titulo}</td>
                                       )
-                                      : window.location.pathname==="/activeUserAdmin" ?
-                                      titulosAdminActive.map(titulo=>
+                                      : actualPage==="ACTIVE" ?
+                                      tableTitles.map(titulo=>
                                         <td key={titulo}>{titulo}</td>
                                       )
                                       :null
@@ -44,7 +44,7 @@ return (
                   </thead>
                 <tbody>
                  
-                  {window.location.pathname === "/pendingUserAdmin"
+                  {actualPage=== "PENDING"
                     ? data &&Array.isArray(data)?data.map((rows) => (
                         <tr className="info table-pending" key={rows.id}>
                           <td></td>
@@ -71,7 +71,7 @@ return (
                       ))
                     : null:null}
           
-                  {window.location.pathname === "/activeUserAdmin"
+                  {actualPage === "ACTIVE"
                     ?data && Array.isArray(data)? data.map((rows) => (
                         <tr className="info table-active-correcion" key={rows.id}>
                           <td></td>

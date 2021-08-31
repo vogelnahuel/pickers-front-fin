@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import {Header} from '../../../component/admin/Header/Header'
 import {Nav} from '../../../component/admin/Nav/Nav'
-import '../PendingUser/PendingUserAdmin.scss'
+import '../PendingUser/Picker.scss'
 import './activeUserAdminPicker.scss'
 import exportar from '../../../assets/admin/PendingUser/exportar.svg'
 import or from '../../../assets/admin/PendingUser/or.svg'
