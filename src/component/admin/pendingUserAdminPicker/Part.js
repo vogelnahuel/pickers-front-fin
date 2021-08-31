@@ -628,7 +628,7 @@ const eliminarDivs = ()  => {
     
     if(deleteDivs.parentNode.parentNode.parentNode.nextSibling)
     deleteDivs.parentNode.parentNode.parentNode.nextSibling.remove()
-    for(let i = 0 ; i < 3 ; i ++){
+    for(let i = 0 ; i < 4 ; i ++){
       if(deleteDivs.parentNode.parentNode.parentNode.parentNode  && (deleteDivs.parentNode.parentNode.parentNode.parentNode.firstChild!==deleteDivs.parentNode.parentNode.parentNode.parentNode.lastChild) ){
         deleteDivs.parentNode.parentNode.parentNode.parentNode.firstChild.remove()
       
@@ -768,6 +768,7 @@ const eliminarDivs = ()  => {
                                         ) : Informacion.vehicleType === "bicycle" &&
                                           (variable.name === "vencimientoLicencia" ||
                                             variable.name === "fechaVecCel" ||
+                                            variable.name === "PatenteDelVehiculo"||
                                             variable.name === "fechaVecSeguroAuto") ? (
                                           <></>
                                         ) : 

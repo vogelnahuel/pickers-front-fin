@@ -29,6 +29,7 @@ const mapStateToProps = (state) => ({
     pendingUserAdminPicker: pendingUserAdminPickerSelectors.getPendingUserPicker(state),
     modalExportPicker: pendingUserAdminPickerSelectors.getModalExportPicker(state),
     isFetching: pendingUserAdminPickerSelectors.isFetching(state),
+    postPendingUserDocumentsEdit:pendingUserAdminPickerSelectors.getPendingUserDocumentsEdit(state)
 });
 
 
@@ -41,6 +42,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     getPendingUserPickerExportCloseModal: () => {
         dispatch(pendingUserAdminPickerActions.getPendingUserPickerExportCloseModal());
+    },
+    postPendingUserDocumentsEdit: (params) => {
+        dispatch(pendingUserAdminPickerActions.getPendingUserPickerDocumentsEditRequest(params));
     },
 });
 

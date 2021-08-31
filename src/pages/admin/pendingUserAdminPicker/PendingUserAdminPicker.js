@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import {Header} from '../../../component/admin/Header/Header'
 import {Nav} from '../../../component/admin/Nav/Nav'
 import '../PendingUser/PendingUserAdmin.scss'
@@ -11,26 +11,22 @@ import bici from '../../../assets/admin/PendingUserAdminPicker/bici.svg'
 import { Part } from '../../../component/admin/pendingUserAdminPicker/Part'
 import {data} from './data'
 import api  from '../../../config/api'
-//import { useParams } from 'react-router-dom'
-import codificarEmailURIFunction from '../../../tools/encodeMail.js'
-import createCSV from '../../../tools/createCSV'
 import { Modal } from '@pickit/pickit-components'
 import moment from 'moment'
 
 
 
 
-export const PendingUserAdminPicker = ({isFetching,pendingUserAdminPicker,getPendingUserPickerExport,modalExportPicker,getPendingUserPickerExportCloseModal}) => {
+export const PendingUserAdminPicker = ({isFetching,pendingUserAdminPicker,getPendingUserPickerExport,modalExportPicker,getPendingUserPickerExportCloseModal,postPendingUserDocumentsEdit}) => {
 
   
- 
+    console.log(pendingUserAdminPicker)
  
     const [loader, setloader] = useState(true);
     
   
     const [ModalAprobadoExito, setModalAprobadoExito] = useState(false);
     const [modalOpenAprobar, setmodalOpenAprobar] = useState(false);
-
     const [disabledButtonAprobarPicker, setdisabledButtonAprobarPicker] = useState(true);
 
      
@@ -40,46 +36,33 @@ export const PendingUserAdminPicker = ({isFetching,pendingUserAdminPicker,getPen
 
 
     const [inputsPart1,ComponentesPart1,inputsPart2,ComponentesPart2,inputsPart3,ComponentesPart3,inputsPart4,ComponentesPart4]=data();
-   
-    const [dataPicker, setDataPicker] = useState({bankIdentifier: "",
-    bankName: "",
-    dateOfBirth: "",
-    email: "",
-    expirationDateDriverLicense: "",
-    expirationDateIdentificationCar: "",
-    expirationDatePolicyPersonal: "",
-    expirationDatePolicyVehicle: "",
-    fiscalNumber: "",
-    id: "",
-    identificationNumber: "",
-    name: "",
-    phoneNumber: "",
-    pickerStatusId: "",
-    registerDate: null,
-    surname:"",
-    vehicleTypeId: "",
-    nya: "",
-   
-})
+ 
 
-            
+/*   
 const habilitarBoton   =   useCallback(
-                  (dataPicker) => {
+                  (pendingUserAdminPicker) => {
+                    if(pendingUserAdminPicker!==null){
 
-                  if(dataPicker.vehicleTypeId!==" " && dataPicker.expirationDatePolicyPersonal !== null){
-                        if(dataPicker.vehicleTypeId===2  && dataPicker.expirationDatePolicyPersonal.length>0){
+                      if(pendingUserAdminPicker.vehicleTypeId!==" " && pendingUserAdminPicker.expirationDatePolicyPersonal !== null){
+                        if(pendingUserAdminPicker.vehicleTypeId===2  && pendingUserAdminPicker?.expirationDatePolicyPersonal.length>0){
                             setdisabledButtonAprobarPicker(false)
                         }
-                         else if(dataPicker.expirationDatePolicyPersonal.length>0 && dataPicker.expirationDatePolicyVehicle.length>0 &&dataPicker.expirationDateDriverLicense.length > 0  && dataPicker.expirationDateIdentificationCar.length > 0 )
+                         else if( pendingUserAdminPicker && pendingUserAdminPicker?.expirationDatePolicyPersonal.length>0 && pendingUserAdminPicker?.expirationDatePolicyVehicle.length>0 &&pendingUserAdminPicker?.expirationDateDriverLicense.length > 0  && pendingUserAdminPicker?.expirationDateIdentificationCar.length > 0 )
                          {
                           setdisabledButtonAprobarPicker(false)
                          }
-                     }
+                     }}
+
                     },
                   
-                [],
-)
+                [],);
 
+*/
+/*
+useEffect(() => {
+     habilitarBoton(pendingUserAdminPicker);
+}, [habilitarBoton,pendingUserAdminPicker])
+*/    
 
   const cerrarModalAprobado = (e) => {
     e.preventDefault();
@@ -89,11 +72,7 @@ const habilitarBoton   =   useCallback(
 
 
           
-
-useEffect(() => {
-     habilitarBoton(dataPicker);
-}, [habilitarBoton,dataPicker])
-           
+ 
 
 
            
@@ -105,9 +84,9 @@ const cerrarAprobarPicker = async (e) => {
     
     setmodalOpenAprobar(false)
    
-    await api.post(`/ms-admin-rest/api/v1.0/pickers/${dataPicker.id}`,{    
+    await api.post(`/ms-admin-rest/api/v1.0/pickers/${pendingUserAdminPicker.id}`,{    
         "enable": true,
-        "vehicleTypeId": dataPicker.vehicleTypeId,
+        "vehicleTypeId": pendingUserAdminPicker.vehicleTypeId,
         "name":Informacion.name ,
          "surname":Informacion.surname ,
          "dateOfBirth":Informacion.dateOfBirth?moment(Informacion.dateOfBirth,"DD/MM/YYYY").format('YYYY-MM-DD'):Informacion.dateOfBirth,
@@ -137,27 +116,20 @@ const cerrarAprobarPickerCorrigiendo  =  (e) => {
     setmodalOpenAprobar(false);
 } 
           
-
+/*
 const corregirDocumentos= async (e) =>{
 
         setloader(true);
         e.preventDefault();
-       
-        Informacion.vehicle.motorcycle.expirationDateDriverLicense = Informacion.vehicle.motorcycle.expirationDateDriverLicense ? moment(Informacion.vehicle.motorcycle.expirationDateDriverLicense,"DD/MM/YYYY").format("YYYY-MM-DD"):Informacion.vehicle.motorcycle.expirationDateDriverLicense;
-        Informacion.vehicle.motorcycle.expirationDateIdentificationVehicle = Informacion.vehicle.motorcycle.expirationDateIdentificationVehicle ? moment(Informacion.vehicle.motorcycle.expirationDateIdentificationVehicle,"DD/MM/YYYY").format("YYYY-MM-DD"):Informacion.vehicle.motorcycle.expirationDateIdentificationVehicle;
-        Informacion.expirationDatePolicyPersonal = Informacion.expirationDatePolicyPersonal ? moment(Informacion.expirationDatePolicyPersonal,"DD/MM/YYYY").format("YYYY-MM-DD"):Informacion.expirationDatePolicyPersonal;
-        Informacion.vehicle.motorcycle.expirationDatePolicyVehicle = Informacion.vehicle.motorcycle.expirationDatePolicyVehicle ? moment(Informacion.vehicle.motorcycle.expirationDatePolicyVehicle,"DD/MM/YYYY").format("YYYY-MM-DD"):Informacion.vehicle.motorcycle.expirationDatePolicyVehicle;
-       
-        Informacion.accountingData.fiscalNumber = Informacion.accountingData.fiscalNumber.replace(/ - /,'').replace(/ - /,'');
-        console.log(Informacion);
-       
+        console.log(Informacion)
+   
         await api.post(`/ms-admin-rest/api/v1.0/pickers/${Informacion.id}/invalid-documentation`,{    
          "vehicleType": Informacion.vehicleType,
          "accountingData": Informacion.accountingData,
          "vehicle": Informacion.vehicle,
          "name": Informacion.name  ,
          "surname": Informacion.surname ,
-         "dateOfBirth":Informacion.dateOfBirth?moment(Informacion.dateOfBirth,"DD/MM/YYYY").format('YYYY-MM-DD'):Informacion.dateOfBirth,
+         "dateOfBirth":Informacion.dateOfBirth,
          "phone": Informacion.phone,
          "identificationNumber":(Informacion.identificationNumber),
          "pickerStatusId":3,
@@ -171,6 +143,7 @@ const corregirDocumentos= async (e) =>{
 
         
 }
+*/
 
 
 const aprobarPicker= async (e) =>{
@@ -276,14 +249,16 @@ const aprobarPicker= async (e) =>{
                 </div>
                     
                     <div className="pending-admin-picker-button">
-                    {
+                    {         
                             disabledButtonAprobarPicker===true ? <>
+                            
                              
-                             <button onClick={corregirDocumentos} className="corregir-admin-picker">Guardar cambios</button>
+                             <button onClick={()=>{ postPendingUserDocumentsEdit(pendingUserAdminPicker)} } className="corregir-admin-picker">Guardar cambios</button>
                             <button disabled={true} onClick={aprobarPicker} className="aprobar-admin-picker">Aprobar picker</button></>
                             :
                             <>
-                            <button onClick={corregirDocumentos} className="corregir-admin-picker">Guardar cambios</button>
+          
+                            <button onClick={()=>{ postPendingUserDocumentsEdit(pendingUserAdminPicker)} } className="corregir-admin-picker">Guardar cambios</button>
                             <button disabled={false} onClick={aprobarPicker} className="aprobar-admin-picker-active">Aprobar picker</button>
                            </>
                         }
