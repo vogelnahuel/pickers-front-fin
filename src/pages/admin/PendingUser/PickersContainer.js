@@ -14,7 +14,7 @@ const PendingUserAdminContainer = (props) => {
   
   const loadMore = () => {
    props.setPendingUserExtraFilters({offset:props.filtersExtra.limit,limit:props.pag})
-   props.getPendingUser(props.filtersExtra)
+   props.getMorePendingUser(props.filtersExtraSeeMore)
    props.setPendingUserExtraFilters({offset:props.filtersExtra.offset+props.pag})
   }
 
@@ -37,9 +37,10 @@ const PendingUserAdminContainer = (props) => {
       ];
     useEffect(() => {
       const filters = props.actualPage==="PENDING"?{pickerStatusId:"2,3"}:{pickerStatusId:"4,5"};
-      props.setPendingUserExtraFilters({limit:window.screen.height<700 || window.screen.height<760 ? 3 : 5})
+      const filtersExtra={limit:window.screen.height<700 || window.screen.height<760 ? 3 : 5};
+      props.setPendingUserExtraFilters(filtersExtra)
       props.setPendingUserFilters(filters);
-      props.getPendingUser(({...props.filtersExtra, ...filters}));
+      props.getPendingUser(({...filtersExtra, ...filters}));
       
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.actualPage])
@@ -54,9 +55,11 @@ const mapStateToProps = (state) => ({
     isFetching: pendingUserSelectors.isFetching(state),
     filters: pendingUserSelectors.getFilters(state),
     filtersExtra: pendingUserSelectors.getFiltersExtra(state),
+    filtersExtraSeeMore: pendingUserSelectors.getFiltersExtraSeeMore(state),
     seeMore: pendingUserSelectors.getSeeMore(state),
     pag: pendingUserSelectors.getPag(state),
-    actualPage:pendingUserSelectors.getActualPage(state)
+    actualPage:pendingUserSelectors.getActualPage(state),
+    modalExportPicker:pendingUserSelectors.getActualPage(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -71,6 +74,12 @@ const mapDispatchToProps = (dispatch) => ({
   },
   setActualPage:(page)=>{
     dispatch(pendingUserActions.setActualPage(page));
+  },
+  getPendingUsersExportRequest:(params)=>{
+    dispatch(pendingUserActions.getPendingUserExportRequest(params))
+  },
+  getMorePendingUser: (params) => {
+    dispatch(pendingUserActions.getMorePendingUserRequest(params));
 },
 });
 export default connect(mapStateToProps, mapDispatchToProps)(PendingUserAdminContainer);
