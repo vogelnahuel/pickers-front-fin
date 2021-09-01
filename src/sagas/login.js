@@ -2,6 +2,8 @@ import { call, takeLatest, put } from "redux-saga/effects";
 import { types, actions } from "reducers/login";
 // import { actions as notificationActions } from "reducers/notification";
 import * as loginMiddleware from "middleware/login";
+import { replace } from "react-router-redux";
+import { saveValue } from "utils/localStorage";
 
 const sagas = [
     takeLatest(types.LOGIN_GET_REQUEST, getLogin)
@@ -24,11 +26,10 @@ function* getLogin({params}) {
         yield put(actions.getLoginError());
 
     } else {
-        
+
         const { result } = response.data;
-        //react -> 
-        window.localStorage.setItem("token",response.data.result.accessToken)
-        window.location.href= "./dashboard"
+        saveValue("token",result.accessToken);
+        window.location.href= "/dashboard"  //implementar react redux router
         yield put(actions.getLoginSuccess(result));
     }
 
