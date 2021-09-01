@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Login.scss";
 import pickersLogo from "./../../assets/login/PickersLogo.svg";
@@ -6,11 +6,14 @@ import canguro from "./../../assets/login/Canguro.svg";
 import {Link} from 'react-router-dom'
 
 import {Modal} from '@pickit/pickit-components'
-import api from '../../config/api'
+//import api from '../../config/api'
 
 
-export const Login = () => {
+export const Login = ({postLogin,login,isFetching}) => {
 
+  console.log(postLogin)
+  console.log(login)
+  console.log(isFetching)
 
 
     const [mail, setmail] = useState("")
@@ -24,12 +27,12 @@ export const Login = () => {
   //Test
   //const {mail,password,errorMail,errorMsgMail,errorPassWord,errorMsgPassword,} = formValues;
 
-
+/*
   useEffect(()=>{
     window.localStorage.removeItem('token')
  
   },[])
-  
+  */
   const handleFocusLabel = (e,mail="") => {
     e.target.nextSibling.classList.remove('animationOrigin');
     e.target.nextSibling.classList.add('animationTop');
@@ -142,6 +145,8 @@ const handleInputBlur = (e) => {
 const handleSubmit = async (e) => {
 
   e.preventDefault();
+
+  console.log("entre")
   
 
  if(mail==='' || errorMail===true || password==='' || errorPassWord===true){
@@ -159,7 +164,10 @@ const handleSubmit = async (e) => {
       }
 
       
-  }
+  }   
+  postLogin({email:mail?mail:'',password:password?password:''})
+
+  /*
     else{
      
       if( window.location.pathname==="/")
@@ -204,9 +212,10 @@ const handleSubmit = async (e) => {
      
       } 
 
-  }
+  }*/
   
 }
+
 
 
   return (
@@ -220,7 +229,7 @@ const handleSubmit = async (e) => {
         </div>
 
         <div className="centrar">
-        <form className="form size" onSubmit={handleSubmit} >
+        <form className="form size" onSubmit={handleSubmit}>
         
         
           <div>
@@ -269,13 +278,26 @@ const handleSubmit = async (e) => {
          
           
           <div className="contenedor z-index">
-            <div className="contenedor z-index animation">
-              <button 
-              
-              className="  button_  z-index" 
-              type="submit" 
-              name="button" ><p className="login-init "> Iniciar sesión </p> </button>
-            </div>
+          {     
+              isFetching ? 
+              <div className="shineBorder contenedor z-index animation">
+                    <button 
+                      
+                      className="button_  z-index" 
+                      type="sumbit" 
+                      name="button" ><p className="login-init "> Iniciar sesión </p> 
+                  </button>
+              </div>
+              :
+              <div className="contenedor z-index animation">
+                    <button 
+                    
+                      className="button_  z-index" 
+                      type="sumbit" 
+                      name="button" ><p className="login-init "> Iniciar sesión </p> 
+                    </button>
+              </div>
+            }
           </div>
          
         </form>
