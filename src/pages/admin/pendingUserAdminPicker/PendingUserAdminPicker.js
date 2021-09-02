@@ -30,8 +30,8 @@ export const PendingUserAdminPicker = (
         modalExportPicker,
         getPendingUserPickerExportCloseModal,
         onSubmit,
-
-
+        actualPage,
+        changePage
         // getPendingUserPicker
     }) => {
 
@@ -179,7 +179,7 @@ export const PendingUserAdminPicker = (
             <div className="mainContainerFlex">
                 <Nav/>
                 <div className="pending-container">
-                    <PendingBlue/>
+                    <PendingBlue changePage={changePage} actualPage={actualPage}/>
 
                     <div
                         className="mainContainerFlex-picker">
