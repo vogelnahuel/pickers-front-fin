@@ -20,11 +20,9 @@ function* getPendingUserPicker({ params }) {
         pendingUserAdminPickerMiddleware.getPendingUserPicker,
         params
     );
-    if (response.type === "W") {
-        debugger;
+    if (response.status !== 200) {
         yield put(actions.getPendingUserPickerError());
     } else {
-        debugger;
         const { result } = response.data;
         yield put(actions.getPendingUserPickerSuccess(result));
     }
@@ -32,40 +30,34 @@ function* getPendingUserPicker({ params }) {
 }
 
 function* getPendingUserPickerExport({ params }) {
-
     const response = yield call(
         pendingUserAdminPickerMiddleware.getPendingUserPickerExport,
         params
     );
 
-    
     if (response.type === "W") {
         yield put(actions.getPendingUserPickerExportError());
     } else {
         createCSV(response)
         yield put(actions.getPendingUserPickerExportSuccess(response));
-    }  
+    }
 }
 
 
 function* postPendingUserDocumentsEdit({ params }) {
-    debugger;
-    console.log(params)
-    debugger;
-    const response = yield call(
-        pendingUserAdminPickerMiddleware.postPendingUserDocumentsEdit,
-        
-        params
-    );
-    
-    if (response.type === "W") {
-       
-        yield put(actions.getPendingUserPickerDocumentsEditError());
-   
-    } else {
- 
-        window.location.href="/pendingUserAdmin";
-        yield put(actions.getPendingUserPickerDocumentsEditSuccess(response));
-    }                     
-    
+    // try {
+        const response = yield call(
+            pendingUserAdminPickerMiddleware.postPendingUserDocumentsEdit,
+            params
+        );
+        if (response.status !== 200) {
+            yield put(actions.getPendingUserPickerDocumentsEditError());
+        } else {
+            yield put(actions.getPendingUserPickerDocumentsEditSuccess());
+        }
+    // } catch (error) {
+    //     debugger
+    //     console.log(error);
+    // }
+
 }

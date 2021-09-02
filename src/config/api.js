@@ -12,24 +12,51 @@ import axios from 'axios';
 // }
 
 // const cachedEtags = new Map();
+//
 
-// axios.interceptors.request.use((request) => {
-//   let urlKey;
-//
-//   if (request.url.startsWith("/")) {
-//     urlKey = request.baseURL + request.url;
-//   } else {
-//     urlKey = request.url;
-//   }
-//
-//   // if (cachedEtags.has(urlKey)) {
-//   //   request.headers["If-None-Match"] = cachedEtags.get(urlKey);
-//   // }
-//   return request;
-// });
+
+
+const api = axios.create({
+    baseURL: process.env.REACT_APP_API_URL,
+    headers: {
+        "country-code":"ar",
+        "Access-Control-Allow-Origin": "true",
+        "Authorization":`Bearer ${window.localStorage.getItem('token')}`
+    },
+});
+
+axios.interceptors.request.use((request) => {
+  let urlKey;
+debugger
+  if (request.url.startsWith("/")) {
+    urlKey = request.baseURL + request.url;
+  } else {
+    urlKey = request.url;
+  }
+
+  // if (cachedEtags.has(urlKey)) {
+  //   request.headers["If-None-Match"] = cachedEtags.get(urlKey);
+  // }
+  return request;
+});
+// api.interceptors.response.use(
+//     (response) =>  { debugger;return response},
+//     (error) => {
+//         debugger
+//         if (error.response && error.response.status === 403) {
+//             window.localStorage.removeItem('token');
+//             api.defaults.headers = {
+//                 Authorization: null,
+//             };
+//             window.location.reload();
+//         }
+//         return Promise.reject(error);
+//     },
+// );
 
 axios.interceptors.response.use(
     (response) => {
+        debugger
       // if (response.headers.etag) {
       //   cachedEtags.set(response.request.responseURL, response.headers.etag);
       // }
@@ -42,9 +69,9 @@ axios.interceptors.response.use(
         return response;
       }
 
-      if (!response.data.code || response.data.code.endsWith("E")) {
-        throw response;
-      }
+      // if (!response.data.code || response.data.code.endsWith("E")) {
+      //   throw response;
+      // }
       // dejamos en type el tipo del error (I - Info, W - Warning, E - Error)
       // response.type = response.data.code.slice(-1);
 
@@ -82,19 +109,6 @@ axios.interceptors.response.use(
 );
 
 
-
-
-
-
-const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
-  headers: {
-    "country-code":"ar",
-    "Authorization":`Bearer ${window.localStorage.getItem('token')}`
- 
-  },
-});
-
 // api.interceptors.response.use(
 //   (response) => response,
 //   (err) => err
@@ -107,11 +121,10 @@ export const get = (path, query) => {
     );
 };
 
-export const post = (path, body, query) => {
+export const post = (path, body) => {
     return api.post(
         path,
-        body,
-        query
+        body
     );
 };
 

@@ -6,12 +6,10 @@ import {Field, Form} from "react-final-form";
 import or from "assets/admin/PendingUser/or.svg";
 import search from "assets/admin/PendingUser/search.svg";
 import MultipleSelect from "pages/transaction/filterTransaction/MultipleSelect";
+import { FILTER_TRANSACTION_OPTIONS } from "utils/constants";
 
 
-export const FilterTransaction = ({ onSubmit, filters, setFilters}) => {
-    const handleronChange = (value ) => {
-        setFilters({...filters, state: value===''? undefined : value});
-    };
+export const FilterTransaction = ({ onSubmit, filters, handlerOnChange}) => {
 
   return (
       <div className="display-filter-transaction">
@@ -74,7 +72,7 @@ export const FilterTransaction = ({ onSubmit, filters, setFilters}) => {
               </div>
               
               <div>
-                  <Field name="state" onChange={ handleronChange} placeholder="Seleccioná el estado" component={MultipleSelect}>
+                  <Field name="state" onChange={ handlerOnChange} options={FILTER_TRANSACTION_OPTIONS} placeholder="Seleccioná el estado" component={MultipleSelect}>
                  
                   </Field>
                 
