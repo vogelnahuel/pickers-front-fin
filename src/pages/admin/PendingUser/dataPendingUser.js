@@ -67,7 +67,7 @@ export const dataPendingUser = () => {
                             },
                         className:"filter-input",
                         type:"text",
-                        name:"Email",
+                        name:"email",
                         id:"Email",
                         placeholder:"Ingresá el email",                
             },

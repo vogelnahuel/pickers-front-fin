@@ -17,12 +17,12 @@ export const Fields = (props) => {
       
         if(e.target.textContent==="Bicicleta"){
             contenidoSelect.textContent= "Bicicleta";
-            hiddenInput.value="bici";
+            hiddenInput.value="bicycle";
             contenidoSelect.style.color="#101010"
         }
         if(e.target.textContent==="Moto"){
             contenidoSelect.textContent= "Moto";
-            hiddenInput.value="moto";
+            hiddenInput.value="motorcycle";
             contenidoSelect.style.color="#101010"
         }
         if(e.target.textContent==="Todos"){

@@ -1,16 +1,15 @@
 import React, { useState } from "react";
-import { Header } from "../../../component/admin/Header/Header";
-import { Nav } from "../../../component/admin/Nav/Nav";
+import { Header } from "component/admin/Header/Header";
+import { Nav } from "component/admin/Nav/Nav";
 import "./Pickers.scss";
-import { PendingBlue } from "../../../component/admin/Sub-Title-Image/PendingBlue";
-import exportar from "../../../assets/admin/PendingUser/exportar.svg";
-import or from "../../../assets/admin/PendingUser/or.svg";
-import { Filter } from "../../../component/admin/Filter/Filter";
-import { TableAdmin } from "../../../component/admin/table/TableAdmin";
-import { dataPendingUser } from "./dataPendingUser";
-import api from "../../../config/api";
-import createCSV from "../../../tools/createCSV.js";
-import { Modal } from "@pickit/pickit-components";
+import { PendingBlue } from "component/admin/Sub-Title-Image/PendingBlue";
+import exportar from "assets/admin/PendingUser/exportar.svg";
+import or from "assets/admin/PendingUser/or.svg";
+import { Filter } from "component/admin/Filter/Filter";
+import { TableAdmin } from "component/admin/table/TableAdmin";
+import { Modal } from "@pickit/pickit-components"
+import { dataPendingUser } from "pages/admin/PendingUser/dataPendingUser.js";
+
 
 export const PendingUserAdmin = ({
   changePage,
@@ -25,16 +24,11 @@ export const PendingUserAdmin = ({
   seeMore,
   getMorePendingUser,
   getPendingUsersExportRequest,
+  setPendingUserFilters,
 }) => {
 
   const [FieldsPart] = dataPendingUser();
   const [ExportModal, setExportModal] = useState(false);
-  const [dataExport, setdataExport] = useState({
-    dni: "",
-    nombre: "",
-    mail: "",
-    vehiculo: "",
-  });
 
 
 
@@ -71,7 +65,18 @@ export const PendingUserAdmin = ({
             </button>
           </div>
 
-          <Filter FieldsPart={FieldsPart} onSubmit={()=>{getPendingUser({...filters,...filtersExtra})}} />
+          <Filter FieldsPart={FieldsPart} onSubmit={(e)=>{
+            e.preventDefault();
+            e.stopPropagation();
+            let filters= {
+              name:e.target.NyA.value?e.target.NyA.value:null,
+              mail:e.target.Email.value?e.target.Email.value:null,
+              dni:e.target.dni.value?e.target.dni.value:null,
+              vehicleType: e.target.Vehículo.value?e.target.Vehículo.value:null,
+            };
+              setPendingUserFilters(filters)
+              getPendingUser({...filters,...filtersExtra})
+            }} />
           <br />
           <TableAdmin tableTitles={tableTitles} data={pendingUsers} actualPage={actualPage} />
           {
@@ -81,7 +86,6 @@ export const PendingUserAdmin = ({
                     {
                         seeMore?
                         <>
-                        {console.log({...filters,...filtersExtraSeeMore },"filtersSeemore")}
                           <button onClick={ ()=>getMorePendingUser({...filters,...filtersExtraSeeMore })}
                          className="paginator-button">
                             Ver más

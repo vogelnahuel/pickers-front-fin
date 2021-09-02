@@ -28,7 +28,7 @@ export const Transaction = ({
                                 isFetching,
                                 transactions,
                                 openExportModal,
-                                getTransactions,
+                                getMoreTransactions,
                                 getTransactionsExportRequest,
                                 closeExportModal,
                                 filters,
@@ -292,7 +292,7 @@ export const Transaction = ({
                     {transactions && transactions.length !== 0 ? <>
                             { VerMas?
                                 <button
-                                    onClick={()=>getTransactions({...filtersExtraSeeMore, ...filters})}
+                                    onClick={()=>getMoreTransactions({...filtersExtraSeeMore, ...filters})}
                                     className="paginator-button-transaction"
                                 >
                                     Ver más

@@ -47,6 +47,9 @@ const mapDispatchToProps = (dispatch) => ({
     setFilters: (filters) => {
         dispatch(transactionActions.setTransactionFilters(filters));
     },
+    getMoreTransactions: (params) => {
+        dispatch(transactionActions.getMoreTransactionsRequest(params));
+    },
    
 });
 

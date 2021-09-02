@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { actions as pendingUserActions, selectors as pendingUserSelectors} from "reducers/PendingUser";
 import { PendingUserAdmin } from "pages/admin/PendingUser/Pickers";
+import {titulosAdminPending,titulosAdminActive} from "utils/constants"
+
 
 
 
@@ -18,23 +20,7 @@ const PendingUserAdminContainer = (props) => {
    props.setPendingUserExtraFilters({offset:props.filtersExtra.offset+props.pag})
   }
 
-
-    const titulosAdminPending = [
-        "Nombre",
-        "DNI",
-        "Email",
-        "Vehículo",
-        "Pendiente hace",
-        "Editar",
-      ];
-      const titulosAdminActive = [
-        "Nombre",
-        "DNI",
-        "Email",
-        "Vehículo",
-        "Estado",
-        "Editar",
-      ];
+  
     useEffect(() => {
       const filters = props.actualPage==="PENDING"?{pickerStatusId:"2,3"}:{pickerStatusId:"4,5"};
       const filtersExtra={limit:window.screen.height<700 || window.screen.height<760 ? 3 : 5};
@@ -71,15 +57,15 @@ const mapDispatchToProps = (dispatch) => ({
     },
     setPendingUserExtraFilters:(extraFilters)=>{
       dispatch(pendingUserActions.setPendingUserExtraFilters(extraFilters));
-  },
-  setActualPage:(page)=>{
-    dispatch(pendingUserActions.setActualPage(page));
-  },
-  getPendingUsersExportRequest:(params)=>{
-    dispatch(pendingUserActions.getPendingUserExportRequest(params))
-  },
-  getMorePendingUser: (params) => {
-    dispatch(pendingUserActions.getMorePendingUserRequest(params));
-},
+    },
+    setActualPage:(page)=>{
+      dispatch(pendingUserActions.setActualPage(page));
+    },
+    getPendingUsersExportRequest:(params)=>{
+      dispatch(pendingUserActions.getPendingUserExportRequest(params))
+    },
+    getMorePendingUser: (params) => {
+      dispatch(pendingUserActions.getMorePendingUserRequest(params));
+    },
 });
 export default connect(mapStateToProps, mapDispatchToProps)(PendingUserAdminContainer);

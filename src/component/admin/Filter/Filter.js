@@ -6,10 +6,8 @@ import search from  '../../../assets/admin/PendingUser/search.svg'
 import { Fields } from './Fields'
 
     /****diseño del filtro y muestra inputs*/
-export const Filter = (props) => {
-    const {onSubmit} = props;
+export const Filter = ({onSubmit, FieldsPart}) => {
  
-
     return (
         <div className="form-fiter">
                 <div className="form-filter-img-p">
@@ -19,7 +17,7 @@ export const Filter = (props) => {
                 <form className="filter-inputs" onSubmit={onSubmit}>
                     <div className="filter-padding">
                             <Fields
-                            FieldsPart={props.FieldsPart}
+                            FieldsPart={FieldsPart}
                             />
                                         
                             <div className="container-button-width">
