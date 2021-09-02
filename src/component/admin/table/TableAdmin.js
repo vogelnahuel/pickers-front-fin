@@ -93,7 +93,7 @@ export const TableAdmin = (props) => {
                                 )}
 
                                 <td className="table-editar table-editar-active">
-                                    <Link  to ={`/activeUserAdminpicker/${rows.id}`} > <img src={edit} className="aditar-picker-img" alt="edit" /></Link>
+                                    <Link  to ={`/pendingUserAdminpicker/${rows.id}`} > <img src={edit} className="aditar-picker-img" alt="edit" /></Link>
                                 </td>
                                 <td></td>
                             </tr>

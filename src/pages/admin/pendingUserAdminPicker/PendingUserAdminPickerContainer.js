@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { actions as pendingUserAdminPickerActions, selectors as pendingUserAdminPickerSelectors} from "reducers/pendingUserAdminPicker";
 import { PendingUserAdminPicker } from "pages/admin/pendingUserAdminPicker/PendingUserAdminPicker"
 import {useParams} from "react-router-dom";
+import moment from "moment";
 
 const PendingUserAdminPickerContainer = (props) => {
     const params = useParams();
@@ -11,8 +12,16 @@ const PendingUserAdminPickerContainer = (props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    const onSubmit = (values) => {
+        let pickerUpdated = {
+            ...values,
+            dateOfBirth: moment(values.dateOfBirth, "DD/MM/YYYY").format("YYYY-MM-DD")
+        }
+        props.postPendingUserDocumentsEdit(pickerUpdated);
+    };
+
     return (
-        <PendingUserAdminPicker {...props}/>
+        <PendingUserAdminPicker {...props} onSubmit={onSubmit}/>
     );
 }
 
