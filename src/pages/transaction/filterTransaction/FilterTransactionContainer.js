@@ -40,10 +40,14 @@ const FilterTransactionContainer = (props) => {
         props.getTransactions({...filtersApplied, ...props.filtersExtra});
         props.setExportEnabled(filtersApplied.pickerId || filtersApplied.transactionCode || filtersApplied.minMinDeliveryDate);
         props.setFilters(filtersApplied);
-    }
+    };
+
+    const handlerOnChange = (value ) => {
+        props.setFilters({...props.filters, state: value===''? undefined : value});
+    };
 
     return (
-        <FilterTransaction {...props} onSubmit={onSubmit}/>
+        <FilterTransaction {...props} onSubmit={onSubmit} handlerOnChange={handlerOnChange}/>
     );
 }
 
