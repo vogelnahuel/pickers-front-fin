@@ -11,9 +11,7 @@ import {Modal} from '@pickit/pickit-components'
 
 export const Login = ({postLogin,login,isFetching}) => {
 
-  console.log(postLogin)
-  console.log(login)
-  console.log(isFetching)
+
 
 
     const [mail, setmail] = useState("")
@@ -142,12 +140,9 @@ const handleInputBlur = (e) => {
 
 
 
-const handleSubmit = async (e) => {
+const handleSubmit = (e) => {
 
   e.preventDefault();
-
-  console.log("entre")
-  
 
  if(mail==='' || errorMail===true || password==='' || errorPassWord===true){
       if(mail===''){
