@@ -2,7 +2,7 @@ import React from 'react'
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import  DashboardContainer  from 'pages/dashboard/DashboardAdminContainer';
 import {EmailRestore} from 'pages/login/email/EmailRestore';
-import Login from 'pages/login/Login'
+import Login from 'pages/login/LoginContainer'
 import { RestorePassword } from 'pages/login/restorePassword/RestorePassword';
 import PendingUserAdmin from 'pages/admin/PendingUser/PickersContainer'
 // import {ActiveUserAdmin} from 'pages/admin/ActiveUser/ActiveUserAdmin'
