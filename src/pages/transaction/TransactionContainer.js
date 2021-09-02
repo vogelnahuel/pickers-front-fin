@@ -8,7 +8,8 @@ import parseQueryParams from "utils/queryParams/parseQueryParams"
 const TransactionContainer = (props) => {
     const params = useLocation()
     useEffect(() => {
-        const filters = parseQueryParams(params.search)
+        props.reset();
+        const filters = parseQueryParams(params.search);
         props.getTransactions({...props.filtersExtra, ...filters});
         props.setFilters(filters);
     }, [])
@@ -46,6 +47,7 @@ const mapDispatchToProps = (dispatch) => ({
     setFilters: (filters) => {
         dispatch(transactionActions.setTransactionFilters(filters));
     },
+   
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TransactionContainer);

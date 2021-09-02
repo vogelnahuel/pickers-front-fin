@@ -7,6 +7,7 @@ import createCSV from "tools/createCSV";
 const sagas = [
     takeLatest(types.TRANSACTIONS_GET_REQUEST, getTransactions),
     takeLatest(types.TRANSACTIONS_EXPORT_REQUEST, getTransactionsExport),
+    takeLatest(types.TRANSACTIONS_GET_MORE_REQUEST, getMoreTransactions),
 ];
 
 export default sagas;
@@ -21,6 +22,19 @@ function* getTransactions({ params }) {
     } else {
         const { result: {items}, limit, offset } = response.data;
         yield put(actions.getTransactionsSuccess({ items, limit, offset }));
+    }
+
+}
+function* getMoreTransactions({ params }) {
+    const response = yield call(
+        transactionsMiddleware.getTransactions,
+        params
+    );
+    if (response.status !== 200) {
+        yield put(actions.getTransactionsError());
+    } else {
+        const { result: {items}, limit, offset,hasMore } = response.data;
+        yield put(actions.getMoreTransactionsSuccess({ items, limit, offset,hasMore }));
     }
 
 }

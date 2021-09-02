@@ -2,7 +2,11 @@ export const TRANSACTIONS = "transactions/TRANSACTIONS";
 
 export const types = {
     TRANSACTIONS_GET_REQUEST: `${TRANSACTIONS}_GET_REQUEST`,
+    TRANSACTIONS_GET_MORE_REQUEST: `${TRANSACTIONS}_GET_MORE_REQUEST`,
     TRANSACTIONS_GET_SUCCESS: `${TRANSACTIONS}_GET_SUCCESS`,
+    TRANSACTIONS_GET_MORE_SUCCESS: `${TRANSACTIONS}_GET_MORE_SUCCESS`,
+
+    
     TRANSACTIONS_GET_ERROR: `${TRANSACTIONS}_GET_ERROR`,
     TRANSACTIONS_EXPORT_REQUEST: `${TRANSACTIONS}_EXPORT_REQUEST`,
     TRANSACTIONS_EXPORT_SUCCESS: `${TRANSACTIONS}_EXPORT_SUCCESS`,
@@ -37,8 +41,16 @@ export const actions = {
         type: types.TRANSACTIONS_GET_REQUEST,
         params,
     }),
+    getMoreTransactionsRequest: (params) => ({
+        type: types.TRANSACTIONS_GET_MORE_REQUEST,
+        params,
+    }),
     getTransactionsSuccess: (transactions) => ({
         type: types.TRANSACTIONS_GET_SUCCESS,
+        transactions
+    }),
+    getMoreTransactionsSuccess: (transactions) => ({
+        type: types.TRANSACTIONS_GET_MORE_SUCCESS,
         transactions
     }),
     getTransactionsError: () => ({
@@ -93,6 +105,16 @@ const reducer =(state = INITIAL_STATE, action = {}) => {
             return {
                 ...state,
                 transactions: action.transactions.items,
+                filtersExtraSeeMore: {
+                    ...state.filtersExtraSeeMore,
+                    offset: action.transactions.offset + action.transactions.limit
+                },
+                fetching: false,
+            }; 
+            case types.TRANSACTIONS_GET_MORE_SUCCESS:
+            return {
+                ...state,
+                transactions: state.transactions.concat(action.transactions.items),
                 filtersExtraSeeMore: {
                     ...state.filtersExtraSeeMore,
                     offset: action.transactions.offset + action.transactions.limit

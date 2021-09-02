@@ -19,10 +19,12 @@ export const PendingUserAdmin = ({
   pendingUsers,
   filters,
   filtersExtra,
-  fetching,
+  filtersExtraSeeMore,
+  isFetching,
   getPendingUser,
   seeMore,
-  loadMore,
+  getMorePendingUser,
+  getPendingUsersExportRequest,
 }) => {
 
   const [FieldsPart] = dataPendingUser();
@@ -44,29 +46,9 @@ export const PendingUserAdmin = ({
   };
 
   const Export = async () => {
-    setExportModal(true);
-    const datosExport = await api
-      .get(
-        `/ms-admin-rest/api/v1.0/pickers.csv?pickerStatusId=2,3${
-          dataExport.nombre ? `&name=${dataExport.nombre}` : ""
-        }${
-          dataExport.vehiculo && dataExport.vehiculo !== "DEFAULT"
-            ? `&vehicleTypeId=${dataExport.vehiculo === "moto" ? 1 : 2}`
-            : ""
-        }${
-          dataExport.dni
-            ? `&identificationNumber=${parseInt(dataExport.dni)}`
-            : ""
-        }${dataExport.mail ? `&email=${dataExport.mail}` : ""}`
-      )
-      .then((res) => {
-        return res;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-    createCSV(datosExport);
+    getPendingUsersExportRequest(filters)
+    setExportModal(true)
+    
   };
 
   return (
@@ -80,7 +62,7 @@ export const PendingUserAdmin = ({
 
           <div className="mainContainerFlex">
             <h2 className="subTitle-pending">
-              <p className="subtitle-pendingUser-h2">Solicitudes pendientes</p>
+              <p className="subtitle-pendingUser-h2">{actualPage==="PENDING"?"Solicitudes pendientes":"Pickers"} </p>
             </h2>
             <button onClick={Export} className="export" name="export">
               <img src={exportar} alt="export" />
@@ -99,7 +81,8 @@ export const PendingUserAdmin = ({
                     {
                         seeMore?
                         <>
-                          <button onClick={ ()=>loadMore()}
+                        {console.log({...filters,...filtersExtraSeeMore },"filtersSeemore")}
+                          <button onClick={ ()=>getMorePendingUser({...filters,...filtersExtraSeeMore })}
                          className="paginator-button">
                             Ver más
                           </button>
@@ -152,7 +135,7 @@ export const PendingUserAdmin = ({
         ) : null}
       </div>
       {
-              fetching ===true  ? 
+              isFetching === true  ? 
               <div className="modalLoading">
                 
               </div>
