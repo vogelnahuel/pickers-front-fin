@@ -66,8 +66,9 @@ export const PendingUserAdmin = ({
           </div>
 
           <Filter onSubmit={(values)=>{
+
             setPendingUserFilters(values)
-          getPendingUser({...filters,...filtersExtra})
+          getPendingUser({...values,...filtersExtra})
             }} 
           />
           <br />
