@@ -19,14 +19,15 @@ import { call, spawn, all } from "redux-saga/effects";
 import transactions from "sagas/transactions";
 import pendingUser from "sagas/pendingUsers";
 import dashboard from "sagas/dashboard";
-
 import pendingUserAdminPicker from "sagas/pendingUserAdminPicker"
+import login from "sagas/login";
 
 const sagas = [
     ...transactions,
     ...pendingUser,
     ...dashboard,  
-    ...pendingUserAdminPicker
+    ...pendingUserAdminPicker,
+    ...login
 ];
 
 export default function* rootSaga() {
@@ -54,6 +55,7 @@ export default function* rootSaga() {
                             saga,
                         );
                     } catch (error) {
+                        debugger;
                         httpError = typeof error.httpError !== "undefined";
                         if (!httpError && isSyncError) {
                             throw new Error(`${saga.name} was terminated because it threw an exception on startup.`);
