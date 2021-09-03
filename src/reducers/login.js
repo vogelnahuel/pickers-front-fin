@@ -3,6 +3,8 @@ export const types = {
     LOGIN_GET_REQUEST: `LOGIN_GET_REQUEST`,
     LOGIN_GET_SUCCESS: `LOGIN_GET_SUCCESS`,
     LOGIN_GET_ERROR: `LOGIN_GET_ERROR`,
+
+    LOGOUT: `LOGOUT`,
 };
 
 
@@ -25,6 +27,9 @@ export const actions = {
     getLoginError: () => ({
         type: types.LOGIN_GET_ERROR,
     }),
+    logout: () => ({
+        type: types.LOGOUT,
+    }),
 };
 
 export const selectors = {
@@ -41,6 +46,10 @@ const reducer =(state = INITIAL_STATE, action = {}) => {
                 ...state,
                 fetching: true,
             };
+            case types.LOGOUT:
+            return {
+                    ...INITIAL_STATE
+                };
         case types.LOGIN_GET_SUCCESS:
             return {
                 ...state,

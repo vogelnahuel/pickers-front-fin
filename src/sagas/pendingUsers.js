@@ -3,6 +3,7 @@ import { types, actions } from "reducers/PendingUser";
 // import { actions as notificationActions } from "reducers/notification";
 import * as pendingMiddleware from "middleware/pendingUser";
 import createCSV from "tools/createCSV";
+///////import { resolve } from "path/posix";
 
 const sagas = [takeLatest(types.PENDING_USER_GET_REQUEST, getPendingUser),
     takeLatest(types.PENDING_USER_EXPORT_GET_REQUEST, getPendingUserExport),
@@ -16,8 +17,10 @@ function* getPendingUser({ params }) {
         params
         );
     if (response.type === "W") {
+        console.log(response)
         yield put(actions.getPendingUserError());
     } else {
+        console.log(response)
         const { result: {items}, limit, offset, hasMore } = response.data;
         yield put(actions.getPendingUserSuccess({ items, limit, offset, hasMore }));
     }
@@ -47,10 +50,12 @@ function* getPendingUserExport({ params }) {
         params
     );
 
-    
+   
     if (response.type === "W") {
+        console.log(response,"")
         yield put(actions.getPendingUserExportError());
     } else {
+        console.log(response)
         createCSV(response)
         yield put(actions.getPendingUserSuccess(response));
     }  

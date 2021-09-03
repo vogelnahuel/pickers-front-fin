@@ -89,6 +89,10 @@ export const actions = {
         type: types.PENDING_USER_EXPORT_GET_REQUEST,
         params,
     }),
+    getPendingUserExportError: (params) => ({
+        type: types.PENDING_USER_EXPORT_GET_ERROR,
+        params,
+    }),
 
 };
 

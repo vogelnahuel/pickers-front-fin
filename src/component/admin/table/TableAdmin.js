@@ -54,9 +54,9 @@ export const TableAdmin = (props) => {
                                 </td>
                                 <td>
                                     {" "}
-                                    {rows.vehicleTypeId === 1
+                                    {rows.vehicleType === "motorcycle"
                                         ? "Moto"
-                                        : rows.vehicleTypeId === 2
+                                        : rows.vehicleType === "bicycle"
                                             ? "Bici"
                                             : null}
                                 </td>
@@ -79,9 +79,9 @@ export const TableAdmin = (props) => {
                                 <td> {row.email.length > 35 ? row.email.substring(0,35)+'...': row.email}</td>
                                 <td>
                                     {" "}
-                                    {row.vehicleTypeId === 1
+                                    {row.vehicleType === "motorcycle"
                                         ? "Moto"
-                                        : row.vehicleTypeId === 2
+                                        : row.vehicleType === "bicycle"
                                             ? "Bici"
                                             : null}
                                 </td>

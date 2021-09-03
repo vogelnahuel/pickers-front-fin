@@ -57,14 +57,15 @@ export const Filter = ({onSubmit}) => {
 
           <div>
             <div className="transaction-filter-div-label">
-              <label className="label-filter-transaction">Id de picker</label>
+              <label className="label-filter-transaction">Vehículo</label>
             </div>
-            <div>
+            <div >
               <Field
                 type="input"
                 name="vehicleType"
                 component="select"
                 placeholder="Vehículo"
+                className="filter-admin-inputSelect"
               >
                   <option value="">Todo</option>
                   <option value="bicycle">Bicicleta</option>

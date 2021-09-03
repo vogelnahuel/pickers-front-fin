@@ -27,7 +27,6 @@ const api = axios.create({
 
 axios.interceptors.request.use((request) => {
   let urlKey;
-debugger
   if (request.url.startsWith("/")) {
     urlKey = request.baseURL + request.url;
   } else {
@@ -54,9 +53,10 @@ debugger
 //     },
 // );
 
-axios.interceptors.response.use(
+api.interceptors.response.use(
     (response) => {
-        debugger
+      console.log(response,"respose api")
+       
       // if (response.headers.etag) {
       //   cachedEtags.set(response.request.responseURL, response.headers.etag);
       // }
@@ -86,12 +86,13 @@ axios.interceptors.response.use(
       // } else if (response.data.code === "API010W") {
       //   throw response;
       // }
-
+      debugger
       return response;
     },
     (error) => {
+      console.log(error)
       if (error.response) {
-
+          
         if (
             error.response.status === 304 ||
             (error.response.status === 401 && error.response.data.code === "API007E")

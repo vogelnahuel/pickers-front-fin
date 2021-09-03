@@ -1,6 +1,6 @@
 // import { push, replace } from "react-router-redux";
 // import { delay } from "redux-saga";
-import { call, spawn, all } from "redux-saga/effects";
+import { call, spawn,put, all } from "redux-saga/effects";
 // import globalTypes from "reducers/types/global";
 // import { types as configTypes, selectors as configSelectors } from "reducers/config";
 // import { types as i18nTypes, selectors as i18nSelectors } from "reducers/i18n";
@@ -21,13 +21,20 @@ import pendingUser from "sagas/pendingUsers";
 import dashboard from "sagas/dashboard";
 import pendingUserAdminPicker from "sagas/pendingUserAdminPicker"
 import login from "sagas/login";
+import { types, actions } from "reducers/login";
+
+// const sagas = [
+//     takeLatest(types.LOGIN_GET_REQUEST, getLogin)
+// ];
+
 
 const sagas = [
     ...transactions,
     ...pendingUser,
     ...dashboard,  
     ...pendingUserAdminPicker,
-    ...login
+    ...login,
+
 ];
 
 export default function* rootSaga() {
@@ -55,7 +62,6 @@ export default function* rootSaga() {
                             saga,
                         );
                     } catch (error) {
-                        debugger;
                         httpError = typeof error.httpError !== "undefined";
                         if (!httpError && isSyncError) {
                             throw new Error(`${saga.name} was terminated because it threw an exception on startup.`);
@@ -75,7 +81,23 @@ export default function* rootSaga() {
     );
 }
 
+// eslint-disable-next-line require-yield
 export function* handleError(error) {
+    console.log(error.response)
+    const status = error.response.data.statusCode
+    debugger
+    if (status===401) {
+        yield put(actions.logout())
+    
+    }
+
+
+
+
+
+
+
+
     // let errorControlled = false;
     //
     // if (error.data) {
