@@ -18,6 +18,9 @@ export const types = {
     PENDING_USER_GET_MORE_REQUEST: `${PENDING_USER}_GET_MORE_REQUEST`,
     PENDING_USER_GET_MORE_SUCCESS: `${PENDING_USER}_GET_MORE_SUCCESS`,
     PENDING_USER_GET_MORE_ERROR: `${PENDING_USER}_GET_MORE_ERROR`,
+
+    PENDING_USER_RESET: `${PENDING_USER}_RESET`,
+
 };
 
 export const INITIAL_STATE = {
@@ -39,6 +42,9 @@ export const INITIAL_STATE = {
 };
 
 export const actions = {
+    reset: () => ({
+        type: types.PENDING_USER_RESET
+    }),
     getPendingUserRequest: (params) => ({
         type: types.PENDING_USER_GET_REQUEST,
         params,
@@ -101,6 +107,11 @@ export const selectors = {
 
 const reducer =(state = INITIAL_STATE, action = {}) => {
     switch (action.type) {
+        case types.PENDING_USER_RESET:
+            console.log("reset")
+            return {
+                ...INITIAL_STATE,
+            };
         case types.PENDING_USER_GET_REQUEST:
             return {
                 ...state,

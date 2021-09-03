@@ -9,6 +9,7 @@ import { Filter } from "component/admin/Filter/Filter";
 import { TableAdmin } from "component/admin/table/TableAdmin";
 import { Modal } from "@pickit/pickit-components"
 import { dataPendingUser } from "pages/admin/PendingUser/dataPendingUser.js";
+import { on } from "events";
 
 
 export const PendingUserAdmin = ({
@@ -29,7 +30,6 @@ export const PendingUserAdmin = ({
 
   const [FieldsPart] = dataPendingUser();
   const [ExportModal, setExportModal] = useState(false);
-
 
 
 
@@ -65,18 +65,11 @@ export const PendingUserAdmin = ({
             </button>
           </div>
 
-          <Filter FieldsPart={FieldsPart} onSubmit={(e)=>{
-            e.preventDefault();
-            e.stopPropagation();
-            let filters= {
-              name:e.target.NyA.value?e.target.NyA.value:null,
-              mail:e.target.Email.value?e.target.Email.value:null,
-              dni:e.target.dni.value?e.target.dni.value:null,
-              vehicleType: e.target.Vehículo.value?e.target.Vehículo.value:null,
-            };
-              setPendingUserFilters(filters)
-              getPendingUser({...filters,...filtersExtra})
-            }} />
+          <Filter onSubmit={(values)=>{
+            setPendingUserFilters(values)
+          getPendingUser({...filters,...filtersExtra})
+            }} 
+          />
           <br />
           <TableAdmin tableTitles={tableTitles} data={pendingUsers} actualPage={actualPage} />
           {

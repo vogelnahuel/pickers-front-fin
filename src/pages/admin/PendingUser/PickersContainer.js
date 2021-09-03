@@ -19,7 +19,10 @@ const PendingUserAdminContainer = (props) => {
    props.getMorePendingUser(props.filtersExtraSeeMore)
    props.setPendingUserExtraFilters({offset:props.filtersExtra.offset+props.pag})
   }
+useEffect(() => {
+  props.reset()
 
+}, [])
   
     useEffect(() => {
       const filters = props.actualPage==="PENDING"?{pickerStatusId:"2,3"}:{pickerStatusId:"4,5"};
@@ -49,6 +52,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  reset: () => {
+    dispatch(pendingUserActions.reset());
+},
     getPendingUser: (params) => {
         dispatch(pendingUserActions.getPendingUserRequest(params));
     },
