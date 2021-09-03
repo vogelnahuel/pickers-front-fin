@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
+    "classnames": "^2.3.1",
     "cors": "^2.8.5",
     "env-cmd": "^10.1.0",
     "final-form": "^4.20.2",
@@ -28,7 +29,8 @@
     "redux-thunk": "^2.3.0",
     "sweetalert2": "^11.0.0",
     "universal-cookie": "^4.0.4",
-    "web-vitals": "^1.1.1"
+    "web-vitals": "^1.1.1",
+    "yup": "^0.32.9"
   },
   "scripts": {
     "start:dev": "PORT=33000 env-cmd -f ./environments/.env.dev react-scripts start",

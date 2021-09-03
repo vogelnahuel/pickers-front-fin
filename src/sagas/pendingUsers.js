@@ -33,7 +33,6 @@ function* getMorePendingUser({ params }) {
     if (response.type === "W") {
         yield put(actions.getPendingUserError());
     } else {
-        debugger
         const { result: {items}, limit, offset, hasMore } = response.data;
         yield put(actions.getMorePendingUserSuccess({ items, limit, offset, hasMore }));
     }
