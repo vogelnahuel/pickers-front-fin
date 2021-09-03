@@ -6,12 +6,16 @@ import {Field, Form} from "react-final-form";
 import or from "assets/admin/PendingUser/or.svg";
 import search from "assets/admin/PendingUser/search.svg";
 import MultipleSelect from "pages/transaction/filterTransaction/MultipleSelect";
+import { Modal } from "@pickit/pickit-components";
 
 
-export const FilterTransaction = ({ onSubmit, filters, setFilters}) => {
-    const handleronChange = (value ) => {
+export const FilterTransaction = ({ onSubmit, filters, setFilters,onChange,modalErrorDatePicker=false ,closeModalDatePicker}) => {
+  console.log(modalErrorDatePicker)
+  const handleronChange = (value ) => {
         setFilters({...filters, state: value===''? undefined : value});
     };
+
+
 
   return (
       <div className="display-filter-transaction">
@@ -24,8 +28,12 @@ export const FilterTransaction = ({ onSubmit, filters, setFilters}) => {
           <p className="p-filter-transaction">Filtros</p>
 
         </div>
-        <Form onSubmit={onSubmit} initialValues={filters}>
-          {({ handleSubmit }) => (
+        <Form onSubmit={onSubmit} initialValues={filters}
+          //validate={ values =>  {onChange(values)} }
+          >
+          {
+           
+          ({ handleSubmit }) => (
             <form className="form-filter-transaction" onSubmit={handleSubmit}>
               <div>
                 <div className="transaction-filter-div-label">
@@ -39,6 +47,7 @@ export const FilterTransaction = ({ onSubmit, filters, setFilters}) => {
                     name="transactionCode"
                     component="input"
                     placeholder="Ingresá el código"
+                
                   />
                 </div>
               </div>
@@ -58,7 +67,7 @@ export const FilterTransaction = ({ onSubmit, filters, setFilters}) => {
               <div className="datePicker-filter-transaction">
                 <div className="transaction-filter-div-label">
                   <label className="label-filter-transaction">
-                    Fecha de entrega
+                      Vencimiento SLA
                   </label>
                 </div>
                 <div>
@@ -69,6 +78,8 @@ export const FilterTransaction = ({ onSubmit, filters, setFilters}) => {
                     component={DatePicker}
                     placeholder="Seleccioná la fecha"
                     language="es"
+                    value=""
+                   // onChange={(e)=>{console.log(e)}}
                   />
                 </div>
               </div>
@@ -104,6 +115,36 @@ export const FilterTransaction = ({ onSubmit, filters, setFilters}) => {
             </form>
           )}
         </Form>
+
+            {
+              modalErrorDatePicker &&  
+              
+              <div className="contendor-modal-pending-pickers-aprobar">
+            
+                    <Modal width="750px" height="351px" isOpen={modalErrorDatePicker} >
+                
+                      <div className="container-modal">
+                        <div className="modal-success-title">
+                          <p className="p-modal-error-title">Exportaste exitosamente</p>
+                        </div>
+                        <div className="modal-error-subtitle">
+                          <p className="p-modal-error-subtitle">
+                            El archivo se descargo correctamente
+                          </p>
+                          <div className="button-pending-picker-modal">
+                            <button
+                              onClick={closeModalDatePicker}
+                              className="button-modal-aprobar-exito"
+                            >
+                              Entendido
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </Modal>
+              </div>
+            }
+
       </div>
   );
 };

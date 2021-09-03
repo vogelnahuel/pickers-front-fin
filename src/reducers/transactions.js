@@ -22,9 +22,10 @@ export const INITIAL_STATE = {
     exportDisabled: true,
     transactions: [],
     openExportModal: false,
+    //openErrorDatePicker:false,
     filters: {},
     filtersExtra:{
-        limit: 5,
+        limit: 3,
         offset: 0
     },
     filtersExtraSeeMore: {
