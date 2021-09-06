@@ -1,21 +1,15 @@
-import React, { useState } from 'react'
+import React from 'react'
 import volver from '../../../assets/admin/PendingUser/volver.svg'
 import relojAzul from '../../../assets/admin/PendingUser/relojAzul.svg'
 import relojOscuro from '../../../assets/admin/PendingUser/relojOscuro.svg'
 import trabajadorOscuro from '../../../assets/admin/PendingUser/trabajadorOscuro.svg'
 import trabajadorAzul from '../../../assets/admin/PendingUser/trabajadorAzul.svg'
 import './pending.scss'
-import { Redirect, useHistory, useParams } from 'react-router-dom'
-//import { get } from 'config/api'
+import {useHistory} from 'react-router-dom'
 
 export const PendingBlue = ({changePage,actualPage}) => {
     
     const Historial = useHistory();
-    const {id} = useParams();
-    
-
-    // const [pendingAdmin, setPending] = useState("/pendingUserAdmin");
-    // const [pendingAdminPicker, setPendingPicker] = useState(`/pendingUserAdminpicker/${id}`);
 
 
 const handleHistory = () => {
