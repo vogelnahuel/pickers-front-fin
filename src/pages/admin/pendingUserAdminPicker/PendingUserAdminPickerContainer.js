@@ -1,9 +1,11 @@
-import React, { useEffect} from "react";
-import { connect } from "react-redux";
-import { actions as pendingUserAdminPickerActions, selectors as pendingUserAdminPickerSelectors} from "reducers/pendingUserAdminPicker";
-import { PendingUserAdminPicker } from "pages/admin/pendingUserAdminPicker/PendingUserAdminPicker"
+import React, {useEffect} from "react";
+import {connect} from "react-redux";
+import {
+    actions as pendingUserAdminPickerActions,
+    selectors as pendingUserAdminPickerSelectors
+} from "reducers/pendingUserAdminPicker";
+import {PendingUserAdminPicker} from "pages/admin/pendingUserAdminPicker/PendingUserAdminPicker"
 import {useHistory, useParams} from "react-router-dom";
-import moment from "moment";
 import {actions as pendingUserActions, selectors as pendingUserSelectors} from "reducers/PendingUser";
 import * as yup from "yup";
 

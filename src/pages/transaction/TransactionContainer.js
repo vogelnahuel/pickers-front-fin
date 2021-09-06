@@ -12,6 +12,7 @@ const TransactionContainer = (props) => {
         const filters = parseQueryParams(params.search);
         props.getTransactions({...props.filtersExtra, ...filters});
         props.setFilters(filters);
+        // eslint-disable-next-line
     }, [])
 
     return (

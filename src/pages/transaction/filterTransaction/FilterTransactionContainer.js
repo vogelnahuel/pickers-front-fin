@@ -25,7 +25,7 @@ const FilterTransactionContainer = (props) => {
     const takeFilters = (values) => {
         let formatedDate = formatDate(values.date);
         return {
-            ... props.filters,
+            ...props.filters,
             ...formatedDate,
             state: values.state,
             pickerId: values.pickerId,
