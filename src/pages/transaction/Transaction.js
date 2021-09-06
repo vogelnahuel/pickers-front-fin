@@ -1,26 +1,22 @@
-
-import React, { useEffect, useState } from "react";
-import {  useParams} from "react-router-dom";
-import { Header } from "component/admin/Header/Header";
-import { Nav } from "component/admin/Nav/Nav";
-import { TableTransaction } from "component/transaction/tableTransaction/TableTransaction";
+import React, {useEffect, useState} from "react";
+import {Header} from "component/admin/Header/Header";
+import {Nav} from "component/admin/Nav/Nav";
+import {TableTransaction} from "component/transaction/tableTransaction/TableTransaction";
 import "./transaction.scss";
 import FilterTransaction from "pages/transaction/filterTransaction/FilterTransactionContainer";
-import { Modal } from "@pickit/pickit-components";
-import { OptionList } from "component/transaction/OptionList/OptionList";
+import {Modal} from "@pickit/pickit-components";
+import {OptionList} from "component/transaction/OptionList/OptionList";
 import exportar from "assets/admin/PendingUser/exportar.svg";
 import or from "assets/admin/PendingUser/or.svg";
-import  exportDisabledIcon from "assets/transaction/ExportDisabled.svg";
+import exportDisabledIcon from "assets/transaction/ExportDisabled.svg";
 import orDisabled from "assets/transaction/OrDisabled.svg";
 
 import Close from "assets/transaction/Close.svg";
 
 import api from "../../middleware/api";
-import createCSV from "tools/createCSV";
 import stateName from "component/transaction/tableTransaction/statesNames";
 import moment from "moment";
 import button from "../../assets/admin/ActiveUserAdminPicker/button.svg";
-
 
 
 export const Transaction = ({
@@ -32,25 +28,26 @@ export const Transaction = ({
                                 getTransactionsExportRequest,
                                 closeExportModal,
                                 filters,
+                                seeMore,
                                 filtersExtraSeeMore
                             }) => {
 
 
-    const [apiFilterTransaction, setapiFilter] = useState({});
+    // const [apiFilterTransaction, setapiFilter] = useState({});
     const [FilterSelectedTransaction, setFilterSelectedTransaction] = useState(
         {}
     );
     // const [loader, setloader] = useState(true);
     // const [exportDisabled, setexportDisabled] = useState(true)
-    const defaultTamPag=window.screen.height<700 || window.screen.height<760 ? 3 : 5;
-    const tamPag = 15;
-    const [offset, setoffset] = useState(tamPag);
-    const [filter, setfilter] = useState({});
-    const [VerMas, setVerMas] = useState(true)
+    // const defaultTamPag=window.screen.height<700 || window.screen.height<760 ? 3 : 5;
+    // const tamPag = 15;
+    // const [offset, setoffset] = useState(tamPag);
+    // const [filter, setfilter] = useState({});
+    // const [VerMas, setVerMas] = useState(true)
     const [OpenModalTransaction, setOpenModalTransaction] = useState(false);
     const [IdModalApi, setIdModalApi] = useState(""); // devuelve la consulta api
     const titulos = ["Transacción", "Id de picker", "Vencimiento SLA", "Estado"];
-    let filterParamsFromCars={};
+    // let filterParamsFromCars={};
     //altura del modal
      const [resolutionHeightModal, setresolutionHeightModal] = useState(550)
     //
@@ -136,24 +133,24 @@ export const Transaction = ({
     }
 
 
-    //todo: extraer al reducer
-    const cargarMas = async () => {
-        console.log("cargar mas",filter)
-        const res = await api
-            .get( `ms-admin-rest/api/v1.0/transactions?${filter.values && filter.values.nroTransaccion?`filter.transactionCode=${filter.values.nroTransaccion}`:""}${filter.values &&filter.values.Picker ? `&filter.pickerId=${filter.values.Picker}` : ""}${filter.value && filter.values.enAlerta? `&filter.inAlert=${true}` : ""}${filter.values && filter.values.FechaEntrega? `&filter.minMinDeliveryDate=${filter.values.FechaEntrega.from}`: ""}${filter.values && filter.values.FechaEntrega? `&filter.maxMinDeliveryDate=${filter.values.FechaEntrega.until}` : ""}${ filter.stringSelected && filter.stringSelected!==""? `&filter.state=${filter.stringSelected}`:""}&limit=${tamPag}&offset=${offset}`)
-            .then((res) => {
-                setoffset(offset + tamPag);
-                if(res.data.result.items.length<tamPag)
-                    setVerMas(false)
-                return res.data.result.items;
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-
-
-        setapiFilter(apiFilterTransaction.concat(res));
-    };
+    // //todo: extraer al reducer
+    // const cargarMas = async () => {
+    //     console.log("cargar mas",filter)
+    //     const res = await api
+    //         .get( `ms-admin-rest/api/v1.0/transactions?${filter.values && filter.values.nroTransaccion?`filter.transactionCode=${filter.values.nroTransaccion}`:""}${filter.values &&filter.values.Picker ? `&filter.pickerId=${filter.values.Picker}` : ""}${filter.value && filter.values.enAlerta? `&filter.inAlert=${true}` : ""}${filter.values && filter.values.FechaEntrega? `&filter.minMinDeliveryDate=${filter.values.FechaEntrega.from}`: ""}${filter.values && filter.values.FechaEntrega? `&filter.maxMinDeliveryDate=${filter.values.FechaEntrega.until}` : ""}${ filter.stringSelected && filter.stringSelected!==""? `&filter.state=${filter.stringSelected}`:""}&limit=${tamPag}&offset=${offset}`)
+    //         .then((res) => {
+    //             setoffset(offset + tamPag);
+    //             if(res.data.result.items.length<tamPag)
+    //                 setVerMas(false)
+    //             return res.data.result.items;
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         });
+    //
+    //
+    //     setapiFilter(apiFilterTransaction.concat(res));
+    // };
 
     // const construirUrlExport = (url) => {
     //
@@ -246,7 +243,7 @@ export const Transaction = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
     // }, []);
 
-
+//
     return (
         <div className="background-Grey">
             <Header />
@@ -290,7 +287,7 @@ export const Transaction = ({
                         setFilterSelectedTransaction={setFilterSelectedTransaction}
                     />
                     {transactions && transactions.length !== 0 ? <>
-                            { VerMas?
+                            { seeMore ?
                                 <button
                                     onClick={()=>getMoreTransactions({...filtersExtraSeeMore, ...filters})}
                                     className="paginator-button-transaction"
@@ -307,7 +304,7 @@ export const Transaction = ({
                         </>
                         : (
                             <button
-                                onClick={cargarMas}
+                                // onClick={cargarMas}
                                 className="paginator-button-transaction-noResult"
                             >
                                 No obtuvimos resultados de tu búsqueda :(

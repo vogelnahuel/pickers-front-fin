@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { actions as transactionActions, selectors as transactionSelectors} from "reducers/transactions";
-import { Transaction } from "pages/transaction/Transaction"
-import { useLocation } from "react-router-dom";
+import React, {useEffect} from "react";
+import {connect} from "react-redux";
+import {actions as transactionActions, selectors as transactionSelectors} from "reducers/transactions";
+import {Transaction} from "pages/transaction/Transaction"
+import {useLocation} from "react-router-dom";
 import parseQueryParams from "utils/queryParams/parseQueryParams"
 
 const TransactionContainer = (props) => {
@@ -12,6 +12,7 @@ const TransactionContainer = (props) => {
         const filters = parseQueryParams(params.search);
         props.getTransactions({...props.filtersExtra, ...filters});
         props.setFilters(filters);
+        // eslint-disable-next-line
     }, [])
 
     return (
@@ -26,6 +27,7 @@ const mapStateToProps = (state) => ({
     isExportDisabled: transactionSelectors.isExportDisabled(state),
     filters: transactionSelectors.getFilters(state),
     filtersExtra: transactionSelectors.getFiltersExtra(state),
+    seeMore: transactionSelectors.getSeeMore(state),
     filtersExtraSeeMore: transactionSelectors.getFiltersExtraSeeMore(state),
     openExportModal: transactionSelectors.getOpenExportModal(state),
 });

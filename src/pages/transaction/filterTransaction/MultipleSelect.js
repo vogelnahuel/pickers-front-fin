@@ -14,6 +14,7 @@ const MultipleSelect = (
     setOptions(options.map(ob => {
       return {...ob, selected: value.includes(ob.id)};
     }));
+    // eslint-disable-next-line
   },[value]);
 
   const globalClose = (e) => {

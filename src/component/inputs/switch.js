@@ -11,7 +11,7 @@ export const Switch= ({input}) => {
                 <p className={input.value?"admin-active-picker":"admin-buttonDisabled-picker-disabled"}>Deshabilitado</p>
                 <img
                     onClick={()=>input.onChange(!input.value)}
-                    className="button-active-picker" src={input.value ? button : disabledButton}/>
+                    className="button-active-picker" src={input.value ? button : disabledButton} alt="active-picker"/>
                 <p className={input.value?"admin-active-picker-p":"admin-buttonDisabled-picker-enabled"}>Habilitado</p>
             </div >
         </div>

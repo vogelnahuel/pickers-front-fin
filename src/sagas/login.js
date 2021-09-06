@@ -2,7 +2,7 @@ import {call, put, takeLatest} from "redux-saga/effects";
 import {actions, types} from "reducers/login";
 import * as loginMiddleware from "middleware/login";
 import {removeItem, saveValue} from "utils/localStorage";
-import { push, replace } from 'connected-react-router';
+import {replace} from 'connected-react-router';
 
 const sagas = [
     takeLatest(types.LOGIN_GET_REQUEST, getLogin),
