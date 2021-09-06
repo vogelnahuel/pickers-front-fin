@@ -18,15 +18,11 @@ export const TableAdmin = (props) => {
 
     return (
         <>
-
-
             <table className="table-admin">
                 <thead>
                 <tr>
-                    <td></td>{console.log(actualPage)}
-
+                    <td></td>
                     {
-
                         actualPage==="PENDING"  ?
                             tableTitles.map(titulo=>
                                 <td key={titulo}>{titulo}</td>
@@ -36,7 +32,6 @@ export const TableAdmin = (props) => {
                                 <td key={titulo}>{titulo}</td>
                             )
                             :null
-
                     }
                     <td></td>
                 </tr>
@@ -54,9 +49,9 @@ export const TableAdmin = (props) => {
                                 </td>
                                 <td>
                                     {" "}
-                                    {rows.vehicleTypeId === 1
+                                    {rows.vehicleType === "motorcycle"
                                         ? "Moto"
-                                        : rows.vehicleTypeId === 2
+                                        : rows.vehicleType === "bicycle"
                                             ? "Bici"
                                             : null}
                                 </td>
@@ -71,29 +66,23 @@ export const TableAdmin = (props) => {
                         : null:null}
 
                 {actualPage === "ACTIVE"
-                    ?data && Array.isArray(data)? data.map((rows) => (
-                            <tr className="info table-active-correcion" key={rows.id}>
+                    ?data && Array.isArray(data)? data.map((row) => (
+                            <tr className="info table-active-correcion" key={row.id}>
                                 <td></td>
-                                <td > { (rows.name+' '+rows.surname).length>20 ?  (rows.name+' '+rows.surname).substring(0,20)+'...': (rows.name+' '+rows.surname)} </td>
-                                <td > {rows.identificationNumber} </td>
-                                <td> {rows.email.length > 35 ? rows.email.substring(0,35)+'...': rows.email}</td>
+                                <td > { (row.name+' '+row.surname).length>20 ?  (row.name+' '+row.surname).substring(0,20)+'...': (row.name+' '+row.surname)} </td>
+                                <td > {row.identificationNumber} </td>
+                                <td> {row.email.length > 35 ? row.email.substring(0,35)+'...': row.email}</td>
                                 <td>
                                     {" "}
-                                    {rows.vehicleTypeId === 1
+                                    {row.vehicleType === "motorcycle"
                                         ? "Moto"
-                                        : rows.vehicleTypeId === 2
+                                        : row.vehicleType === "bicycle"
                                             ? "Bici"
                                             : null}
                                 </td>
-                                {/* <td> {rows.Transacciones} </td> */}
-                                {rows.pickerStatusId === 4 ? (
-                                    <td className="color-state-green table-registro" id="color-state-green"> {"Habilitado"} </td>
-                                ) : (
-                                    <td className="color-state-red table-registro" id="color-state-red"> {"Deshabilitado"} </td>
-                                )}
-
+                                    <td className={row.status.id === 4 ? "color-state-green table-registro" : "color-state-red table-registro" } id={row.status.id === 4 ? "color-state-green" : "color-state-red"}> {row.status.description} </td>
                                 <td className="table-editar table-editar-active">
-                                    <Link  to ={`/activeUserAdminpicker/${rows.id}`} > <img src={edit} className="aditar-picker-img" alt="edit" /></Link>
+                                    <Link  to ={`/pendingUserAdminpicker/${row.id}`} > <img src={edit} className="aditar-picker-img" alt="edit" /></Link>
                                 </td>
                                 <td></td>
                             </tr>

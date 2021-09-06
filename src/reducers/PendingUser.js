@@ -18,6 +18,9 @@ export const types = {
     PENDING_USER_GET_MORE_REQUEST: `${PENDING_USER}_GET_MORE_REQUEST`,
     PENDING_USER_GET_MORE_SUCCESS: `${PENDING_USER}_GET_MORE_SUCCESS`,
     PENDING_USER_GET_MORE_ERROR: `${PENDING_USER}_GET_MORE_ERROR`,
+
+    PENDING_USER_RESET: `${PENDING_USER}_RESET`,
+
 };
 
 export const INITIAL_STATE = {
@@ -39,6 +42,9 @@ export const INITIAL_STATE = {
 };
 
 export const actions = {
+    reset: () => ({
+        type: types.PENDING_USER_RESET
+    }),
     getPendingUserRequest: (params) => ({
         type: types.PENDING_USER_GET_REQUEST,
         params,
@@ -83,6 +89,10 @@ export const actions = {
         type: types.PENDING_USER_EXPORT_GET_REQUEST,
         params,
     }),
+    getPendingUserExportError: (params) => ({
+        type: types.PENDING_USER_EXPORT_GET_ERROR,
+        params,
+    }),
 
 };
 
@@ -96,11 +106,14 @@ export const selectors = {
     getPag:({pendingUser}) => pendingUser.pag,
     getActualPage:({pendingUser}) => pendingUser.actualPage,
     getModalExport:({pendingUser})=> pendingUser.modalExportPicker
-    //getMorePendingUserRequest:({pendingUser})=> pendingUser.getMore
 };
 
 const reducer =(state = INITIAL_STATE, action = {}) => {
     switch (action.type) {
+        case types.PENDING_USER_RESET:
+            return {
+                ...INITIAL_STATE,
+            };
         case types.PENDING_USER_GET_REQUEST:
             return {
                 ...state,
@@ -145,8 +158,6 @@ const reducer =(state = INITIAL_STATE, action = {}) => {
                     fetching: true,
                 };
             case types.PENDING_USER_GET_MORE_SUCCESS:
-                console.log("Load more",action.pendingUsers.offset, action.pendingUsers.limit)
-                debugger
                 return {
                     ...state,
                     users: state.users.concat(action.pendingUsers.items),

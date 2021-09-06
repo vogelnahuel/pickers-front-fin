@@ -111,7 +111,7 @@ const reducer =(state = INITIAL_STATE, action = {}) => {
                     offset: action.transactions.offset + action.transactions.limit
                 },
                 fetching: false,
-            }; 
+            };         
             case types.TRANSACTIONS_GET_MORE_SUCCESS:
             return {
                 ...state,
