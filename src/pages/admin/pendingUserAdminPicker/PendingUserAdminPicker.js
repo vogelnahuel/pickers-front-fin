@@ -134,7 +134,6 @@ export const PendingUserAdminPicker = (
                                                 name="phone.areaNumber"
                                                 label="Código de área *"
                                                 component={Input}
-                                                middle
                                                 className="Admin-Pickers-input"
                                                 placeholder="Ingresá el Código de área *"
                                             />
@@ -145,7 +144,6 @@ export const PendingUserAdminPicker = (
                                                 name="phone.number"
                                                 label="Teléfono *"
                                                 component={Input}
-                                                middle
                                                 className="Admin-Pickers-input"
                                                 placeholder="Ingresá el teléfono"
                                             />
