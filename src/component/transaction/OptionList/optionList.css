@@ -25,6 +25,23 @@
     color: #101820;
     margin-left: 3.7vw;
 }
+.modal-transaction-button-irApicker-disabled{
+    height: 50px;
+    width: 176px;
+    border: 2.5px solid #BDBDBD;
+    box-sizing: border-box;
+    border-radius: 50px;
+    background-color: white;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 23px;
+    text-align: center;
+    color: #BDBDBD;
+    margin-left: 3.7vw;
+}
+
 .modal-transaction-inputs{
     display: flex;
     flex-wrap: wrap;
@@ -150,7 +167,7 @@
     height: 15px;
     background: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(1px);
-    margin-top: 14px;
+    margin-top: 10px;
 }
 .modal-transaction-difuminar6{
     position: absolute;
