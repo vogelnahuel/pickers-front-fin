@@ -15,7 +15,7 @@ import orDisabled from "assets/transaction/OrDisabled.svg";
 
 import Close from "assets/transaction/Close.svg";
 
-import api from "config/api.js";
+import api from "../../middleware/api";
 import createCSV from "tools/createCSV";
 import stateName from "component/transaction/tableTransaction/statesNames";
 import moment from "moment";
@@ -28,7 +28,7 @@ export const Transaction = ({
                                 isFetching,
                                 transactions,
                                 openExportModal,
-                                getTransactions,
+                                getMoreTransactions,
                                 getTransactionsExportRequest,
                                 closeExportModal,
                                 filters,
@@ -292,7 +292,7 @@ export const Transaction = ({
                     {transactions && transactions.length !== 0 ? <>
                             { VerMas?
                                 <button
-                                    onClick={()=>getTransactions({...filtersExtraSeeMore, ...filters})}
+                                    onClick={()=>getMoreTransactions({...filtersExtraSeeMore, ...filters})}
                                     className="paginator-button-transaction"
                                 >
                                     Ver más

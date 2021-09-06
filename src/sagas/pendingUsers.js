@@ -1,6 +1,5 @@
 import { call, takeLatest, put } from "redux-saga/effects";
 import { types, actions } from "reducers/PendingUser";
-// import { actions as notificationActions } from "reducers/notification";
 import * as pendingMiddleware from "middleware/pendingUser";
 import createCSV from "tools/createCSV";
 
@@ -15,41 +14,35 @@ function* getPendingUser({ params }) {
         pendingMiddleware.getPendingUser,
         params
         );
-    if (response.type === "W") {
+    if (response.status !== 200) {
         yield put(actions.getPendingUserError());
     } else {
         const { result: {items}, limit, offset, hasMore } = response.data;
         yield put(actions.getPendingUserSuccess({ items, limit, offset, hasMore }));
     }
-
 }
 
 function* getMorePendingUser({ params }) {
-  
     const response = yield call(
         pendingMiddleware.getPendingUser,
         params
         );
-    if (response.type === "W") {
+    if (response.status !== 200) {
         yield put(actions.getPendingUserError());
     } else {
-        debugger
         const { result: {items}, limit, offset, hasMore } = response.data;
         yield put(actions.getMorePendingUserSuccess({ items, limit, offset, hasMore }));
     }
-
 }
 
 
 function* getPendingUserExport({ params }) {
-
     const response = yield call(
         pendingMiddleware.getPendingUserExport,
         params
     );
 
-    
-    if (response.type === "W") {
+    if (response.status !== 200) {
         yield put(actions.getPendingUserExportError());
     } else {
         createCSV(response)

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import volver from "../../../../assets/admin/PendingUser/volver.svg";
 import Info from "../../../../assets/transaction/Info.svg";
-import api from "../../../../config/api";
+import api from "../../../../middleware/api";
 import "./finishModal.css";
 
 export const FinishModal = (props) => {

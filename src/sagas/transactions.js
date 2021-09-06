@@ -1,6 +1,5 @@
 import { call, takeLatest, put } from "redux-saga/effects";
 import { types, actions } from "reducers/transactions";
-// import { actions as notificationActions } from "reducers/notification";
 import * as transactionsMiddleware from "middleware/transactions";
 import createCSV from "tools/createCSV";
 

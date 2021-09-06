@@ -1,17 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import {connect} from "react-redux";
 import {actions as transactionActions, selectors as transactionSelectors} from "reducers/transactions";
 import {FilterTransaction} from "pages/transaction/filterTransaction/FilterTransaction"
 import moment from "moment";
-import subtractDates from "utils/subtractDates";
 
 const FilterTransactionContainer = (props) => {
-
-    const [modalErrorDatePicker, setmodalErrorDatePicker] = useState(false)
-
-   console.log("entre")
     const formatDate = (date) => {
-        
         let result ={};
         if (date) {
             if (moment(date.from, "DD/MM/YYYY").isValid()) {
@@ -29,10 +23,9 @@ const FilterTransactionContainer = (props) => {
     };
 
     const takeFilters = (values) => {
-       
         let formatedDate = formatDate(values.date);
         return {
-            ...props.filters,
+            ... props.filters,
             ...formatedDate,
             state: values.state,
             pickerId: values.pickerId,
@@ -42,34 +35,19 @@ const FilterTransactionContainer = (props) => {
     }
 
     const onSubmit = (values) => {
- 
-        
         let filtersApplied = takeFilters(values);
 
         props.getTransactions({...filtersApplied, ...props.filtersExtra});
         props.setExportEnabled(filtersApplied.pickerId || filtersApplied.transactionCode || filtersApplied.minMinDeliveryDate);
         props.setFilters(filtersApplied);
-    }
+    };
 
-    const onChange =  (values) => {
-        
-        if(Object.keys(values).length !== 0){
-            if( subtractDates(values.date.from,values.date.until)  >31 ){
-                
-                //setmodalErrorDatePicker(true)
-            }else{
-                //setmodalErrorDatePicker(false)
-            }
-        }
-    }
-    const closeModalDatePicker = (e) => {
-        e.preventDefault();
-        setmodalErrorDatePicker(false);
-    }
-  
+    const handlerOnChange = (value ) => {
+        props.setFilters({...props.filters, state: value===''? undefined : value});
+    };
 
     return (
-        <FilterTransaction {...props} onSubmit={onSubmit} onChange={onChange} modalErrorDatePicker={modalErrorDatePicker} closeModalDatePicker={closeModalDatePicker}/>
+        <FilterTransaction {...props} onSubmit={onSubmit} handlerOnChange={handlerOnChange}/>
     );
 }
 
