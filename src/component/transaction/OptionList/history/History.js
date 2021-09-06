@@ -326,8 +326,8 @@ export const History = (props) => {
               
               <p className="modal-transaction-part-subtitle">Pendiente</p>
               {
-              FilterTransaction &&  FilterTransaction.transactionHistory &&FilterTransaction.transactionHistory.length!==0 ?<p className="modal-transaction-part-info">{ Object.keys(FilterTransaction).length !== 0 && FilterTransaction.transactionHistory ? FilterTransaction.transactionHistory[0].createdAt  : ""}    </p>
-              :<p className="modal-transaction-part-info">{ Object.keys(FilterTransaction).length !== 0 && FilterTransaction.transactionHistory ?   FilterTransaction.transactionHistory[0].createdAt  : ""}     </p>
+              FilterTransaction &&  FilterTransaction.transactionHistory &&FilterTransaction.transactionHistory.length!==0 ?<p className="modal-transaction-part-info">{ Object.keys(FilterTransaction).length !== 0 && FilterTransaction.transactionHistory[0]  ? FilterTransaction.transactionHistory[0].createdAt  : ""}    </p>
+              :<p className="modal-transaction-part-info">{ Object.keys(FilterTransaction).length !== 0 && FilterTransaction.transactionHistory[0] ?   FilterTransaction.transactionHistory[0].createdAt  : ""}     </p>
               }
             </div>
             <div className="modal-transaction-part">
@@ -342,8 +342,8 @@ export const History = (props) => {
               <img src={Okey} alt="okey" className="modal-transaction-img-okey" />
               <p className="modal-transaction-part-subtitle">Creación</p>
               {
-              FilterTransaction  &&FilterTransaction.transactionHistory&&FilterTransaction.transactionHistory.length!==0 ?<p className="modal-transaction-part-info">{ Object.keys(FilterTransaction).length !== 0 &&  FilterTransaction.transactionHistory ? FilterTransaction.transactionHistory[0].createdAt  : ""}  </p>
-              :<p className="modal-transaction-part-info">{ Object.keys(FilterTransaction).length !== 0 && FilterTransaction.transactionHistory ? FilterTransaction.transactionHistory[0].createdAt  : ""}   </p>
+              FilterTransaction  &&FilterTransaction.transactionHistory&&FilterTransaction.transactionHistory.length!==0 ?<p className="modal-transaction-part-info">{ Object.keys(FilterTransaction).length !== 0 &&  FilterTransaction.transactionHistory[0]  ? FilterTransaction.transactionHistory[0].createdAt  : ""}  </p>
+              :<p className="modal-transaction-part-info">{ Object.keys(FilterTransaction).length !== 0 && FilterTransaction.transactionHistory[0]  ? FilterTransaction.transactionHistory[0].createdAt  : ""}   </p>
               }
             </div>
             
