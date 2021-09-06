@@ -34,6 +34,38 @@ pipelines:
                 AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY_DEV
                 AWS_DEFAULT_REGION: $AWS_ZONE_DEV
                 DISTRIBUTION_ID: $CLOUDFRONT_DISTRIBUTION_ID_DEV
+    test:
+      - step:
+          name: Build
+          caches:
+            - node
+          script:
+            - npm install
+            - npm run build:test
+          artifacts:
+            - build/**
+      - step:
+          name: Deploy to S3
+          trigger: manual
+          script:
+            - pipe: atlassian/aws-s3-deploy:1.0.1
+              variables:
+                AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID_TEST
+                AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY_TEST
+                AWS_DEFAULT_REGION: $AWS_ZONE_TEST
+                S3_BUCKET: $PRODUCTION_BUCKET_NAME_TEST
+                ACL: "public-read"
+                LOCAL_PATH: "build"
+      - step:
+          name: Invalidate Cloudfront Cache
+          trigger: manual
+          script:
+            - pipe: atlassian/aws-cloudfront-invalidate:0.6.0
+              variables:
+                AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID_TEST
+                AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY_TEST
+                AWS_DEFAULT_REGION: $AWS_ZONE_TEST
+                DISTRIBUTION_ID: $CLOUDFRONT_DISTRIBUTION_ID_TEST
     master:
       - step:
           name: Build
