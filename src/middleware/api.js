@@ -14,7 +14,6 @@ export const setAuthToken = (token) => {
 };
 
 api.interceptors.request.use((request) => {
-    console.log(request.headers.Authorization);
     if (request.headers && !request.headers.Authorization) {
         let token = getValue("token");
         request.headers.Authorization = `bearer ${token}`;
