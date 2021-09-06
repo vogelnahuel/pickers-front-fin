@@ -79,43 +79,6 @@ export const dataActiveUser = () => {
                         id:"Email",
                         placeholder:"Ingresá el email",                
             },
-
-        //     { 
-        //         label: {
-        //                 labelclassName:"label-filter",
-        //                 labelhtmlFor:"transacciones",
-        //                 labelparrafo:"Más de X transacciones"
-        //                 },
-        //         type:"select",
-        //         className:"filter-select",
-        //         name:"transacciones",
-        //         id:"transacciones",
-        //         placeholder:"transacciones",
-        //         options:[
-        //             {
-        //                 classNameSelect:"option",
-        //                 value:"DEFAULT",
-        //                 text:"Seleccioná un valor"
-        //             },
-        //             {
-        //                 classNameSelect:"option",
-        //                 value:"10",
-        //                 text:"10"
-        //             },
-        //             {
-        //                 classNameSelect:"option",
-        //                 value:"5",
-        //                 text:"5"
-
-        //             },
-        //             {
-        //                 classNameSelect:"option",
-        //                 value:"2",
-        //                 text:"2"
-        //             }
-        //         ]
-                
-        //   },
           
        ];
 

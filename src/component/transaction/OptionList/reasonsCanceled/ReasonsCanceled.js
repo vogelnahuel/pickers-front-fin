@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import api from '../../../../config/api'
+import api from '../../../../middleware/api'
 import './reasonsCanceled.css'
 import volver from '../../../../assets/admin/PendingUser/volver.svg'
 

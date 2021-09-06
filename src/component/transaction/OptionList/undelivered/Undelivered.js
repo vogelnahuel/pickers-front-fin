@@ -1,6 +1,6 @@
 import React, { useEffect,useState } from 'react'
 import volver from '../../../../assets/admin/PendingUser/volver.svg'
-import api from '../../../../config/api';
+import api from '../../../../middleware/api';
 import './undelivered.css'
 
 export const Undelivered = (props) => {
