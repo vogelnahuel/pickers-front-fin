@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import './card.scss'
 
 
-export const Card = ({subtitle,url,title,number = "-",backgroundColor}) => {
+export const Card = ({subtitle,url,title,number = "-",backgroundColor,id}) => {
     
     return (
-        <Link to={url} className="card-body-admin"  style={{backgroundColor:`${backgroundColor}` }} >
+        <Link id={id} to={url} className="card-body-admin"  style={{backgroundColor:`${backgroundColor}` }} >
             <div className="part-1">
                 <p className="paragraph-admin-card">{subtitle}</p> 
                 <p className="admin-black">{title}</p>

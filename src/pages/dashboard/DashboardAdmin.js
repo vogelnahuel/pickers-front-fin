@@ -20,13 +20,14 @@ export const DashboardAdmin = ({dashboard,isFetching}) => {
                             number="-"
                             backgroundColor="#63E8A8"
                             url="#"
+                            id="dashboard-card-Online"
                         />
                         <Card
                             subtitle="Transacciones"
                             title="Activas"
                             number={dashboard.activeTransactions}
                             backgroundColor="#63E8A8"
-                            url="/transaction?state=IN_RETURN_TO_SENDER,IN_DELIVERY_POINT,PICKED_UP,IN_PICK_UP_POINT,IN_PICK_UP"
+                            url="/transaction?state=ASSIGNED,IN_PICK_UP,IN_PICK_UP_POINT,PICKED_UP,IN_DELIVERY,IN_DELIVERY_POINT,IN_RETURN_TO_SENDER"
                         />
                         <Card
                             subtitle="Transacciones"
@@ -34,6 +35,7 @@ export const DashboardAdmin = ({dashboard,isFetching}) => {
                             number={dashboard.pendingTransactions}
                             backgroundColor="#BCB6FF"
                             url="/transaction?state=PENDING_ASSIGNMENT"
+                            id="dashboard-card-pending-Assignment"
                         />
                         <Card
                             subtitle="Transacciones"
