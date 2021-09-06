@@ -74,9 +74,16 @@ export const History = (props) => {
     return tag
   }
 
+  const convertDate = (value) =>{
+
+    
+    const date = new Date(value);
+    
+    return date;
+  }
   
   
-  console.log(FilterTransaction)
+
   
   return (
     <div className="modal-transaction-optionContainer-scroll">
@@ -298,7 +305,7 @@ export const History = (props) => {
        
                    
                    
-                   {FilterTransaction &&  FilterTransaction.transactionHistory.length!==0?<p className="modal-transaction-part-info"> {moment(historial.createdAt.substring(0,10),"YYYY-MM-DD").format("DD/MM/YYYY")}  {historial.createdAt.substring(11,19)} </p>:null}
+                   {FilterTransaction &&  FilterTransaction.transactionHistory.length!==0?<p className="modal-transaction-part-info"> {convertDate(historial.createdAt)} </p>:null}
                 
                   <Link  style={{textDecoration: 'none'}}className="modal-transaction-a" to={historial.curentValue ? `activeUserAdminpicker/${historial.curentValue}` : "#"}> { historial.reasonTag.tag==="assigned_picker"  ? "Ver Picker" : ""}   </Link>  
                </div>
@@ -316,8 +323,8 @@ export const History = (props) => {
               <img src={Okey} alt="okey" className="modal-transaction-img-okey" />
               <p className="modal-transaction-part-subtitle">Pendiente</p>
               {
-              FilterTransaction &&  FilterTransaction.transactionHistory &&FilterTransaction.transactionHistory.length!==0 ?<p className="modal-transaction-part-info">{ FilterTransaction.transactionHistory ? moment(FilterTransaction.transactionHistory[0].createdAt.substring(0,10),"YYYY-MM-DD").format("DD/MM/YYYY") : ""}  {FilterTransaction.transactionHistory ? FilterTransaction.transactionHistory[0].createdAt.substring(11,19) : ""}  </p>
-              :<p className="modal-transaction-part-info">{ FilterTransaction.transaction ? moment(FilterTransaction.transaction.createdAt.substring(0,10),"YYYY-MM-DD").format("DD/MM/YYYY") : ""}  {FilterTransaction.transaction ? FilterTransaction.transaction.createdAt.substring(11,19) : ""}  </p>
+              FilterTransaction &&  FilterTransaction.transactionHistory &&FilterTransaction.transactionHistory.length!==0 ?<p className="modal-transaction-part-info">{ FilterTransaction.transactionHistory ? convertDate(FilterTransaction.transactionHistory[0].createdAt)  : ""}    </p>
+              :<p className="modal-transaction-part-info">{ FilterTransaction.transaction ?   convertDate(FilterTransaction.transactionHistory[0].createdAt)  : ""}     </p>
               }
             </div>
             <div className="modal-transaction-part">
@@ -332,8 +339,8 @@ export const History = (props) => {
               <img src={Okey} alt="okey" className="modal-transaction-img-okey" />
               <p className="modal-transaction-part-subtitle">Creación</p>
               {
-              FilterTransaction  &&FilterTransaction.transactionHistory&&FilterTransaction.transactionHistory.length!==0 ?<p className="modal-transaction-part-info">{ FilterTransaction.transactionHistory ? moment(FilterTransaction.transactionHistory[0].createdAt.substring(0,10),"YYYY-MM-DD").format("DD/MM/YYYY") : ""}  {FilterTransaction.transactionHistory ? FilterTransaction.transactionHistory[0].createdAt.substring(11,19) : ""}  </p>
-              :<p className="modal-transaction-part-info">{ FilterTransaction.transaction ? moment(FilterTransaction.transaction.createdAt.substring(0,10),"YYYY-MM-DD").format("DD/MM/YYYY") : ""}  {FilterTransaction.transaction ? FilterTransaction.transaction.createdAt.substring(11,19) : ""}  </p>
+              FilterTransaction  &&FilterTransaction.transactionHistory&&FilterTransaction.transactionHistory.length!==0 ?<p className="modal-transaction-part-info">{ FilterTransaction.transactionHistory ? convertDate(FilterTransaction.transactionHistory[0].createdAt)  : ""}  </p>
+              :<p className="modal-transaction-part-info">{ FilterTransaction.transaction ? convertDate(FilterTransaction.transactionHistory[0].createdAt)  : ""}   </p>
               }
             </div>
             
