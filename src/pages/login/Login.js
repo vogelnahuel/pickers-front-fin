@@ -294,23 +294,26 @@ debugger
 
                 </form>
 
-                {   modalOpen &&
+                {   (modalOpen || modalOpenServerError )&&
                 <div className="contendor-modal-login">
                     <Modal
 
                         width="750px"
                         height="351px"
-                        isOpen={modalOpen}
+                        isOpen={modalOpen||modalOpenServerError}
                         onClose={cerrarModalError}
                     >
                         <div className="container-modal">
                             <div className="modal-error-title">
-                                <p className="p-modal-error-title">Usuario y/o contraseña inválidos</p>
+                                <p className="p-modal-error-title">{modalOpen?"Usuario y/o contraseña inválidos":"Error en nuestro servidor"}</p>
                             </div>
                             <div className="modal-error-subtitle">
-                                <p className="p-modal-error-subtitle">Tu usuario y/o contraseña ingresados son incorrectos. Por favor, ingresalos nuevamente.</p>
+                                <p className="p-modal-error-subtitle">{modalOpen?
+                                "Tu usuario y/o contraseña ingresados son incorrectos. Por favor, ingresalos nuevamente.":
+                                "Por favor, reintentalo nuevamente."
+                            }</p>
                                 <button
-                                    onClick={cerrarModalError}
+                                    onClick={modalOpen?cerrarModalError:cerrarModalServerError}
                                     className="button-modal-error">
                                     Entendido
                                 </button>
@@ -320,7 +323,7 @@ debugger
                 </div>
                 }
         
-                {
+                {/* {
                    modalOpenServerError===true ?
                        <div className="contendor-modal-login">
                            <Modal
@@ -345,7 +348,7 @@ debugger
                            </Modal>
                        </div>
                        :null
-                }
+                } */}
             </div>
             <div className="login-image" >
 
