@@ -19,8 +19,8 @@ function* getTransactions({ params }) {
     if (response.status !== 200) {
         yield put(actions.getTransactionsError());
     } else {
-        const { result: {items}, limit, offset } = response.data;
-        yield put(actions.getTransactionsSuccess({ items, limit, offset }));
+        const { result: {items}, limit, offset, hasMore } = response.data;
+        yield put(actions.getTransactionsSuccess({ items, limit, offset, hasMore }));
     }
 
 }
@@ -32,8 +32,8 @@ function* getMoreTransactions({ params }) {
     if (response.status !== 200) {
         yield put(actions.getTransactionsError());
     } else {
-        const { result: {items}, limit, offset,hasMore } = response.data;
-        yield put(actions.getMoreTransactionsSuccess({ items, limit, offset,hasMore }));
+        const { result: {items}, limit, offset, hasMore } = response.data;
+        yield put(actions.getMoreTransactionsSuccess({ items, limit, offset, hasMore }));
     }
 
 }

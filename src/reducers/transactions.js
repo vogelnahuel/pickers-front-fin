@@ -31,7 +31,8 @@ export const INITIAL_STATE = {
     filtersExtraSeeMore: {
         limit:15,
         offset: 0
-    }
+    },
+    seeMore:true,
 };
 
 export const actions = {
@@ -86,6 +87,7 @@ export const selectors = {
     getTransactions: ({ transactions }) => transactions.transactions,
     getFilters:({transactions}) => transactions.filters,
     getFiltersExtra:({transactions}) => transactions.filtersExtra,
+    getSeeMore:({transactions}) => transactions.seeMore,
     getFiltersExtraSeeMore:({transactions}) => transactions.filtersExtraSeeMore,
     getOpenExportModal:({transactions}) => transactions.openExportModal,
 };
@@ -106,16 +108,18 @@ const reducer =(state = INITIAL_STATE, action = {}) => {
             return {
                 ...state,
                 transactions: action.transactions.items,
+                seeMore: action.transactions.hasMore,
                 filtersExtraSeeMore: {
                     ...state.filtersExtraSeeMore,
                     offset: action.transactions.offset + action.transactions.limit
                 },
                 fetching: false,
-            };         
+            };
             case types.TRANSACTIONS_GET_MORE_SUCCESS:
             return {
                 ...state,
                 transactions: state.transactions.concat(action.transactions.items),
+                seeMore: action.transactions.hasMore,
                 filtersExtraSeeMore: {
                     ...state.filtersExtraSeeMore,
                     offset: action.transactions.offset + action.transactions.limit
