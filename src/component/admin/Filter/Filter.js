@@ -1,12 +1,10 @@
 import React from 'react'
 import './filter.scss'
-import desplegable from  '../../../assets/admin/PendingUser/desplegable.svg'
 import dropdown from "assets/admin/PendingUser/desplegable.svg";
 import or from '../../../assets/admin/PendingUser/or.svg'
-import search from  '../../../assets/admin/PendingUser/search.svg'
-import { Fields } from './Fields'
-import { Form,Field } from 'react-final-form'
-import { Input } from 'component/inputs/Input'
+import search from '../../../assets/admin/PendingUser/search.svg'
+import {Field, Form} from 'react-final-form'
+import {Input} from 'component/inputs/Input'
 import {Col, Container, Row} from "react-bootstrap";
 
 /****diseño del filtro y muestra inputs*/

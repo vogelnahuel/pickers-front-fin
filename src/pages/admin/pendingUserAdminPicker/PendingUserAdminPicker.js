@@ -13,7 +13,7 @@ import bici from 'assets/admin/PendingUserAdminPicker/bici.svg'
 import {Field, Form} from "react-final-form";
 import {Modal} from '@pickit/pickit-components'
 import button from "assets/admin/ActiveUserAdminPicker/button.svg";
-import disabledButton from "assets/admin/ActiveUserAdminPicker/disabledButton.svg";
+// import disabledButton from "assets/admin/ActiveUserAdminPicker/disabledButton.svg";
 import useValidationSchema from "hooks/useValidationSchema"
 import {Col, Row, Container} from "react-bootstrap";
 
@@ -29,7 +29,7 @@ export const PendingUserAdminPicker = (
         active,
         cancel,
         postAprovePickerRequest,
-        postEditPickerRequest,
+        // postEditPickerRequest,
         changePage,
         validationSchema
     }) => {

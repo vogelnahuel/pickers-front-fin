@@ -21,7 +21,7 @@ export const Login = ({postLogin,modalOpen,isFetching, setModalOpen}) => {
     const [errorPassWord, seterrorPassWord] = useState(false)
     const [errorMsgPassword, seterrorMsgPassword] = useState("")
     // const [modalOpen, setmodalOpen] = useState(false)
-    const [modalOpen2, setmodalOpen2] = useState(false)
+    // const [modalOpen2, setmodalOpen2] = useState(false)
     //Test
     //const {mail,password,errorMail,errorMsgMail,errorPassWord,errorMsgPassword,} = formValues;
 
@@ -41,10 +41,10 @@ export const Login = ({postLogin,modalOpen,isFetching, setModalOpen}) => {
         e.preventDefault();
         setModalOpen(false)
     }
-    const cerrarModalError2 = (e) => {
-        e.preventDefault();
-        setModalOpen(false)
-    }
+    // const cerrarModalError2 = (e) => {
+    //     e.preventDefault();
+    //     setModalOpen(false)
+    // }
 
 
     const handleInputChange = (e) => {
@@ -313,32 +313,32 @@ export const Login = ({postLogin,modalOpen,isFetching, setModalOpen}) => {
                     </Modal>
                 </div>
                 }
-                {
-                    modalOpen2===true ?
-                        <div className="contendor-modal-login">
-                            <Modal
-                                width="750px"
-                                height="351px"
-                                isOpen={modalOpen2}
-                                onClose={cerrarModalError2}
-                            >
-                                <div className="container-modal">
-                                    <div className="modal-error-title">
-                                        <p className="p-modal-error-title">Error en nuestro servidor</p>
-                                    </div>
-                                    <div className="modal-error-subtitle">
-                                        <p className="p-modal-error-subtitle">Por favor, reintentalo nuevamente.</p>
-                                        <button
-                                            onClick={cerrarModalError2}
-                                            className="button-modal-error2">
-                                            Entendido
-                                        </button>
-                                    </div>
-                                </div>
-                            </Modal>
-                        </div>
-                        :null
-                }
+                {/*{*/}
+                {/*    modalOpen2===true ?*/}
+                {/*        <div className="contendor-modal-login">*/}
+                {/*            <Modal*/}
+                {/*                width="750px"*/}
+                {/*                height="351px"*/}
+                {/*                isOpen={modalOpen2}*/}
+                {/*                onClose={cerrarModalError2}*/}
+                {/*            >*/}
+                {/*                <div className="container-modal">*/}
+                {/*                    <div className="modal-error-title">*/}
+                {/*                        <p className="p-modal-error-title">Error en nuestro servidor</p>*/}
+                {/*                    </div>*/}
+                {/*                    <div className="modal-error-subtitle">*/}
+                {/*                        <p className="p-modal-error-subtitle">Por favor, reintentalo nuevamente.</p>*/}
+                {/*                        <button*/}
+                {/*                            onClick={cerrarModalError2}*/}
+                {/*                            className="button-modal-error2">*/}
+                {/*                            Entendido*/}
+                {/*                        </button>*/}
+                {/*                    </div>*/}
+                {/*                </div>*/}
+                {/*            </Modal>*/}
+                {/*        </div>*/}
+                {/*        :null*/}
+                {/*}*/}
             </div>
             <div className="login-image" >
 
