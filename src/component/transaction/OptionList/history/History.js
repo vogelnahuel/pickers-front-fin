@@ -74,18 +74,19 @@ export const History = (props) => {
     return tag
   }
 
-  /*
-
+  
   const convertDate = (value) =>{
 
     
-    const date = new Date(value);
+    const date = moment(new Date(value).toISOString().slice(0, 10)).format("DD/MM/YYYY")
+    const dateHHMM = new Date(value).toISOString().slice(11, 16)
     
-    return date;
-  }*/
+    
+    return date+" "+dateHHMM;
+  }
   
   
-
+console.log(FilterTransaction)
   
   return (
     <div className="modal-transaction-optionContainer-scroll">
@@ -93,9 +94,10 @@ export const History = (props) => {
         onSubmit={() => {}}
         initialValues={{
           //nroTransaccion: FilterTransaction.transaction ? FilterTransaction.transaction.id : 0,
+          codArea:FilterTransaction.picker && FilterTransaction.picker.phone?FilterTransaction.picker.phone.areaNumber:"",
           PickerId: FilterTransaction.picker ? FilterTransaction.picker.id : "",
           Picker: FilterTransaction.picker && FilterTransaction.picker.name!==null ? FilterTransaction.picker.name+ ' ' +FilterTransaction.picker.surname : "Sin asignar",
-          Telefono: FilterTransaction.picker ? FilterTransaction.picker.phoneNumber : "",
+          Telefono: FilterTransaction.picker && FilterTransaction.picker.phone ? FilterTransaction.picker.phone.number:"",
           dirEntrega : FilterTransaction.destination ? FilterTransaction.destination.formattedAddress : "" ,
           dirRetiro : FilterTransaction.origin ? FilterTransaction.origin.formattedAddress : "",
           Retailer: FilterTransaction.seller ? FilterTransaction.seller.name  : "",
@@ -307,7 +309,7 @@ export const History = (props) => {
        
                    
                    
-                   {FilterTransaction &&  FilterTransaction.transactionHistory.length!==0?<p className="modal-transaction-part-info"> {historial  && historial.createdAt } </p>:null}
+                   {FilterTransaction &&  FilterTransaction.transactionHistory.length!==0?<p className="modal-transaction-part-info"> {historial  && convertDate(historial.createdAt) } </p>:null}
                 
                   <Link  style={{textDecoration: 'none'}}className="modal-transaction-a" to={historial.curentValue ? `activeUserAdminpicker/${historial.curentValue}` : "#"}> { historial.reasonTag.tag==="assigned_picker"  ? "Ver Picker" : ""}   </Link>  
                </div>
@@ -323,11 +325,14 @@ export const History = (props) => {
           }
           <div className="modal-transaction-part">
               <img src={Okey} alt="okey" className="modal-transaction-img-okey" />
+              {
+                console.log( FilterTransaction && FilterTransaction) 
+              }
               
               <p className="modal-transaction-part-subtitle">Pendiente</p>
               {
-              FilterTransaction &&  FilterTransaction.transactionHistory &&FilterTransaction.transactionHistory.length!==0 ?<p className="modal-transaction-part-info">{ Object.keys(FilterTransaction).length !== 0 && FilterTransaction.transactionHistory[0]  ? FilterTransaction.transactionHistory[0].createdAt  : ""}    </p>
-              :<p className="modal-transaction-part-info">{ Object.keys(FilterTransaction).length !== 0 && FilterTransaction.transactionHistory[0] ?   FilterTransaction.transactionHistory[0].createdAt  : ""}     </p>
+              FilterTransaction &&  FilterTransaction.transactionHistory &&FilterTransaction.transactionHistory.length!==0 ?<p className="modal-transaction-part-info">{ Object.keys(FilterTransaction).length !== 0 && FilterTransaction.transactionHistory[0]  ? convertDate(FilterTransaction.transactionHistory[0].createdAt)  : ""}    </p>
+              :<p className="modal-transaction-part-info">{ Object.keys(FilterTransaction).length !== 0 && FilterTransaction.transaction ?   convertDate(FilterTransaction.transaction.createdAt)  : ""}     </p>
               }
             </div>
             <div className="modal-transaction-part">
@@ -342,8 +347,8 @@ export const History = (props) => {
               <img src={Okey} alt="okey" className="modal-transaction-img-okey" />
               <p className="modal-transaction-part-subtitle">Creación</p>
               {
-              FilterTransaction  &&FilterTransaction.transactionHistory&&FilterTransaction.transactionHistory.length!==0 ?<p className="modal-transaction-part-info">{ Object.keys(FilterTransaction).length !== 0 &&  FilterTransaction.transactionHistory[0]  ? FilterTransaction.transactionHistory[0].createdAt  : ""}  </p>
-              :<p className="modal-transaction-part-info">{ Object.keys(FilterTransaction).length !== 0 && FilterTransaction.transactionHistory[0]  ? FilterTransaction.transactionHistory[0].createdAt  : ""}   </p>
+              FilterTransaction  &&FilterTransaction.transactionHistory&&FilterTransaction.transactionHistory.length!==0 ?<p className="modal-transaction-part-info">{ Object.keys(FilterTransaction).length !== 0 &&  FilterTransaction.transactionHistory[0]  ? convertDate(FilterTransaction.transactionHistory[0].createdAt)  : ""}  </p>
+              :<p className="modal-transaction-part-info">{ Object.keys(FilterTransaction).length !== 0 && FilterTransaction.transaction ? convertDate(FilterTransaction.transaction.createdAt)  : ""}   </p>
               }
             </div>
             

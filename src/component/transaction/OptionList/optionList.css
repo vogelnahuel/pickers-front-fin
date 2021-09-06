@@ -214,12 +214,18 @@
     .modal-transaction-button-irApicker{
         margin-top: 5px;
     }
+    .modal-transaction-button-irApicker-disabled{
+        margin-top: 5px;
+    }
 }
 
 
 @media (min-width: 1800px) {
   
     .modal-transaction-button-irApicker{
+        margin-left: 0px;
+    }
+    .modal-transaction-button-irApicker-disabled{
         margin-left: 0px;
     }
     .modal-transaction-difuminar1{
