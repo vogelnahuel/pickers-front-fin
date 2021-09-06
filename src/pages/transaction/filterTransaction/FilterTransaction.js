@@ -27,7 +27,10 @@ export const FilterTransaction = ({ onSubmit, filters, handlerOnChange }) => {
                     </div>
                 </Col>
                 <Col className="sub-container" >
-                    <Form onSubmit={onSubmit} initialValues={filters}>
+                    <Form
+                        onSubmit={onSubmit}
+                        initialValues={filters}
+                    >
                         {({ handleSubmit }) => (
                             <form className="form-filter-transaction" onSubmit={handleSubmit}>
                                 <Col xxl={2} lg={4}>
@@ -53,7 +56,7 @@ export const FilterTransaction = ({ onSubmit, filters, handlerOnChange }) => {
                                 <Col xxl={2} lg={4}>
                                     <div className="datePicker-filter-transaction">
                                         <label className="label-Admin-Pickers">
-                                            Fecha de entrega
+                                            Vencimiento SLA
                                         </label>
                                         <Field
                                             type="text"
