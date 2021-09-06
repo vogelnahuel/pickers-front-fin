@@ -106,13 +106,11 @@ export const selectors = {
     getPag:({pendingUser}) => pendingUser.pag,
     getActualPage:({pendingUser}) => pendingUser.actualPage,
     getModalExport:({pendingUser})=> pendingUser.modalExportPicker
-    //getMorePendingUserRequest:({pendingUser})=> pendingUser.getMore
 };
 
 const reducer =(state = INITIAL_STATE, action = {}) => {
     switch (action.type) {
         case types.PENDING_USER_RESET:
-            console.log("reset")
             return {
                 ...INITIAL_STATE,
             };
@@ -160,8 +158,6 @@ const reducer =(state = INITIAL_STATE, action = {}) => {
                     fetching: true,
                 };
             case types.PENDING_USER_GET_MORE_SUCCESS:
-                console.log("Load more",action.pendingUsers.offset, action.pendingUsers.limit)
-                debugger
                 return {
                     ...state,
                     users: state.users.concat(action.pendingUsers.items),

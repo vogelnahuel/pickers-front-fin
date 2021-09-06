@@ -18,15 +18,11 @@ export const TableAdmin = (props) => {
 
     return (
         <>
-
-
             <table className="table-admin">
                 <thead>
                 <tr>
-                    <td></td>{console.log(actualPage)}
-
+                    <td></td>
                     {
-
                         actualPage==="PENDING"  ?
                             tableTitles.map(titulo=>
                                 <td key={titulo}>{titulo}</td>
@@ -36,7 +32,6 @@ export const TableAdmin = (props) => {
                                 <td key={titulo}>{titulo}</td>
                             )
                             :null
-
                     }
                     <td></td>
                 </tr>

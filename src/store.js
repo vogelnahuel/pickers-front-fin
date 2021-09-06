@@ -1,10 +1,12 @@
 import {createStore,applyMiddleware,compose} from "redux";
+import { createBrowserHistory } from 'history';
+import { routerMiddleware } from 'connected-react-router'
 import thunk from "redux-thunk";
-// import reducer from './reducers/indexOLD'
 import reducer from "reducers/index"
-import createSagaMiddleware, { END } from "redux-saga";
 
+import createSagaMiddleware, { END } from "redux-saga";
 import rootSaga from "sagas/index";
+export const history = createBrowserHistory();
 
 
 // const store = createStore(
@@ -24,8 +26,8 @@ const sagaMiddleware = createSagaMiddleware();
 
 const store =
     process.env.NODE_ENV === "production"
-        ? createStore(reducer, applyMiddleware(sagaMiddleware,thunk))
-        : createStore(reducer, composeEnhancers(applyMiddleware(sagaMiddleware,thunk)));
+        ? createStore(reducer(history), applyMiddleware(routerMiddleware(history),sagaMiddleware,thunk))
+        : createStore(reducer(history), composeEnhancers(applyMiddleware(routerMiddleware(history),sagaMiddleware,thunk)));
 
 // function storeRehydrationFinished() {
 //     const { user } = store.getState().session;

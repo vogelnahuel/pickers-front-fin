@@ -12,6 +12,7 @@ const LoginContainer = (props) => {
 }
 
 const mapStateToProps = (state) => ({
+    modalOpen: loginSelectors.isModalOpen(state),
     login: loginSelectors.getLogin(state),
     isFetching: loginSelectors.isFetching(state),
 });
@@ -19,6 +20,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     postLogin: (params) => {
         dispatch(loginActions.getLoginRequest(params));
+    },
+    setModalOpen: (params) => {
+        dispatch(loginActions.setModalOpen(params));
     },
 });
 

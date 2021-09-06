@@ -5,12 +5,14 @@ export const types = {
     LOGIN_GET_ERROR: `LOGIN_GET_ERROR`,
 
     LOGOUT: `LOGOUT`,
+    LOGIN_SET_MODAL_OPEN: `LOGIN_SET_MODAL_OPEN`,
 };
 
 
 
 export const INITIAL_STATE = {
     fetching: false,
+    modalOpen: false,
     login: {},
 };
 
@@ -30,10 +32,15 @@ export const actions = {
     logout: () => ({
         type: types.LOGOUT,
     }),
+    setModalOpen: (modalOpen) => ({
+        type: types.LOGIN_SET_MODAL_OPEN,
+        modalOpen
+    }),
 };
 
 export const selectors = {
     isFetching: ({ login }) => login.fetching,
+    isModalOpen: ({ login }) => login.modalOpen,
     getLogin: ({ login }) => login.login,
 };
 
@@ -60,6 +67,11 @@ const reducer =(state = INITIAL_STATE, action = {}) => {
             return {
                 ...state,
                 fetching: false,
+            };
+        case types.LOGIN_SET_MODAL_OPEN:
+            return {
+                ...state,
+                modalOpen: action.modalOpen,
             };
         default:
             return state;

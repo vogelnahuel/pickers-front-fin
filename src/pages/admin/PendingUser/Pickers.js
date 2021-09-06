@@ -1,15 +1,13 @@
-import React, { useState } from "react";
-import { Header } from "component/admin/Header/Header";
-import { Nav } from "component/admin/Nav/Nav";
-import "./Pickers.scss";
-import { PendingBlue } from "component/admin/Sub-Title-Image/PendingBlue";
+import React, {useState} from "react";
+import {Header} from "component/admin/Header/Header";
+import {Nav} from "component/admin/Nav/Nav";
+import "pages/admin/PendingUser/Pickers.scss";
+import {PendingBlue} from "component/admin/Sub-Title-Image/PendingBlue";
 import exportar from "assets/admin/PendingUser/exportar.svg";
 import or from "assets/admin/PendingUser/or.svg";
-import { Filter } from "component/admin/Filter/Filter";
-import { TableAdmin } from "component/admin/table/TableAdmin";
-import { Modal } from "@pickit/pickit-components"
-import { dataPendingUser } from "pages/admin/PendingUser/dataPendingUser.js";
-import { on } from "events";
+import {Filter} from "component/admin/Filter/Filter";
+import {TableAdmin} from "component/admin/table/TableAdmin";
+import {Modal} from "@pickit/pickit-components"
 
 
 export const PendingUserAdmin = ({
@@ -28,11 +26,7 @@ export const PendingUserAdmin = ({
   setPendingUserFilters,
 }) => {
 
-  const [FieldsPart] = dataPendingUser();
   const [ExportModal, setExportModal] = useState(false);
-
-
-
 
   const cerrarGuardarExito = (e) => {
     e.preventDefault();

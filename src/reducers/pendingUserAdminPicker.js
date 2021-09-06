@@ -7,13 +7,20 @@ export const types = {
     PENDING_USER_ADMIN_PICKER_EXPORT_GET_REQUEST: `PENDING_USER_ADMIN_PICKER_EXPORT_GET_REQUEST`,
     PENDING_USER_ADMIN_PICKER_EXPORT_GET_SUCCESS: `PENDING_USER_ADMIN_PICKER_EXPORT_GET_SUCCESS`,
     PENDING_USER_ADMIN_PICKER_EXPORT_GET_ERROR: `PENDING_USER_ADMIN_PICKER_EXPORT_GET_ERROR`,
-    
+
     PENDING_USER_ADMIN_PICKER_MODAL_EXPORT_CLOSE: `PENDING_USER_ADMIN_PICKER_MODAL_EXPORT_CLOSE`,
 
     PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_REQUEST: `PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_REQUEST`,
     PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_SUCCESS: `PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_SUCCESS`,
     PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_ERROR: `PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_ERROR`,
 
+    PICKER_EDIT_POST_REQUEST: `PICKER_EDIT_POST_REQUEST`,
+    PICKER_EDIT_POST_SUCCESS: `PICKER_EDIT_POST_SUCCESS`,
+    PICKER_EDIT_POST_ERROR: `PICKER_EDIT_POST_ERROR`,
+
+    PICKER_APROVE_POST_REQUEST: `PICKER_APROVE_POST_REQUEST`,
+    PICKER_APROVE_POST_SUCCESS: `PICKER_APROVE_POST_SUCCESS`,
+    PICKER_APROVE_POST_ERROR: `PICKER_APROVE_POST_ERROR`,
 };
 
 export const INITIAL_STATE = {
@@ -67,6 +74,28 @@ export const actions = {
         type: types.PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_ERROR,
     }),
 
+    getAprovePickerRequest: (params) => ({
+        type: types.PICKER_APROVE_POST_REQUEST,
+        params,
+    }),
+    getAprovePickerSuccess: () => ({
+        type: types.PICKER_APROVE_POST_SUCCESS,
+    }),
+    getAprovePickerError: () => ({
+        type: types.PICKER_APROVE_POST_ERROR,
+    }),
+
+    getEditPickerRequest: (params) => ({
+        type: types.PICKER_EDIT_POST_REQUEST,
+        params,
+    }),
+    getEditPickerSuccess: () => ({
+        type: types.PICKER_EDIT_POST_SUCCESS,
+    }),
+    getEditPickerError: () => ({
+        type: types.PICKER_EDIT_POST_ERROR,
+    }),
+
 };
 
 export const selectors = {
@@ -78,7 +107,7 @@ export const selectors = {
 
 const reducer =(state = INITIAL_STATE, action = {}) => {
     switch (action.type) {
-/************************************************************* */
+        /************************************************************* */
         case types.PENDING_USER_ADMIN_PICKER_GET_REQUEST:
             return {
                 ...state,
@@ -95,48 +124,78 @@ const reducer =(state = INITIAL_STATE, action = {}) => {
                 ...state,
                 fetching: false,
             };
-/************************************************************* */
+        /************************************************************* */
         case types.PENDING_USER_ADMIN_PICKER_EXPORT_GET_REQUEST:
-                return {
-                    ...state,
-                    fetching: true,
-                    
-                };
+            return {
+                ...state,
+                fetching: true,
+
+            };
         case types.PENDING_USER_ADMIN_PICKER_EXPORT_GET_SUCCESS:
-                return {
-                    ...state,
-                    fetching: false,
-                    modalExportPicker:true
-                };
+            return {
+                ...state,
+                fetching: false,
+                modalExportPicker:true
+            };
         case types.PENDING_USER_ADMIN_PICKER_EXPORT_GET_ERROR:
-                return {
-                    ...state,
-                    fetching: false,
-                };
-/************************************************************* */
+            return {
+                ...state,
+                fetching: false,
+            };
+        /************************************************************* */
         case types.PENDING_USER_ADMIN_PICKER_MODAL_EXPORT_CLOSE:
             return{
                 ...state,
                 modalExportPicker:false
             };
-/************************************************************* */
+        /************************************************************* */
         case types.PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_REQUEST:
-                return {
-                    ...state,
-                    fetching: true,
-                };
+            return {
+                ...state,
+                fetching: true,
+            };
         case types.PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_SUCCESS:
-                return {
-                    ...state,
-                    fetching: false,
-                };
+            return {
+                ...state,
+                fetching: false,
+            };
         case types.PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_ERROR:
             return{
                 ...state,
-                modalExportPicker:false
+                fetching:false
             };
-
-
+        /************************************************************* */
+        case types.PICKER_APROVE_POST_REQUEST:
+            return {
+                ...state,
+                fetching: true,
+            };
+        case types.PICKER_APROVE_POST_SUCCESS:
+            return {
+                ...state,
+                fetching: false,
+            };
+        case types.PICKER_APROVE_POST_ERROR:
+            return{
+                ...state,
+                fetching:false
+            };
+        /************************************************************* */
+        case types.PICKER_EDIT_POST_REQUEST:
+            return {
+                ...state,
+                fetching: true,
+            };
+        case types.PICKER_EDIT_POST_SUCCESS:
+            return {
+                ...state,
+                fetching: false,
+            };
+        case types.PICKER_EDIT_POST_ERROR:
+            return{
+                ...state,
+                fetching:false
+            };
         default:
             return state;
     }

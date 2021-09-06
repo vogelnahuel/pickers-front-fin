@@ -46,13 +46,25 @@ const PendingUserAdminPickerContainer = (props) => {
     const onSubmit = (values) => {
         let pickerUpdated = {
             ...values,
-            dateOfBirth: moment(values.dateOfBirth, "DD/MM/YYYY").format("YYYY-MM-DD")
+            // dateOfBirth: moment(values.dateOfBirth, "DD/MM/YYYY").format("YYYY-MM-DD")
         }
         props.postPendingUserDocumentsEdit(pickerUpdated);
     };
 
+    const Historial = useHistory();
+    const cancel = () => {
+        Historial.goBack();
+    };
+
     return (
-        <PendingUserAdminPicker {...props} validationSchema={validationSchema} changePage={changePage} onSubmit={onSubmit}/>
+        <PendingUserAdminPicker
+            {...props}
+            validationSchema={validationSchema}
+            changePage={changePage}
+            onSubmit={onSubmit}
+            cancel={cancel}
+            active={props.pendingUserAdminPicker.status && (props.pendingUserAdminPicker.status.id === 4 || props.pendingUserAdminPicker.status.id === 5 )}
+        />
     );
 };
 
@@ -77,6 +89,12 @@ const mapDispatchToProps = (dispatch) => ({
     },
     postPendingUserDocumentsEdit: (params) => {
         dispatch(pendingUserAdminPickerActions.getPendingUserPickerDocumentsEditRequest(params));
+    },
+    postAprovePickerRequest: (params) => {
+        dispatch(pendingUserAdminPickerActions.getAprovePickerRequest(params));
+    },
+    postEditPickerRequest: (params) => {
+        dispatch(pendingUserAdminPickerActions.getEditPickerRequest(params));
     },
     setActualPage:(page)=>{
         dispatch(pendingUserActions.setActualPage(page));

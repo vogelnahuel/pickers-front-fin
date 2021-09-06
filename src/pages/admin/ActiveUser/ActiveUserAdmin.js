@@ -8,7 +8,7 @@ import { Filter } from "../../../component/admin/Filter/Filter";
 import { TableAdmin } from "../../../component/admin/table/TableAdmin";
 import { PendingBlack } from "../../../component/admin/Sub-Title-Image/PendingBlack";
 import { dataActiveUser } from "./dataActiveUser";
-import api from "../../../config/api";
+import api from "../../../middleware/api";
 import codificarEmailURIFunction from "../../../tools/encodeMail.js";
 import createCSV from "../../../tools/createCSV.js";
 import { Modal } from "@pickit/pickit-components";

@@ -1,10 +1,8 @@
-import { call, takeLatest, put } from "redux-saga/effects";
-import { types, actions } from "reducers/login";
-// import { actions as notificationActions } from "reducers/notification";
+import {call, put, takeLatest} from "redux-saga/effects";
+import {actions, types} from "reducers/login";
 import * as loginMiddleware from "middleware/login";
-import { replace } from "react-router-redux";
-import { saveValue } from "utils/localStorage";
-import {removeItem} from "utils/localStorage"
+import {removeItem, saveValue} from "utils/localStorage";
+import { push, replace } from 'connected-react-router';
 
 const sagas = [
     takeLatest(types.LOGIN_GET_REQUEST, getLogin),
@@ -14,33 +12,24 @@ const sagas = [
 export default sagas;
 
 function* getLogin({params}) {
-
-    
     const response = yield call(
         loginMiddleware.getLogin,
         params
     );
 
-debugger
-
-    if (response.type === "W") {
-       
-
+    if (response.status !== 200) {
+        yield put(actions.setModalOpen(true));
         yield put(actions.getLoginError());
-
     } else {
-       
-        const { result } = response.data;
-        saveValue("token",result.accessToken);
-        window.location.href= "/dashboard"  //implementar react redux router
+        const {result} = response.data;
+        yield call(loginMiddleware.setAuthToken, result.accessToken);
+        saveValue("token", result.accessToken);
+        yield put(replace("/dashboard"));
         yield put(actions.getLoginSuccess(result));
     }
-
 }
 
-// eslint-disable-next-line require-yield
 function* logout(){
     removeItem("token")
-    window.location.href="/";
-    
+    yield put(replace("/"));
 }

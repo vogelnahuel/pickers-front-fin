@@ -15,7 +15,7 @@ import orDisabled from "assets/transaction/OrDisabled.svg";
 
 import Close from "assets/transaction/Close.svg";
 
-import api from "config/api.js";
+import api from "../../middleware/api";
 import createCSV from "tools/createCSV";
 import stateName from "component/transaction/tableTransaction/statesNames";
 import moment from "moment";

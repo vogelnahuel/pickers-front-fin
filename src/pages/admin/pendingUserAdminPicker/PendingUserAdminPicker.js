@@ -5,6 +5,7 @@ import 'pages/admin/PendingUser/Pickers.scss'
 import 'pages/admin/pendingUserAdminPicker/pendingUserAdminPicker.scss'
 import {PendingBlue} from 'component/admin/Sub-Title-Image/PendingBlue'
 import {Input} from "component/inputs/Input"
+import {Switch} from "component/inputs/switch"
 import exportar from 'assets/admin/PendingUser/exportar.svg'
 import or from 'assets/admin/PendingUser/or.svg'
 import motorcycle from 'assets/admin/PendingUserAdminPicker/motorcycle.svg'
@@ -14,6 +15,7 @@ import {Modal} from '@pickit/pickit-components'
 import button from "assets/admin/ActiveUserAdminPicker/button.svg";
 import disabledButton from "assets/admin/ActiveUserAdminPicker/disabledButton.svg";
 import useValidationSchema from "hooks/useValidationSchema"
+import {Col, Row, Container} from "react-bootstrap";
 
 export const PendingUserAdminPicker = (
     {
@@ -24,6 +26,10 @@ export const PendingUserAdminPicker = (
         getPendingUserPickerExportCloseModal,
         onSubmit,
         actualPage,
+        active,
+        cancel,
+        postAprovePickerRequest,
+        postEditPickerRequest,
         changePage,
         validationSchema
     }) => {
@@ -63,174 +69,222 @@ export const PendingUserAdminPicker = (
                         initialValues={pendingUserAdminPicker}
                         validate={useValidationSchema(validationSchema)}
                     >
-                        {(props) => (
-                            <form className="Admin-Pickers-inputs" onSubmit={props.handleSubmit}>
-                                <div  className="form-part-1-admin-pickers">
-                                    <Field
-                                        type="text"
-                                        name="name"
-                                        label="Nombre/s *"
-                                        component={Input}
-                                        className="Admin-Pickers-input"
-                                        placeholder="Ingresá el nombre"
-                                    />
-                                    <Field
-                                        type="text"
-                                        name="surname"
-                                        label="Apellido/s *"
-                                        component={Input}
-                                        className="Admin-Pickers-input"
-                                        placeholder="Ingresá el apellido"
-                                    />
-                                    <Field
-                                        type="text"
-                                        name="identificationNumber"
-                                        disabled
-                                        label="DNI"
-                                        component={Input}
-                                        className="Admin-Pickers-input readonly"
-                                        placeholder="Ingresá el DNI"
-                                    />
-                                    <Field
-                                        type="text"
-                                        name="email"
-                                        label="E-mail"
-                                        component={Input}
-                                        disabled
-                                        className="Admin-Pickers-input readonly"
-                                        placeholder="Ingresá el Email"
-                                    />
-                                    <Field
-                                        type="text"
-                                        name="dateOfBirth"
-                                        label="Fecha de nacimiento"
-                                        component={Input}
-                                        disabled
-                                        className="Admin-Pickers-input"
-                                        placeholder="Ingresá la fecha nac"
-                                    />
-                                    <Field
-                                        type="text"
-                                        name="phone.areaNumber"
-                                        label="Código de área *"
-                                        component={Input}
-                                        middle
-                                        className="Admin-Pickers-input-middle"
-                                        placeholder="Ingresá el Código de área *"
-                                    />
-                                    <Field
-                                        type="text"
-                                        name="phone.number"
-                                        label="Teléfono *"
-                                        component={Input}
-                                        middle
-                                        className="Admin-Pickers-input-middle"
-                                        placeholder="Ingresá el teléfono"
-                                    />
-                                </div>
-
+                        {({ handleSubmit, initialValues }) => (
+                            <form className="Admin-Pickers-inputs" onSubmit={handleSubmit}>
+                                <Container fluid className="form-part-1-admin-pickers">
+                                    <Row>
+                                        <Col>
+                                            <Field
+                                                type="text"
+                                                name="name"
+                                                label="Nombre/s *"
+                                                component={Input}
+                                                className="Admin-Pickers-input"
+                                                placeholder="Ingresá el nombre"
+                                            />
+                                        </Col>
+                                        <Col>
+                                            <Field
+                                                type="text"
+                                                name="surname"
+                                                label="Apellido/s *"
+                                                component={Input}
+                                                className="Admin-Pickers-input"
+                                                placeholder="Ingresá el apellido"
+                                            />
+                                        </Col>
+                                        <Col>
+                                            <Field
+                                                type="text"
+                                                name="identificationNumber"
+                                                disabled
+                                                label="DNI"
+                                                component={Input}
+                                                className="Admin-Pickers-input readonly"
+                                                placeholder="Ingresá el DNI"
+                                            />
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col md={4}>
+                                            <Field
+                                                type="text"
+                                                name="email"
+                                                label="E-mail"
+                                                component={Input}
+                                                disabled
+                                                className="Admin-Pickers-input readonly"
+                                                placeholder="Ingresá el Email"
+                                            />
+                                        </Col>
+                                        <Col md={4}>
+                                            <Field
+                                                type="text"
+                                                name="dateOfBirth"
+                                                label="Fecha de nacimiento"
+                                                component={Input}
+                                                disabled
+                                                className="Admin-Pickers-input"
+                                                placeholder="Ingresá la fecha nac"
+                                            />
+                                        </Col>
+                                        <Col>
+                                            <Field
+                                                type="text"
+                                                name="phone.areaNumber"
+                                                label="Código de área *"
+                                                component={Input}
+                                                middle
+                                                className="Admin-Pickers-input"
+                                                placeholder="Ingresá el Código de área *"
+                                            />
+                                        </Col>
+                                        <Col>
+                                            <Field
+                                                type="text"
+                                                name="phone.number"
+                                                label="Teléfono *"
+                                                component={Input}
+                                                middle
+                                                className="Admin-Pickers-input"
+                                                placeholder="Ingresá el teléfono"
+                                            />
+                                        </Col>
+                                    </Row>
+                                </Container>
                                 <h3 className="subTitle-pending-data">Datos contables y bancarios</h3>
-
-                                <div  className="form-part-1-admin-pickers">
-                                    <Field
-                                        type="text"
-                                        name="accountingData.fiscalNumber"
-                                        label="Número de CUIT/CUIL"
-                                        component={Input}
-                                        disabled
-                                        className="Admin-Pickers-input readonly"
-                                        placeholder="20 - 39589475 - 4"
-                                    />
-                                    <Field
-                                        type="text"
-                                        name="accountingData.bankIdentifier"
-                                        label="Número de CBU"
-                                        component={Input}
-                                        disabled
-                                        className="Admin-Pickers-input readonly"
-                                        placeholder="20 - 39589475 - 4"
-                                    />
-                                    <Field
-                                        type="text"
-                                        name="accountingData.bankName"
-                                        label="Nombre del banco"
-                                        component={Input}
-                                        disabled
-                                        className="Admin-Pickers-input readonly"
-                                        placeholder="Ingresá el Nombre"
-                                    />
-                                </div>
-
+                                <Container fluid className="form-part-1-admin-pickers">
+                                    <Row>
+                                        <Col>
+                                            <Field
+                                                type="text"
+                                                name="accountingData.fiscalNumber"
+                                                label="Número de CUIT/CUIL"
+                                                component={Input}
+                                                disabled
+                                                className="Admin-Pickers-input readonly"
+                                                placeholder="20 - 39589475 - 4"
+                                            />
+                                        </Col>
+                                        <Col>
+                                            <Field
+                                                type="text"
+                                                name="accountingData.bankIdentifier"
+                                                label="Número de CBU"
+                                                component={Input}
+                                                disabled
+                                                className="Admin-Pickers-input readonly"
+                                                placeholder="20 - 39589475 - 4"
+                                            />
+                                        </Col>
+                                        <Col>
+                                            <Field
+                                                type="text"
+                                                name="accountingData.bankName"
+                                                label="Nombre del banco"
+                                                component={Input}
+                                                disabled
+                                                className="Admin-Pickers-input readonly"
+                                                placeholder="Ingresá el Nombre"
+                                            />
+                                        </Col>
+                                    </Row>
+                                </Container>
                                 <h3 className="subTitle-pending-data">Seguros</h3>
-
-                                <div  className="form-part-1-admin-pickers">
-                                    <Field
-                                        type="text"
-                                        name={`vehicle.${props.initialValues.vehicleType}.patent`}
-                                        label="Patente del vehículo *"
-                                        component={Input}
-                                        className="Admin-Pickers-input"
-                                        placeholder="Ingresá los dígitos de la patente"
-                                    />
-                                    <Field
-                                        type="text"
-                                        name={`vehicle.${props.initialValues.vehicleType}.expirationDateDriverLicense`}
-                                        label="Vencimiento de la licencia *"
-                                        component={Input}
-                                        className="Admin-Pickers-input"
-                                        placeholder="día / mes / año"
-                                    />
-                                    <Field
-                                        type="text"
-                                        name={`vehicle.${props.initialValues.vehicleType}.expirationDatePolicyVehicle`}
-                                        label="Vencimiento de la cédula *"
-                                        component={Input}
-                                        className="Admin-Pickers-input"
-                                        placeholder="día / mes / año"
-                                    />
-                                    <Field
-                                        type="text"
-                                        name={`vehicle.${props.initialValues.vehicleType}.expirationDateIdentificationVehicle`}
-                                        label="Vencimiento del seguro de automotor *"
-                                        component={Input}
-                                        className="Admin-Pickers-input"
-                                        placeholder="día / mes / año"
-                                    />
-                                    <Field
-                                        type="text"
-                                        name="expirationDatePolicyPersonal"
-                                        label="Vencimiento del seguro de accidentes personales *"
-                                        component={Input}
-                                        className="Admin-Pickers-input"
-                                        placeholder="día / mes / año"
-                                    />
-                                </div>
-                                {pendingUserAdminPicker.status && (pendingUserAdminPicker.status.id === 4 || pendingUserAdminPicker.status.id === 5 ) ?
+                                <Container fluid className="form-part-1-admin-pickers">
+                                    <Row>
+                                        {
+                                            initialValues.vehicleType === "motorcycle" &&
+                                            <>
+                                                <Col md={4}>
+                                                    <Field
+                                                        type="text"
+                                                        name={`vehicle.${initialValues.vehicleType}.patent`}
+                                                        label="Patente del vehículo *"
+                                                        component={Input}
+                                                        className="Admin-Pickers-input"
+                                                        placeholder="Ingresá los dígitos de la patente"
+                                                    />
+                                                </Col>
+                                                <Col md={4}>
+                                                    <Field
+                                                        type="text"
+                                                        name={`vehicle.${initialValues.vehicleType}.expirationDateDriverLicense`}
+                                                        label="Vencimiento de la licencia *"
+                                                        component={Input}
+                                                        className="Admin-Pickers-input"
+                                                        placeholder="día / mes / año"
+                                                    />
+                                                </Col>
+                                                <Col md={4}>
+                                                    <Field
+                                                        type="text"
+                                                        name={`vehicle.${initialValues.vehicleType}.expirationDatePolicyVehicle`}
+                                                        label="Vencimiento de la cédula *"
+                                                        component={Input}
+                                                        className="Admin-Pickers-input"
+                                                        placeholder="día / mes / año"
+                                                    />
+                                                </Col>
+                                                {/*</Row>*/}
+                                                {/*<Row>*/}
+                                                <Col md={4}>
+                                                    <Field
+                                                        type="text"
+                                                        name={`vehicle.${initialValues.vehicleType}.expirationDateIdentificationVehicle`}
+                                                        label="Vencimiento del seguro de automotor *"
+                                                        component={Input}
+                                                        className="Admin-Pickers-input"
+                                                        placeholder="día / mes / año"
+                                                    />
+                                                </Col>
+                                            </>
+                                        }
+                                        <Col md={4}>
+                                            <Field
+                                                type="text"
+                                                name="expirationDatePolicyPersonal"
+                                                label="Vencimiento del seguro de accidentes personales *"
+                                                lastLabel
+                                                component={Input}
+                                                className="Admin-Pickers-input"
+                                                placeholder="día / mes / año"
+                                            />
+                                        </Col>
+                                    </Row>
+                                </Container>
+                                {active ?
                                     <>
-                                        <h3 className="subTitle-pending-data">Estado</h3>
-                                        <div className="active-admin-picker-estado-container">
-                                            <p className={pendingUserAdminPicker.enable?"admin-active-picker":"admin-buttonDisabled-picker-disabled"}>Deshabilitado</p>
-                                            <img
-                                                // onClick={onCLickImg}
-                                                className="button-active-picker" src={pendingUserAdminPicker.enable ? button : disabledButton}/>
-                                            <p className={pendingUserAdminPicker.enable?"admin-active-picker-p":"admin-buttonDisabled-picker-enabled"}>Habilitado</p>
-                                        </div >
+                                        <Field
+                                            name="enable"
+                                            component={Switch}
+                                        />
+
+                                        <div className="pending-admin-picker-button">
+                                            <button onClick={cancel} className="corregir-admin-picker">Cancelar</button>
+                                            <button type="submit" className="button-modal-aprobar">Guardar</button>
+                                        </div>
                                     </>
                                     :
-                                    <div className="pending-admin-picker-container-checkbox">
-                                        <div>
-                                            <input className="pending-admin-picker-input-checkbox" type="checkbox" id="enviar" value="enviado" />
-                                            <label className="pending-admin-picker-div-label" htmlFor="enviar">Envié la carta oferta</label>
+                                        // TODO: hablitar cuando funcionen los checks de enviar carta
+                                        // :
+                                        // <div className="pending-admin-picker-container-checkbox">
+                                        //     <div>
+                                        //         <input className="pending-admin-picker-input-checkbox" type="checkbox" id="enviar" value="enviado" />
+                                        //         <label className="pending-admin-picker-div-label" htmlFor="enviar">Envié la carta oferta</label>
+                                        //     </div>
+                                        //     <div>
+                                        //         <input className="pending-admin-picker-input-checkbox" type="checkbox" id="firmar" value="firmado"/>
+                                        //         <label  className="pending-admin-picker-div-label" htmlFor="firmar">Firmó la carta oferta</label>
+                                        //     </div>
+                                        // </div>
+                                    <>
+                                        <div className="pending-admin-picker-button">
+                                            <button type="submit" className="corregir-admin-picker">Guardar cambios</button>
+                                            <button onClick={postAprovePickerRequest} className="button-modal-aprobar">Aprobar picker</button>
                                         </div>
-                                        <div>
-                                            <input className="pending-admin-picker-input-checkbox" type="checkbox" id="firmar" value="firmado"/>
-                                            <label  className="pending-admin-picker-div-label" htmlFor="firmar">Firmó la carta oferta</label>
-                                        </div>
-                                    </div>
+                                    </>
                                 }
-                                <div className="pending-admin-picker-button">
-                                    <button type="submit" className="corregir-admin-picker">Guardar cambios</button>
-                                </div>
                             </form>
                         )}
                     </Form>

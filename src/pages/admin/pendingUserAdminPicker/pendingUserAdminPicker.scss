@@ -28,17 +28,24 @@
     font-family: 'Mulish';
     font-style: normal;
     font-weight: 300;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 20px;
     color: #4D4D4D;
     margin-bottom: 0;
-    width: 23vw;
+    //width: 23vw;
+}
+.last-label{
+    overflow: hidden;
+    white-space: nowrap;
+}
+::placeholder{
+    color: #BDBDBD;
 }
 .Admin-Pickers-input{
     font-family: 'Mulish';
     font-style: normal;
     font-weight: normal;
-    margin-right: 26px;
+    //margin-right: 26px;
     font-size: 17px;
     line-height: 27px;
     letter-spacing: 0.005em;
@@ -47,8 +54,8 @@
     outline: none;
     background-color: transparent;
     border-bottom:  1px solid #828282;
-    margin-bottom: 3.515625vh;
-    width: 21.8vw;
+    margin-bottom: 35px;
+    width: 100%;
 }
 
 .Admin-Pickers-button{
@@ -61,7 +68,7 @@
     text-align: center;
     margin-top: 3.2552083333333335vh;
     margin-left: 44vw;
-    
+
 
 }
 .Admin-Pickers-space{
@@ -94,17 +101,14 @@
 }
 .form-part-1-admin-pickers{
     background-color: white;
-    display: flex;
+    //display: flex;
     border: 1px solid #E5E5E5;
     box-sizing: border-box;
     border-radius: 10px;
-    padding-left: 19px;
-    padding-right: 5px;
-    padding-top: 32px;
-    padding-bottom: 14px;
+    padding: 35px 35px 5px;
     margin-top: 3vh;
     flex-wrap: wrap;
-    width: 77.8vw;
+    //width: 77.8vw;
 }
 
 .subTitle-pending-data{
@@ -128,7 +132,7 @@
     width: 100%;
     margin-bottom: 34px;
     margin-top: 30px;
-    
+
 }
 .label-width{
     width: 30vw;
@@ -147,6 +151,7 @@
     letter-spacing: 0.0125em;
     color: #101820;
     width: 217px;
+    margin: 0 10px;
     height: 50px;
     background-color: white;
 }
@@ -265,9 +270,26 @@
     box-sizing: border-box;
     border-radius: 50px;
 
-  }
-  .button-modal-aprobar{
+}
+.button-modal-aprobar{
     background: #0098FF;
+    border-radius: 50px;
+    width: 219px;
+    height: 50px;
+    margin: 0 10px;
+    text-decoration: none;
+    border-color: #FFFFFF;
+    border-width: 0px;
+    color: #FFFFFF;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    text-align: center;
+}
+.button-modal-aprobar-exito{
+
+    background: #6FCF97;
     border-radius: 50px;
     width: 219px;
     height: 50px;
@@ -282,26 +304,8 @@
     font-weight: 800;
     font-size: 18px;
     text-align: center;
-  }
-  .button-modal-aprobar-exito{
-  
-        background: #6FCF97;
-        border-radius: 50px;
-        width: 219px;
-        height: 50px;
-        margin-left: 0px;
-        text-decoration: none;
-        border-color: #FFFFFF;
-        border-width: 0px;
-        margin-top: 26px;
-        color: #FFFFFF;
-        font-family: 'Mulish';
-        font-style: normal;
-        font-weight: 800;
-        font-size: 18px;
-        text-align: center;
 }
-  .corregir-admin-picker-disable{
+.corregir-admin-picker-disable{
     border: 2.5px solid #BDBDBD;
     box-sizing: border-box;
     background-color: white;
@@ -320,17 +324,17 @@
     background: #00B2E3;
     border-radius: 25px 25px 0px 0px;
     height: 137px;
-  }
+}
 .modal-error-subtitle-buttons{
     background: #FFFFFF;
     height: 167px;
     border-radius: 0px 0px 25px 25px;
-  }
+}
 .modal-error-subtitle{
     background: #FFFFFF;
     height: 214px;
     border-radius: 0px 0px 25px 25px;
-   }
+}
 .p-modal-error-subtitle-buttons {
     font-family: 'Mulish';
     font-style: normal;
@@ -341,11 +345,11 @@
     letter-spacing: 0.005em;
     color: #101820;
     padding-top: 26px;
-  
+
 }
 .button-pending-picker-modal{
-   display: flex;
-   justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 
@@ -457,7 +461,7 @@
 }
 
 .Admin-Pickers-input-middle{
-    width: 139px;
+    //width: 139px;
     border: 0;
     border-bottom: 1px solid #828282;
     outline: none;
@@ -466,7 +470,7 @@
     font-weight: normal;
     font-size: 17px;
     line-height: 27px;
-    margin-right: 26px;
+    //margin-right: 26px;
     letter-spacing: 0.005em;
     color: #101820;
     border: 0;
@@ -475,7 +479,7 @@
     margin-bottom: 3.515625vh;
 }
 .label-Admin-Pickers-middle{
-    width: 138px;
+    //width: 138px;
     margin-bottom: 0;
 }
 .mainContainerFlex-picker{
@@ -483,7 +487,7 @@
     margin-top: 6.380208333333334vh;
 }
 
-@media (min-width: 1800px) { 
+@media (min-width: 1800px) {
 
     .Admin-Pickers-button{
         margin-left: 53vw;
@@ -499,41 +503,41 @@
         padding-bottom: 20px;
     }
     .Admin-Pickers-input{
-        width: 499px;
+        //width: 499px;
     }
     .Admin-Pickers-space{
         width: 499px;
         margin-right: 4px;
     }
     .Admin-Pickers-input-middle{
-        width: 239px;
+        //width: 239px;
     }
-   
+
     .pending-admin-picker-button{
         margin-top: 35px;
     }
     .subTitle-pending-picker{
-        
-    }
- }
 
- @media (max-width:1300px){
+    }
+}
+
+@media (max-width:1300px){
     .Admin-Pickers-space{
         width: 22.4vw;
         margin-left: 18px;
     }
     .Admin-Pickers-input{
-        width: 22.2vw;
+        //width: 22.2vw;
     }
     .label-Admin-Pickers{
-        width: 22.2vw;
+        //width: 22.2vw;
         margin-bottom: 0;
     }
     .Admin-Pickers-input-middle{
-        width: 124px;
+        //width: 124px;
     }
     .label-Admin-Pickers-middle{
         margin-bottom: 0;
-        width: 124px;
+        //width: 124px;
     }
- }
+}
