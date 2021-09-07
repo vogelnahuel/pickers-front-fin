@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Header} from "component/admin/Header/Header";
 import {Nav} from "component/admin/Nav/Nav";
 import {TableTransaction} from "component/transaction/tableTransaction/TableTransaction";
-import "./transaction.scss";
+import "pages/transaction/transaction.scss";
 import FilterTransaction from "pages/transaction/filterTransaction/FilterTransactionContainer";
 import {Modal} from "@pickit/pickit-components";
 import {OptionList} from "component/transaction/OptionList/OptionList";
@@ -13,10 +13,10 @@ import orDisabled from "assets/transaction/OrDisabled.svg";
 
 import Close from "assets/transaction/Close.svg";
 
-import api from "../../middleware/api";
+import api from "middleware/api";
 import stateName from "component/transaction/tableTransaction/statesNames";
 import moment from "moment";
-import button from "../../assets/admin/ActiveUserAdminPicker/button.svg";
+
 
 
 export const Transaction = ({
@@ -29,7 +29,9 @@ export const Transaction = ({
                                 closeExportModal,
                                 filters,
                                 seeMore,
-                                filtersExtraSeeMore
+                                filtersExtraSeeMore,
+                                openErrorDatePicker,
+                                setOpenErrorDatePicker
                             }) => {
 
 
@@ -267,6 +269,8 @@ export const Transaction = ({
 
                     </div>
                     <FilterTransaction
+                        setOpenErrorDatePicker={setOpenErrorDatePicker}
+                        openErrorDatePicker={openErrorDatePicker}
                         // setapiFilter={setapiFilter}
                         // tamPag={tamPag}
                         // offset={offset}
@@ -333,6 +337,26 @@ export const Transaction = ({
                                 </div>
                             </div>
                         </Modal>
+                    </div>
+                )}
+                {openErrorDatePicker && (
+                    <div className="contendor-modal-pending-pickers-aprobar">
+                        <Modal width="750px" height="351px" isOpen={openErrorDatePicker} onClose={()=>{setOpenErrorDatePicker(false)}}>
+                        <div className="container-modal">
+                            <div className="modal-error-title">
+                                <p className="p-modal-error-title">El rango seleccionado es inválido</p>
+                            </div>
+                            <div className="modal-error-subtitle">
+                                <p className="p-modal-error-subtitle"> Por favor, ingresá un rango menor a 31 días</p>
+                                <button
+                                    onClick={()=>{setOpenErrorDatePicker(false)}}
+                                    className="button-modal-error">
+                                    Entendido
+                                </button>
+                            </div>
+                        </div>
+                        </Modal>
+                        
                     </div>
                 )}
                 {OpenModalTransaction === true ? 

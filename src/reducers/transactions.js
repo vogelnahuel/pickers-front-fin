@@ -14,6 +14,7 @@ export const types = {
     TRANSACTIONS_SET_FILTERS: `${TRANSACTIONS}_SET_FILTERS`,
     TRANSACTIONS_EXPORT_ENABLED: `${TRANSACTIONS}_EXPORT_ENABLED`,
     TRANSACTIONS_CLOSE_EXPORT_MODAL: `${TRANSACTIONS}_CLOSE_EXPORT_MODAL`,
+    TRANSACTIONS_OPEN_ERROR_DATE_MODAL: `${TRANSACTIONS}_OPEN_ERROR_DATE_MODAL`,
     TRANSACTIONS_RESET: `${TRANSACTIONS}_RESET`,
 };
 
@@ -22,7 +23,7 @@ export const INITIAL_STATE = {
     exportDisabled: true,
     transactions: [],
     openExportModal: false,
-    //openErrorDatePicker:false,
+    openErrorDatePicker:false,
     filters: {},
     filtersExtra:{
         limit: 3,
@@ -66,6 +67,10 @@ export const actions = {
         type: types.TRANSACTIONS_EXPORT_ENABLED,
         enabled
     }),
+    setOpenErrorDatePicker: (param) => ({
+        type: types.TRANSACTIONS_OPEN_ERROR_DATE_MODAL,
+        param
+    }),
     getCloseExportModal: () => ({
         type: types.TRANSACTIONS_CLOSE_EXPORT_MODAL,
     }),
@@ -90,6 +95,7 @@ export const selectors = {
     getSeeMore:({transactions}) => transactions.seeMore,
     getFiltersExtraSeeMore:({transactions}) => transactions.filtersExtraSeeMore,
     getOpenExportModal:({transactions}) => transactions.openExportModal,
+    getOpenErrorDatePicker:({transactions}) => transactions.openErrorDatePicker,
 };
 
 
@@ -161,6 +167,11 @@ const reducer =(state = INITIAL_STATE, action = {}) => {
             return {
                 ...state,
                 openExportModal: false,
+            };
+            case types.TRANSACTIONS_OPEN_ERROR_DATE_MODAL:
+            return {
+                ...state,
+                openErrorDatePicker: action.param,
             };
         default:
             return state;

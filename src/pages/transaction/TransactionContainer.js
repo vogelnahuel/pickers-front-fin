@@ -30,6 +30,7 @@ const mapStateToProps = (state) => ({
     seeMore: transactionSelectors.getSeeMore(state),
     filtersExtraSeeMore: transactionSelectors.getFiltersExtraSeeMore(state),
     openExportModal: transactionSelectors.getOpenExportModal(state),
+    openErrorDatePicker:transactionSelectors.getOpenErrorDatePicker(state)
 });
 
 
@@ -51,6 +52,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     getMoreTransactions: (params) => {
         dispatch(transactionActions.getMoreTransactionsRequest(params));
+    },
+    setOpenErrorDatePicker: (param) => {
+        dispatch(transactionActions.setOpenErrorDatePicker(param));
     },
    
 });
