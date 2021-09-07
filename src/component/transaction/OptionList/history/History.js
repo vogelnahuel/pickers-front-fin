@@ -86,7 +86,7 @@ export const History = (props) => {
   }
   
   
-console.log(FilterTransaction)
+
   
   return (
     <div className="modal-transaction-optionContainer-scroll">
@@ -334,9 +334,7 @@ console.log(FilterTransaction)
           }
           <div className="modal-transaction-part">
               <img src={Okey} alt="okey" className="modal-transaction-img-okey" />
-              {
-                console.log( FilterTransaction && FilterTransaction) 
-              }
+           
               
               <p className="modal-transaction-part-subtitle">Pendiente</p>
               {
