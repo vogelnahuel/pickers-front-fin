@@ -168,7 +168,7 @@ export const Transaction = ({
                                         <p>Estado
                                         </p> 
                                         <p className="modal-transaction-fecha"> 
-                                            {  FilterSelectedTransaction.transaction && 
+                                            {  FilterSelectedTransaction && FilterSelectedTransaction.transaction && 
                                             FilterSelectedTransaction.transaction.inAlert===true ? 
                                                 <> 
                                                     <span className="transaction-modal-alert modal-transaction-alerta">En alerta</span> 
