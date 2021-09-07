@@ -16,7 +16,6 @@ import Close from "assets/transaction/Close.svg";
 import api from "middleware/api";
 import stateName from "component/transaction/tableTransaction/statesNames";
 import moment from "moment";
-import button from "assets/admin/ActiveUserAdminPicker/button.svg";
 
 
 export const Transaction = ({
@@ -29,7 +28,9 @@ export const Transaction = ({
                                 closeExportModal,
                                 filters,
                                 seeMore,
-                                filtersExtraSeeMore
+                                filtersExtraSeeMore,
+                                openErrorDatePicker,
+                                setOpenErrorDatePicker
                             }) => {
 
     const [FilterSelectedTransaction, setFilterSelectedTransaction] = useState({});
@@ -52,14 +53,13 @@ export const Transaction = ({
     //todo: extraer al reducer
     const cargarDatos = async(e)=> {
 
-        setFilterSelectedTransaction( await  api.get(`/ms-admin-rest/api/v1.0/transactions/${Number(e.target.getAttribute('name'))}`)
-
+         await  api.get(`/ms-admin-rest/api/v1.0/transactions/${Number(e.target.getAttribute('name'))}`)
             .then((res) => {
-                return res.data.result;
+                setFilterSelectedTransaction(res.data.result);
             })
             .catch((err) => {
                 console.log(err);
-            }))
+            })
     }
 
     const onClose = (e) => {
@@ -116,7 +116,6 @@ export const Transaction = ({
                         </>
                         : (
                             <button
-                                // onClick={cargarMas}
                                 className="paginator-button-transaction-noResult"
                             >
                                 No obtuvimos resultados de tu búsqueda :(
@@ -145,6 +144,26 @@ export const Transaction = ({
                                 </div>
                             </div>
                         </Modal>
+                    </div>
+                )}
+                {openErrorDatePicker && (
+                    <div className="contendor-modal-pending-pickers-aprobar">
+                        <Modal width="750px" height="351px" isOpen={openErrorDatePicker} onClose={()=>{setOpenErrorDatePicker(false)}}>
+                        <div className="container-modal">
+                            <div className="modal-error-title">
+                                <p className="p-modal-error-title">El rango seleccionado es inválido</p>
+                            </div>
+                            <div className="modal-error-subtitle">
+                                <p className="p-modal-error-subtitle"> Por favor, ingresá un rango menor a 31 días</p>
+                                <button
+                                    onClick={()=>{setOpenErrorDatePicker(false)}}
+                                    className="button-modal-error">
+                                    Entendido
+                                </button>
+                            </div>
+                        </div>
+                        </Modal>
+                        
                     </div>
                 )}
                 {OpenModalTransaction === true ? 

@@ -4,7 +4,7 @@ import {actions as transactionActions, selectors as transactionSelectors} from "
 import {FilterTransaction} from "pages/transaction/filterTransaction/FilterTransaction"
 import moment from "moment";
 
-const FilterTransactionContainer = (props) => {
+const FilterTransactionContainer = (props) => { 
     const formatDate = (date) => {
         let result ={};
         if (date) {
@@ -46,13 +46,9 @@ const handlerOnChange = (value ) => {
     props.setFilters({...props.filters, state: value===''? undefined : value});
 };
 
-return (
-    <FilterTransaction
-        {...props}
-        onSubmit={onSubmit}
-        handlerOnChange={handlerOnChange}
-    />
-);
+    return (
+        <FilterTransaction {...props} onSubmit={onSubmit} handlerOnChange={handlerOnChange}/>
+    );
 }
 
 

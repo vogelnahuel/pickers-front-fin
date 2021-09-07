@@ -17,6 +17,10 @@ function* getTransactions({ params }) {
         params
     );
     if (response.status !== 200) {
+       
+        if(response.data.statusCode===20011){
+            yield put(actions.setOpenErrorDatePicker(true));
+        }
         yield put(actions.getTransactionsError());
     } else {
         const { result: {items}, limit, offset, hasMore } = response.data;
