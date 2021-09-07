@@ -43,7 +43,7 @@ display: inline-block;
 width: 541px ;
 border: rgba(153, 24, 20, 0);
 color: #FF1515;
-border-bottom: 1px solid #e00404;
+border-bottom: 1px solid #FF1515 !important;
 z-index: 3;
 
 }
@@ -134,6 +134,7 @@ line-height: 1.5;
   line-height: 18px;
   position: relative;
   color: #FF1515;
+  top: -5px;
 }
 
 .correcion{
@@ -280,9 +281,6 @@ transform: translateY(0em) scale(1);
   }
   .centrar{
     height: 18.7vh;
-  }
-  .errors{
-    top: 0px;
   }
 }
 
