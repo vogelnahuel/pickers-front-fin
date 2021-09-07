@@ -20,17 +20,6 @@ export const Login = ({postLogin,modalOpen,isFetching, setModalOpen, validationS
     const [errorMsgMail, seterrorMsgMail] = useState("")
     const [errorPassWord, seterrorPassWord] = useState(false)
     const [errorMsgPassword, seterrorMsgPassword] = useState("")
-    // const [modalOpen, setmodalOpen] = useState(false)
-    // const [modalOpen2, setmodalOpen2] = useState(false)
-    //Test
-    //const {mail,password,errorMail,errorMsgMail,errorPassWord,errorMsgPassword,} = formValues;
-
-    /*
-      useEffect(()=>{
-        window.localStorage.removeItem('token')
-
-      },[])
-      */
     const handleFocusLabel = (e,mail="") => {
         e.target.nextSibling.classList.remove('animationOrigin');
         e.target.nextSibling.classList.add('animationTop');
@@ -140,10 +129,9 @@ export const Login = ({postLogin,modalOpen,isFetching, setModalOpen, validationS
 
 
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
 
         e.preventDefault();
-debugger
         if(mail==='' || errorMail===true || password==='' || errorPassWord===true){
             if(mail===''){
                 seterrorMail(true);
@@ -164,8 +152,7 @@ debugger
             
             postLogin({email:mail?mail:'',password:password?password:''})
         }
-        const isValid= await validationSchema.isValid({mail,password})
-            console.log(isValid)
+        //const isValid= validationSchema.isValid({mail,password})
         
 
         /*
