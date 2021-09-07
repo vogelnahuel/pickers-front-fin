@@ -69,11 +69,7 @@ export const PendingUserAdminPicker = (
                         initialValues={pendingUserAdminPicker}
                         validate={useValidationSchema(validationSchema)}
                     >
-                        {({ invalid,handleSubmit, dirty, initialValues, values, ...props }) =>
-                        {
-                            console.log(props)
-                            return (
-
+                        {({ invalid,handleSubmit, dirty, initialValues, values }) =>
                             <form className="Admin-Pickers-inputs" onSubmit={handleSubmit}>
                                 <Container fluid className="form-part-1-admin-pickers">
                                     <Row>
@@ -285,7 +281,7 @@ export const PendingUserAdminPicker = (
                                     </>
                                 }
                             </form>
-                            )}}
+                        }
                     </Form>
 
                     {/*{   modalOpenAprobar === true ?*/}
