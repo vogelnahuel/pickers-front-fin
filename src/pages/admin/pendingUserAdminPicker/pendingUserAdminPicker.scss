@@ -35,7 +35,6 @@
     //width: 23vw;
 }
 .last-label{
-    overflow: hidden;
     white-space: nowrap;
 }
 ::placeholder{
@@ -54,7 +53,7 @@
     outline: none;
     background-color: transparent;
     border-bottom:  1px solid #828282;
-    margin-bottom: 35px;
+    margin-bottom: 30px;
     width: 100%;
 }
 
@@ -271,7 +270,7 @@
     border-radius: 50px;
 
 }
-.button-modal-aprobar{
+.button-submit-active{
     background: #0098FF;
     border-radius: 50px;
     width: 219px;
@@ -286,6 +285,9 @@
     font-weight: 800;
     font-size: 18px;
     text-align: center;
+}
+.button-submit-active:disabled{
+    background: #BDBDBD;
 }
 .button-modal-aprobar-exito{
 
@@ -305,20 +307,27 @@
     font-size: 18px;
     text-align: center;
 }
-.corregir-admin-picker-disable{
-    border: 2.5px solid #BDBDBD;
+.button-submit-subtype{
+    border: 2.5px solid #0098FF;
     box-sizing: border-box;
-    background-color: white;
     border-radius: 50px;
     font-family: 'Mulish';
     font-style: normal;
-    font-weight: 800;
-    font-size: 18px;
-    line-height: 23px;
+    font-weight: bold;
+    font-size: 17px;
+    line-height: 21px;
+    align-items: center;
     text-align: center;
-    color: #BDBDBD;
+    letter-spacing: 0.0125em;
+    color: #101820;
     width: 217px;
+    margin: 0 10px;
     height: 50px;
+    background-color: white;
+}
+.button-submit-subtype:disabled{
+    border: 2.5px solid #BDBDBD;
+    color: #BDBDBD;
 }
 .modal-error-title2{
     background: #00B2E3;

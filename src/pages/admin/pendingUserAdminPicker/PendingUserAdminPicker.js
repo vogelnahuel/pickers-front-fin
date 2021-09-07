@@ -29,7 +29,7 @@ export const PendingUserAdminPicker = (
         active,
         cancel,
         postAprovePickerRequest,
-        // postEditPickerRequest,
+        postEditPickerRequest,
         changePage,
         validationSchema
     }) => {
@@ -65,11 +65,15 @@ export const PendingUserAdminPicker = (
                         </button>
                     </div>
                     <Form
-                        onSubmit={onSubmit}
+                        onSubmit={values => active ? postEditPickerRequest(values) : onSubmit(values)}
                         initialValues={pendingUserAdminPicker}
                         validate={useValidationSchema(validationSchema)}
                     >
-                        {({ handleSubmit, initialValues }) => (
+                        {({ invalid,handleSubmit, dirty, initialValues, values, ...props }) =>
+                        {
+                            console.log(props)
+                            return (
+
                             <form className="Admin-Pickers-inputs" onSubmit={handleSubmit}>
                                 <Container fluid className="form-part-1-admin-pickers">
                                     <Row>
@@ -224,8 +228,6 @@ export const PendingUserAdminPicker = (
                                                         placeholder="día / mes / año"
                                                     />
                                                 </Col>
-                                                {/*</Row>*/}
-                                                {/*<Row>*/}
                                                 <Col md={4}>
                                                     <Field
                                                         type="text"
@@ -257,36 +259,34 @@ export const PendingUserAdminPicker = (
                                             name="enable"
                                             component={Switch}
                                         />
-
                                         <div className="pending-admin-picker-button">
-                                            <button onClick={cancel} className="corregir-admin-picker">Cancelar</button>
-                                            <button type="submit" className="button-modal-aprobar">Guardar</button>
+                                            <button type="button" onClick={cancel} disabled={invalid || !dirty} className="button-submit-subtype">Cancelar</button>
+                                            <button type="submit" disabled={invalid || !dirty} className="button-submit-active">Guardar</button>
                                         </div>
                                     </>
                                     :
-                                        // TODO: hablitar cuando funcionen los checks de enviar carta
-                                        // :
-                                        // <div className="pending-admin-picker-container-checkbox">
-                                        //     <div>
-                                        //         <input className="pending-admin-picker-input-checkbox" type="checkbox" id="enviar" value="enviado" />
-                                        //         <label className="pending-admin-picker-div-label" htmlFor="enviar">Envié la carta oferta</label>
-                                        //     </div>
-                                        //     <div>
-                                        //         <input className="pending-admin-picker-input-checkbox" type="checkbox" id="firmar" value="firmado"/>
-                                        //         <label  className="pending-admin-picker-div-label" htmlFor="firmar">Firmó la carta oferta</label>
-                                        //     </div>
-                                        // </div>
                                     <>
+                                        {/*TODO: hablitar cuando funcionen los checks de enviar carta*/}
+                                        {/*:*/}
+                                        {/*<div className="pending-admin-picker-container-checkbox">*/}
+                                        {/*    <div>*/}
+                                        {/*        <input className="pending-admin-picker-input-checkbox" type="checkbox" id="enviar" value="enviado" />*/}
+                                        {/*        <label className="pending-admin-picker-div-label" htmlFor="enviar">Envié la carta oferta</label>*/}
+                                        {/*    </div>*/}
+                                        {/*    <div>*/}
+                                        {/*        <input className="pending-admin-picker-input-checkbox" type="checkbox" id="firmar" value="firmado"/>*/}
+                                        {/*        <label  className="pending-admin-picker-div-label" htmlFor="firmar">Firmó la carta oferta</label>*/}
+                                        {/*    </div>*/}
+                                        {/*</div>*/}
                                         <div className="pending-admin-picker-button">
-                                            <button type="submit" className="corregir-admin-picker">Guardar cambios</button>
-                                            <button onClick={postAprovePickerRequest} className="button-modal-aprobar">Aprobar picker</button>
+                                            <button type="submit" className="button-submit-subtype">Guardar cambios</button>
+                                            <button type="button" onClick={()=> {postAprovePickerRequest(values)}} disabled={invalid} className="button-submit-active">Aprobar picker</button>
                                         </div>
                                     </>
                                 }
                             </form>
-                        )}
+                            )}}
                     </Form>
-
 
                     {/*{   modalOpenAprobar === true ?*/}
                     {/*    <div className="contendor-modal-pending-pickers-aprobar">*/}
