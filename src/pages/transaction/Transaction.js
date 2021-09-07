@@ -35,22 +35,10 @@ export const Transaction = ({
                             }) => {
 
 
-    // const [apiFilterTransaction, setapiFilter] = useState({});
-    const [FilterSelectedTransaction, setFilterSelectedTransaction] = useState(
-        {}
-    );
-    // const [loader, setloader] = useState(true);
-    // const [exportDisabled, setexportDisabled] = useState(true)
-    // const defaultTamPag=window.screen.height<700 || window.screen.height<760 ? 3 : 5;
-    // const tamPag = 15;
-    // const [offset, setoffset] = useState(tamPag);
-    // const [filter, setfilter] = useState({});
-    // const [VerMas, setVerMas] = useState(true)
+    const [FilterSelectedTransaction, setFilterSelectedTransaction] = useState({});
     const [OpenModalTransaction, setOpenModalTransaction] = useState(false);
     const [IdModalApi, setIdModalApi] = useState(""); // devuelve la consulta api
     const titulos = ["Transacción", "Id de picker", "Vencimiento SLA", "Estado"];
-    // let filterParamsFromCars={};
-    //altura del modal
      const [resolutionHeightModal, setresolutionHeightModal] = useState(550)
     //
     //
@@ -66,50 +54,6 @@ export const Transaction = ({
     
      }, [])
 
-
-    // const {filterParams} = useParams();
-    // if(filterParams){
-    //     console.log(filterParams)
-    //     switch (filterParams) {
-    //         case "inAlert":
-    //             filterParamsFromCars= {
-    //                 values:{
-    //                     enAlerta:true,
-    //                     FechaEntrega:{
-    //                         from:moment().subtract(4,"d").format("YYYY-MM-DD"),
-    //                         until:moment().format("YYYY-MM-DD")
-    //                     }
-    //                 }
-    //             }
-
-    //             break;
-    //         case "pending":
-    //             filterParamsFromCars= {
-    //                 stringSelected: "PENDING_ASSIGNMENT",
-    //                 values:{
-    //                     FechaEntrega:{
-    //                         from:moment().subtract(4,"d").format("YYYY-MM-DD"),
-    //                         until:moment().format("YYYY-MM-DD")
-    //                     }
-    //                 }
-    //             }
-    //             break;
-    //         case "active":
-    //             filterParamsFromCars= {
-    //                 stringSelected: "PENDING_ASSIGNMENT,IN_RETURN_TO_SENDER,IN_DELIVERY_POINT,PICKED_UP,IN_PICK_UP_POINT,IN_PICK_UP",
-    //                 values:{
-    //                     FechaEntrega:{
-    //                         from:moment().subtract(4,"d").format("YYYY-MM-DD"),
-    //                         until:moment().format("YYYY-MM-DD")
-    //                     }
-    //                 }
-    //             }
-    //             break;
-
-    //         default:
-    //             break;
-    //     }
-    // }
 
     //todo: extraer al reducer
     const cargarDatos = async(e)=> {
@@ -135,117 +79,12 @@ export const Transaction = ({
     }
 
 
-    // //todo: extraer al reducer
-    // const cargarMas = async () => {
-    //     console.log("cargar mas",filter)
-    //     const res = await api
-    //         .get( `ms-admin-rest/api/v1.0/transactions?${filter.values && filter.values.nroTransaccion?`filter.transactionCode=${filter.values.nroTransaccion}`:""}${filter.values &&filter.values.Picker ? `&filter.pickerId=${filter.values.Picker}` : ""}${filter.value && filter.values.enAlerta? `&filter.inAlert=${true}` : ""}${filter.values && filter.values.FechaEntrega? `&filter.minMinDeliveryDate=${filter.values.FechaEntrega.from}`: ""}${filter.values && filter.values.FechaEntrega? `&filter.maxMinDeliveryDate=${filter.values.FechaEntrega.until}` : ""}${ filter.stringSelected && filter.stringSelected!==""? `&filter.state=${filter.stringSelected}`:""}&limit=${tamPag}&offset=${offset}`)
-    //         .then((res) => {
-    //             setoffset(offset + tamPag);
-    //             if(res.data.result.items.length<tamPag)
-    //                 setVerMas(false)
-    //             return res.data.result.items;
-    //         })
-    //         .catch((err) => {
-    //             console.log(err);
-    //         });
-    //
-    //
-    //     setapiFilter(apiFilterTransaction.concat(res));
-    // };
-
-    // const construirUrlExport = (url) => {
-    //
-    //     let arrayOpciones = [];
-    //
-    //     if(filter.values){
-    //         if(filter.values.nroTransaccion){
-    //
-    //             arrayOpciones.push(`&filter.transactionCode=${filter.values.nroTransaccion}`);
-    //         }
-    //         if (filter.values.Picker){
-    //             arrayOpciones.push(`&filter.pickerId=${filter.values.Picker}`);
-    //         }
-    //         if(filter.values.enAlerta){
-    //             arrayOpciones.push(`&filter.inAlert=${filter.values.enAlerta}`);
-    //         }
-    //         if(filter.values.FechaEntrega){
-    //             arrayOpciones.push(`&filter.minMinDeliveryDate=${filter.values.FechaEntrega.from}`);
-    //             arrayOpciones.push(`&filter.maxMinDeliveryDate=${filter.values.FechaEntrega.until}`);
-    //         }
-    //         if(filter.stringSelected){
-    //             arrayOpciones.push(`&filter.state=${filter.stringSelected}`);
-    //         }
-    //     }
-    //     arrayOpciones[0] = arrayOpciones[0].replace('&','');
-    //
-    //     for(let i =0 ; i < arrayOpciones.length;i++){
-    //         url+=arrayOpciones[i];
-    //     }
-    //
-    //     return url
-    // }
-
-    // const Export = async (e) => {
-    //
-    //     e.preventDefault();
-    //
-    //     let url="/ms-admin-rest/api/v1.0/transactions.csv?";
-    //     url = construirUrlExport(url)
-    //     const datosExportTransaction = await api.get(`${url}`)
-    //         .then(res => res)
-    //         .catch((err) => {
-    //             console.log(err);
-    //         });
-    //
-    //     if(datosExportTransaction!==undefined)
-    //         createCSV(datosExportTransaction)
-    //
-    // }
+   
 
     const onClose = (e) => {
         setOpenModalTransaction(false);
     };
 
-
-    // useEffect( () => {
-    //
-    //
-    //     const cargarDatos = async () => {
-    // //
-    // //
-    // //
-    //         setapiFilter(
-    //             await api
-    //    .get( `ms-admin-rest/api/v1.0/asd?
-    //     ${filterParamsFromCars.values && filterParamsFromCars.values.nroTransaccion?`filter.transactionCode=${filterParamsFromCars.values.nroTransaccion}`:""}
-    //     ${filterParamsFromCars.values &&filterParamsFromCars.values.Picker ? `&filter.pickerId=${filterParamsFromCars.values.Picker}` : ""}
-    //     ${filterParamsFromCars.values && filterParamsFromCars.values.enAlerta? `&filter.inAlert=${true}` : ""}
-    //     ${filterParamsFromCars.values && filterParamsFromCars.values.FechaEntrega? `&filter.minMinDeliveryDate=${filterParamsFromCars.values.FechaEntrega.from}`: ""}
-    //     ${filterParamsFromCars.values && filterParamsFromCars.values.FechaEntrega? `&filter.maxMinDeliveryDate=${filterParamsFromCars.values.FechaEntrega.until}` : ""}
-    //     ${ filterParamsFromCars.stringSelected && filterParamsFromCars.stringSelected!==""? `&filter.state=${filterParamsFromCars.stringSelected}`:""}
-    //     &limit=${defaultTamPag}`)
-
-    //                 .then((res) => {
-    //                     setloader(false)
-    //                     setoffset(defaultTamPag)
-    //                     return res.data.result.items;
-    //                 })
-    //                 .catch((err) => {
-    //                     setloader(false)
-    //                     console.log(err);
-    //                 })
-    //         )
-
-    //     }
-    //
-
-    // getTransactions(filters);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, []);
-
-//
     return (
         <div className="background-Grey">
             <Header />
@@ -268,19 +107,7 @@ export const Transaction = ({
                         </button>
 
                     </div>
-                    <FilterTransaction
-                        setOpenErrorDatePicker={setOpenErrorDatePicker}
-                        openErrorDatePicker={openErrorDatePicker}
-                        // setapiFilter={setapiFilter}
-                        // tamPag={tamPag}
-                        // offset={offset}
-                        // setoffset={setoffset}
-                        // setfilter={setfilter}
-                        // filter={filter}
-                        // setVerMas={setVerMas}
-                        // setexportDisabled={setexportDisabled}
-                        // filterParams={filterParams}
-                    />
+                    <FilterTransaction/>
                     <TableTransaction
                         setOpenModalTransaction={setOpenModalTransaction}
                         IdModal={IdModalApi}
@@ -308,7 +135,6 @@ export const Transaction = ({
                         </>
                         : (
                             <button
-                                // onClick={cargarMas}
                                 className="paginator-button-transaction-noResult"
                             >
                                 No obtuvimos resultados de tu búsqueda :(
