@@ -10,7 +10,8 @@ const TransactionContainer = (props) => {
     useEffect(() => {
         props.reset();
         const filters = parseQueryParams(params.search);
-        props.getTransactions({...props.filtersExtra, ...filters});
+        const filtersExtra={limit:window.screen.height<700 || window.screen.height<760 ? 3 : 5};
+        props.getTransactions({...filtersExtra, ...filters});
         props.setFilters(filters);
         // eslint-disable-next-line
     }, [])
