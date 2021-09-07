@@ -10,7 +10,8 @@ const TransactionContainer = (props) => {
     useEffect(() => {
         props.reset();
         const filters = parseQueryParams(params.search);
-        const filtersExtra={limit:window.screen.height<700 || window.screen.height<760 ? 3 : 5};
+        const filtersExtra={limit:window.screen.height<760 ? 3 : 5};
+        props.setExtraFilters(filtersExtra);
         props.getTransactions({...filtersExtra, ...filters});
         props.setFilters(filters);
         // eslint-disable-next-line
@@ -50,6 +51,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     setFilters: (filters) => {
         dispatch(transactionActions.setTransactionFilters(filters));
+    },
+    setExtraFilters: (extraFilters) => {
+        dispatch(transactionActions.setTransactionExtraFilters(extraFilters));
     },
     getMoreTransactions: (params) => {
         dispatch(transactionActions.getMoreTransactionsRequest(params));

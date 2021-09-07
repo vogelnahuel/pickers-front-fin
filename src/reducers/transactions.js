@@ -5,7 +5,7 @@ export const types = {
     TRANSACTIONS_GET_MORE_REQUEST: `${TRANSACTIONS}_GET_MORE_REQUEST`,
     TRANSACTIONS_GET_SUCCESS: `${TRANSACTIONS}_GET_SUCCESS`,
     TRANSACTIONS_GET_MORE_SUCCESS: `${TRANSACTIONS}_GET_MORE_SUCCESS`,
-
+    TRANSACTIONS_SET_EXTRA_FILTERS: `${TRANSACTIONS}_SET_EXTRA_FILTERS`,
     
     TRANSACTIONS_GET_ERROR: `${TRANSACTIONS}_GET_ERROR`,
     TRANSACTIONS_EXPORT_REQUEST: `${TRANSACTIONS}_EXPORT_REQUEST`,
@@ -62,6 +62,10 @@ export const actions = {
     setTransactionFilters: (filters) => ({
         type: types.TRANSACTIONS_SET_FILTERS,
         filters
+    }),
+    setTransactionExtraFilters: (filtersExtra) => ({
+        type: types.TRANSACTIONS_SET_EXTRA_FILTERS,
+        filtersExtra
     }),
     setExportEnabled: (enabled) => ({
         type: types.TRANSACTIONS_EXPORT_ENABLED,
@@ -141,6 +145,11 @@ const reducer =(state = INITIAL_STATE, action = {}) => {
             return {
                 ...state,
                 filters: { ...state.filters, ...action.filters },
+            };
+            case types.TRANSACTIONS_SET_EXTRA_FILTERS:
+            return {
+                ...state,
+                filtersExtra: { ...state.filtersExtra, ...action.filtersExtra },
             };
         case types.TRANSACTIONS_EXPORT_ENABLED:
             return {
