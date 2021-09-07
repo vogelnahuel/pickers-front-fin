@@ -77,7 +77,7 @@ export const FinishModal = (props) => {
 }
         
 
-
+//
   const handleClickgoBack = (e) => {
     e.target.parentNode.parentNode.classList.add("animation-right-transaction");
 
