@@ -26,14 +26,14 @@ export const Login = ({postLogin,modalOpen,isFetching, setModalOpen, validationS
     }
 
 
-    const cerrarModalError = (e) => {
-        e.preventDefault();
-        setModalOpen(false)
-    }
-    const cerrarModalServerError = (e) => {
-        e.preventDefault();
-        setmodalOpenServerError(false)
-    }
+    // const cerrarModalError = (e) => {
+    //     e.preventDefault();
+    //     setModalOpen(false)
+    // }
+    // const cerrarModalServerError = (e) => {
+    //     e.preventDefault();
+        
+    // }
 
 
     const handleInputChange = (e) => {
@@ -288,7 +288,7 @@ export const Login = ({postLogin,modalOpen,isFetching, setModalOpen, validationS
                         width="750px"
                         height="351px"
                         isOpen={modalOpen||modalOpenServerError}
-                        onClose={cerrarModalError}
+                        onClose={()=>{modalOpen?setModalOpen(false):setmodalOpenServerError(false)}}
                     >
                         <div className="container-modal">
                             <div className="modal-error-title">
@@ -300,7 +300,7 @@ export const Login = ({postLogin,modalOpen,isFetching, setModalOpen, validationS
                                 "Por favor, reintentalo nuevamente."
                             }</p>
                                 <button
-                                    onClick={modalOpen?cerrarModalError:cerrarModalServerError}
+                                    onClick={()=>{modalOpen?setModalOpen(false):setmodalOpenServerError(false)}}
                                     className="button-modal-error">
                                     Entendido
                                 </button>
