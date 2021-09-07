@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import 'component/inputs/multipleSelect.scss';
-import 'pages/admin/pendingUserAdminPicker/pendingUserAdminPicker.scss';
+import 'pages/pickers/detailPicker/DetailPicker.scss';
 import Arrow from 'assets/admin/flechaAbajo.svg'
 
 const MultipleSelect = (
-    { input: { value }, label, options = [], onChange, placeholder }
+    { input: { value, name }, label, options = [], onChange, placeholder }
 ) => {
   const [open, setOpen] = useState(false);
   const [all, setAll] = useState(false);
@@ -48,7 +48,7 @@ const MultipleSelect = (
     e.stopPropagation();
     option.selected = !option.selected;
     checkAll();
-    onChange(reduceState(optionsState));
+    onChange(name, reduceState(optionsState));
   };
 
   const onChangeHandlerAll = (e) => {
@@ -56,7 +56,7 @@ const MultipleSelect = (
     let map = optionsState.map(ob=>{return {...ob,selected:!all}});
     setOptions(map)
     setAll(!all);
-    onChange(reduceState(map));
+    onChange(name, reduceState(map));
   };
 
   const handleClick = (e) => {

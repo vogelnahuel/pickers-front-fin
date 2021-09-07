@@ -4,12 +4,14 @@ import {
     actions as pendingUserAdminPickerActions,
     selectors as pendingUserAdminPickerSelectors
 } from "reducers/pendingUserAdminPicker";
-import {PendingUserAdminPicker} from "pages/admin/pendingUserAdminPicker/PendingUserAdminPicker"
+import {DetailPicker} from "./DetailPicker"
+import { DATE_FORMATS } from "utils/constants";
 import {useHistory, useParams} from "react-router-dom";
 import {actions as pendingUserActions, selectors as pendingUserSelectors} from "reducers/PendingUser";
 import * as yup from "yup";
+import moment from "moment";
 
-const PendingUserAdminPickerContainer = (props) => {
+const DetailPickerContainer = (props) => {
     const params = useParams();
     const historial = useHistory();
 
@@ -31,27 +33,23 @@ const PendingUserAdminPickerContainer = (props) => {
                     areaNumber: yup.string().required("Este campo es requerido."),
                     number: yup.string().required("Este campo es requerido.")
                 }),
-                expirationDatePolicyPersonal: yup.string().nullable().required("Este campo es requerido."),
+                expirationDatePolicyPersonal: yup.string().nullable().required("Este campo es requerido.")
+                    .matches(DATE_FORMATS.regex,"Ingesa el formato correcto" ),
                 vehicle:
                     values.vehicleType === 'motorcycle' &&
                     yup.object({
                         [values.vehicleType]: yup.object({
                             patent: yup.string().nullable().required("Este campo es requerido."),
-                            expirationDatePolicyVehicle: yup.string().nullable().required("Este campo es requerido."),
-                            expirationDateIdentificationVehicle: yup.string().nullable().required("Este campo es requerido."),
-                            expirationDateDriverLicense: yup.string().nullable().required("Este campo es requerido."),
+                            expirationDatePolicyVehicle: yup.string().nullable().required("Este campo es requerido.")
+                                .matches(DATE_FORMATS.regex,"Ingesa el formato correcto" ),
+                            expirationDateIdentificationVehicle: yup.string().nullable().required("Este campo es requerido.")
+                                .matches(DATE_FORMATS.regex,"Ingesa el formato correcto" ),
+                            expirationDateDriverLicense: yup.string().nullable().required("Este campo es requerido.")
+                                .matches(DATE_FORMATS.regex,"Ingesa el formato correcto" ),
                         })
                     })
             });
         });
-
-    const onSubmit = (values) => {
-        let pickerUpdated = {
-            ...values,
-            // dateOfBirth: moment(values.dateOfBirth, "DD/MM/YYYY").format("YYYY-MM-DD")
-        }
-        props.postPendingUserDocumentsEdit(pickerUpdated);
-    };
 
     const Historial = useHistory();
     const cancel = () => {
@@ -59,11 +57,10 @@ const PendingUserAdminPickerContainer = (props) => {
     };
 
     return (
-        <PendingUserAdminPicker
+        <DetailPicker
             {...props}
             validationSchema={validationSchema}
             changePage={changePage}
-            onSubmit={onSubmit}
             cancel={cancel}
             active={props.pendingUserAdminPicker.status && (props.pendingUserAdminPicker.status.id === 4 || props.pendingUserAdminPicker.status.id === 5 )}
         />
@@ -103,4 +100,4 @@ const mapDispatchToProps = (dispatch) => ({
     },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(PendingUserAdminPickerContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(DetailPickerContainer);
