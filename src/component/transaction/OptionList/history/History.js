@@ -86,7 +86,7 @@ export const History = (props) => {
   }
   
   
-console.log(FilterTransaction)
+
   
   return (
     <div className="modal-transaction-optionContainer-scroll">
@@ -325,10 +325,7 @@ console.log(FilterTransaction)
           }
           <div className="modal-transaction-part">
               <img src={Okey} alt="okey" className="modal-transaction-img-okey" />
-              {
-                console.log( FilterTransaction && FilterTransaction) 
-              }
-              
+
               <p className="modal-transaction-part-subtitle">Pendiente</p>
               {
               FilterTransaction &&  FilterTransaction.transactionHistory &&FilterTransaction.transactionHistory.length!==0 ?<p className="modal-transaction-part-info">{ Object.keys(FilterTransaction).length !== 0 && FilterTransaction.transactionHistory[0]  ? convertDate(FilterTransaction.transactionHistory[0].createdAt)  : ""}    </p>

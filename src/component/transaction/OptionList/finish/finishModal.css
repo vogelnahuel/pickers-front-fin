@@ -16,6 +16,7 @@
 }
 .modal-transaction-finish-volver-img{
     margin-top: 16px;
+    cursor: pointer;
 }
 .modal-transaction-finish-img{
     position: relative;
@@ -72,10 +73,10 @@
     margin-left: 281px;
 }
 .modal-transaction-finish-inputs{
-    margin-top: 5px;
+    margin-top: 18px;
     display: flex;
     width: 100%;
-    margin-left: 353px   ;
+    margin-left: 353px;
 }
 .modal-transaction-finish-inputs div{
     margin-right: 2.521%;
@@ -107,16 +108,19 @@
     color: #FFFFFF;
     margin-top: 45px;
     margin-left: 470px;
-
+}
+.flexItems-items-center{
+    margin-left: 80px;
+  
 }
 
-@media (min-width:1310px){
+@media (max-width:1310px){
     .modal-transaction-finish-img{
         margin-top: 15px;
         margin-bottom: 30px;
     }
     .modal-transaction-finish-inputs{
-        margin-top: 18px;
+        margin-top: 15px;
     }
     .modal-transaction-finish-button{
         margin-top: 40px;
@@ -135,10 +139,13 @@
         margin-top: 20px;
     }
     .modal-transaction-finish-button{
-        margin-top: 107px;
+        margin-top: 127px;
     }
     .modal-transaction-finish-button-click{
         margin-top: 107px;
+    }
+    .modal-transaction-finish-inputs{
+        margin-top: 25px;
     }
 
 }

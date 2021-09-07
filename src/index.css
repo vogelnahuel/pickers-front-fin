@@ -17,7 +17,7 @@
     margin-right: 10px;
 }
 [type="radio"]:checked+label, [type="radio"]:not(:checked)+label {
-    cursor: pointer !important;
+    cursor: default !important;
     display: inline-block !important;
     font-weight: 200 !important;
     line-height: 20px !important;

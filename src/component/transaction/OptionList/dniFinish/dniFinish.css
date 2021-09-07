@@ -21,23 +21,7 @@
     margin-top: 70px;
     margin-left: 50px;
 }
-.modal-dni-finish-button-habilitado{
-    background: #0098FF;
-    border: 4px solid #0098FF;
-    box-sizing: border-box;
-    width: 176px;
-    height: 50px;
-    border-radius: 50px;
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: 800;
-    font-size: 18px;
-    line-height: 23px;
-    text-align: center;
-    color: #FFFFFF;
-    margin-top: 70px;
-    margin-left: 50px;
-}
+
 .modal-dni-finish-button-active{
     background: #0098FF;
     border: 4px solid #0098FF;;
@@ -54,7 +38,6 @@
     color: #FFFFFF;
     margin-top: 70px;
     margin-left: 50px;
-
 }
 .modal-dni-finish-h3{
     font-family: 'Mulish';
@@ -81,8 +64,17 @@
 }
 .modal-transaction-finish-volver-img{
     margin-top: 16px;
+    cursor: pointer;
 }
-
+.filter-transaction-dnifinish-div-label{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 19px;
+    letter-spacing: 0.0025em;
+    color: #4D4D4D;
+}
 @media (min-width:1310px){
     .modal-dni-finish-card{
         margin-top: 15px;
@@ -94,6 +86,9 @@
     .modal-dni-finish-button{
         margin-top: 74px;
     }
+    .modal-dni-finish-button-active{
+        margin-top: 74px;
+    }
    
     
 }
@@ -102,6 +97,9 @@
         margin-top: 54px;
     }
     .modal-dni-finish-button{
+        margin-top: 139px;
+    }
+    .modal-dni-finish-button-active{
         margin-top: 139px;
     }
 }

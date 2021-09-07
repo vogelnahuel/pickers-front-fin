@@ -10,6 +10,7 @@ export const Undelivered = (props) => {
     const FilterSelectedTransaction=props.FilterSelectedTransaction
 
 const [messages, setmessages] = useState([])
+const [idSelected, setidSelected] = useState(-1)
 
 
     useEffect(() => {
@@ -46,22 +47,25 @@ const [messages, setmessages] = useState([])
             
             setundelivered(false);
          }, 600);
+
         
 }
 const handleClick  = async (e) => {
     e.preventDefault();
     
   
+    await api.post(
+        `/ms-admin-rest/api/v1.0/transactions/${FilterSelectedTransaction.transaction.id}/in-devolution`,{"impossibleDeliveryReasonId":idSelected}
+      );
+
+      window.location.reload();
 }
-const handleCLickOpc = async(e)=> {
+const handleCLickOpc = (e)=> {
     e.preventDefault();
     e.target.style.fontWeight="bold"
     e.target.parentNode.style.backgroundColor="#F2F2F2"
-  
-    await api.post(
-        `/ms-admin-rest/api/v1.0/transactions/${FilterSelectedTransaction.transaction.id}/in-devolution`,{"impossibleDeliveryReasonId":parseInt(e.target.id)}
-      );
-   window.location.reload();
+    setidSelected(parseInt(e.target.id));
+
 }
 
     return (
@@ -93,7 +97,13 @@ const handleCLickOpc = async(e)=> {
                 </div>
             </div>
             <div className="modal-dni-center">
-                <button disabled onClick={handleClick} className="modal-undelivered-button" > Finalizarla</button>
+                {
+                    idSelected===-1 ? 
+                    <button disabled={true} onClick={handleClick} className="modal-undelivered-button" > Finalizarla</button>
+                    :
+                    <button  onClick={handleClick} className="modal-undelivered-button-active" > Finalizarla</button>
+                }
+                
             </div>
         </div>
     )
