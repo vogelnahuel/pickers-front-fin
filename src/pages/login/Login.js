@@ -9,7 +9,7 @@ import {Modal} from '@pickit/pickit-components'
 //import api from '../../config/api'
 
 
-export const Login = ({postLogin,modalOpen,isFetching, setModalOpen}) => {
+export const Login = ({postLogin,modalOpen,isFetching, setModalOpen, validationSchema,modalOpenServerError,setmodalOpenServerError}) => {
 
 
 
@@ -20,30 +20,19 @@ export const Login = ({postLogin,modalOpen,isFetching, setModalOpen}) => {
     const [errorMsgMail, seterrorMsgMail] = useState("")
     const [errorPassWord, seterrorPassWord] = useState(false)
     const [errorMsgPassword, seterrorMsgPassword] = useState("")
-    // const [modalOpen, setmodalOpen] = useState(false)
-    // const [modalOpen2, setmodalOpen2] = useState(false)
-    //Test
-    //const {mail,password,errorMail,errorMsgMail,errorPassWord,errorMsgPassword,} = formValues;
-
-    /*
-      useEffect(()=>{
-        window.localStorage.removeItem('token')
-
-      },[])
-      */
     const handleFocusLabel = (e,mail="") => {
         e.target.nextSibling.classList.remove('animationOrigin');
         e.target.nextSibling.classList.add('animationTop');
     }
 
 
-    const cerrarModalError = (e) => {
-        e.preventDefault();
-        setModalOpen(false)
-    }
-    // const cerrarModalError2 = (e) => {
+    // const cerrarModalError = (e) => {
     //     e.preventDefault();
     //     setModalOpen(false)
+    // }
+    // const cerrarModalServerError = (e) => {
+    //     e.preventDefault();
+        
     // }
 
 
@@ -143,7 +132,6 @@ export const Login = ({postLogin,modalOpen,isFetching, setModalOpen}) => {
     const handleSubmit = (e) => {
 
         e.preventDefault();
-
         if(mail==='' || errorMail===true || password==='' || errorPassWord===true){
             if(mail===''){
                 seterrorMail(true);
@@ -160,7 +148,12 @@ export const Login = ({postLogin,modalOpen,isFetching, setModalOpen}) => {
 
 
         }
-        postLogin({email:mail?mail:'',password:password?password:''})
+        else{
+            
+            postLogin({email:mail?mail:'',password:password?password:''})
+        }
+        //const isValid= validationSchema.isValid({mail,password})
+        
 
         /*
           else{
@@ -288,23 +281,26 @@ export const Login = ({postLogin,modalOpen,isFetching, setModalOpen}) => {
 
                 </form>
 
-                {   modalOpen &&
+                {   (modalOpen || modalOpenServerError )&&
                 <div className="contendor-modal-login">
                     <Modal
 
                         width="750px"
                         height="351px"
-                        isOpen={modalOpen}
-                        onClose={cerrarModalError}
+                        isOpen={modalOpen||modalOpenServerError}
+                        onClose={()=>{modalOpen?setModalOpen(false):setmodalOpenServerError(false)}}
                     >
                         <div className="container-modal">
                             <div className="modal-error-title">
-                                <p className="p-modal-error-title">Usuario y/o contraseña inválidos</p>
+                                <p className="p-modal-error-title">{modalOpen?"Usuario y/o contraseña inválidos":"Error en nuestro servidor"}</p>
                             </div>
                             <div className="modal-error-subtitle">
-                                <p className="p-modal-error-subtitle">Tu usuario y/o contraseña ingresados son incorrectos. Por favor, ingresalos nuevamente.</p>
+                                <p className="p-modal-error-subtitle">{modalOpen?
+                                "Tu usuario y/o contraseña ingresados son incorrectos. Por favor, ingresalos nuevamente.":
+                                "Por favor, reintentalo nuevamente."
+                            }</p>
                                 <button
-                                    onClick={cerrarModalError}
+                                    onClick={()=>{modalOpen?setModalOpen(false):setmodalOpenServerError(false)}}
                                     className="button-modal-error">
                                     Entendido
                                 </button>
@@ -313,32 +309,33 @@ export const Login = ({postLogin,modalOpen,isFetching, setModalOpen}) => {
                     </Modal>
                 </div>
                 }
-                {/*{*/}
-                {/*    modalOpen2===true ?*/}
-                {/*        <div className="contendor-modal-login">*/}
-                {/*            <Modal*/}
-                {/*                width="750px"*/}
-                {/*                height="351px"*/}
-                {/*                isOpen={modalOpen2}*/}
-                {/*                onClose={cerrarModalError2}*/}
-                {/*            >*/}
-                {/*                <div className="container-modal">*/}
-                {/*                    <div className="modal-error-title">*/}
-                {/*                        <p className="p-modal-error-title">Error en nuestro servidor</p>*/}
-                {/*                    </div>*/}
-                {/*                    <div className="modal-error-subtitle">*/}
-                {/*                        <p className="p-modal-error-subtitle">Por favor, reintentalo nuevamente.</p>*/}
-                {/*                        <button*/}
-                {/*                            onClick={cerrarModalError2}*/}
-                {/*                            className="button-modal-error2">*/}
-                {/*                            Entendido*/}
-                {/*                        </button>*/}
-                {/*                    </div>*/}
-                {/*                </div>*/}
-                {/*            </Modal>*/}
-                {/*        </div>*/}
-                {/*        :null*/}
-                {/*}*/}
+        
+                {/* {
+                   modalOpenServerError===true ?
+                       <div className="contendor-modal-login">
+                           <Modal
+                               width="750px"
+                               height="351px"
+                               isOpen={modalOpenServerError}
+                               onClose={cerrarModalServerError}
+                           >
+                               <div className="container-modal">
+                                   <div className="modal-error-title">
+                                       <p className="p-modal-error-title">Error en nuestro servidor</p>
+                                   </div>
+                                   <div className="modal-error-subtitle">
+                                       <p className="p-modal-error-subtitle">Por favor, reintentalo nuevamente.</p>
+                                       <button
+                                           onClick={cerrarModalServerError}
+                                           className="button-modal-error2">
+                                           Entendido
+                                       </button>
+                                   </div>
+                               </div>
+                           </Modal>
+                       </div>
+                       :null
+                } */}
             </div>
             <div className="login-image" >
 
