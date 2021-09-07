@@ -47,7 +47,7 @@ const handlerOnChange = (value ) => {
 };
 
     return (
-        <FilterTransaction {...props} onSubmit={onSubmit} modalError={props.modalError} setmodalError={props.setmodalError} handlerOnChange={handlerOnChange}/>
+        <FilterTransaction {...props} onSubmit={onSubmit} handlerOnChange={handlerOnChange}/>
     );
 }
 
