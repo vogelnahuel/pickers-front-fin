@@ -1,8 +1,8 @@
 import React from 'react'
 import {Header} from 'component/admin/Header/Header'
 import {Nav} from 'component/admin/Nav/Nav'
-import 'pages/admin/PendingUser/Pickers.scss'
-import 'pages/admin/pendingUserAdminPicker/pendingUserAdminPicker.scss'
+import 'pages/pickers/Pickers.scss'
+import './DetailPicker.scss'
 import {PendingBlue} from 'component/admin/Sub-Title-Image/PendingBlue'
 import {Input} from "component/inputs/Input"
 import {Switch} from "component/inputs/switch"
@@ -17,7 +17,7 @@ import button from "assets/admin/ActiveUserAdminPicker/button.svg";
 import useValidationSchema from "hooks/useValidationSchema"
 import {Col, Row, Container} from "react-bootstrap";
 
-export const PendingUserAdminPicker = (
+export const DetailPicker = (
     {
         isFetching,
         pendingUserAdminPicker,

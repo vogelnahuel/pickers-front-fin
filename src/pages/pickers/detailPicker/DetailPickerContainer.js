@@ -4,12 +4,12 @@ import {
     actions as pendingUserAdminPickerActions,
     selectors as pendingUserAdminPickerSelectors
 } from "reducers/pendingUserAdminPicker";
-import {PendingUserAdminPicker} from "pages/admin/pendingUserAdminPicker/PendingUserAdminPicker"
+import {DetailPicker} from "./DetailPicker"
 import {useHistory, useParams} from "react-router-dom";
 import {actions as pendingUserActions, selectors as pendingUserSelectors} from "reducers/PendingUser";
 import * as yup from "yup";
 
-const PendingUserAdminPickerContainer = (props) => {
+const DetailPickerContainer = (props) => {
     const params = useParams();
     const historial = useHistory();
 
@@ -59,7 +59,7 @@ const PendingUserAdminPickerContainer = (props) => {
     };
 
     return (
-        <PendingUserAdminPicker
+        <DetailPicker
             {...props}
             validationSchema={validationSchema}
             changePage={changePage}
@@ -103,4 +103,4 @@ const mapDispatchToProps = (dispatch) => ({
     },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(PendingUserAdminPickerContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(DetailPickerContainer);

@@ -4,7 +4,7 @@ import {actions as transactionActions, selectors as transactionSelectors} from "
 import {FilterTransaction} from "pages/transaction/filterTransaction/FilterTransaction"
 import moment from "moment";
 
-const FilterTransactionContainer = (props) => { 
+const FilterTransactionContainer = (props) => {
     const formatDate = (date) => {
         let result ={};
         if (date) {
@@ -34,20 +34,20 @@ const FilterTransactionContainer = (props) => {
         };
     };
 
-const onSubmit = (values) => {
-    let filtersApplied = takeFilters(values);
+    const onSubmit = (values) => {
+        let filtersApplied = takeFilters(values);
 
-    props.getTransactions({...filtersApplied, ...props.filtersExtra});
-    props.setExportEnabled(filtersApplied.pickerId || filtersApplied.transactionCode || filtersApplied.minMinDeliveryDate);
-    props.setFilters(filtersApplied);
-};
-
-const handlerOnChange = (value ) => {
-    props.setFilters({...props.filters, state: value===''? undefined : value});
-};
+        props.getTransactions({...filtersApplied, ...props.filtersExtra});
+        props.setExportEnabled(filtersApplied.pickerId || filtersApplied.transactionCode || filtersApplied.minMinDeliveryDate);
+        props.setFilters(filtersApplied);
+    };
+    //
+    // const handlerOnChange = (value) => {
+    //     props.setFilters({...props.filters, state: value===''? undefined : value});
+    // };
 
     return (
-        <FilterTransaction {...props} onSubmit={onSubmit} handlerOnChange={handlerOnChange}/>
+        <FilterTransaction {...props} onSubmit={onSubmit}/>
     );
 }
 

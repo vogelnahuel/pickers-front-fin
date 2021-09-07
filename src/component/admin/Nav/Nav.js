@@ -41,12 +41,10 @@ export const Nav = (props) => {
                                  { window.location.pathname  ==="/dashboard"  ? <div className="circle"></div> : null     }  <Link onClick={handleClick}  to="/dashboard">Dashboard</Link>
                               </li>
                               <li>
-                                   {   window.location.pathname  === "/pendingUserAdmin" 
-                                   ||  window.location.pathname === "/activeUserAdmin" 
-                                   || window.location.pathname  ===`/activeUserAdminpicker/${Location}`
-                                   || window.location.pathname  ===`/pendingUserAdminpicker/${Location}`  
+                                   {   window.location.pathname  === "/pickers"
+                                   || window.location.pathname  ===`/pickers/${Location}`
                                    ? <div className="circle"></div> :  null  
-                                   } <Link onClick={handleClick} to="/pendingUserAdmin">Flota</Link>
+                                   } <Link onClick={handleClick} to="/pickers">Flota</Link>
                               </li>
                               <li>
                                    { window.location.pathname.includes("/transaction") ?<div className="circle"></div> : null    }   <Link  onClick={handleClick} to="/transaction">Transacciones</Link>

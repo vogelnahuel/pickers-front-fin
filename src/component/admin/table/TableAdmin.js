@@ -57,7 +57,7 @@ export const TableAdmin = (props) => {
                                 </td>
                                 <td className="table-registro"> <div className="table-admin-enCorrecion-span">{rows.registerDate?getDifDate(rows.registerDate):null} {getDifDate(rows.registerDate)===1?"día":"días"}</div> {rows.pickerStatusId===3 ?<div className="admin-table-correction">En corrección</div> : null } </td>
                                 <td className="table-editar">
-                                    <Link  to ={`/pendingUserAdminpicker/${rows.id}`} > <img src={edit} className="aditar-picker-img"  alt="edit" /></Link>
+                                    <Link  to ={`/pickers/${rows.id}`} > <img src={edit} className="aditar-picker-img"  alt="edit" /></Link>
 
                                 </td>
                                 <td></td>
@@ -82,7 +82,7 @@ export const TableAdmin = (props) => {
                                 </td>
                                     <td className={row.status.id === 4 ? "color-state-green table-registro" : "color-state-red table-registro" } id={row.status.id === 4 ? "color-state-green" : "color-state-red"}> {row.status.description} </td>
                                 <td className="table-editar table-editar-active">
-                                    <Link  to ={`/pendingUserAdminpicker/${row.id}`} > <img src={edit} className="aditar-picker-img" alt="edit" /></Link>
+                                    <Link  to ={`/pickers/${row.id}`} > <img src={edit} className="aditar-picker-img" alt="edit" /></Link>
                                 </td>
                                 <td></td>
                             </tr>

@@ -1,5 +1,5 @@
 import React from 'react'
-import 'pages/admin/PendingUser/filter/filter.scss';
+import 'pages/pickers/filter/filter.scss';
 import dropdown from "assets/admin/PendingUser/desplegable.svg";
 import or from 'assets/admin/PendingUser/or.svg';
 import search from 'assets/admin/PendingUser/search.svg';
@@ -27,7 +27,15 @@ export const FilterPickers = ({ onSubmit, handlerOnChange, filters}) => {
             </div>
           </Col>
           <Col className="sub-container" >
-            <Form onSubmit={onSubmit} initialValues={filters}>
+            <Form
+                onSubmit={onSubmit}
+                initialValues={filters}
+                mutators={{
+                  setValue: ([field, value], state, { changeValue }) => {
+                    changeValue(state, field, () => value)
+                  }
+                }}
+            >
               {({ handleSubmit, form}) => (
                   <form className="form-filter-transaction" onSubmit={handleSubmit}>
                     <Col xxl={2} lg={4}>
@@ -54,29 +62,11 @@ export const FilterPickers = ({ onSubmit, handlerOnChange, filters}) => {
                       <Field
                           name="vehicleType"
                           label="Vehículo"
-                          onChange={handlerOnChange}
+                          onChange={form.mutators.setValue}
                           placeholder="Seleccioná tipo de vehículo"
                           options={FILTER_PICKERS_OPTIONS}
                           component={Select}
                       />
-
-
-                      {/*<label className="label-Admin-Pickers">*/}
-                      {/*  Fecha de entrega*/}
-                      {/*</label>*/}
-                      {/*<Field*/}
-                      {/*    type="text"*/}
-                      {/*    name="vehicleType"*/}
-                      {/*    label="Vehículo"*/}
-                      {/*    component="select"*/}
-                      {/*    className="Admin-Pickers-input"*/}
-                      {/*    placeholder="Seleccioná tipo de vehículo"*/}
-                      {/*>*/}
-                      {/*  <option value="">Todo</option>*/}
-                      {/*  <option value="bicycle">Bicicleta</option>*/}
-                      {/*  <option value="motorcycle">Moto</option>*/}
-                      {/*</Field>*/}
-
                     </Col>
                     <Col xxl={2} lg={4}>
                       <Field

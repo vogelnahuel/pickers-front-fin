@@ -1,7 +1,7 @@
 import React from "react";
 import dropdown from "assets/admin/PendingUser/desplegable.svg";
 import "pages/transaction/filterTransaction/FilterTransaction.scss";
-import "pages/admin/pendingUserAdminPicker/pendingUserAdminPicker.scss"
+import "../../pickers/detailPicker/DetailPicker.scss"
 import {DatePicker} from "@pickit/pickit-components";
 import or from "assets/admin/PendingUser/or.svg";
 import search from "assets/admin/PendingUser/search.svg";
@@ -30,8 +30,13 @@ export const FilterTransaction = ({ onSubmit, filters, handlerOnChange }) => {
                     <Form
                         onSubmit={onSubmit}
                         initialValues={filters}
+                        mutators={{
+                            setValue: ([field, value], state, { changeValue }) => {
+                                changeValue(state, field, () => value)
+                            }
+                        }}
                     >
-                        {({ handleSubmit }) => (
+                        {({ handleSubmit, form }) => (
                             <form className="form-filter-transaction" onSubmit={handleSubmit}>
                                 <Col xxl={2} lg={4}>
                                     <Field
@@ -73,7 +78,7 @@ export const FilterTransaction = ({ onSubmit, filters, handlerOnChange }) => {
                                         name="state"
                                         label="Estados"
                                         placeholder="Seleccioná el estado"
-                                        onChange={ handlerOnChange}
+                                        onChange={form.mutators.setValue}
                                         options={FILTER_TRANSACTION_OPTIONS}
                                         component={MultipleSelect}/>
                                 </Col>
