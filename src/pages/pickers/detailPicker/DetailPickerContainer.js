@@ -35,7 +35,6 @@ const DetailPickerContainer = (props) => {
                 }),
                 expirationDatePolicyPersonal: yup.string().nullable().required("Este campo es requerido.")
                     .matches(DATE_FORMATS.regex,"Ingesa el formato correcto" ),
-                // ,
                 vehicle:
                     values.vehicleType === 'motorcycle' &&
                     yup.object({
@@ -52,11 +51,6 @@ const DetailPickerContainer = (props) => {
             });
         });
 
-    const onSubmit = (values) => {
-//TODO sacar
-        props.postPendingUserDocumentsEdit(values);
-    };
-
     const Historial = useHistory();
     const cancel = () => {
         Historial.goBack();
@@ -67,7 +61,6 @@ const DetailPickerContainer = (props) => {
             {...props}
             validationSchema={validationSchema}
             changePage={changePage}
-            onSubmit={onSubmit}
             cancel={cancel}
             active={props.pendingUserAdminPicker.status && (props.pendingUserAdminPicker.status.id === 4 || props.pendingUserAdminPicker.status.id === 5 )}
         />

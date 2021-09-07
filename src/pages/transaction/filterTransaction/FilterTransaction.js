@@ -1,7 +1,7 @@
 import React from "react";
 import dropdown from "assets/admin/PendingUser/desplegable.svg";
 import "pages/transaction/filterTransaction/FilterTransaction.scss";
-import "../../pickers/detailPicker/DetailPicker.scss"
+import "pages/pickers/detailPicker/DetailPicker.scss"
 import {DatePicker} from "@pickit/pickit-components";
 import or from "assets/admin/PendingUser/or.svg";
 import search from "assets/admin/PendingUser/search.svg";

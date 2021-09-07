@@ -3,7 +3,7 @@ import { types, actions } from "reducers/pendingUserAdminPicker";
 import * as pendingUserAdminPickerMiddleware from "middleware/pendingUserPicker";
 
 
-import createCSV from "../utils/createCSV";
+import createCSV from "utils/createCSV";
 
 const sagas = [
     takeLatest(types.PENDING_USER_ADMIN_PICKER_GET_REQUEST, getPendingUserPicker),

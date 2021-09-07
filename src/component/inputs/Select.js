@@ -1,6 +1,6 @@
 import {useState} from "react";
 import 'component/inputs/multipleSelect.scss';
-import '../../pages/pickers/detailPicker/DetailPicker.scss';
+import 'pages/pickers/detailPicker/DetailPicker.scss';
 import Arrow from 'assets/admin/flechaAbajo.svg'
 
 const Select = ({ input, label, options = [], placeholder, onChange }) => {

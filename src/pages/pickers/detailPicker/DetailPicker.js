@@ -24,11 +24,11 @@ export const DetailPicker = (
         getPendingUserPickerExport,
         modalExportPicker,
         getPendingUserPickerExportCloseModal,
-        onSubmit,
         actualPage,
         active,
         cancel,
         postAprovePickerRequest,
+        postPendingUserDocumentsEdit,
         postEditPickerRequest,
         changePage,
         validationSchema
@@ -65,7 +65,7 @@ export const DetailPicker = (
                         </button>
                     </div>
                     <Form
-                        onSubmit={values => active ? postEditPickerRequest(values) : onSubmit(values)}
+                        onSubmit={values => active ? postEditPickerRequest(values) : postPendingUserDocumentsEdit(values)}
                         initialValues={
                             pendingUserAdminPicker.dateOfBirth ?
                             {

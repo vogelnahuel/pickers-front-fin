@@ -1,7 +1,7 @@
 import { call, takeLatest, put } from "redux-saga/effects";
 import { types, actions } from "reducers/transactions";
 import * as transactionsMiddleware from "middleware/transactions";
-import createCSV from "../utils/createCSV";
+import createCSV from "utils/createCSV";
 
 const sagas = [
     takeLatest(types.TRANSACTIONS_GET_REQUEST, getTransactions),
