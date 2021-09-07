@@ -9,7 +9,6 @@ import { DATE_FORMATS } from "utils/constants";
 import {useHistory, useParams} from "react-router-dom";
 import {actions as pendingUserActions, selectors as pendingUserSelectors} from "reducers/PendingUser";
 import * as yup from "yup";
-import moment from "moment";
 
 const DetailPickerContainer = (props) => {
     const params = useParams();
