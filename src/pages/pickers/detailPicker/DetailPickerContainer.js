@@ -5,9 +5,11 @@ import {
     selectors as pendingUserAdminPickerSelectors
 } from "reducers/pendingUserAdminPicker";
 import {DetailPicker} from "./DetailPicker"
+import { DATE_FORMATS } from "utils/constants";
 import {useHistory, useParams} from "react-router-dom";
 import {actions as pendingUserActions, selectors as pendingUserSelectors} from "reducers/PendingUser";
 import * as yup from "yup";
+import moment from "moment";
 
 const DetailPickerContainer = (props) => {
     const params = useParams();
@@ -31,26 +33,28 @@ const DetailPickerContainer = (props) => {
                     areaNumber: yup.string().required("Este campo es requerido."),
                     number: yup.string().required("Este campo es requerido.")
                 }),
-                expirationDatePolicyPersonal: yup.string().nullable().required("Este campo es requerido."),
+                expirationDatePolicyPersonal: yup.string().nullable().required("Este campo es requerido.")
+                    .matches(DATE_FORMATS.regex,"Ingesa el formato correcto" ),
+                // ,
                 vehicle:
                     values.vehicleType === 'motorcycle' &&
                     yup.object({
                         [values.vehicleType]: yup.object({
                             patent: yup.string().nullable().required("Este campo es requerido."),
-                            expirationDatePolicyVehicle: yup.string().nullable().required("Este campo es requerido."),
-                            expirationDateIdentificationVehicle: yup.string().nullable().required("Este campo es requerido."),
-                            expirationDateDriverLicense: yup.string().nullable().required("Este campo es requerido."),
+                            expirationDatePolicyVehicle: yup.string().nullable().required("Este campo es requerido.")
+                                .matches(DATE_FORMATS.regex,"Ingesa el formato correcto" ),
+                            expirationDateIdentificationVehicle: yup.string().nullable().required("Este campo es requerido.")
+                                .matches(DATE_FORMATS.regex,"Ingesa el formato correcto" ),
+                            expirationDateDriverLicense: yup.string().nullable().required("Este campo es requerido.")
+                                .matches(DATE_FORMATS.regex,"Ingesa el formato correcto" ),
                         })
                     })
             });
         });
 
     const onSubmit = (values) => {
-        let pickerUpdated = {
-            ...values,
-            // dateOfBirth: moment(values.dateOfBirth, "DD/MM/YYYY").format("YYYY-MM-DD")
-        }
-        props.postPendingUserDocumentsEdit(pickerUpdated);
+//TODO sacar
+        props.postPendingUserDocumentsEdit(values);
     };
 
     const Historial = useHistory();

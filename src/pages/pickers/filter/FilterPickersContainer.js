@@ -5,12 +5,7 @@ import {FilterPickers} from "pages/pickers/filter/FilterPickers";
 
 const FilterPickersContainer = (props) => {
 
-    // const handlerOnChange = (value ) => {
-    //     props.setPendingUserFilters({...props.filters, vehicleType: value});
-    // };
-
     const search =(values)=>{
-        debugger;
         props.getPendingUser({...values,...props.filtersExtra, vehicleType: values.vehicleType && (values.vehicleType.value===''? undefined : values.vehicleType.value)});
         props.setPendingUserFilters(values);
     };
@@ -19,7 +14,6 @@ const FilterPickersContainer = (props) => {
         <FilterPickers
             {...props}
             onSubmit={search}
-            // handlerOnChange={handlerOnChange}
         />
     );
 }

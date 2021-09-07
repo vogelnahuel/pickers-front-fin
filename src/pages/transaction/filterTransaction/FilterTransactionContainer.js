@@ -41,10 +41,6 @@ const FilterTransactionContainer = (props) => {
         props.setExportEnabled(filtersApplied.pickerId || filtersApplied.transactionCode || filtersApplied.minMinDeliveryDate);
         props.setFilters(filtersApplied);
     };
-    //
-    // const handlerOnChange = (value) => {
-    //     props.setFilters({...props.filters, state: value===''? undefined : value});
-    // };
 
     return (
         <FilterTransaction {...props} onSubmit={onSubmit}/>

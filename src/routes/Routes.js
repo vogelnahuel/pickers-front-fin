@@ -6,12 +6,11 @@ import DashboardContainer from 'pages/dashboard/DashboardAdminContainer';
 import {EmailRestore} from 'pages/login/email/EmailRestore';
 import Login from 'pages/login/LoginContainer'
 import {RestorePassword} from 'pages/login/restorePassword/RestorePassword';
-import PickersContainer from '../pages/pickers/PickersContainer'
-import DetailPickerContainer from '../pages/pickers/detailPicker/DetailPickerContainer';
+import PickersContainer from 'pages/pickers/PickersContainer'
+import DetailPickerContainer from 'pages/pickers/detailPicker/DetailPickerContainer';
 import Transaction from 'pages/transaction/TransactionContainer';
 import store, {history} from 'store'
 
-//TODO cambiar path de pickers
 function Routes() {
   return (
       <Provider store={store}>

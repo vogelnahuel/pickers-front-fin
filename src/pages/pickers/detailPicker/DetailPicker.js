@@ -2,7 +2,7 @@ import React from 'react'
 import {Header} from 'component/admin/Header/Header'
 import {Nav} from 'component/admin/Nav/Nav'
 import 'pages/pickers/Pickers.scss'
-import './DetailPicker.scss'
+import 'pages/pickers/detailPicker/DetailPicker.scss'
 import {PendingBlue} from 'component/admin/Sub-Title-Image/PendingBlue'
 import {Input} from "component/inputs/Input"
 import {Switch} from "component/inputs/switch"
@@ -13,9 +13,9 @@ import bici from 'assets/admin/PendingUserAdminPicker/bici.svg'
 import {Field, Form} from "react-final-form";
 import {Modal} from '@pickit/pickit-components'
 import button from "assets/admin/ActiveUserAdminPicker/button.svg";
-// import disabledButton from "assets/admin/ActiveUserAdminPicker/disabledButton.svg";
 import useValidationSchema from "hooks/useValidationSchema"
 import {Col, Row, Container} from "react-bootstrap";
+import moment from "moment";
 
 export const DetailPicker = (
     {
@@ -66,7 +66,24 @@ export const DetailPicker = (
                     </div>
                     <Form
                         onSubmit={values => active ? postEditPickerRequest(values) : onSubmit(values)}
-                        initialValues={pendingUserAdminPicker}
+                        initialValues={
+                            pendingUserAdminPicker.dateOfBirth ?
+                            {
+                                ...pendingUserAdminPicker,
+                                dateOfBirth: pendingUserAdminPicker.dateOfBirth && moment(pendingUserAdminPicker.dateOfBirth, "YYYY-MM-DD").format("DD/MM/YYYY"),
+                                expirationDatePolicyPersonal: pendingUserAdminPicker.expirationDatePolicyPersonal && moment(pendingUserAdminPicker.expirationDatePolicyPersonal, "YYYY-MM-DD").format("DD/MM/YYYY"),
+                                vehicle: {
+                                    ...pendingUserAdminPicker.vehicle,
+                                    [pendingUserAdminPicker.vehicleType]: {
+                                        ...pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType],
+                                        expirationDatePolicyVehicle: pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType].expirationDatePolicyVehicle && moment(pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType].expirationDatePolicyVehicle, "YYYY-MM-DD").format("DD/MM/YYYY"),
+                                        expirationDateIdentificationVehicle: pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType].expirationDateIdentificationVehicle && moment(pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType].expirationDateIdentificationVehicle, "YYYY-MM-DD").format("DD/MM/YYYY"),
+                                        expirationDateDriverLicense: pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType].expirationDateDriverLicense && moment(pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType].expirationDateDriverLicense, "YYYY-MM-DD").format("DD/MM/YYYY"),
+                                    }
+                                }
+                            } :
+                                pendingUserAdminPicker
+                        }
                         validate={useValidationSchema(validationSchema)}
                     >
                         {({ invalid,handleSubmit, dirty, initialValues, values }) =>
