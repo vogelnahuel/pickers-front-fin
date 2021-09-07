@@ -32,19 +32,8 @@
     justify-content: space-between;
     margin-top: 30px;
 }
-.form-filter-transaction-modal div div input {
-    border: 0;
-    border-bottom: 1px solid #828282;
-    width: 19.69vw;
-    margin-right: 20px;
-    outline: none;
-    margin-bottom: 18px;
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 17px;
-    line-height: 27px;
-    letter-spacing: 0px;
+
+.form-filter-transaction-modal div div input::placeholder{
     color: #828282;
 }
 .form-filter-modal{
@@ -64,6 +53,7 @@
     line-height: 27px;
     letter-spacing: 0px;
     color: #828282;
+    background-color: white;
 }
 #modal-transaction-history-Final{
     margin-top: 7px;
@@ -82,6 +72,10 @@
 }
 #modal-transaction-input-tel2 input {
     width: 9.1vw;
+}
+.label-Admin-Pickers .readonly{
+
+    color: #828282;
 }
 
 @media (max-width:1310px){
