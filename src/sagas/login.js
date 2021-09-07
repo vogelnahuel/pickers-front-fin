@@ -18,8 +18,18 @@ function* getLogin({params}) {
     );
 
     if (response.status !== 200) {
-        yield put(actions.setModalOpen(true));
-        yield put(actions.getLoginError());
+        switch (response.status) {
+            case 400:
+                yield put(actions.setModalOpen(true));
+                yield put(actions.getLoginError());
+                break;
+        
+            default:
+                yield put(actions.setmodalOpenServerError(true));
+                yield put(actions.getLoginError());
+                break;
+        }
+        
     } else {
         const {result} = response.data;
         yield call(loginMiddleware.setAuthToken, result.accessToken);

@@ -86,7 +86,7 @@ export const History = (props) => {
   }
   
   
-console.log(FilterTransaction)
+
   
   return (
     <div className="modal-transaction-optionContainer-scroll">
@@ -108,10 +108,11 @@ console.log(FilterTransaction)
             <div className="modal-transaction-inputs">
               <div>
                 <div className="filter-transaction-div-label">
-                  <label className="label-filter-transaction-modal">Id de Picker </label>
+                <label className="label-Admin-Pickers readonly"> Id de Picker </label>
                 </div>
                 <div className="modal-transaction-input">
                   <Field
+                  className="Admin-Pickers-input readonly"
                     name="PickerId"
                     component="input"
                     placeholder={FilterTransaction && FilterTransactionHistory &&  FilterTransactionHistory.length===0 ? "Sin asignar" : ""}
@@ -121,12 +122,13 @@ console.log(FilterTransaction)
               </div>
               <div>
                 <div className="filter-transaction-div-label">
-                  <label className="label-filter-transaction-modal">
+                <label className="label-Admin-Pickers readonly">
                     Nombre y apellido
                   </label>
                 </div>
                 <div className="modal-transaction-input">
                   <Field
+                  className="Admin-Pickers-input readonly"
                     name="Picker"
                     component="input"
                     placeholder={FilterTransaction && FilterTransactionHistory &&  FilterTransactionHistory.length===0 ? "Sin asignar" : ""}
@@ -137,12 +139,13 @@ console.log(FilterTransaction)
 
               <div>
                 <div className="filter-transaction-div-label">
-                  <label className="label-filter-transaction-modal">Código de área </label>
+                <label className="label-Admin-Pickers readonly">Código de área </label>
                 </div>
                 <div className="modal-transaction-input-tel" id="modal-transaction-input-tel">
                   <Field
                     name="codArea"
                     component="input"
+                    className="Admin-Pickers-input readonly"
                     placeholder="-"
                     disabled={true}
                   />
@@ -151,7 +154,7 @@ console.log(FilterTransaction)
 
               <div>
                 <div className="filter-transaction-div-label">
-                  <label className="label-filter-transaction-modal">Teléfono </label>
+                <label className="label-Admin-Pickers readonly">Teléfono </label>
                 </div>
                 <div className="modal-transaction-input-tel" id="modal-transaction-input-tel2">
                   <Field
@@ -159,6 +162,7 @@ console.log(FilterTransaction)
                     component="input"
                     placeholder="-"
                     disabled={true}
+                    className="Admin-Pickers-input readonly"
                   />
                 </div>
               </div>
@@ -178,7 +182,7 @@ console.log(FilterTransaction)
               
               <div>
                 <div className="filter-transaction-div-label">
-                  <label className="label-filter-transaction-modal">
+                <label className="label-Admin-Pickers readonly">
                     Dirección de retiro
                   </label>
                 </div>
@@ -188,12 +192,13 @@ console.log(FilterTransaction)
                     component="input"
                     placeholder="Seleccioná el estado"
                     disabled={true}
+                    className="Admin-Pickers-input readonly"
                   />
                 </div>
               </div>
               <div>
                 <div className="filter-transaction-div-label">
-                  <label className="label-filter-transaction-modal">
+                <label className="label-Admin-Pickers readonly">
                     Dirección de entrega
                   </label>
                 </div>
@@ -202,19 +207,21 @@ console.log(FilterTransaction)
                     name="dirEntrega"
                     component="input"
                     placeholder="Seleccioná el estado"
+                    className="Admin-Pickers-input readonly"
                     disabled={true}
                   />
                 </div>
               </div>
               <div>
                 <div className="filter-transaction-div-label">
-                  <label className="label-filter-transaction-modal">Retailer </label>
+                  <label className="label-Admin-Pickers readonly">Retailer </label>
                 </div>
                 <div className="modal-transaction-input">
                   <Field
                     name="Retailer"
                     component="input"
                     placeholder="Seleccioná el estado"
+                    className="Admin-Pickers-input readonly"
                     disabled={true}
                   />
                 </div>
@@ -239,7 +246,7 @@ console.log(FilterTransaction)
               <div className="modal-transaction-inputs">
                     <div>
                         <div className="filter-transaction-div-label">
-                          <label className="label-filter-transaction-modal">
+                          <label className="label-Admin-Pickers readonly">
                           Nombre y apellido
                           </label>
                         </div>
@@ -249,13 +256,14 @@ console.log(FilterTransaction)
                             name="NomyApe"
                             component="input"
                             placeholder="Ingresá el nombre"
+                            className="Admin-Pickers-input readonly"
                             disabled={true}
                           />
                         </div>
                     </div>
                     <div>
                         <div className="filter-transaction-div-label">
-                          <label className="label-filter-transaction-modal">
+                          <label className="label-Admin-Pickers readonly">
                               Teléfono
                           </label>
                         </div>
@@ -265,6 +273,7 @@ console.log(FilterTransaction)
                             name="TelefonoConFinal"
                             component="input"
                             placeholder="Ingresá el telefono"
+                            className="Admin-Pickers-input readonly"
                             disabled={true}
                           />
                         </div>
@@ -325,9 +334,7 @@ console.log(FilterTransaction)
           }
           <div className="modal-transaction-part">
               <img src={Okey} alt="okey" className="modal-transaction-img-okey" />
-              {
-                console.log( FilterTransaction && FilterTransaction) 
-              }
+           
               
               <p className="modal-transaction-part-subtitle">Pendiente</p>
               {

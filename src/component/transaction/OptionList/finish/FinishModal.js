@@ -12,84 +12,72 @@ export const FinishModal = (props) => {
   const [estado, setestado] = useState("");
   const setdniFinish = props.setdniFinish;
   const setundelivered = props.setundelivered;
+  console.log(FilterSelectedTransaction)
 
 
   const handleClick = async (e) => {
-    e.preventDefault()
-    
-    switch (estado) {
+      e.preventDefault();
+
+
+      if(estado==="Devuelto"){
+        setdniFinish(true);
+        setTimeout(() => {
+            e.target.parentNode.parentNode.classList.add('animation-left-transaction')
+            const insert = document.querySelector('.insertAnimation');
+            const div = document.createElement('div');
+            div.classList.add('animationReasons');
+            setTimeout(() => {
+                insert.appendChild(div)
+            }, 200);
+            
+            setTimeout(() => {
+                setfinishModal(false);
+                if(e.target.parentNode.parentNode!==null)
+                e.target.parentNode.parentNode.classList.remove('animation-left-transaction')
+                insert.removeChild(insert.firstChild);
+            }, 500);
+        }, 0);
+      }
+
+      if(estado==="Entregado"){
+
+        setundelivered(true);
+        setTimeout(() => {
+            e.target.parentNode.parentNode.classList.add('animation-left-transaction')
+            const insert = document.querySelector('.insertAnimation');
+            const div = document.createElement('div');
+            div.classList.add('animationReasons');
+            setTimeout(() => {
+                insert.appendChild(div)
+            }, 200);
+            
+            setTimeout(() => {
+                setfinishModal(false);
+                if(e.target.parentNode.parentNode!==null)
+                e.target.parentNode.parentNode.classList.remove('animation-left-transaction')
+                insert.removeChild(insert.firstChild);
+            }, 500);
+        }, 0);
+
+      }
   
-      case "Siniestrado":
-        await api.post(
-          `/ms-admin-rest/api/v1.0/transactions/${FilterSelectedTransaction.transaction.id}/lost`,
-        );
-        break;
-        case "Devuelto":
+      if(estado=== "Siniestrado")
+        {   
           await api.post(
-            `/ms-admin-rest/api/v1.0/transactions/${FilterSelectedTransaction.transaction.id}/returned`,
-          );
-          break;
-    
+          `/ms-admin-rest/api/v1.0/transactions/${FilterSelectedTransaction.transaction.id}/lost`);
+          window.location.reload();
   
+        }
 
-      default:
-        break;
-    }
-
- window.location.reload();
-  };
+};
 
   const handleClickCheck = (e) => {
-    
-            if(e.target.value==="Devuelto" && (FilterSelectedTransaction.transaction.state.id === 6 || FilterSelectedTransaction.transaction.state.id === 7)){
-
-              setundelivered(true);
-              setTimeout(() => {
-                  e.target.parentNode.parentNode.parentNode.parentNode.classList.add('animation-left-transaction')
-                  const insert = document.querySelector('.insertAnimation');
-                  const div = document.createElement('div');
-                  div.classList.add('animationReasons');
-                  setTimeout(() => {
-                      insert.appendChild(div)
-                  }, 200);
-                  
-                  setTimeout(() => {
-                      setfinishModal(false);
-                      if(e.target.parentNode.parentNode.parentNode.parentNode!==null)
-                      e.target.parentNode.parentNode.parentNode.parentNode.classList.remove('animation-left-transaction')
-                      insert.removeChild(insert.firstChild);
-                  }, 500);
-              }, 0);
-      
-          }
-          if(e.target.value==="Entregado"){
-  
-              setdniFinish(true);
-              setTimeout(() => {
-                  e.target.parentNode.parentNode.parentNode.parentNode.classList.add('animation-left-transaction')
-                  const insert = document.querySelector('.insertAnimation');
-                  const div = document.createElement('div');
-                  div.classList.add('animationReasons');
-                  setTimeout(() => {
-                      insert.appendChild(div)
-                  }, 200);
-                  
-                  setTimeout(() => {
-                      setfinishModal(false);
-                      if(e.target.parentNode.parentNode.parentNode.parentNode!==null)
-                      e.target.parentNode.parentNode.parentNode.parentNode.classList.remove('animation-left-transaction')
-                      insert.removeChild(insert.firstChild);
-                  }, 500);
-              }, 0);
-      
-          }
-
       setRadioActive(true);
       setestado(e.target.id);
 }
         
 
-
+//
   const handleClickgoBack = (e) => {
     e.target.parentNode.parentNode.classList.add("animation-right-transaction");
 
@@ -129,75 +117,82 @@ export const FinishModal = (props) => {
         </h3>
         <hr className="modal-transaction-finish-separate" />
         <p>
-          La transacción <b>{FilterSelectedTransaction.transaction.id}</b> va a
+          La transacción <b>{FilterSelectedTransaction.transaction.transactionCode}</b> va a
           pasar a estado:
         </p>
       </div>
 
       <form className="form-filter-transaction">
         <div className="modal-transaction-finish-inputs">
+       
+        
+              <div className={FilterSelectedTransaction.transaction.state.id!==8  ? "flexItems" : "flexItems flexItems-items-center"}>
+                  <input
+                    onClick={handleClickCheck}
+                    name="estado"
+                    type="radio"
+                    value="Siniestrado"
+                    id="Siniestrado"
+                  />
+                  <label
+                    htmlFor="Siniestrado"
+                    className="modal-transaction-finish-label" 
+                  >
+                    Siniestrado
+                  </label>
+              </div>
+          {FilterSelectedTransaction.transaction.state.id!==8 ?
+                <div className="flexItems">
+                    <input
+                      onClick={handleClickCheck}
+                      name="estado"
+                      type="radio"
+                      value="Entregado"
+                      id="Entregado"/>
+                    <label
+                      htmlFor="Entregado"
+                      className="modal-transaction-finish-label"
+                    >
+                      Entregado
+                  </label>
+                </div>
+            :<></>
+            }
+          
           <div className="flexItems">
-            <input
-              onClick={handleClickCheck}
-              name="estado"
-              type="radio"
-              value="Siniestrado"
-              id="Siniestrado"
-            />
-            <label
-              htmlFor="Siniestrado2"
-              className="modal-transaction-finish-label"
-            >
-              {" "}
-              Siniestrado
-            </label>
-          </div>
-          <div className="flexItems">
-            <input
-              onClick={handleClickCheck}
-              name="estado"
-              type="radio"
-              value="Entregado"
-              id="Entregado"
-            />
-            <label
-              htmlFor="Entregado"
-              className="modal-transaction-finish-label"
-            >
-              Entregado
-            </label>
-          </div>
+                <input
+                  onClick={handleClickCheck}
+                  name="estado"
+                  type="radio"
+                  value="Devuelto"
+                  id="Devuelto"
+                />
+                <label
+                  htmlFor="Devuelto"
+                  className="modal-transaction-finish-label"
+                >
+                  Devuelto
+                </label>
+            </div>
+        
          
-          {FilterSelectedTransaction.transaction.state.id!==8?<div className="flexItems">
-            <input
-              onClick={handleClickCheck}
-              name="estado"
-              type="radio"
-              value="Devuelto"
-              id="Devuelto"
-            />
-            <label
-              htmlFor="Devuelto"
-              className="modal-transaction-finish-label"
-            >
-              Devuelto
-            </label>
-          </div>:<></>}
         </div>
 
-        {RadioActive === false ? (
-          <button className="modal-transaction-finish-button">
-            Finalizarla
+        {RadioActive === false ? 
+          <button 
+              disabled={true}
+              className="modal-transaction-finish-button">
+                Finalizarla
           </button>
-        ) : (
+         : 
           <button
-            type="button"
-            onClick={handleClick}
-            className="modal-transaction-finish-button-click"
+                type="button"
+                onClick={handleClick}
+                className="modal-transaction-finish-button-click"
           >
             Finalizarla
           </button>
-        )}
+        }
       </form>
     </div>
   );

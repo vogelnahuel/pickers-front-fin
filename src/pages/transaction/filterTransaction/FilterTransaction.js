@@ -8,7 +8,7 @@ import search from "assets/admin/PendingUser/search.svg";
 import {Field, Form} from "react-final-form";
 import {Col, Container, Row} from "react-bootstrap";
 import {Input} from "component/inputs/Input";
-import MultipleSelect from "pages/transaction/filterTransaction/MultipleSelect";
+import MultipleSelect from "component/inputs/MultipleSelect";
 import {FILTER_TRANSACTION_OPTIONS} from "utils/constants";
 
 export const FilterTransaction = ({ onSubmit, filters, handlerOnChange }) => {
@@ -27,7 +27,10 @@ export const FilterTransaction = ({ onSubmit, filters, handlerOnChange }) => {
                     </div>
                 </Col>
                 <Col className="sub-container" >
-                    <Form onSubmit={onSubmit} initialValues={filters}>
+                    <Form
+                        onSubmit={onSubmit}
+                        initialValues={filters}
+                    >
                         {({ handleSubmit }) => (
                             <form className="form-filter-transaction" onSubmit={handleSubmit}>
                                 <Col xxl={2} lg={4}>
@@ -53,7 +56,7 @@ export const FilterTransaction = ({ onSubmit, filters, handlerOnChange }) => {
                                 <Col xxl={2} lg={4}>
                                     <div className="datePicker-filter-transaction">
                                         <label className="label-Admin-Pickers">
-                                            Fecha de entrega
+                                            Vencimiento SLA
                                         </label>
                                         <Field
                                             type="text"
@@ -66,7 +69,13 @@ export const FilterTransaction = ({ onSubmit, filters, handlerOnChange }) => {
                                     </div>
                                 </Col>
                                 <Col xxl={2} lg={4}>
-                                    <Field name="state" onChange={ handlerOnChange} options={FILTER_TRANSACTION_OPTIONS} placeholder="Seleccioná el estado" component={MultipleSelect}/>
+                                    <Field
+                                        name="state"
+                                        label="Estados"
+                                        placeholder="Seleccioná el estado"
+                                        onChange={ handlerOnChange}
+                                        options={FILTER_TRANSACTION_OPTIONS}
+                                        component={MultipleSelect}/>
                                 </Col>
                                 <Col xxl={2} lg={4}>
                                     <Field

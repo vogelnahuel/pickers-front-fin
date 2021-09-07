@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import 'pages/transaction/filterTransaction/multipleSelect.scss';
+import 'component/inputs/multipleSelect.scss';
 import 'pages/admin/pendingUserAdminPicker/pendingUserAdminPicker.scss';
 import Arrow from 'assets/admin/flechaAbajo.svg'
 
 const MultipleSelect = (
-    { input: { value }, options = [], onChange }
+    { input: { value }, label, options = [], onChange, placeholder }
 ) => {
   const [open, setOpen] = useState(false);
   const [all, setAll] = useState(false);
@@ -67,15 +67,11 @@ const MultipleSelect = (
 
   return (
       <div className="multiple-selectbox">
-        {/*<div className="multiple-select">*/}
           <div  onClick={handleClick} className="multiple-contenido-select">
-            <label className="label-Admin-Pickers">Estados</label>
-            {/*<div className="multiple-ContenedorInput">*/}
-              <input placeholder="Seleccioná el estado" value={reduceValue()} disabled className="Admin-Pickers-input" type="text"/>
+            <label className="label-Admin-Pickers">{label}</label>
+              <input placeholder={placeholder} value={reduceValue()} disabled className="Admin-Pickers-input" type="text"/>
               <img className="multiple-flotarImg" src={Arrow} alt="arrow"/>
-            {/*</div>*/}
           </div>
-        {/*</div>*/}
         { open &&
         <div className="multiple-options">
           <div  className="multiple-contenido-opcion" onClick={(e)=>onChangeHandlerAll(e)}>

@@ -18,7 +18,6 @@ import stateName from "component/transaction/tableTransaction/statesNames";
 import moment from "moment";
 
 
-
 export const Transaction = ({
                                 isExportDisabled,
                                 isFetching,
@@ -34,14 +33,11 @@ export const Transaction = ({
                                 setOpenErrorDatePicker
                             }) => {
 
-
     const [FilterSelectedTransaction, setFilterSelectedTransaction] = useState({});
     const [OpenModalTransaction, setOpenModalTransaction] = useState(false);
     const [IdModalApi, setIdModalApi] = useState(""); // devuelve la consulta api
     const titulos = ["Transacción", "Id de picker", "Vencimiento SLA", "Estado"];
      const [resolutionHeightModal, setresolutionHeightModal] = useState(550)
-    //
-    //
     // //todo: extraer a container
      useEffect(() => {
     
@@ -54,11 +50,9 @@ export const Transaction = ({
     
      }, [])
 
-
     //todo: extraer al reducer
     const cargarDatos = async(e)=> {
 
-        // setloader(true);
         setFilterSelectedTransaction( await  api.get(`/ms-admin-rest/api/v1.0/transactions/${Number(e.target.getAttribute('name'))}`)
 
             .then((res) => {
@@ -67,19 +61,7 @@ export const Transaction = ({
             .catch((err) => {
                 console.log(err);
             }))
-        // setloader(false);
-
-        //preguntar a nahu
-
-        // if(window.innerHeight < 800)
-        //     document.querySelector('.modal-transaction').style.height=`${document.body.scrollHeight+100}px`
-        // if(window.innerHeight > 800)
-        //     document.querySelector('.modal-transaction').style.height=`${document.body.scrollHeight+400}px`
-
     }
-
-
-   
 
     const onClose = (e) => {
         setOpenModalTransaction(false);
@@ -93,7 +75,7 @@ export const Transaction = ({
                 <div className="transaction-container">
                     <div className="mainContainerFlex-transaction">
                         <h2 className="subTitle-transaction">
-                            <p className="subtitle-pendingUser-h2">Transacciones </p>
+                            <p className="subtitle-pendingUser-h2">Transacciones</p>
                         </h2>
                         <button
                             disabled={isExportDisabled}
@@ -206,7 +188,7 @@ export const Transaction = ({
                                         <p>Estado
                                         </p> 
                                         <p className="modal-transaction-fecha"> 
-                                            {  FilterSelectedTransaction.transaction && 
+                                            {  FilterSelectedTransaction && FilterSelectedTransaction.transaction && 
                                             FilterSelectedTransaction.transaction.inAlert===true ? 
                                                 <> 
                                                     <span className="transaction-modal-alert modal-transaction-alerta">En alerta</span> 

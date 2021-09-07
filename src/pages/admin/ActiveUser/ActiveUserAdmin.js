@@ -4,7 +4,7 @@ import { Nav } from "../../../component/admin/Nav/Nav";
 import "../PendingUser/Picker.scss";
 import exportar from "../../../assets/admin/PendingUser/exportar.svg";
 import or from "../../../assets/admin/PendingUser/or.svg";
-import { Filter } from "../../../component/admin/Filter/Filter";
+import { FilterPickers } from "../PendingUser/filter/FilterPickers";
 import { TableAdmin } from "../../../component/admin/table/TableAdmin";
 import { PendingBlack } from "../../../component/admin/Sub-Title-Image/PendingBlack";
 import { dataActiveUser } from "./dataActiveUser";
@@ -243,7 +243,7 @@ const Export = async () => {
             </button>
           </div>
 
-          <Filter FieldsPart={FieldsPart} onSubmit={onFilter} />
+          <FilterPickers FieldsPart={FieldsPart} onSubmit={onFilter} />
           <br />
           <TableAdmin titulosAdminActive={titulosAdminActive} data={data} />
            {
