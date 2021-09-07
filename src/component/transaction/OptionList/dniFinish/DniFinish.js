@@ -74,12 +74,13 @@ const handleChange = (value)=>{
                         <form  onSubmit={handleSumbit}>
                             <div className="modal-input-dni-finish">
                                 <div className="filter-transaction-div-label">
-                                    <label htmlFor="dni" className="filter-transaction-dnifinish-div-label">DNI *</label>
+                                    <label htmlFor="dni" className="label-Admin-Pickers">DNI *</label>
                                 </div>
                                 <Field
                                 name="dni"
                                 component="input"
                                 placeholder="Ingresá el DNI"
+                                className="Admin-Pickers-input"
                                 id="dni"
                                 >
                                 </Field>
