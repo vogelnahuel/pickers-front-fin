@@ -67,3 +67,18 @@ export const FILTER_TRANSACTION_OPTIONS = [
         id: 'CANCEL',
     }
 ];
+
+export const FILTER_PICKERS_OPTIONS = [
+    {
+        label: 'Todos',
+        value: '',
+    },
+    {
+        label: 'Bicicleta',
+        value: 'bicycle',
+    },
+    {
+        label: 'Moto',
+        value: 'motorcycle',
+    },
+];
