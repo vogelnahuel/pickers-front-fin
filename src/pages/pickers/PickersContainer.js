@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { actions as pendingUserActions, selectors as pendingUserSelectors} from "reducers/PendingUser";
+import { actions as pendingUserActions, selectors as pendingUserSelectors} from "reducers/pickers";
 import { PendingUserAdmin } from "pages/pickers/Pickers";
 import {titulosAdminPending,titulosAdminActive} from "utils/constants"
 

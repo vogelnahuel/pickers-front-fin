@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {actions as pendingUserActions, selectors as pendingUserSelectors} from "reducers/PendingUser";
+import {actions as pendingUserActions, selectors as pendingUserSelectors} from "reducers/pickers";
 import {FilterPickers} from "pages/pickers/filter/FilterPickers";
 
 const FilterPickersContainer = (props) => {

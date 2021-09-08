@@ -1,4 +1,4 @@
-import * as API from "./api";
+import * as API from "middleware/api";
 
 export const getTransactions = (params) => API.get("/ms-admin-rest/api/v1.0/transactions", params);
 

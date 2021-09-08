@@ -67,8 +67,9 @@ export const actions = {
         type: types.PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_REQUEST,
         params,
     }),
-    getPendingUserPickerDocumentsEditSuccess: () => ({
+    getPendingUserPickerDocumentsEditSuccess: (body) => ({
         type: types.PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_SUCCESS,
+        body
     }),
     getPendingUserPickerDocumentsEditError: () => ({
         type: types.PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_ERROR,
@@ -78,8 +79,9 @@ export const actions = {
         type: types.PICKER_APROVE_POST_REQUEST,
         params,
     }),
-    getAprovePickerSuccess: () => ({
+    getAprovePickerSuccess: (body) => ({
         type: types.PICKER_APROVE_POST_SUCCESS,
+        body
     }),
     getAprovePickerError: () => ({
         type: types.PICKER_APROVE_POST_ERROR,
@@ -89,8 +91,9 @@ export const actions = {
         type: types.PICKER_EDIT_POST_REQUEST,
         params,
     }),
-    getEditPickerSuccess: () => ({
+    getEditPickerSuccess: (body) => ({
         type: types.PICKER_EDIT_POST_SUCCESS,
+        body
     }),
     getEditPickerError: () => ({
         type: types.PICKER_EDIT_POST_ERROR,
@@ -157,6 +160,7 @@ const reducer =(state = INITIAL_STATE, action = {}) => {
         case types.PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_SUCCESS:
             return {
                 ...state,
+                pendingUserAdminPicker: action.body,
                 fetching: false,
             };
         case types.PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_ERROR:
@@ -173,6 +177,7 @@ const reducer =(state = INITIAL_STATE, action = {}) => {
         case types.PICKER_APROVE_POST_SUCCESS:
             return {
                 ...state,
+                pendingUserAdminPicker: action.body,
                 fetching: false,
             };
         case types.PICKER_APROVE_POST_ERROR:
@@ -189,6 +194,7 @@ const reducer =(state = INITIAL_STATE, action = {}) => {
         case types.PICKER_EDIT_POST_SUCCESS:
             return {
                 ...state,
+                pendingUserAdminPicker: action.body,
                 fetching: false,
             };
         case types.PICKER_EDIT_POST_ERROR:

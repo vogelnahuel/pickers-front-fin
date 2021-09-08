@@ -1,16 +1,14 @@
 import {all, call, put, spawn} from "redux-saga/effects";
 import transactions from "sagas/transactions";
-import pendingUser from "sagas/pendingUsers";
+import pickers from "sagas/pickers";
 import dashboard from "sagas/dashboard";
-import pendingUserAdminPicker from "sagas/pendingUserAdminPicker"
 import login from "sagas/login";
 import {actions} from "reducers/login";
 
 const sagas = [
     ...transactions,
-    ...pendingUser,
+    ...pickers,
     ...dashboard,  
-    ...pendingUserAdminPicker,
     ...login,
 
 ];
