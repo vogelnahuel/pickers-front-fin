@@ -143,6 +143,7 @@ const reducer =(state = INITIAL_STATE, action = {}) => {
         case types.PENDING_USER_SET_ACTUAL_PAGE:
             return {
                 ...state,
+                users: [],
                 actualPage:action.page,
             };
         case types.PENDING_USER_SET_EXTRA_FILTERS:
