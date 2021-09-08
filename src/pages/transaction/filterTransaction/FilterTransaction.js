@@ -2,7 +2,6 @@ import React from "react";
 import dropdown from "assets/admin/PendingUser/desplegable.svg";
 import "pages/transaction/filterTransaction/FilterTransaction.scss";
 import "pages/pickers/detailPicker/DetailPicker.scss"
-import {DatePicker} from "@pickit/pickit-components";
 import or from "assets/admin/PendingUser/or.svg";
 import search from "assets/admin/PendingUser/search.svg";
 import {Field, Form} from "react-final-form";
@@ -10,8 +9,10 @@ import {Col, Container, Row} from "react-bootstrap";
 import {Input} from "component/inputs/Input";
 import MultipleSelect from "component/inputs/MultipleSelect";
 import {FILTER_TRANSACTION_OPTIONS} from "utils/constants";
+import { DatePicker } from "@pickit/pickit-components";
 
-export const FilterTransaction = ({ onSubmit, filters, handlerOnChange }) => {
+
+export const FilterTransaction = ({ onSubmit, filters }) => {
 
     return (
         <Container fluid className="display-filter-transaction">
@@ -29,14 +30,15 @@ export const FilterTransaction = ({ onSubmit, filters, handlerOnChange }) => {
                 <Col className="sub-container" >
                     <Form
                         onSubmit={onSubmit}
-                        initialValues={filters}
+                        initialValues={filters ? filters : "" }
                         mutators={{
                             setValue: ([field, value], state, { changeValue }) => {
                                 changeValue(state, field, () => value)
                             }
+                         
                         }}
                     >
-                        {({ handleSubmit, form }) => (
+                        {({ handleSubmit, form,values }) => (
                             <form className="form-filter-transaction" onSubmit={handleSubmit}>
                                 <Col xxl={2} lg={4}>
                                     <Field
@@ -59,7 +61,7 @@ export const FilterTransaction = ({ onSubmit, filters, handlerOnChange }) => {
                                     />
                                 </Col>
                                 <Col xxl={2} lg={4}>
-                                    <div className="datePicker-filter-transaction">
+                                    <div className="datePicker-filter-transaction" id="datePicker-filter-transaction">
                                         <label className="label-Admin-Pickers">
                                             Vencimiento SLA
                                         </label>
@@ -70,8 +72,11 @@ export const FilterTransaction = ({ onSubmit, filters, handlerOnChange }) => {
                                             component={DatePicker}
                                             placeholder="Seleccioná la fecha"
                                             language="es"
-                                        />
-                                    </div>
+                                            onClose={form.mutators.setValue}
+                                        >
+                                            
+                                        </Field>
+                                     </div>
                                 </Col>
                                 <Col xxl={2} lg={4}>
                                     <Field
