@@ -1,8 +1,4 @@
-//.transaction-filter-div-label{
-//    height: 20px;
-//}
 .display-filter-transaction{
-    //display: flex;
     background: #FFFFFF;
     border: 1px solid #E5E5E5;
     box-sizing: border-box;
@@ -51,6 +47,9 @@
     flex-wrap: wrap;
 }
 .sub-container{
+    form div {
+        max-width: 100%;
+    }
     padding: 0;
 }
 //.form-filter-transaction div div input{

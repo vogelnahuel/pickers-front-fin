@@ -27,86 +27,88 @@ export const FilterTransaction = ({ onSubmit, filters, handlerOnChange }) => {
                     </div>
                 </Col>
                 <Col className="sub-container" >
-                    <Form
-                        onSubmit={onSubmit}
-                        initialValues={filters}
-                        mutators={{
-                            setValue: ([field, value], state, { changeValue }) => {
-                                changeValue(state, field, () => value)
-                            }
-                        }}
-                    >
-                        {({ handleSubmit, form }) => (
-                            <form className="form-filter-transaction" onSubmit={handleSubmit}>
-                                <Col xxl={2} lg={4}>
-                                    <Field
-                                        type="text"
-                                        name="transactionCode"
-                                        label="Código de transacción"
-                                        component={Input}
-                                        className="Admin-Pickers-input"
-                                        placeholder="Ingresá el código"
-                                    />
-                                </Col>
-                                <Col xxl={2} lg={4}>
-                                    <Field
-                                        type="text"
-                                        name="pickerId"
-                                        label="Id de picker"
-                                        component={Input}
-                                        className="Admin-Pickers-input"
-                                        placeholder="Ingresá el número de picker"
-                                    />
-                                </Col>
-                                <Col xxl={2} lg={4}>
-                                    <div className="datePicker-filter-transaction">
-                                        <label className="label-Admin-Pickers">
-                                            Vencimiento SLA
-                                        </label>
+                    <Row className="px-2">
+                        <Form
+                            onSubmit={onSubmit}
+                            initialValues={filters}
+                            mutators={{
+                                setValue: ([field, value], state, { changeValue }) => {
+                                    changeValue(state, field, () => value)
+                                }
+                            }}
+                        >
+                            {({ handleSubmit, form }) => (
+                                <form className="form-filter-transaction" onSubmit={handleSubmit}>
+                                    <Col xxl xl={4} className="px-3">
                                         <Field
                                             type="text"
+                                            name="transactionCode"
+                                            label="Código de transacción"
+                                            component={Input}
                                             className="Admin-Pickers-input"
-                                            name="date"
-                                            component={DatePicker}
-                                            placeholder="Seleccioná la fecha"
-                                            language="es"
+                                            placeholder="Ingresá el código"
                                         />
-                                    </div>
-                                </Col>
-                                <Col xxl={2} lg={4}>
-                                    <Field
-                                        name="state"
-                                        label="Estados"
-                                        placeholder="Seleccioná el estado"
-                                        onChange={form.mutators.setValue}
-                                        options={FILTER_TRANSACTION_OPTIONS}
-                                        component={MultipleSelect}/>
-                                </Col>
-                                <Col xxl={2} lg={4}>
-                                    <Field
-                                        className="checkbox-filter-transaction"
-                                        name="inAlert"
-                                        component="input"
-                                        type="checkbox"
-                                    />
-                                    <label className="label-filter-transaction-alert">
-                                        En alerta
-                                    </label>
-                                </Col>
-                                <Col xxl={2} lg={4}>
-                                    <button
-                                        className="search-button-transaction float-right"
-                                        name="search"
-                                        type="submit"
-                                    >
-                                        <img src={search} alt="export" />
-                                        <img className="or-filter" src={or} alt="or" />
-                                        <p className="display-inline-block p-export">Buscar</p>
-                                    </button>
-                                </Col>
-                            </form>
-                        )}
-                    </Form>
+                                    </Col>
+                                    <Col xxl xl={4} className="px-3">
+                                        <Field
+                                            type="text"
+                                            name="pickerId"
+                                            label="Id de picker"
+                                            component={Input}
+                                            className="Admin-Pickers-input"
+                                            placeholder="Ingresá el número de picker"
+                                        />
+                                    </Col>
+                                    <Col xxl xl={4} className="px-3">
+                                        <div className="datePicker-filter-transaction">
+                                            <label className="label-Admin-Pickers">
+                                                Vencimiento SLA
+                                            </label>
+                                            <Field
+                                                type="text"
+                                                className="Admin-Pickers-input"
+                                                name="date"
+                                                component={DatePicker}
+                                                placeholder="Seleccioná la fecha"
+                                                language="es"
+                                            />
+                                        </div>
+                                    </Col>
+                                    <Col xxl xl={4} className="px-3">
+                                        <Field
+                                            name="state"
+                                            label="Estados"
+                                            placeholder="Seleccioná el estado"
+                                            onChange={form.mutators.setValue}
+                                            options={FILTER_TRANSACTION_OPTIONS}
+                                            component={MultipleSelect}/>
+                                    </Col>
+                                    <Col xxl="auto" xl={4} className="px-3">
+                                        <Field
+                                            className="checkbox-filter-transaction"
+                                            name="inAlert"
+                                            component="input"
+                                            type="checkbox"
+                                        />
+                                        <label className="label-filter-transaction-alert">
+                                            En alerta
+                                        </label>
+                                    </Col>
+                                    <Col xxl="auto" lg={4} className="px-3">
+                                        <button
+                                            className="search-button-transaction float-end"
+                                            name="search"
+                                            type="submit"
+                                        >
+                                            <img src={search} alt="export" />
+                                            <img className="or-filter" src={or} alt="or" />
+                                            <p className="display-inline-block p-export">Buscar</p>
+                                        </button>
+                                    </Col>
+                                </form>
+                            )}
+                        </Form>
+                    </Row>
                 </Col>
             </Row>
         </Container>
