@@ -3,11 +3,11 @@ import {connect} from "react-redux";
 import {
     actions as pendingUserAdminPickerActions,
     selectors as pendingUserAdminPickerSelectors
-} from "reducers/pendingUserAdminPicker";
-import {DetailPicker} from "./DetailPicker"
+} from "reducers/detailPicker";
+import {DetailPicker} from "pages/pickers/detailPicker/DetailPicker"
 import { DATE_FORMATS } from "utils/constants";
 import {useHistory, useParams} from "react-router-dom";
-import {actions as pendingUserActions, selectors as pendingUserSelectors} from "reducers/PendingUser";
+import {actions as pendingUserActions, selectors as pendingUserSelectors} from "reducers/pickers";
 import * as yup from "yup";
 
 const DetailPickerContainer = (props) => {
