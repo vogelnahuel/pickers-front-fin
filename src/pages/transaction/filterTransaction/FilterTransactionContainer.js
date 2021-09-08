@@ -6,8 +6,10 @@ import moment from "moment";
 
 const FilterTransactionContainer = (props) => {
     const formatDate = (date) => {
+      
         let result ={};
         if (date) {
+            result.date=date;
             if (moment(date.from, "DD/MM/YYYY").isValid()) {
                 result.minMinDeliveryDate = moment(
                     date.from,
@@ -19,13 +21,14 @@ const FilterTransactionContainer = (props) => {
                 ).format("YYYY-MM-DD");
             }
         }
+
         return result;
     };
 
     const takeFilters = (values) => {
         let formatedDate = formatDate(values.date);
         return {
-            ...props.filters,
+            
             ...formatedDate,
             state: values.state,
             pickerId: values.pickerId,
@@ -41,9 +44,8 @@ const FilterTransactionContainer = (props) => {
         props.setExportEnabled(filtersApplied.pickerId || filtersApplied.transactionCode || filtersApplied.minMinDeliveryDate);
         props.setFilters(filtersApplied);
     };
-
     return (
-        <FilterTransaction {...props} onSubmit={onSubmit}/>
+        <FilterTransaction {...props} onSubmit={onSubmit} />
     );
 }
 

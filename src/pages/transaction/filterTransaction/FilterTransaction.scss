@@ -85,6 +85,18 @@
     //margin-bottom: 3.515625vh;
     width: 100%;
 }
+
+#datePicker-filter-transaction div svg{
+    position: absolute;
+    top: 5px;
+    right: 0px;
+
+    path{
+        fill: #101820;
+    }
+}
+
+
 .checkbox-filter-transaction{
     height: 20px;
     width: 20px;
@@ -153,6 +165,8 @@ div .MKjsMK9DPt5gO-irDsCHa {
     line-height: 20px;
     text-align: center;
 }
+
+
 
 @media (max-width:1310px){
     .form-filter-transaction div div input{
