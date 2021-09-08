@@ -7,9 +7,9 @@ import search from "assets/admin/PendingUser/search.svg";
 import {Field, Form} from "react-final-form";
 import {Col, Container, Row} from "react-bootstrap";
 import {Input} from "component/inputs/Input";
-import {WrapperDatePicker} from 'component/inputs/wrapperDatePicker' 
 import MultipleSelect from "component/inputs/MultipleSelect";
 import {FILTER_TRANSACTION_OPTIONS} from "utils/constants";
+import { DatePicker } from "@pickit/pickit-components";
 
 
 export const FilterTransaction = ({ onSubmit, filters }) => {
@@ -30,7 +30,7 @@ export const FilterTransaction = ({ onSubmit, filters }) => {
                 <Col className="sub-container" >
                     <Form
                         onSubmit={onSubmit}
-                        initialValues={filters ? filters : ""}
+                        initialValues={filters ? filters : "" }
                         mutators={{
                             setValue: ([field, value], state, { changeValue }) => {
                                 changeValue(state, field, () => value)
@@ -69,7 +69,7 @@ export const FilterTransaction = ({ onSubmit, filters }) => {
                                             type="text"
                                             className="Admin-Pickers-input"
                                             name="date"
-                                            component={WrapperDatePicker}
+                                            component={DatePicker}
                                             placeholder="Seleccioná la fecha"
                                             language="es"
                                             onClose={form.mutators.setValue}
