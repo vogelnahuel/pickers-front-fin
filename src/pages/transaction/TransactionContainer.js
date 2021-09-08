@@ -13,7 +13,7 @@ const TransactionContainer = (props) => {
         const filtersExtra={limit:window.screen.height<760 ? 3 : 5};
         props.setExtraFilters(filtersExtra);
         props.getTransactions({...filtersExtra, ...filters});
-        props.setFilters(filters);
+        props.setFilters(filters || {});
         // eslint-disable-next-line
     }, [])
 
