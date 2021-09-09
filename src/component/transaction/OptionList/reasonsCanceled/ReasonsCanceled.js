@@ -10,7 +10,7 @@ import volver from '../../../../assets/admin/PendingUser/volver.svg'
 
 export const ReasonsCanceled = (props) => {
     const [messages, setmessages] = useState()
-  
+   
    
     useEffect(() => {
        const cargarMensajes = async () => {
@@ -30,17 +30,17 @@ export const ReasonsCanceled = (props) => {
     const setreasonCancel = props.setreasonCancel;
     const sethistory= props.sethistory;
     const setreasonId=props.setreasonId;
+    const setmsgSelected=props.setmsgSelected;
 
 const handleClickFinish = (e) => {
      
         e.preventDefault();
         e.target.style.fontWeight="bold"
         e.target.parentNode.style.backgroundColor="#F2F2F2"
-
-
+    
         setreasonCancelConfirm(true);
-        setreasonId( e.target.attributes[0].value)
-                
+        setreasonId(e.target.attributes[0].value)
+        setmsgSelected(e.target.textContent)        
         setTimeout(() => {
             e.target.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add('animation-left-transaction')
             const insert = document.querySelector('.insertAnimation');
