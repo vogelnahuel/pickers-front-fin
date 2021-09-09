@@ -10,7 +10,10 @@ export const ReasonsCanceledConfirm = (props) => {
     const setreasonCancel = props.setreasonCancel;
     const setreasonCancelConfirm = props.setreasonCancelConfirm;
     const reasonId = props.reasonId; 
-    const FilterSelectedTransaction = props.FilterSelectedTransaction
+    const FilterSelectedTransaction = props.FilterSelectedTransaction;
+    const msgSelected=props.msgSelected;
+
+    
 
     
 
@@ -41,6 +44,7 @@ export const ReasonsCanceledConfirm = (props) => {
         
         }
 //
+
     return (
         <div className="modal-transaction-reasonsCanceled">
             <div  onClick={handleClickgoBack} className="modal-transaction-volver">
@@ -48,17 +52,10 @@ export const ReasonsCanceledConfirm = (props) => {
                 <p className="modal-transaction-reasonsCanceledConfirm-volver">Volver</p>
             </div>
 
-          {reasonId!==999 && FilterSelectedTransaction.transaction.state.name!=="En retiro"  ? 
-           <div className="modal-transaction-reasonsCanceledConfirm-container">
-                    <img className="modal-transaction-reasonsCanceledConfirm-img" src={Info} alt ="informacionIcon" />
-                    <h3 className="modal-transaction-reasonsCanceledConfirm-subtitle">Estás por cancelar la transacción</h3>
-                    <hr className="modal-transaction-reasonsCanceledConfirm-separate"/>
-                    <p className="modal-transaction-reasonsCanceledConfirm-p">Al hacerlo, ya no va a poder ser asignada</p>
-                    <p className="modal-transaction-reasonsCanceledConfirm-p2">
-                        ¿Querés cancelarla?
-                    </p>
-            </div>:
-           <div className="modal-transaction-reasonsCanceledConfirm-container">
+          {((FilterSelectedTransaction.transaction.state.name==="En retiro" &&  msgSelected==="Motivos personales o de transporte") ||
+          (FilterSelectedTransaction.transaction.state.name==="En lugar de retiro" && msgSelected==="Motivos personales o de transporte")) 
+
+          ?    <div className="modal-transaction-reasonsCanceledConfirm-container">
                     <img className="modal-transaction-reasonsCanceledConfirm-img" src={Info} alt ="informacionIcon" />
                     <h3 className="modal-transaction-reasonsCanceledConfirm-subtitle-collection">Estás por cancelar la colecta</h3>
                     <hr className="modal-transaction-reasonsCanceledConfirm-separate"/>
@@ -67,6 +64,17 @@ export const ReasonsCanceledConfirm = (props) => {
                         ¿Querés cancelar la colecta?
                     </p>
             </div>
+      
+            :
+            <div className="modal-transaction-reasonsCanceledConfirm-container">
+                <img className="modal-transaction-reasonsCanceledConfirm-img" src={Info} alt ="informacionIcon" />
+                <h3 className="modal-transaction-reasonsCanceledConfirm-subtitle">Estás por cancelar la transacción</h3>
+                <hr className="modal-transaction-reasonsCanceledConfirm-separate"/>
+                <p className="modal-transaction-reasonsCanceledConfirm-p">Al hacerlo, ya no va a poder ser asignada</p>
+                <p className="modal-transaction-reasonsCanceledConfirm-p2">
+                    ¿Querés cancelarla?
+                </p>
+             </div>
             
             }
             <button onClick={handleClickCancelConfirm} className="modal-transaction-reasonsCanceledConfirm-button">Sí, cancelarla</button>

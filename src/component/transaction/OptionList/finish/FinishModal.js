@@ -20,7 +20,7 @@ export const FinishModal = (props) => {
 
 
       if(estado==="Devuelto"){
-        setdniFinish(true);
+        setundelivered(true);
         setTimeout(() => {
             e.target.parentNode.parentNode.classList.add('animation-left-transaction')
             const insert = document.querySelector('.insertAnimation');
@@ -40,8 +40,8 @@ export const FinishModal = (props) => {
       }
 
       if(estado==="Entregado"){
-
-        setundelivered(true);
+        setdniFinish(true);
+     
         setTimeout(() => {
             e.target.parentNode.parentNode.classList.add('animation-left-transaction')
             const insert = document.querySelector('.insertAnimation');
