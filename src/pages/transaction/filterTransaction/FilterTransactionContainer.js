@@ -30,7 +30,7 @@ const FilterTransactionContainer = (props) => {
         return {
             
             ...formatedDate,
-            state: values.state,
+            state: values.state === "" ? undefined : values.state,
             pickerId: values.pickerId,
             inAlert: values.inAlert,
             transactionCode: values.transactionCode

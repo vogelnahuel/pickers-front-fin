@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {actions as transactionActions, selectors as transactionSelectors} from "reducers/transactions";
 import {Transaction} from "pages/transaction/Transaction"
 import {useLocation} from "react-router-dom";
-import parseQueryParams from "../../utils/parseQueryParams"
+import parseQueryParams from "utils/parseQueryParams"
 
 const TransactionContainer = (props) => {
     const params = useLocation()

@@ -12,7 +12,8 @@ const MultipleSelect = (
 
   useEffect( ()=>{
     setOptions(options.map(ob => {
-      return {...ob, selected: value.includes(ob.id)};
+      debugger
+      return {...ob, selected: value.split(",").includes(ob.id)};
     }));
     // eslint-disable-next-line
   },[value]);
@@ -64,7 +65,6 @@ const MultipleSelect = (
     window.addEventListener('click',globalClose);
     setOpen(!open);
   };
-
   return (
       <div className="multiple-selectbox">
           <div  onClick={handleClick} className="multiple-contenido-select">
@@ -80,7 +80,7 @@ const MultipleSelect = (
           </div>
           {
             optionsState.map((option,key) => (
-                <div className="multiple-contenido-opcion" key={key} id={key} onClick={(e)=>onChangeHandler(option, e)}>
+                <div className="multiple-contenido-opcion" key={key} onClick={(e)=>onChangeHandler(option, e)}>
                   <input className="multiple-checkboxInput" type="checkbox" readOnly checked={option.selected}/>
                   <label className="multiple-labelCheckBox">{option.label}</label>
                 </div>
