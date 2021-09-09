@@ -29,8 +29,8 @@ const Select = ({ input, label, options = [], placeholder, onChange }) => {
         <div className="filter-admin-options">
           {
             options.map((option,key) => (
-                <div className="filter-admin-contenido-opcion" key={key} id={key} onClick={(e)=>{onChange(input.name,option)}}>
-                  <label className="filter-admin-opcion-parrafo">{option.label}</label>
+                <div className="filter-admin-content-option" key={key} id={key} onClick={(e)=>{onChange(input.name,option)}}>
+                  <label className="filter-admin-option-paragraph">{option.label}</label>
                 </div>
             ))
           }
