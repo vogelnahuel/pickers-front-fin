@@ -26,11 +26,11 @@ const Select = ({ input, label, options = [], placeholder, onChange }) => {
           <img className="multiple-flotarImg" src={Arrow} alt="arrow"/>
         </div>
         { open &&
-        <div className="multiple-options">
+        <div className="filter-admin-opciones">
           {
             options.map((option,key) => (
-                <div className="multiple-contenido-opcion" key={key} id={key} onClick={(e)=>{onChange(input.name,option)}}>
-                  <label className="multiple-labelCheckBox">{option.label}</label>
+                <div className="filter-admin-contenido-opcion" key={key} id={key} onClick={(e)=>{onChange(input.name,option)}}>
+                  <label className="filter-admin-opcion-parrafo">{option.label}</label>
                 </div>
             ))
           }
