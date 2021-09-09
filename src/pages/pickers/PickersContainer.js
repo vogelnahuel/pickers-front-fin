@@ -11,7 +11,7 @@ const PendingUserAdminContainer = (props) => {
 
     useEffect(() => {
         const filters = props.actualPage==="PENDING"?{pickerStatusId:"2,3"}:{pickerStatusId:"4,5"};
-        const filtersExtra={limit:window.screen.height<700 || window.screen.height<760 ? 3 : 5};
+        const filtersExtra={limit:window.screen.height<770 ? 3 : 5};
         props.setPendingUserExtraFilters(filtersExtra)
         props.setPendingUserFilters(filters);
         props.getPendingUser(({...filtersExtra, ...filters}));

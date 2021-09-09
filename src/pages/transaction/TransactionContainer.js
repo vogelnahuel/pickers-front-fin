@@ -10,7 +10,7 @@ const TransactionContainer = (props) => {
     useEffect(() => {
         props.reset();
         const filters = parseQueryParams(params.search);
-        const filtersExtra={limit:window.screen.height<760 ? 3 : 5};
+        const filtersExtra={limit:window.screen.height<770 ? 3 : 5};
         props.setExtraFilters(filtersExtra);
         props.getTransactions({...filtersExtra, ...filters});
         props.setFilters(filters || {});
