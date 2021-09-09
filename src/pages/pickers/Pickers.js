@@ -30,9 +30,9 @@ export const PendingUserAdmin = ({
     };
 
     const Export = async () => {
+        
         getPendingUsersExportRequest(filters)
         setExportModal(true)
-
     };
 
     return (

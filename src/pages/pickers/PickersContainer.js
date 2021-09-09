@@ -5,9 +5,11 @@ import { PendingUserAdmin } from "pages/pickers/Pickers";
 import {titulosAdminPending,titulosAdminActive} from "utils/constants"
 
 const PendingUserAdminContainer = (props) => {
+   
     const changePage = (page) => {
         props.setActualPage(page);
     };
+
 
     useEffect(() => {
         const filters = props.actualPage==="PENDING"?{pickerStatusId:"2,3"}:{pickerStatusId:"4,5"};
