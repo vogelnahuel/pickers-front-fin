@@ -12,7 +12,6 @@ const MultipleSelect = (
 
   useEffect( ()=>{
     setOptions(options.map(ob => {
-      debugger
       return {...ob, selected: value.split(",").includes(ob.id)};
     }));
     // eslint-disable-next-line
