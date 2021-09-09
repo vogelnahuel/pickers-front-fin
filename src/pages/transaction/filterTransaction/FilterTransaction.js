@@ -60,7 +60,7 @@ export const FilterTransaction = ({ onSubmit, filters, handlerOnChange }) => {
                                         />
                                     </Col>
                                     <Col xxl xl={4} className="px-3">
-                                        <div className="datePicker-filter-transaction">
+                                        <div className="datePicker-filter-transaction" id="datePicker-filter-transaction">
                                             <label className="label-Admin-Pickers">
                                                 Vencimiento SLA
                                             </label>
