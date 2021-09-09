@@ -26,7 +26,7 @@ const Select = ({ input, label, options = [], placeholder, onChange }) => {
           <img className="multiple-flotarImg" src={Arrow} alt="arrow"/>
         </div>
         { open &&
-        <div className="filter-admin-opciones">
+        <div className="filter-admin-options">
           {
             options.map((option,key) => (
                 <div className="filter-admin-contenido-opcion" key={key} id={key} onClick={(e)=>{onChange(input.name,option)}}>
