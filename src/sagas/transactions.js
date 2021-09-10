@@ -23,8 +23,7 @@ function* getTransactions({ params }) {
                 yield put(actions.setOpenErrorDatePicker(true));
                 break;
             case 20013:
-                const {  limit } = response.data;
-                yield put(actions.getTransactionsSuccess({ items:[], limit, offset:0, hasMore:false }));
+                yield put(actions.getTransactionsSuccess({ items:[], offset:0, hasMore:false }));
             break;
             
             default:
