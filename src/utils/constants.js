@@ -83,3 +83,55 @@ export const FILTER_PICKERS_OPTIONS = [
         value: 'motorcycle',
     },
 ];
+
+
+export const FILTER_TRANSACTION_OPTIONS_LABEL_ID = [
+    {
+        label: 'Sin asignar',
+        id: 1,
+    },
+    {
+        label: 'Asignado',
+        id: 2,
+    },
+    {
+        label: 'En retiro',
+        id: 3,
+    },
+    {
+        label: 'En lugar de retiro',
+        id: 4,
+    },
+    {
+        label: 'Retirado',
+        id: 5,
+    },
+    {
+        label: 'En lugar de entrega',
+        id: 7,
+    },
+    {
+        label: 'En entrega',
+        id: 6,
+    },
+    {
+        label: 'En devolución',
+        id: 8,
+    },
+    {
+        label: 'Entregado',
+        id: 10,
+    },
+    {
+        label: 'Devuelto',
+        id: 11,
+    },
+    {
+        label: 'Siniestrado',
+        id: 12,
+    },
+    {
+        label: 'Cancelada',
+        id: 9,
+    }
+];
