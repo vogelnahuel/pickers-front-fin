@@ -5,13 +5,16 @@ import { PendingUserAdmin } from "pages/pickers/Pickers";
 import {titulosAdminPending,titulosAdminActive} from "utils/constants"
 
 const PendingUserAdminContainer = (props) => {
+   
     const changePage = (page) => {
         props.setActualPage(page);
     };
 
+
     useEffect(() => {
         const filters = props.actualPage==="PENDING"?{pickerStatusId:"2,3"}:{pickerStatusId:"4,5"};
-        const filtersExtra={limit:window.screen.height<770 ? 3 : 5};
+        const filtersExtra={limit:3};
+        //window.screen.height<770 ? 3 : 3
         props.setPendingUserExtraFilters(filtersExtra)
         props.setPendingUserFilters(filters);
         props.getPendingUser(({...filtersExtra, ...filters}));
@@ -55,8 +58,8 @@ const mapDispatchToProps = (dispatch) => ({
     setActualPage:(page)=>{
         dispatch(pendingUserActions.setActualPage(page));
     },
-    getPendingUsersExportRequest:(params)=>{
-        dispatch(pendingUserActions.getPendingUserExportRequest(params))
+    getPendingUsersExportRequest:(params,onSuccess)=>{
+        dispatch(pendingUserActions.getPendingUserExportRequest(params,onSuccess))
     },
     getMorePendingUser: (params) => {
         dispatch(pendingUserActions.getMorePendingUserRequest(params));

@@ -30,11 +30,12 @@ export const PendingUserAdmin = ({
     };
 
     const Export = async () => {
-        getPendingUsersExportRequest(filters)
-        setExportModal(true)
-
+        
+        getPendingUsersExportRequest(filters,()=>setExportModal(true));
+      
     };
 
+    
     return (
         <div className="background-Grey">
             <Header />

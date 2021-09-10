@@ -3,14 +3,14 @@ import {connect} from "react-redux";
 import {actions as transactionActions, selectors as transactionSelectors} from "reducers/transactions";
 import {Transaction} from "pages/transaction/Transaction"
 import {useLocation} from "react-router-dom";
-import parseQueryParams from "../../utils/parseQueryParams"
+import parseQueryParams from "utils/parseQueryParams"
 
 const TransactionContainer = (props) => {
     const params = useLocation()
     useEffect(() => {
         props.reset();
         const filters = parseQueryParams(params.search);
-        const filtersExtra={limit:window.screen.height<770 ? 3 : 5};
+        const filtersExtra={limit:window.screen.height<770 ? 3 : 4};
         props.setExtraFilters(filtersExtra);
         props.getTransactions({...filtersExtra, ...filters});
         props.setFilters(filters || {});
