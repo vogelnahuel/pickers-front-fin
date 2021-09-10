@@ -7,18 +7,12 @@ import {connect} from "react-redux";
 
 export const Nav = ({ isDirty, showNotification }) => {
     const Historial = useHistory();
-
     let Location =useParams().id;
 
     const handleClick =  (e) => {
-                e.preventDefault();
+        e.preventDefault();
         let onClose = ()=>{
-        // if(dataPicker!==Informacion){
-        //     if(`/activeUserAdminpicker/${Location}`===window.location.pathname){
-        //         setmodalGuardarCambios(true);
             Historial.push(e.target.pathname);
-            // }
-        // }
         };
         if(isDirty) {
             showNotification(
