@@ -85,7 +85,7 @@ export const DetailPicker = (
                         }
                         validate={useValidationSchema(validationSchema)}
                     >
-                        {({ invalid,handleSubmit, dirty, initialValues, values ,...props}) =>
+                        {({ invalid,handleSubmit, dirty, initialValues, values }) =>
                             <form className="Admin-Pickers-inputs" onSubmit={handleSubmit}>
                                 <FormSpy
                                     subscription={{ dirty: true }}
