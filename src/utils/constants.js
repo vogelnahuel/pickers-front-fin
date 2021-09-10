@@ -85,53 +85,31 @@ export const FILTER_PICKERS_OPTIONS = [
 ];
 
 
-export const FILTER_TRANSACTION_OPTIONS_LABEL_ID = [
-    {
-        label: 'Sin asignar',
-        id: 1,
-    },
-    {
-        label: 'Asignado',
-        id: 2,
-    },
-    {
-        label: 'En retiro',
-        id: 3,
-    },
-    {
-        label: 'En lugar de retiro',
-        id: 4,
-    },
-    {
-        label: 'Retirado',
-        id: 5,
-    },
-    {
-        label: 'En lugar de entrega',
-        id: 7,
-    },
-    {
-        label: 'En entrega',
-        id: 6,
-    },
-    {
-        label: 'En devolución',
-        id: 8,
-    },
-    {
-        label: 'Entregado',
-        id: 10,
-    },
-    {
-        label: 'Devuelto',
-        id: 11,
-    },
-    {
-        label: 'Siniestrado',
-        id: 12,
-    },
-    {
-        label: 'Cancelada',
-        id: 9,
-    }
-];
+ export const TRANSACTION_STATE_ID_LABEL = {
+    1:    'Sin asignar',
+    2:    'Asignado',
+    3:    'En retiro',
+    4:    'En lugar de retiro',
+    5:    'Retirado',
+    6:    'En entrega',
+    7:    'En lugar de entrega',
+    8:    'En devolución',
+    9:    'Cancelado',
+    10:   'Entregado',
+    11:    'Devuelto',
+    12:    'Siniestrado',
+ }
+ export const TRANSACTION_STATE_TAG_LABEL = {
+    1:    'PENDING_ASSIGNMENT',
+    2:    'ASSIGNED',
+    3:    'IN_PICK_UP',
+    4:    'IN_PICK_UP_POINT',
+    5:    'PICKED_UP',
+    6:    'IN_DELIVERY',
+    7:    'IN_DELIVERY_POINT',
+    8:    'IN_RETURN_TO_SENDER',
+    9:    'CANCEL',
+    10:   'DELIVERED',
+    11:    'RETURNED_TO_SENDER',
+    12:    'LOST',
+ }
