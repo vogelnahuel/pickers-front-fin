@@ -9,10 +9,10 @@ export const NotificationModal= ({
                                      isOpen,
                                      onClose,
                                      onClick,
-                                     doAction,
                                      level,
                                      title,
                                      setClose,
+                                     doAction,
                                      body,
                                      onCloseLabel,
                                      onClickLabel
@@ -25,24 +25,24 @@ export const NotificationModal= ({
                 height="304px"
                 isOpen={isOpen}
             >
-                    <div className={`modal-title ${level}`}>
-                        <p>{title}</p>
-                    </div>
-                    <div className="modal-body-buttons">
-                        <p>{body}</p>
-                        <div>
-                            { onCloseLabel &&
-                            <button
-                                onClick={onClose ? ()=>doAction(onClose) : ()=>setClose()}
-                                className={`modal-button-cancel ${level} mh-10`}>
-                                {onCloseLabel}
-                            </button>
-                            }
-                            <button
-                                onClick={onClick ? ()=>doAction(onClick) : ()=>setClose()}
-                                className={`modal-button-submit ${level} mh-10`}>
-                                {onClickLabel}
-                            </button>
+                <div className={`modal-title ${level}`}>
+                    <p>{title}</p>
+                </div>
+                <div className="modal-body-buttons">
+                    <p>{body}</p>
+                    <div>
+                        { onCloseLabel &&
+                        <button
+                            onClick={onClose ? ()=>doAction(onClose) : ()=>setClose()}
+                            className={`modal-button-cancel ${level} mh-10`}>
+                            {onCloseLabel}
+                        </button>
+                        }
+                        <button
+                            onClick={onClick ? ()=>doAction(onClick) : ()=>setClose()}
+                            className={`modal-button-submit ${level} mh-10`}>
+                            {onClickLabel}
+                        </button>
                     </div>
                 </div>
             </Modal>
@@ -70,7 +70,7 @@ const mapDispatchToProps = (dispatch) => ({
         dispatch(notificationActions.hideNotification());
     },
     doAction: (action) => {
-        dispatch(action);
+        action && action();
         dispatch(notificationActions.hideNotification());
     }
 });
