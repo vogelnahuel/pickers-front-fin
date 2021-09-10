@@ -8,8 +8,6 @@ export const types = {
     PENDING_USER_ADMIN_PICKER_EXPORT_GET_SUCCESS: `PENDING_USER_ADMIN_PICKER_EXPORT_GET_SUCCESS`,
     PENDING_USER_ADMIN_PICKER_EXPORT_GET_ERROR: `PENDING_USER_ADMIN_PICKER_EXPORT_GET_ERROR`,
 
-    PENDING_USER_ADMIN_PICKER_MODAL_EXPORT_CLOSE: `PENDING_USER_ADMIN_PICKER_MODAL_EXPORT_CLOSE`,
-
     PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_REQUEST: `PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_REQUEST`,
     PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_SUCCESS: `PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_SUCCESS`,
     PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_ERROR: `PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_ERROR`,
@@ -25,7 +23,6 @@ export const types = {
 
 export const INITIAL_STATE = {
     fetching: false,
-    modalExportPicker:false,
     pendingUserAdminPicker: {},
     pendingUserAdminPickerExport:{},
 };
@@ -56,13 +53,6 @@ export const actions = {
     getPendingUserPickerExportError: () => ({
         type: types.PENDING_USER_ADMIN_PICKER_EXPORT_GET_ERROR,
     }),
-
-
-    getPendingUserPickerExportCloseModal: () => ({
-        type: types.PENDING_USER_ADMIN_PICKER_MODAL_EXPORT_CLOSE,
-    }),
-
-
     getPendingUserPickerDocumentsEditRequest: (params) => ({
         type: types.PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_REQUEST,
         params,
@@ -103,7 +93,6 @@ export const actions = {
 
 export const selectors = {
     isFetching: ({ pendingUserAdminPicker }) => pendingUserAdminPicker.fetching,
-    getModalExportPicker: ({ pendingUserAdminPicker }) => pendingUserAdminPicker.modalExportPicker,
     getPendingUserPicker: ({ pendingUserAdminPicker }) => pendingUserAdminPicker.pendingUserAdminPicker,
 };
 
@@ -138,7 +127,6 @@ const reducer =(state = INITIAL_STATE, action = {}) => {
             return {
                 ...state,
                 fetching: false,
-                modalExportPicker:true
             };
         case types.PENDING_USER_ADMIN_PICKER_EXPORT_GET_ERROR:
             return {
@@ -146,16 +134,11 @@ const reducer =(state = INITIAL_STATE, action = {}) => {
                 fetching: false,
             };
         /************************************************************* */
-        case types.PENDING_USER_ADMIN_PICKER_MODAL_EXPORT_CLOSE:
-            return{
-                ...state,
-                modalExportPicker:false
-            };
-        /************************************************************* */
         case types.PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_REQUEST:
             return {
                 ...state,
                 fetching: true,
+                pendingUserAdminPicker: action.params
             };
         case types.PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_SUCCESS:
             return {
@@ -172,6 +155,7 @@ const reducer =(state = INITIAL_STATE, action = {}) => {
         case types.PICKER_APROVE_POST_REQUEST:
             return {
                 ...state,
+                pendingUserAdminPicker: action.params,
                 fetching: true,
             };
         case types.PICKER_APROVE_POST_SUCCESS:

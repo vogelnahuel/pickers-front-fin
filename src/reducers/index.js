@@ -4,6 +4,7 @@ import dashboard from "reducers/dashboard";
 import pendingUser from "reducers/pickers";
 import pendingUserAdminPicker from "reducers/detailPicker";
 import login from "reducers/login";
+import notification from "reducers/notification";
 import { connectRouter } from 'connected-react-router'
 
 const rootReducer = (history) => combineReducers({
@@ -13,6 +14,7 @@ const rootReducer = (history) => combineReducers({
     pendingUser,
     pendingUserAdminPicker,
     login,
+    notification,
 });
 
 export default rootReducer;

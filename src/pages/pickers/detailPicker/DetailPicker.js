@@ -11,23 +11,21 @@ import or from 'assets/admin/PendingUser/or.svg'
 import motorcycle from 'assets/admin/PendingUserAdminPicker/motorcycle.svg'
 import bici from 'assets/admin/PendingUserAdminPicker/bici.svg'
 import {Field, Form} from "react-final-form";
-import {Modal} from '@pickit/pickit-components'
 import button from "assets/admin/ActiveUserAdminPicker/button.svg";
 import useValidationSchema from "hooks/useValidationSchema"
-import {Col, Row, Container} from "react-bootstrap";
+import {Col, Container, Row} from "react-bootstrap";
 import moment from "moment";
+import NotificationModal from "component/modal/NotificationModal";
 
 export const DetailPicker = (
     {
         isFetching,
         pendingUserAdminPicker,
         getPendingUserPickerExport,
-        modalExportPicker,
-        getPendingUserPickerExportCloseModal,
         actualPage,
         active,
         cancel,
-        postAprovePickerRequest,
+        aproveSubmit,
         postPendingUserDocumentsEdit,
         postEditPickerRequest,
         changePage,
@@ -41,7 +39,6 @@ export const DetailPicker = (
                 <Nav/>
                 <div className="pending-container">
                     <PendingBlue changePage={changePage} actualPage={actualPage}/>
-
                     <div
                         className="mainContainerFlex-picker">
                         <div className="picker-id">
@@ -273,7 +270,7 @@ export const DetailPicker = (
                                             component={Switch}
                                         />
                                         <div className="pending-admin-picker-button">
-                                            <button type="button" onClick={cancel} disabled={invalid || !dirty} className="button-submit-subtype">Cancelar</button>
+                                            <button type="button" onClick={cancel} disabled={!dirty} className="button-submit-subtype">Cancelar</button>
                                             <button type="submit" disabled={invalid || !dirty} className="button-submit-active">Guardar</button>
                                         </div>
                                     </>
@@ -292,96 +289,15 @@ export const DetailPicker = (
                                         {/*    </div>*/}
                                         {/*</div>*/}
                                         <div className="pending-admin-picker-button">
-                                            <button type="submit" className="button-submit-subtype">Guardar cambios</button>
-                                            <button type="button" onClick={()=> {postAprovePickerRequest(values)}} disabled={invalid} className="button-submit-active">Aprobar picker</button>
+                                            <button type="submit" disabled={!dirty} className="button-submit-subtype">Guardar cambios</button>
+                                            <button type="button" onClick={()=> {aproveSubmit(values)}} disabled={invalid} className="button-submit-active">Aprobar picker</button>
                                         </div>
                                     </>
                                 }
                             </form>
                         }
                     </Form>
-
-                    {/*{   modalOpenAprobar === true ?*/}
-                    {/*    <div className="contendor-modal-pending-pickers-aprobar">*/}
-                    {/*        <Modal*/}
-
-                    {/*            width="750px"*/}
-                    {/*            height="304px"*/}
-                    {/*            isOpen={modalOpenAprobar}*/}
-
-                    {/*        >*/}
-                    {/*            <div className="container-modal">*/}
-                    {/*                <div className="modal-error-title2">*/}
-                    {/*                    <p className="p-modal-error-title">Aprobar picker</p>*/}
-                    {/*                </div>*/}
-                    {/*                <div className="modal-error-subtitle-buttons">*/}
-                    {/*                    <p className="p-modal-error-subtitle-buttons">Al aprobar la solicitud, va a pasar a la pestaña de pickers</p>*/}
-                    {/*                    <div className="button-pending-picker-modal">*/}
-                    {/*                        <button*/}
-                    {/*                            onClick={cerrarAprobarPickerCorrigiendo}*/}
-                    {/*                            className="button-modal-revisar">*/}
-                    {/*                            Revisar datos*/}
-                    {/*                        </button>*/}
-                    {/*                        <button*/}
-                    {/*                            onClick={cerrarAprobarPicker}*/}
-                    {/*                            className="button-modal-aprobar">*/}
-                    {/*                            Aprobar*/}
-                    {/*                        </button>*/}
-                    {/*                    </div>*/}
-                    {/*                </div>*/}
-                    {/*            </div>*/}
-                    {/*        </Modal>*/}
-                    {/*    </div>*/}
-                    {/*    : null*/}
-                    {/*}*/}
-                    {modalExportPicker && (
-                        <div className="contendor-modal-pending-pickers-aprobar">
-                            <Modal width="750px" height="351px" isOpen={modalExportPicker}>
-                                <div className="container-modal">
-                                    <div className="modal-success-title">
-                                        <p className="p-modal-error-title">Exportaste exitosamente</p>
-                                    </div>
-                                    <div className="modal-error-subtitle">
-                                        <p className="p-modal-error-subtitle">
-                                            El archivo se descargo correctamente
-                                        </p>
-                                        <div className="button-pending-picker-modal">
-                                            <button
-                                                onClick={getPendingUserPickerExportCloseModal}
-                                                className="button-modal-aprobar-exito"
-                                            >
-                                                Entendido
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </Modal>
-                        </div>
-                    ) }
-                    {/*{ModalAprobadoExito === true ? (*/}
-                    {/*    <div className="contendor-modal-pending-pickers-aprobar">*/}
-                    {/*        <Modal width="750px" height="351px" isOpen={ModalAprobadoExito}>*/}
-                    {/*            <div className="container-modal">*/}
-                    {/*                <div className="modal-success-title">*/}
-                    {/*                    <p className="p-modal-error-title">Aprobación exitosa</p>*/}
-                    {/*                </div>*/}
-                    {/*                <div className="modal-error-subtitle">*/}
-                    {/*                    <p className="p-modal-pending-subtitle">*/}
-                    {/*                        Aprobaste al picker {pendingUserAdminPicker.name} {pendingUserAdminPicker.surname}. Ya podés visualizar sus datos en la pestaña “Pickers”*/}
-                    {/*                    </p>*/}
-                    {/*                    <div className="button-pending-picker-modal">*/}
-                    {/*                        <button*/}
-                    {/*                            onClick={cerrarModalAprobado}*/}
-                    {/*                            className="button-modal-aprobar-exito"*/}
-                    {/*                        >*/}
-                    {/*                            Entendido*/}
-                    {/*                        </button>*/}
-                    {/*                    </div>*/}
-                    {/*                </div>*/}
-                    {/*            </div>*/}
-                    {/*        </Modal>*/}
-                    {/*    </div>*/}
-                    {/*) : null}*/}
+                    <NotificationModal/>
                 </div>
             </div>
             {

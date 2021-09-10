@@ -1,0 +1,120 @@
+.modal-notification-background{
+    background: rgba(0, 0, 0, 0.25);
+    mix-blend-mode: multiply;
+    width: 98.7vw;
+    height: 200vh;
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+
+.mh-10 {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.modal-title{
+    border-radius: 25px 25px 0 0;
+    height: 137px;
+    padding: 45px 30px;
+    p {
+        font-family: 'Mulish';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 35px;
+        line-height: 44px;
+        text-align: center;
+        color: #FFFFFF;
+    }
+}
+.modal-title.error{
+    background: #EB5757;
+}
+.modal-title.success{
+    background: #6FCF97;
+}
+.modal-title.info{
+    background: #00B2E3;
+}
+.modal-title.warning{
+    background: #0098FF;
+}
+
+.modal-body-buttons{
+    background: #FFFFFF;
+    border-radius: 0 0 25px 25px;
+    padding: 40px 50px 30px;
+    p {
+        font-family: 'Mulish';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 24px;
+        line-height: 30px;
+        text-align: center;
+        letter-spacing: 0.005em;
+        color: #101820;
+        padding-bottom: 30px;
+    }
+    div{
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.modal-button-submit{
+    border-radius: 50px;
+    width: 219px;
+    height: 50px;
+    text-decoration: none;
+    border-color: #FFFFFF;
+    border-width: 0px;
+    color: #FFFFFF;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    text-align: center;
+}
+.modal-button-submit.error {
+    background: #EB5757;
+}
+.modal-button-submit.success {
+    background: #6FCF97;
+}
+.modal-button-submit.info {
+    background: #00B2E3;
+}
+.modal-button-submit.warning {
+    background: #0098FF;
+}
+
+.modal-button-cancel{
+    background: white;
+    border-radius: 50px;
+    width: 219px;
+    height: 50px;
+    text-decoration: none;
+    border-width: 0px;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 23px;
+    text-align: center;
+    color: #101820;
+    border: 2.5px solid #0098FF;
+    box-sizing: border-box;
+    border-radius: 50px;
+}
+.modal-button-cancel.warning {
+    border-color: #0098FF;
+}
+.modal-button-cancel.info {
+    border-color: #00B2E3;
+}
+.modal-button-cancel.success {
+    border-color: #6FCF97;
+}
+.modal-button-cancel.error {
+    border-color: #EB5757;
+}

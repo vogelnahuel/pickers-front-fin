@@ -1,9 +1,12 @@
-import { call, takeLatest, put } from "redux-saga/effects";
-import { types as pickersTypes, actions as pickersActions } from "reducers/pickers";
-import { types as detailPickerTypes, actions as detailPickerActions } from "reducers/detailPicker";
+import {call, put, takeLatest} from "redux-saga/effects";
+import {actions as pickersActions, types as pickersTypes} from "reducers/pickers";
+import {actions as detailPickerActions, types as detailPickerTypes} from "reducers/detailPicker";
+import {actions as notificationActions} from "reducers/notification";
 import createCSV from "utils/createCSV";
 import moment from "moment";
 import * as pickersMiddleware from "middleware/pickers";
+import React from "react";
+import {goBack} from 'connected-react-router';
 
 const sagas = [
     takeLatest(pickersTypes.PENDING_USER_GET_REQUEST, getPendingUser),
@@ -27,9 +30,9 @@ const process = (body) => {
             ...body.vehicle,
             [body.vehicleType]: {
                 ...body.vehicle[body.vehicleType],
-                expirationDatePolicyVehicle: moment(body.vehicle[body.vehicleType].expirationDatePolicyVehicle, "DD/MM/YYYY").format("YYYY-MM-DD"),
-                expirationDateIdentificationVehicle: moment(body.vehicle[body.vehicleType].expirationDateIdentificationVehicle, "DD/MM/YYYY").format("YYYY-MM-DD"),
-                expirationDateDriverLicense: moment(body.vehicle[body.vehicleType].expirationDateDriverLicense, "DD/MM/YYYY").format("YYYY-MM-DD"),
+                expirationDatePolicyVehicle: body.vehicle[body.vehicleType].expirationDatePolicyVehicle && moment(body.vehicle[body.vehicleType].expirationDatePolicyVehicle, "DD/MM/YYYY").format("YYYY-MM-DD"),
+                expirationDateIdentificationVehicle: body.vehicle[body.vehicleType].expirationDatePolicyVehicle && moment(body.vehicle[body.vehicleType].expirationDateIdentificationVehicle, "DD/MM/YYYY").format("YYYY-MM-DD"),
+                expirationDateDriverLicense: body.vehicle[body.vehicleType].expirationDatePolicyVehicle && moment(body.vehicle[body.vehicleType].expirationDateDriverLicense, "DD/MM/YYYY").format("YYYY-MM-DD"),
             }
         }
     };
@@ -96,7 +99,14 @@ function* getPendingUserPickerExport({ params }) {
     if (response.status !== 200) {
         yield put(detailPickerActions.getPendingUserPickerExportError());
     } else {
-        createCSV(response)
+        createCSV(response);
+        yield put(notificationActions.showNotification(
+            {
+                level:"success",
+                title: "Exportaste exitosamentes",
+                body:"El archivo se descargo correctamente",
+            }
+        ));
         yield put(detailPickerActions.getPendingUserPickerExportSuccess(response));
     }
 }
@@ -108,8 +118,16 @@ function* postPendingUserDocumentsEdit({ params }) {
         body
     );
     if (response.status !== 200) {
+        yield put(notificationActions.showNotification(
+            {
+                level:"error",
+                title: "Error de conexión",
+                body:"Hubo un error de comunicación con el servidor. Por favor, intentalo nuevamente",
+            }
+        ));
         yield put(detailPickerActions.getPendingUserPickerDocumentsEditError());
     } else {
+        yield put(goBack());
         yield put(detailPickerActions.getPendingUserPickerDocumentsEditSuccess(body));
     }
 }
@@ -121,8 +139,23 @@ function* postAprovePicker({ params }) {
         body
     );
     if (response.status !== 200) {
+        yield put(notificationActions.showNotification(
+            {
+                level:"error",
+                title: "Error de conexión",
+                body:"Hubo un error de comunicación con el servidor. Por favor, intentalo nuevamente",
+            }
+        ));
         yield put(detailPickerActions.getAprovePickerError());
     } else {
+        yield put(notificationActions.showNotification(
+            {
+                level:"success",
+                title: "Aprobación exitosa",
+                body:"Ya podés visualizar sus datos en la pestaña pickers",
+                onClick: goBack()
+            }
+        ));
         yield put(detailPickerActions.getAprovePickerSuccess(body));
     }
 }
@@ -134,8 +167,23 @@ function* postEditPicker({ params }) {
         body
     );
     if (response.status !== 200) {
+        yield put(notificationActions.showNotification(
+            {
+                level:"error",
+                title: "Error de conexión",
+                body:"Hubo un error de comunicación con el servidor. Por favor, intentalo nuevamente",
+            }
+        ));
         yield put(detailPickerActions.getEditPickerError());
     } else {
+        yield put(notificationActions.showNotification(
+            {
+                level:"success",
+                title: "Datos guardados",
+                body:"Ya quedaron registrados los cambios",
+                onClick: goBack()
+            }
+        ));
         yield put(detailPickerActions.getEditPickerSuccess(body));
     }
 }
