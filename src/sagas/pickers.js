@@ -5,7 +5,6 @@ import {actions as notificationActions} from "reducers/notification";
 import createCSV from "utils/createCSV";
 import moment from "moment";
 import * as pickersMiddleware from "middleware/pickers";
-import React from "react";
 import {goBack} from 'connected-react-router';
 
 const sagas = [
