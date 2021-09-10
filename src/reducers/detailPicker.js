@@ -4,6 +4,8 @@ export const types = {
     PENDING_USER_ADMIN_PICKER_GET_SUCCESS: `PENDING_USER_ADMIN_PICKER_GET_SUCCESS`,
     PENDING_USER_ADMIN_PICKER_GET_ERROR: `PENDING_USER_ADMIN_PICKER_GET_ERROR`,
 
+    PENDING_USER_ADMIN_PICKER_SET_DIRTY: `PENDING_USER_ADMIN_PICKER_SET_DIRTY`,
+
     PENDING_USER_ADMIN_PICKER_EXPORT_GET_REQUEST: `PENDING_USER_ADMIN_PICKER_EXPORT_GET_REQUEST`,
     PENDING_USER_ADMIN_PICKER_EXPORT_GET_SUCCESS: `PENDING_USER_ADMIN_PICKER_EXPORT_GET_SUCCESS`,
     PENDING_USER_ADMIN_PICKER_EXPORT_GET_ERROR: `PENDING_USER_ADMIN_PICKER_EXPORT_GET_ERROR`,
@@ -23,12 +25,12 @@ export const types = {
 
 export const INITIAL_STATE = {
     fetching: false,
+    dirty: false,
     pendingUserAdminPicker: {},
     pendingUserAdminPickerExport:{},
 };
 
 export const actions = {
-
     getPendingUserPickerRequest: (params) => ({
         type: types.PENDING_USER_ADMIN_PICKER_GET_REQUEST,
         params,
@@ -40,8 +42,10 @@ export const actions = {
     getPendingUserPickerError: () => ({
         type: types.PENDING_USER_ADMIN_PICKER_GET_ERROR,
     }),
-
-
+    setDirty: (dirty) => ({
+        type: types.PENDING_USER_ADMIN_PICKER_SET_DIRTY,
+        dirty
+    }),
     getPendingUserPickerExportRequest: (params) => ({
         type: types.PENDING_USER_ADMIN_PICKER_EXPORT_GET_REQUEST,
         params,
@@ -93,6 +97,7 @@ export const actions = {
 
 export const selectors = {
     isFetching: ({ pendingUserAdminPicker }) => pendingUserAdminPicker.fetching,
+    isDirty: ({ pendingUserAdminPicker }) => pendingUserAdminPicker.dirty,
     getPendingUserPicker: ({ pendingUserAdminPicker }) => pendingUserAdminPicker.pendingUserAdminPicker,
 };
 
@@ -104,6 +109,11 @@ const reducer =(state = INITIAL_STATE, action = {}) => {
             return {
                 ...state,
                 fetching: true,
+            };
+        case types.PENDING_USER_ADMIN_PICKER_SET_DIRTY:
+            return {
+                ...state,
+                dirty: action.dirty,
             };
         case types.PENDING_USER_ADMIN_PICKER_GET_SUCCESS:
             return {

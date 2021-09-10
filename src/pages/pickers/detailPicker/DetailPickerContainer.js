@@ -19,9 +19,26 @@ const DetailPickerContainer = (props) => {
         props.getPendingUserPicker(params.id);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-    const changePage = (page) => {
-        props.setActualPage(page);
-        historial.goBack();
+
+    const changePage = (page, isDirty) => {
+        let onClose = ()=>{
+            props.setActualPage(page);
+            historial.goBack();
+        };
+        if(isDirty) {
+            props.showNotification(
+                {
+                    level:"warning",
+                    title: "Guardá tus cambios",
+                    body:"Si te vas sin guardar, tus cambios no van a quedar registrados",
+                    onClickLabel: "Ir a guardar",
+                    onCloseLabel: "No quiero guardarlos",
+                    onClose: onClose
+                }
+            );
+        } else {
+            onClose();
+        }
     };
 
     const validationSchema =
@@ -51,9 +68,24 @@ const DetailPickerContainer = (props) => {
             });
         });
 
-    const Historial = useHistory();
-    const cancel = () => {
-        Historial.goBack();
+    const cancel = (isDirty) => {
+        let onClose = ()=>{
+            historial.goBack();
+        };
+        if(isDirty) {
+            props.showNotification(
+                {
+                    level:"warning",
+                    title: "Guardá tus cambios",
+                    body:"Si te vas sin guardar, tus cambios no van a quedar registrados",
+                    onClickLabel: "Ir a guardar",
+                    onCloseLabel: "No quiero guardarlos",
+                    onClose: onClose
+                }
+            );
+        } else {
+            onClose();
+        }
     };
 
     const aproveSubmit = (params) => {
@@ -88,13 +120,15 @@ const mapStateToProps = (state) => ({
     actualPage: pendingUserSelectors.getActualPage(state),
 });
 
-
 const mapDispatchToProps = (dispatch) => ({
     getPendingUserPicker: (params) => {
         dispatch(pendingUserAdminPickerActions.getPendingUserPickerRequest(params));
     },
     getPendingUserPickerExport: (params) => {
         dispatch(pendingUserAdminPickerActions.getPendingUserPickerExportRequest(params));
+    },
+    setDirty: (dirty) => {
+        dispatch(pendingUserAdminPickerActions.setDirty(dirty));
     },
     postPendingUserDocumentsEdit: (params) => {
         dispatch(pendingUserAdminPickerActions.getPendingUserPickerDocumentsEditRequest(params));

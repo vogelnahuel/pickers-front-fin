@@ -5,15 +5,15 @@ export const titulosAdminPending = [
     "Vehículo",
     "Pendiente hace",
     "Editar",
-  ];
-  export const titulosAdminActive = [
+];
+export const titulosAdminActive = [
     "Nombre",
     "DNI",
     "Email",
     "Vehículo",
     "Estado",
     "Editar",
-  ];
+];
 export const DATE_FORMATS = {
     regex: /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/,
     fullDate: "DD/MM/YYYY H:mm:ss",
@@ -85,7 +85,7 @@ export const FILTER_PICKERS_OPTIONS = [
 ];
 
 
- export const TRANSACTION_STATE_ID_LABEL = {
+export const TRANSACTION_STATE_ID_LABEL = {
     1:    'Sin asignar',
     2:    'Asignado',
     3:    'En retiro',
@@ -98,9 +98,9 @@ export const FILTER_PICKERS_OPTIONS = [
     10:   'Entregado',
     11:    'Devuelto',
     12:    'Siniestrado',
- }
- export const TRANSACTION_STATE_TAG_LABEL = {
-'PENDING_ASSIGNMENT': 'Sin asignar',
+}
+export const TRANSACTION_STATE_TAG_LABEL = {
+    'PENDING_ASSIGNMENT': 'Sin asignar',
     'ASSIGNED':'Asignado',
     'IN_PICK_UP':'En retiro',
     'IN_PICK_UP_POINT':'En lugar de retiro',
@@ -112,4 +112,4 @@ export const FILTER_PICKERS_OPTIONS = [
     'DELIVERED':'Entregado',
     'RETURNED_TO_SENDER':'Devuelto',
     'LOST':'Siniestrado',
- }
+}

@@ -1,9 +1,9 @@
 import React from 'react'
 import {Header} from 'component/admin/Header/Header'
-import {Nav} from 'component/admin/Nav/Nav'
+import Nav from 'component/admin/Nav/Nav'
 import 'pages/pickers/Pickers.scss'
 import 'pages/pickers/detailPicker/DetailPicker.scss'
-import {PendingBlue} from 'component/admin/Sub-Title-Image/PendingBlue'
+import PendingBlue from 'component/admin/Sub-Title-Image/PendingBlue'
 import {Input} from "component/inputs/Input"
 import {Switch} from "component/inputs/switch"
 import exportar from 'assets/admin/PendingUser/exportar.svg'
@@ -14,6 +14,7 @@ import {Field, Form} from "react-final-form";
 import button from "assets/admin/ActiveUserAdminPicker/button.svg";
 import useValidationSchema from "hooks/useValidationSchema"
 import {Col, Container, Row} from "react-bootstrap";
+import { FormSpy } from 'react-final-form'
 import moment from "moment";
 import NotificationModal from "component/modal/NotificationModal";
 
@@ -23,6 +24,7 @@ export const DetailPicker = (
         pendingUserAdminPicker,
         getPendingUserPickerExport,
         actualPage,
+        setDirty,
         active,
         cancel,
         aproveSubmit,
@@ -58,33 +60,41 @@ export const DetailPicker = (
                         >
                             <img  src={exportar} alt="export" />
                             <img className="or-pending" src={or} alt="or" />
-                            <p className="display-inline-block p-export"> Exportar</p>
+                            <p className="display-inline-block p-export">Exportar</p>
                         </button>
                     </div>
                     <Form
                         onSubmit={values => active ? postEditPickerRequest(values) : postPendingUserDocumentsEdit(values)}
                         initialValues={
                             pendingUserAdminPicker.dateOfBirth ?
-                            {
-                                ...pendingUserAdminPicker,
-                                dateOfBirth: pendingUserAdminPicker.dateOfBirth && moment(pendingUserAdminPicker.dateOfBirth, "YYYY-MM-DD").format("DD/MM/YYYY"),
-                                expirationDatePolicyPersonal: pendingUserAdminPicker.expirationDatePolicyPersonal && moment(pendingUserAdminPicker.expirationDatePolicyPersonal, "YYYY-MM-DD").format("DD/MM/YYYY"),
-                                vehicle: {
-                                    ...pendingUserAdminPicker.vehicle,
-                                    [pendingUserAdminPicker.vehicleType]: {
-                                        ...pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType],
-                                        expirationDatePolicyVehicle: pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType].expirationDatePolicyVehicle && moment(pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType].expirationDatePolicyVehicle, "YYYY-MM-DD").format("DD/MM/YYYY"),
-                                        expirationDateIdentificationVehicle: pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType].expirationDateIdentificationVehicle && moment(pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType].expirationDateIdentificationVehicle, "YYYY-MM-DD").format("DD/MM/YYYY"),
-                                        expirationDateDriverLicense: pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType].expirationDateDriverLicense && moment(pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType].expirationDateDriverLicense, "YYYY-MM-DD").format("DD/MM/YYYY"),
+                                {
+                                    ...pendingUserAdminPicker,
+                                    dateOfBirth: pendingUserAdminPicker.dateOfBirth && moment(pendingUserAdminPicker.dateOfBirth, "YYYY-MM-DD").format("DD/MM/YYYY"),
+                                    expirationDatePolicyPersonal: pendingUserAdminPicker.expirationDatePolicyPersonal && moment(pendingUserAdminPicker.expirationDatePolicyPersonal, "YYYY-MM-DD").format("DD/MM/YYYY"),
+                                    vehicle: {
+                                        ...pendingUserAdminPicker.vehicle,
+                                        [pendingUserAdminPicker.vehicleType]: {
+                                            ...pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType],
+                                            expirationDatePolicyVehicle: pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType].expirationDatePolicyVehicle && moment(pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType].expirationDatePolicyVehicle, "YYYY-MM-DD").format("DD/MM/YYYY"),
+                                            expirationDateIdentificationVehicle: pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType].expirationDateIdentificationVehicle && moment(pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType].expirationDateIdentificationVehicle, "YYYY-MM-DD").format("DD/MM/YYYY"),
+                                            expirationDateDriverLicense: pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType].expirationDateDriverLicense && moment(pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType].expirationDateDriverLicense, "YYYY-MM-DD").format("DD/MM/YYYY"),
+                                        }
                                     }
-                                }
-                            } :
+                                } :
                                 pendingUserAdminPicker
                         }
                         validate={useValidationSchema(validationSchema)}
                     >
                         {({ invalid,handleSubmit, dirty, initialValues, values }) =>
                             <form className="Admin-Pickers-inputs" onSubmit={handleSubmit}>
+                                <FormSpy
+                                    subscription={{ dirty: true }}
+                                    onChange={pro => {
+                                        if(active){
+                                            setDirty(pro.dirty);
+                                        }
+                                    }}
+                                />
                                 <Container fluid className="form-part-1-admin-pickers">
                                     <Row>
                                         <Col>
@@ -270,7 +280,7 @@ export const DetailPicker = (
                                             component={Switch}
                                         />
                                         <div className="pending-admin-picker-button">
-                                            <button type="button" onClick={cancel} disabled={!dirty} className="button-submit-subtype">Cancelar</button>
+                                            <button type="button" onClick={()=>cancel(dirty)} disabled={!dirty} className="button-submit-subtype">Cancelar</button>
                                             <button type="submit" disabled={invalid || !dirty} className="button-submit-active">Guardar</button>
                                         </div>
                                     </>

@@ -1,19 +1,36 @@
-import React from 'react'
-import volver from '../../../assets/admin/PendingUser/volver.svg'
-import relojAzul from '../../../assets/admin/PendingUser/relojAzul.svg'
-import relojOscuro from '../../../assets/admin/PendingUser/relojOscuro.svg'
-import trabajadorOscuro from '../../../assets/admin/PendingUser/trabajadorOscuro.svg'
-import trabajadorAzul from '../../../assets/admin/PendingUser/trabajadorAzul.svg'
-import './pending.scss'
-import {useHistory} from 'react-router-dom'
+import React from 'react';
+import volver from 'assets/admin/PendingUser/volver.svg';
+import relojAzul from 'assets/admin/PendingUser/relojAzul.svg';
+import relojOscuro from 'assets/admin/PendingUser/relojOscuro.svg';
+import trabajadorOscuro from 'assets/admin/PendingUser/trabajadorOscuro.svg';
+import trabajadorAzul from 'assets/admin/PendingUser/trabajadorAzul.svg';
+import 'component/admin/Sub-Title-Image/pending.scss';
+import {useHistory} from 'react-router-dom';
+import {selectors as pendingUserAdminPickerSelectors} from "reducers/detailPicker";
+import {connect} from "react-redux";
+import {actions as notificationActions} from "reducers/notification";
 
-export const PendingBlue = ({changePage,actualPage}) => {
-
+export const PendingBlue = ({ showNotification, changePage, actualPage, isDirty }) => {
     const Historial = useHistory();
-
-
     const handleHistory = () => {
-        Historial.goBack();
+        let onClose = ()=>{
+            Historial.goBack();
+        };
+
+        if(isDirty) {
+            showNotification(
+                {
+                    level:"warning",
+                    title: "Guardá tus cambios",
+                    body:"Si te vas sin guardar, tus cambios no van a quedar registrados",
+                    onClickLabel: "Ir a guardar",
+                    onCloseLabel: "No quiero guardarlos",
+                    onClose: onClose
+                }
+            );
+        } else {
+            onClose();
+        }
     }
     return (
         <div>
@@ -25,7 +42,7 @@ export const PendingBlue = ({changePage,actualPage}) => {
                             <img className="img" src={relojAzul} alt="reloj" />
                         </div>:
                         <div
-                            onClick={()=>{changePage("PENDING")}}
+                            onClick={()=>{changePage("PENDING",isDirty)}}
                             className="container-pending pending-blue-border-izq">
                             <p className="Pending-paragraph  pending-black ">Solicitudes pendientes</p>
                             <img className="img" src={relojOscuro} alt="reloj" />
@@ -37,14 +54,13 @@ export const PendingBlue = ({changePage,actualPage}) => {
                         </div>:
 
                         <div
-                            className="container-pending border-pending pending-blue-border-der"  onClick={()=>{changePage("ACTIVE")}}>
+                            className="container-pending border-pending pending-blue-border-der"  onClick={()=>{changePage("ACTIVE",isDirty)}}>
                             <p className="Pending-paragraph2">Pickers</p>
                             <img className="img2" src={trabajadorOscuro} alt="trabajador" />
                         </div>
                     }
                 </div>
                 <div className="FlexPending backGround-pending">
-
                 </div>
                 <div>
                     <button  className="buttonVolver" onClick={handleHistory}  >
@@ -54,7 +70,18 @@ export const PendingBlue = ({changePage,actualPage}) => {
 
                 </div>
             </div>
-
         </div>
     )
 }
+
+const mapStateToProps = (state) => ({
+    isDirty: pendingUserAdminPickerSelectors.isDirty(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    showNotification: (content) => {
+        dispatch(notificationActions.showNotification(content));
+    },
+});
+
+export default connect(mapStateToProps,mapDispatchToProps)(PendingBlue);
