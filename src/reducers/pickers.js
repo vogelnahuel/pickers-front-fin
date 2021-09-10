@@ -21,6 +21,7 @@ export const types = {
 
     PENDING_USER_RESET: `${PENDING_USER}_RESET`,
 
+    PENDING_USER_SET_MODAL_SERVER_ERROR_OPEN: `PENDING_USER_SET_MODAL_SERVER_ERROR_OPEN`,
 };
 
 export const INITIAL_STATE = {
@@ -89,6 +90,10 @@ export const actions = {
         type: types.PENDING_USER_EXPORT_GET_REQUEST,
         params,
     }),
+    getPendingUserExportSuccess: (params) => ({
+        type: types.PENDING_USER_EXPORT_GET_SUCCESS,
+        params,
+    }),
     getPendingUserExportError: (params) => ({
         type: types.PENDING_USER_EXPORT_GET_ERROR,
         params,
@@ -105,7 +110,7 @@ export const selectors = {
     getSeeMore:({pendingUser}) => pendingUser.seeMore,
     getPag:({pendingUser}) => pendingUser.pag,
     getActualPage:({pendingUser}) => pendingUser.actualPage,
-    getModalExport:({pendingUser})=> pendingUser.modalExportPicker
+    getModalExport:({pendingUser})=> pendingUser.modalExportPicker,
 };
 
 const reducer =(state = INITIAL_STATE, action = {}) => {
@@ -194,7 +199,7 @@ const reducer =(state = INITIAL_STATE, action = {}) => {
                     fetching: false,
                 };
         default:
-            return state;
+            return state;  
     }
 };
 
