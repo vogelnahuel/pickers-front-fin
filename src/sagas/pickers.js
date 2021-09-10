@@ -75,10 +75,14 @@ function* getPendingUserPicker({ params }) {
     }
 }
 
-function* getPendingUserExport({ params }) {
+function* getPendingUserExport({ params,onSuccess }) {
+
+    
+    let filterUpdate = {...params, vehicleType: params.vehicleType && (params.vehicleType.value===''? undefined : params.vehicleType.value)};
+
     const response = yield call(
         pickersMiddleware.getPendingUserExport,
-        params
+        filterUpdate
     );
 
     if (response.status !== 200) {
@@ -86,9 +90,9 @@ function* getPendingUserExport({ params }) {
         yield put(pickersActions.getPendingUserExportError());
     } 
     else {
-        
-        createCSV(response)
+        createCSV(response);
         yield put(pickersActions.getPendingUserExportSuccess(response));
+        onSuccess();
     }
 }
 

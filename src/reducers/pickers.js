@@ -86,9 +86,10 @@ export const actions = {
 
 
 
-    getPendingUserExportRequest: (params) => ({
+    getPendingUserExportRequest: (params,onSuccess) => ({
         type: types.PENDING_USER_EXPORT_GET_REQUEST,
         params,
+        onSuccess,
     }),
     getPendingUserExportSuccess: (params) => ({
         type: types.PENDING_USER_EXPORT_GET_SUCCESS,
