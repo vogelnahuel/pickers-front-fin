@@ -37,7 +37,6 @@ export const Input= (props) => {
                 id={id}
                 value={input.value}
                 placeholder={placeholder}
-                // onClick={onclick}
                 onChange={input.onChange}
                 onBlur={input.onBlur}
             />

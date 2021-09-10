@@ -5,10 +5,11 @@ import {
     selectors as pendingUserAdminPickerSelectors
 } from "reducers/detailPicker";
 import {DetailPicker} from "pages/pickers/detailPicker/DetailPicker"
-import { DATE_FORMATS } from "utils/constants";
+import {DATE_FORMATS} from "utils/constants";
 import {useHistory, useParams} from "react-router-dom";
 import {actions as pendingUserActions, selectors as pendingUserSelectors} from "reducers/pickers";
 import * as yup from "yup";
+import {actions as notificationActions} from "reducers/notification";
 
 const DetailPickerContainer = (props) => {
     const params = useParams();
@@ -55,12 +56,26 @@ const DetailPickerContainer = (props) => {
         Historial.goBack();
     };
 
+    const aproveSubmit = (params) => {
+        props.showNotification(
+            {
+                level:"info",
+                title: "Aprobar picker",
+                body:"Al aprobar la solicitud, ya va a poder hacer envíos",
+                onClickLabel: "Aprobar",
+                onCloseLabel: "Revisar datos",
+                onClick: pendingUserAdminPickerActions.getAprovePickerRequest(params)
+            }
+        );
+    };
+
     return (
         <DetailPicker
             {...props}
             validationSchema={validationSchema}
             changePage={changePage}
             cancel={cancel}
+            aproveSubmit={aproveSubmit}
             active={props.pendingUserAdminPicker.status && (props.pendingUserAdminPicker.status.id === 4 || props.pendingUserAdminPicker.status.id === 5 )}
         />
     );
@@ -69,7 +84,6 @@ const DetailPickerContainer = (props) => {
 
 const mapStateToProps = (state) => ({
     pendingUserAdminPicker: pendingUserAdminPickerSelectors.getPendingUserPicker(state),
-    modalExportPicker: pendingUserAdminPickerSelectors.getModalExportPicker(state),
     isFetching: pendingUserAdminPickerSelectors.isFetching(state),
     actualPage: pendingUserSelectors.getActualPage(state),
 });
@@ -82,14 +96,11 @@ const mapDispatchToProps = (dispatch) => ({
     getPendingUserPickerExport: (params) => {
         dispatch(pendingUserAdminPickerActions.getPendingUserPickerExportRequest(params));
     },
-    getPendingUserPickerExportCloseModal: () => {
-        dispatch(pendingUserAdminPickerActions.getPendingUserPickerExportCloseModal());
-    },
     postPendingUserDocumentsEdit: (params) => {
         dispatch(pendingUserAdminPickerActions.getPendingUserPickerDocumentsEditRequest(params));
     },
-    postAprovePickerRequest: (params) => {
-        dispatch(pendingUserAdminPickerActions.getAprovePickerRequest(params));
+    showNotification: (content) => {
+        dispatch(notificationActions.showNotification(content));
     },
     postEditPickerRequest: (params) => {
         dispatch(pendingUserAdminPickerActions.getEditPickerRequest(params));
