@@ -68,11 +68,11 @@ const DetailPickerContainer = (props) => {
             });
         });
 
-    const cancel = () => {
+    const cancel = (isDirty) => {
         let onClose = ()=>{
             historial.goBack();
         };
-        if(props.isDirty) {
+        if(isDirty) {
             props.showNotification(
                 {
                     level:"warning",
@@ -117,7 +117,6 @@ const DetailPickerContainer = (props) => {
 const mapStateToProps = (state) => ({
     pendingUserAdminPicker: pendingUserAdminPickerSelectors.getPendingUserPicker(state),
     isFetching: pendingUserAdminPickerSelectors.isFetching(state),
-    // isDirty: pendingUserAdminPickerSelectors.isDirty(state),
     actualPage: pendingUserSelectors.getActualPage(state),
 });
 

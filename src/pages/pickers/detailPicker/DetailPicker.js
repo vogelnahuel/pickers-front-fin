@@ -280,7 +280,7 @@ export const DetailPicker = (
                                             component={Switch}
                                         />
                                         <div className="pending-admin-picker-button">
-                                            <button type="button" onClick={cancel} disabled={!dirty} className="button-submit-subtype">Cancelar</button>
+                                            <button type="button" onClick={()=>cancel(dirty)} disabled={!dirty} className="button-submit-subtype">Cancelar</button>
                                             <button type="submit" disabled={invalid || !dirty} className="button-submit-active">Guardar</button>
                                         </div>
                                     </>
