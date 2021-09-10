@@ -61,19 +61,6 @@ function* getMorePendingUser({ params }) {
     }
 }
 
-function* getPendingUserExport({ params }) {
-    const response = yield call(
-        pickersMiddleware.getPendingUserExport,
-        params
-    );
-
-    if (response.status !== 200) {
-        yield put(pickersActions.getPendingUserExportError());
-    } else {
-        createCSV(response)
-        yield put(pickersActions.getPendingUserSuccess(response));
-    }
-}
 
 function* getPendingUserPicker({ params }) {
     const response = yield call(
@@ -85,6 +72,27 @@ function* getPendingUserPicker({ params }) {
     } else {
         const { result } = response.data;
         yield put(detailPickerActions.getPendingUserPickerSuccess(result));
+    }
+}
+
+function* getPendingUserExport({ params,onSuccess }) {
+
+    
+    let filterUpdate = {...params, vehicleType: params.vehicleType && (params.vehicleType.value===''? undefined : params.vehicleType.value)};
+
+    const response = yield call(
+        pickersMiddleware.getPendingUserExport,
+        filterUpdate
+    );
+
+    if (response.status !== 200) {
+        
+        yield put(pickersActions.getPendingUserExportError());
+    } 
+    else {
+        createCSV(response);
+        yield put(pickersActions.getPendingUserExportSuccess(response));
+        onSuccess();
     }
 }
 
