@@ -36,7 +36,7 @@ export const FILTER_TRANSACTION_OPTIONS = [
         id: 'IN_PICK_UP',
     },
     {
-        label: 'En punto de retiro',
+        label: 'En lugar de retiro',
         id: 'IN_PICK_UP_POINT',
     },
     {
@@ -48,7 +48,7 @@ export const FILTER_TRANSACTION_OPTIONS = [
         id: 'IN_DELIVERY_POINT',
     },
     {
-        label: 'Entregado',
+        label: 'En entrega ',
         id: 'DELIVERED',
     },
     {
@@ -56,11 +56,11 @@ export const FILTER_TRANSACTION_OPTIONS = [
         id: 'IN_RETURN_TO_SENDER',
     },
     {
-        label: 'Devuelto a origen',
+        label: 'Devuelto',
         id: 'RETURNED_TO_SENDER',
     },
     {
-        label: 'Siniestrador',
+        label: 'Siniestrado',
         id: 'LOST',
     },
     {
@@ -83,3 +83,33 @@ export const FILTER_PICKERS_OPTIONS = [
         value: 'motorcycle',
     },
 ];
+
+
+ export const TRANSACTION_STATE_ID_LABEL = {
+    1:    'Sin asignar',
+    2:    'Asignado',
+    3:    'En retiro',
+    4:    'En lugar de retiro',
+    5:    'Retirado',
+    6:    'En entrega',
+    7:    'En lugar de entrega',
+    8:    'En devolución',
+    9:    'Cancelado',
+    10:   'Entregado',
+    11:    'Devuelto',
+    12:    'Siniestrado',
+ }
+ export const TRANSACTION_STATE_TAG_LABEL = {
+'PENDING_ASSIGNMENT': 'Sin asignar',
+    'ASSIGNED':'Asignado',
+    'IN_PICK_UP':'En retiro',
+    'IN_PICK_UP_POINT':'En lugar de retiro',
+    'PICKED_UP':'Retirado',
+    'IN_DELIVERY':'En entrega',
+    'IN_DELIVERY_POINT':'En lugar de entrega',
+    'IN_RETURN_TO_SENDER':'En devolución',
+    'CANCEL':'Cancelado',
+    'DELIVERED':'Entregado',
+    'RETURNED_TO_SENDER':'Devuelto',
+    'LOST':'Siniestrado',
+ }

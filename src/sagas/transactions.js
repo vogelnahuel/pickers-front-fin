@@ -17,9 +17,17 @@ function* getTransactions({ params }) {
         params
     );
     if (response.status !== 200) {
-       
-        if(response.data.statusCode===20011){
-            yield put(actions.setOpenErrorDatePicker(true));
+
+        switch (response.data.statusCode) {
+            case 20011:
+                yield put(actions.setOpenErrorDatePicker(true));
+                break;
+            case 20013:
+                yield put(actions.getTransactionsSuccess({ items:[], offset:0, hasMore:false }));
+            break;
+            
+            default:
+                break;
         }
         yield put(actions.getTransactionsError());
     } else {
