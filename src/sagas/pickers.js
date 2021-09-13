@@ -35,8 +35,6 @@ const process = (body) => {
     };
 };
 
-
-
 function* getPendingUser({ params }) {
     const response = yield call(
         pickersMiddleware.getPendingUser,
@@ -73,7 +71,6 @@ function* getPendingUserPicker({ params }) {
         yield put(detailPickerActions.getPendingUserPickerError());
     } else {
         const { result } = response.data;
-        console.log(result)
         yield put(detailPickerActions.getPendingUserPickerSuccess(result));
         yield put(pickersActions.setActualPage(result.status.id===4 || result.status.id===5 ? "ACTIVE":"PENDING"));
     }
