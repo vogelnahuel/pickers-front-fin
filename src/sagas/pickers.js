@@ -139,7 +139,7 @@ function* postPendingUserDocumentsEdit({ params }) {
     }
 }
 
-function* postAprovePicker({ params }) {
+function* postAprovePicker({ params, goBack }) {
     let body = process(params);
     const response = yield call(
         pickersMiddleware.postAprovePicker,
@@ -160,14 +160,14 @@ function* postAprovePicker({ params }) {
                 level:"success",
                 title: "Aprobación exitosa",
                 body:"Ya podés visualizar sus datos en la pestaña pickers",
-                onClick: goBack()
+                onClick: goBack
             }
         ));
         yield put(detailPickerActions.getAprovePickerSuccess(body));
     }
 }
 
-function* postEditPicker({ params }) {
+function* postEditPicker({ params, goBack }) {
     let body = process(params);
     const response = yield call(
         pickersMiddleware.postEditPicker,
@@ -188,7 +188,8 @@ function* postEditPicker({ params }) {
                 level:"success",
                 title: "Datos guardados",
                 body:"Ya quedaron registrados los cambios",
-                onClick: goBack()
+                onClick: goBack
+
             }
         ));
         yield put(detailPickerActions.getEditPickerSuccess(body));

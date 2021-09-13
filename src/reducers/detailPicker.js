@@ -69,9 +69,10 @@ export const actions = {
         type: types.PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_ERROR,
     }),
 
-    getAprovePickerRequest: (params) => ({
+    getAprovePickerRequest: (params, goBack) => ({
         type: types.PICKER_APROVE_POST_REQUEST,
         params,
+        goBack
     }),
     getAprovePickerSuccess: (body) => ({
         type: types.PICKER_APROVE_POST_SUCCESS,
@@ -81,9 +82,10 @@ export const actions = {
         type: types.PICKER_APROVE_POST_ERROR,
     }),
 
-    getEditPickerRequest: (params) => ({
+    getEditPickerRequest: (params, goBack) => ({
         type: types.PICKER_EDIT_POST_REQUEST,
         params,
+        goBack
     }),
     getEditPickerSuccess: (body) => ({
         type: types.PICKER_EDIT_POST_SUCCESS,
