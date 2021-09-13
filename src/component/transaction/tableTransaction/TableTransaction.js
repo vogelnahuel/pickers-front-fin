@@ -1,10 +1,9 @@
 import React, {  } from 'react'
 import './TableTransaction.css'
 import TreePoints from '../../../assets/transaction/TreePoints.svg'
-import stateName from './statesNames.js'
-
 import moment from 'moment'
 import { Fragment } from 'react'
+import {TRANSACTION_STATE_ID_LABEL} from "utils/constants"
 
 export const TableTransaction = (props) => {
   
@@ -94,7 +93,7 @@ export const TableTransaction = (props) => {
                                      }
                                     </td>
                           
-                                    <td  name={dato.transaction.id} key={dato.transaction.id+"7"} > {stateName(dato.transaction.state.id)}</td>
+                                    <td  name={dato.transaction.id} key={dato.transaction.id+"7"} > {TRANSACTION_STATE_ID_LABEL[dato.transaction.state.id]}</td>
                                    <td></td>
                                    {
                                        window.innerWidth  > 1930 ? <td  name={"inAlert"} key={dato.transaction.id+"8"} > {dato.transaction.inAlert?<div className="admin-table-alerta">En alerta</div>:null}</td> : null
