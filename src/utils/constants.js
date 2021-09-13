@@ -56,11 +56,11 @@ export const FILTER_TRANSACTION_OPTIONS = [
         id: 'IN_RETURN_TO_SENDER',
     },
     {
-        label: 'Devuelto a origen',
+        label: 'Devuelto',
         id: 'RETURNED_TO_SENDER',
     },
     {
-        label: 'Siniestrador',
+        label: 'Siniestrado',
         id: 'LOST',
     },
     {

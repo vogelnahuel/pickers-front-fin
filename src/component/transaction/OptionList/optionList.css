@@ -40,6 +40,7 @@
     text-align: center;
     color: #BDBDBD;
     margin-left: 3.7vw;
+    cursor: default !important;
 }
 
 .modal-transaction-inputs{

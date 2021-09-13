@@ -73,10 +73,22 @@
 #modal-transaction-input-tel2 input {
     width: 9.1vw;
 }
-.label-Admin-Pickers .readonly{
 
-    color: #828282;
+.label-Admin-Pickers.readonly-transaction{
+    color: #BDBDBD;
 }
+
+.Admin-Pickers-input.readonly-transaction{
+    color: #BDBDBD;
+    border-bottom:1px solid #BDBDBD;
+}
+.Admin-Pickers-input.readonly-transaction::placeholder{
+    color: #BDBDBD;
+}
+.modal-transaction-button-irApicker-disabled-a{
+    cursor: default;
+}
+
 
 @media (max-width:1310px){
     .form-filter-transaction-modal div div input {

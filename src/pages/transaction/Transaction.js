@@ -43,6 +43,7 @@ export const Transaction = ({
     
          if(window.screen.width<1300){
              setresolutionHeightModal(496)
+             
          }
          if(window.screen.width>1900){
              setresolutionHeightModal(675)
@@ -65,6 +66,8 @@ export const Transaction = ({
     const onClose = (e) => {
         setOpenModalTransaction(false);
     };
+
+    console.log(FilterTransaction)
 
     return (
         <div className="background-Grey">
@@ -198,7 +201,7 @@ export const Transaction = ({
                                     </div> 
                                     <div className="modal-transaction-subtitle"> 
                                         <h2> 
-                                            {FilterSelectedTransaction.transaction 
+                                            {FilterSelectedTransaction && FilterSelectedTransaction.transaction 
                                                 ? FilterSelectedTransaction.transaction.transactionCode 
                                                 : ""} 
                                         </h2> 
