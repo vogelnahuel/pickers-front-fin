@@ -88,7 +88,7 @@ const DetailPickerContainer = (props) => {
         }
     };
 
-    const aproveSubmit = (params) => {
+    const aproveSubmit = (params, goBack) => {
         props.showNotification(
             {
                 level:"info",
@@ -96,7 +96,7 @@ const DetailPickerContainer = (props) => {
                 body:"Al aprobar la solicitud, ya va a poder hacer envíos",
                 onClickLabel: "Aprobar",
                 onCloseLabel: "Revisar datos",
-                onClick: pendingUserAdminPickerActions.getAprovePickerRequest(params)
+                onClick: ()=>props.postAprovePickerRequest(params, goBack)
             }
         );
     };
@@ -107,6 +107,7 @@ const DetailPickerContainer = (props) => {
             validationSchema={validationSchema}
             changePage={changePage}
             cancel={cancel}
+            goBack={()=>historial.goBack()}
             aproveSubmit={aproveSubmit}
             active={props.pendingUserAdminPicker.status && (props.pendingUserAdminPicker.status.id === 4 || props.pendingUserAdminPicker.status.id === 5 )}
         />
@@ -130,14 +131,17 @@ const mapDispatchToProps = (dispatch) => ({
     setDirty: (dirty) => {
         dispatch(pendingUserAdminPickerActions.setDirty(dirty));
     },
+    postAprovePickerRequest: (params, goBack) => {
+        dispatch(pendingUserAdminPickerActions.getAprovePickerRequest(params, goBack));
+    },
     postPendingUserDocumentsEdit: (params) => {
         dispatch(pendingUserAdminPickerActions.getPendingUserPickerDocumentsEditRequest(params));
     },
     showNotification: (content) => {
         dispatch(notificationActions.showNotification(content));
     },
-    postEditPickerRequest: (params) => {
-        dispatch(pendingUserAdminPickerActions.getEditPickerRequest(params));
+    postEditPickerRequest: (params, goBack) => {
+        dispatch(pendingUserAdminPickerActions.getEditPickerRequest(params, goBack));
     },
     setActualPage:(page)=>{
         dispatch(pendingUserActions.setActualPage(page));

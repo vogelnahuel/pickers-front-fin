@@ -28,6 +28,7 @@ export const DetailPicker = (
         active,
         cancel,
         aproveSubmit,
+        goBack,
         postPendingUserDocumentsEdit,
         postEditPickerRequest,
         changePage,
@@ -64,7 +65,7 @@ export const DetailPicker = (
                         </button>
                     </div>
                     <Form
-                        onSubmit={values => active ? postEditPickerRequest(values) : postPendingUserDocumentsEdit(values)}
+                        onSubmit={values => active ? postEditPickerRequest(values, goBack) : postPendingUserDocumentsEdit(values)}
                         initialValues={
                             pendingUserAdminPicker.dateOfBirth ?
                                 {
@@ -300,7 +301,7 @@ export const DetailPicker = (
                                         {/*</div>*/}
                                         <div className="pending-admin-picker-button">
                                             <button type="submit" disabled={!dirty} className="button-submit-subtype">Guardar cambios</button>
-                                            <button type="button" onClick={()=> {aproveSubmit(values)}} disabled={invalid} className="button-submit-active">Aprobar picker</button>
+                                            <button type="button" onClick={()=> {aproveSubmit(values,goBack)}} disabled={invalid} className="button-submit-active">Aprobar picker</button>
                                         </div>
                                     </>
                                 }
