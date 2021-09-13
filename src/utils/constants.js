@@ -26,6 +26,7 @@ export const DATE_FORMATS = {
     periodFormat: "MM/YYYY",
 };
 
+
 export const FILTER_TRANSACTION_OPTIONS = [
     {
         label: 'Sin asignar',
@@ -39,17 +40,17 @@ export const FILTER_TRANSACTION_OPTIONS = [
         label: 'En lugar de retiro',
         id: 'IN_PICK_UP_POINT',
     },
+    // {
+    //     label: 'Retirado',
+    //     id: 'PICKED_UP',
+    // },
     {
-        label: 'Retirado',
-        id: 'PICKED_UP',
+        label: 'En entrega ',
+        id: 'DELIVERED',
     },
     {
         label: 'En lugar de entrega',
         id: 'IN_DELIVERY_POINT',
-    },
-    {
-        label: 'En entrega ',
-        id: 'DELIVERED',
     },
     {
         label: 'En devolución',
@@ -64,7 +65,7 @@ export const FILTER_TRANSACTION_OPTIONS = [
         id: 'LOST',
     },
     {
-        label: 'Cancelada',
+        label: 'Cancelado',
         id: 'CANCEL',
     }
 ];
