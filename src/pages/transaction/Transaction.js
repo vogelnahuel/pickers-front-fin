@@ -67,7 +67,6 @@ export const Transaction = ({
         setOpenModalTransaction(false);
     };
 
-    console.log(FilterTransaction)
 
     return (
         <div className="background-Grey">

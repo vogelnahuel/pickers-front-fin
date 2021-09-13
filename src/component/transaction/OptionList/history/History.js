@@ -83,7 +83,7 @@ export const History = (props) => {
     return DDMMYYYY+" "+dateHHMM;
   }
 
-console.log(FilterTransaction)
+
   return (
     <div className="modal-transaction-optionContainer-scroll">
       <Form
