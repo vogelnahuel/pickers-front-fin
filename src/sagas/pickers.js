@@ -74,6 +74,7 @@ function* getPendingUserPicker({ params }) {
     } else {
         const { result } = response.data;
         yield put(detailPickerActions.getPendingUserPickerSuccess(result));
+        yield put(pickersActions.setActualPage(result.status.id===4 || result.status.id===5 ? "ACTIVE":"PENDING"));
     }
 }
 
