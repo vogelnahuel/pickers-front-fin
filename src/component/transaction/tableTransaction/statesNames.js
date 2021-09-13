@@ -8,7 +8,7 @@ stateNames.set(6,"En entrega")
 stateNames.set(7,"En lugar de entrega")
 stateNames.set(10,"Entregado")
 stateNames.set(8,"En devolución")
-stateNames.set(11,"Devuelto a origen")
+stateNames.set(11,"Devuelto")
 stateNames.set(9,"Cancelado")
 stateNames.set(12,"Siniestrado")
 const stateName = (id) =>  {
