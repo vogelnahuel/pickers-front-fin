@@ -8,9 +8,10 @@ import {Input} from 'component/inputs/Input';
 import {Col, Container, Row} from "react-bootstrap";
 import {FILTER_PICKERS_OPTIONS} from "utils/constants";
 import Select from "component/inputs/Select";
+import useValidationSchema from "hooks/useValidationSchema"
 
 /****diseño del filtro y muestra inputs*/
-export const FilterPickers = ({ onSubmit, filters}) => {
+export const FilterPickers = ({ onSubmit, filters,validationSchema}) => {
 
     return(
         <Container className="display-filter-transaction">
@@ -35,6 +36,7 @@ export const FilterPickers = ({ onSubmit, filters}) => {
                                     changeValue(state, field, () => value)
                                 }
                             }}
+                            validate={useValidationSchema(validationSchema)}
                         >
                             {({ handleSubmit, form}) => (
                                 <form className="form-filter-transaction" onSubmit={handleSubmit}>
@@ -46,6 +48,7 @@ export const FilterPickers = ({ onSubmit, filters}) => {
                                             component={Input}
                                             className="Admin-Pickers-input"
                                             placeholder="Ingresá el nombre y apellido"
+                                            maxLength={50}
                                         />
                                     </Col>
                                     <Col xxl xl={4} className="px-3">
@@ -56,6 +59,7 @@ export const FilterPickers = ({ onSubmit, filters}) => {
                                             component={Input}
                                             className="Admin-Pickers-input"
                                             placeholder="Ingresá el DNI"
+                                            maxLength={9}
                                         />
                                     </Col>
                                     <Col xxl xl={4} className="px-3">
@@ -71,11 +75,12 @@ export const FilterPickers = ({ onSubmit, filters}) => {
                                     <Col xxl xl={4} className="px-3">
                                         <Field
                                             type="text"
-                                            name="mail"
+                                            name="email"
                                             label="Email"
                                             component={Input}
                                             className="Admin-Pickers-input"
                                             placeholder="Ingresá el email"
+                                            maxLength={250}
                                         />
                                     </Col>
                                     <Col xxl={{span: "auto", offset:0}} lg={{span:4,offset:4}} className="px-3">

@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from "classnames";
 
+
 export const Input= (props) => {
     const  {
         className,
@@ -11,7 +12,8 @@ export const Input= (props) => {
         disabled,
         input,
         lastLabel,
-        meta
+        meta,
+        maxLength
     } = props;
     return (
         <div className={classNames( {
@@ -39,6 +41,7 @@ export const Input= (props) => {
                 placeholder={placeholder}
                 onChange={input.onChange}
                 onBlur={input.onBlur}
+                maxLength={maxLength}
             />
             {
                 meta.error && meta.touched &&
