@@ -12,14 +12,19 @@ export const FinishModal = (props) => {
   const [estado, setestado] = useState("");
   const setdniFinish = props.setdniFinish;
   const setundelivered = props.setundelivered;
-  console.log(FilterSelectedTransaction)
+
 
 
   const handleClick = async (e) => {
       e.preventDefault();
 
 
-      if(estado==="Devuelto"){
+      if(FilterSelectedTransaction.transaction.state.name==="En devolución" && estado==="Devuelto"){
+        await api.post(
+          `/ms-admin-rest/api/v1.0/transactions/${FilterSelectedTransaction.transaction.id}/returned`);
+          window.location.reload();
+      }
+      else if(estado==="Devuelto"){
         setundelivered(true);
         setTimeout(() => {
             e.target.parentNode.parentNode.classList.add('animation-left-transaction')
@@ -38,8 +43,7 @@ export const FinishModal = (props) => {
             }, 500);
         }, 0);
       }
-
-      if(estado==="Entregado"){
+      else if(estado==="Entregado"){
         setdniFinish(true);
      
         setTimeout(() => {

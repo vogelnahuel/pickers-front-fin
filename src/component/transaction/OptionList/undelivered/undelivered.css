@@ -120,6 +120,14 @@ margin-top: 20px;
     background: #F2F2F2;
     mix-blend-mode: multiply;
 }
+.modal-undelivered-font-bold{
+    background-color: #F2F2F2;
+}
+.modal-undelivered-font-bold p {
+    font-weight: bold;
+}
+
+
 @media (max-width:1310px){
     .modal-undelivered-h3{
         margin-top: 10px;

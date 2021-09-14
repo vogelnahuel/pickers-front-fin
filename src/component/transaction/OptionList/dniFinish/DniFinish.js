@@ -34,7 +34,7 @@ export const DniFinish = (props) => {
 }
 const handleChange = (value)=>{
  
-  const expRegDni = /^[\d]{1,3}\.?[\d]{3,3}\.?[\d]{3,3}$/
+  const expRegDni = /^[\d]{1,2}\.?[\d]{3,3}\.?[\d]{3,3}$/
     if(expRegDni.test(Number(value.dni))  && Number(value.dni)!==0 ){
         setdniValid(true)
     }else{

@@ -13,6 +13,8 @@ const [messages, setmessages] = useState([])
 const [idSelected, setidSelected] = useState(-1)
 
 
+
+
     useEffect(() => {
         const cargarMensajes = async () => {
             setmessages( await api.get(`ms-admin-rest/api/v1.0/transactions/${props.FilterSelectedTransaction.transaction.id}/message`) 
@@ -60,13 +62,7 @@ const handleClick  = async (e) => {
 
       window.location.reload();
 }
-const handleCLickOpc = (e)=> {
-    e.preventDefault();
-    e.target.style.fontWeight="bold"
-    e.target.parentNode.style.backgroundColor="#F2F2F2"
-    setidSelected(parseInt(e.target.id));
 
-}
 
     return (
         <div>
@@ -78,15 +74,15 @@ const handleCLickOpc = (e)=> {
             
             <div className="modal-container-height">
             <hr id="modal-undelivered-hr"/>
-                <div className="modal-dni-center">
+                <div className="modal-dni-center" >
 
                     
                    
                     {
                         messages ? messages.map(opcion => (
-                            <div key={opcion.id} className="modal-undelivered-opc-div">
+                            <div key={opcion.id} className={opcion.id===idSelected ? "modal-undelivered-opc-div modal-undelivered-font-bold" : "modal-undelivered-opc-div"} >
                              
-                                <p onClick={handleCLickOpc} id={opcion.id} className="modal-undelivered-opc"> {opcion.message}</p>
+                                <p  key={opcion.id} onClick={  ()=>setidSelected(parseInt(opcion.id)) } id={opcion.id} className="modal-undelivered-opc"> {opcion.message}</p>
                                 
                              
                             </div>

@@ -14,16 +14,16 @@
     height: 15px;
     margin-top: 2px;
     padding-left: 5px;
-    margin-right: 10px;
+    margin-right: 13px;
 }
 [type="radio"]:checked+label, [type="radio"]:not(:checked)+label {
-    cursor: default !important;
+    cursor: pointer !important;
     display: inline-block !important;
     font-weight: 200 !important;
     line-height: 20px !important;
     padding-left: 0px !important;
     position: relative !important;
-    margin-right: 5px;
+    margin-right: 12px;
 }
 [type="radio"]:checked+label:before, [type="radio"]:not(:checked)+label:before {
     background: transparent !important;
