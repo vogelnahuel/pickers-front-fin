@@ -39,7 +39,6 @@ const mapStateToProps = (state) => ({
     seeMore: pendingUserSelectors.getSeeMore(state),
     pag: pendingUserSelectors.getPag(state),
     actualPage:pendingUserSelectors.getActualPage(state),
-    modalExportPicker:pendingUserSelectors.getActualPage(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -58,8 +57,8 @@ const mapDispatchToProps = (dispatch) => ({
     setActualPage:(page)=>{
         dispatch(pendingUserActions.setActualPage(page));
     },
-    getPendingUsersExportRequest:(params,onSuccess)=>{
-        dispatch(pendingUserActions.getPendingUserExportRequest(params,onSuccess))
+    getPendingUsersExportRequest:(params)=>{
+        dispatch(pendingUserActions.getPendingUserExportRequest(params))
     },
     getMorePendingUser: (params) => {
         dispatch(pendingUserActions.getMorePendingUserRequest(params));

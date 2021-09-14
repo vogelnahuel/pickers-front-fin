@@ -78,9 +78,7 @@ function* getPendingUserPicker({ params }) {
     }
 }
 
-function* getPendingUserExport({ params,onSuccess }) {
-
-    
+function* getPendingUserExport({ params }) {
     let filterUpdate = {...params, vehicleType: params.vehicleType && (params.vehicleType.value===''? undefined : params.vehicleType.value)};
 
     const response = yield call(
@@ -89,13 +87,18 @@ function* getPendingUserExport({ params,onSuccess }) {
     );
 
     if (response.status !== 200) {
-        
         yield put(pickersActions.getPendingUserExportError());
-    } 
+    }
     else {
         createCSV(response);
         yield put(pickersActions.getPendingUserExportSuccess(response));
-        onSuccess();
+        yield put(notificationActions.showNotification(
+            {
+                level:"success",
+                title: "Exportaste exitosamentes",
+                body:"El archivo se descargó correctamente",
+            }
+        ));
     }
 }
 
@@ -112,7 +115,7 @@ function* getPendingUserPickerExport({ params }) {
             {
                 level:"success",
                 title: "Exportaste exitosamentes",
-                body:"El archivo se descargo correctamente",
+                body:"El archivo se descargó correctamente",
             }
         ));
         yield put(detailPickerActions.getPendingUserPickerExportSuccess(response));
@@ -189,8 +192,7 @@ function* postEditPicker({ params, goBack }) {
                 level:"success",
                 title: "Datos guardados",
                 body:"Ya quedaron registrados los cambios",
-                onClick: goBack
-
+                onClick: goBack,
             }
         ));
         yield put(detailPickerActions.getEditPickerSuccess(body));

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import {Header} from "component/admin/Header/Header";
 import {Nav} from "component/admin/Nav/Nav";
 import "pages/pickers/Pickers.scss";
@@ -7,7 +7,7 @@ import exportar from "assets/admin/PendingUser/exportar.svg";
 import or from "assets/admin/PendingUser/or.svg";
 import FilterPickers from "pages/pickers/filter/FilterPickersContainer";
 import {TableAdmin} from "component/admin/table/TableAdmin";
-import {Modal} from "@pickit/pickit-components"
+import NotificationModal from "component/modal/NotificationModal";
 
 export const PendingUserAdmin = ({
                                      changePage,
@@ -22,20 +22,6 @@ export const PendingUserAdmin = ({
                                      getPendingUsersExportRequest,
                                  }) => {
 
-    const [ExportModal, setExportModal] = useState(false);
-
-    const cerrarGuardarExito = (e) => {
-        e.preventDefault();
-        setExportModal(false);
-    };
-
-    const Export = async () => {
-        
-        getPendingUsersExportRequest(filters,()=>setExportModal(true));
-      
-    };
-
-    
     return (
         <div className="background-Grey">
             <Header />
@@ -48,7 +34,7 @@ export const PendingUserAdmin = ({
                         <h2 className="subTitle-pending">
                             <p className="subtitle-pendingUser-h2">{actualPage==="PENDING"?"Solicitudes pendientes":"Pickers"} </p>
                         </h2>
-                        <button onClick={Export} className="export" name="export">
+                        <button onClick={()=>getPendingUsersExportRequest(filters)} className="export" name="export">
                             <img src={exportar} alt="export" />
                             <img className="or-pending" src={or} alt="or" />
                             <p className="display-inline-block p-export"> Exportar</p>
@@ -88,33 +74,7 @@ export const PendingUserAdmin = ({
                             )
                     }
                 </div>
-
-
-
-                {ExportModal === true ? (
-                    <div className="contendor-modal-pending-pickers-aprobar">
-                        <Modal width="750px" height="351px" isOpen={ExportModal}>
-                            <div className="container-modal">
-                                <div className="modal-success-title">
-                                    <p className="p-modal-error-title">Exportaste exitosamente</p>
-                                </div>
-                                <div className="modal-error-subtitle">
-                                    <p className="p-modal-error-subtitle">
-                                        El archivo se descargo correctamente
-                                    </p>
-                                    <div className="button-pending-picker-modal">
-                                        <button
-                                            onClick={cerrarGuardarExito}
-                                            className="button-modal-aprobar-exito"
-                                        >
-                                            Entendido
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </Modal>
-                    </div>
-                ) : null}
+                <NotificationModal/>
             </div>
             {
                 isFetching === true  ?
