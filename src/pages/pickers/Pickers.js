@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import {Header} from "component/admin/Header/Header";
 import {Nav} from "component/admin/Nav/Nav";
 import "pages/pickers/Pickers.scss";
