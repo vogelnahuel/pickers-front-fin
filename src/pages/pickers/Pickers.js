@@ -9,6 +9,7 @@ import FilterPickers from "pages/pickers/filter/FilterPickersContainer";
 import {TableAdmin} from "component/admin/table/TableAdmin";
 import {Modal} from "@pickit/pickit-components"
 
+
 export const PendingUserAdmin = ({
                                      changePage,
                                      actualPage,
@@ -43,6 +44,7 @@ export const PendingUserAdmin = ({
                 <Nav />
                 <div className="pending-container">
                     <PendingBlue changePage={changePage} actualPage={actualPage}/>
+             
 
                     <div className="mainContainerFlex">
                         <h2 className="subTitle-pending">

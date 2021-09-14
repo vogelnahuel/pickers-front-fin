@@ -63,10 +63,10 @@ export const PendingBlue = ({ showNotification, changePage, actualPage, isDirty 
                 <div className="FlexPending backGround-pending">
                 </div>
                 <div>
-                    <button  className="buttonVolver" onClick={handleHistory}  >
+                    {/* <button  className="buttonVolver" onClick={handleHistory}  >
                         <img className="img3" src={volver} alt="volver"/>
                         <p className="Pending-paragraph3">Volver</p>
-                    </button>
+                    </button> */}
 
                 </div>
             </div>
