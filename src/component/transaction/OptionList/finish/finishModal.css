@@ -39,7 +39,7 @@
     line-height: 23px;
     text-align: center;
     color: #FFFFFF;
-    margin-top: 45px;
+    margin-top: 105px;
     margin-left: 470px;
 }
 .modal-transaction-finish-container{
@@ -106,12 +106,11 @@
     line-height: 23px;
     text-align: center;
     color: #FFFFFF;
-    margin-top: 45px;
+    margin-top: 105px;
     margin-left: 470px;
 }
 .flexItems-items-center{
-    margin-left: 80px;
-  
+    margin-left: 90px;
 }
 
 @media (max-width:1310px){

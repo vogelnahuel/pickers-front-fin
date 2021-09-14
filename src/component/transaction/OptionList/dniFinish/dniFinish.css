@@ -13,7 +13,7 @@
     line-height: 23px;
     text-align: center;
     color: #FFFFFF;
-    margin-top: 70px;
+    margin-top: 84px;
     margin-left: 50px;
 }
 
@@ -31,7 +31,7 @@
     line-height: 23px;
     text-align: center;
     color: #FFFFFF;
-    margin-top: 70px;
+    margin-top: 84px;
     margin-left: 50px;
 }
 .modal-dni-finish-h3{
@@ -70,7 +70,7 @@
     letter-spacing: 0.0025em;
     color: #4D4D4D;
 }
-@media (min-width:1310px){
+@media (max-width:1310px){
     .modal-dni-finish-card{
         margin-top: 15px;
     }
@@ -79,10 +79,10 @@
         margin-bottom: 47px;
     }
     .modal-dni-finish-button{
-        margin-top: 74px;
+        margin-top: 14px;
     }
     .modal-dni-finish-button-active{
-        margin-top: 74px;
+        margin-top: 14px;
     }
    
     
