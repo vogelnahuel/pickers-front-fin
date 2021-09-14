@@ -25,7 +25,10 @@ export const DATE_FORMATS = {
     dateWithoutSeparator: "YYYMMDD",
     periodFormat: "MM/YYYY",
 };
-
+export const VALIDATION_REGEX = {
+    expName :/^[a-z ,.'-]+$/i,
+    expIdentificationNumber : /^[\d]{0,3}\.?[\d]{0,3}\.?[\d]{0,3}$/,
+}
 
 export const FILTER_TRANSACTION_OPTIONS = [
     {

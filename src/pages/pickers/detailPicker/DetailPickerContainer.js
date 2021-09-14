@@ -5,7 +5,7 @@ import {
     selectors as pendingUserAdminPickerSelectors
 } from "reducers/detailPicker";
 import {DetailPicker} from "pages/pickers/detailPicker/DetailPicker"
-import {DATE_FORMATS} from "utils/constants";
+import {DATE_FORMATS, VALIDATION_REGEX} from "utils/constants";
 import {useHistory, useParams} from "react-router-dom";
 import {actions as pendingUserActions, selectors as pendingUserSelectors} from "reducers/pickers";
 import * as yup from "yup";
@@ -44,8 +44,8 @@ const DetailPickerContainer = (props) => {
     const validationSchema =
         yup.lazy((values) => {
             return yup.object({
-                name: yup.string().required("Este campo es requerido."),
-                surname: yup.string().required("Este campo es requerido."),
+                name: yup.string().required("Este campo es requerido.").matches(VALIDATION_REGEX.expName,"No se admiten numeros ni caracteres especiales"),
+                surname: yup.string().required("Este campo es requerido.").matches(VALIDATION_REGEX.expName,"No se admiten numeros ni caracteres especiales"),
                 phone: yup.object({
                     areaNumber: yup.string().required("Este campo es requerido."),
                     number: yup.string().required("Este campo es requerido.")
