@@ -40,17 +40,17 @@ export const FILTER_TRANSACTION_OPTIONS = [
         label: 'En lugar de retiro',
         id: 'IN_PICK_UP_POINT',
     },
-    // {
-    //     label: 'Retirado',
-    //     id: 'PICKED_UP',
-    // },
     {
         label: 'En entrega ',
-        id: 'DELIVERED',
+        id: 'IN_DELIVERY',
     },
     {
         label: 'En lugar de entrega',
         id: 'IN_DELIVERY_POINT',
+    },
+    {
+        label: 'Entregado',
+        id: 'DELIVERED',
     },
     {
         label: 'En devolución',
