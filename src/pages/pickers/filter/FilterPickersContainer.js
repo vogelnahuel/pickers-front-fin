@@ -8,7 +8,7 @@ import * as yup from "yup";
 const FilterPickersContainer = (props) => {
 
     const search =(values)=>{
-        console.log(values)
+        
         props.getPendingUser({...values,...props.filtersExtra, vehicleType: values.vehicleType && (values.vehicleType.value===''? undefined : values.vehicleType.value)});
         props.setPendingUserFilters(values);
 
