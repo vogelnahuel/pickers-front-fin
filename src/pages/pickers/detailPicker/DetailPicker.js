@@ -186,7 +186,7 @@ export const DetailPicker = (
                                             <Field
                                                 type="text"
                                                 name="accountingData.fiscalNumber"
-                                                label="Número de CUIT/CUIL"
+                                                label= "Número de CUIT"
                                                 component={Input}
                                                 disabled
                                                 className="Admin-Pickers-input readonly"
