@@ -42,8 +42,8 @@ display: inline-block;
 .inputError{
 width: 541px ;
 border: rgba(153, 24, 20, 0);
-color: #FF1515;
-border-bottom: 1px solid #e00404;
+color: #FF1515 !important;
+border-bottom: 1px solid #FF1515 !important;
 z-index: 3;
 
 }
@@ -101,12 +101,21 @@ line-height: 1.5;
   margin-bottom: 10px;
 }
 
-
-
+.has-error > div input{
+  color: #FF1515;
+  border-bottom: 1px solid #FF1515;
+}
+.has-error > label {
+  color: #FF1515;
+}
 .errorsContainer{
   position: absolute;
   top: 0;
   margin-top: 30px;
+}
+.input-errors-container{
+  position: absolute;
+  margin-top: -20px;
 }
 .errorsContainer2{
   position: absolute;
@@ -125,6 +134,7 @@ line-height: 1.5;
   line-height: 18px;
   position: relative;
   color: #FF1515;
+  top: -5px;
 }
 
 .correcion{
@@ -271,9 +281,6 @@ transform: translateY(0em) scale(1);
   }
   .centrar{
     height: 18.7vh;
-  }
-  .errors{
-    top: 0px;
   }
 }
 

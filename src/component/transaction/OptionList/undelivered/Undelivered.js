@@ -1,6 +1,6 @@
 import React, { useEffect,useState } from 'react'
 import volver from '../../../../assets/admin/PendingUser/volver.svg'
-import api from '../../../../config/api';
+import api from '../../../../middleware/api';
 import './undelivered.css'
 
 export const Undelivered = (props) => {
@@ -10,6 +10,9 @@ export const Undelivered = (props) => {
     const FilterSelectedTransaction=props.FilterSelectedTransaction
 
 const [messages, setmessages] = useState([])
+const [idSelected, setidSelected] = useState(-1)
+
+
 
 
     useEffect(() => {
@@ -46,23 +49,20 @@ const [messages, setmessages] = useState([])
             
             setundelivered(false);
          }, 600);
+
         
 }
 const handleClick  = async (e) => {
     e.preventDefault();
     
   
-}
-const handleCLickOpc = async(e)=> {
-    e.preventDefault();
-    e.target.style.fontWeight="bold"
-    e.target.parentNode.style.backgroundColor="#F2F2F2"
-  
     await api.post(
-        `/ms-admin-rest/api/v1.0/transactions/${FilterSelectedTransaction.transaction.id}/in-devolution`,{"impossibleDeliveryReasonId":parseInt(e.target.id)}
+        `/ms-admin-rest/api/v1.0/transactions/${FilterSelectedTransaction.transaction.id}/in-devolution`,{"impossibleDeliveryReasonId":idSelected}
       );
-   window.location.reload();
+
+      window.location.reload();
 }
+
 
     return (
         <div>
@@ -74,15 +74,15 @@ const handleCLickOpc = async(e)=> {
             
             <div className="modal-container-height">
             <hr id="modal-undelivered-hr"/>
-                <div className="modal-dni-center">
+                <div className="modal-dni-center" >
 
                     
                    
                     {
                         messages ? messages.map(opcion => (
-                            <div key={opcion.id} className="modal-undelivered-opc-div">
+                            <div  onClick={  ()=>setidSelected(parseInt(opcion.id)) } key={opcion.id} className={opcion.id===idSelected ? "modal-undelivered-opc-div modal-undelivered-font-bold" : "modal-undelivered-opc-div"} >
                              
-                                <p onClick={handleCLickOpc} id={opcion.id} className="modal-undelivered-opc"> {opcion.message}</p>
+                                <p  key={opcion.id}  id={opcion.id} className="modal-undelivered-opc"> {opcion.message}</p>
                                 
                              
                             </div>
@@ -93,7 +93,13 @@ const handleCLickOpc = async(e)=> {
                 </div>
             </div>
             <div className="modal-dni-center">
-                <button disabled onClick={handleClick} className="modal-undelivered-button" > Finalizarla</button>
+                {
+                    idSelected===-1 ? 
+                    <button disabled={true} onClick={handleClick} className="modal-undelivered-button" > Finalizarla</button>
+                    :
+                    <button  onClick={handleClick} className="modal-undelivered-button-active" > Finalizarla</button>
+                }
+                
             </div>
         </div>
     )

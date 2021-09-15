@@ -11,7 +11,7 @@
 }
 .titleTableTransactions thead tr{
     border: 1px solid #CCCCCC;
-    height: 12.597916666666668vh;
+    height: 86px;
 }
 
 .titleTableTransactions thead tr td  {
@@ -25,7 +25,7 @@
 }
 .titleTableTransactions tbody tr {
     background: white;
-    height: 14.820833333333334vh;
+    height: 100px;
 }
 .titleTableTransactions tbody tr td{
     border-bottom: 1px solid #CCCCCC;

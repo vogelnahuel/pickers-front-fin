@@ -1,0 +1,90 @@
+import React from "react";
+import {Header} from "component/admin/Header/Header";
+import {Nav} from "component/admin/Nav/Nav";
+import "pages/pickers/Pickers.scss";
+import {PendingBlue} from "component/admin/Sub-Title-Image/PendingBlue";
+import exportar from "assets/admin/PendingUser/exportar.svg";
+import or from "assets/admin/PendingUser/or.svg";
+import FilterPickers from "pages/pickers/filter/FilterPickersContainer";
+import {TableAdmin} from "component/admin/table/TableAdmin";
+import NotificationModal from "component/modal/NotificationModal";
+
+
+export const PendingUserAdmin = ({
+                                     changePage,
+                                     actualPage,
+                                     tableTitles,
+                                     pendingUsers,
+                                     filters,
+                                     filtersExtraSeeMore,
+                                     isFetching,
+                                     seeMore,
+                                     getMorePendingUser,
+                                     getPendingUsersExportRequest,
+                                 }) => {
+
+    return (
+        <div className="background-Grey">
+            <Header />
+            <div className="mainContainerFlex">
+                <Nav />
+                <div className="pending-container">
+                    <PendingBlue changePage={changePage} actualPage={actualPage}/>
+             
+
+                    <div className="mainContainerFlex">
+                        <h2 className="subTitle-pending">
+                            <p className="subtitle-pendingUser-h2">{actualPage==="PENDING"?"Solicitudes pendientes":"Pickers"} </p>
+                        </h2>
+                        <button onClick={()=>getPendingUsersExportRequest(filters)} className="export" name="export">
+                            <img src={exportar} alt="export" />
+                            <img className="or-pending" src={or} alt="or" />
+                            <p className="display-inline-block p-export"> Exportar</p>
+                        </button>
+                    </div>
+                    <FilterPickers/>
+                    <br />
+                    <TableAdmin tableTitles={tableTitles} data={pendingUsers} actualPage={actualPage} />
+                    {
+
+                        pendingUsers &&  pendingUsers.length!==0 ?
+                            <>
+                                {
+                                    seeMore?
+                                        <>
+                                            <button onClick={ ()=>getMorePendingUser({...filters,...filtersExtraSeeMore, vehicleType: filters.vehicleType && (filters.vehicleType.value===''? undefined : filters.vehicleType.value) })}
+                                                    className="paginator-button">
+                                                Ver más
+                                            </button>
+                                        </>
+                                        :
+                                        <>
+                                            <button  className="paginator-button-disabled">
+                                                Ver más
+                                            </button>
+                                        </>
+
+                                }
+                            </>
+                            :
+                            (
+                                <button
+                                    className="paginator-button-transaction-noResult"
+                                >
+                                    No obtuvimos resultados de tu búsqueda :(
+                                </button>
+                            )
+                    }
+                </div>
+                <NotificationModal/>
+            </div>
+            {
+                isFetching === true  ?
+                    <div className="modalLoading">
+
+                    </div>
+                    : <></>
+            }
+        </div>
+    );
+};

@@ -85,15 +85,15 @@
 .modal-transaction{
     background: rgba(45, 45, 45, 0.25);
     mix-blend-mode: multiply;
-    width: 98.9vw;
-    height: 200vh;
+    width: 100%;
+    height: 100%;
     top: 0;
     left: 0;
-    position: absolute;
+    position: fixed;
 }
 .modal-transaction-title{
     display: flex;
-    height: 25px;
+    height: 29px;
 }
 .modal-transaction-title h2{
     font-family: 'Mulish';
@@ -338,6 +338,9 @@
     }
     .modal-transaction-buttons-submit{
         margin-top: 55px;
+    }
+    .modal-transaction-title .modal-transaction-fecha{
+        width: 260px;
     }
 }
 @media (max-width:1310px){

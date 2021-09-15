@@ -1,0 +1,217 @@
+.display-filter-transaction{
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    box-sizing: border-box;
+    border-radius: 10px;
+    margin-top: 16px;
+    padding: 30px 30px 5px;
+}
+.label-filter-transaction{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 19px;
+    letter-spacing: 0.0025em;
+    margin-left: 10px;
+    color: #4D4D4D;
+    margin-bottom: 0;
+}
+.label-filter-transaction-alert {
+    position: relative;
+    bottom: 5px;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 21px;
+    letter-spacing: 0.0025em;
+    color: #4D4D4D;
+}
+.filter-Imagen-width{
+    display: flex;
+}
+//.filter-container{
+//    display: flex;
+//}
+.p-filter-transaction{
+    display: inline-block;
+    margin-left: 11px;
+}
+.img-filter-transaction{
+    width: 24px;
+    height: 22px;
+}
+.form-filter-transaction{
+    display: flex;
+    flex-wrap: wrap;
+}
+.sub-container{
+    form div {
+        max-width: 100%;
+    }
+    padding: 0;
+}
+//.form-filter-transaction div div input{
+//    border: 0;
+//    border-bottom:1px solid #828282;
+//    //width: 278px ;
+//    //margin-right: 26px;
+//    outline: none;
+//    margin-bottom: 25px;
+//    font-family: 'Mulish';
+//    font-style: normal;
+//    font-weight: normal;
+//    font-size: 17px;
+//    line-height: 26px;
+//    letter-spacing: 0px;
+//    color: black;
+//
+//}
+.datePicker-filter-transaction div input{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    //margin-right: 26px;
+    font-size: 17px;
+    padding-bottom: 0;
+    line-height: 27px;
+    letter-spacing: 0.005em;
+    color: #101820;
+    border: 0;
+    outline: none;
+    background-color: transparent;
+    border-bottom:  1px solid #828282;
+    //margin-bottom: 3.515625vh;
+    width: 100%;
+}
+
+#datePicker-filter-transaction div svg{
+    position: absolute;
+    top: 5px;
+    right: 0px;
+
+    path{
+        fill: #101820;
+    }
+}
+
+
+.checkbox-filter-transaction{
+    height: 20px;
+    width: 20px;
+    margin-top: 30px;
+    margin-right: 10px;
+}
+.display-inline{
+    display: inline-block;
+    margin-left: 10px;
+    width: 18.155vw;
+    margin-right: 26px;
+}
+.search-button-transaction{
+    box-sizing: border-box;
+    border-radius: 50px;
+    border: 2.5px solid #0098FF;
+    width: 154px;
+    height: 50px;
+    //padding-top: 5px;
+    background-color: white;
+    text-align: center;
+    //margin-top: 10px;
+    //margin-left: 7.5vw;
+    //margin-right: 26px;
+
+}
+#padding{
+    padding-top: 27px;
+}
+
+
+/*** date picker**/
+.kfsr3-1wGDb31hi10DLi7{
+    background-color: white;
+}
+div .MKjsMK9DPt5gO-irDsCHa {
+    background: #0098FF;
+    border-radius: 20px;
+    color: white;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+
+}
+._1E-C-xua7BZJ8JvEl62fYt{
+    background: #E8F6FD;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    color: #666666;
+}
+._1bpEiR6zdbhp8U0YrJ6U4i{
+    background: #0098FF;
+    border-radius: 20px;
+    color: white;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+}
+
+
+
+@media (max-width:1310px){
+    .form-filter-transaction div div input{
+        //width: 248px;
+    }
+    .display-inline{
+        width: 17.155vw;
+    }
+    //.search-button-transaction{
+    //    margin-left: 6vw;
+    //}
+}
+@media (min-width:1800px){
+    .form-filter-transaction div div input{
+        //width: 263px;
+        //margin-right: 24px;
+    }
+
+    //.transaction-container-button-width{
+    //    margin-left: 0px;
+    //}
+    //.search-button-transaction{
+    //    margin-left: 0px;
+    //}
+    .display-inline{
+        width: 3.5vw;
+    }
+    //.display-filter-transaction{
+    //    padding-bottom: 13px;
+    //    margin-top: 21px;
+    //}
+    //#checkbox-filter-transaction{
+    //    margin-top: 13px;
+    //}
+    #padding{
+        padding-top: 15px;
+    }
+    //.search-button-transaction{
+    //    margin-top: 0px;
+    //}
+
+
+}
+@media (min-width: 1300px) {
+    .display-filter-transaction{
+        max-width: 100%;
+    }
+}

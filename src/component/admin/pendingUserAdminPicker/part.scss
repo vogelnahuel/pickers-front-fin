@@ -19,7 +19,7 @@
     width: 23vw ;
     border: rgba(153, 24, 20, 0);
     color: #FF1515;
-    border-bottom: 1px solid #e00404;
+    border-bottom: 1px solid #e00404 !important;
     margin-bottom: 5px;
     font-family: 'Mulish';
     font-style: normal;
@@ -54,7 +54,8 @@
 }
 
 .readonly{
-    color: #828282
+    color: #828282;
+    background-color: transparent;
 }
 .admin-picker-part-tel{
     width: 138px;
