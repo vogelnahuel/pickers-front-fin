@@ -41,9 +41,8 @@ const DetailPickerContainer = (props) => {
         }
     };
 
-    const regOnlyNumbers = /^[0-9]*$/
-    const regArea = /^[\d]{2,4}/
-    const regTelefono= /^[\d]{8}/
+   
+ 
 
     const validationSchema =
         yup.lazy((values) => {
@@ -51,8 +50,8 @@ const DetailPickerContainer = (props) => {
                 name: yup.string().required("Este campo es requerido.").matches(VALIDATION_REGEX.expName,"No se admiten números ni caracteres especiales"),
                 surname: yup.string().required("Este campo es requerido.").matches(VALIDATION_REGEX.expName,"No se admiten números ni caracteres especiales"),
                 phone: yup.object({
-                    areaNumber: yup.string().required("Este campo es requerido.").matches(regOnlyNumbers,"Ingresa el formato correcto").matches(regArea,"Ingresa el formato correcto"),
-                    number: yup.string().required("Este campo es requerido.").matches(regOnlyNumbers,"Ingresa el formato correcto").matches(regTelefono,"Ingresa el formato correcto")
+                    areaNumber: yup.string().required("Este campo es requerido.").matches(VALIDATION_REGEX.regArea,"Ingresa el formato correcto"),
+                    number: yup.string().required("Este campo es requerido.").matches(VALIDATION_REGEX.regTelefono,"Ingresa el formato correcto")
                 }),
                 expirationDatePolicyPersonal: yup.string().nullable().required("Este campo es requerido.")
                     .matches(DATE_FORMATS.regex,"Ingresa el formato correcto" ),
