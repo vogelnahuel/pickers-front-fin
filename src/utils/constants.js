@@ -91,7 +91,6 @@ export const FILTER_PICKERS_OPTIONS = [
     },
 ];
 
-
 export const TRANSACTION_STATE_ID_LABEL = {
     1:    'Sin asignar',
     2:    'Asignado',
@@ -106,6 +105,7 @@ export const TRANSACTION_STATE_ID_LABEL = {
     11:    'Devuelto',
     12:    'Siniestrado',
 }
+
 export const TRANSACTION_STATE_TAG_LABEL = {
     'PENDING_ASSIGNMENT': 'Sin asignar',
     'ASSIGNED':'Asignado',

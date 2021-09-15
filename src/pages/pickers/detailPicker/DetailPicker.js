@@ -18,7 +18,6 @@ import { FormSpy } from 'react-final-form'
 import moment from "moment";
 import NotificationModal from "component/modal/NotificationModal";
 
-
 export const DetailPicker = (
     {
         isFetching,
@@ -68,7 +67,7 @@ export const DetailPicker = (
                         </button>
                     </div>
                     <Form
-                        onSubmit={values => active ? postEditPickerRequest(values, goBack) : postPendingUserDocumentsEdit(values)}
+                        onSubmit={values => active ? postEditPickerRequest(values, goBack) : aproveSubmit(values,goBack)}
                         initialValues={
                             pendingUserAdminPicker.dateOfBirth ?
                                 {
@@ -89,8 +88,9 @@ export const DetailPicker = (
                         }
                         validate={useValidationSchema(validationSchema)}
                     >
-                        {({ invalid,handleSubmit, dirty, initialValues, values }) =>
+                        {({ invalid,handleSubmit, dirty, initialValues, values, ...props }) =>
                             <form className="Admin-Pickers-inputs" onSubmit={handleSubmit}>
+                                {console.log(props)}
                                 <FormSpy
                                     subscription={{ dirty: true }}
                                     onChange={pro => {
@@ -250,7 +250,7 @@ export const DetailPicker = (
                                                 <Col md={4}>
                                                     <Field
                                                         type="text"
-                                                        name={`vehicle.${initialValues.vehicleType}.expirationDatePolicyVehicle`}
+                                                        name={`vehicle.${initialValues.vehicleType}.expirationDateIdentificationVehicle`}
                                                         label="Vencimiento de la cédula *"
                                                         component={Input}
                                                         className="Admin-Pickers-input"
@@ -261,7 +261,7 @@ export const DetailPicker = (
                                                 <Col md={4}>
                                                     <Field
                                                         type="text"
-                                                        name={`vehicle.${initialValues.vehicleType}.expirationDateIdentificationVehicle`}
+                                                        name={`vehicle.${initialValues.vehicleType}.expirationDatePolicyVehicle`}
                                                         label="Vencimiento del seguro de automotor *"
                                                         component={Input}
                                                         className="Admin-Pickers-input"
@@ -311,8 +311,8 @@ export const DetailPicker = (
                                         {/*    </div>*/}
                                         {/*</div>*/}
                                         <div className="pending-admin-picker-button">
-                                            <button type="submit" disabled={!dirty} className="button-submit-subtype">Guardar cambios</button>
-                                            <button type="button" onClick={()=> {aproveSubmit(values,goBack)}} disabled={invalid} className="button-submit-active">Aprobar picker</button>
+                                            <button type="button" onClick={()=> postPendingUserDocumentsEdit(values)} className="button-submit-subtype">Guardar cambios</button>
+                                            <button type="submit" disabled={invalid} className="button-submit-active">Aprobar picker</button>
                                         </div>
                                     </>
                                 }

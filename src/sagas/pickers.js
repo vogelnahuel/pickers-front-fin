@@ -24,14 +24,14 @@ const process = (body) => {
     return {
         ...body,
         dateOfBirth: moment(body.dateOfBirth, "DD/MM/YYYY").format("YYYY-MM-DD"),
-        expirationDatePolicyPersonal: moment(body.expirationDatePolicyPersonal, "DD/MM/YYYY").format("YYYY-MM-DD"),
+        expirationDatePolicyPersonal: body.expirationDatePolicyPersonal && moment(body.expirationDatePolicyPersonal, "DD/MM/YYYY").format("YYYY-MM-DD"),
         vehicle: {
             ...body.vehicle,
             [body.vehicleType]: {
                 ...body.vehicle[body.vehicleType],
                 expirationDatePolicyVehicle: body.vehicle[body.vehicleType].expirationDatePolicyVehicle && moment(body.vehicle[body.vehicleType].expirationDatePolicyVehicle, "DD/MM/YYYY").format("YYYY-MM-DD"),
-                expirationDateIdentificationVehicle: body.vehicle[body.vehicleType].expirationDatePolicyVehicle && moment(body.vehicle[body.vehicleType].expirationDateIdentificationVehicle, "DD/MM/YYYY").format("YYYY-MM-DD"),
-                expirationDateDriverLicense: body.vehicle[body.vehicleType].expirationDatePolicyVehicle && moment(body.vehicle[body.vehicleType].expirationDateDriverLicense, "DD/MM/YYYY").format("YYYY-MM-DD"),
+                expirationDateIdentificationVehicle: body.vehicle[body.vehicleType].expirationDateIdentificationVehicle && moment(body.vehicle[body.vehicleType].expirationDateIdentificationVehicle, "DD/MM/YYYY").format("YYYY-MM-DD"),
+                expirationDateDriverLicense: body.vehicle[body.vehicleType].expirationDateDriverLicense && moment(body.vehicle[body.vehicleType].expirationDateDriverLicense, "DD/MM/YYYY").format("YYYY-MM-DD"),
             }
         }
     };

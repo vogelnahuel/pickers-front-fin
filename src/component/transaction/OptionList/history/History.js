@@ -297,12 +297,12 @@ export const History = (props) => {
                     historial.metadata[0] && historial.metadata[0].value.includes("Cancelado")? 
                       <p className="modal-transaction-part-subtitle"> { historial.metadata[0].value } </p>
                     :  historial.metadata[0] && ( historial.metadata[0].value.includes("Motivo") ||  historial.metadata[0].value.includes("Envoltorio") ||  historial.metadata[0].value.includes("Volumen"))?
-                      <p className="modal-transaction-part-subtitle"> {"Cancelado por " +historial.metadata[0].value.toLowerCase() } </p>
+                      <p className="modal-transaction-part-subtitle"> {"Cancelado. Motivo: " +historial.metadata[0].value.toLowerCase() } </p>
                     :  historial.metadata[0] ? 
                     historial.reasonTag.tag=== "state_in_devolution" ? 
-                    <p className="modal-transaction-part-subtitle"> { "En devolución porque "+historial.metadata[0].value.toLowerCase()} </p>
+                    <p className="modal-transaction-part-subtitle"> { "En devolución. Motivo: "+historial.metadata[0].value.toLowerCase()} </p>
                     : 
-                    <p className="modal-transaction-part-subtitle"> {"Cancelado porque " +historial.metadata[0].value.toLowerCase() } </p>
+                    <p className="modal-transaction-part-subtitle"> {"Cancelado. Motivo: " +historial.metadata[0].value.toLowerCase() } </p>
                     :
                     historial.reasonTag.tag==="un_assigning" ? 
                     <p className="modal-transaction-part-subtitle"> Pendiente de asignación </p>
@@ -314,7 +314,7 @@ export const History = (props) => {
                    
                    {FilterTransaction &&  FilterTransaction.transactionHistory.length!==0?<p className="modal-transaction-part-info"> {historial  && ISO8601toDDMMYYYHHMM(historial.createdAt) } </p>:null}
                 
-                  <Link  style={{textDecoration: 'none'}}className="modal-transaction-a" to={historial.curentValue ? `/pickers/${historial.curentValue}` : "#"}> { historial.reasonTag.tag==="assigned_picker"  ? "Ver picker" : ""}   </Link>  
+                  <Link  style={{textDecoration: 'none'}} className="modal-transaction-a" to={historial.curentValue ? `/pickers/${historial.curentValue}` : "#"}> { historial.reasonTag.tag==="assigned_picker"  ? "Ver picker" : ""}   </Link>
                </div>
                   <div className="modal-transaction-part">
                       <img
