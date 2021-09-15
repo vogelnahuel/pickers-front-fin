@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import {actions as transactionActions, selectors as transactionSelectors} from "reducers/transactions";
-import {FilterTransaction} from "pages/transaction/filterTransaction/FilterTransaction"
+import {FilterTransaction} from "pages/transaction/filterTransaction/FilterTransaction";
 import moment from "moment";
 
 const FilterTransactionContainer = (props) => {
