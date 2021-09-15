@@ -4,7 +4,7 @@ import Connector from "../../../../assets/transaction/Connector.svg";
 import Cancel from "../../../../assets/transaction/Cancel.svg";
 import "./history.css";
 import { Form, Field } from "react-final-form";
-import moment from "moment";
+import {ISO8601toDDMMYYYHHMM} from 'utils/iso8601toDDMMYYHHMM'
 import { Link } from "react-router-dom";
 
 
@@ -75,13 +75,7 @@ export const History = (props) => {
   }
 
   
-  const ISO8601toDDMMYYYHHMM = (value) =>{
-    let date = new Date(value);
-    date.setHours(date.getHours() - 3);
-    const DDMMYYYY= moment(date.toISOString().slice(0, 10)).format("DD/MM/YYYY");
-    const dateHHMM = (date.toISOString().slice(11, 16))
-    return DDMMYYYY+" "+dateHHMM;
-  }
+  
 
 
   return (
@@ -164,12 +158,12 @@ export const History = (props) => {
               </div>
             {
              FilterTransaction && FilterTransactionHistory &&  FilterTransactionHistory.length!==0  && FilterTransaction.picker.id!==null ? 
-              <Link target="_blank" rel="noopener noreferrer" to={ FilterTransaction.picker    ? `pickers/${FilterTransaction.picker.id}` : "#"}>
+              <Link className="modal-transaction-button-irApicker-a" target="_blank" rel="noopener noreferrer" to={ FilterTransaction.picker    ? `pickers/${FilterTransaction.picker.id}` : "#"}>
                 <button type="button" className="modal-transaction-button-irApicker">
                     Ir a picker
                 </button>
               </Link>
-              : <Link  to="#" className="modal-transaction-button-irApicker-disabled-a" >
+              : <Link  to="#" className="modal-transaction-button-irApicker-a" >
                   <button type="button" className="modal-transaction-button-irApicker-disabled">
                       Ir a picker
                   </button>
