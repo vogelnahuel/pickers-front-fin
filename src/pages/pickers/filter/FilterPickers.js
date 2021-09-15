@@ -67,7 +67,7 @@ export const FilterPickers = ({ onSubmit, filters,validationSchema}) => {
                                             name="vehicleType"
                                             label="Vehículo"
                                             onChange={form.mutators.setValue}
-                                            placeholder="Seleccioná tipo de vehículo"
+                                            placeholder="Seleccioná un tipo de vehículo"
                                             options={FILTER_PICKERS_OPTIONS}
                                             component={Select}
                                         />

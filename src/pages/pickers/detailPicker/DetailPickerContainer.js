@@ -60,12 +60,18 @@ const DetailPickerContainer = (props) => {
                     yup.object({
                         [values.vehicleType]: yup.object({
                             patent: yup.string().nullable().required("Este campo es requerido."),
-                            expirationDatePolicyVehicle: yup.string().nullable().required("Este campo es requerido.")
-                                .matches(DATE_FORMATS.regex,"Ingresa el formato correcto" ),
-                            expirationDateIdentificationVehicle: yup.string().nullable().required("Este campo es requerido.")
-                                .matches(DATE_FORMATS.regex,"Ingresa el formato correcto" ),
-                            expirationDateDriverLicense: yup.string().nullable().required("Este campo es requerido.")
-                                .matches(DATE_FORMATS.regex,"Ingresa el formato correcto" ),
+                            expirationDatePolicyVehicle: yup.string().nullable()
+                                .required("Este campo es requerido.")
+                                .matches(DATE_FORMATS.regex,"Ingresa el formato correcto" )
+                                .matches(DATE_FORMATS.regexValidCharacter,"No se admiten letras o caracteres especiales"),
+                            expirationDateIdentificationVehicle: yup.string().nullable()
+                                .required("Este campo es requerido.")
+                                .matches(DATE_FORMATS.regex,"Ingresa el formato correcto" )
+                                .matches(DATE_FORMATS.regexValidCharacter,"No se admiten letras o caracteres especiales"),
+                            expirationDateDriverLicense: yup.string().nullable()
+                                .required("Este campo es requerido.")
+                                .matches(DATE_FORMATS.regex,"Ingresa el formato correcto" )
+                                .matches(DATE_FORMATS.regexValidCharacter,"No se admiten letras o caracteres especiales"),
                         })
                     })
             });
