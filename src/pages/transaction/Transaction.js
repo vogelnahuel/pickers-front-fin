@@ -10,12 +10,10 @@ import exportar from "assets/admin/PendingUser/exportar.svg";
 import or from "assets/admin/PendingUser/or.svg";
 import exportDisabledIcon from "assets/transaction/ExportDisabled.svg";
 import orDisabled from "assets/transaction/OrDisabled.svg";
-
 import Close from "assets/transaction/Close.svg";
-
 import api from "middleware/api";
 import stateName from "component/transaction/tableTransaction/statesNames";
-import moment from "moment";
+import {ISO8601toDDMMYYYHHMM} from 'utils/iso8601toDDMMYYHHMM'
 
 
 export const Transaction = ({
@@ -212,7 +210,7 @@ export const Transaction = ({
                                         <p className="modal-transaction-fecha"> 
                                             {" "} 
                                             {FilterSelectedTransaction.transaction 
-                                                ? moment(FilterSelectedTransaction.transaction.maxDeliveryDateTime.substring(0,10)+" "+(parseInt(FilterSelectedTransaction.transaction.maxDeliveryDateTime.substring( 11,13))-3),"YYYY-MM-DD").format("DD/MM/YYYY")+" "+FilterSelectedTransaction.transaction.maxDeliveryDateTime.substring( 11,16)
+                                                ? ISO8601toDDMMYYYHHMM(FilterSelectedTransaction.transaction.maxDeliveryDateTime)
                                                 : ""}{" "} 
                                         </p> 
                                     </div> 
