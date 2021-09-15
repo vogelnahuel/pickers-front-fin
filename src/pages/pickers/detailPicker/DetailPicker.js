@@ -18,7 +18,6 @@ import { FormSpy } from 'react-final-form'
 import moment from "moment";
 import NotificationModal from "component/modal/NotificationModal";
 
-
 export const DetailPicker = (
     {
         isFetching,
