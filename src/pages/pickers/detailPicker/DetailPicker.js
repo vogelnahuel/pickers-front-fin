@@ -244,6 +244,7 @@ export const DetailPicker = (
                                                         component={Input}
                                                         className="Admin-Pickers-input"
                                                         placeholder="día / mes / año"
+                                                        maxLength={10}
                                                     />
                                                 </Col>
                                                 <Col md={4}>
@@ -254,6 +255,7 @@ export const DetailPicker = (
                                                         component={Input}
                                                         className="Admin-Pickers-input"
                                                         placeholder="día / mes / año"
+                                                        maxLength={10}
                                                     />
                                                 </Col>
                                                 <Col md={4}>
@@ -264,6 +266,7 @@ export const DetailPicker = (
                                                         component={Input}
                                                         className="Admin-Pickers-input"
                                                         placeholder="día / mes / año"
+                                                        maxLength={10}
                                                     />
                                                 </Col>
                                             </>
@@ -277,6 +280,7 @@ export const DetailPicker = (
                                                 component={Input}
                                                 className="Admin-Pickers-input"
                                                 placeholder="día / mes / año"
+                                                maxLength={10}
                                             />
                                         </Col>
                                     </Row>
