@@ -63,7 +63,7 @@ export const DetailPicker = (
                         className="mainContainerFlex-picker">
                         <div className="picker-id">
                             { pendingUserAdminPicker.id && (pendingUserAdminPicker.status.id=== 4 || pendingUserAdminPicker.status.id=== 5) && `#${pendingUserAdminPicker.id}`}
-                            <h2 className="subTitle-pending-picker">{pendingUserAdminPicker.name+" "+pendingUserAdminPicker.surname}</h2>
+                            <h2 className="subTitle-pending-picker">{(pendingUserAdminPicker.name+" "+pendingUserAdminPicker.surname).length>25? (pendingUserAdminPicker.name+" "+pendingUserAdminPicker.surname).substring(0,22)+"...": (pendingUserAdminPicker.name+" "+pendingUserAdminPicker.surname)}</h2>
                         </div>
                         {
                             pendingUserAdminPicker.vehicleType==="motorcycle" ?
@@ -87,7 +87,7 @@ export const DetailPicker = (
                             pendingUserAdminPicker.dateOfBirth ?
                                 {
                                     ...pendingUserAdminPicker,
-                                    dateOfBirth: pendingUserAdminPicker.dateOfBirth && moment(pendingUserAdminPicker.dateOfBirth, "YYYY-MM-DD").format("DD/MM/YYYY"),
+                                    dateOfBirth: pendingUserAdminPicker.dateOfBirth && moment(pendingUserAdminPicker.dateOfBirth, "YYYY-MM-DD").format("DD / MM / YYYY"),
                                     expirationDatePolicyPersonal: pendingUserAdminPicker.expirationDatePolicyPersonal && moment(pendingUserAdminPicker.expirationDatePolicyPersonal, "YYYY-MM-DD").format("DD/MM/YYYY"),
                                     vehicle: {
                                         ...pendingUserAdminPicker.vehicle,
@@ -123,6 +123,7 @@ export const DetailPicker = (
                                                 component={Input}
                                                 className="Admin-Pickers-input"
                                                 placeholder="Ingresá el nombre"
+                                                maxLength={49}
                                             />
                                         </Col>
                                         <Col>
@@ -133,6 +134,7 @@ export const DetailPicker = (
                                                 component={Input}
                                                 className="Admin-Pickers-input"
                                                 placeholder="Ingresá el apellido"
+                                                maxLength={49}
                                             />
                                         </Col>
                                         <Col>
@@ -177,7 +179,7 @@ export const DetailPicker = (
                                                 label="Código de área *"
                                                 component={Input}
                                                 className="Admin-Pickers-input"
-                                                placeholder="Ingresá el Código de área *"
+                                                placeholder="Ej: 001"
                                             />
                                         </Col>
                                         <Col>
@@ -187,7 +189,7 @@ export const DetailPicker = (
                                                 label="Teléfono *"
                                                 component={Input}
                                                 className="Admin-Pickers-input"
-                                                placeholder="Ingresá el teléfono"
+                                                placeholder="Ej: 12345678"
                                             />
                                         </Col>
                                     </Row>

@@ -1,8 +1,9 @@
-import React from 'react'
-import { Card } from 'component/admin/DashBoard/Card'
-import {Header} from 'component/admin/Header/Header'
-import {Nav} from 'component/admin/Nav/Nav'
-import 'pages/dashboard/Dashboard.scss'
+import React from 'react';
+import { Card } from 'component/admin/DashBoard/Card';
+import {Header} from 'component/admin/Header/Header';
+import {Nav} from 'component/admin/Nav/Nav';
+import 'pages/dashboard/Dashboard.scss';
+import moment from "moment";
 
 export const DashboardAdmin = ({dashboard,isFetching}) => {
     return (
@@ -27,14 +28,14 @@ export const DashboardAdmin = ({dashboard,isFetching}) => {
                             title="Activas"
                             number={dashboard.activeTransactions}
                             backgroundColor="#63E8A8"
-                            url="/transaction?state=ASSIGNED,IN_PICK_UP,IN_PICK_UP_POINT,PICKED_UP,IN_DELIVERY,IN_DELIVERY_POINT,IN_RETURN_TO_SENDER"
+                            url={`/transaction?state=ASSIGNED,IN_PICK_UP,IN_PICK_UP_POINT,PICKED_UP,IN_DELIVERY,IN_DELIVERY_POINT,IN_RETURN_TO_SENDER&minMinDeliveryDate=${moment().subtract(4,'d').format('YYYY-MM-DD')}&maxMinDeliveryDate=${moment().format("YYYY-MM-DD")}`}
                         />
                         <Card
                             subtitle="Transacciones"
                             title="Pendientes de asignación"
                             number={dashboard.pendingTransactions}
                             backgroundColor="#BCB6FF"
-                            url="/transaction?state=PENDING_ASSIGNMENT"
+                            url={`/transaction?state=PENDING_ASSIGNMENT&minMinDeliveryDate=${moment().subtract(4,'d').format('YYYY-MM-DD')}&maxMinDeliveryDate=${moment().format("YYYY-MM-DD")}`}
                             id="dashboard-card-pending-Assignment"
                         />
                         <Card
@@ -42,7 +43,7 @@ export const DashboardAdmin = ({dashboard,isFetching}) => {
                             title="En alerta"
                             number={dashboard.inAlertTransactions}
                             backgroundColor="#FF8F76"
-                            url="/transaction?inAlert=true"
+                            url={`/transaction?inAlert=true&minMinDeliveryDate=${moment().subtract(4,'d').format('YYYY-MM-DD')}&maxMinDeliveryDate=${moment().format("YYYY-MM-DD")}`}
                         />
                     </div>
                 </div>

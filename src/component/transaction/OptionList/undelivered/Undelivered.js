@@ -80,9 +80,9 @@ const handleClick  = async (e) => {
                    
                     {
                         messages ? messages.map(opcion => (
-                            <div key={opcion.id} className={opcion.id===idSelected ? "modal-undelivered-opc-div modal-undelivered-font-bold" : "modal-undelivered-opc-div"} >
+                            <div  onClick={  ()=>setidSelected(parseInt(opcion.id)) } key={opcion.id} className={opcion.id===idSelected ? "modal-undelivered-opc-div modal-undelivered-font-bold" : "modal-undelivered-opc-div"} >
                              
-                                <p  key={opcion.id} onClick={  ()=>setidSelected(parseInt(opcion.id)) } id={opcion.id} className="modal-undelivered-opc"> {opcion.message}</p>
+                                <p  key={opcion.id}  id={opcion.id} className="modal-undelivered-opc"> {opcion.message}</p>
                                 
                              
                             </div>
