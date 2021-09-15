@@ -300,7 +300,7 @@ export const History = (props) => {
                       <p className="modal-transaction-part-subtitle"> {"Cancelado. Motivo: " +historial.metadata[0].value.toLowerCase() } </p>
                     :  historial.metadata[0] ? 
                     historial.reasonTag.tag=== "state_in_devolution" ? 
-                    <p className="modal-transaction-part-subtitle"> { "En devolución porque "+historial.metadata[0].value.toLowerCase()} </p>
+                    <p className="modal-transaction-part-subtitle"> { "En devolución. Motivo: "+historial.metadata[0].value.toLowerCase()} </p>
                     : 
                     <p className="modal-transaction-part-subtitle"> {"Cancelado. Motivo: " +historial.metadata[0].value.toLowerCase() } </p>
                     :
