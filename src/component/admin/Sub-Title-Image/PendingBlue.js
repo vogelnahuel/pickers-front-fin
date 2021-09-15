@@ -10,7 +10,7 @@ import {selectors as pendingUserAdminPickerSelectors} from "reducers/detailPicke
 import {connect} from "react-redux";
 import {actions as notificationActions} from "reducers/notification";
 
-export const PendingBlue = ({ showNotification, changePage, actualPage, isDirty }) => {
+export const PendingBlue = ({ showNotification, changePage, actualPage, isDirty,isDetail }) => {
     const Historial = useHistory();
     const handleHistory = () => {
         let onClose = ()=>{
@@ -62,13 +62,13 @@ export const PendingBlue = ({ showNotification, changePage, actualPage, isDirty 
                 </div>
                 <div className="FlexPending backGround-pending">
                 </div>
-                <div>
+                {isDetail?<div>
                     <button  className="buttonVolver" onClick={handleHistory}  >
                         <img className="img3" src={volver} alt="volver"/>
                         <p className="Pending-paragraph3">Volver</p>
                     </button>
 
-                </div>
+                </div>:null}
             </div>
         </div>
     )

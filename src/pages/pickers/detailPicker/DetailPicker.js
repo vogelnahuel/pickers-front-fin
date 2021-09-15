@@ -18,6 +18,7 @@ import { FormSpy } from 'react-final-form'
 import moment from "moment";
 import NotificationModal from "component/modal/NotificationModal";
 
+
 export const DetailPicker = (
     {
         isFetching,
@@ -41,7 +42,9 @@ export const DetailPicker = (
             <div className="mainContainerFlex">
                 <Nav/>
                 <div className="pending-container">
-                    <PendingBlue changePage={changePage} actualPage={actualPage}/>
+                    <PendingBlue changePage={changePage} actualPage={actualPage} isDetail={true}/>
+                    <div>
+                </div>
                     <div
                         className="mainContainerFlex-picker">
                         <div className="picker-id">
