@@ -53,7 +53,6 @@ const DetailPickerContainer = (props) => {
                 }),
                 expirationDatePolicyPersonal: yup.string().nullable()
                     .required("Este campo es requerido.")
-                    // .when('$other', (other, schema) => (active ? schema.required("Este campo es requerido.") : schema))
                     .matches(DATE_FORMATS.regex,"Ingresa el formato correcto" ),
                 vehicle:
                     values.vehicleType === 'motorcycle' &&
@@ -61,19 +60,15 @@ const DetailPickerContainer = (props) => {
                         [values.vehicleType]: yup.object({
                             patent: yup.string().nullable()
                                 .required("Este campo es requerido.")
-                                // .when('$other', (other, schema) => (active ? schema.required("Este campo es requerido.") : schema))
                                 .when('$approve', (approve, schema) => (approve ? schema.required("Este campo es requerido.") : schema)),
                             expirationDatePolicyVehicle: yup.string().nullable()
                                 .required("Este campo es requerido.")
-                                // .when('$other', (other, schema) => (active ? schema.required("Este campo es requerido.") : schema))
                                 .matches(DATE_FORMATS.regex,"Ingresa el formato correcto" ),
                             expirationDateIdentificationVehicle: yup.string().nullable()
                                 .required("Este campo es requerido.")
-                                // .when('$other', (other, schema) => (active ? schema.required("Este campo es requerido.") : schema))
                                 .matches(DATE_FORMATS.regex,"Ingresa el formato correcto" ),
                             expirationDateDriverLicense: yup.string().nullable()
                                 .required("Este campo es requerido.")
-                                // .when('$other', (other, schema) => (active ? schema.required("Este campo es requerido.") : schema))
                                 .matches(DATE_FORMATS.regex,"Ingresa el formato correcto"),
                         })
                     })
