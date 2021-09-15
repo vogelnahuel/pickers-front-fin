@@ -6,14 +6,13 @@ export const types = {
     TRANSACTIONS_GET_SUCCESS: `${TRANSACTIONS}_GET_SUCCESS`,
     TRANSACTIONS_GET_MORE_SUCCESS: `${TRANSACTIONS}_GET_MORE_SUCCESS`,
     TRANSACTIONS_SET_EXTRA_FILTERS: `${TRANSACTIONS}_SET_EXTRA_FILTERS`,
-    
+
     TRANSACTIONS_GET_ERROR: `${TRANSACTIONS}_GET_ERROR`,
     TRANSACTIONS_EXPORT_REQUEST: `${TRANSACTIONS}_EXPORT_REQUEST`,
     TRANSACTIONS_EXPORT_SUCCESS: `${TRANSACTIONS}_EXPORT_SUCCESS`,
     TRANSACTIONS_EXPORT_ERROR: `${TRANSACTIONS}_EXPORT_ERROR`,
     TRANSACTIONS_SET_FILTERS: `${TRANSACTIONS}_SET_FILTERS`,
     TRANSACTIONS_EXPORT_ENABLED: `${TRANSACTIONS}_EXPORT_ENABLED`,
-    TRANSACTIONS_CLOSE_EXPORT_MODAL: `${TRANSACTIONS}_CLOSE_EXPORT_MODAL`,
     TRANSACTIONS_OPEN_ERROR_DATE_MODAL: `${TRANSACTIONS}_OPEN_ERROR_DATE_MODAL`,
     TRANSACTIONS_RESET: `${TRANSACTIONS}_RESET`,
 };
@@ -22,7 +21,6 @@ export const INITIAL_STATE = {
     fetching: false,
     exportDisabled: true,
     transactions: [],
-    openExportModal: false,
     openErrorDatePicker:false,
     filters: {},
     filtersExtra:{
@@ -75,9 +73,6 @@ export const actions = {
         type: types.TRANSACTIONS_OPEN_ERROR_DATE_MODAL,
         param
     }),
-    getCloseExportModal: () => ({
-        type: types.TRANSACTIONS_CLOSE_EXPORT_MODAL,
-    }),
     getTransactionsExportRequest: (params) => ({
         type: types.TRANSACTIONS_EXPORT_REQUEST,
         params
@@ -98,7 +93,6 @@ export const selectors = {
     getFiltersExtra:({transactions}) => transactions.filtersExtra,
     getSeeMore:({transactions}) => transactions.seeMore,
     getFiltersExtraSeeMore:({transactions}) => transactions.filtersExtraSeeMore,
-    getOpenExportModal:({transactions}) => transactions.openExportModal,
     getOpenErrorDatePicker:({transactions}) => transactions.openErrorDatePicker,
 };
 
@@ -125,7 +119,7 @@ const reducer =(state = INITIAL_STATE, action = {}) => {
                 },
                 fetching: false,
             };
-            case types.TRANSACTIONS_GET_MORE_SUCCESS:
+        case types.TRANSACTIONS_GET_MORE_SUCCESS:
             return {
                 ...state,
                 transactions: state.transactions.concat(action.transactions.items),
@@ -146,7 +140,7 @@ const reducer =(state = INITIAL_STATE, action = {}) => {
                 ...state,
                 filters: action.filters,
             };
-            case types.TRANSACTIONS_SET_EXTRA_FILTERS:
+        case types.TRANSACTIONS_SET_EXTRA_FILTERS:
             return {
                 ...state,
                 filtersExtra: { ...state.filtersExtra, ...action.filtersExtra },
@@ -164,7 +158,6 @@ const reducer =(state = INITIAL_STATE, action = {}) => {
         case types.TRANSACTIONS_EXPORT_SUCCESS:
             return {
                 ...state,
-                openExportModal: true,
                 fetching: false,
             };
         case types.TRANSACTIONS_EXPORT_ERROR:
@@ -172,12 +165,7 @@ const reducer =(state = INITIAL_STATE, action = {}) => {
                 ...state,
                 fetching: false,
             };
-        case types.TRANSACTIONS_CLOSE_EXPORT_MODAL:
-            return {
-                ...state,
-                openExportModal: false,
-            };
-            case types.TRANSACTIONS_OPEN_ERROR_DATE_MODAL:
+        case types.TRANSACTIONS_OPEN_ERROR_DATE_MODAL:
             return {
                 ...state,
                 openErrorDatePicker: action.param,
