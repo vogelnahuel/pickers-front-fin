@@ -40,9 +40,7 @@ const DetailPickerContainer = (props) => {
             onClose();
         }
     };
-
-   
- 
+    let active = props.pendingUserAdminPicker.status && (props.pendingUserAdminPicker.status.id === 4 || props.pendingUserAdminPicker.status.id === 5 );
 
     const validationSchema =
         yup.lazy((values) => {
@@ -53,19 +51,30 @@ const DetailPickerContainer = (props) => {
                     areaNumber: yup.string().required("Este campo es requerido.").matches(VALIDATION_REGEX.regArea,"Ingresa el formato correcto"),
                     number: yup.string().required("Este campo es requerido.").matches(VALIDATION_REGEX.regTelefono,"Ingresa el formato correcto")
                 }),
-                expirationDatePolicyPersonal: yup.string().nullable().required("Este campo es requerido.")
+                expirationDatePolicyPersonal: yup.string().nullable()
+                    .required("Este campo es requerido.")
+                    // .when('$other', (other, schema) => (active ? schema.required("Este campo es requerido.") : schema))
                     .matches(DATE_FORMATS.regex,"Ingresa el formato correcto" ),
                 vehicle:
                     values.vehicleType === 'motorcycle' &&
                     yup.object({
                         [values.vehicleType]: yup.object({
-                            patent: yup.string().nullable().required("Este campo es requerido."),
-                            expirationDatePolicyVehicle: yup.string().nullable().required("Este campo es requerido.")
+                            patent: yup.string().nullable()
+                                .required("Este campo es requerido.")
+                                // .when('$other', (other, schema) => (active ? schema.required("Este campo es requerido.") : schema))
+                                .when('$approve', (approve, schema) => (approve ? schema.required("Este campo es requerido.") : schema)),
+                            expirationDatePolicyVehicle: yup.string().nullable()
+                                .required("Este campo es requerido.")
+                                // .when('$other', (other, schema) => (active ? schema.required("Este campo es requerido.") : schema))
                                 .matches(DATE_FORMATS.regex,"Ingresa el formato correcto" ),
-                            expirationDateIdentificationVehicle: yup.string().nullable().required("Este campo es requerido.")
+                            expirationDateIdentificationVehicle: yup.string().nullable()
+                                .required("Este campo es requerido.")
+                                // .when('$other', (other, schema) => (active ? schema.required("Este campo es requerido.") : schema))
                                 .matches(DATE_FORMATS.regex,"Ingresa el formato correcto" ),
-                            expirationDateDriverLicense: yup.string().nullable().required("Este campo es requerido.")
-                                .matches(DATE_FORMATS.regex,"Ingresa el formato correcto" ),
+                            expirationDateDriverLicense: yup.string().nullable()
+                                .required("Este campo es requerido.")
+                                // .when('$other', (other, schema) => (active ? schema.required("Este campo es requerido.") : schema))
+                                .matches(DATE_FORMATS.regex,"Ingresa el formato correcto"),
                         })
                     })
             });
@@ -112,7 +121,7 @@ const DetailPickerContainer = (props) => {
             cancel={cancel}
             goBack={()=>historial.goBack()}
             aproveSubmit={aproveSubmit}
-            active={props.pendingUserAdminPicker.status && (props.pendingUserAdminPicker.status.id === 4 || props.pendingUserAdminPicker.status.id === 5 )}
+            active={active}
         />
     );
 };
