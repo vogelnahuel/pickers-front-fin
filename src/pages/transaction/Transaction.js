@@ -14,16 +14,14 @@ import Close from "assets/transaction/Close.svg";
 import api from "middleware/api";
 import stateName from "component/transaction/tableTransaction/statesNames";
 import {ISO8601toDDMMYYYHHMM} from 'utils/iso8601toDDMMYYHHMM'
-
+import NotificationModal from "component/modal/NotificationModal";
 
 export const Transaction = ({
                                 isExportDisabled,
                                 isFetching,
                                 transactions,
-                                openExportModal,
                                 getMoreTransactions,
                                 getTransactionsExportRequest,
-                                closeExportModal,
                                 filters,
                                 seeMore,
                                 filtersExtraSeeMore,
@@ -65,7 +63,6 @@ export const Transaction = ({
         setOpenModalTransaction(false);
     };
 
-//
     return (
         <div className="background-Grey">
             <Header />
@@ -122,30 +119,7 @@ export const Transaction = ({
                             </button>
                         )}
                 </div>
-                {openExportModal && (
-                    <div className="contendor-modal-pending-pickers-aprobar">
-                        <Modal width="750px" height="351px" isOpen={openExportModal} onClose={closeExportModal}>
-                            <div className="container-modal">
-                                <div className="modal-success-title">
-                                    <p className="p-modal-error-title">Exportaste exitosamente</p>
-                                </div>
-                                <div className="modal-error-subtitle">
-                                    <p className="p-modal-error-subtitle">
-                                        El archivo se descargo correctamente
-                                    </p>
-                                    <div className="button-pending-picker-modal">
-                                        <button
-                                            onClick={closeExportModal}
-                                            className="button-modal-aprobar-exito"
-                                        >
-                                            Entendido
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </Modal>
-                    </div>
-                )}
+                <NotificationModal/>
                 {openErrorDatePicker && (
                     <div className="contendor-modal-pending-pickers-aprobar">
                         <Modal width="750px" height="351px" isOpen={openErrorDatePicker} onClose={()=>{setOpenErrorDatePicker(false)}}>

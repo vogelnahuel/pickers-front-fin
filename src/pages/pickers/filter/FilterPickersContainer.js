@@ -17,9 +17,9 @@ const FilterPickersContainer = (props) => {
     const validationSchema =
     yup.lazy(() => {
         return yup.object({
-            name: yup.string().matches(VALIDATION_REGEX.expName,"No se admiten numeros ni caracteres especiales"),
-            identificationNumber:yup.string().matches(VALIDATION_REGEX.expIdentificationNumber,"Solo se admiten numeros"),
-            email:yup.string().email("Ingresa un email valido")
+            name: yup.string().matches(VALIDATION_REGEX.expName,"No se admiten números o caracteres especiales"),
+            identificationNumber:yup.string().matches(VALIDATION_REGEX.expIdentificationNumber,"No se admiten letras o caracteres especiales"),
+            email:yup.string().email("El formato del correo es inválido")
         })
 
     });

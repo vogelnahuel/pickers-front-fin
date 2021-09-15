@@ -31,7 +31,6 @@ const mapStateToProps = (state) => ({
     filtersExtra: transactionSelectors.getFiltersExtra(state),
     seeMore: transactionSelectors.getSeeMore(state),
     filtersExtraSeeMore: transactionSelectors.getFiltersExtraSeeMore(state),
-    openExportModal: transactionSelectors.getOpenExportModal(state),
     openErrorDatePicker:transactionSelectors.getOpenErrorDatePicker(state)
 });
 
@@ -39,9 +38,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     getTransactionsExportRequest: (params) => {
         dispatch(transactionActions.getTransactionsExportRequest(params));
-    },
-    closeExportModal: () => {
-        dispatch(transactionActions.getCloseExportModal());
     },
     getTransactions: (params) => {
         dispatch(transactionActions.getTransactionsRequest(params));
@@ -61,7 +57,6 @@ const mapDispatchToProps = (dispatch) => ({
     setOpenErrorDatePicker: (param) => {
         dispatch(transactionActions.setOpenErrorDatePicker(param));
     },
-   
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TransactionContainer);
