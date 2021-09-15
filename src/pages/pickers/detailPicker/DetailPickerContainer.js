@@ -44,8 +44,8 @@ const DetailPickerContainer = (props) => {
     const validationSchema =
         yup.lazy((values) => {
             return yup.object({
-                name: yup.string().required("Este campo es requerido.").matches(VALIDATION_REGEX.expName,"No se admiten numeros ni caracteres especiales"),
-                surname: yup.string().required("Este campo es requerido.").matches(VALIDATION_REGEX.expName,"No se admiten numeros ni caracteres especiales"),
+                name: yup.string().required("Este campo es requerido.").matches(VALIDATION_REGEX.expName,"No se admiten números ni caracteres especiales"),
+                surname: yup.string().required("Este campo es requerido.").matches(VALIDATION_REGEX.expName,"No se admiten números ni caracteres especiales"),
                 phone: yup.object({
                     areaNumber: yup.string().required("Este campo es requerido."),
                     number: yup.string().required("Este campo es requerido.")
