@@ -302,7 +302,7 @@ export const DetailPicker = (
                                         {/*    </div>*/}
                                         {/*</div>*/}
                                         <div className="pending-admin-picker-button">
-                                            <button type="submit" disabled={!dirty} className="button-submit-subtype">Guardar cambios</button>
+                                            <button type="submit" className="button-submit-subtype">Guardar cambios</button>
                                             <button type="button" onClick={()=> {aproveSubmit(values,goBack)}} disabled={invalid} className="button-submit-active">Aprobar picker</button>
                                         </div>
                                     </>
