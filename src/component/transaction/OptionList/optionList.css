@@ -320,6 +320,7 @@
 @media (min-width:1800px){
     .modal-transaction-optionContainer-scroll{
         height: 418px;
+        margin-left: 17px;
     }
     .modal-transaction-separate-option{
         margin-top: 12px;
