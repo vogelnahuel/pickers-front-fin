@@ -17,9 +17,6 @@ import {Col, Container, Row} from "react-bootstrap";
 import { FormSpy } from 'react-final-form'
 import moment from "moment";
 import NotificationModal from "component/modal/NotificationModal";
-// import volver from 'assets/admin/PendingUser/volver.svg';
-// import { Link } from 'react-router-dom'
-// import {useHistory} from 'react-router-dom';
 
 
 export const DetailPicker = (
@@ -39,25 +36,14 @@ export const DetailPicker = (
         validationSchema
     }) => {
 
-        // const Historial = useHistory();
-
-        // const handleBack = () => { Historial.goBack();
-        // } 
     return (
         <div className="background-Grey">
             <Header/>
             <div className="mainContainerFlex">
                 <Nav/>
                 <div className="pending-container">
-                    {/* <div className="pendingblue-container"> */}
                     <PendingBlue changePage={changePage} actualPage={actualPage} isDetail={true}/>
                     <div>
-                    {/* <button  className="buttonVolver" onClick={handleBack}  >
-                        <img className="img3" src={volver} alt="volver"/>
-                        <p className="Pending-paragraph3">Volver</p>
-                    </button> */}
-
-                {/* </div> */}
                 </div>
                     <div
                         className="mainContainerFlex-picker">
