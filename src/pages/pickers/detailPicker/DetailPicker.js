@@ -162,7 +162,7 @@ export const DetailPicker = (
                                                 label="Código de área *"
                                                 component={Input}
                                                 className="Admin-Pickers-input"
-                                                placeholder="Ingresá el Código de área *"
+                                                placeholder="Ej: 001"
                                             />
                                         </Col>
                                         <Col>
@@ -172,7 +172,7 @@ export const DetailPicker = (
                                                 label="Teléfono *"
                                                 component={Input}
                                                 className="Admin-Pickers-input"
-                                                placeholder="Ingresá el teléfono"
+                                                placeholder="Ej: 12345678"
                                             />
                                         </Col>
                                     </Row>
