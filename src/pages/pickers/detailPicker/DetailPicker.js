@@ -163,6 +163,7 @@ export const DetailPicker = (
                                                 component={Input}
                                                 className="Admin-Pickers-input"
                                                 placeholder="Ej: 001"
+                                                maxLength={5}
                                             />
                                         </Col>
                                         <Col>
@@ -173,6 +174,7 @@ export const DetailPicker = (
                                                 component={Input}
                                                 className="Admin-Pickers-input"
                                                 placeholder="Ej: 12345678"
+                                                maxLength={20}
                                             />
                                         </Col>
                                     </Row>
