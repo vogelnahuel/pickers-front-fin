@@ -11,7 +11,7 @@ import {Input} from "component/inputs/Input";
 import MultipleSelect from "component/inputs/MultipleSelect";
 import {FILTER_TRANSACTION_OPTIONS} from "utils/constants";
 
-export const FilterTransaction = ({ onSubmit, filters, handlerOnChange }) => {
+export const FilterTransaction = ({ onSubmit, filters }) => {
 
     return (
         <Container fluid className="display-filter-transaction">
