@@ -16,6 +16,7 @@
 }
 .modal-transaction-finish-volver-img{
     margin-top: 16px;
+    cursor: pointer;
 }
 .modal-transaction-finish-img{
     position: relative;
@@ -38,7 +39,7 @@
     line-height: 23px;
     text-align: center;
     color: #FFFFFF;
-    margin-top: 45px;
+    margin-top: 105px;
     margin-left: 470px;
 }
 .modal-transaction-finish-container{
@@ -72,10 +73,10 @@
     margin-left: 281px;
 }
 .modal-transaction-finish-inputs{
-    margin-top: 5px;
+    margin-top: 18px;
     display: flex;
     width: 100%;
-    margin-left: 353px   ;
+    margin-left: 353px;
 }
 .modal-transaction-finish-inputs div{
     margin-right: 2.521%;
@@ -105,18 +106,20 @@
     line-height: 23px;
     text-align: center;
     color: #FFFFFF;
-    margin-top: 45px;
+    margin-top: 105px;
     margin-left: 470px;
-
+}
+.flexItems-items-center{
+    margin-left: 90px;
 }
 
-@media (min-width:1310px){
+@media (max-width:1310px){
     .modal-transaction-finish-img{
         margin-top: 15px;
         margin-bottom: 30px;
     }
     .modal-transaction-finish-inputs{
-        margin-top: 18px;
+        margin-top: 15px;
     }
     .modal-transaction-finish-button{
         margin-top: 40px;
@@ -126,25 +129,22 @@
     }
 }
 
-@media (min-width: 1600px) {
-    .modal-transaction-finish-inputs div{
-        margin-right: 7.521%;
-    }
-    .modal-transaction-finish-container p{
-        margin-left: 30vw;
-    }
-    .modal-transaction-finish-container h3{
-        margin-left: 26vw;
-    }
 
-}
 @media (min-width: 1800px) {
-
-    .modal-transaction-finish-container p{
-        margin-left: 32vw;
+    .modal-transaction-finish-img{
+        margin-top: 48px;
     }
-    .modal-transaction-finish-container h3{
-        margin-left: 28vw;
+    .modal-transaction-finish-container p{
+        margin-top: 20px;
+    }
+    .modal-transaction-finish-button{
+        margin-top: 127px;
+    }
+    .modal-transaction-finish-button-click{
+        margin-top: 127px;
+    }
+    .modal-transaction-finish-inputs{
+        margin-top: 25px;
     }
 
 }

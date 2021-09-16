@@ -4,7 +4,7 @@ import Connector from "../../../../assets/transaction/Connector.svg";
 import Cancel from "../../../../assets/transaction/Cancel.svg";
 import "./history.css";
 import { Form, Field } from "react-final-form";
-import moment from "moment";
+import {ISO8601toDDMMYYYHHMM} from 'utils/iso8601toDDMMYYHHMM'
 import { Link } from "react-router-dom";
 
 
@@ -17,6 +17,7 @@ export const History = (props) => {
 
   let FilterTransactionHistoryReverse =  FilterTransactionHistory ? JSON.parse(JSON.stringify(FilterTransactionHistory)) : [];
   FilterTransactionHistoryReverse = FilterTransactionHistoryReverse.reverse();
+
 
   const convertirNombre = (tag) => {
 
@@ -37,7 +38,7 @@ export const History = (props) => {
         tag  = "En retiro"
       break;
       case "state_in_pickup_point":
-        tag  = "En lugar de retiro"
+        tag  = "En punto de retiro"
       break;
       case "state_in_picked_up":
         tag  = "Retirado"
@@ -73,6 +74,9 @@ export const History = (props) => {
     return tag
   }
 
+  
+  
+
 
   return (
     <div className="modal-transaction-optionContainer-scroll">
@@ -80,12 +84,13 @@ export const History = (props) => {
         onSubmit={() => {}}
         initialValues={{
           //nroTransaccion: FilterTransaction.transaction ? FilterTransaction.transaction.id : 0,
-          PickerId: FilterTransaction.picker ? FilterTransaction.picker.id : "",
-          Picker: FilterTransaction.picker ? FilterTransaction.picker.name+ ' ' +FilterTransaction.picker.surname : "",
-          Telefono: FilterTransaction.picker ? FilterTransaction.picker.phone : "",
+          codArea:FilterTransaction.picker && FilterTransaction.picker.phone?FilterTransaction.picker.phone.areaNumber:"",
+          PickerId: FilterTransaction.picker && FilterTransaction.picker.id!==null? FilterTransaction.picker.id  : "Sin asignar",
+          Picker: FilterTransaction.picker && FilterTransaction.picker.name!==null ? FilterTransaction.picker.name+ ' ' +FilterTransaction.picker.surname : "Sin asignar",
+          Telefono: FilterTransaction.picker && FilterTransaction.picker.phone ? FilterTransaction.picker.phone.number:"",
           dirEntrega : FilterTransaction.destination ? FilterTransaction.destination.formattedAddress : "" ,
           dirRetiro : FilterTransaction.origin ? FilterTransaction.origin.formattedAddress : "",
-          Retailer: "pickit",
+          Retailer: FilterTransaction.seller ? FilterTransaction.seller.name  : "",
         }}
       >
         {({ handleSumbit }) => (
@@ -93,64 +98,82 @@ export const History = (props) => {
             <div className="modal-transaction-inputs">
               <div>
                 <div className="filter-transaction-div-label">
-                  <label className="label-filter-transaction">Picker </label>
+                <label  className={FilterTransaction &&FilterTransaction.transaction&&  (FilterTransaction.transaction.state.name==="Sin asignar" || FilterTransaction.picker.id===null)? "label-Admin-Pickers readonly-transaction" : "label-Admin-Pickers readonly"}> Id de Picker </label>
                 </div>
                 <div className="modal-transaction-input">
                   <Field
+                    className={FilterTransaction && FilterTransaction.transaction && (FilterTransaction.transaction.state.name==="Sin asignar" || FilterTransaction.picker.id===null)? "Admin-Pickers-input readonly-transaction" : "Admin-Pickers-input readonly"}
                     name="PickerId"
                     component="input"
-                    placeholder="Ingresá el número"
+                    placeholder={FilterTransaction && FilterTransactionHistory &&  FilterTransactionHistory.length===0 ? "Sin asignar" : ""}
+                    disabled={true}
                   />
                 </div>
               </div>
               <div>
                 <div className="filter-transaction-div-label">
-                  <label className="label-filter-transaction">
+                <label className={FilterTransaction && FilterTransaction.transaction &&  (FilterTransaction.transaction.state.name==="Sin asignar" || FilterTransaction.picker.id===null)? "label-Admin-Pickers readonly-transaction" : "label-Admin-Pickers readonly"}>
                     Nombre y apellido
                   </label>
                 </div>
                 <div className="modal-transaction-input">
                   <Field
+                   className={FilterTransaction && FilterTransaction.transaction && (FilterTransaction.transaction.state.name==="Sin asignar" || FilterTransaction.picker.id===null)? "Admin-Pickers-input readonly-transaction" : "Admin-Pickers-input readonly"}
                     name="Picker"
                     component="input"
-                    placeholder="Ingresá el número de picker"
+                    placeholder={FilterTransaction && FilterTransactionHistory &&  FilterTransactionHistory.length===0 ? "Sin asignar" : ""}
+                    disabled={true}
                   />
                 </div>
               </div>
 
               <div>
                 <div className="filter-transaction-div-label">
-                  <label className="label-filter-transaction">Código de área * </label>
+                <label className={FilterTransaction && FilterTransaction.transaction &&  (FilterTransaction.transaction.state.name==="Sin asignar" || FilterTransaction.picker.id===null)? "label-Admin-Pickers readonly-transaction" : "label-Admin-Pickers readonly"}>Código de área </label>
                 </div>
                 <div className="modal-transaction-input-tel" id="modal-transaction-input-tel">
                   <Field
                     name="codArea"
                     component="input"
-                    placeholder="Seleccioná el cod area"
+                    className={FilterTransaction && FilterTransaction.transaction && (FilterTransaction.transaction.state.name==="Sin asignar" || FilterTransaction.picker.id===null)? "Admin-Pickers-input readonly-transaction" : "Admin-Pickers-input readonly"}
+                    placeholder="-"
+                    disabled={true}
                   />
                 </div>
               </div>
 
               <div>
                 <div className="filter-transaction-div-label">
-                  <label className="label-filter-transaction">Teléfono </label>
+                <label className={FilterTransaction && FilterTransaction.transaction && (FilterTransaction.transaction.state.name==="Sin asignar" || FilterTransaction.picker.id===null)? "label-Admin-Pickers readonly-transaction" : "label-Admin-Pickers readonly"}>Teléfono </label>
                 </div>
                 <div className="modal-transaction-input-tel" id="modal-transaction-input-tel2">
                   <Field
                     name="Telefono"
                     component="input"
-                    placeholder="Seleccioná el telefono"
+                    placeholder="-"
+                    disabled={true}
+                    className={FilterTransaction &&  FilterTransaction.transaction && (FilterTransaction.transaction.state.name==="Sin asignar" || FilterTransaction.picker.id===null)? "Admin-Pickers-input readonly-transaction" : "Admin-Pickers-input readonly"}
                   />
                 </div>
               </div>
-
-              <Link target="_blank" rel="noopener noreferrer" to={ FilterTransaction.picker && FilterTransaction.picker.id!==null ? `activeUserAdminpicker/${FilterTransaction.picker.id}` : "#"}><button type="button" className="modal-transaction-button-irApicker">
-              Ir a picker
-            </button></Link>
+            {
+             FilterTransaction && FilterTransactionHistory &&  FilterTransactionHistory.length!==0  && FilterTransaction.picker.id!==null ? 
+              <Link className="modal-transaction-button-irApicker-a" target="_blank" rel="noopener noreferrer" to={ FilterTransaction.picker    ? `pickers/${FilterTransaction.picker.id}` : "#"}>
+                <button type="button" className="modal-transaction-button-irApicker">
+                    Ir a picker
+                </button>
+              </Link>
+              : <Link  to="#" className="modal-transaction-button-irApicker-a" >
+                  <button type="button" className="modal-transaction-button-irApicker-disabled">
+                      Ir a picker
+                  </button>
+                </Link>
+            }
+              
               <div>
                 <div className="filter-transaction-div-label">
-                  <label className="label-filter-transaction">
-                    Dirección de retiro{" "}
+                <label className="label-Admin-Pickers readonly">
+                    Dirección de retiro
                   </label>
                 </div>
                 <div className="modal-transaction-input">
@@ -158,13 +181,15 @@ export const History = (props) => {
                     name="dirRetiro"
                     component="input"
                     placeholder="Seleccioná el estado"
+                    disabled={true}
+                    className="Admin-Pickers-input readonly"
                   />
                 </div>
               </div>
               <div>
                 <div className="filter-transaction-div-label">
-                  <label className="label-filter-transaction">
-                    Dirección de entrega{" "}
+                <label className="label-Admin-Pickers readonly">
+                    Dirección de entrega
                   </label>
                 </div>
                 <div className="modal-transaction-input">
@@ -172,18 +197,22 @@ export const History = (props) => {
                     name="dirEntrega"
                     component="input"
                     placeholder="Seleccioná el estado"
+                    className="Admin-Pickers-input readonly"
+                    disabled={true}
                   />
                 </div>
               </div>
               <div>
                 <div className="filter-transaction-div-label">
-                  <label className="label-filter-transaction">Retailer </label>
+                  <label className="label-Admin-Pickers readonly">Retailer </label>
                 </div>
                 <div className="modal-transaction-input">
                   <Field
                     name="Retailer"
                     component="input"
                     placeholder="Seleccioná el estado"
+                    className="Admin-Pickers-input readonly"
+                    disabled={true}
                   />
                 </div>
               </div>
@@ -207,7 +236,7 @@ export const History = (props) => {
               <div className="modal-transaction-inputs">
                     <div>
                         <div className="filter-transaction-div-label">
-                          <label className="label-filter-transaction">
+                          <label className="label-Admin-Pickers readonly">
                           Nombre y apellido
                           </label>
                         </div>
@@ -217,12 +246,14 @@ export const History = (props) => {
                             name="NomyApe"
                             component="input"
                             placeholder="Ingresá el nombre"
+                            className="Admin-Pickers-input readonly"
+                            disabled={true}
                           />
                         </div>
                     </div>
                     <div>
                         <div className="filter-transaction-div-label">
-                          <label className="label-filter-transaction">
+                          <label className="label-Admin-Pickers readonly">
                               Teléfono
                           </label>
                         </div>
@@ -232,6 +263,8 @@ export const History = (props) => {
                             name="TelefonoConFinal"
                             component="input"
                             placeholder="Ingresá el telefono"
+                            className="Admin-Pickers-input readonly"
+                            disabled={true}
                           />
                         </div>
                     </div>
@@ -253,18 +286,35 @@ export const History = (props) => {
               <div key={historial.id} >{historial.reasonTag.tag!=="state_assigned"?<>
                <div className="modal-transaction-part" key={historial.id}>
                  {
-                    historial.reasonTag.tag==="state_pickup_cancelled_temporally" || historial.reasonTag.tag==="state_pickup_cancelled_permanently"  ?
+                    historial.reasonTag.tag==="state_pickup_cancelled_temporally" || historial.reasonTag.tag==="state_pickup_cancelled_permanently" || historial.reasonTag.tag==="state_lost"  ?
                     <img src={Cancel} alt="Cancel" className="modal-transaction-img-okey" />
                      : 
                      <img src={Okey} alt="okey" className="modal-transaction-img-okey" />
                    
                  }
+                 
+                  {
+                    historial.metadata[0] && historial.metadata[0].value.includes("Cancelado")? 
+                      <p className="modal-transaction-part-subtitle"> { historial.metadata[0].value } </p>
+                    :  historial.metadata[0] && ( historial.metadata[0].value.includes("Motivo") ||  historial.metadata[0].value.includes("Envoltorio") ||  historial.metadata[0].value.includes("Volumen"))?
+                      <p className="modal-transaction-part-subtitle"> {"Cancelado. Motivo: " +historial.metadata[0].value.toLowerCase() } </p>
+                    :  historial.metadata[0] ? 
+                    historial.reasonTag.tag=== "state_in_devolution" ? 
+                    <p className="modal-transaction-part-subtitle"> { "En devolución. Motivo: "+historial.metadata[0].value.toLowerCase()} </p>
+                    : 
+                    <p className="modal-transaction-part-subtitle"> {"Cancelado. Motivo: " +historial.metadata[0].value.toLowerCase() } </p>
+                    :
+                    historial.reasonTag.tag==="un_assigning" ? 
+                    <p className="modal-transaction-part-subtitle"> Pendiente de asignación </p>
+                   : 
+                   <p className="modal-transaction-part-subtitle"> { convertirNombre(historial.reasonTag.tag) } </p>
+                  }
+       
                    
-                   <p className="modal-transaction-part-subtitle"> { convertirNombre(historial.reasonTag.tag) } {historial.metadata[0]? "porque "+historial.metadata[0].value:null} </p>
                    
-                   {FilterTransaction.transactionHistory.length!==0?<p className="modal-transaction-part-info"> {moment(historial.createdAt.substring(0,10),"YYYY-MM-DD").format("DD/MM/YYYY")}  {historial.createdAt.substring(11,19)} </p>:null}
+                   {FilterTransaction &&  FilterTransaction.transactionHistory.length!==0?<p className="modal-transaction-part-info"> {historial  && ISO8601toDDMMYYYHHMM(historial.createdAt) } </p>:null}
                 
-                  <Link  style={{textDecoration: 'none'}}className="modal-transaction-a" to={historial.curentValue ? `activeUserAdminpicker/${historial.curentValue}` : "#"}> { historial.reasonTag.tag==="assigned_picker"  ? "Ver Picker" : ""}   </Link>  
+                  <Link  style={{textDecoration: 'none'}} className="modal-transaction-a" to={historial.curentValue ? `/pickers/${historial.curentValue}` : "#"}> { historial.reasonTag.tag==="assigned_picker"  ? "Ver picker" : ""}   </Link>
                </div>
                   <div className="modal-transaction-part">
                       <img
@@ -278,8 +328,10 @@ export const History = (props) => {
           }
           <div className="modal-transaction-part">
               <img src={Okey} alt="okey" className="modal-transaction-img-okey" />
-              <p className="modal-transaction-part-subtitle">Pendiente</p>
-              {FilterTransaction.transactionHistory &&FilterTransaction.transactionHistory.length!==0 ?<p className="modal-transaction-part-info">{ FilterTransaction.transactionHistory ? moment(FilterTransaction.transactionHistory[0].createdAt.substring(0,10),"YYYY-MM-DD").format("DD/MM/YYYY") : ""}  {FilterTransaction.transactionHistory ? FilterTransaction.transactionHistory[0].createdAt.substring(11,19) : ""}  </p>:null}
+           
+              
+              <p className="modal-transaction-part-subtitle">Pendiente de asignación</p>
+                <p className="modal-transaction-part-info">{ Object.keys(FilterTransaction).length !== 0 && FilterTransaction.transaction ?   ISO8601toDDMMYYYHHMM(FilterTransaction.transaction.minDeliveryDateTime)  : ""}     </p>
             </div>
             <div className="modal-transaction-part">
                       <img
@@ -292,7 +344,7 @@ export const History = (props) => {
             <div className="modal-transaction-part">
               <img src={Okey} alt="okey" className="modal-transaction-img-okey" />
               <p className="modal-transaction-part-subtitle">Creación</p>
-              {FilterTransaction.transactionHistory &&FilterTransaction.transactionHistory.length!==0 ?<p className="modal-transaction-part-info">{ FilterTransaction.transactionHistory ? moment(FilterTransaction.transactionHistory[0].createdAt.substring(0,10),"YYYY-MM-DD").format("DD/MM/YYYY") : ""}  {FilterTransaction.transactionHistory ? FilterTransaction.transactionHistory[0].createdAt.substring(11,19) : ""}  </p>:null}
+                <p className="modal-transaction-part-info">{ Object.keys(FilterTransaction).length !== 0 && FilterTransaction.transaction ? ISO8601toDDMMYYYHHMM(FilterTransaction.transaction.createdAt)  : ""}   </p>
             </div>
             
           </section>

@@ -6,7 +6,7 @@ import { ReasonsCanceled } from './reasonsCanceled/ReasonsCanceled'
 import { History } from './history/History.js'
 import Reload from '../../../assets/transaction/Reload.svg'
 //import {useDispatch} from 'react-redux'
-import api from '../../../config/api'
+import api from '../../../middleware/api'
 import { DniFinish } from './dniFinish/DniFinish'
 import { Undelivered } from './undelivered/Undelivered'
 //import { changeTest } from '../../../actions/transactionAction'
@@ -23,6 +23,7 @@ export const OptionList = (props) => {
     const [finishModal, setfinishModal] = useState(false);
     const [dniFinish, setdniFinish] = useState(false)
     const [undelivered, setundelivered] = useState(false)
+    const [msgSelected, setmsgSelected] = useState("")
 
     const [reasonId, setreasonId] = useState({})
 
@@ -164,6 +165,7 @@ export const OptionList = (props) => {
                                         setreasonCancelConfirm={setreasonCancelConfirm}
                                         setreasonId={setreasonId}
                                         sethistory={sethistory}
+                                        setmsgSelected={setmsgSelected}
                                         FilterSelectedTransaction={FilterSelectedTransaction}
                                         />
                                     </div>
@@ -180,6 +182,7 @@ export const OptionList = (props) => {
                           reasonId={reasonId}
                           setreasonCancelConfirm={setreasonCancelConfirm}
                           FilterSelectedTransaction={FilterSelectedTransaction}
+                          msgSelected={msgSelected}
                          />
                         </>
                         : null

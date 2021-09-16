@@ -9,10 +9,11 @@ import { Fragment } from "react";
 
 /**** muestro los campos con sus labels y tambien los componentes pasados */
 export const Part = (props) => {
+
   const variables = props.inputsPart;
   const componentes = props.ComponentesPart;
-  const dataPicker = props.data;
 
+ 
   
   
   const id =useParams().id;
@@ -58,7 +59,7 @@ export const Part = (props) => {
     
     if(document.querySelector('#fechaVecSeguroAccidente')!==null){
        
-      if(Informacion.vehicleTypeId===2){
+      if(Informacion.vehicleType===2){
        
         setObjFechas({
           ...ObjFechas,
@@ -74,6 +75,7 @@ export const Part = (props) => {
 
   const handleChange = (e) => {
 
+    
   
 
     if(window.location.pathname===`/pendingUserAdminpicker/${id}`){
@@ -89,15 +91,16 @@ export const Part = (props) => {
   
 
     if (e.target.name === "nombre") {
+      Informacion.name=e.target.value;
       setInformacion({
         ...Informacion,
-        name: e.target.value,
       });
     }
+    console.log(Informacion)
     if (e.target.name === "apellido") {
+      Informacion.surname=e.target.value;
       setInformacion({
-        ...Informacion,
-        surname: e.target.value,
+        ...Informacion
       });
     }
 
@@ -107,10 +110,16 @@ export const Part = (props) => {
         dateOfBirth: e.target.value,
       });
     }
-    if (e.target.name === "telefono") {
+    if (e.target.name === "CodArea") {
+      Informacion.phone.areaNumber=e.target.value;
       setInformacion({
         ...Informacion,
-        phoneNumber: e.target.value,
+      });
+    }
+    if (e.target.name === "telefono") {
+      Informacion.phone.number=e.target.value;
+      setInformacion({
+        ...Informacion,
       });
     }
 
@@ -125,6 +134,14 @@ export const Part = (props) => {
         ...Informacion,
         bankName: e.target.value,
       });
+    }
+    if (e.target.name === "PatenteDelVehiculo") {
+
+      Informacion.vehicle.motorcycle.patent=e.target.value;
+      setInformacion({
+        ...Informacion, 
+      }
+      );
     }
 
     if (e.target.name === "vencimientoLicencia") {
@@ -156,10 +173,9 @@ export const Part = (props) => {
           e.target.value = e.target.value + "/";
         }
       }
-      
+      Informacion.vehicle.motorcycle.expirationDateDriverLicense= e.target.value;
       setInformacion({
         ...Informacion,
-        expirationDateDriverLicense: e.target.value,
       });
     }
     if (e.target.name === "fechaVecCel") {
@@ -193,10 +209,9 @@ export const Part = (props) => {
       }
 
       
-
+      Informacion.vehicle.motorcycle.expirationDateIdentificationVehicle= e.target.value;
       setInformacion({
         ...Informacion,
-        expirationDateIdentificationCar: e.target.value,
       });
     }
     if (e.target.name === "fechaVecSeguroAuto") {
@@ -226,9 +241,10 @@ export const Part = (props) => {
           e.target.value = e.target.value + "/";
         }
       }
+      Informacion.vehicle.motorcycle.expirationDatePolicyVehicle= e.target.value;
+
       setInformacion({
         ...Informacion,
-        expirationDatePolicyVehicle: e.target.value,
       });
     }
     if (e.target.name === "fechaVecSeguroAccidente") {
@@ -260,15 +276,16 @@ export const Part = (props) => {
           e.target.value = e.target.value + "/";
         }
       }
-      
+            
+      Informacion.expirationDatePolicyPersonal= e.target.value;
      
       setInformacion({
         ...Informacion,
-        expirationDatePolicyPersonal: e.target.value,
       });
-      console.log(Informacion)
+    
 
     }
+    if(e.target.name==="")
 
     validaciones(e);
 
@@ -289,6 +306,7 @@ export const Part = (props) => {
     const ex_regular_nomyape =/^[a-zA-ZÀ-ÿ\u00f1\u00d1]*(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/g;;
     const ex_regular_fecha = /^(0[1-9]|[1-2]\d|3[01])(\/)(0[1-9]|1[012])\2(\d{4})$/
     const ex_regular_telefono =/^\(?\d{2,3}\)?[\s.-]?\d{3,4}[\s.-]?\d{4}$/;
+    const ex_regular_patente= /[a-zA-Z][\s.-][0-9]/;
     
   
     if(ErrorMenorEdad!==true){
@@ -447,6 +465,25 @@ export const Part = (props) => {
 
       
     }
+    if(e.target.name==="PatenteDelVehiculo" && e.target.value !== "" && ex_regular_patente.test(e.target.value) !== true )
+    {
+      if(window.location.pathname===`/pendingUserAdminpicker/${id}`)
+      setdisabledButtonAprobarPicker(true);
+
+      if(window.location.pathname===`/activeUserAdminpicker/${id}`)
+      setdisableButtons(false)
+
+      e.target.classList.add('inputError-part');
+      e.target.parentNode.previousSibling.firstChild.classList.add('labelError-part-top');
+
+      const div = document.createElement('div');
+      div.innerHTML = `
+        <p class="labelError-part-bottom"> ${"Ingrese una patente valida"} </p>
+      `
+      e.target.parentNode.appendChild(div);
+
+      
+    }
 
    if( window.location.pathname===`/pendingUserAdminpicker/${id}` && document.querySelector('.inputError-part')===null){
     setdisabledButtonAprobarPicker(false);
@@ -591,7 +628,7 @@ const eliminarDivs = ()  => {
     
     if(deleteDivs.parentNode.parentNode.parentNode.nextSibling)
     deleteDivs.parentNode.parentNode.parentNode.nextSibling.remove()
-    for(let i = 0 ; i < 3 ; i ++){
+    for(let i = 0 ; i < 4 ; i ++){
       if(deleteDivs.parentNode.parentNode.parentNode.parentNode  && (deleteDivs.parentNode.parentNode.parentNode.parentNode.firstChild!==deleteDivs.parentNode.parentNode.parentNode.parentNode.lastChild) ){
         deleteDivs.parentNode.parentNode.parentNode.parentNode.firstChild.remove()
       
@@ -610,7 +647,7 @@ const eliminarDivs = ()  => {
       { variables.map((variable) => (
         <Fragment key={variable.id}>
 
-                {  dataPicker.vehicleTypeId === 2 &&
+                {  Informacion.vehicleType === "bicycle" &&
                    variable.name === "fechaVecSeguroAccidente" ? (
                     <div
                       key={props.clave + "alone"}
@@ -629,8 +666,8 @@ const eliminarDivs = ()  => {
                           <div>
                             <input
                               value={
-                                Informacion.expirationDatePolicyPersonal
-                                  ? Informacion.expirationDatePolicyPersonal
+                                    Informacion.vehicle
+                                  ? Informacion.vehicle.bicycle.expirationDatePolicyPersonal
                                   : ""
                               }
                               onChange={(e) => {
@@ -666,7 +703,11 @@ const eliminarDivs = ()  => {
                           </div>
                           <div className="admin-picker-part-tel">
                             <input
-                              value=""
+                              value={  
+                                Informacion.phone
+                                ? Informacion.phone.areaNumber
+                                : ""
+                              }
                               onChange={(e) => {
                                 handleChange(e, variable.id);
                               }}
@@ -696,7 +737,7 @@ const eliminarDivs = ()  => {
                           <div className="admin-picker-part-tel">
                             <input
                               value={
-                                Informacion.phoneNumber ? Informacion.phoneNumber : ""
+                                Informacion.phone ? Informacion.phone.number : ""
                               }
                               onChange={(e) => {
                                 handleChange(e, variable.id);
@@ -719,14 +760,15 @@ const eliminarDivs = ()  => {
                                   variable.type !== "" ? (
                                     <>
                                       <div className="flota-part-div-label">
-                                        {dataPicker.vehicleTypeId === 2 &&
+                                        {Informacion.vehicleType === "bicycle" &&
                                         variable.name === "fechaVecSeguroAccidente" ? (
                                           <>
                                         
                                           </>
-                                        ) : dataPicker.vehicleTypeId === 2 &&
+                                        ) : Informacion.vehicleType === "bicycle" &&
                                           (variable.name === "vencimientoLicencia" ||
                                             variable.name === "fechaVecCel" ||
+                                            variable.name === "PatenteDelVehiculo"||
                                             variable.name === "fechaVecSeguroAuto") ? (
                                           <></>
                                         ) : 
@@ -821,7 +863,7 @@ const eliminarDivs = ()  => {
 
                                         {variable.name === "nombreBanco" && (
                                           <input
-                                            value={Informacion.bankName ? Informacion.bankName : ""}
+                                            value={Informacion.accountingData ? Informacion.accountingData.bankName : ""}
                                             onChange={(e) => {
                                               handleChange(e, variable.id);
                                             }}
@@ -837,8 +879,8 @@ const eliminarDivs = ()  => {
                                           <input
                                             readOnly
                                             value={
-                                              Informacion.bankIdentifier
-                                                ? Informacion.bankIdentifier
+                                              Informacion.accountingData
+                                                ? Informacion.accountingData.bankIdentifier
                                                 : ""
                                             }
                                             onChange={(e) => {
@@ -855,7 +897,7 @@ const eliminarDivs = ()  => {
                                           <input
                                             readOnly
                                             value={
-                                              Informacion.fiscalNumber ? Informacion.fiscalNumber : ""
+                                              Informacion.accountingData? Informacion.accountingData.fiscalNumber : ""
                                             }
                                             onChange={(e) => {
                                               handleChange(e, variable.id);
@@ -867,12 +909,12 @@ const eliminarDivs = ()  => {
                                             placeholder={variable.placeholder}
                                           />
                                         )}
-                                        {dataPicker.vehicleTypeId === 1 ? (
+                                        {Informacion.vehicleType === "motorcycle" ? (
                                                   <>
                                                     { variable.name === "PatenteDelVehiculo" ? 
                                                        <input
                                                        value={
-                                                           ""
+                                                        Informacion.vehicle?.motorcycle.patent || ""
                                                        }
                                                        onChange={(e) => {
                                                          handleChange(e, variable.id);
@@ -889,9 +931,7 @@ const eliminarDivs = ()  => {
                                                         {variable.name === "vencimientoLicencia" && (
                                                           <input
                                                             value={
-                                                              Informacion.expirationDateDriverLicense
-                                                                ? Informacion.expirationDateDriverLicense
-                                                                : ""
+                                                                   Informacion.vehicle?.motorcycle.expirationDateDriverLicense || ""
                                                             }
                                                             onChange={(e) => {
                                                               handleChange(e, variable.id);
@@ -907,9 +947,8 @@ const eliminarDivs = ()  => {
                                                         {variable.name === "fechaVecCel" && (
                                                           <input
                                                             value={
-                                                              Informacion.expirationDateIdentificationCar
-                                                                ? Informacion.expirationDateIdentificationCar
-                                                                : ""
+                                                                  Informacion.vehicle?.motorcycle.expirationDateIdentificationVehicle || ""
+                                                        
                                                             }
                                                             onChange={(e) => {
                                                               handleChange(e, variable.id);
@@ -926,9 +965,7 @@ const eliminarDivs = ()  => {
                                                           <input
                                                             key={variable.id}
                                                             value={
-                                                              Informacion.expirationDatePolicyVehicle
-                                                                ? Informacion.expirationDatePolicyVehicle
-                                                                : ""
+                                                              Informacion.vehicle?.motorcycle.expirationDatePolicyVehicle || ""
                                                             }
                                                             onChange={(e) => {
                                                               handleChange(e, variable.id);
@@ -944,9 +981,7 @@ const eliminarDivs = ()  => {
                                                         {variable.name === "fechaVecSeguroAccidente" && (
                                                           <input
                                                             value={
-                                                              Informacion.expirationDatePolicyPersonal
-                                                                ? Informacion.expirationDatePolicyPersonal
-                                                                : ""
+                                                              Informacion.expirationDatePolicyPersonal || ""
                                                             }
                                                             onChange={(e) => {
                                                               handleChange(e, variable.id);

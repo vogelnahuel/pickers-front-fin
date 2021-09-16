@@ -1,14 +1,15 @@
-import React from 'react'
+import React,{useState} from 'react'
 
 import volver from '../../../../assets/admin/PendingUser/volver.svg'
 import Card from '../../../../assets/transaction/Card.svg'
 import {Form,Field} from 'react-final-form'
 import './dniFinish.css'
-import api from '../../../../config/api'
+import api from '../../../../middleware/api'
 
 
 export const DniFinish = (props) => {
-
+    
+    const [dniValid, setdniValid] = useState(false);
     const setdniFinish = props.setdniFinish;
     const setfinishModal = props.setfinishModal;
     const FilterSelectedTransaction=props.FilterSelectedTransaction
@@ -31,7 +32,16 @@ export const DniFinish = (props) => {
          }, 600);
         
 }
-
+const handleChange = (value)=>{
+ 
+  const expRegDni = /^[\d]{1,2}\.?[\d]{3,3}\.?[\d]{3,3}$/
+    if(expRegDni.test(Number(value.dni))  && Number(value.dni)!==0 ){
+        setdniValid(true)
+    }else{
+        setdniValid(false)
+    }
+    
+}
 
     
     return (
@@ -47,7 +57,9 @@ export const DniFinish = (props) => {
             
                  <Form
                         onSubmit={()=>{}}
-                     
+                        validate={
+                            handleChange
+                        }
                         >
                         {({ handleSumbit = async(e) =>{
                             e.preventDefault()
@@ -62,21 +74,25 @@ export const DniFinish = (props) => {
                         <form  onSubmit={handleSumbit}>
                             <div className="modal-input-dni-finish">
                                 <div className="filter-transaction-div-label">
-                                    <label htmlFor="dni">Dni *</label>
+                                    <label htmlFor="dni" className="label-Admin-Pickers">DNI *</label>
                                 </div>
                                 <Field
                                 name="dni"
                                 component="input"
-                                placeholder="45896587"
+                                placeholder="Ingresá el DNI"
+                                className="Admin-Pickers-input"
                                 id="dni"
                                 >
                                 </Field>
                             </div>
-                            {document.getElementById("dni") && document.getElementById("dni").value!==""?<div>
-                                <button  className="modal-dni-finish-button-habilitado">Finalizarla</button>
-                            </div>:<div>
+                            {dniValid ? 
+                            <div>
+                                <button  className="modal-dni-finish-button-active">Finalizarla</button>
+                            </div>
+                            :<div>
                                 <button disabled={true} className="modal-dni-finish-button">Finalizarla</button>
-                            </div>}
+                            </div>
+                            }
 
                         </form>
                         )}

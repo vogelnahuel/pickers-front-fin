@@ -79,6 +79,40 @@
     margin-top: 42px;
     margin-left: 471px;
 }
+.modal-transaction-reasonsCanceledConfirm-subtitle-collection{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 25px;
+    letter-spacing: 0.01em;
+    color: #2D2D2D;
+    margin-left: 414px;
+    margin-bottom: 20px;
+}
+.modal-transaction-reasonsCanceledConfirm-p-collection{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 21px;
+    letter-spacing: 0.005em;
+    color: #4D4D4D;
+    margin-left: 310px;
+    margin-bottom: 1vh;
+    margin-top: 25px;
+}
+.modal-transaction-reasonsCanceledConfirm-p2-collection{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 21px;
+    letter-spacing: 0.005em;
+    color: #4D4D4D;
+    margin-left: 450px;
+    margin-top: 20px;
+}
 
 @media (min-width:1310px){
     .modal-transaction-reasonsCanceledConfirm-img{
@@ -90,58 +124,32 @@
     }
 }
 
-@media (min-width: 1600px) {
-   
-    .modal-transaction-reasonsCanceledConfirm-img{
-        margin-top: 3vh;
-    }
-    .modal-transaction-reasonsCanceledConfirm-p{ 
-        margin-left: 22.462vw;
-        font-size: 25px;
-        margin-top: 20px;
-    }
-    .modal-transaction-reasonsCanceledConfirm-p2{
-        font-size: 25px;
-        margin-top: 20px;
-        margin-left: 32.962vw;
-    }
-    .modal-transaction-reasonsCanceledConfirm-subtitle{
-        margin-top: 20px;
-        margin-bottom: 20px;
-        margin-left: 25.290vw;
-        font-size: 25px;
-    }
-    .modal-transaction-reasonsCanceledConfirm-button{
-        margin-top: 20vh;
-        
-    }
-   
 
-
-}
 
 @media (min-width: 1800px) {
     .modal-transaction-reasonsCanceledConfirm-img{
-        margin-top: 3vh;
+        margin-top: 57px;
     }
     .modal-transaction-reasonsCanceledConfirm-p{ 
-        margin-left: 25.462vw;
-        font-size: 25px;
-        margin-top: 30px;
+        margin-top: 25px;
     }
     .modal-transaction-reasonsCanceledConfirm-p2{
-        font-size: 25px;
-        margin-top: 30px;
-        margin-left: 32.962vw;
+        margin-top: 25px;
     }
     .modal-transaction-reasonsCanceledConfirm-subtitle{
-        margin-top: 30px;
-        margin-bottom: 30px;
-        margin-left: 29.290vw;
-        font-size: 25px;
+        margin-bottom: 20px;
+    }
+    .modal-transaction-reasonsCanceledConfirm-p-collection{ 
+        margin-top: 25px;
+    }
+    .modal-transaction-reasonsCanceledConfirm-p2-collection{
+        margin-top: 25px;
+    }
+    .modal-transaction-reasonsCanceledConfirm-subtitle-collection{
+        margin-bottom: 20px;
     }
     .modal-transaction-reasonsCanceledConfirm-button{
-        margin-top: 20vh;
+        margin-top: 110px;
     }
 
 }
