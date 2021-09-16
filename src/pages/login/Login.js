@@ -4,9 +4,9 @@ import "./Login.scss";
 import pickersLogo from "./../../assets/login/PickersLogo.svg";
 import canguro from "./../../assets/login/Canguro.svg";
 import {Link} from 'react-router-dom'
-
 import {Modal} from '@pickit/pickit-components'
 //import api from '../../config/api'
+
 
 
 export const Login = ({postLogin,modalOpen,isFetching, setModalOpen, validationSchema,modalOpenServerError,setmodalOpenServerError}) => {
@@ -207,17 +207,18 @@ export const Login = ({postLogin,modalOpen,isFetching, setModalOpen, validationS
 
 
     return (
-        < >
+        <div className="white-background">
             <div className="space-responsive-login"></div>
             <div className="logo">
-                <img src={pickersLogo} className="pickersLogo_login" alt="PickersLogo"></img>
+                <img src={pickersLogo} className="pickersLogo_login" alt=""/>
+                
             </div>
             <div className="centrar">
                 <form className="form size" onSubmit={handleSubmit}>
                     <div>
                         <input
                             type="mail"
-                            className="input"
+                            className="Admin-Pickers-input"
                             name="mail"
                             id="mail"
                             onBlur={handleInputBlur}
@@ -228,7 +229,7 @@ export const Login = ({postLogin,modalOpen,isFetching, setModalOpen, validationS
                         <label id="labelmail" htmlFor="mail" className="login-label label">Usuario</label>
                     </div>
                     {
-                        errorMail ? <div className="errorsContainer">
+                        errorMail ? <div className="input-errors-container">
                             <p className="errors"> {errorMsgMail}  </p>
                         </div>:null
                     }
@@ -236,7 +237,7 @@ export const Login = ({postLogin,modalOpen,isFetching, setModalOpen, validationS
                     <div >
                         <input
                             type="password"
-                            className="input"
+                            className="Admin-Pickers-input"
                             name="password"
                             id="password-login"
                             onBlur={handleInputBlur}
@@ -248,7 +249,7 @@ export const Login = ({postLogin,modalOpen,isFetching, setModalOpen, validationS
                         />
                         <label id="labelpassword" htmlFor="password-login" className="login-label label">Contraseña</label>
                         <div className="password-login">
-                            {errorPassWord ? <div className="errorsContainer2">
+                            {errorPassWord ? <div className="input-errors-container">
                                 <p className="errors"> {errorMsgPassword}  </p>
                             </div>:<></>
                             }
@@ -343,13 +344,13 @@ export const Login = ({postLogin,modalOpen,isFetching, setModalOpen, validationS
                 <div className="login-pass">
                     <Link className="forgotPass" to={"./restore"}>¿Olvidaste tu contraseña?</Link>
                 </div>
-                <img className="myresolution" src={canguro} alt="PickersFooter"></img>
+                <img className="myresolution" src={canguro} alt=""></img>
             </div>
 
 
 
 
-        </>
+        </div>
     );
 }
 
