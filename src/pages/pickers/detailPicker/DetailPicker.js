@@ -35,6 +35,7 @@ export const DetailPicker = (
         validationSchema
     }) => {
 
+        console.log(pendingUserAdminPicker )
     return (
         <div className="background-Grey">
             <Header/>
@@ -72,6 +73,10 @@ export const DetailPicker = (
                             pendingUserAdminPicker.dateOfBirth ?
                                 {
                                     ...pendingUserAdminPicker,
+                                    accountingData:{
+                                        ...pendingUserAdminPicker.accountingData,
+                                        fiscalNumber:(pendingUserAdminPicker.accountingData.fiscalNumber).slice(0,2)+" - "+(pendingUserAdminPicker.accountingData.fiscalNumber).slice(2,10)+" - "+(pendingUserAdminPicker.accountingData.fiscalNumber).slice(10,11)
+                                    },
                                     dateOfBirth: pendingUserAdminPicker.dateOfBirth && moment(pendingUserAdminPicker.dateOfBirth, "YYYY-MM-DD").format("DD / MM / YYYY"),
                                     expirationDatePolicyPersonal: pendingUserAdminPicker.expirationDatePolicyPersonal && moment(pendingUserAdminPicker.expirationDatePolicyPersonal, "YYYY-MM-DD").format("DD/MM/YYYY"),
                                     vehicle: {
