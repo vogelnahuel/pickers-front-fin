@@ -25,6 +25,10 @@ const process = (body) => {
         ...body,
         dateOfBirth: moment(body.dateOfBirth, "DD/MM/YYYY").format("YYYY-MM-DD"),
         expirationDatePolicyPersonal: body.expirationDatePolicyPersonal && moment(body.expirationDatePolicyPersonal, "DD/MM/YYYY").format("YYYY-MM-DD"),
+        accountingData:{
+            ...body.accountingData,
+            fiscalNumber:(body.accountingData.fiscalNumber).slice(0,2)+(body.accountingData.fiscalNumber).slice(5,13)+(body.accountingData.fiscalNumber).slice(16,17)
+        },
         vehicle: {
             ...body.vehicle,
             [body.vehicleType]: {
@@ -123,7 +127,10 @@ function* getPendingUserPickerExport({ params }) {
 }
 
 function* postPendingUserDocumentsEdit({ params }) {
+    
+  
     let body = process(params);
+    console.log(body)
     const response = yield call(
         pickersMiddleware.postPendingUserDocumentsEdit,
         body

@@ -35,7 +35,7 @@ export const DetailPicker = (
         validationSchema
     }) => {
 
-        console.log(pendingUserAdminPicker )
+       
     return (
         <div className="background-Grey">
             <Header/>
@@ -95,7 +95,7 @@ export const DetailPicker = (
                     >
                         {({ invalid,handleSubmit, dirty, initialValues, values, ...props }) =>
                             <form className="Admin-Pickers-inputs" onSubmit={handleSubmit}>
-                                {console.log(props)}
+                            
                                 <FormSpy
                                     subscription={{ dirty: true }}
                                     onChange={pro => {
