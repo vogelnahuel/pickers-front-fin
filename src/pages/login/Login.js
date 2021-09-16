@@ -4,9 +4,9 @@ import "./Login.scss";
 import pickersLogo from "./../../assets/login/PickersLogo.svg";
 import canguro from "./../../assets/login/Canguro.svg";
 import {Link} from 'react-router-dom'
-
 import {Modal} from '@pickit/pickit-components'
 //import api from '../../config/api'
+
 
 
 export const Login = ({postLogin,modalOpen,isFetching, setModalOpen, validationSchema,modalOpenServerError,setmodalOpenServerError}) => {
@@ -210,7 +210,8 @@ export const Login = ({postLogin,modalOpen,isFetching, setModalOpen, validationS
         < >
             <div className="space-responsive-login"></div>
             <div className="logo">
-                <img src={pickersLogo} className="pickersLogo_login" alt="PickersLogo"></img>
+                <img src={pickersLogo} className="pickersLogo_login" alt=""/>
+                
             </div>
             <div className="centrar">
                 <form className="form size" onSubmit={handleSubmit}>
@@ -343,7 +344,7 @@ export const Login = ({postLogin,modalOpen,isFetching, setModalOpen, validationS
                 <div className="login-pass">
                     <Link className="forgotPass" to={"./restore"}>¿Olvidaste tu contraseña?</Link>
                 </div>
-                <img className="myresolution" src={canguro} alt="PickersFooter"></img>
+                <img className="myresolution" src={canguro} alt=""></img>
             </div>
 
 

@@ -78,7 +78,7 @@ const handleSubmit = async (e) => {
       setformValues({
         ...formValues,
         errorMail:true,
-        errorMsgMail:"Este campo es requerido"
+        errorMsgMail:"El mail es inválido"
       })
       
     }
@@ -94,7 +94,7 @@ const handleSubmit = async (e) => {
         setformValues({
           ...formValues,
           errorMail:true,
-          errorMsgMail:"Este campo es requerido"
+          errorMsgMail:"El mail es inválido"
         })
     }
 
