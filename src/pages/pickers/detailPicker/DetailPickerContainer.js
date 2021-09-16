@@ -33,7 +33,8 @@ const DetailPickerContainer = (props) => {
                     body:"Si te vas sin guardar, tus cambios no van a quedar registrados",
                     onClickLabel: "Ir a guardar",
                     onCloseLabel: "No quiero guardarlos",
-                    onClose: onClose
+                    onClose: onClose,
+                    onClick: ()=>window.scroll({ top: document.body.offsetHeight, left: 0,  behavior: 'smooth' })
                 }
             );
         } else {
@@ -45,8 +46,8 @@ const DetailPickerContainer = (props) => {
     const validationSchema =
         yup.lazy((values) => {
             return yup.object({
-                name: yup.string().required("Este campo es requerido.").matches(VALIDATION_REGEX.expName,"No se admiten números ni caracteres especiales"),
-                surname: yup.string().required("Este campo es requerido.").matches(VALIDATION_REGEX.expName,"No se admiten números ni caracteres especiales"),
+                name: yup.string().required("Este campo es requerido.").matches(VALIDATION_REGEX.expName,"No se admiten números o caracteres especiales"),
+                surname: yup.string().required("Este campo es requerido.").matches(VALIDATION_REGEX.expName,"No se admiten números o caracteres especiales"),
                 phone: yup.object({
                     areaNumber: yup.string().required("Este campo es requerido.").matches(VALIDATION_REGEX.regArea,"Ingresa el formato correcto"),
                     number: yup.string().required("Este campo es requerido.").matches(VALIDATION_REGEX.regTelefono,"Ingresa el formato correcto")
@@ -76,9 +77,9 @@ const DetailPickerContainer = (props) => {
             });
         });
 
-    const cancel = (isDirty) => {
+    const cancel = (isDirty,restart) => {
         let onClose = ()=>{
-            historial.goBack();
+            restart();
         };
         if(isDirty) {
             props.showNotification(
@@ -88,7 +89,8 @@ const DetailPickerContainer = (props) => {
                     body:"Si te vas sin guardar, tus cambios no van a quedar registrados",
                     onClickLabel: "Ir a guardar",
                     onCloseLabel: "No quiero guardarlos",
-                    onClose: onClose
+                    onClose: onClose,
+                    onClick: ()=>window.scroll({ top: document.body.offsetHeight, left: 0,  behavior: 'smooth' })
                 }
             );
         } else {
@@ -97,6 +99,7 @@ const DetailPickerContainer = (props) => {
     };
 
     const aproveSubmit = (params, goBack) => {
+       
         props.showNotification(
             {
                 level:"info",

@@ -69,9 +69,13 @@ export const DetailPicker = (
                     <Form
                         onSubmit={values => active ? postEditPickerRequest(values, goBack) : aproveSubmit(values,goBack)}
                         initialValues={
-                            pendingUserAdminPicker.dateOfBirth ?
+                            pendingUserAdminPicker.id ?
                                 {
                                     ...pendingUserAdminPicker,
+                                    accountingData:{
+                                        ...pendingUserAdminPicker.accountingData,
+                                        fiscalNumber:(pendingUserAdminPicker.accountingData.fiscalNumber).slice(0,2)+" - "+(pendingUserAdminPicker.accountingData.fiscalNumber).slice(2,10)+" - "+(pendingUserAdminPicker.accountingData.fiscalNumber).slice(10,11)
+                                    },
                                     dateOfBirth: pendingUserAdminPicker.dateOfBirth && moment(pendingUserAdminPicker.dateOfBirth, "YYYY-MM-DD").format("DD / MM / YYYY"),
                                     expirationDatePolicyPersonal: pendingUserAdminPicker.expirationDatePolicyPersonal && moment(pendingUserAdminPicker.expirationDatePolicyPersonal, "YYYY-MM-DD").format("DD/MM/YYYY"),
                                     vehicle: {
@@ -88,9 +92,8 @@ export const DetailPicker = (
                         }
                         validate={useValidationSchema(validationSchema)}
                     >
-                        {({ invalid,handleSubmit, dirty, initialValues, values, ...props }) =>
+                        {({ invalid,handleSubmit, dirty, initialValues, values,form}) =>
                             <form className="Admin-Pickers-inputs" onSubmit={handleSubmit}>
-                                {console.log(props)}
                                 <FormSpy
                                     subscription={{ dirty: true }}
                                     onChange={pro => {
@@ -292,7 +295,7 @@ export const DetailPicker = (
                                             component={Switch}
                                         />
                                         <div className="pending-admin-picker-button">
-                                            <button type="button" onClick={()=>cancel(dirty)} disabled={!dirty} className="button-submit-subtype">Cancelar</button>
+                                            <button type="button" onClick={()=>cancel(dirty,form.restart)} disabled={!dirty} className="button-submit-subtype">Cancelar</button>
                                             <button type="submit" disabled={invalid || !dirty} className="button-submit-active">Guardar</button>
                                         </div>
                                     </>
