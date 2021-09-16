@@ -207,7 +207,7 @@ export const Login = ({postLogin,modalOpen,isFetching, setModalOpen, validationS
 
 
     return (
-        < >
+        <div className="white-background">
             <div className="space-responsive-login"></div>
             <div className="logo">
                 <img src={pickersLogo} className="pickersLogo_login" alt=""/>
@@ -218,7 +218,7 @@ export const Login = ({postLogin,modalOpen,isFetching, setModalOpen, validationS
                     <div>
                         <input
                             type="mail"
-                            className="input"
+                            className="Admin-Pickers-input"
                             name="mail"
                             id="mail"
                             onBlur={handleInputBlur}
@@ -229,7 +229,7 @@ export const Login = ({postLogin,modalOpen,isFetching, setModalOpen, validationS
                         <label id="labelmail" htmlFor="mail" className="login-label label">Usuario</label>
                     </div>
                     {
-                        errorMail ? <div className="errorsContainer">
+                        errorMail ? <div className="input-errors-container">
                             <p className="errors"> {errorMsgMail}  </p>
                         </div>:null
                     }
@@ -237,7 +237,7 @@ export const Login = ({postLogin,modalOpen,isFetching, setModalOpen, validationS
                     <div >
                         <input
                             type="password"
-                            className="input"
+                            className="Admin-Pickers-input"
                             name="password"
                             id="password-login"
                             onBlur={handleInputBlur}
@@ -249,7 +249,7 @@ export const Login = ({postLogin,modalOpen,isFetching, setModalOpen, validationS
                         />
                         <label id="labelpassword" htmlFor="password-login" className="login-label label">Contraseña</label>
                         <div className="password-login">
-                            {errorPassWord ? <div className="errorsContainer2">
+                            {errorPassWord ? <div className="input-errors-container">
                                 <p className="errors"> {errorMsgPassword}  </p>
                             </div>:<></>
                             }
@@ -350,7 +350,7 @@ export const Login = ({postLogin,modalOpen,isFetching, setModalOpen, validationS
 
 
 
-        </>
+        </div>
     );
 }
 
