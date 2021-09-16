@@ -77,9 +77,9 @@ const DetailPickerContainer = (props) => {
             });
         });
 
-    const cancel = (isDirty) => {
+    const cancel = (isDirty,restart) => {
         let onClose = ()=>{
-            historial.goBack();
+            restart();
         };
         if(isDirty) {
             props.showNotification(
