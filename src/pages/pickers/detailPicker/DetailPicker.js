@@ -35,7 +35,6 @@ export const DetailPicker = (
         validationSchema
     }) => {
 
-       
     return (
         <div className="background-Grey">
             <Header/>
@@ -70,7 +69,7 @@ export const DetailPicker = (
                     <Form
                         onSubmit={values => active ? postEditPickerRequest(values, goBack) : aproveSubmit(values,goBack)}
                         initialValues={
-                            pendingUserAdminPicker.dateOfBirth ?
+                            pendingUserAdminPicker.id ?
                                 {
                                     ...pendingUserAdminPicker,
                                     accountingData:{
@@ -93,9 +92,8 @@ export const DetailPicker = (
                         }
                         validate={useValidationSchema(validationSchema)}
                     >
-                        {({ invalid,handleSubmit, dirty, initialValues, values, ...props }) =>
+                        {({ invalid,handleSubmit, dirty, initialValues, values,form}) =>
                             <form className="Admin-Pickers-inputs" onSubmit={handleSubmit}>
-                            
                                 <FormSpy
                                     subscription={{ dirty: true }}
                                     onChange={pro => {
@@ -297,7 +295,7 @@ export const DetailPicker = (
                                             component={Switch}
                                         />
                                         <div className="pending-admin-picker-button">
-                                            <button type="button" onClick={()=>cancel(dirty)} disabled={!dirty} className="button-submit-subtype">Cancelar</button>
+                                            <button type="button" onClick={()=>cancel(dirty,form.restart)} disabled={!dirty} className="button-submit-subtype">Cancelar</button>
                                             <button type="submit" disabled={invalid || !dirty} className="button-submit-active">Guardar</button>
                                         </div>
                                     </>

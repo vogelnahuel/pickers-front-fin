@@ -22,7 +22,8 @@ export const Nav = ({ isDirty, showNotification }) => {
                     body:"Si te vas sin guardar, tus cambios no van a quedar registrados",
                     onClickLabel: "Ir a guardar",
                     onCloseLabel: "No quiero guardarlos",
-                    onClose: onClose
+                    onClose: onClose,
+                    onClick: ()=>window.scroll({ top: document.body.offsetHeight, left: 0,  behavior: 'smooth' })
                 }
             );
         } else {

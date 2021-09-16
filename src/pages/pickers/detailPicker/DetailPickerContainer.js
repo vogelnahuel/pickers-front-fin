@@ -33,7 +33,8 @@ const DetailPickerContainer = (props) => {
                     body:"Si te vas sin guardar, tus cambios no van a quedar registrados",
                     onClickLabel: "Ir a guardar",
                     onCloseLabel: "No quiero guardarlos",
-                    onClose: onClose
+                    onClose: onClose,
+                    onClick: ()=>window.scroll({ top: document.body.offsetHeight, left: 0,  behavior: 'smooth' })
                 }
             );
         } else {
@@ -76,9 +77,9 @@ const DetailPickerContainer = (props) => {
             });
         });
 
-    const cancel = (isDirty) => {
+    const cancel = (isDirty,restart) => {
         let onClose = ()=>{
-            historial.goBack();
+            restart();
         };
         if(isDirty) {
             props.showNotification(
@@ -88,7 +89,8 @@ const DetailPickerContainer = (props) => {
                     body:"Si te vas sin guardar, tus cambios no van a quedar registrados",
                     onClickLabel: "Ir a guardar",
                     onCloseLabel: "No quiero guardarlos",
-                    onClose: onClose
+                    onClose: onClose,
+                    onClick: ()=>window.scroll({ top: document.body.offsetHeight, left: 0,  behavior: 'smooth' })
                 }
             );
         } else {
