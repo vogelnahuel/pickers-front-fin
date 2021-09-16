@@ -127,10 +127,7 @@ function* getPendingUserPickerExport({ params }) {
 }
 
 function* postPendingUserDocumentsEdit({ params }) {
-    
-  
     let body = process(params);
-    console.log(body)
     const response = yield call(
         pickersMiddleware.postPendingUserDocumentsEdit,
         body
