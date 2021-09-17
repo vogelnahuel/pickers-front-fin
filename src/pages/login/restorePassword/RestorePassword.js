@@ -136,7 +136,7 @@ export const RestorePassword = () => {
             errorLetras.classList.remove('restore-error-p');
             errorNumeros.classList.remove('restore-error-p');
             if(window.screen.width>1500)
-                e.target.style.marginBottom="53px";
+                e.target.style.marginBottom="25px";
             setErrorCaracteres(false);
             setErrorMayusculas(false);
             setErrorNumeros(false);
@@ -239,7 +239,7 @@ export const RestorePassword = () => {
             }
 
 
-            if( (e.target.name==="password2" || (e.target.name==="password" && inputPassword2.current.value.length>1 ))  && contraseñasIguales(e)===false  ){
+            if( (e.target.name==="password2" || (e.target.name==="password" && inputPassword2.current.value.length>=1 ))  && contraseñasIguales(e)===false  ){
                 setErrorPassword(true);
                 e.target.classList.add('errorInput');
                 e.target.classList.add('inputError');
