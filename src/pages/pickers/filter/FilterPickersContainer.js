@@ -14,10 +14,8 @@ const FilterPickersContainer = (props) => {
     }, [props.filters])
 
     const search =(values)=>{
-
         props.getPendingUser({...values,...props.filtersExtra, vehicleType: values.vehicleType && (values.vehicleType.value===''? undefined : values.vehicleType.value)});
         props.setPendingUserFilters(values);
-
     };
 
     const validationSchema =
