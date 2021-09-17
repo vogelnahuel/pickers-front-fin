@@ -201,10 +201,7 @@ export const RestorePassword = () => {
                 setErrorNumeros(true);
             }
            
-            console.log(e.target.value.length)
-            console.log(errorNumerosState)
-            console.log(errorMayusculasState)
-            console.log(errorCaracteresState)
+         
             if(errorNumerosState!==true && errorMayusculasState!==true &&(errorCaracteresState!==true || e.target.value.length!==8) ){
                 
            
