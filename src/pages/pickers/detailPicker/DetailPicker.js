@@ -35,6 +35,8 @@ export const DetailPicker = (
         validationSchema
     }) => {
 
+
+
     return (
         <div className="background-Grey">
             <Header/>
@@ -74,7 +76,7 @@ export const DetailPicker = (
                                     ...pendingUserAdminPicker,
                                     accountingData:{
                                         ...pendingUserAdminPicker.accountingData,
-                                        fiscalNumber:(pendingUserAdminPicker.accountingData.fiscalNumber).slice(0,2)+" - "+(pendingUserAdminPicker.accountingData.fiscalNumber).slice(2,10)+" - "+(pendingUserAdminPicker.accountingData.fiscalNumber).slice(10,11)
+                                        fiscalNumber: (pendingUserAdminPicker.accountingData.fiscalNumber).includes('-') ? pendingUserAdminPicker.accountingData.fiscalNumber : (pendingUserAdminPicker.accountingData.fiscalNumber).slice(0,2)+" - "+(pendingUserAdminPicker.accountingData.fiscalNumber).slice(2,10)+" - "+(pendingUserAdminPicker.accountingData.fiscalNumber).slice(10,11) 
                                     },
                                     dateOfBirth: pendingUserAdminPicker.dateOfBirth && moment(pendingUserAdminPicker.dateOfBirth, "YYYY-MM-DD").format("DD / MM / YYYY"),
                                     expirationDatePolicyPersonal: pendingUserAdminPicker.expirationDatePolicyPersonal && moment(pendingUserAdminPicker.expirationDatePolicyPersonal, "YYYY-MM-DD").format("DD/MM/YYYY"),
@@ -237,6 +239,7 @@ export const DetailPicker = (
                                                         component={Input}
                                                         className="Admin-Pickers-input"
                                                         placeholder="Ingresá los dígitos de la patente"
+                                                        maxLength={7}
                                                     />
                                                 </Col>
                                                 <Col md={4}>

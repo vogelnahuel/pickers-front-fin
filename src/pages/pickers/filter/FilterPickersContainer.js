@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {connect} from "react-redux";
 import {actions as pendingUserActions, selectors as pendingUserSelectors} from "reducers/pickers";
 import {FilterPickers} from "pages/pickers/filter/FilterPickers";
@@ -6,6 +6,10 @@ import {VALIDATION_REGEX} from 'utils/constants'
 import * as yup from "yup";
 
 const FilterPickersContainer = (props) => {
+    useEffect(() => {
+        props.reset();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [props.filters])
 
     const search =(values)=>{
         
@@ -39,6 +43,9 @@ const mapStateToProps = (state) => ({
 
 
 const mapDispatchToProps = (dispatch) => ({
+    reset: () => {
+        dispatch(pendingUserActions.reset());
+    },
     setPendingUserFilters:(filters)=>{
         dispatch(pendingUserActions.setPendingUserFilters(filters));
     },
