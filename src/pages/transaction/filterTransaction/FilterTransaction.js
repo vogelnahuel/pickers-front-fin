@@ -78,9 +78,11 @@ export const FilterTransaction = ({ onSubmit, filters, validationSchema }) => {
                                         </div>
                                     </Col>
                                     <Col xxl xl={4} className="px-3">
+                                         <label className="label-Admin-Pickers">
+                                                Estados
+                                        </label>
                                         <Field
                                             name="state"
-                                            label="Estados"
                                             placeholder="Seleccioná el estado"
                                             onChange={form.mutators.setValue}
                                             options={FILTER_TRANSACTION_OPTIONS}
