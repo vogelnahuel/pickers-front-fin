@@ -90,7 +90,7 @@ export const DetailPicker = (
                                         }
                                     }
                                 } :
-                                pendingUserAdminPicker
+                                pendingUserAdminPicker         
                         }
                         validate={useValidationSchema(validationSchema)}
                     >
