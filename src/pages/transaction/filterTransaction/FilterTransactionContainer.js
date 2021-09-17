@@ -9,7 +9,6 @@ import {VALIDATION_REGEX} from "utils/constants";
 const FilterTransactionContainer = (props) => {
     useEffect(() => {
         if(props.filters && Object.keys(props.filters).length === 0){
-            debugger
             props.reset();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
