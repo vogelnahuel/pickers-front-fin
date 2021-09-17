@@ -33,6 +33,7 @@ export const Transaction = ({
     const [OpenModalTransaction, setOpenModalTransaction] = useState(false);
     const [IdModalApi, setIdModalApi] = useState(""); // devuelve la consulta api
     const titulos = ["Transacción", "Id de picker", "Vencimiento SLA", "Estado"];
+    const [isFetchingModal, setisFetchingModal] = useState(false)
      const [resolutionHeightModal, setresolutionHeightModal] = useState(550)
     // //todo: extraer a container
      useEffect(() => {
@@ -48,9 +49,8 @@ export const Transaction = ({
      }, [])
 
     //todo: extraer al reducer
-    const cargarDatos = async(e)=> {
-
-         await  api.get(`/ms-admin-rest/api/v1.0/transactions/${Number(e.target.getAttribute('name'))}`)
+    const cargarDatos = async(id)=> {
+         await  api.get(`/ms-admin-rest/api/v1.0/transactions/${id}`)
             .then((res) => {
                 setFilterSelectedTransaction(res.data.result);
             })
@@ -111,13 +111,13 @@ export const Transaction = ({
                                 </button>
                             }
                         </>
-                        : (
-                            <button
+                        :
+                        (<div
                                 className="paginator-button-transaction-noResult"
                             >
-                                No obtuvimos resultados de tu búsqueda :(
-                            </button>
-                        )}
+                                No obtuvimos resultados para tu búsqueda :(
+                            </div>)
+                        }
                 </div>
                 <NotificationModal/>
                 {openErrorDatePicker && (
@@ -192,6 +192,7 @@ export const Transaction = ({
                                 </div> 
                                 <div className="modal-transaction-scroll"> 
                                     <OptionList 
+                                        setisFetchingModal={setisFetchingModal}
                                         FilterSelectedTransaction={FilterSelectedTransaction}
                                         setFilterSelectedTransaction={setFilterSelectedTransaction} 
                                     /> 
@@ -203,7 +204,7 @@ export const Transaction = ({
             </div>
             
 
-            { isFetching && <div className="modalLoading"/>}
+            { (isFetching  || isFetchingModal) && <div className="modalLoading"/>}
         </div>
     );
 };

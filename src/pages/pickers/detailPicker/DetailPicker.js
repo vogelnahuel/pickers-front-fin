@@ -35,6 +35,8 @@ export const DetailPicker = (
         validationSchema
     }) => {
 
+
+
     return (
         <div className="background-Grey">
             <Header/>
@@ -74,9 +76,9 @@ export const DetailPicker = (
                                     ...pendingUserAdminPicker,
                                     accountingData:{
                                         ...pendingUserAdminPicker.accountingData,
-                                        fiscalNumber:(pendingUserAdminPicker.accountingData.fiscalNumber).slice(0,2)+" - "+(pendingUserAdminPicker.accountingData.fiscalNumber).slice(2,10)+" - "+(pendingUserAdminPicker.accountingData.fiscalNumber).slice(10,11)
+                                        fiscalNumber: (pendingUserAdminPicker.accountingData.fiscalNumber).includes('-') ? pendingUserAdminPicker.accountingData.fiscalNumber : (pendingUserAdminPicker.accountingData.fiscalNumber).slice(0,2)+" - "+(pendingUserAdminPicker.accountingData.fiscalNumber).slice(2,10)+" - "+(pendingUserAdminPicker.accountingData.fiscalNumber).slice(10,11) 
                                     },
-                                    dateOfBirth: pendingUserAdminPicker.dateOfBirth && moment(pendingUserAdminPicker.dateOfBirth, "YYYY-MM-DD").format("DD / MM / YYYY"),
+                                    dateOfBirth: pendingUserAdminPicker.dateOfBirth && moment(pendingUserAdminPicker.dateOfBirth, "YYYY-MM-DD").format("DD/MM/YYYY"),
                                     expirationDatePolicyPersonal: pendingUserAdminPicker.expirationDatePolicyPersonal && moment(pendingUserAdminPicker.expirationDatePolicyPersonal, "YYYY-MM-DD").format("DD/MM/YYYY"),
                                     vehicle: {
                                         ...pendingUserAdminPicker.vehicle,
@@ -88,7 +90,7 @@ export const DetailPicker = (
                                         }
                                     }
                                 } :
-                                pendingUserAdminPicker
+                                pendingUserAdminPicker         
                         }
                         validate={useValidationSchema(validationSchema)}
                     >
@@ -168,7 +170,7 @@ export const DetailPicker = (
                                                 label="Código de área *"
                                                 component={Input}
                                                 className="Admin-Pickers-input"
-                                                placeholder="Ej: 001"
+                                                placeholder="Ej: 011"
                                                 maxLength={5}
                                             />
                                         </Col>
@@ -180,7 +182,7 @@ export const DetailPicker = (
                                                 component={Input}
                                                 className="Admin-Pickers-input"
                                                 placeholder="Ej: 12345678"
-                                                maxLength={20}
+                                                maxLength={8}
                                             />
                                         </Col>
                                     </Row>
@@ -237,6 +239,7 @@ export const DetailPicker = (
                                                         component={Input}
                                                         className="Admin-Pickers-input"
                                                         placeholder="Ingresá los dígitos de la patente"
+                                                        maxLength={7}
                                                     />
                                                 </Col>
                                                 <Col md={4}>

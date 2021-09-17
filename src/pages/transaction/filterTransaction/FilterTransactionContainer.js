@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {connect} from "react-redux";
 import {actions as transactionActions, selectors as transactionSelectors} from "reducers/transactions";
 import {FilterTransaction} from "pages/transaction/filterTransaction/FilterTransaction";
 import moment from "moment";
+import * as yup from "yup";
+import {VALIDATION_REGEX} from "utils/constants";
 
 const FilterTransactionContainer = (props) => {
+    useEffect(() => {
+        if(props.filters && Object.keys(props.filters).length === 0){
+            props.reset();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [props.filters]);
+
     const formatDate = (date) => {
-      
         let result ={};
         if (date) {
             result.date=date;
@@ -21,7 +29,6 @@ const FilterTransactionContainer = (props) => {
                 ).format("YYYY-MM-DD");
             }
         }
-
         return result;
     };
 
@@ -43,8 +50,20 @@ const FilterTransactionContainer = (props) => {
         props.setFilters(filtersApplied);
     };
 
+    const validationSchema =
+        yup.lazy(() => {
+            return yup.object({
+                transactionCode: yup.string().matches(VALIDATION_REGEX.regTransactionCode,"No se admiten caracteres especiales"),
+                pickerId:yup.string().matches(VALIDATION_REGEX.regPickerId,"No se admiten letras o caracteres especiales"),
+            })
+        });
+
     return (
-        <FilterTransaction {...props} onSubmit={onSubmit} />
+        <FilterTransaction
+            {...props}
+            onSubmit={onSubmit}
+            validationSchema={validationSchema}
+        />
     );
 }
 
@@ -56,6 +75,9 @@ const mapStateToProps = (state) => ({
 
 
 const mapDispatchToProps = (dispatch) => ({
+    reset: () => {
+        dispatch(transactionActions.reset());
+    },
     getTransactions: (params) => {
         dispatch(transactionActions.getTransactionsRequest(params));
     },

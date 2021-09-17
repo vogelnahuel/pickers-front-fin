@@ -67,13 +67,11 @@ export const PendingUserAdmin = ({
                                 }
                             </>
                             :
-                            (
-                                <button
+                                <div
                                     className="paginator-button-transaction-noResult"
                                 >
-                                    No obtuvimos resultados de tu búsqueda :(
-                                </button>
-                            )
+                                    No obtuvimos resultados para tu búsqueda :(
+                                </div>
                     }
                 </div>
                 <NotificationModal/>
