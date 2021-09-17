@@ -82,6 +82,7 @@ const handleChange = (value)=>{
                                 placeholder="Ingresá el DNI"
                                 className="Admin-Pickers-input"
                                 id="dni"
+                                maxLength={8}
                                 >
                                 </Field>
                             </div>
