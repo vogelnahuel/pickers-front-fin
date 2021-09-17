@@ -29,7 +29,7 @@ export const DATE_FORMATS = {
 export const VALIDATION_REGEX = {
     expName : /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u,
     expIdentificationNumber : /^[\d]{0,3}\.?[\d]{0,3}\.?[\d]{0,3}$/,
-    regArea : /^([0-9]){2,4}$/,
+    regArea : /^([0-9]){2,5}$/,
     regTelefono : /^([0-9]){8}$/
 }
 
