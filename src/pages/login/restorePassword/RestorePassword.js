@@ -200,11 +200,14 @@ export const RestorePassword = () => {
 
                 setErrorNumeros(true);
             }
-            
-
-
-            if(errorNumerosState!==true && errorMayusculasState!==true && (errorCaracteresState!==true || e.target.value.length===8) ){
-               
+           
+            console.log(e.target.value.length)
+            console.log(errorNumerosState)
+            console.log(errorMayusculasState)
+            console.log(errorCaracteresState)
+            if(errorNumerosState!==true && errorMayusculasState!==true &&(errorCaracteresState!==true || e.target.value.length!==8) ){
+                
+           
                 if(e.target.name==="password" && e.target.value.length>1){
                   
                     if(e.target.value!==password2 ){
@@ -239,7 +242,7 @@ export const RestorePassword = () => {
             }
 
 
-            if( e.target.name==="password2" && contraseñasIguales(e)===false  ){
+            if( (e.target.name==="password2" || (e.target.name==="password" && inputPassword2.current.value.length>1 ))  && contraseñasIguales(e)===false  ){
                 setErrorPassword(true);
                 e.target.classList.add('errorInput');
                 e.target.classList.add('inputError');
@@ -254,6 +257,7 @@ export const RestorePassword = () => {
                     inputPassword.current.classList.remove('inputError')
                     inputPassword.current.nextSibling.classList.remove('labelError')
                     }
+                   
                     e.target.classList.remove('errorInput');
                     e.target.classList.remove('inputError');
                     e.target.nextSibling.classList.remove('labelError');
@@ -268,7 +272,6 @@ export const RestorePassword = () => {
                 document.querySelector('#password2').classList.remove('inputError');
                 document.querySelector('#password2').classList.remove('errorInput');
                 document.querySelector('#labelpassword2').classList.remove('labelError');
-
 
             }
 
@@ -359,7 +362,7 @@ export const RestorePassword = () => {
     }
     const contraseñasIguales =(e) => {
 
-        if(inputPassword.current.value!==e.target.value){
+        if(inputPassword.current.value!==inputPassword2.current.value){
             return false;
         }
         return true;
