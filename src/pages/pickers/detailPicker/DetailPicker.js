@@ -182,7 +182,7 @@ export const DetailPicker = (
                                                 component={Input}
                                                 className="Admin-Pickers-input"
                                                 placeholder="Ej: 12345678"
-                                                maxLength={20}
+                                                maxLength={8}
                                             />
                                         </Col>
                                     </Row>

@@ -6,9 +6,9 @@ import {VALIDATION_REGEX} from 'utils/constants'
 import * as yup from "yup";
 
 const FilterPickersContainer = (props) => {
-
     useEffect(() => {
         props.reset();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.filters])
 
     const search =(values)=>{

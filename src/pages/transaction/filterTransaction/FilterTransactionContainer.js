@@ -7,10 +7,9 @@ import moment from "moment";
 const FilterTransactionContainer = (props) => {
     useEffect(() => {
         props.reset();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.filters]);
 
-    
-    
     const formatDate = (date) => {
         let result ={};
         if (date) {
