@@ -3,8 +3,10 @@
     margin-top: 6.380208333333334vh;
 }
 .background-Grey{
+    position: absolute;
     background-color: #FAFAFA;
-    
+    min-height: 100%;
+    min-width: 100%;
 }
 .title_Dashboard_Admin{
     font-family: 'Mulish';

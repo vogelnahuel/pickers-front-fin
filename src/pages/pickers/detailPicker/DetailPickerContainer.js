@@ -49,28 +49,28 @@ const DetailPickerContainer = (props) => {
                 name: yup.string().required("Este campo es requerido.").matches(VALIDATION_REGEX.expName,"No se admiten números o caracteres especiales"),
                 surname: yup.string().required("Este campo es requerido.").matches(VALIDATION_REGEX.expName,"No se admiten números o caracteres especiales"),
                 phone: yup.object({
-                    areaNumber: yup.string().required("Este campo es requerido.").matches(VALIDATION_REGEX.regArea,"Ingresa el formato correcto"),
-                    number: yup.string().required("Este campo es requerido.").matches(VALIDATION_REGEX.regTelefono,"Ingresa el formato correcto")
+                    areaNumber: yup.string().required("Este campo es requerido.").matches(VALIDATION_REGEX.regArea,"Ingresá el formato correcto"),
+                    number: yup.string().required("Este campo es requerido.").matches(VALIDATION_REGEX.regTelefono,"Ingresá el formato correcto")
                 }),
                 expirationDatePolicyPersonal: yup.string().nullable()
                     .required("Este campo es requerido.")
-                    .matches(DATE_FORMATS.regex,"Ingresa el formato correcto" ),
+                    .matches(DATE_FORMATS.regex,"Ingresá el formato correcto" ),
                 vehicle:
                     values.vehicleType === 'motorcycle' &&
                     yup.object({
                         [values.vehicleType]: yup.object({
-                            patent: yup.string().nullable().required("Este campo es requerido."),
+                            patent: yup.string().nullable().required("Este campo es requerido.").matches(VALIDATION_REGEX.regPatent,"No se admiten caracteres especiales"),
                             expirationDatePolicyVehicle: yup.string().nullable()
                                 .required("Este campo es requerido.")
-                                .matches(DATE_FORMATS.regex,"Ingresa el formato correcto" )
+                                .matches(DATE_FORMATS.regex,"Ingresá el formato correcto" )
                                 .matches(DATE_FORMATS.regexValidCharacter,"No se admiten letras o caracteres especiales"),
                             expirationDateIdentificationVehicle: yup.string().nullable()
                                 .required("Este campo es requerido.")
-                                .matches(DATE_FORMATS.regex,"Ingresa el formato correcto" )
+                                .matches(DATE_FORMATS.regex,"Ingresá el formato correcto" )
                                 .matches(DATE_FORMATS.regexValidCharacter,"No se admiten letras o caracteres especiales"),
                             expirationDateDriverLicense: yup.string().nullable()
                                 .required("Este campo es requerido.")
-                                .matches(DATE_FORMATS.regex,"Ingresa el formato correcto" )
+                                .matches(DATE_FORMATS.regex,"Ingresá el formato correcto" )
                                 .matches(DATE_FORMATS.regexValidCharacter,"No se admiten letras o caracteres especiales"),
                         })
                     })

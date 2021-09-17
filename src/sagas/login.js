@@ -23,7 +23,11 @@ function* getLogin({params}) {
                 yield put(actions.setModalOpen(true));
                 yield put(actions.getLoginError());
                 break;
-        
+            case 403:
+                yield put(actions.setModalOpen(true));
+                yield put(actions.getLoginError());
+                break;
+            
             default:
                 yield put(actions.setmodalOpenServerError(true));
                 yield put(actions.getLoginError());
