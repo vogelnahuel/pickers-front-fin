@@ -16,6 +16,7 @@ export const OptionList = (props) => {
 
     //const dispatch = useDispatch()
     const FilterSelectedTransaction = props.FilterSelectedTransaction
+    const setisFetchingModal = props.setisFetchingModal;
     
     const [history, sethistory] = useState(true)
     const [reasonCancel, setreasonCancel] = useState(false);
@@ -24,6 +25,7 @@ export const OptionList = (props) => {
     const [dniFinish, setdniFinish] = useState(false)
     const [undelivered, setundelivered] = useState(false)
     const [msgSelected, setmsgSelected] = useState("")
+   
 
     const [reasonId, setreasonId] = useState({})
 
@@ -87,15 +89,21 @@ export const OptionList = (props) => {
    
     const handleReload = () =>{
         const reload = async()=> {
+            setisFetchingModal(true);
           
             props.setFilterSelectedTransaction( await  api.get(`/ms-admin-rest/api/v1.0/transactions/${FilterSelectedTransaction.transaction.id}`) 
             .then((res) => {
            
                 return res.data.result;
+
               })
               .catch((err) => {
                 console.log(err);
-              }))   
+              }))
+
+              setisFetchingModal(false); 
+          
+           
         }
         reload();
     }
@@ -103,6 +111,7 @@ export const OptionList = (props) => {
 
 
     return (
+        <>
         <div className="options-transaction-flex">
              
                     {
@@ -226,7 +235,10 @@ export const OptionList = (props) => {
                         />
                         </>  : null 
                     }
-       
+
+              
         </div>
+         
+          </>
     )
 }
