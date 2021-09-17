@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import  Button  from '../../../component/Button/Button';
 import api from '../../../middleware/api';
 
@@ -22,6 +22,8 @@ export const RestorePassword = () => {
     const [ModalIsOpen, setModalIsOpen] = useState(false)
 
     const [ModalEnviadoIsOpen, setModalEnviadoIsOpen] = useState(false)
+    const inputPassword = useRef();
+    const inputPassword2 = useRef()
 
     const {cod,mail} = useParams();
 
@@ -198,10 +200,13 @@ export const RestorePassword = () => {
 
                 setErrorNumeros(true);
             }
-
-            if(errorNumerosState!==true && errorMayusculasState!==true && errorCaracteresState!==true){
-
+           
+         
+            if(errorNumerosState!==true && errorMayusculasState!==true &&(errorCaracteresState!==true || e.target.value.length!==8) ){
+                
+           
                 if(e.target.name==="password" && e.target.value.length>1){
+                  
                     if(e.target.value!==password2 ){
                         setErrorPassword(true);
                         e.target.classList.add('errorInput');
@@ -234,19 +239,29 @@ export const RestorePassword = () => {
             }
 
 
-            if( e.target.name==="password2" && contraseñasIguales(e)===false  ){
+            if( (e.target.name==="password2" || (e.target.name==="password" && inputPassword2.current.value.length>1 ))  && contraseñasIguales(e)===false  ){
                 setErrorPassword(true);
                 e.target.classList.add('errorInput');
                 e.target.classList.add('inputError');
                 e.target.nextSibling.classList.add('labelError');
+               
             }else{
 
                 if( e.target.name==="password2"){
                     setErrorPassword(false);
+                    if(inputPassword.current.classList && inputPassword.current.classList.contains('errorInput')){
+                    inputPassword.current.classList.remove('errorInput')
+                    inputPassword.current.classList.remove('inputError')
+                    inputPassword.current.nextSibling.classList.remove('labelError')
+                    }
+                   
                     e.target.classList.remove('errorInput');
                     e.target.classList.remove('inputError');
                     e.target.nextSibling.classList.remove('labelError');
                 }
+
+              
+                
 
             }
 
@@ -254,7 +269,6 @@ export const RestorePassword = () => {
                 document.querySelector('#password2').classList.remove('inputError');
                 document.querySelector('#password2').classList.remove('errorInput');
                 document.querySelector('#labelpassword2').classList.remove('labelError');
-
 
             }
 
@@ -345,7 +359,7 @@ export const RestorePassword = () => {
     }
     const contraseñasIguales =(e) => {
 
-        if(password!==e.target.value){
+        if(inputPassword.current.value!==inputPassword2.current.value){
             return false;
         }
         return true;
@@ -384,8 +398,9 @@ export const RestorePassword = () => {
             <div className="container centrar ">
                 <form className="form size" onSubmit={handleSubmit} >
 
-                    <div>
+                    <div >
                         <input
+                            ref={inputPassword}
                             value={password}
                             type="password"
                             className="Admin-Pickers-input"
@@ -404,8 +419,9 @@ export const RestorePassword = () => {
                         }
 
                     </div>
-                    <div className="py-3">
+                    <div className="py-3" >
                         <input
+                            ref={inputPassword2}
                             type="password"
                             className="Admin-Pickers-input inputRestore"
                             name="password2"
