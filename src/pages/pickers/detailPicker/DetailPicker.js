@@ -168,7 +168,7 @@ export const DetailPicker = (
                                                 label="Código de área *"
                                                 component={Input}
                                                 className="Admin-Pickers-input"
-                                                placeholder="Ej: 001"
+                                                placeholder="Ej: 011"
                                                 maxLength={5}
                                             />
                                         </Col>
