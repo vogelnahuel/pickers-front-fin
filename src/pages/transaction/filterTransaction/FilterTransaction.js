@@ -10,8 +10,9 @@ import {Col, Container, Row} from "react-bootstrap";
 import {Input} from "component/inputs/Input";
 import MultipleSelect from "component/inputs/MultipleSelect";
 import {FILTER_TRANSACTION_OPTIONS} from "utils/constants";
+import useValidationSchema from "hooks/useValidationSchema";
 
-export const FilterTransaction = ({ onSubmit, filters }) => {
+export const FilterTransaction = ({ onSubmit, filters, validationSchema }) => {
 
     return (
         <Container fluid className="display-filter-transaction">
@@ -31,6 +32,7 @@ export const FilterTransaction = ({ onSubmit, filters }) => {
                         <Form
                             onSubmit={onSubmit}
                             initialValues={filters}
+                            validate={useValidationSchema(validationSchema)}
                             mutators={{
                                 setValue: ([field, value], state, { changeValue }) => {
                                     changeValue(state, field, () => value)
@@ -47,6 +49,7 @@ export const FilterTransaction = ({ onSubmit, filters }) => {
                                             component={Input}
                                             className="Admin-Pickers-input"
                                             placeholder="Ingresá el código"
+                                            maxLength={19}
                                         />
                                     </Col>
                                     <Col xxl xl={4} className="px-3">
