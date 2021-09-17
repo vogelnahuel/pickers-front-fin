@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {connect} from "react-redux";
 import {actions as transactionActions, selectors as transactionSelectors} from "reducers/transactions";
 import {FilterTransaction} from "pages/transaction/filterTransaction/FilterTransaction";
 import moment from "moment";
 
 const FilterTransactionContainer = (props) => {
+    useEffect(() => {
+        props.reset();
+    }, [props.filters]);
+
+    
+    
     const formatDate = (date) => {
-      
         let result ={};
         if (date) {
             result.date=date;
@@ -21,7 +26,6 @@ const FilterTransactionContainer = (props) => {
                 ).format("YYYY-MM-DD");
             }
         }
-
         return result;
     };
 
@@ -56,6 +60,9 @@ const mapStateToProps = (state) => ({
 
 
 const mapDispatchToProps = (dispatch) => ({
+    reset: () => {
+        dispatch(transactionActions.reset());
+    },
     getTransactions: (params) => {
         dispatch(transactionActions.getTransactionsRequest(params));
     },
