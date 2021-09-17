@@ -59,7 +59,7 @@ const DetailPickerContainer = (props) => {
                     values.vehicleType === 'motorcycle' &&
                     yup.object({
                         [values.vehicleType]: yup.object({
-                            patent: yup.string().nullable().required("Este campo es requerido."),
+                            patent: yup.string().nullable().required("Este campo es requerido.").matches(VALIDATION_REGEX.regPatent,"No se admiten caracteres especiales"),
                             expirationDatePolicyVehicle: yup.string().nullable()
                                 .required("Este campo es requerido.")
                                 .matches(DATE_FORMATS.regex,"Ingresa el formato correcto" )
