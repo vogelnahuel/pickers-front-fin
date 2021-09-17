@@ -15,16 +15,9 @@ export const TableTransaction = (props) => {
     const titulos = props.titulos;
     const cargarDatos =props.cargarDatos;
 
-    const handleClickModal = (e) => {
-        e.preventDefault();
-     
-        
+    const handleClickModal = (id) => {
         setOpenModalTransaction(true);
-        
-        
-      
-        cargarDatos(e);
-
+        cargarDatos(id);
     }
 
     
@@ -80,7 +73,7 @@ export const TableTransaction = (props) => {
                         
                         JSON.stringify(api)!=='{}' && api!==undefined ? api.map(dato => dato?
                         
-                            <tr onClick={handleClickModal} key={dato.transaction.id+"0"} >
+                            <tr onClick={()=>handleClickModal(dato.transaction.id)} key={dato.transaction.id+"0"} >
                                 
                                     <td  name={dato.transaction.id} key={dato.transaction.id+"1"}  ></td>
                                     <td  name={dato.transaction.id} id={dato.transaction.id} key={dato.transaction.id+"2"}  ><img key={dato.transaction.id+"3"}  name={dato.transaction.id} id={dato.Transacción} className="img-filter-transaction"  src={TreePoints} alt="TreePoints" /> </td>

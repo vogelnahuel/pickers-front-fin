@@ -48,9 +48,8 @@ export const Transaction = ({
      }, [])
 
     //todo: extraer al reducer
-    const cargarDatos = async(e)=> {
-
-         await  api.get(`/ms-admin-rest/api/v1.0/transactions/${Number(e.target.getAttribute('name'))}`)
+    const cargarDatos = async(id)=> {
+         await  api.get(`/ms-admin-rest/api/v1.0/transactions/${id}`)
             .then((res) => {
                 setFilterSelectedTransaction(res.data.result);
             })
