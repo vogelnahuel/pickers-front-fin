@@ -1,15 +1,15 @@
 import React,{useState} from 'react'
-
 import volver from '../../../../assets/admin/PendingUser/volver.svg'
 import Card from '../../../../assets/transaction/Card.svg'
 import {Form,Field} from 'react-final-form'
 import './dniFinish.css'
 import api from '../../../../middleware/api'
 
-
 export const DniFinish = (props) => {
     
     const [dniValid, setdniValid] = useState(false);
+    const [dniNumberError, setdniNumberError] = useState(false)
+    const [Error, setError] = useState("")
     const setdniFinish = props.setdniFinish;
     const setfinishModal = props.setfinishModal;
     const FilterSelectedTransaction=props.FilterSelectedTransaction
@@ -30,20 +30,28 @@ export const DniFinish = (props) => {
             
             setdniFinish(false);
          }, 600);
-        
 }
+
 const handleChange = (value)=>{
- 
+    setdniNumberError(false);
+    setError("");
   const expRegDni = /^[\d]{1,2}\.?[\d]{3,3}\.?[\d]{3,3}$/
-    if(expRegDni.test(Number(value.dni))  && Number(value.dni)!==0 ){
+  const expNumber = /^[\d]*$/
+
+    if(expRegDni.test(Number(value))  && Number(value)!==0 ){
+
         setdniValid(true)
-    }else{
+    }
+    else{
         setdniValid(false)
+        if(!expNumber.test(Number(value) ) ){
+            setdniNumberError(true);
+            setError("No se admiten letras ni caracteres especiales");
+        }
     }
     
 }
 
-    
     return (
         <div>
             <div onClick={handleClickgoBack} className="modal-transaction-finish-volver">
@@ -57,9 +65,7 @@ const handleChange = (value)=>{
             
                  <Form
                         onSubmit={()=>{}}
-                        validate={
-                            handleChange
-                        }
+                     
                         >
                         {({ handleSumbit = async(e) =>{
                             e.preventDefault()
@@ -73,19 +79,28 @@ const handleChange = (value)=>{
                         }  }) => (
                         <form  onSubmit={handleSumbit}>
                             <div className="modal-input-dni-finish">
-                                <div className="filter-transaction-div-label">
-                                    <label htmlFor="dni" className="label-Admin-Pickers">DNI *</label>
-                                </div>
+                                <label className="label-Admin-Pickers" id={dniNumberError===true ?"labelError-transaction" : null}>
+                                        DNI *
+                                </label>
                                 <Field
                                 name="dni"
                                 component="input"
                                 placeholder="Ingresá el DNI"
-                                className={dniValid!==false  ? "Admin-Pickers-input Inputerror" : "Admin-Pickers-input" }
+                                className={dniNumberError===true ? "Admin-Pickers-input inputError" : "Admin-Pickers-input"}
                                 id="dni"
                                 maxLength={8}
+                                parse={value => {
+                                    handleChange(value);
+                                    return value;
+                                  }}
                                 >
                                 </Field>
                             </div>
+                            <div className="input-errors-container">
+                                    <p className="errors"> {Error}  </p>
+                            </div>
+
+
                             {dniValid ? 
                             <div>
                                 <button  className="modal-dni-finish-button-active">Finalizarla</button>

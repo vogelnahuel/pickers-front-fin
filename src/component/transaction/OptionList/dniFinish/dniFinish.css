@@ -70,6 +70,9 @@
     letter-spacing: 0.0025em;
     color: #4D4D4D;
 }
+ #labelError-transaction{
+    color: red; 
+ }
 @media (max-width:1310px){
     .modal-dni-finish-card{
         margin-top: 15px;

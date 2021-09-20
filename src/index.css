@@ -48,4 +48,29 @@
     top: 0 !important;
     width: 0px !important;
 }
+input[type='radio']:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 13px;
+    top: -3px;
+    position: relative;
+    background-color: white;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 1px solid  #b2b2b2;
+}
 
+input[type='radio']:checked:after {
+    width: 9px;
+    height: 9px;
+    border-radius: 9px;
+    top: -6px;
+    left: 3px;
+    position: relative;
+    background-color:  #0098FF;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid  #0098FF;
+}
