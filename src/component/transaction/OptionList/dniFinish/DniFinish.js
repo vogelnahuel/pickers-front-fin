@@ -30,18 +30,16 @@ export const DniFinish = (props) => {
             
             setdniFinish(false);
          }, 600);
-        
 }
+
 const handleChange = (value)=>{
     setdniNumberError(false);
     setError("");
- 
   const expRegDni = /^[\d]{1,2}\.?[\d]{3,3}\.?[\d]{3,3}$/
   const expNumber = /^[\d]*$/
 
     if(expRegDni.test(Number(value))  && Number(value)!==0 ){
-        console.log("entre")
-        
+
         setdniValid(true)
     }
     else{
@@ -54,12 +52,8 @@ const handleChange = (value)=>{
     
 }
 
-    
     return (
         <div>
-            {
-                console.log(dniValid)
-            }
             <div onClick={handleClickgoBack} className="modal-transaction-finish-volver">
                 <img  className="modal-transaction-finish-volver-img" src={volver} alt ="volver" />
                 <p className="modal-transaction-finish-volver">Volver</p>
