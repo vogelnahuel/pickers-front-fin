@@ -20,7 +20,7 @@ export const FilterTransaction = ({ onSubmit, filters, validationSchema }) => {
                 <Col md={"auto"}>
                     <div className="filter-Imagen-width">
                         <img
-                            className="img-filter-transaction"
+                            className="img-filter-transaction filter-cursor"
                             src={dropdown}
                             alt="desplegable"
                         />
