@@ -78,7 +78,6 @@ const DetailPickerContainer = (props) => {
         });
 
     const cancel = (isDirty,restart) => {
-        debugger
         let onClose = ()=>{
             restart();
         };
