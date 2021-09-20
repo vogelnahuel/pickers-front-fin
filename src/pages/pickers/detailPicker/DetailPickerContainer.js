@@ -34,7 +34,7 @@ const DetailPickerContainer = (props) => {
                     onClickLabel: "Ir a guardar",
                     onCloseLabel: "No quiero guardarlos",
                     onClose: onClose,
-                    onClick: ()=>window.scroll({ top: document.body.offsetHeight, left: 0,  behavior: 'smooth' })
+                    onClick: ()=>window.scroll({ top: window.innerHeight, left: 0,  behavior: 'smooth' })
                 }
             );
         } else {
@@ -78,6 +78,7 @@ const DetailPickerContainer = (props) => {
         });
 
     const cancel = (isDirty,restart) => {
+        debugger
         let onClose = ()=>{
             restart();
         };
@@ -90,7 +91,7 @@ const DetailPickerContainer = (props) => {
                     onClickLabel: "Ir a guardar",
                     onCloseLabel: "No quiero guardarlos",
                     onClose: onClose,
-                    onClick: ()=>window.scroll({ top: document.body.offsetHeight, left: 0,  behavior: 'smooth' })
+                    onClick: ()=>window.scroll({ top: window.innerHeight, left: 0,  behavior: 'smooth' })
                 }
             );
         } else {
