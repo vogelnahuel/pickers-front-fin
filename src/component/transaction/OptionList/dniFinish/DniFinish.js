@@ -80,7 +80,7 @@ const handleChange = (value)=>{
                                 name="dni"
                                 component="input"
                                 placeholder="Ingresá el DNI"
-                                className="Admin-Pickers-input"
+                                className={dniValid!==false  ? "Admin-Pickers-input Inputerror" : "Admin-Pickers-input" }
                                 id="dni"
                                 maxLength={8}
                                 >

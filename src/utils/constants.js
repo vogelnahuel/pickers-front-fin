@@ -32,7 +32,7 @@ export const VALIDATION_REGEX = {
     regArea : /^([0-9]){2,5}$/,
     regTelefono : /^([0-9]){8}$/,
     regPatent:/^([a-zA-Z0-9]){6,7}$/,
-    regTransactionCode:/^[a-zA-Z0-9]*/,
+    regTransactionCode:/^[a-zA-Z0-9]*$/,
     regPickerId: /^[0-9]*/,
     regEmail: /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9]){1,}?$/,
 }
