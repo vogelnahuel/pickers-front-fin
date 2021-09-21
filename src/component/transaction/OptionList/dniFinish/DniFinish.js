@@ -35,7 +35,7 @@ export const DniFinish = (props) => {
 const handleChange = (value)=>{
     setdniNumberError(false);
     setError("");
-  const expRegDni = /^[\d]{1,2}\.?[\d]{3,3}\.?[\d]{3,3}$/
+  const expRegDni = /^[\d]{7,8}$/
   const expNumber = /^[\d]*$/
 
     if(expRegDni.test(Number(value))  && Number(value)!==0 ){
@@ -96,7 +96,7 @@ const handleChange = (value)=>{
                                 >
                                 </Field>
                             </div>
-                            <div className="input-errors-container">
+                            <div className="input-errors-container-transaction">
                                     <p className="errors"> {Error}  </p>
                             </div>
 
