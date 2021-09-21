@@ -437,13 +437,13 @@ export const RestorePassword = () => {
                         {
                             errorPassWord2 ? <div className="input-errors-container">
                                 <p  id="" className="errors"> {errorMsgPassword2}  </p>
-                            </div>:<></>
-                        }
-                        {
+                            </div>:<>{
                             errorDiferentesPassword ? <div className="input-errors-container">
                                 <p id="diferentes" className="errors"> Las contraseñas no coinciden </p>
                             </div>:<></>
+                        }</>
                         }
+                        
                     </div>
                     <ul name="elementosError" className="ul">
                         La contraseña debe contar con
