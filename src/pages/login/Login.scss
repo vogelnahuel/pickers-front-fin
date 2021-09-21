@@ -40,6 +40,7 @@
 .password-login{
   display: flex;
   position: relative;
+  margin-top: 4px;
 }
 
 .inputError{
@@ -48,7 +49,6 @@
   color: #FF1515 !important;
   border-bottom: 1px solid #FF1515 !important;
   z-index: 3;
-
 }
 .inputError::placeholder{
   color: #FF1515;
@@ -70,6 +70,7 @@
   font-weight: 300;
   font-size: 16px;
   line-height: 20px;
+  text-decoration: none;
 
 }
 
@@ -117,11 +118,11 @@
   margin-top: 30px;
 }
 .input-errors-container{
-  position: absolute;
+
   margin-top: -20px;
 }
 .errorsContainer2{
-  position: absolute;
+
   top: 0;
   margin-top: -38px;
 }
@@ -164,6 +165,7 @@
   margin-left: auto;
   margin-right: auto;
   margin-top: 30px;
+  position: relative;
 }
 
 .login-init{

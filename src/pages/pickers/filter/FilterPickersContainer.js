@@ -6,10 +6,12 @@ import {VALIDATION_REGEX} from 'utils/constants'
 import * as yup from "yup";
 
 const FilterPickersContainer = (props) => {
+    
     useEffect(() => {
         if(props.filters && Object.keys(props.filters).length === 0){
             props.reset();
         }
+       
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.filters])
 

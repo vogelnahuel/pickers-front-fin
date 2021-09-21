@@ -137,16 +137,17 @@ export const  EmailRestore = () => {
                             onFocus={(e) => handleFocusLabel(e,formValues.mail)}
                         />
                         <label id="mailRestore" htmlFor="mail" className="label login-label">Email</label>
-
-                        {
-                            formValues.errorMail===true ? <div className="input-errors-container">
-                                <p id="Test" className="errors"> {formValues.errorMsgMail}  </p>
-                            </div>:<></>
-                        }
+                        <div className="password-login">
+                            {
+                                formValues.errorMail===true ? <div className="input-errors-container">
+                                    <p id="Test" className="errors"> {formValues.errorMsgMail}  </p>
+                                </div>:<></>
+                            }
+                        </div>
                     </div>
 
                     <Button
-                        className="btn button_ "
+                        className="button_ "
                         type="submit"
                         name="button"
                         id="email-send"
