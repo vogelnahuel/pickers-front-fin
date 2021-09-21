@@ -35,25 +35,34 @@ export const DniFinish = (props) => {
 const handleChange = (value)=>{
     setdniNumberError(false);
     setError("");
+    
   const expRegDni = /^[\d]{7,8}$/
-  const expNumber = /^[\d]*$/
+  const expNumber = /^[0-9]*$/
 
-    if(expRegDni.test(Number(value))  && Number(value)!==0 ){
+    if(expRegDni.test((value))  && Number(value)!==0 ){
 
         setdniValid(true)
     }
     else{
+       
         setdniValid(false)
-        if(!expNumber.test(Number(value) ) ){
+        
+
+        if(!expNumber.test((value) ) ){
             setdniNumberError(true);
             setError("No se admiten letras ni caracteres especiales");
+            
         }
     }
+    
     
 }
 
     return (
         <div>
+            {
+                console.log(dniNumberError)
+            }
             <div onClick={handleClickgoBack} className="modal-transaction-finish-volver">
                 <img  className="modal-transaction-finish-volver-img" src={volver} alt ="volver" />
                 <p className="modal-transaction-finish-volver">Volver</p>
