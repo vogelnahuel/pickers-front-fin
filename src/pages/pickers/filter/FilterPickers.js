@@ -11,7 +11,7 @@ import Select from "component/inputs/Select";
 import useValidationSchema from "hooks/useValidationSchema"
 
 /****diseño del filtro y muestra inputs*/
-export const FilterPickers = ({ onSubmit, filters,validationSchema}) => {
+export const FilterPickers = ({ onSubmit, filters,validationSchema,PlaceHolderSelect}) => {
 
     return(
         <Container className="display-filter-transaction">
@@ -67,7 +67,7 @@ export const FilterPickers = ({ onSubmit, filters,validationSchema}) => {
                                             name="vehicleType"
                                             label="Vehículo"
                                             onChange={form.mutators.setValue}
-                                            placeholder="Seleccioná un tipo de vehículo"
+                                            placeholder={PlaceHolderSelect}
                                             options={FILTER_PICKERS_OPTIONS}
                                             component={Select}
                                         />

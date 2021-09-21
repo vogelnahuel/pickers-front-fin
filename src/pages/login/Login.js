@@ -228,11 +228,13 @@ export const Login = ({postLogin,modalOpen,isFetching, setModalOpen, validationS
                         />
                         <label id="labelmail" htmlFor="mail" className="login-label label">Usuario</label>
                     </div>
+                    <div className="password-login">
                     {
                         errorMail ? <div className="input-errors-container">
                             <p className="errors"> {errorMsgMail}  </p>
                         </div>:null
                     }
+                    </div>
 
                     <div >
                         <input
@@ -248,12 +250,14 @@ export const Login = ({postLogin,modalOpen,isFetching, setModalOpen, validationS
 
                         />
                         <label id="labelpassword" htmlFor="password-login" className="login-label label">Contraseña</label>
-                        <div className="password-login">
-                            {errorPassWord ? <div className="input-errors-container">
-                                <p className="errors"> {errorMsgPassword}  </p>
-                            </div>:<></>
-                            }
-                        </div>
+                    
+                            <div className="password-login">
+                                {errorPassWord ? <div className="input-errors-container">
+                                    <p className="errors"> {errorMsgPassword}  </p>
+                                </div>:<></>
+                                }
+                            </div>
+                       
                     </div>
 
 

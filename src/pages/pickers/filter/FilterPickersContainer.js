@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {connect} from "react-redux";
 import {actions as pendingUserActions, selectors as pendingUserSelectors} from "reducers/pickers";
 import {FilterPickers} from "pages/pickers/filter/FilterPickers";
@@ -6,9 +6,16 @@ import {VALIDATION_REGEX} from 'utils/constants'
 import * as yup from "yup";
 
 const FilterPickersContainer = (props) => {
+    
+
+    const [PlaceHolderSelect, setPlaceHolderSelect] = useState("Seleccioná un tipo de vehículo");
+
     useEffect(() => {
         if(props.filters && Object.keys(props.filters).length === 0){
             props.reset();
+        }
+        if(window.screen.width<1300){
+            setPlaceHolderSelect("Seleccioná tipo de vehículo");
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.filters])
@@ -32,6 +39,7 @@ const FilterPickersContainer = (props) => {
             {...props}
             onSubmit={search}
             validationSchema={validationSchema}
+            PlaceHolderSelect={PlaceHolderSelect}
         />
     );
 }

@@ -412,11 +412,13 @@ export const RestorePassword = () => {
 
                         />
                         <label id="labelPassword" htmlFor="password" className="label login-label-width login-restore-padding2">Nueva contraseña</label>
+                        <div className="password-login">
                         {
-                            errorPassWord ? <div className="input-errors-container">
+                            errorPassWord ? <div className="input-errors-container-restore">
                                 <p className="errors-restore"> {errorMsgPassword}  </p>
                             </div>:<></>
                         }
+                        </div>
 
                     </div>
                     <div className="py-3" >
@@ -433,17 +435,20 @@ export const RestorePassword = () => {
                         />
 
                         <label id="labelpassword2" htmlFor="password2" className="label login-label-width login-restore-padding">Repetir nueva contraseña</label>
-
+                        <div className="password-login">
                         {
-                            errorPassWord2 ? <div className="input-errors-container">
-                                <p  id="" className="errors"> {errorMsgPassword2}  </p>
+                            errorPassWord2 ? <div className="input-errors-container-restore">
+                                <p  id="passwordConfirm" className="errors"> {errorMsgPassword2}  </p>
                             </div>:<></>
                         }
+                        </div>
+                        <div className="password-login">
                         {
-                            errorDiferentesPassword ? <div className="input-errors-container">
+                            errorDiferentesPassword ? <div className="input-errors-container-restore">
                                 <p id="diferentes" className="errors"> Las contraseñas no coinciden </p>
                             </div>:<></>
                         }
+                        </div>
                     </div>
                     <ul name="elementosError" className="ul">
                         La contraseña debe contar con
@@ -483,7 +488,7 @@ export const RestorePassword = () => {
 
                     <div className="Button-Container">
                         <Button
-                            className="btn btn-outline-primary button_  centerMybuttonPass"
+                            className="button_  centerMybuttonPass"
                             type="submit"
                             name="button"
                         >Guardar</Button>
