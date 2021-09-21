@@ -261,23 +261,23 @@ export const Login = ({postLogin,modalOpen,isFetching, setModalOpen, validationS
                     </div>
 
 
-                    <div className="contenedor z-index">
+                    <div className="contenedor">
                         {
                             isFetching ?
-                                <div className="shineBorder contenedor z-index animation">
+                                <div className="shineBorder contenedor animation">
                                     <button
 
-                                        className="button_  z-index"
-                                        type="sumbit"
+                                        className="button_"
+                                        type="submit"
                                         name="button" ><p className="login-init "> Iniciar sesión </p>
                                     </button>
                                 </div>
                                 :
-                                <div className="contenedor z-index animation">
+                                <div className="contenedor animation">
                                     <button
 
-                                        className="button_  z-index"
-                                        type="sumbit"
+                                        className="button_"
+                                        type="submit"
                                         name="button" ><p className="login-init "> Iniciar sesión </p>
                                     </button>
                                 </div>
