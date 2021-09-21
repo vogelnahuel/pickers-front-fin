@@ -7,9 +7,6 @@ import * as yup from "yup";
 
 const FilterPickersContainer = (props) => {
     
-
-
-
     useEffect(() => {
         if(props.filters && Object.keys(props.filters).length === 0){
             props.reset();
