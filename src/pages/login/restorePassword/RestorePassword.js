@@ -448,6 +448,7 @@ export const RestorePassword = () => {
                                 <p id="diferentes" className="errors"> Las contraseñas no coinciden </p>
                             </div>:<></>
                         }
+                        
                         </div>
                     </div>
                     <ul name="elementosError" className="ul">
