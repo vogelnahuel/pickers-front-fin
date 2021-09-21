@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {connect} from "react-redux";
 import {actions as pendingUserActions, selectors as pendingUserSelectors} from "reducers/pickers";
 import {FilterPickers} from "pages/pickers/filter/FilterPickers";
