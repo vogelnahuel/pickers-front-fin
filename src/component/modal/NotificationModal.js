@@ -21,35 +21,27 @@ export const NotificationModal= ({
 
     const cerrarModal = useCallback(
         (e) => {
-           
             if(e.keyCode === 27 && (level==="warning" || level==="info" ) ) {
-                
                 e.preventDefault()
                 setClose();
               }
             else if( (e.keyCode === 27 || e.keyCode === 13 ) &&  (level==="success" || level==="error" ) ){
-               
                 e.preventDefault()
                 setClose();
             }
-            
         },
         [setClose,level],
     )
 
-
-    useEffect(() => {
-                    
+    useEffect(() => {    
                 if(isOpen){
                     if(element)
                     element.blur();
-
                         document.addEventListener("keydown",  (e)=>cerrarModal(e,level));
                 }
                  return(()=>{
                         document.removeEventListener("keydown",cerrarModal );
                  })
-
       // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [isOpen]);  
 
@@ -84,7 +76,6 @@ export const NotificationModal= ({
         </div>
     ) : null;
 }
-
 
 const mapStateToProps = (state) => ({
     isOpen: notificationSelectors.isOpen(state),

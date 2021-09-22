@@ -85,9 +85,7 @@ function* getPendingUserPicker({ params }) {
 function* getPendingUserExport({ params,element }) {
 
     let filterUpdate = {...params, vehicleType: params.vehicleType && (params.vehicleType.value===''? undefined : params.vehicleType.value)};
-
-
-
+    
     const response = yield call(
         pickersMiddleware.getPendingUserExport,
         filterUpdate
