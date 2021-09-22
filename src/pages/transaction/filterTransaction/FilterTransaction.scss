@@ -52,11 +52,14 @@
 .p-filter-transaction{
     display: inline-block;
     margin-left: 11px;
+    margin-top: -2px;
+    cursor: alias;
     font-family: 'Mulish';
 }
 .img-filter-transaction{
     width: 24px;
     height: 22px;
+    cursor: alias;
 }
 .filter-cursor{
     cursor: default;
