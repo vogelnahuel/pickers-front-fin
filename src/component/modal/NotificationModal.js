@@ -18,6 +18,7 @@ export const NotificationModal= ({
                                      onClickLabel
                                  }) => {
 
+                                    
     return isOpen ? (
         <div className="modal-notification-background">
             <Modal

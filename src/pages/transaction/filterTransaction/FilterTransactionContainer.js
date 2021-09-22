@@ -53,7 +53,7 @@ const FilterTransactionContainer = (props) => {
     const validationSchema =
         yup.lazy(() => {
             return yup.object({
-                transactionCode: yup.string().matches(VALIDATION_REGEX.regTransactionCode,"No se admiten caracteres especiales"),
+                transactionCode: yup.string().matches(VALIDATION_REGEX.regTransactionCode,"El codigo ingresado es erroneo"),
                 pickerId:yup.string().matches(VALIDATION_REGEX.regPickerId,"No se admiten letras o caracteres especiales"),
             })
         });
