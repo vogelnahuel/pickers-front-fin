@@ -24,7 +24,7 @@ export const Nav = ({ isDirty, showNotification }) => {
                     onCloseLabel: "No quiero guardarlos",
                     onClose: onClose,
                     onClick: ()=>window.scroll({ top: window.innerHeight, left: 0,  behavior: 'smooth' }),
-                    elemento:e.target
+                    element:e.target
                 }
             );
         } else {

@@ -14,7 +14,7 @@ export const INITIAL_STATE = {
     onClickLabel: 'Entendido',
     onClick: undefined,
     onClose: undefined,
-    elemento:undefined
+    element:undefined
 };
 
 export const actions = {
@@ -37,7 +37,7 @@ export const selectors = {
     getBody: ({ notification }) => notification.body,
     onClose: ({ notification }) => notification.onClose,
     onClick: ({ notification }) => notification.onClick,
-    elemento: ({ notification }) => notification.elemento,
+    element: ({ notification }) => notification.element,
 };
 
 const reducer =(state = INITIAL_STATE, action = {}) => {
@@ -53,7 +53,7 @@ const reducer =(state = INITIAL_STATE, action = {}) => {
                 onClickLabel: action.content.onClickLabel ? action.content.onClickLabel : state.onClickLabel,
                 onClick: action.content.onClick ? action.content.onClick : state.onClick,
                 onClose: action.content.onClose ? action.content.onClose : state.onClose,
-                elemento:action.content.elemento ? action.content.elemento : state.elemento
+                element:action.content.element ? action.content.element : state.element
             };
         case types.NOTIFICATION_SET_HIDE:
             return {

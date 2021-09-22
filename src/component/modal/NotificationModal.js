@@ -16,7 +16,7 @@ export const NotificationModal= ({
                                      body,
                                      onCloseLabel,
                                      onClickLabel,
-                                     elemento
+                                     element
                                  }) => {
 
     const cerrarModal = useCallback(
@@ -41,8 +41,8 @@ export const NotificationModal= ({
     useEffect(() => {
                     
                 if(isOpen){
-                    if(elemento)
-                    elemento.blur();
+                    if(element)
+                    element.blur();
 
                         document.addEventListener("keydown",  (e)=>cerrarModal(e,level));
                 }
@@ -50,7 +50,8 @@ export const NotificationModal= ({
                         document.removeEventListener("keydown",cerrarModal );
                  })
 
-      }, [isOpen,elemento,level,cerrarModal]);  
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, [isOpen]);  
 
     return isOpen ? (
         <div className="modal-notification-background">
@@ -94,7 +95,7 @@ const mapStateToProps = (state) => ({
     body: notificationSelectors.getBody(state),
     onClick: notificationSelectors.onClick(state),
     onClose: notificationSelectors.onClose(state),
-    elemento:notificationSelectors.elemento(state),
+    element:notificationSelectors.element(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -27,7 +27,7 @@ export const PendingBlue = ({ showNotification, changePage, actualPage, isDirty,
                     onCloseLabel: "No quiero guardarlos",
                     onClose: onClose,
                     onClick: ()=>window.scroll({ top:window.innerHeight, left: 0,  behavior: 'smooth' }),
-                    elemento:e.target.parentNode
+                    element:e.target.parentNode
                 }
             );
         } else {

@@ -73,10 +73,10 @@ export const actions = {
         type: types.TRANSACTIONS_OPEN_ERROR_DATE_MODAL,
         param
     }),
-    getTransactionsExportRequest: (params,elemento) => ({
+    getTransactionsExportRequest: (params,element) => ({
         type: types.TRANSACTIONS_EXPORT_REQUEST,
         params,
-        elemento
+        element
     }),
     getTransactionsExportSuccess: () => ({
         type: types.TRANSACTIONS_EXPORT_SUCCESS,

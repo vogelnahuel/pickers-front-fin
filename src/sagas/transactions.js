@@ -54,7 +54,7 @@ function* getMoreTransactions({ params }) {
 
 }
 
-function* getTransactionsExport({ params,elemento }) {
+function* getTransactionsExport({ params,element }) {
     const response = yield call(
         transactionsMiddleware.getTransactionsExport,
         params
@@ -68,7 +68,7 @@ function* getTransactionsExport({ params,elemento }) {
                 level:"success",
                 title: "Exportaste exitosamente",
                 body:"El archivo se descargó correctamente",
-                elemento
+                element
             }
         ));
         yield put(actions.getTransactionsExportSuccess());

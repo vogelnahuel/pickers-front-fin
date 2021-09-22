@@ -57,8 +57,8 @@ const mapDispatchToProps = (dispatch) => ({
     setActualPage:(page)=>{
         dispatch(pendingUserActions.setActualPage(page));
     },
-    getPendingUsersExportRequest:(params,elemento)=>{
-        dispatch(pendingUserActions.getPendingUserExportRequest(params,elemento))
+    getPendingUsersExportRequest:(params,element)=>{
+        dispatch(pendingUserActions.getPendingUserExportRequest(params,element))
     },
     getMorePendingUser: (params) => {
         dispatch(pendingUserActions.getMorePendingUserRequest(params));

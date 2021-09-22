@@ -82,10 +82,10 @@ export const actions = {
         type: types.PENDING_USER_GET_MORE_ERROR,
     }),
     
-    getPendingUserExportRequest: (params,elemento) => ({
+    getPendingUserExportRequest: (params,element) => ({
         type: types.PENDING_USER_EXPORT_GET_REQUEST,
         params,
-        elemento
+        element
     }),
     getPendingUserExportSuccess: (params) => ({
         type: types.PENDING_USER_EXPORT_GET_SUCCESS,
