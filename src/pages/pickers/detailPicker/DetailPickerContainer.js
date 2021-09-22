@@ -136,8 +136,8 @@ const mapDispatchToProps = (dispatch) => ({
     getPendingUserPicker: (params) => {
         dispatch(pendingUserAdminPickerActions.getPendingUserPickerRequest(params));
     },
-    getPendingUserPickerExport: (params) => {
-        dispatch(pendingUserAdminPickerActions.getPendingUserPickerExportRequest(params));
+    getPendingUserPickerExport: (params,elemento) => {
+        dispatch(pendingUserAdminPickerActions.getPendingUserPickerExportRequest(params,elemento));
     },
     setDirty: (dirty) => {
         dispatch(pendingUserAdminPickerActions.setDirty(dirty));

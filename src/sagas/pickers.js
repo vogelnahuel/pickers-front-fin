@@ -82,8 +82,11 @@ function* getPendingUserPicker({ params }) {
     }
 }
 
-function* getPendingUserExport({ params }) {
+function* getPendingUserExport({ params,elemento }) {
+  
     let filterUpdate = {...params, vehicleType: params.vehicleType && (params.vehicleType.value===''? undefined : params.vehicleType.value)};
+
+
 
     const response = yield call(
         pickersMiddleware.getPendingUserExport,
@@ -101,12 +104,13 @@ function* getPendingUserExport({ params }) {
                 level:"success",
                 title: "Exportaste exitosamente",
                 body:"El archivo se descargó correctamente",
+                elemento
             }
         ));
     }
 }
 
-function* getPendingUserPickerExport({ params }) {
+function* getPendingUserPickerExport({ params,elemento }) {
     const response = yield call(
         pickersMiddleware.getPendingUserPickerExport,
         params
@@ -120,13 +124,14 @@ function* getPendingUserPickerExport({ params }) {
                 level:"success",
                 title: "Exportaste exitosamente",
                 body:"El archivo se descargó correctamente",
+                elemento
             }
         ));
         yield put(detailPickerActions.getPendingUserPickerExportSuccess(response));
     }
 }
 
-function* postPendingUserDocumentsEdit({ params }) {
+function* postPendingUserDocumentsEdit({ params,elemento }) {
     let body = process(params);
     const response = yield call(
         pickersMiddleware.postPendingUserDocumentsEdit,
@@ -138,6 +143,7 @@ function* postPendingUserDocumentsEdit({ params }) {
                 level:"error",
                 title: "Error de conexión",
                 body:"Hubo un error de comunicación con el servidor. Por favor, intentalo nuevamente",
+                elemento
             }
         ));
         yield put(detailPickerActions.getPendingUserPickerDocumentsEditError());
@@ -147,7 +153,7 @@ function* postPendingUserDocumentsEdit({ params }) {
     }
 }
 
-function* postAprovePicker({ params, goBack }) {
+function* postAprovePicker({ params, goBack,elemento }) {
     let body = process(params);
     const response = yield call(
         pickersMiddleware.postAprovePicker,
@@ -159,6 +165,7 @@ function* postAprovePicker({ params, goBack }) {
                 level:"error",
                 title: "Error de conexión",
                 body:"Hubo un error de comunicación con el servidor. Por favor, intentalo nuevamente",
+                elemento
             }
         ));
         yield put(detailPickerActions.getAprovePickerError());
@@ -168,14 +175,15 @@ function* postAprovePicker({ params, goBack }) {
                 level:"success",
                 title: "Aprobación exitosa",
                 body:"Ya podés visualizar sus datos en la pestaña pickers",
-                onClick: goBack
+                onClick: goBack,
+                elemento
             }
         ));
         yield put(detailPickerActions.getAprovePickerSuccess(body));
     }
 }
 
-function* postEditPicker({ params, goBack }) {
+function* postEditPicker({ params, goBack,elemento }) {
     let body = process(params);
     const response = yield call(
         pickersMiddleware.postEditPicker,
@@ -187,6 +195,7 @@ function* postEditPicker({ params, goBack }) {
                 level:"error",
                 title: "Error de conexión",
                 body:"Hubo un error de comunicación con el servidor. Por favor, intentalo nuevamente",
+                elemento
             }
         ));
         yield put(detailPickerActions.getEditPickerError());
@@ -197,6 +206,7 @@ function* postEditPicker({ params, goBack }) {
                 title: "Datos guardados",
                 body:"Ya quedaron registrados los cambios",
                 onClick: goBack,
+                elemento
             }
         ));
         yield put(detailPickerActions.getEditPickerSuccess(body));

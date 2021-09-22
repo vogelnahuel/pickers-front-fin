@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from "react-redux";
 import {Modal} from "@pickit/pickit-components";
 import button from "assets/admin/ActiveUserAdminPicker/button.svg";
@@ -15,10 +15,58 @@ export const NotificationModal= ({
                                      doAction,
                                      body,
                                      onCloseLabel,
-                                     onClickLabel
+                                     onClickLabel,
+                                     elemento
                                  }) => {
 
-                                    
+
+    useEffect(() => {
+                //console.log(onCloseLabel)
+                //console.log(isOpen)
+                 
+
+                if(isOpen){
+                    elemento.blur();
+                    if(level==="warning"  || level==="info"){
+                        document.addEventListener("keydown", e=>{
+                            e.preventDefault()
+                            setClose();
+                        });
+                    }else{
+                  
+                        document.addEventListener("keydown", e=>{
+                            e.preventDefault()
+                            setClose();
+                        });
+                        window.addEventListener('keypress', e => {
+                            e.preventDefault()
+                            setClose();
+                        });
+                    }
+
+                }
+
+                 return(()=>{
+                    if(level==="warning"  || level==="info"){
+                        document.removeEventListener("keydown", e=>{
+                            e.preventDefault()
+                            setClose();
+                        });
+                    }else{
+                  
+                        document.removeEventListener("keydown", e=>{
+                            e.preventDefault()
+                            setClose();
+                        });
+                        window.removeEventListener('keypress', e => {
+                            e.preventDefault()
+                            setClose();
+                        });
+                    }
+                 })
+      }, [isOpen,onCloseLabel,setClose,elemento,level]);  
+
+                 
     return isOpen ? (
         <div className="modal-notification-background">
             <Modal
@@ -61,6 +109,7 @@ const mapStateToProps = (state) => ({
     body: notificationSelectors.getBody(state),
     onClick: notificationSelectors.onClick(state),
     onClose: notificationSelectors.onClose(state),
+    elemento:notificationSelectors.elemento(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

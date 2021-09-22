@@ -13,13 +13,14 @@ export const INITIAL_STATE = {
     onCloseLabel: undefined,
     onClickLabel: 'Entendido',
     onClick: undefined,
-    onClose: undefined
+    onClose: undefined,
+    elemento:undefined
 };
 
 export const actions = {
     showNotification: (content) => ({
         type: types.NOTIFICATION_SET_SHOW,
-        content
+        content,
     }),
     hideNotification: (open) => ({
         type: types.NOTIFICATION_SET_HIDE,
@@ -36,6 +37,7 @@ export const selectors = {
     getBody: ({ notification }) => notification.body,
     onClose: ({ notification }) => notification.onClose,
     onClick: ({ notification }) => notification.onClick,
+    elemento: ({ notification }) => notification.elemento,
 };
 
 const reducer =(state = INITIAL_STATE, action = {}) => {
@@ -51,6 +53,7 @@ const reducer =(state = INITIAL_STATE, action = {}) => {
                 onClickLabel: action.content.onClickLabel ? action.content.onClickLabel : state.onClickLabel,
                 onClick: action.content.onClick ? action.content.onClick : state.onClick,
                 onClose: action.content.onClose ? action.content.onClose : state.onClose,
+                elemento:action.content.elemento ? action.content.elemento : state.elemento
             };
         case types.NOTIFICATION_SET_HIDE:
             return {
