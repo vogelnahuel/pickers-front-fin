@@ -21,40 +21,37 @@ export const NotificationModal= ({
 
     const cerrarModal = useCallback(
         (e) => {
-            e.preventDefault()
-            setClose();
+           
+            if(e.keyCode === 27 && (level==="warning" || level==="info" ) ) {
+                
+                e.preventDefault()
+                setClose();
+              }
+            else if( (e.keyCode === 27 || e.keyCode === 13 ) &&  (level==="success" || level==="error" ) ){
+               
+                e.preventDefault()
+                setClose();
+            }
+            
         },
-        [setClose],
+        [setClose,level],
     )
 
 
     useEffect(() => {
-            
+                    
                 if(isOpen){
                     if(elemento)
                     elemento.blur();
-                    
-                    if(level==="warning"  || level==="info"){
-                        document.addEventListener("keydown",cerrarModal );
-                    }else{
-                  
-                        document.addEventListener("keydown",  cerrarModal);
-                        document.addEventListener('keypress', cerrarModal);
-                    }
+
+                        document.addEventListener("keydown",  (e)=>cerrarModal(e,level));
                 }
                  return(()=>{
-
-                    if(level==="warning"  || level==="info"){
                         document.removeEventListener("keydown",cerrarModal );
-                    }else{
-                        document.removeEventListener("keydown", cerrarModal);
-                        document.removeEventListener('keypress', cerrarModal);
-                    }
-
                  })
-      }, [isOpen,onCloseLabel,setClose,elemento,level,cerrarModal]);  
 
-                 
+      }, [isOpen,elemento,level,cerrarModal]);  
+
     return isOpen ? (
         <div className="modal-notification-background">
             <Modal
