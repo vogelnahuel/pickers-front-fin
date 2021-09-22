@@ -11,8 +11,8 @@ export const Actions = ({
   isDirty,
   showNotification,
 }) => {
-  console.log(isDirty);
-  const handleClick = () => {
+  
+  const handleClick = (e) => {
     if (isDirty) {
       showNotification({
         level: "warning",
@@ -21,7 +21,7 @@ export const Actions = ({
         onClickLabel: "Ir a guardar",
         onCloseLabel: "Exportar sin guardar",
         onClose: () =>
-          getPendingUserPickerExport({ email: pendingUserAdminPicker.email }),
+          getPendingUserPickerExport({ email: pendingUserAdminPicker.email },e.target),
         onClick: () =>
           window.scroll({
             top: window.innerHeight,
@@ -30,12 +30,13 @@ export const Actions = ({
           }),
       });
     } else {
-      getPendingUserPickerExport({ email: pendingUserAdminPicker.email });
+      getPendingUserPickerExport({ email: pendingUserAdminPicker.email },e.target);
     }
   };
+  
   return (
     <div>
-      <button onClick={handleClick} className="export" name="export">
+      <button onClick={(e) => handleClick(e)} className="export" name="export">
         <img src={exportar} alt="export" />
         <img className="or-pending" src={or} alt="or" />
         <p className="display-inline-block p-export">Exportar</p>

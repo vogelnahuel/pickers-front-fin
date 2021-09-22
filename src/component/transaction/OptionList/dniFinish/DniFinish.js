@@ -35,20 +35,26 @@ export const DniFinish = (props) => {
 const handleChange = (value)=>{
     setdniNumberError(false);
     setError("");
-  const expRegDni = /^[\d]{1,2}\.?[\d]{3,3}\.?[\d]{3,3}$/
-  const expNumber = /^[\d]*$/
+    
+  const expRegDni = /^[\d]{7,8}$/
+  const expNumber = /^[0-9]*$/
 
-    if(expRegDni.test(Number(value))  && Number(value)!==0 ){
+    if(expRegDni.test((value))  && Number(value)!==0 ){
 
         setdniValid(true)
     }
     else{
+       
         setdniValid(false)
-        if(!expNumber.test(Number(value) ) ){
+        
+
+        if(!expNumber.test((value) ) ){
             setdniNumberError(true);
             setError("No se admiten letras ni caracteres especiales");
+            
         }
     }
+    
     
 }
 
@@ -96,7 +102,7 @@ const handleChange = (value)=>{
                                 >
                                 </Field>
                             </div>
-                            <div className="input-errors-container">
+                            <div className="input-errors-container-transaction">
                                     <p className="errors"> {Error}  </p>
                             </div>
 

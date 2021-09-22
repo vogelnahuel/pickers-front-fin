@@ -6,18 +6,15 @@ import 'pages/pickers/detailPicker/DetailPicker.scss'
 import PendingBlue from 'component/admin/Sub-Title-Image/PendingBlue'
 import {Input} from "component/inputs/Input"
 import {Switch} from "component/inputs/switch"
-import exportar from 'assets/admin/PendingUser/exportar.svg'
-import or from 'assets/admin/PendingUser/or.svg'
 import motorcycle from 'assets/admin/PendingUserAdminPicker/motorcycle.svg'
 import bici from 'assets/admin/PendingUserAdminPicker/bici.svg'
 import {Field, Form} from "react-final-form";
-import button from "assets/admin/ActiveUserAdminPicker/button.svg";
 import useValidationSchema from "hooks/useValidationSchema"
 import {Col, Container, Row} from "react-bootstrap";
 import { FormSpy } from 'react-final-form'
 import moment from "moment";
 import NotificationModal from "component/modal/NotificationModal";
-import  Actions from '../actions/Actions'
+import  Actions from 'pages/pickers/actions/Actions'
 
 export const DetailPicker = (
     {

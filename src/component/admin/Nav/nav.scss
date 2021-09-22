@@ -84,7 +84,7 @@
 .circle{
     height: 7px;
     width: 7px;
-    left: 3.5vw;
+    left: 4.5vw;
     margin-top: 1.6vh; 
     border-radius: 3px;
     background-color: #145A99;
@@ -96,47 +96,15 @@
     .navAdmin{
         height: 90vh;
     }
+    .circle{
+        left: 3.94vw;
+        margin-top: 1vh; 
+    }
+}
+@media (max-width:1300px){
+
+    .circle{
+        left: 4.6vw;
+    }
 }
 
-@media (min-height: 700px) { 
-  
-    .circle{
-        left: 3.5vw;
-        margin-top: 1.6vh;
-    }
-  
-}
-
-@media (min-height: 800px) { 
-  
-    .circle{
-        left: 2vw;
-        margin-top: 1.4vh;
-    }
-  
-   }
-
-@media (min-height: 900px) { 
-  
-    .circle{
-        left: 3.2vw;
-        margin-top: 1.2vh;
-    }
-  
-   }
-   @media (min-height: 1000px) { 
-  
-    .circle{
-        left: 3.5vw;
-        margin-top: 1vh;
-    }
-  
-   }
-   @media (min-height: 1200px) { 
-  
-    .circle{
-        left: 3.8vw;
-        margin-top: 0.9vh;
-    }
-  
-   }
