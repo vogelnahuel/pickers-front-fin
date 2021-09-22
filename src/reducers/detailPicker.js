@@ -46,9 +46,10 @@ export const actions = {
         type: types.PENDING_USER_ADMIN_PICKER_SET_DIRTY,
         dirty
     }),
-    getPendingUserPickerExportRequest: (params) => ({
+    getPendingUserPickerExportRequest: (params,element) => ({
         type: types.PENDING_USER_ADMIN_PICKER_EXPORT_GET_REQUEST,
         params,
+        element
     }),
     getPendingUserPickerExportSuccess: (pendingUserAdminPickerExport) => ({
         type: types.PENDING_USER_ADMIN_PICKER_EXPORT_GET_SUCCESS,

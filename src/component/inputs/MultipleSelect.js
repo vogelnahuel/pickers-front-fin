@@ -28,7 +28,7 @@ const MultipleSelect = (
       return 'Todos';
     } else {
       let length = optionsState.filter((ob)=>ob.selected).length;
-      if (length > 3) {
+      if (length >= 2) {
         return `${length} Selecionados`;
       } else {
         return reduceState(optionsState, 'label');

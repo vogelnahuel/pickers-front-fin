@@ -59,7 +59,7 @@ export const DetailPicker = (
                                 <img  className="vehiculo-pending-picker" src={bici} alt="vehiculo" />
                         }
                         <button
-                            onClick={()=>{getPendingUserPickerExport({email:(pendingUserAdminPicker.email)})}}
+                            onClick={(e)=>{getPendingUserPickerExport({email:(pendingUserAdminPicker.email)},e.target)}}
                             className="export"
                             name="export"
                         >
