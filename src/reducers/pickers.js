@@ -6,7 +6,7 @@ export const types = {
     PENDING_USER_GET_SUCCESS: `${PENDING_USER}_GET_SUCCESS`,
     PENDING_USER_GET_ERROR: `${PENDING_USER}_GET_ERROR`,
     PENDING_USER_SET_FILTERS: `${PENDING_USER}_SET_FILTER`,
-    PENDING_USER_SET_EXTRA_FILTERS:`${PENDING_USER}_SET_EXTRA_FILTER`,
+    PENDING_USER_SET_EXTRA_FILTERS: `${PENDING_USER}_SET_EXTRA_FILTER`,
     PENDING_USER_SET_ACTUAL_PAGE: `${PENDING_USER}_SET_ACTUAL_PAGE`,
 
 
@@ -26,18 +26,18 @@ export const types = {
 export const INITIAL_STATE = {
     fetching: false,
     users: [],
-    filters:{},
-    filtersExtra:{
+    filters: {},
+    filtersExtra: {
         limit: 5,
         offset: 0
     },
     filtersExtraSeeMore: {
-        limit:15,
+        limit: 15,
         offset: 0
     },
-    seeMore:true,
-    pag:15,
-    actualPage:"PENDING",
+    seeMore: true,
+    pag: 15,
+    actualPage: "PENDING",
 };
 
 export const actions = {
@@ -67,9 +67,6 @@ export const actions = {
         type: types.PENDING_USER_SET_EXTRA_FILTERS,
         extraFilters,
     }),
-
-
-
     getMorePendingUserRequest: (params) => ({
         type: types.PENDING_USER_GET_MORE_REQUEST,
         params,
@@ -81,8 +78,8 @@ export const actions = {
     getMorePendingUserError: () => ({
         type: types.PENDING_USER_GET_MORE_ERROR,
     }),
-    
-    getPendingUserExportRequest: (params,element) => ({
+
+    getPendingUserExportRequest: (params, element) => ({
         type: types.PENDING_USER_EXPORT_GET_REQUEST,
         params,
         element
@@ -101,15 +98,15 @@ export const actions = {
 export const selectors = {
     isFetching: ({ pendingUser }) => pendingUser.fetching,
     getPendingUser: ({ pendingUser }) => pendingUser.users,
-    getFilters:({pendingUser}) => pendingUser.filters,
-    getFiltersExtra:({pendingUser}) => pendingUser.filtersExtra,
-    getFiltersExtraSeeMore:({pendingUser}) => pendingUser.filtersExtraSeeMore,
-    getSeeMore:({pendingUser}) => pendingUser.seeMore,
-    getPag:({pendingUser}) => pendingUser.pag,
-    getActualPage:({pendingUser}) => pendingUser.actualPage,
+    getFilters: ({ pendingUser }) => pendingUser.filters,
+    getFiltersExtra: ({ pendingUser }) => pendingUser.filtersExtra,
+    getFiltersExtraSeeMore: ({ pendingUser }) => pendingUser.filtersExtraSeeMore,
+    getSeeMore: ({ pendingUser }) => pendingUser.seeMore,
+    getPag: ({ pendingUser }) => pendingUser.pag,
+    getActualPage: ({ pendingUser }) => pendingUser.actualPage,
 };
 
-const reducer =(state = INITIAL_STATE, action = {}) => {
+const reducer = (state = INITIAL_STATE, action = {}) => {
     switch (action.type) {
         case types.PENDING_USER_RESET:
             return {
@@ -125,7 +122,7 @@ const reducer =(state = INITIAL_STATE, action = {}) => {
                 ...state,
                 users: action.pendingUsers.items,
                 fetching: false,
-                seeMore:action.pendingUsers.hasMore,
+                seeMore: action.pendingUsers.hasMore,
                 filtersExtraSeeMore: {
                     ...state.filtersExtraSeeMore,
                     offset: action.pendingUsers.offset + action.pendingUsers.limit
@@ -136,65 +133,62 @@ const reducer =(state = INITIAL_STATE, action = {}) => {
                 ...state,
                 fetching: false,
             };
-            case types.PENDING_USER_SET_FILTERS:
+        case types.PENDING_USER_SET_FILTERS:
             return {
                 ...state,
-                filters:  action.filters,
+                filters: action.filters,
             };
         case types.PENDING_USER_SET_ACTUAL_PAGE:
             return {
                 ...state,
                 users: [],
-                actualPage:action.page,
+                actualPage: action.page,
             };
         case types.PENDING_USER_SET_EXTRA_FILTERS:
             return {
                 ...state,
-                filtersExtra:{ ...state.filtersExtra, ...action.extraFilters },
+                filtersExtra: { ...state.filtersExtra, ...action.extraFilters },
             };
-            
-            
-            case types.PENDING_USER_GET_MORE_REQUEST:
-                return {
-                    ...state,
-                    fetching: true,
-                };
-            case types.PENDING_USER_GET_MORE_SUCCESS:
-                return {
-                    ...state,
-                    users: state.users.concat(action.pendingUsers.items),
-                    filtersExtraSeeMore: {
-                        ...state.filtersExtraSeeMore,
-                        offset: action.pendingUsers.offset + action.pendingUsers.limit
-                    },
-                    fetching: false,
-                    seeMore:action.pendingUsers.hasMore,
-                };
-            case types.PENDING_USER_GET_MORE_ERROR:
-                return {
-                    ...state,
-                    fetching: false,
-                };
-            
 
-            case types.PENDING_USER_EXPORT_GET_REQUEST:
-                return {
-                    ...state,
-                    fetching: true,
-                    
-                };
+        case types.PENDING_USER_GET_MORE_REQUEST:
+            return {
+                ...state,
+                fetching: true,
+            };
+        case types.PENDING_USER_GET_MORE_SUCCESS:
+            return {
+                ...state,
+                users: state.users.concat(action.pendingUsers.items),
+                filtersExtraSeeMore: {
+                    ...state.filtersExtraSeeMore,
+                    offset: action.pendingUsers.offset + action.pendingUsers.limit
+                },
+                fetching: false,
+                seeMore: action.pendingUsers.hasMore,
+            };
+        case types.PENDING_USER_GET_MORE_ERROR:
+            return {
+                ...state,
+                fetching: false,
+            };
+        case types.PENDING_USER_EXPORT_GET_REQUEST:
+            return {
+                ...state,
+                fetching: true,
+
+            };
         case types.PENDING_USER_EXPORT_GET_SUCCESS:
-                return {
-                    ...state,
-                    fetching: false,
-                };
+            return {
+                ...state,
+                fetching: false,
+            };
         case types.PENDING_USER_EXPORT_GET_ERROR:
-                return {
-                    ...state,
-                    fetching: false,
-                };
+            return {
+                ...state,
+                fetching: false,
+            };
         default:
-            return state;  
+            return state;
     }
 };
 

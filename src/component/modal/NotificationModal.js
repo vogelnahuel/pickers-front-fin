@@ -35,8 +35,9 @@ export const NotificationModal= ({
 
     useEffect(() => {    
                 if(isOpen){
-                    if(element)
-                    element.blur();
+                    if(element){
+                        element.blur();
+                    }
                         document.addEventListener("keydown",  (e)=>cerrarModal(e,level));
                 }
                  return(()=>{

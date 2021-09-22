@@ -6,17 +6,15 @@ import 'pages/pickers/detailPicker/DetailPicker.scss'
 import PendingBlue from 'component/admin/Sub-Title-Image/PendingBlue'
 import {Input} from "component/inputs/Input"
 import {Switch} from "component/inputs/switch"
-import exportar from 'assets/admin/PendingUser/exportar.svg'
-import or from 'assets/admin/PendingUser/or.svg'
 import motorcycle from 'assets/admin/PendingUserAdminPicker/motorcycle.svg'
 import bici from 'assets/admin/PendingUserAdminPicker/bici.svg'
 import {Field, Form} from "react-final-form";
-import button from "assets/admin/ActiveUserAdminPicker/button.svg";
 import useValidationSchema from "hooks/useValidationSchema"
 import {Col, Container, Row} from "react-bootstrap";
 import { FormSpy } from 'react-final-form'
 import moment from "moment";
 import NotificationModal from "component/modal/NotificationModal";
+import  Actions from 'pages/pickers/actions/Actions'
 
 export const DetailPicker = (
     {
@@ -58,15 +56,9 @@ export const DetailPicker = (
                                 :
                                 <img  className="vehiculo-pending-picker" src={bici} alt="vehiculo" />
                         }
-                        <button
-                            onClick={(e)=>{getPendingUserPickerExport({email:(pendingUserAdminPicker.email)},e.target)}}
-                            className="export"
-                            name="export"
-                        >
-                            <img  src={exportar} alt="export" />
-                            <img className="or-pending" src={or} alt="or" />
-                            <p className="display-inline-block p-export">Exportar</p>
-                        </button>
+                        <div className="export-container">
+                        <Actions getPendingUserPickerExport={getPendingUserPickerExport} pendingUserAdminPicker={pendingUserAdminPicker}/>
+                        </div>
                     </div>
                     <Form
                         onSubmit={values => active ? postEditPickerRequest(values, goBack) : aproveSubmit(values,goBack)}
