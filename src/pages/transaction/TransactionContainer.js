@@ -10,6 +10,7 @@ const TransactionContainer = (props) => {
     useEffect(() => {
         props.reset();
         const filters = parseQueryParams(params.search);
+        filters.maxMinDeliveryDate && (filters.date = { from: filters.minMinDeliveryDate, until: filters.maxMinDeliveryDate });
         const filtersExtra={limit:window.screen.height<770 ? 3 : 4};
         props.setExtraFilters(filtersExtra);
         props.getTransactions({...filtersExtra, ...filters});
