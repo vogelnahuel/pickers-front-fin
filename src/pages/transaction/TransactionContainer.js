@@ -37,8 +37,8 @@ const mapStateToProps = (state) => ({
 
 
 const mapDispatchToProps = (dispatch) => ({
-    getTransactionsExportRequest: (params) => {
-        dispatch(transactionActions.getTransactionsExportRequest(params));
+    getTransactionsExportRequest: (params,element) => {
+        dispatch(transactionActions.getTransactionsExportRequest(params,element));
     },
     getTransactions: (params) => {
         dispatch(transactionActions.getTransactionsRequest(params));

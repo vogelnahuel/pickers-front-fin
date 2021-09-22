@@ -36,7 +36,7 @@ export const PendingUserAdmin = ({
                         <h2 className="subTitle-pending">
                             <p className="subtitle-pendingUser-h2">{actualPage==="PENDING"?"Solicitudes pendientes":"Pickers"} </p>
                         </h2>
-                        <button onClick={()=>getPendingUsersExportRequest(filters)} className="export" name="export">
+                        <button onClick={(e)=>getPendingUsersExportRequest(filters,e.target)} className="export" name="export">
                             <img src={exportar} alt="export" />
                             <img className="or-pending" src={or} alt="or" />
                             <p className="display-inline-block p-export"> Exportar</p>
