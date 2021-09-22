@@ -17,6 +17,7 @@ import {Col, Container, Row} from "react-bootstrap";
 import { FormSpy } from 'react-final-form'
 import moment from "moment";
 import NotificationModal from "component/modal/NotificationModal";
+import  Actions from '../actions/Actions'
 
 export const DetailPicker = (
     {
@@ -58,15 +59,9 @@ export const DetailPicker = (
                                 :
                                 <img  className="vehiculo-pending-picker" src={bici} alt="vehiculo" />
                         }
-                        <button
-                            onClick={()=>{getPendingUserPickerExport({email:(pendingUserAdminPicker.email)})}}
-                            className="export"
-                            name="export"
-                        >
-                            <img  src={exportar} alt="export" />
-                            <img className="or-pending" src={or} alt="or" />
-                            <p className="display-inline-block p-export">Exportar</p>
-                        </button>
+                        <div className="export-container">
+                        <Actions getPendingUserPickerExport={getPendingUserPickerExport} pendingUserAdminPicker={pendingUserAdminPicker}/>
+                        </div>
                     </div>
                     <Form
                         onSubmit={values => active ? postEditPickerRequest(values, goBack) : aproveSubmit(values,goBack)}
