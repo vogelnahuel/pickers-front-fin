@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { connect } from "react-redux";
 import {Modal} from "@pickit/pickit-components";
 import button from "assets/admin/ActiveUserAdminPicker/button.svg";
@@ -19,52 +19,40 @@ export const NotificationModal= ({
                                      elemento
                                  }) => {
 
+    const cerrarModal = useCallback(
+        (e) => {
+            e.preventDefault()
+            setClose();
+        },
+        [setClose],
+    )
+
 
     useEffect(() => {
-                //console.log(onCloseLabel)
-                //console.log(isOpen)
-                 
-
+            
                 if(isOpen){
+                    if(elemento)
                     elemento.blur();
+                    
                     if(level==="warning"  || level==="info"){
-                        document.addEventListener("keydown", e=>{
-                            e.preventDefault()
-                            setClose();
-                        });
+                        document.addEventListener("keydown",cerrarModal );
                     }else{
                   
-                        document.addEventListener("keydown", e=>{
-                            e.preventDefault()
-                            setClose();
-                        });
-                        window.addEventListener('keypress', e => {
-                            e.preventDefault()
-                            setClose();
-                        });
+                        document.addEventListener("keydown",  cerrarModal);
+                        document.addEventListener('keypress', cerrarModal);
                     }
-
                 }
-
                  return(()=>{
+
                     if(level==="warning"  || level==="info"){
-                        document.removeEventListener("keydown", e=>{
-                            e.preventDefault()
-                            setClose();
-                        });
+                        document.removeEventListener("keydown",cerrarModal );
                     }else{
-                  
-                        document.removeEventListener("keydown", e=>{
-                            e.preventDefault()
-                            setClose();
-                        });
-                        window.removeEventListener('keypress', e => {
-                            e.preventDefault()
-                            setClose();
-                        });
+                        document.removeEventListener("keydown", cerrarModal);
+                        document.removeEventListener('keypress', cerrarModal);
                     }
+
                  })
-      }, [isOpen,onCloseLabel,setClose,elemento,level]);  
+      }, [isOpen,onCloseLabel,setClose,elemento,level,cerrarModal]);  
 
                  
     return isOpen ? (
