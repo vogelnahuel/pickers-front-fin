@@ -2,9 +2,9 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import {Route, Switch} from 'react-router'; // react-router v4/v5
 import {ConnectedRouter} from 'connected-react-router';
-import DashboardContainer from 'pages/dashboard/DashboardAdminContainer';
+import DashboardContainer from '../pages/dashboard/DashboardAdminContainer';
 import {EmailRestore} from 'pages/login/email/EmailRestore';
-import Login from 'pages/login/LoginContainer'
+import Login from 'pages/login/LoginContainer.tsx'
 import {RestorePassword} from 'pages/login/restorePassword/RestorePassword';
 import PickersContainer from 'pages/pickers/PickersContainer'
 import DetailPickerContainer from 'pages/pickers/detailPicker/DetailPickerContainer';

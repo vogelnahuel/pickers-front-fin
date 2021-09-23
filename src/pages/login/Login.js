@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+/*import React, {  useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Login.scss";
 import pickersLogo from "./../../assets/login/PickersLogo.svg";
@@ -6,10 +6,11 @@ import canguro from "./../../assets/login/Canguro.svg";
 import {Link} from 'react-router-dom'
 import {Modal} from '@pickit/pickit-components'
 //import api from '../../config/api'
+import LoginInterface from './types'
 
 
 
-export const Login = ({postLogin,modalOpen,isFetching, setModalOpen, validationSchema,modalOpenServerError,setmodalOpenServerError}) => {
+export const Login = ({postLogin,modalOpen,isFetching, setModalOpen,modalOpenServerError,setmodalOpenServerError}:LoginInterface) :JSX.Element => {
 
 
 
@@ -155,7 +156,7 @@ export const Login = ({postLogin,modalOpen,isFetching, setModalOpen, validationS
         //const isValid= validationSchema.isValid({mail,password})
         
 
-        /*
+        
           else{
 
             if( window.location.pathname==="/")
@@ -200,7 +201,7 @@ export const Login = ({postLogin,modalOpen,isFetching, setModalOpen, validationS
 
             }
 
-        }*/
+        }
 
     }
 
@@ -222,7 +223,7 @@ export const Login = ({postLogin,modalOpen,isFetching, setModalOpen, validationS
                             name="mail"
                             id="mail"
                             onBlur={handleInputBlur}
-                            onChange={(e)=>{handleInputChange(e,mail)}}
+                            onChange={(e)=>{handleInputChange(e)}}
                             value={mail}
                             onFocus={(e) => handleFocusLabel(e,mail)}
                         />
@@ -243,7 +244,7 @@ export const Login = ({postLogin,modalOpen,isFetching, setModalOpen, validationS
                             name="password"
                             id="password-login"
                             onBlur={handleInputBlur}
-                            onChange={(e)=>{handleInputChange(e,password)}}
+                            onChange={(e)=>{handleInputChange(e)}}
                             value={password}
                             onFocus={(e) => handleFocusLabel(e,password)}
 
@@ -315,7 +316,7 @@ export const Login = ({postLogin,modalOpen,isFetching, setModalOpen, validationS
                 </div>
                 }
         
-                {/* {
+                { {
                    modalOpenServerError===true ?
                        <div className="contendor-modal-login">
                            <Modal
@@ -340,7 +341,7 @@ export const Login = ({postLogin,modalOpen,isFetching, setModalOpen, validationS
                            </Modal>
                        </div>
                        :null
-                } */}
+                } }
             </div>
             <div className="login-image" >
 
@@ -358,4 +359,4 @@ export const Login = ({postLogin,modalOpen,isFetching, setModalOpen, validationS
     );
 }
 
-export default Login;
+export default Login;*/

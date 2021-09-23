@@ -182,11 +182,7 @@
 .z-index{
   z-index: -1;
 }
-.animation{
-  width: 245px;
-  height: 57px;
-  margin-right: 12px;
-}
+
 
 .label{
   position: absolute;
@@ -309,5 +305,12 @@
   }
 }
 
+/*******************************new login*********************************/
 
-
+.background-login{
+  background-color: #F5F5F5;
+  height: 100vh;
+}
+.login-img-container{
+  height: 25%;
+}

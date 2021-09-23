@@ -12,35 +12,40 @@ const sagas = [
 export default sagas;
 
 function* getLogin({params}) {
-    const response = yield call(
-        loginMiddleware.getLogin,
-        params
-    );
 
-    if (response.status !== 200) {
-        switch (response.status) {
-            case 400:
-                yield put(actions.setModalOpen(true));
-                yield put(actions.getLoginError());
-                break;
-            case 403:
-                yield put(actions.setModalOpen(true));
-                yield put(actions.getLoginError());
-                break;
-            
-            default:
-                yield put(actions.setmodalOpenServerError(true));
-                yield put(actions.getLoginError());
-                break;
-        }
+    setTimeout(() => {
+         }, 150000);
         
-    } else {
-        const {result} = response.data;
-        yield call(loginMiddleware.setAuthToken, result.accessToken);
-        saveValue("token", result.accessToken);
-        yield put(replace("/dashboard"));
-        yield put(actions.getLoginSuccess(result));
-    }
+            const response = yield call(
+                loginMiddleware.getLogin,
+                params
+            );
+
+            if (response.status !== 200) {
+                switch (response.status) {
+                    case 400:
+                        yield put(actions.setModalOpen(true));
+                        yield put(actions.getLoginError());
+                        break;
+                    case 403:
+                        yield put(actions.setModalOpen(true));
+                        yield put(actions.getLoginError());
+                        break;
+                    
+                    default:
+                        yield put(actions.setmodalOpenServerError(true));
+                        yield put(actions.getLoginError());
+                        break;
+                }
+                
+            } else {
+                const {result} = response.data;
+                yield call(loginMiddleware.setAuthToken, result.accessToken);
+                saveValue("token", result.accessToken);
+                yield put(replace("/dashboard"));
+                yield put(actions.getLoginSuccess(result));
+            }
+       
 }
 
 function* logout(){

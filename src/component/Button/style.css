@@ -16,9 +16,9 @@
 
 
   .shineBorder  {
-    position: absolute;
     width: 233px;
-    height: 55px;
+    height: 50px;
+    margin-right: 0px;
   }
   
   .shineBorder::after {

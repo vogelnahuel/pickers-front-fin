@@ -1,10 +1,10 @@
 import React, {  } from "react";
 import { connect } from "react-redux";
 import { actions as loginActions, selectors as loginSelectors} from "reducers/login"
-import Login from "./Login";
+import { LoginNew } from "./LoginNew";
 import * as yup from "yup";
 
-const LoginContainer = (props) => {
+const LoginContainer = (props:any):JSX.Element => {
     const validationSchema =
     yup.lazy((values) => {
         return yup.object({
@@ -12,29 +12,30 @@ const LoginContainer = (props) => {
             password: yup.string().required("Este campo es requerido."),})
     });
 
+
     
     return (
-        <Login {...props} validationSchema={validationSchema}/>
+        <LoginNew {...props} validationSchema={validationSchema} />
     );
 }
 
 
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state:any) => ({
     modalOpen: loginSelectors.isModalOpen(state),
     modalOpenServerError: loginSelectors.isModalOpenServerError(state),
     login: loginSelectors.getLogin(state),
     isFetching: loginSelectors.isFetching(state),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-    postLogin: (params) => {
+const mapDispatchToProps = (dispatch:any) => ({
+    postLogin: (params:any) => {
         dispatch(loginActions.getLoginRequest(params));
     },
-    setModalOpen: (params) => {
+    setModalOpen: (params:any) => {
         dispatch(loginActions.setModalOpen(params));
     },
-    setmodalOpenServerError: (params) => {
+    setmodalOpenServerError: (params:any) => {
         dispatch(loginActions.setmodalOpenServerError(params));
     },
 });

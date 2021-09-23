@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import Button from '../../../component/Button/Button'
 import canguro from "../../../assets/login/Canguro.svg";
 import pickersLogo from "../../../assets/login/PickersLogo.svg";
 import './Email.scss'
@@ -146,13 +145,13 @@ export const  EmailRestore = () => {
                         </div>
                     </div>
 
-                    <Button
+                    <button
                         className="button_ "
                         type="submit"
                         name="button"
                         id="email-send"
                     >Enviar correo
-                    </Button>
+                    </button>
 
 
 
