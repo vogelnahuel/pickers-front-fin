@@ -12,6 +12,9 @@
     padding: 20px;
     margin-top: 3vh;
 }
+.export-container{
+    margin-left: auto;
+}
 .Admin-Pickers-input.readonly{
     color: #828282;
     background-color: transparent;
@@ -58,6 +61,7 @@
     border-bottom:  1px solid #828282;
     margin-bottom: 30px;
     width: 100%;
+    cursor: pointer;
 }
 
 .Admin-Pickers-button{

@@ -451,7 +451,7 @@ export const RestorePassword = () => {
                         
                         </div>
                     </div>
-                    <ul name="elementosError" className="ul">
+                    <ul name="elementsError" className="ul">
                         La contraseña debe contar con
                         <li className="display-flex">
                             {

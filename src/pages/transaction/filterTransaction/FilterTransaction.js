@@ -94,8 +94,9 @@ export const FilterTransaction = ({ onSubmit, filters, validationSchema }) => {
                                             name="inAlert"
                                             component="input"
                                             type="checkbox"
+                                            id="inAlert"
                                         />
-                                        <label className="label-filter-transaction-alert">
+                                        <label htmlFor="inAlert" className="label-filter-transaction-alert">
                                             En alerta
                                         </label>
                                     </Col>

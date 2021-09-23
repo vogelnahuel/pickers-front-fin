@@ -27,6 +27,7 @@
     line-height: 21px;
     letter-spacing: 0.0025em;
     color: #4D4D4D;
+    cursor: pointer;
 }
 
 @-moz-document url-prefix() { 
@@ -52,11 +53,14 @@
 .p-filter-transaction{
     display: inline-block;
     margin-left: 11px;
+    margin-top: -2px;
+    cursor: alias;
     font-family: 'Mulish';
 }
 .img-filter-transaction{
     width: 24px;
     height: 22px;
+    cursor: alias;
 }
 .filter-cursor{
     cursor: default;
@@ -103,6 +107,7 @@
     border-bottom:  1px solid #828282;
     //margin-bottom: 3.515625vh;
     width: 100%;
+    cursor: pointer;
 }
 
 #datePicker-filter-transaction div svg{
@@ -121,6 +126,13 @@
     width: 20px;
     margin-top: 30px;
     margin-right: 10px;
+    cursor: pointer;
+}
+
+.checkbox-filter-transaction:checked{
+     -webkit-appearance: none;
+     background-image: url("../../../assets/checkbox.svg");
+     outline: none;
 }
 .display-inline{
     display: inline-block;
@@ -211,7 +223,7 @@ div .MKjsMK9DPt5gO-irDsCHa {
     //    margin-left: 0px;
     //}
     .checkbox-filter-transaction{
-        margin-top: 10px;
+        margin-top: 14px;
     }
     .label-filter-transaction-alert{
         bottom: 3px;

@@ -67,9 +67,10 @@ export const actions = {
         type: types.TRANSACTIONS_EXPORT_ENABLED,
         enabled
     }),
-    getTransactionsExportRequest: (params) => ({
+    getTransactionsExportRequest: (params,element) => ({
         type: types.TRANSACTIONS_EXPORT_REQUEST,
-        params
+        params,
+        element
     }),
     getTransactionsExportSuccess: () => ({
         type: types.TRANSACTIONS_EXPORT_SUCCESS,

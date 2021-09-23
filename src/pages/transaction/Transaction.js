@@ -73,7 +73,7 @@ export const Transaction = ({
                         </h2>
                         <button
                             disabled={isExportDisabled}
-                            onClick={()=>getTransactionsExportRequest(filters)}
+                            onClick={(e)=>getTransactionsExportRequest(filters,e.target)}
                             className={isExportDisabled ? "export-transaction-disabled" : "export-transaction" }
                             name="export"
                         >
