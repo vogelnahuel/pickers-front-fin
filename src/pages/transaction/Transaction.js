@@ -25,8 +25,6 @@ export const Transaction = ({
                                 filters,
                                 seeMore,
                                 filtersExtraSeeMore,
-                                openErrorDatePicker,
-                                setOpenErrorDatePicker
                             }) => {
 
     const [FilterSelectedTransaction, setFilterSelectedTransaction] = useState({});
@@ -120,26 +118,6 @@ export const Transaction = ({
                         }
                 </div>
                 <NotificationModal/>
-                {openErrorDatePicker && (
-                    <div className="contendor-modal-pending-pickers-aprobar">
-                        <Modal width="750px" height="351px" isOpen={openErrorDatePicker} onClose={()=>{setOpenErrorDatePicker(false)}}>
-                        <div className="container-modal">
-                            <div className="modal-error-title">
-                                <p className="p-modal-error-title">El rango seleccionado es inválido</p>
-                            </div>
-                            <div className="modal-error-subtitle">
-                                <p className="p-modal-error-subtitle"> Por favor, ingresá un rango menor a 31 días</p>
-                                <button
-                                    onClick={()=>{setOpenErrorDatePicker(false)}}
-                                    className="button-modal-error">
-                                    Entendido
-                                </button>
-                            </div>
-                        </div>
-                        </Modal>
-                        
-                    </div>
-                )}
                 {OpenModalTransaction === true ? 
                     <div className="modal-transaction">
                         <Modal 
