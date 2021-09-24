@@ -19,12 +19,12 @@ export const INITIAL_STATE = {
 };
 
 export const actions = {
-    getLoginRequest: (params) => ({
+    getLoginRequest: (params:any) => ({
         type: types.LOGIN_GET_REQUEST,
         params
         
     }),
-    getLoginSuccess: (login) => ({
+    getLoginSuccess: (login:any) => ({
         type: types.LOGIN_GET_SUCCESS,
         login
     }),
@@ -34,26 +34,26 @@ export const actions = {
     logout: () => ({
         type: types.LOGOUT,
     }),
-    setModalOpen: (modalOpen) => ({
+    setModalOpen: (modalOpen:any) => ({
         type: types.LOGIN_SET_MODAL_OPEN,
         modalOpen
     }),
-    setmodalOpenServerError: (modalOpenServerError) => ({
+    setmodalOpenServerError: (modalOpenServerError:any) => ({
         type: types.LOGIN_SET_MODAL_SERVER_ERROR_OPEN,
         modalOpenServerError
     }),
 };
 
 export const selectors = {
-    isFetching: ({ login }) => login.fetching,
-    isModalOpen: ({ login }) => login.modalOpen,
-    isModalOpenServerError: ({ login }) => login.isModalOpenServerError,
-    getLogin: ({ login }) => login.login,
+    isFetching: ({ login }:any) => login.fetching,
+    isModalOpen: ({ login }:any) => login.modalOpen,
+    isModalOpenServerError: ({ login }:any) => login.isModalOpenServerError,
+    getLogin: ({ login }:any) => login.login,
 };
 
 
 
-const reducer =(state = INITIAL_STATE, action = {}) => {
+const reducer =(state = INITIAL_STATE, action:any = {}) => {
     switch (action.type) {
         case types.LOGIN_GET_REQUEST:
             return {
