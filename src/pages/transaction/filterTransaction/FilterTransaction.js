@@ -69,7 +69,7 @@ export const FilterTransaction = ({ onSubmit, filters, validationSchema }) => {
                                             </label>
                                             <Field
                                                 type="text"
-                                                className="Admin-Pickers-input"
+                                                className="Admin-Pickers-input-select"
                                                 name="date"
                                                 component={DatePicker}
                                                 placeholder="Seleccioná la fecha"
@@ -94,8 +94,9 @@ export const FilterTransaction = ({ onSubmit, filters, validationSchema }) => {
                                             name="inAlert"
                                             component="input"
                                             type="checkbox"
+                                            id="inAlert"
                                         />
-                                        <label className="label-filter-transaction-alert">
+                                        <label htmlFor="inAlert" className="label-filter-transaction-alert">
                                             En alerta
                                         </label>
                                     </Col>

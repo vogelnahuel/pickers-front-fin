@@ -120,6 +120,7 @@
     display: flex;
     margin-bottom: 0px;
     height: 39px;
+    cursor: pointer;
 }
 .filter-admin-options{
     background: #FFFFFF;
@@ -139,8 +140,15 @@
     width: 20px !important;
     height: 20px;
     margin-right: 0px !important;
+    cursor: pointer;
 }
 
+.multiple-checkboxInput:checked{
+    -webkit-appearance: none;
+    border: none;
+    background-image: url("../../assets/checkbox.svg");
+    outline: none;
+}
 
 .multiple-labelCheckBox{
     font-family: 'Mulish';
@@ -151,6 +159,7 @@
     letter-spacing: 0.005em;
     color: #4D4D4D;
     margin-left: 13px;
+    cursor: pointer;
    
 }
 //.multiple-selectbox{
