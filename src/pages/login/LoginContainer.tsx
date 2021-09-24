@@ -1,11 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-
 import {
   actions as loginActions,
   selectors as loginSelectors,
 } from "../../reducers/login";
-import LoginNew from "./LoginNew";
+import LoginNew from "./Login";
 import * as yup from "yup";
 import { VALIDATION_REGEX } from "utils/constants";
 
