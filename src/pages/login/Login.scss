@@ -1,17 +1,17 @@
-.white-background{
-  background-color: #F5F5F5;
+.white-background {
+  background-color: #f5f5f5;
   min-height: 100%;
   position: fixed;
   min-width: 100%;
 }
 
-.form{
+.form {
   margin-left: auto;
   margin-right: auto;
   position: relative;
   width: 541px;
 }
-.logo{
+.logo {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 12.4vh;
@@ -20,41 +20,40 @@
   height: 5.833333333333333vh;
 }
 
-
-.input{
+.input {
   width: 541px;
   border: rgba(20, 90, 153, 0);
-  border-bottom: 1px solid #4D4D4D;
+  border-bottom: 1px solid #4d4d4d;
   outline: none;
   margin-bottom: 52px;
   z-index: 3;
   /* margin-bottom: 5px; */
 }
 
-.separador{
+.separador {
   height: 3.888888888888889vh;
-  width: 28.177vw ;
+  width: 28.177vw;
   display: inline-block;
 }
 
-.password-login{
+.password-login {
   display: flex;
   position: relative;
   margin-top: 4px;
 }
 
-.inputError{
-  width: 541px ;
+.inputError {
+  width: 541px;
   border: rgba(153, 24, 20, 0);
-  color: #FF1515 !important;
-  border-bottom: 1px solid #FF1515 !important;
+  color: #ff1515 !important;
+  border-bottom: 1px solid #ff1515 !important;
   z-index: 3;
 }
-.inputError::placeholder{
-  color: #FF1515;
+.inputError::placeholder {
+  color: #ff1515;
 }
 
-.login-pass{
+.login-pass {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -63,15 +62,14 @@
   position: absolute;
 }
 
-.forgotPass{
+.forgotPass {
   margin-top: 30px;
-  color: #4D4D4D;
+  color: #4d4d4d;
   font-style: normal;
   font-weight: 300;
   font-size: 16px;
   line-height: 20px;
   text-decoration: none;
-
 }
 
 .button_ {
@@ -83,20 +81,17 @@
   color: white;
   border: 4px solid #145a99;
   box-sizing: border-box;
-  font-family: 'Mulish';
+  font-family: "Mulish";
   font-weight: 800;
   font-size: 18px;
   text-align: center;
   align-items: center;
   vertical-align: middle;
-  padding: .375rem .75rem;
+  padding: 0.375rem 0.75rem;
   line-height: 1.5;
 }
 
-
-
-
-.buttonContainer{
+.buttonContainer {
   width: 233px;
   height: 150px;
   margin-left: auto;
@@ -105,31 +100,28 @@
   margin-bottom: 10px;
 }
 
-.has-error > div input{
-  color: #FF1515;
-  border-bottom: 1px solid #FF1515;
+.has-error > div input {
+  color: #ff1515;
+  border-bottom: 1px solid #ff1515;
 }
 .has-error > label {
-  color: #FF1515;
+  color: #ff1515;
 }
-.errorsContainer{
+.errorsContainer {
   position: absolute;
   top: 0;
   margin-top: 30px;
 }
-.input-errors-container{
-
+.input-errors-container {
   margin-top: -20px;
 }
-.errorsContainer2{
-
+.errorsContainer2 {
   top: 0;
   margin-top: -38px;
 }
 
-
-.errors{
-  font-family: 'Mulish', sans-serif;
+.errors {
+  font-family: "Mulish", sans-serif;
   font-style: normal;
   font-weight: 300;
   margin: 0;
@@ -137,29 +129,27 @@
   font-size: 14px;
   line-height: 18px;
   position: relative;
-  color: #FF1515;
+  color: #ff1515;
   top: -10px;
 }
 
-.correcion{
+.correcion {
   display: inline;
   margin-left: 200px;
 }
-
-
 
 .flotar {
   position: absolute;
   margin-left: 8%;
 }
 
-.myresolution{
+.myresolution {
   position: absolute;
   z-index: -1;
   height: 44.6vh;
 }
 
-.contenedor{
+.contenedor {
   width: 233px;
   height: 50px;
   margin-left: auto;
@@ -168,72 +158,69 @@
   position: relative;
 }
 
-.login-init{
+.login-init {
   position: relative;
   z-index: 10;
-  font-family: 'Mulish';
+  font-family: "Mulish";
   font-style: normal;
   font-weight: 800;
   font-size: 18px;
   line-height: 23px;
   text-align: center;
-  color: #FFFFFF;
+  color: #ffffff;
 }
-.z-index{
+.z-index {
   z-index: -1;
 }
 
-
-.label{
+.label {
   position: absolute;
   margin-top: 0px;
   left: 0;
-  font-family: 'Mulish';
+  font-family: "Mulish";
   font-style: normal;
   font-weight: 300;
   font-size: 17px;
   line-height: 21px;
-  color: #4D4D4D;
+  color: #4d4d4d;
   transform-origin: 0 0;
   transition: transform 0.2s ease-in-out;
   display: inline;
   cursor: text;
 }
-.labelError{
-  color: #FF1515;
+.labelError {
+  color: #ff1515;
 }
 
-
-
-.animationTop{
+.animationTop {
   transform: translateY(-0.8em) scale(0.8);
 }
-.animationOrigin{
+.animationOrigin {
   transform: translateY(0em) scale(1);
 }
 
-.inputReboteAnimation{
-  -webkit-animation: inputRebote .25s linear;
-  animation: inputRebote .25s linear;
+.inputReboteAnimation {
+  -webkit-animation: inputRebote 0.25s linear;
+  animation: inputRebote 0.25s linear;
 }
-.button-modal-error2{
-  background: #EB5757;
+.button-modal-error2 {
+  background: #eb5757;
   border-radius: 50px;
   width: 219px;
   height: 50px;
   margin-left: 266px;
   text-decoration: none;
-  border-color: #FFFFFF;
+  border-color: #ffffff;
   border-width: 0px;
   margin-top: 0px;
-  color: #FFFFFF;
-  font-family: 'Mulish';
+  color: #ffffff;
+  font-family: "Mulish";
   font-style: normal;
   font-weight: 800;
   font-size: 18px;
   text-align: center;
 }
-.contendor-modal-login{
+.contendor-modal-login {
   background: rgba(0, 0, 0, 0.25);
   mix-blend-mode: multiply;
   width: 99.9vw;
@@ -242,7 +229,7 @@
   left: 0;
   position: absolute;
 }
-.space-responsive-login{
+.space-responsive-login {
   height: 9.8vh;
 }
 /***************************animacion inputs***************************/
@@ -266,55 +253,54 @@
   100% {
     -webkit-transform: translateX(5px);
     transform: translateX(5px);
-
   }
 }
 
 /***************************media query*********************/
-@media (min-width:1800px){
-  .space-responsive-login{
+@media (min-width: 1800px) {
+  .space-responsive-login {
     height: 18vh;
   }
-  .logo{
+  .logo {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 8.4vh;
     width: 208px;
     height: 5.833333333333333vh;
   }
-  .centrar{
+  .centrar {
     height: 18.7vh;
   }
 }
 
-@media (min-width:1300px){
-  .size{
+@media (min-width: 1300px) {
+  .size {
     height: 24vh;
   }
 }
-.myresolution{
+.myresolution {
   position: absolute;
   z-index: -1;
   height: 48vh;
   width: 100%;
 }
 
-@media (min-width:1200px){
-  .size{
+@media (min-width: 1200px) {
+  .size {
     height: 24vh;
   }
 }
 
 /*******************************new login*********************************/
 
-.background-login{
-  background-color: #F5F5F5;
+.background-login {
+  background-color: #f5f5f5;
   height: 100vh;
 }
-.login-img-container{
+.login-img-container {
   height: 25%;
 }
-.pickersLogo_login{
+.pickersLogo_login {
   display: block;
   padding-top: 13vh;
   width: 246px;
@@ -322,14 +308,13 @@
   margin-left: auto;
   margin-right: auto;
 }
-.login-form{
+.login-form {
   width: 554px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 8vh;
-
 }
-.login-button{
+.login-button {
   background-color: rgba(20, 90, 153, 1);
   border-radius: 50px;
   width: 233px;
@@ -338,27 +323,35 @@
   color: white;
   border: 4px solid #145a99;
   box-sizing: border-box;
-  padding: .375rem .75rem;
+  padding: 0.375rem 0.75rem;
   margin-left: auto;
   margin-right: auto;
   margin-top: 5vh;
   display: block;
 }
-.login-img-footer{
+.login-img-footer {
   position: absolute;
   bottom: -0.49px;
   width: 100%;
 }
-.container-login-a{
+.container-login-a {
   cursor: pointer;
   margin-top: 24px;
   z-index: 2;
-  margin-left: 25%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  a{
-    width: 100%;
+  a {
     text-decoration: none;
     cursor: pointer;
     z-index: 2;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 20px;
+    color: #4d4d4d;
   }
 }

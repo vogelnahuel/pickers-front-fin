@@ -8,6 +8,7 @@ import { TextInput } from '@pickit/pickit-components';
 //import api from '../../config/api'
 import LoginInterface from './types'
 import { Form,Field } from 'react-final-form';
+import { Input } from 'component/inputs/Input';
 
 
 
@@ -37,23 +38,18 @@ const LoginNew:React.FC <LoginInterface>=({postLogin}):JSX.Element=> {
                                             name="user"
                                             label="Usuario"
                                             className="Admin-Pickers-input"
+                                            component={Input}
                                             maxLength={50}
-                                        >
-                                            {(props):any=><TextInput {...props}/>}
-                                        </Field>
+                                        />
                                            
-
-                              
                                         <Field
-                                            type="text"
+                                            type="password"
                                             name="password"
                                             label="Password"
                                             className="Admin-Pickers-input"
                                             maxLength={9}
-                                        >
-                                            {(props):any=><TextInput {...props}/>}
-                                        </Field>
-                             
+                                            component={Input}
+                                        />
                                  
                                                     
                                             <button
@@ -63,16 +59,16 @@ const LoginNew:React.FC <LoginInterface>=({postLogin}):JSX.Element=> {
                                                 <p className="login-init "> Iniciar sesión </p>
                                             </button>
 
-                                        <div className="container-login-a">
-                                            <Link className="login-a"  to={"/restore"}>
-                                                ¿Olvidaste tu contraseña?
-                                            </Link>
-                                        </div>
+                                      
                                
                                 </form>
                             )}
                         </Form>
-               
+                        <div className="container-login-a">
+                                            <Link className="login-a"  to={"/restore"}>
+                                                ¿Olvidaste tu contraseña?
+                                            </Link>
+                                        </div>
                     <img className="login-img-footer" src={canguro} alt=""/>
         </div>
     )

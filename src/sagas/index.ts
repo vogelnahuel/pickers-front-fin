@@ -13,9 +13,9 @@ const sagas = [
 
 ];
 
-export default function* rootSaga() {
+export default function* rootSaga():any {
     yield all(
-        sagas.map((saga) =>
+        sagas.map((saga:any) =>
             spawn(function* listenErrors() {
                 let isSyncError = false;
                 const resetSyncError = () => {
@@ -37,7 +37,7 @@ export default function* rootSaga() {
                                 "The root sagas are supposed to be sagas that live during the whole app lifetime!",
                             saga,
                         );
-                    } catch (error) {
+                    } catch (error:any) {
                         httpError = typeof error.httpError !== "undefined";
                         if (!httpError && isSyncError) {
                             throw new Error(`${saga.name} was terminated because it threw an exception on startup.`);
@@ -56,7 +56,7 @@ export default function* rootSaga() {
     );
 }
 
-export function* handleError(error) {
+export function* handleError(error:any) {
     const { status } = error.response;
     if (status === 401) {
         yield put(actions.logout())
