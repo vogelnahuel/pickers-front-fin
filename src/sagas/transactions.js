@@ -21,7 +21,13 @@ function* getTransactions({ params }) {
     if (response.status !== 200) {
         switch (response.data.statusCode) {
             case 20011:
-                yield put(actions.setOpenErrorDatePicker(true));
+                yield put(notificationActions.showNotification(
+                    {
+                        level:"error",
+                        title: "El rango seleccionado es inválido",
+                        body:"Por favor, ingresá un rango menor a 31 días",
+                    }
+                ));
                 break;
             case 20013:
                 yield put(actions.setExportEnabled());
@@ -54,7 +60,7 @@ function* getMoreTransactions({ params }) {
 
 }
 
-function* getTransactionsExport({ params }) {
+function* getTransactionsExport({ params,element }) {
     const response = yield call(
         transactionsMiddleware.getTransactionsExport,
         params
@@ -68,6 +74,7 @@ function* getTransactionsExport({ params }) {
                 level:"success",
                 title: "Exportaste exitosamente",
                 body:"El archivo se descargó correctamente",
+                element
             }
         ));
         yield put(actions.getTransactionsExportSuccess());

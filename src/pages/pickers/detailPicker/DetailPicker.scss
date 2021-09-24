@@ -12,10 +12,17 @@
     padding: 20px;
     margin-top: 3vh;
 }
+.export-container{
+    margin-left: auto;
+}
 .Admin-Pickers-input.readonly{
     color: #828282;
     background-color: transparent;
+<<<<<<< HEAD
     cursor: default;
+=======
+    cursor: alias;
+>>>>>>> develop
 }
 .Admin-Pickers-inputs{
     display: flex;
@@ -48,7 +55,6 @@
     font-family: 'Mulish';
     font-style: normal;
     font-weight: normal;
-    //margin-right: 26px;
     font-size: 17px;
     line-height: 27px;
     letter-spacing: 0.005em;
@@ -59,6 +65,23 @@
     border-bottom:  1px solid #828282;
     margin-bottom: 30px;
     width: 100%;
+    cursor: text;
+}
+.Admin-Pickers-input-select{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 27px;
+    letter-spacing: 0.005em;
+    color: #101820;
+    border: 0;
+    outline: none;
+    background-color: transparent;
+    border-bottom:  1px solid #828282;
+    margin-bottom: 30px;
+    width: 100%;
+    cursor: pointer;
 }
 
 .Admin-Pickers-button{
