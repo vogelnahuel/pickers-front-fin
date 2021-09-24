@@ -4,16 +4,17 @@ import "./Login.scss";
 import pickersLogo from "./../../assets/login/PickersLogo.svg";
 import canguro from "./../../assets/login/Canguro.svg";
 import {Link} from 'react-router-dom'
-import {Modal} from '@pickit/pickit-components'
-import TextInput from '@pickit/pickit-components'
+import { TextInput } from '@pickit/pickit-components';
 //import api from '../../config/api'
 import LoginInterface from './types'
 import { Form,Field } from 'react-final-form';
-import { Input } from 'component/inputs/Input';
 
 
-export const LoginNew = ({postLogin}:any):JSX.Element=> {
-        
+
+
+const LoginNew:React.FC <LoginInterface>=({postLogin}):JSX.Element=> {
+  
+
     return (
         <div className="background-login">
                 
@@ -29,41 +30,51 @@ export const LoginNew = ({postLogin}:any):JSX.Element=> {
                             validate={useValidationSchema(validationSchema)}*/
                         >
                             {({ handleSubmit, form}) => (
-                                <form className="form-filter-transaction" onSubmit={handleSubmit}>
+                                <form className="login-form" onSubmit={handleSubmit}>
                             
                                         <Field
                                             type="text"
-                                            name="User"
+                                            name="user"
                                             label="Usuario"
-                                            component="input"
                                             className="Admin-Pickers-input"
-                                            placeholder="Usuario"
                                             maxLength={50}
-                                        />
+                                        >
+                                            {(props):any=><TextInput {...props}/>}
+                                        </Field>
+                                           
+
                               
                                         <Field
                                             type="text"
-                                            name="Password"
+                                            name="password"
                                             label="Password"
-                                            component="input"
                                             className="Admin-Pickers-input"
                                             maxLength={9}
-                                        />
+                                        >
+                                            {(props):any=><TextInput {...props}/>}
+                                        </Field>
                              
                                  
-                                                
+                                                    
                                             <button
-                                                className="button_"
+                                                className="login-button animation"
                                                 type="submit"
                                                 name="button" >
                                                 <p className="login-init "> Iniciar sesión </p>
                                             </button>
+
+                                        <div className="container-login-a">
+                                            <Link className="login-a"  to={"/restore"}>
+                                                ¿Olvidaste tu contraseña?
+                                            </Link>
+                                        </div>
                                
                                 </form>
                             )}
                         </Form>
                
-                
+                    <img className="login-img-footer" src={canguro} alt=""/>
         </div>
     )
 }
+export default LoginNew;

@@ -1,7 +1,7 @@
 import {call, put, takeLatest} from "redux-saga/effects";
-import {actions, types} from "reducers/login";
-import * as loginMiddleware from "middleware/login";
-import {removeItem, saveValue} from "utils/localStorage";
+import {actions, types} from "../reducers/login";
+import * as loginMiddleware from "../middleware/login";
+import {removeItem, saveValue} from "../utils/localStorage";
 import {replace} from 'connected-react-router';
 
 const sagas = [
@@ -11,15 +11,12 @@ const sagas = [
 
 export default sagas;
 
-function* getLogin({params}) {
+function* getLogin({params}:any):any {
 
-    setTimeout(() => {
-         }, 150000);
-        
             const response = yield call(
                 loginMiddleware.getLogin,
                 params
-            );
+            )
 
             if (response.status !== 200) {
                 switch (response.status) {
