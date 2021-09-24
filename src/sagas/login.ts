@@ -3,6 +3,7 @@ import {actions, types} from "../reducers/login";
 import * as loginMiddleware from "../middleware/login";
 import {removeItem, saveValue} from "../utils/localStorage";
 import {replace} from 'connected-react-router';
+import {actions as notificationActions} from "../reducers/notification";
 
 const sagas = [
     takeLatest(types.LOGIN_GET_REQUEST, getLogin),
@@ -11,26 +12,45 @@ const sagas = [
 
 export default sagas;
 
-function* getLogin({params}:any):any {
-
+function* getLogin({params,element}:any):any {
             const response = yield call(
                 loginMiddleware.getLogin,
                 params
             )
-
-            if (response.status !== 200) {
-                switch (response.status) {
+            if (response.data.statusCode !== 200) {
+                switch (response.data.statusCode) {
                     case 400:
-                        yield put(actions.setModalOpen(true));
+                        yield put(notificationActions.showNotification(
+                            {
+                                level:"error",
+                                title: "Error de conexión",
+                                body:"Hubo un error de comunicación con el servidor. Por favor, intentalo nuevamente",
+                                element
+                            }
+                        ));
                         yield put(actions.getLoginError());
                         break;
-                    case 403:
-                        yield put(actions.setModalOpen(true));
+                    case 10005:
+                        yield put(notificationActions.showNotification(
+                            {
+                                level:"error",
+                                title: "Usuario y/o contraseña inválidos",
+                                body:"Tu usuario y/o contraseña ingresados son incorrectos. Por favor, ingresalos nuevamente.",
+                                element
+                            }
+                        ));
                         yield put(actions.getLoginError());
                         break;
                     
                     default:
-                        yield put(actions.setmodalOpenServerError(true));
+                        yield put(notificationActions.showNotification(
+                            {
+                                level:"error",
+                                title: "Error de conexión",
+                                body:"Hubo un error de comunicación con el servidor. Por favor, intentalo nuevamente",
+                                element
+                            }
+                        ));
                         yield put(actions.getLoginError());
                         break;
                 }

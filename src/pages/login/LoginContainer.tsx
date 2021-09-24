@@ -8,7 +8,7 @@ const LoginContainer = (props:any):any => {
     const validationSchema =
     yup.lazy((values) => {
         return yup.object({
-            mail: yup.string().required("Este campo es requerido."),
+            email: yup.string().required("Este campo es requerido."),
             password: yup.string().required("Este campo es requerido."),})
     });
 

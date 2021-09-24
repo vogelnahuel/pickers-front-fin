@@ -9,11 +9,13 @@ import { TextInput } from '@pickit/pickit-components';
 import LoginInterface from './types'
 import { Form,Field } from 'react-final-form';
 import { Input } from 'component/inputs/Input';
+import useValidationSchema from 'hooks/useValidationSchema';
+import  NotificationModal  from 'component/modal/NotificationModal';
 
 
 
 
-const LoginNew:React.FC <LoginInterface>=({postLogin}):JSX.Element=> {
+const LoginNew:React.FC <LoginInterface>=({postLogin,validationSchema}):JSX.Element=> {
   
 
     return (
@@ -27,15 +29,15 @@ const LoginNew:React.FC <LoginInterface>=({postLogin}):JSX.Element=> {
                                 setValue: ([field, value], state, { changeValue }) => {
                                     changeValue(state, field, () => value)
                                 }
-                            }}
-                            validate={useValidationSchema(validationSchema)}*/
+                            }}*/
+                            validate={useValidationSchema(validationSchema)}
                         >
                             {({ handleSubmit, form}) => (
                                 <form className="login-form" onSubmit={handleSubmit}>
                             
                                         <Field
                                             type="text"
-                                            name="user"
+                                            name="email"
                                             label="Usuario"
                                             className="Admin-Pickers-input"
                                             component={Input}
@@ -47,7 +49,6 @@ const LoginNew:React.FC <LoginInterface>=({postLogin}):JSX.Element=> {
                                             name="password"
                                             label="Password"
                                             className="Admin-Pickers-input"
-                                            maxLength={9}
                                             component={Input}
                                         />
                                  
@@ -70,6 +71,8 @@ const LoginNew:React.FC <LoginInterface>=({postLogin}):JSX.Element=> {
                                             </Link>
                                         </div>
                     <img className="login-img-footer" src={canguro} alt=""/>
+       
+       <NotificationModal/>
         </div>
     )
 }
