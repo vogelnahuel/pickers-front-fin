@@ -17,7 +17,7 @@ function* getLogin({params,element}:any):any {
                 loginMiddleware.getLogin,
                 params
             )
-            if (response.data.statusCode !== 200) {
+            if (response.status !== 200) {
                 switch (response.data.statusCode) {
                     case 400:
                         yield put(notificationActions.showNotification(

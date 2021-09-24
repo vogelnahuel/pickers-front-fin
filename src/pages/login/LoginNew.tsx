@@ -4,7 +4,6 @@ import "./Login.scss";
 import pickersLogo from "./../../assets/login/PickersLogo.svg";
 import canguro from "./../../assets/login/Canguro.svg";
 import {Link} from 'react-router-dom'
-import { TextInput } from '@pickit/pickit-components';
 //import api from '../../config/api'
 import LoginInterface from './types'
 import { Form,Field } from 'react-final-form';
@@ -15,7 +14,7 @@ import  NotificationModal  from 'component/modal/NotificationModal';
 
 
 
-const LoginNew:React.FC <LoginInterface>=({postLogin,validationSchema}):JSX.Element=> {
+const LoginNew:React.FC <LoginInterface>=({postLogin,validationSchema,isFetching}):JSX.Element=> {
   
 
     return (
@@ -52,9 +51,11 @@ const LoginNew:React.FC <LoginInterface>=({postLogin,validationSchema}):JSX.Elem
                                             component={Input}
                                         />
                                  
-                                                    
+                                                 
+
                                             <button
                                                 className="login-button animation"
+                                                disabled={isFetching}
                                                 type="submit"
                                                 name="button" >
                                                 <p className="login-init "> Iniciar sesión </p>
