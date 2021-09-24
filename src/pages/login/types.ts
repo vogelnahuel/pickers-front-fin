@@ -1,10 +1,4 @@
 export default interface LoginInterface {
+    postLogin:any
     isFetching:boolean
-    modalOpen:boolean
-    isModalOpenServerError:boolean
-    login:Object
-    setModalOpen:Function
-    postLogin:Function
-    modalOpenServerError:boolean
-    setmodalOpenServerError:Function
 }

@@ -1,10 +1,10 @@
 import React, {  } from "react";
 import { connect } from "react-redux";
-import { actions as loginActions, selectors as loginSelectors} from "reducers/login"
-import { LoginNew } from "./LoginNew";
+import { actions as loginActions, selectors as loginSelectors} from "../../reducers/login"
+import  LoginNew  from "./LoginNew";
 import * as yup from "yup";
 
-const LoginContainer = (props:any):JSX.Element => {
+const LoginContainer = (props:any):any => {
     const validationSchema =
     yup.lazy((values) => {
         return yup.object({
