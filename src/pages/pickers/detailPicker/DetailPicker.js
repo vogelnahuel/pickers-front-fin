@@ -32,9 +32,9 @@ export const DetailPicker = (
         changePage,
         validationSchema
     }) => {
+    
 
-
-
+        
     return (
         <div className="background-Grey">
             <Header/>
@@ -64,25 +64,25 @@ export const DetailPicker = (
                         onSubmit={values => active ? postEditPickerRequest(values, goBack) : aproveSubmit(values,goBack)}
                         initialValues={
                             pendingUserAdminPicker.id ?
-                                {
-                                    ...pendingUserAdminPicker,
-                                    accountingData:{
-                                        ...pendingUserAdminPicker.accountingData,
-                                        fiscalNumber: (pendingUserAdminPicker.accountingData.fiscalNumber).includes('-') ? pendingUserAdminPicker.accountingData.fiscalNumber : (pendingUserAdminPicker.accountingData.fiscalNumber).slice(0,2)+" - "+(pendingUserAdminPicker.accountingData.fiscalNumber).slice(2,10)+" - "+(pendingUserAdminPicker.accountingData.fiscalNumber).slice(10,11) 
-                                    },
-                                    dateOfBirth: pendingUserAdminPicker.dateOfBirth && moment(pendingUserAdminPicker.dateOfBirth, "YYYY-MM-DD").format("DD/MM/YYYY"),
-                                    expirationDatePolicyPersonal: pendingUserAdminPicker.expirationDatePolicyPersonal && moment(pendingUserAdminPicker.expirationDatePolicyPersonal, "YYYY-MM-DD").format("DD/MM/YYYY"),
-                                    vehicle: {
-                                        ...pendingUserAdminPicker.vehicle,
-                                        [pendingUserAdminPicker.vehicleType]: {
-                                            ...pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType],
-                                            expirationDatePolicyVehicle: pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType].expirationDatePolicyVehicle && moment(pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType].expirationDatePolicyVehicle, "YYYY-MM-DD").format("DD/MM/YYYY"),
-                                            expirationDateIdentificationVehicle: pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType].expirationDateIdentificationVehicle && moment(pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType].expirationDateIdentificationVehicle, "YYYY-MM-DD").format("DD/MM/YYYY"),
-                                            expirationDateDriverLicense: pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType].expirationDateDriverLicense && moment(pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType].expirationDateDriverLicense, "YYYY-MM-DD").format("DD/MM/YYYY"),
-                                        }
-                                    }
-                                } :
-                                pendingUserAdminPicker         
+                {
+                    ...pendingUserAdminPicker,
+                    accountingData:{
+                        ...pendingUserAdminPicker.accountingData,
+                        fiscalNumber: (pendingUserAdminPicker.accountingData.fiscalNumber).includes('-') ? pendingUserAdminPicker.accountingData.fiscalNumber : (pendingUserAdminPicker.accountingData.fiscalNumber).slice(0,2)+" - "+(pendingUserAdminPicker.accountingData.fiscalNumber).slice(2,10)+" - "+(pendingUserAdminPicker.accountingData.fiscalNumber).slice(10,11) 
+                    },
+                    dateOfBirth: pendingUserAdminPicker.dateOfBirth && !pendingUserAdminPicker.dateOfBirth.includes('/') ?moment(pendingUserAdminPicker.dateOfBirth, "YYYY-MM-DD").format("DD/MM/YYYY"): pendingUserAdminPicker.dateOfBirth,
+                    expirationDatePolicyPersonal: pendingUserAdminPicker.expirationDatePolicyPersonal && !pendingUserAdminPicker.expirationDatePolicyPersonal.includes('/') ? moment(pendingUserAdminPicker.expirationDatePolicyPersonal, "YYYY-MM-DD").format("DD/MM/YYYY"):pendingUserAdminPicker.expirationDatePolicyPersonal ,
+                    vehicle: {
+                        ...pendingUserAdminPicker.vehicle,
+                        [pendingUserAdminPicker.vehicleType]: {
+                            ...pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType],
+                            expirationDatePolicyVehicle: pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType].expirationDatePolicyVehicle && !pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType].expirationDatePolicyVehicle.includes('/') ? moment(pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType].expirationDatePolicyVehicle, "YYYY-MM-DD").format("DD/MM/YYYY") : pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType].expirationDatePolicyVehicle,
+                            expirationDateIdentificationVehicle: pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType].expirationDateIdentificationVehicle && !pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType].expirationDateIdentificationVehicle.includes('/') ?moment(pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType].expirationDateIdentificationVehicle, "YYYY-MM-DD").format("DD/MM/YYYY"):pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType].expirationDateIdentificationVehicle,
+                            expirationDateDriverLicense: pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType].expirationDateDriverLicense && !pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType].expirationDateDriverLicense.includes('/') ? moment(pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType].expirationDateDriverLicense, "YYYY-MM-DD").format("DD/MM/YYYY"):pendingUserAdminPicker.vehicle[pendingUserAdminPicker.vehicleType].expirationDateDriverLicense,
+                        }
+                    }
+                } :
+                pendingUserAdminPicker
                         }
                         validate={useValidationSchema(validationSchema)}
                     >
@@ -174,7 +174,7 @@ export const DetailPicker = (
                                                 component={Input}
                                                 className="Admin-Pickers-input"
                                                 placeholder="Ej: 12345678"
-                                                maxLength={8}
+                                                maxLength={10}
                                             />
                                         </Col>
                                     </Row>
