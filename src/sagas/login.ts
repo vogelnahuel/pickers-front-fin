@@ -11,15 +11,12 @@ const sagas = [
 
 export default sagas;
 
-function* getLogin({params}:any) {
+function* getLogin({params}:any):any {
 
-    setTimeout(() => {
-         }, 150000);
-        
             const response = yield call(
                 loginMiddleware.getLogin,
                 params
-            );
+            )
 
             if (response.status !== 200) {
                 switch (response.status) {
