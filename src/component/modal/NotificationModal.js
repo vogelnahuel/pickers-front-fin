@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import { connect } from "react-redux";
 import {Modal} from "@pickit/pickit-components";
-import button from "assets/admin/ActiveUserAdminPicker/button.svg";
 import "component/modal/notificationModal.scss";
 import { selectors as notificationSelectors, actions as notificationActions } from "reducers/notification";
 
