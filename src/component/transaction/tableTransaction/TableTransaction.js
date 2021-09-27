@@ -76,7 +76,7 @@ export const TableTransaction = (props) => {
                             <tr onClick={()=>handleClickModal(dato.transaction.id)} key={dato.transaction.id+"0"} >
                                 
                                     <td  name={dato.transaction.id} key={dato.transaction.id+"1"}  ></td>
-                                    <td  name={dato.transaction.id} id={dato.transaction.id} key={dato.transaction.id+"2"}  ><img key={dato.transaction.id+"3"}  name={dato.transaction.id} id={dato.Transacción} className="img-filter-transaction"  src={TreePoints} alt="TreePoints" /> </td>
+                                    <td  name={dato.transaction.id} id={dato.transaction.id} key={dato.transaction.id+"2"}  ><img key={dato.transaction.id+"3"}  name={dato.transaction.id} id={dato.Transacción} className="img-transaction"  src={TreePoints} alt="TreePoints" /> </td>
                                 
                                     <td  name={dato.transaction.id} key={dato.transaction.id+"4"} > {dato.transaction.transactionCode} </td>
                                     <td  name={dato.transaction.id} key={dato.transaction.id+"5"} > {dato.transaction.externalPickerId}  </td>
