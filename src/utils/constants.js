@@ -34,7 +34,7 @@ export const VALIDATION_REGEX = {
     regPatent:/^([a-zA-Z0-9]){6,7}$/,
     regTransactionCode:/^[a-fA-F0-9]*$/,
     regPickerId: /^[0-9]*$/,
-    regEmail: /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9]){1,}?$/,
+    regEmail: /^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9]){1,}?$/,
 }
 
 export const FILTER_TRANSACTION_OPTIONS = [
