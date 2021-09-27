@@ -4,16 +4,16 @@ import {
   actions as loginActions,
   selectors as loginSelectors,
 } from "../../reducers/login";
-import LoginNew from "./Login";
+import Login from "./Login";
 import * as yup from "yup";
 import { VALIDATION_REGEX } from "utils/constants";
-import LoginInterface from './types'
+import {LoginInterface,LoginContainerInterface} from './types'
 import {selectorsTypesLogin} from '../../reducers/typesLogin'
 
 
 
 
-const LoginContainer = (props: LoginInterface): JSX.Element => {
+const LoginContainer = (props: LoginContainerInterface): JSX.Element => {
   const validationSchema = yup.lazy(() => {
     return yup.object({
       email: yup
@@ -27,11 +27,10 @@ const LoginContainer = (props: LoginInterface): JSX.Element => {
     });
   });
 
-  return <LoginNew  {...props} validationSchema={validationSchema} />;
+  return <Login  {...props} validationSchema={validationSchema} />;
 };
 
 const mapStateToProps = (state: selectorsTypesLogin) => ({
-  login: loginSelectors.getLogin(state),
   isFetching: loginSelectors.isFetching(state),
 });
 

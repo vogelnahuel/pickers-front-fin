@@ -68,7 +68,7 @@ function* getLogin({params,element}:getLoginType):object {
                 yield call(loginMiddleware.setAuthToken, result.accessToken);
                 saveValue("token", result.accessToken);
                 yield put(replace("/dashboard"));
-                yield put(actions.getLoginSuccess(result));
+                yield put(actions.getLoginSuccess());
             }
        
 }

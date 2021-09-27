@@ -1,9 +1,9 @@
 import {all, call, put, spawn} from "redux-saga/effects";
-import transactions from "sagas/transactions";
-import pickers from "sagas/pickers";
-import dashboard from "sagas/dashboard";
+import transactions from "./transactions";
+import pickers from "./pickers";
+import dashboard from "./dashboard";
 import login from "./login";
-import {actions} from "reducers/login";
+import {actions} from "../reducers/login";
 
 const sagas = [
     ...transactions,
@@ -13,7 +13,7 @@ const sagas = [
 
 ];
 
-export default function* rootSaga():any {
+export default function* rootSaga():object {
     yield all(
         sagas.map((saga:any) =>
             spawn(function* listenErrors() {

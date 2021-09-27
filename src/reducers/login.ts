@@ -14,18 +14,15 @@ export const types = {
 
 export const INITIAL_STATE = {
     fetching: false,
-    login: {},
 };
 
 export const actions = {
     getLoginRequest: (params:object) => ({
         type: types.LOGIN_GET_REQUEST,
-        params
-        
+        params 
     }),
-    getLoginSuccess: (login:object) => ({
+    getLoginSuccess: () => ({
         type: types.LOGIN_GET_SUCCESS,
-        login
     }),
     getLoginError: () => ({
         type: types.LOGIN_GET_ERROR,
@@ -36,8 +33,7 @@ export const actions = {
 };
 
 export const selectors = { 
-    isFetching: (state:selectorsTypesLogin )  => state.login.fetching ,
-    getLogin:   (state:selectorsTypesLogin ) => state.login.login,
+    isFetching: ({login}:selectorsTypesLogin )  => login.fetching ,
 };
 
 
@@ -56,7 +52,6 @@ const reducer =(state = INITIAL_STATE, action:ActionLoginType ) => {
         case types.LOGIN_GET_SUCCESS:
             return {
                 ...state,
-                login: action.login,
                 fetching: false,
             };
         case types.LOGIN_GET_ERROR:

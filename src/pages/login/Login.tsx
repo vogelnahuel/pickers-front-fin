@@ -4,13 +4,13 @@ import "./Login.scss";
 import pickersLogo from "./../../assets/login/PickersLogo.svg";
 import canguro from "./../../assets/login/Canguro.svg";
 import { Link } from "react-router-dom";
-import LoginInterface from "./types";
+import {LoginInterface} from "./types";
 import { Form, Field } from "react-final-form";
 import { Input } from "component/inputs/Input";
 import useValidationSchema from "hooks/useValidationSchema";
 import NotificationModal from "component/modal/NotificationModal";
 
-const LoginNew: React.FC<LoginInterface> = ({
+const Login: React.FC<LoginInterface> = ({
   postLogin,
   validationSchema,
   isFetching,
@@ -75,4 +75,4 @@ const LoginNew: React.FC<LoginInterface> = ({
     </div>
   );
 };
-export default LoginNew;
+export default Login;
