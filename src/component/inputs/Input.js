@@ -13,17 +13,22 @@ export const Input= (props) => {
         input,
         lastLabel,
         meta,
-        maxLength
+        maxLength,
+        animated
     } = props;
+    //animationOrigin animationTop
+
     return (
         <div className={classNames( {
             "has-error": meta.error && meta.touched,
         })}>
-            <label className={
+            <label htmlFor={id} className={
                 classNames(middle ?"label-Admin-Pickers-middle":"label-Admin-Pickers",{
                         "labelError": meta.error && meta.touched,
+                        "label-login":animated,
                         "readonly":disabled,
                         "last-label":lastLabel,
+                         [input.value?"animationTop":"animationOrigin"] :animated
                     }
                 )}>
                 {label}

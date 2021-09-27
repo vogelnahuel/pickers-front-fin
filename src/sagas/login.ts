@@ -4,7 +4,7 @@ import * as loginMiddleware from "../middleware/login";
 import {removeItem, saveValue} from "../utils/localStorage";
 import {replace} from 'connected-react-router';
 import {actions as notificationActions} from "../reducers/notification";
-
+import {getLoginType} from './loginTypes'
 const sagas = [
     takeLatest(types.LOGIN_GET_REQUEST, getLogin),
     takeLatest(types.LOGOUT, logout)
@@ -12,16 +12,22 @@ const sagas = [
 
 export default sagas;
 
-function* getLogin({params,element}:any):any {
+//object????
+function* getLogin({params,element}:getLoginType):object {
+            
+
 
             const response = yield call(
                 loginMiddleware.getLogin,
                 params
             )
+          
             if (response.status !== 200) {
+                
                 switch (response.data.statusCode) {
                     case 400:
-                        yield put(notificationActions.showNotification(
+
+                       yield put(notificationActions.showNotification(
                             {
                                 level:"error",
                                 title: "Error de conexión",
@@ -29,7 +35,7 @@ function* getLogin({params,element}:any):any {
                                 element
                             }
                         ));
-                        yield put(actions.getLoginError());
+                        
                         break;
                     case 10005:
                         yield put(notificationActions.showNotification(
@@ -40,7 +46,7 @@ function* getLogin({params,element}:any):any {
                                 element
                             }
                         ));
-                        yield put(actions.getLoginError());
+                       
                         break;
                     
                     default:
@@ -52,9 +58,10 @@ function* getLogin({params,element}:any):any {
                                 element
                             }
                         ));
-                        yield put(actions.getLoginError());
+                        
                         break;
                 }
+                yield put(actions.getLoginError());
                 
             } else {
                 const {result} = response.data;

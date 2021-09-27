@@ -15,6 +15,7 @@ const LoginNew: React.FC<LoginInterface> = ({
   validationSchema,
   isFetching,
 }): JSX.Element => {
+  
   return (
     <div className="background-login">
       <img src={pickersLogo} className="pickersLogo_login" alt="" />
@@ -22,33 +23,45 @@ const LoginNew: React.FC<LoginInterface> = ({
         onSubmit={postLogin}
         validate={useValidationSchema(validationSchema)}
       >
-        {({ handleSubmit }) => (
+        {({ handleSubmit}) => (
+
+
           <form className="login-form" onSubmit={handleSubmit}>
+
+
+           
             <Field
               type="text"
               name="email"
+              id="usuario"
               label="Usuario"
+              animated
               className="Admin-Pickers-input"
               component={Input}
               maxLength={50}
             />
 
             <Field
+              id="password"
               type="password"
               name="password"
               label="Password"
+              animated
               className="Admin-Pickers-input"
               component={Input}
             />
+           
 
-            <button
-              className="login-button animation"
-              disabled={isFetching}
-              type="submit"
-              name="button"
-            >
-              <p className="login-init ">Iniciar sesión</p>
-            </button>
+            <div className="container-animation">
+              <button
+                className={isFetching ? "login-button shineBorder-login" : "login-button"}
+                disabled={isFetching}
+                type="submit"
+                name="button"
+              >
+                <p className="login-init ">Iniciar sesión</p>
+              </button>
+            </div>
           </form>
         )}
       </Form>

@@ -7,9 +7,14 @@ import {
 import LoginNew from "./Login";
 import * as yup from "yup";
 import { VALIDATION_REGEX } from "utils/constants";
+import LoginInterface from './types'
+import {selectorsTypesLogin} from '../../reducers/typesLogin'
 
-const LoginContainer = (props: any): any => {
-  const validationSchema = yup.lazy((values) => {
+
+
+
+const LoginContainer = (props: LoginInterface): JSX.Element => {
+  const validationSchema = yup.lazy(() => {
     return yup.object({
       email: yup
         .string()
@@ -22,25 +27,17 @@ const LoginContainer = (props: any): any => {
     });
   });
 
-  return <LoginNew {...props} validationSchema={validationSchema} />;
+  return <LoginNew  {...props} validationSchema={validationSchema} />;
 };
 
-const mapStateToProps = (state: any) => ({
-  modalOpen: loginSelectors.isModalOpen(state),
-  modalOpenServerError: loginSelectors.isModalOpenServerError(state),
+const mapStateToProps = (state: selectorsTypesLogin) => ({
   login: loginSelectors.getLogin(state),
   isFetching: loginSelectors.isFetching(state),
 });
 
-const mapDispatchToProps = (dispatch: any) => ({
-  postLogin: (params: any) => {
+const mapDispatchToProps = (dispatch:any) => ({
+  postLogin: (params: object) => {
     dispatch(loginActions.getLoginRequest(params));
-  },
-  setModalOpen: (params: any) => {
-    dispatch(loginActions.setModalOpen(params));
-  },
-  setmodalOpenServerError: (params: any) => {
-    dispatch(loginActions.setmodalOpenServerError(params));
   },
 });
 

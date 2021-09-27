@@ -192,12 +192,7 @@
   color: #ff1515;
 }
 
-.animationTop {
-  transform: translateY(-0.8em) scale(0.8);
-}
-.animationOrigin {
-  transform: translateY(0em) scale(1);
-}
+
 
 .inputReboteAnimation {
   -webkit-animation: inputRebote 0.25s linear;
@@ -302,14 +297,14 @@
 }
 .pickersLogo_login {
   display: block;
-  padding-top: 13vh;
+  padding-top: 11vh;
   width: 246px;
   height: auto;
   margin-left: auto;
   margin-right: auto;
 }
 .login-form {
-  width: 554px;
+  width: 541px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 8vh;
@@ -354,4 +349,89 @@
     line-height: 20px;
     color: #4d4d4d;
   }
+}
+.Admin-Pickers-input-login{
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 17px;
+  line-height: 27px;
+  letter-spacing: 0.005em;
+  color: #101820;
+  border: 0;
+  outline: none;
+  background-color: transparent;
+  border-bottom: 1px solid #828282;
+  /* margin-bottom: 30px; */
+  width: 100%;
+  cursor: text;
+}
+
+.label-Admin-Pickers.label-login{
+   font-family: "Mulish";
+   font-style: normal;
+   font-weight: 300;
+   transform-origin: 0 0;
+   position: absolute;
+   transition: transform 0.2s ease-in-out;
+   font-size: 17px;
+}
+.label-login.animationTop {
+  transform: translateY(-0.8em);
+   font-size: 15px ;
+}
+.animationOrigin {
+  transform: translateY(0em);
+
+}
+
+
+
+.container-animation{
+  position: relative;
+  width: 233px;
+  height: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.shineBorder-login  {
+  width: 233px;
+  height: 50px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.shineBorder-login::after {
+  margin-left: auto;
+  margin-right: auto;
+  content: '';
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin-top: 0px;
+  width: 235px;
+  height: 50px;
+  background: #06D0FF;
+  z-index: 4;
+  border-top-left-radius: 40px; 
+  border-bottom-left-radius: 40px;  
+  animation: animate-shineBorder-login 18s ease-out ;             
+}
+
+@keyframes animate-shineBorder-login {
+  0% {
+    
+    opacity: 1;
+    width: 9%;
+   }
+ 
+  10% {opacity: 1; }
+
+ 
+
+  95% {opacity: 1; width: 90%;}
 }

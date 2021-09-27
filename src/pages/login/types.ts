@@ -1,6 +1,9 @@
 
-export default interface LoginInterface {
+export  default interface LoginInterface {
   postLogin: any;
   isFetching: boolean;
   validationSchema: Object;
 }
+
+
+
