@@ -25,9 +25,8 @@ const FilterPickersContainer = (props) => {
             return yup.object({
                 name: yup.string().matches(VALIDATION_REGEX.expName,"No se admiten números o caracteres especiales"),
                 identificationNumber:yup.string().matches(VALIDATION_REGEX.expIdentificationNumber,"No se admiten letras o caracteres especiales"),
-                email:yup.string().email("El formato del correo es inválido").matches(VALIDATION_REGEX.regEmail,"El formato del correo es inválido")
+                email:yup.string().matches(VALIDATION_REGEX.regEmail,"El formato del pepe es inválido")
             })
-
         });
     return (
         <FilterPickers
