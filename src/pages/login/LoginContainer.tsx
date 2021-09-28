@@ -34,7 +34,7 @@ const mapStateToProps = (state: selectorsTypesLogin) => ({
   isFetching: loginSelectors.isFetching(state),
 });
 
-const mapDispatchToProps = (dispatch:any) => ({
+const mapDispatchToProps = (dispatch:Function) => ({
   postLogin: (params: object) => {
     dispatch(loginActions.getLoginRequest(params));
   },

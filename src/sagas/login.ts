@@ -1,4 +1,10 @@
-import { call, put, PutEffect, takeLatest } from "redux-saga/effects";
+import {
+  call,
+  CallEffect,
+  put,
+  PutEffect,
+  takeLatest,
+} from "redux-saga/effects";
 import { actions, types } from "../reducers/login";
 import * as loginMiddleware from "../middleware/login";
 import { removeItem, saveValue } from "../utils/localStorage";
@@ -6,6 +12,7 @@ import { CallHistoryMethodAction, replace } from "connected-react-router";
 import { actions as notificationActions } from "../reducers/notification";
 import { getLoginType } from "./types/login";
 import { ILoginResponse } from "./types/types";
+import { AxiosResponse } from "axios";
 const sagas = [
   takeLatest(types.LOGIN_GET_REQUEST, getLogin),
   takeLatest(types.LOGOUT, logout),
@@ -13,13 +20,18 @@ const sagas = [
 
 export default sagas;
 
-
-
 //yield , retorno , recibe
 function* getLogin({
   params,
   element,
-}: getLoginType): Generator< any, void, ILoginResponse> {
+}: getLoginType): Generator<
+  | CallEffect<AxiosResponse<any>>
+  | PutEffect<{ type: string; content: any }>
+  | PutEffect<{ type: string }>
+  | CallEffect<void>,
+  void,
+  ILoginResponse
+> {
   const response = yield call(loginMiddleware.getLogin, params);
 
   if (response.status !== 200) {
@@ -69,10 +81,11 @@ function* getLogin({
   }
 }
 
-function* logout() : Generator< PutEffect<CallHistoryMethodAction<[string, unknown?]>>, void, void> {
+function* logout(): Generator<
+  PutEffect<CallHistoryMethodAction<[string, unknown?]>>,
+  void,
+  void
+> {
   removeItem("token");
   yield put(replace("/"));
 }
-
-
-

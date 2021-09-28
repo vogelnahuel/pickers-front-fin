@@ -1,22 +1,20 @@
-import {selectorsTypesLogin} from './types/login'
+import {ActionsTypes, LoginState, selectorsTypesLogin, SelectorType, TypesTypes} from './types/login'
 import {ActionLoginType} from './types/login'
 
 
-export const types = {
+export const types:TypesTypes = {
     LOGIN_GET_REQUEST: `LOGIN_GET_REQUEST`,
     LOGIN_GET_SUCCESS: `LOGIN_GET_SUCCESS`,
     LOGIN_GET_ERROR: `LOGIN_GET_ERROR`,
-
     LOGOUT: `LOGOUT`,
 };
 
 
-
-export const INITIAL_STATE = {
+export const INITIAL_STATE :LoginState= {
     fetching: false,
 };
 
-export const actions = {
+export const actions:ActionsTypes = {
     getLoginRequest: (params:object) => ({
         type: types.LOGIN_GET_REQUEST,
         params 
@@ -32,13 +30,13 @@ export const actions = {
     }),
 };
 
-export const selectors = { 
+export const selectors:SelectorType = { 
     isFetching: ({login}:selectorsTypesLogin )  => login.fetching ,
 };
 
 
 
-const reducer =(state = INITIAL_STATE, action:ActionLoginType ) => {
+const reducer =(state:LoginState = INITIAL_STATE, action:ActionLoginType ) => {
     switch (action.type) {
         case types.LOGIN_GET_REQUEST:
             return {

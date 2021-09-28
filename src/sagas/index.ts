@@ -14,6 +14,7 @@ const sagas = [
     ...dashboard,  
     ...login,
 ];
+//revisar el any del err
 
 export default function* rootSaga():object {
     yield all(
