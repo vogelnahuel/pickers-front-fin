@@ -1,9 +1,10 @@
-import {all, call, ForkEffect, put, spawn} from "redux-saga/effects";
+import {all, call, put, spawn} from "redux-saga/effects";
 import transactions from "./transactions";
 import pickers from "./pickers";
 import dashboard from "./dashboard";
 import login from "./login";
 import {actions} from "../reducers/login";
+import { Effect } from "./types";
 
 
 
@@ -14,13 +15,6 @@ const sagas = [
     ...login,
 ];
 
-export interface Effect<T = any, P = any> {
-    name?: any;
-    "@@redux-saga/IO": true;
-    combinator: boolean;
-    type: T;
-    payload: P;
-  }
 export default function* rootSaga():object {
     yield all(
         sagas.map((saga:Effect) =>

@@ -1,84 +1,72 @@
-import {call, put, takeLatest} from "redux-saga/effects";
-import {actions, types} from "../reducers/login";
+import { call, put, takeLatest } from "redux-saga/effects";
+import { actions, types } from "../reducers/login";
 import * as loginMiddleware from "../middleware/login";
-import {removeItem, saveValue} from "../utils/localStorage";
-import {replace} from 'connected-react-router';
-import {actions as notificationActions} from "../reducers/notification";
-import {getLoginType} from './loginTypes'
+import { removeItem, saveValue } from "../utils/localStorage";
+import { replace } from "connected-react-router";
+import { actions as notificationActions } from "../reducers/notification";
+import { getLoginType } from "./loginTypes";
+import { ILoginResponse } from "./types";
 const sagas = [
-    takeLatest(types.LOGIN_GET_REQUEST, getLogin),
-    takeLatest(types.LOGOUT, logout)
+  takeLatest(types.LOGIN_GET_REQUEST, getLogin),
+  takeLatest(types.LOGOUT, logout),
 ];
 
 export default sagas;
 
-function* hello(foo: string) {
-    yield "hello world";
+function* getLogin({
+  params,
+  element,
+}: getLoginType): Generator<any, void, ILoginResponse> {
+  const response = yield call(loginMiddleware.getLogin, params);
+
+  if (response.status !== 200) {
+    switch (response.data.statusCode) {
+      case 400:
+        yield put(
+          notificationActions.showNotification({
+            level: "error",
+            title: "Error de conexión",
+            body: "Hubo un error de comunicación con el servidor. Por favor, intentalo nuevamente",
+            element,
+          })
+        );
+
+        break;
+      case 10005:
+        yield put(
+          notificationActions.showNotification({
+            level: "error",
+            title: "Usuario y/o contraseña inválidos",
+            body: "Tu usuario y/o contraseña ingresados son incorrectos. Por favor, ingresalos nuevamente.",
+            element,
+          })
+        );
+
+        break;
+
+      default:
+        yield put(
+          notificationActions.showNotification({
+            level: "error",
+            title: "Error de conexión",
+            body: "Hubo un error de comunicación con el servidor. Por favor, intentalo nuevamente",
+            element,
+          })
+        );
+
+        break;
+    }
+    yield put(actions.getLoginError());
+  } else {
+    const { result } = response.data;
+    yield call(loginMiddleware.setAuthToken, result.accessToken);
+    saveValue("token", result.accessToken);
+    yield put(replace("/dashboard"));
+    yield put(actions.getLoginSuccess());
+  }
 }
 
-
-//object????
-function* getLogin({params,element}:getLoginType) {
-            
-  
-
-            const response = yield call(
-                loginMiddleware.getLogin,
-                params
-            )
-          
-            if (response.status !== 200) {
-                
-                switch (response.data.statusCode) {
-                    case 400:
-
-                       yield put(notificationActions.showNotification(
-                            {
-                                level:"error",
-                                title: "Error de conexión",
-                                body:"Hubo un error de comunicación con el servidor. Por favor, intentalo nuevamente",
-                                element
-                            }
-                        ));
-                        
-                        break;
-                    case 10005:
-                        yield put(notificationActions.showNotification(
-                            {
-                                level:"error",
-                                title: "Usuario y/o contraseña inválidos",
-                                body:"Tu usuario y/o contraseña ingresados son incorrectos. Por favor, ingresalos nuevamente.",
-                                element
-                            }
-                        ));
-                       
-                        break;
-                    
-                    default:
-                        yield put(notificationActions.showNotification(
-                            {
-                                level:"error",
-                                title: "Error de conexión",
-                                body:"Hubo un error de comunicación con el servidor. Por favor, intentalo nuevamente",
-                                element
-                            }
-                        ));
-                        
-                        break;
-                }
-                yield put(actions.getLoginError());
-                
-            } else {
-                const {result} = response.data;
-                yield call(loginMiddleware.setAuthToken, result.accessToken);
-                saveValue("token", result.accessToken);
-                yield put(replace("/dashboard"));
-                yield put(actions.getLoginSuccess());
-            }
-       return 0
-}
-
-function* logout(){
-    removeItem("token")
-    yield put(replace("/"));
+function* logout() {
+  removeItem("token");
+  yield put(replace("/"));
 }
