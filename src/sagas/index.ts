@@ -6,28 +6,24 @@ import login from "./login";
 import {actions} from "../reducers/login";
 
 
+
 const sagas = [
     ...transactions,
     ...pickers,
     ...dashboard,  
     ...login,
 ];
-/*
-interface sagasType {
-    "@@redux-saga/IO":boolean,
-    combinator:boolean,
-    payload:{
-        args:[],
-        context:any,
-        fn:Function
-    },
-    type:string
-}*/
 
+export interface Effect<T = any, P = any> {
+    name?: any;
+    "@@redux-saga/IO": true;
+    combinator: boolean;
+    type: T;
+    payload: P;
+  }
 export default function* rootSaga():object {
-    console.log(sagas)
     yield all(
-        sagas.map((saga:any) =>
+        sagas.map((saga:Effect) =>
             spawn(function* listenErrors() {
                 let isSyncError = false;
                 const resetSyncError = () => {
@@ -43,7 +39,6 @@ export default function* rootSaga():object {
                         yield call(function* execSaga() {
                             yield saga;
                         });
-                        // eslint-disable-next-line no-console
                         console.error(
                             "Unexpected root saga termination. " +
                                 "The root sagas are supposed to be sagas that live during the whole app lifetime!",

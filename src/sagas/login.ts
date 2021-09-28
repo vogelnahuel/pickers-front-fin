@@ -12,10 +12,15 @@ const sagas = [
 
 export default sagas;
 
-//object????
-function* getLogin({params,element}:getLoginType):object {
-            
+function* hello(foo: string) {
+    yield "hello world";
+}
 
+
+//object????
+function* getLogin({params,element}:getLoginType) {
+            
+  
 
             const response = yield call(
                 loginMiddleware.getLogin,
@@ -70,7 +75,7 @@ function* getLogin({params,element}:getLoginType):object {
                 yield put(replace("/dashboard"));
                 yield put(actions.getLoginSuccess());
             }
-       
+       return 0
 }
 
 function* logout(){
