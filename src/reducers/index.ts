@@ -7,7 +7,10 @@ import login from "./login";
 import notification from "reducers/notification";
 import { connectRouter } from 'connected-react-router'
 
-const rootReducer = (history:any) => combineReducers({
+import { RouteComponentProps } from 'react-router-dom';
+
+
+const rootReducer = (history: RouteComponentProps['history']) => combineReducers({
     router: connectRouter(history),
     transactions,
     dashboard,

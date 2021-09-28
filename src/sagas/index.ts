@@ -1,19 +1,31 @@
-import {all, call, put, spawn} from "redux-saga/effects";
+import {all, call, ForkEffect, put, spawn} from "redux-saga/effects";
 import transactions from "./transactions";
 import pickers from "./pickers";
 import dashboard from "./dashboard";
 import login from "./login";
 import {actions} from "../reducers/login";
 
+
 const sagas = [
     ...transactions,
     ...pickers,
     ...dashboard,  
     ...login,
-
 ];
+/*
+interface sagasType {
+    "@@redux-saga/IO":boolean,
+    combinator:boolean,
+    payload:{
+        args:[],
+        context:any,
+        fn:Function
+    },
+    type:string
+}*/
 
 export default function* rootSaga():object {
+    console.log(sagas)
     yield all(
         sagas.map((saga:any) =>
             spawn(function* listenErrors() {
@@ -55,6 +67,7 @@ export default function* rootSaga():object {
         ),
     );
 }
+
 
 export function* handleError(error:any) {
     const { status } = error.response;
