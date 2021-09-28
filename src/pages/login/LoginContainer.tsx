@@ -10,9 +10,6 @@ import { VALIDATION_REGEX } from "utils/constants";
 import {LoginContainerInterface} from './types'
 import {selectorsTypesLogin} from '../../reducers/types/login'
 
-
-
-
 const LoginContainer = (props: LoginContainerInterface): JSX.Element => {
   const validationSchema = yup.lazy(() => {
     return yup.object({

@@ -25,10 +25,7 @@ const Login: React.FC<LoginInterface> = ({
       >
         {({ handleSubmit}) => (
 
-
           <form className="login-form" onSubmit={handleSubmit}>
-
-
            
             <Field
               type="text"
@@ -51,7 +48,6 @@ const Login: React.FC<LoginInterface> = ({
               component={Input}
             />
            
-
             <div className="container-animation">
               <button
                 className={isFetching ? "login-button shineBorder-login" : "login-button"}

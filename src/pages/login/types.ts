@@ -10,10 +10,7 @@ export interface LoginContainerInterface {
   postLogin: any;
   isFetching: boolean;
 }
-
-
 export interface credentialsInterface {
   mail: string;
   password: string;
 }
-
