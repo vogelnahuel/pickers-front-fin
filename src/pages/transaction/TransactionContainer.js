@@ -4,12 +4,14 @@ import {actions as transactionActions, selectors as transactionSelectors} from "
 import {Transaction} from "pages/transaction/Transaction"
 import {useLocation} from "react-router-dom";
 import parseQueryParams from "utils/parseQueryParams"
+import moment from "moment";
 
 const TransactionContainer = (props) => {
     const params = useLocation()
     useEffect(() => {
         props.reset();
         const filters = parseQueryParams(params.search);
+        filters.maxMinDeliveryDate && (filters.date = { from: moment(filters.minMinDeliveryDate, "YYYY-MM-DD").format("DD/MM/YYYY"), until: moment(filters.maxMinDeliveryDate, "YYYY-MM-DD").format("DD/MM/YYYY") });
         const filtersExtra={limit:window.screen.height<770 ? 3 : 4};
         props.setExtraFilters(filtersExtra);
         props.getTransactions({...filtersExtra, ...filters});
@@ -31,13 +33,12 @@ const mapStateToProps = (state) => ({
     filtersExtra: transactionSelectors.getFiltersExtra(state),
     seeMore: transactionSelectors.getSeeMore(state),
     filtersExtraSeeMore: transactionSelectors.getFiltersExtraSeeMore(state),
-    openErrorDatePicker:transactionSelectors.getOpenErrorDatePicker(state)
 });
 
 
 const mapDispatchToProps = (dispatch) => ({
-    getTransactionsExportRequest: (params) => {
-        dispatch(transactionActions.getTransactionsExportRequest(params));
+    getTransactionsExportRequest: (params,element) => {
+        dispatch(transactionActions.getTransactionsExportRequest(params,element));
     },
     getTransactions: (params) => {
         dispatch(transactionActions.getTransactionsRequest(params));
@@ -53,9 +54,6 @@ const mapDispatchToProps = (dispatch) => ({
     },
     getMoreTransactions: (params) => {
         dispatch(transactionActions.getMoreTransactionsRequest(params));
-    },
-    setOpenErrorDatePicker: (param) => {
-        dispatch(transactionActions.setOpenErrorDatePicker(param));
     },
 });
 

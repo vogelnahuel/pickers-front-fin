@@ -12,11 +12,11 @@ import {actions as notificationActions} from "reducers/notification";
 
 export const PendingBlue = ({ showNotification, changePage, actualPage, isDirty,isDetail }) => {
     const Historial = useHistory();
-    const handleHistory = () => {
+    const handleHistory = (e) => {
         let onClose = ()=>{
             Historial.goBack();
         };
-
+     
         if(isDirty) {
             showNotification(
                 {
@@ -26,7 +26,8 @@ export const PendingBlue = ({ showNotification, changePage, actualPage, isDirty,
                     onClickLabel: "Ir a guardar",
                     onCloseLabel: "No quiero guardarlos",
                     onClose: onClose,
-                    onClick: ()=>window.scroll({ top: document.body.offsetHeight, left: 0,  behavior: 'smooth' })
+                    onClick: ()=>window.scroll({ top:window.innerHeight, left: 0,  behavior: 'smooth' }),
+                    element:e.target.parentNode
                 }
             );
         } else {

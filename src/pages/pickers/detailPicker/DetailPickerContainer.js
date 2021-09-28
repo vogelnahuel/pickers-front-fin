@@ -34,7 +34,7 @@ const DetailPickerContainer = (props) => {
                     onClickLabel: "Ir a guardar",
                     onCloseLabel: "No quiero guardarlos",
                     onClose: onClose,
-                    onClick: ()=>window.scroll({ top: document.body.offsetHeight, left: 0,  behavior: 'smooth' })
+                    onClick: ()=>window.scroll({ top: window.innerHeight, left: 0,  behavior: 'smooth' })
                 }
             );
         } else {
@@ -90,7 +90,7 @@ const DetailPickerContainer = (props) => {
                     onClickLabel: "Ir a guardar",
                     onCloseLabel: "No quiero guardarlos",
                     onClose: onClose,
-                    onClick: ()=>window.scroll({ top: document.body.offsetHeight, left: 0,  behavior: 'smooth' })
+                    onClick: ()=>window.scroll({ top: window.innerHeight, left: 0,  behavior: 'smooth' })
                 }
             );
         } else {
@@ -130,14 +130,15 @@ const mapStateToProps = (state) => ({
     pendingUserAdminPicker: pendingUserAdminPickerSelectors.getPendingUserPicker(state),
     isFetching: pendingUserAdminPickerSelectors.isFetching(state),
     actualPage: pendingUserSelectors.getActualPage(state),
+    nameDisplay: pendingUserAdminPickerSelectors.getNameDisplay(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
     getPendingUserPicker: (params) => {
         dispatch(pendingUserAdminPickerActions.getPendingUserPickerRequest(params));
     },
-    getPendingUserPickerExport: (params) => {
-        dispatch(pendingUserAdminPickerActions.getPendingUserPickerExportRequest(params));
+    getPendingUserPickerExport: (params,element) => {
+        dispatch(pendingUserAdminPickerActions.getPendingUserPickerExportRequest(params,element));
     },
     setDirty: (dirty) => {
         dispatch(pendingUserAdminPickerActions.setDirty(dirty));

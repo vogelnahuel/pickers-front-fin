@@ -28,7 +28,7 @@ const MultipleSelect = (
       return 'Todos';
     } else {
       let length = optionsState.filter((ob)=>ob.selected).length;
-      if (length > 3) {
+      if (length >= 2) {
         return `${length} Selecionados`;
       } else {
         return reduceState(optionsState, 'label');
@@ -68,7 +68,7 @@ const MultipleSelect = (
       <div className="multiple-selectbox">
           <div  onClick={handleClick} className="multiple-contenido-select">
             <label className="label-Admin-Pickers">{label}</label>
-              <input placeholder={placeholder} value={reduceValue()} disabled className="Admin-Pickers-input" type="text"/>
+              <input placeholder={placeholder} value={reduceValue()} disabled className="Admin-Pickers-input-select" type="text"/>
               <img className="multiple-flotarImg" src={Arrow} alt="arrow"/>
           </div>
         { open &&

@@ -14,7 +14,7 @@
     text-align: center;
     color: #FFFFFF;
     margin-top: 84px;
-    margin-left: 20px;
+    margin-left: 42px;
 }
 
 .modal-dni-finish-button-active{
@@ -32,7 +32,7 @@
     text-align: center;
     color: #FFFFFF;
     margin-top: 84px;
-    margin-left: 20px;
+    margin-left: 42px;
 }
 .modal-dni-finish-h3{
     font-family: 'Mulish';
@@ -69,6 +69,13 @@
     line-height: 19px;
     letter-spacing: 0.0025em;
     color: #4D4D4D;
+}
+ #labelError-transaction{
+    color: red; 
+ }
+.input-errors-container-transaction{
+position: absolute;
+margin-top: -15px;
 }
 @media (max-width:1310px){
     .modal-dni-finish-card{

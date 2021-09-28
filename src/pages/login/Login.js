@@ -228,11 +228,13 @@ export const Login = ({postLogin,modalOpen,isFetching, setModalOpen, validationS
                         />
                         <label id="labelmail" htmlFor="mail" className="login-label label">Usuario</label>
                     </div>
+                    <div className="password-login">
                     {
                         errorMail ? <div className="input-errors-container">
                             <p className="errors"> {errorMsgMail}  </p>
                         </div>:null
                     }
+                    </div>
 
                     <div >
                         <input
@@ -248,32 +250,34 @@ export const Login = ({postLogin,modalOpen,isFetching, setModalOpen, validationS
 
                         />
                         <label id="labelpassword" htmlFor="password-login" className="login-label label">Contraseña</label>
-                        <div className="password-login">
-                            {errorPassWord ? <div className="input-errors-container">
-                                <p className="errors"> {errorMsgPassword}  </p>
-                            </div>:<></>
-                            }
-                        </div>
+                    
+                            <div className="password-login">
+                                {errorPassWord ? <div className="input-errors-container">
+                                    <p className="errors"> {errorMsgPassword}  </p>
+                                </div>:<></>
+                                }
+                            </div>
+                       
                     </div>
 
 
-                    <div className="contenedor z-index">
+                    <div className="contenedor">
                         {
                             isFetching ?
-                                <div className="shineBorder contenedor z-index animation">
+                                <div className="shineBorder contenedor animation">
                                     <button
 
-                                        className="button_  z-index"
-                                        type="sumbit"
+                                        className="button_"
+                                        type="submit"
                                         name="button" ><p className="login-init "> Iniciar sesión </p>
                                     </button>
                                 </div>
                                 :
-                                <div className="contenedor z-index animation">
+                                <div className="contenedor animation">
                                     <button
 
-                                        className="button_  z-index"
-                                        type="sumbit"
+                                        className="button_"
+                                        type="submit"
                                         name="button" ><p className="login-init "> Iniciar sesión </p>
                                     </button>
                                 </div>

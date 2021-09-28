@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {connect} from "react-redux";
 import {actions as transactionActions, selectors as transactionSelectors} from "reducers/transactions";
 import {FilterTransaction} from "pages/transaction/filterTransaction/FilterTransaction";
@@ -7,12 +7,6 @@ import * as yup from "yup";
 import {VALIDATION_REGEX} from "utils/constants";
 
 const FilterTransactionContainer = (props) => {
-    useEffect(() => {
-        if(props.filters && Object.keys(props.filters).length === 0){
-            props.reset();
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [props.filters]);
 
     const formatDate = (date) => {
         let result ={};
@@ -53,7 +47,7 @@ const FilterTransactionContainer = (props) => {
     const validationSchema =
         yup.lazy(() => {
             return yup.object({
-                transactionCode: yup.string().matches(VALIDATION_REGEX.regTransactionCode,"No se admiten caracteres especiales"),
+                transactionCode: yup.string().matches(VALIDATION_REGEX.regTransactionCode,"El código ingresado es erróneo"),
                 pickerId:yup.string().matches(VALIDATION_REGEX.regPickerId,"No se admiten letras o caracteres especiales"),
             })
         });
