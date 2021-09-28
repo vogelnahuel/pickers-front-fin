@@ -6,7 +6,6 @@ export interface selectorsTypesLogin{
 }
 export interface ActionLoginType {
     type:string,
-    login:object
 }
 export interface LoginState {
     fetching: boolean

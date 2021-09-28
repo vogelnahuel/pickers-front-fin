@@ -2,9 +2,7 @@
 export interface LoginInterface {
   postLogin: any;
   isFetching: boolean;
-  validationSchema: {
-
-  };
+  validationSchema: Object
 }
 export interface LoginContainerInterface {
   postLogin: any;

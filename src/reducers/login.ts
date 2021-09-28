@@ -1,3 +1,4 @@
+import { credentialsInterface } from 'pages/login/types';
 import {ActionsTypes, LoginState, selectorsTypesLogin, SelectorType, TypesTypes} from './types/login'
 import {ActionLoginType} from './types/login'
 
@@ -15,7 +16,7 @@ export const INITIAL_STATE :LoginState= {
 };
 
 export const actions:ActionsTypes = {
-    getLoginRequest: (params:object) => ({
+    getLoginRequest: (params:credentialsInterface) => ({
         type: types.LOGIN_GET_REQUEST,
         params 
     }),

@@ -9,7 +9,7 @@ const api = axios.create({
     },
 });
 
-export const setAuthToken = (token) => {
+export const setAuthToken = (token:String) => {
     api.defaults.headers.Authorization = `bearer ${token}`;
 };
 
@@ -49,21 +49,21 @@ api.interceptors.response.use(
     },
 );
 
-export const get = (path, query) => {
+export const get = (path:any, query:object) => {
     return api.get(
         path,
         {params: query}
     );
 };
 
-export const post = (path, body) => {
+export const post = (path:any, body:object) => {
     return api.post(
         path,
         body
     );
 };
 
-export const put = (path, body, query) => {
+export const put = (path:any, body:object, query:object) => {
     return api.put(
         path,
         body,
