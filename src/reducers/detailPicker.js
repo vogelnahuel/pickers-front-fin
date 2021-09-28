@@ -26,6 +26,7 @@ export const types = {
 export const INITIAL_STATE = {
     fetching: false,
     dirty: false,
+    nameDisplay: "",
     pendingUserAdminPicker: {},
     pendingUserAdminPickerExport:{},
 };
@@ -101,6 +102,7 @@ export const actions = {
 export const selectors = {
     isFetching: ({ pendingUserAdminPicker }) => pendingUserAdminPicker.fetching,
     isDirty: ({ pendingUserAdminPicker }) => pendingUserAdminPicker.dirty,
+    getNameDisplay: ({ pendingUserAdminPicker }) => pendingUserAdminPicker.nameDisplay,
     getPendingUserPicker: ({ pendingUserAdminPicker }) => pendingUserAdminPicker.pendingUserAdminPicker,
 };
 
@@ -122,6 +124,7 @@ const reducer =(state = INITIAL_STATE, action = {}) => {
             return {
                 ...state,
                 pendingUserAdminPicker: action.pendingUserAdminPicker,
+                nameDisplay: `${action.pendingUserAdminPicker.name} ${action.pendingUserAdminPicker.surname}`,
                 fetching: false,
             };
         case types.PENDING_USER_ADMIN_PICKER_GET_ERROR:

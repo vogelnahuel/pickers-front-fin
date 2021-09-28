@@ -130,6 +130,7 @@ const mapStateToProps = (state) => ({
     pendingUserAdminPicker: pendingUserAdminPickerSelectors.getPendingUserPicker(state),
     isFetching: pendingUserAdminPickerSelectors.isFetching(state),
     actualPage: pendingUserSelectors.getActualPage(state),
+    nameDisplay: pendingUserAdminPickerSelectors.getNameDisplay(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

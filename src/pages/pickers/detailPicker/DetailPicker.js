@@ -26,6 +26,7 @@ export const DetailPicker = (
         active,
         cancel,
         aproveSubmit,
+        nameDisplay,
         goBack,
         postPendingUserDocumentsEdit,
         postEditPickerRequest,
@@ -48,8 +49,8 @@ export const DetailPicker = (
                         className="mainContainerFlex-picker">
                         <div className="picker-id">
                             { pendingUserAdminPicker.id && (pendingUserAdminPicker.status.id=== 4 || pendingUserAdminPicker.status.id=== 5) && `#${pendingUserAdminPicker.id}`}
-                            <h2 className="subTitle-pending-picker">{(pendingUserAdminPicker.name+" "+pendingUserAdminPicker.surname).length>25? (pendingUserAdminPicker.name+" "+pendingUserAdminPicker.surname).substring(0,22)+"...": (pendingUserAdminPicker.name+" "+pendingUserAdminPicker.surname)}</h2>
-                        </div>
+                            <h2 className="subTitle-pending-picker">{ nameDisplay.length>25? (nameDisplay).substring(0,22)+"..." : nameDisplay }</h2>
+                        </div> 
                         {
                             pendingUserAdminPicker.vehicleType==="motorcycle" ?
                                 <img  className="vehiculo-pending-picker" src={motorcycle} alt="vehiculo" />
