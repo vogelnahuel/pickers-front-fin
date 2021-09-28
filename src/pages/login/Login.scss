@@ -308,7 +308,21 @@
   margin-left: auto;
   margin-right: auto;
   margin-top: 8vh;
+
+  div{
+    z-index: 2;
+    input{
+      position: relative;
+      z-index: 2;
+    }
+    label{
+      z-index: 3;
+    }
+  }
+  
 }
+
+
 .login-button {
   background-color: rgba(20, 90, 153, 1);
   border-radius: 50px;
@@ -324,10 +338,12 @@
   margin-top: 5vh;
   display: block;
 }
+
 .login-img-footer {
   position: absolute;
   bottom: -0.49px;
   width: 100%;
+  z-index: 0;
 }
 .container-login-a {
   cursor: pointer;
@@ -393,6 +409,7 @@
   height: 50px;
   margin-left: auto;
   margin-right: auto;
+  z-index: 2;
 }
 
 .shineBorder-login  {
