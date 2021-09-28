@@ -1,5 +1,5 @@
-import {selectorsTypesLogin} from './typesLogin'
-import {ActionLoginType} from './typesLogin'
+import {selectorsTypesLogin} from './types/login'
+import {ActionLoginType} from './types/login'
 
 
 export const types = {

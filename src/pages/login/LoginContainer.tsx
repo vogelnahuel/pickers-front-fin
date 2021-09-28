@@ -8,7 +8,7 @@ import Login from "./Login";
 import * as yup from "yup";
 import { VALIDATION_REGEX } from "utils/constants";
 import {LoginContainerInterface} from './types'
-import {selectorsTypesLogin} from '../../reducers/typesLogin'
+import {selectorsTypesLogin} from '../../reducers/types/login'
 
 
 

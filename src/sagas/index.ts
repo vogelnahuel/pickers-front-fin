@@ -4,7 +4,7 @@ import pickers from "./pickers";
 import dashboard from "./dashboard";
 import login from "./login";
 import {actions} from "../reducers/login";
-import { Effect } from "./types";
+import { Effect, ITypeError } from "./types/types";
 
 
 
@@ -58,7 +58,7 @@ export default function* rootSaga():object {
 }
 
 
-export function* handleError(error:any) {
+export function* handleError(error:ITypeError) {
     const { status } = error.response;
     if (status === 401) {
         yield put(actions.logout())

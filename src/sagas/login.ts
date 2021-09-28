@@ -1,11 +1,11 @@
-import { call, put, takeLatest } from "redux-saga/effects";
+import { call, put, PutEffect, takeLatest } from "redux-saga/effects";
 import { actions, types } from "../reducers/login";
 import * as loginMiddleware from "../middleware/login";
 import { removeItem, saveValue } from "../utils/localStorage";
-import { replace } from "connected-react-router";
+import { CallHistoryMethodAction, replace } from "connected-react-router";
 import { actions as notificationActions } from "../reducers/notification";
-import { getLoginType } from "./loginTypes";
-import { ILoginResponse } from "./types";
+import { getLoginType } from "./types/login";
+import { ILoginResponse } from "./types/types";
 const sagas = [
   takeLatest(types.LOGIN_GET_REQUEST, getLogin),
   takeLatest(types.LOGOUT, logout),
@@ -13,10 +13,13 @@ const sagas = [
 
 export default sagas;
 
+
+
+//yield , retorno , recibe
 function* getLogin({
   params,
   element,
-}: getLoginType): Generator<any, void, ILoginResponse> {
+}: getLoginType): Generator< any, void, ILoginResponse> {
   const response = yield call(loginMiddleware.getLogin, params);
 
   if (response.status !== 200) {
@@ -66,7 +69,10 @@ function* getLogin({
   }
 }
 
-function* logout() {
+function* logout() : Generator< PutEffect<CallHistoryMethodAction<[string, unknown?]>>, void, void> {
   removeItem("token");
   yield put(replace("/"));
 }
+
+
+
