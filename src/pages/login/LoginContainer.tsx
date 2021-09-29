@@ -7,12 +7,14 @@ import {
 import Login from "./Login";
 import * as yup from "yup";
 import { VALIDATION_REGEX } from "utils/constants";
-import {LoginContainerInterface} from './types'
-import {selectorsTypesLogin} from '../../reducers/types/login'
+import {LoginContainerInterface, LoginType} from './types'
+import { AppDispatch, RootState } from "../../store";
 
 const LoginContainer = (props: LoginContainerInterface): JSX.Element => {
-  const validationSchema = yup.lazy(() => {
-    return yup.object({
+  const validationSchema:yup.SchemaOf<LoginType> =
+  // yup.lazy(() => {
+  //  return 
+    yup.object({
       email: yup
         .string()
         .required("Este campo es requerido.")
@@ -22,17 +24,17 @@ const LoginContainer = (props: LoginContainerInterface): JSX.Element => {
         ),
       password: yup.string().required("Este campo es requerido."),
     });
-  });
+ // });
 
   return <Login  {...props} validationSchema={validationSchema} />;
 };
 
-const mapStateToProps = (state: selectorsTypesLogin) => ({
+const mapStateToProps = (state: RootState) => ({
   isFetching: loginSelectors.isFetching(state),
 });
 
-const mapDispatchToProps = (dispatch:Function) => ({
-  postLogin: (params: object) => {
+const mapDispatchToProps = (dispatch:AppDispatch) => ({
+  postLogin: (params: LoginType) => {
     dispatch(loginActions.getLoginRequest(params));
   },
 });

@@ -1,6 +1,5 @@
 import { setIn } from 'final-form';
 import { useMemo } from 'react';
-import * as yup from "yup"
 
 /**
  * Sets the `innerError.message` in an `errors` object at the key
