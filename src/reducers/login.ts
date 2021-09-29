@@ -1,5 +1,5 @@
 import { credentialsInterface } from 'pages/login/types';
-import {ActionsTypes, LoginState, selectorsTypesLogin, SelectorType, TypesTypes} from './types/login'
+import {ActionsTypes, EmailRestoreActionsTypes, LoginState, selectorsTypesLogin, SelectorType, TypesTypes} from './types/login'
 import {ActionLoginType} from './types/login'
 
 
@@ -35,7 +35,7 @@ export const actions:ActionsTypes = {
     }),
 
     /*******EMAIL */
-    getLoginEmailRequest: (params:any) => ({
+    getLoginEmailRequest: (params:EmailRestoreActionsTypes) => ({
         type: types.LOGIN_EMAIL_GET_REQUEST,
         params 
     }),

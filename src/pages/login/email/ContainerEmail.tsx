@@ -7,13 +7,13 @@ import {
 import * as yup from "yup";
 import { VALIDATION_REGEX } from "utils/constants";
 import EmailRestore from "./EmailRestore";
-// import {LoginContainerInterface, LoginType} from './types.ts'
-// import {selectorsTypesLogin} from '../../../reducers/types/login'
+import {EmailRestoreType,EmailContainer} from './types'
+import {selectorsTypesLogin} from '../../../reducers/types/login'
 
 
 
-const EmailRestoreContainer = (props: any): JSX.Element => {
-  const validationSchema:yup.SchemaOf<any> =
+const EmailRestoreContainer = (props: EmailContainer): JSX.Element => {
+  const validationSchema:yup.SchemaOf<EmailRestoreType> =
   // yup.lazy(() => {
   //  return 
     yup.object({
@@ -31,12 +31,12 @@ const EmailRestoreContainer = (props: any): JSX.Element => {
   return <EmailRestore  {...props} validationSchema={validationSchema} />;
 };
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: selectorsTypesLogin) => ({
   isFetching: loginSelectors.isFetching(state),
 });
 
-const mapDispatchToProps = (dispatch:any) => ({
-    postLoginEmail: (params: any) => {
+const mapDispatchToProps = (dispatch:Function) => ({
+    postLoginEmail: (params: object) => {
     dispatch(loginActions.getLoginEmailRequest(params));
   },
 });

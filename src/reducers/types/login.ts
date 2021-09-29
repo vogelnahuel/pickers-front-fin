@@ -32,3 +32,7 @@ export interface ActionsTypes{
 export interface SelectorType{
     isFetching:Function
 }
+
+export interface EmailRestoreActionsTypes{
+    mail: string;
+  }

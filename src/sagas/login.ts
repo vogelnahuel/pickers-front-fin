@@ -17,7 +17,6 @@ const sagas = [
   takeLatest(types.LOGIN_GET_REQUEST, getLogin),
   takeLatest(types.LOGOUT, logout),
   takeLatest(types.LOGIN_EMAIL_GET_REQUEST, getLoginEmail),
-
 ];
 
 export default sagas;
@@ -92,7 +91,17 @@ function* logout(): Generator<
   yield put(replace("/"));
 }
 
-function* getLoginEmail({ params, element}: getLoginType):any{
+function* getLoginEmail({
+  params,
+  element,
+}: getLoginType): Generator<
+  | CallEffect<AxiosResponse<any>>
+  | PutEffect<{ type: string; content: any }>
+  | CallEffect<AxiosResponse<any>> 
+  | PutEffect<CallHistoryMethodAction<[string, unknown?]>>, 
+  void,
+  ILoginResponse
+> {
   const response = yield call(loginMiddleware.getLoginEmail, params);
 
   if (response.status !== 200) {
@@ -134,7 +143,6 @@ function* getLoginEmail({ params, element}: getLoginType):any{
     }
     yield put(actions.getLoginEmailError());
   } else {
-    
     yield put(
       notificationActions.showNotification({
         level: "warning",
@@ -146,5 +154,4 @@ function* getLoginEmail({ params, element}: getLoginType):any{
     yield put(replace("/"));
     yield put(actions.getLoginEmailSuccess());
   }
-
 }

@@ -1,18 +1,13 @@
 
-export interface IEmailRestore {
+export type IEmailRestore= {
     postLoginEmail: any;
     isFetching: boolean;
     validationSchema: Object
   }
-  export interface LoginContainerInterface {
-    postLogin: any;
+  export type EmailContainer={
+    postLoginEmail: any;
     isFetching: boolean;
   }
-  export interface credentialsInterface {
-    mail: string;
-    password: string;
-  }
-  export type LoginType = {
+  export type EmailRestoreType = {
     email: string,
-    password:string
   }

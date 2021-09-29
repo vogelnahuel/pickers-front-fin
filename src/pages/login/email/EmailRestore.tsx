@@ -9,7 +9,7 @@ import NotificationModal from "component/modal/NotificationModal";
 import { IEmailRestore } from './types';
 
 
-export const EmailRestore = ({postLoginEmail,validationSchema,isFetching}:IEmailRestore) => {
+export const EmailRestore = ({postLoginEmail,validationSchema,isFetching}:IEmailRestore):JSX.Element => {
     return (
         <div className="background-login">
       <img src={pickersLogo} className="pickersLogo_login" alt="" />
