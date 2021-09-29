@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { actions as dashboardActions, selectors as dashboardSelectors} from "reducers/dashboard";
-import { DashboardAdmin } from "pages/dashboard/DashboardAdmin"
+import { DashboardAdmin } from "./DashboardAdmin"
+import { DashboardContainerTypes } from "./types";
 
-const DashboardContainer = (props) => {
+const DashboardContainer = (props: DashboardContainerTypes): JSX.Element => {
     useEffect(() => {
         props.getDashboard();
       // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -14,12 +15,12 @@ const DashboardContainer = (props) => {
     );
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
     dashboard: dashboardSelectors.getDashboard(state),
     isFetching: dashboardSelectors.isFetching(state),
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch: Function) => ({
     getDashboard: () => {
         dispatch(dashboardActions.getDashboardRequest());
     },
