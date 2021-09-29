@@ -8,6 +8,10 @@ export const types:TypesTypes = {
     LOGIN_GET_SUCCESS: `LOGIN_GET_SUCCESS`,
     LOGIN_GET_ERROR: `LOGIN_GET_ERROR`,
     LOGOUT: `LOGOUT`,
+    /******EMAIL*******/ 
+    LOGIN_EMAIL_GET_REQUEST: `LOGIN_EMAIL_GET_REQUEST`,
+    LOGIN_EMAIL_GET_SUCCESS: `LOGIN_EMAIL_GET_SUCCESS`,
+    LOGIN_EMAIL_GET_ERROR: `LOGIN_EMAIL_GET_ERROR`,
 };
 
 
@@ -29,6 +33,19 @@ export const actions:ActionsTypes = {
     logout: () => ({
         type: types.LOGOUT,
     }),
+
+    /*******EMAIL */
+    getLoginEmailRequest: (params:any) => ({
+        type: types.LOGIN_EMAIL_GET_REQUEST,
+        params 
+    }),
+    getLoginEmailSuccess: () => ({
+        type: types.LOGIN_EMAIL_GET_SUCCESS,
+    }),
+    getLoginEmailError: () => ({
+        type: types.LOGIN_EMAIL_GET_ERROR,
+    }),
+
 };
 
 export const selectors:SelectorType = { 
@@ -58,7 +75,22 @@ const reducer =(state:LoginState = INITIAL_STATE, action:ActionLoginType ) => {
                 ...state,
                 fetching: false,
             };
-
+            /*******EMAIL */
+        case types.LOGIN_EMAIL_GET_REQUEST:
+                return {
+                    ...state,
+                    fetching: true,
+                };
+        case types.LOGIN_EMAIL_GET_SUCCESS:
+                    return {
+                        ...state,
+                        fetching: false,
+                    };
+        case types.LOGIN_EMAIL_GET_ERROR:
+                        return {
+                            ...state,
+                            fetching: false,
+                        };
         default:
             return state;
     }
