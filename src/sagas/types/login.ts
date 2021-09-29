@@ -18,3 +18,10 @@ export type ILoginContent = {
     refreshToken: string;
   };
 };
+
+export type LoginRestoreType = {
+  statusCode: number;
+  result: {
+    successful: boolean;
+  };
+};
