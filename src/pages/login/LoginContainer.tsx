@@ -8,9 +8,7 @@ import Login from "./Login";
 import * as yup from "yup";
 import { VALIDATION_REGEX } from "utils/constants";
 import {LoginContainerInterface, LoginType} from './types'
-import {selectorsTypesLogin} from '../../reducers/types/login'
-
-
+import { AppDispatch, RootState } from "../../store";
 
 const LoginContainer = (props: LoginContainerInterface): JSX.Element => {
   const validationSchema:yup.SchemaOf<LoginType> =
@@ -31,12 +29,12 @@ const LoginContainer = (props: LoginContainerInterface): JSX.Element => {
   return <Login  {...props} validationSchema={validationSchema} />;
 };
 
-const mapStateToProps = (state: selectorsTypesLogin) => ({
+const mapStateToProps = (state: RootState) => ({
   isFetching: loginSelectors.isFetching(state),
 });
 
-const mapDispatchToProps = (dispatch:Function) => ({
-  postLogin: (params: object) => {
+const mapDispatchToProps = (dispatch:AppDispatch) => ({
+  postLogin: (params: LoginType) => {
     dispatch(loginActions.getLoginRequest(params));
   },
 });
