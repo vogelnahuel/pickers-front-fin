@@ -5,11 +5,11 @@ export interface Effect<T = any, P = any> {
   type: T;
   payload: P;
 }
-export  interface getLoginType {
+export interface getLoginType {
   params: object;
   element: HTMLElement;
-  type:string
-} 
+  type: string;
+}
 
 export interface ILoginResponse {
   data: ILoginContent;
@@ -23,6 +23,20 @@ export interface ILoginContent {
     refreshToken: string;
   };
 }
-export interface ITypeError{
-   [x: string]: { status: any; }; 
+export interface ITypeError {
+  [x: string]: { status: any };
 }
+
+export type dashboardResponseDataType = {
+  statusCode: number;
+  result: {
+    activeTransactions:number;
+    inAlertTransactions: number;
+    pendingTransactions: number;
+  };
+};
+
+export type dashboardResponseType = {
+  data: dashboardResponseDataType;
+  status: number;
+};
