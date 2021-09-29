@@ -37,6 +37,7 @@ export const Input= (props) => {
                 className={ classNames( className, {
                     "readonly":disabled,
                     "inputError": meta.error && meta.touched,
+                    [meta.error && meta.touched ?"inputReboteAnimation":""] :animated
                 })}
                 type={input.type}
                 name={input.name}

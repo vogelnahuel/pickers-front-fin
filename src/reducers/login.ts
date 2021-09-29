@@ -2,17 +2,22 @@ import { LoginType } from "../pages/login/types";
 import { RootState } from "../store";
 import {
   ActionsTypes,
+  EmailRestoreActionsTypes,
   LoginState,
   SelectorLoginType,
   TypesTypes,
 } from "./types/login";
 import { ActionLoginType } from "./types/login";
 
-export const types: TypesTypes = {
-  LOGIN_GET_REQUEST: `LOGIN_GET_REQUEST`,
-  LOGIN_GET_SUCCESS: `LOGIN_GET_SUCCESS`,
-  LOGIN_GET_ERROR: `LOGIN_GET_ERROR`,
-  LOGOUT: `LOGOUT`,
+export const types:TypesTypes = {
+    LOGIN_GET_REQUEST: `LOGIN_GET_REQUEST`,
+    LOGIN_GET_SUCCESS: `LOGIN_GET_SUCCESS`,
+    LOGIN_GET_ERROR: `LOGIN_GET_ERROR`,
+    LOGOUT: `LOGOUT`,
+    /******EMAIL*******/
+    LOGIN_EMAIL_GET_REQUEST: `LOGIN_EMAIL_GET_REQUEST`,
+    LOGIN_EMAIL_GET_SUCCESS: `LOGIN_EMAIL_GET_SUCCESS`,
+    LOGIN_EMAIL_GET_ERROR: `LOGIN_EMAIL_GET_ERROR`,
 };
 
 export const INITIAL_STATE: LoginState = {
@@ -33,6 +38,17 @@ export const actions: ActionsTypes = {
   logout: () => ({
     type: types.LOGOUT,
   }),
+    /*******EMAIL */
+    getLoginEmailRequest: (params:EmailRestoreActionsTypes) => ({
+        type: types.LOGIN_EMAIL_GET_REQUEST,
+        params
+    }),
+    getLoginEmailSuccess: () => ({
+        type: types.LOGIN_EMAIL_GET_SUCCESS,
+    }),
+    getLoginEmailError: () => ({
+        type: types.LOGIN_EMAIL_GET_ERROR,
+    }),
 };
 
 export const selectors: SelectorLoginType = {
@@ -63,7 +79,22 @@ const reducer = (
         ...state,
         fetching: false,
       };
-
+      /*******EMAIL */
+      case types.LOGIN_EMAIL_GET_REQUEST:
+          return {
+              ...state,
+              fetching: true,
+          };
+      case types.LOGIN_EMAIL_GET_SUCCESS:
+          return {
+              ...state,
+              fetching: false,
+          };
+      case types.LOGIN_EMAIL_GET_ERROR:
+          return {
+              ...state,
+              fetching: false,
+          };
     default:
       return state;
   }
