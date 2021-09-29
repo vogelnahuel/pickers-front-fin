@@ -5,11 +5,11 @@ import {
   EmailRestoreActionsTypes,
   LoginState,
   SelectorLoginType,
-  TypesTypes,
+  LoginTypes,
 } from "./types/login";
 import { ActionLoginType } from "./types/login";
 
-export const types:TypesTypes = {
+export const types:LoginTypes = {
     LOGIN_GET_REQUEST: `LOGIN_GET_REQUEST`,
     LOGIN_GET_SUCCESS: `LOGIN_GET_SUCCESS`,
     LOGIN_GET_ERROR: `LOGIN_GET_ERROR`,

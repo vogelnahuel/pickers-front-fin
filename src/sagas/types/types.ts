@@ -26,17 +26,3 @@ export interface ILoginContent {
 export interface ITypeError {
   [x: string]: { status: any };
 }
-
-export type dashboardResponseDataType = {
-  statusCode: number;
-  result: {
-    activeTransactions:number;
-    inAlertTransactions: number;
-    pendingTransactions: number;
-  };
-};
-
-export type dashboardResponseType = {
-  data: dashboardResponseDataType;
-  status: number;
-};

@@ -5,7 +5,7 @@ export type LoginState = {
   fetching: boolean;
 };
 
-export type TypesTypes = {
+export type LoginTypes = {
   LOGIN_GET_REQUEST: string;
   LOGIN_GET_SUCCESS: string;
   LOGIN_GET_ERROR: string;

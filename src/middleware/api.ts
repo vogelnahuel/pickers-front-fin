@@ -49,7 +49,7 @@ api.interceptors.response.use(
     },
 );
 
-export const get = (path:any, query:object) => {
+export const get = (path:any, query?: object) => {
     return api.get(
         path,
         {params: query}
