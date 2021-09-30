@@ -1,5 +1,5 @@
 import { credentialsInterface } from 'pages/login/types';
-import {ActionsTypes, EmailRestoreActionsTypes, LoginState, selectorsTypesLogin, SelectorType, TypesTypes} from './types/login'
+import {ActionsTypes, EmailRestoreActionsTypes, LoginState, RestorePasswordActionsTypes, selectorsTypesLogin, SelectorType, TypesTypes} from './types/login'
 import {ActionLoginType} from './types/login'
 
 
@@ -12,6 +12,10 @@ export const types:TypesTypes = {
     LOGIN_EMAIL_GET_REQUEST: `LOGIN_EMAIL_GET_REQUEST`,
     LOGIN_EMAIL_GET_SUCCESS: `LOGIN_EMAIL_GET_SUCCESS`,
     LOGIN_EMAIL_GET_ERROR: `LOGIN_EMAIL_GET_ERROR`,
+    /******RESTORE*******/ 
+    LOGIN_RESTORE_GET_REQUEST: `LOGIN_RESTORE_GET_REQUEST`,
+    LOGIN_RESTORE_GET_SUCCESS: `LOGIN_RESTORE_GET_SUCCESS`,
+    LOGIN_RESTORE_GET_ERROR: `LOGIN_RESTORE_GET_ERROR`,
 };
 
 
@@ -34,7 +38,7 @@ export const actions:ActionsTypes = {
         type: types.LOGOUT,
     }),
 
-    /*******EMAIL */
+    /********EMAIL******/
     getLoginEmailRequest: (params:EmailRestoreActionsTypes) => ({
         type: types.LOGIN_EMAIL_GET_REQUEST,
         params 
@@ -44,6 +48,17 @@ export const actions:ActionsTypes = {
     }),
     getLoginEmailError: () => ({
         type: types.LOGIN_EMAIL_GET_ERROR,
+    }),
+     /********RESTORE******/
+     getLoginRestoreRequest: (params:RestorePasswordActionsTypes) => ({
+        type: types.LOGIN_RESTORE_GET_REQUEST,
+        params 
+    }),
+    getLoginRestoreSuccess: () => ({
+        type: types.LOGIN_RESTORE_GET_SUCCESS,
+    }),
+    getLoginREstoreError: () => ({
+        type: types.LOGIN_RESTORE_GET_ERROR,
     }),
 
 };
@@ -75,7 +90,7 @@ const reducer =(state:LoginState = INITIAL_STATE, action:ActionLoginType ) => {
                 ...state,
                 fetching: false,
             };
-            /*******EMAIL */
+            /***EMAIL***/
         case types.LOGIN_EMAIL_GET_REQUEST:
                 return {
                     ...state,
@@ -87,6 +102,22 @@ const reducer =(state:LoginState = INITIAL_STATE, action:ActionLoginType ) => {
                         fetching: false,
                     };
         case types.LOGIN_EMAIL_GET_ERROR:
+                        return {
+                            ...state,
+                            fetching: false,
+                        };
+            /***RESTORE***/
+        case types.LOGIN_RESTORE_GET_REQUEST:
+                return {
+                    ...state,
+                    fetching: true,
+                };
+        case types.LOGIN_RESTORE_GET_SUCCESS:
+                    return {
+                        ...state,
+                        fetching: false,
+                    };
+        case types.LOGIN_RESTORE_GET_ERROR:
                         return {
                             ...state,
                             fetching: false,

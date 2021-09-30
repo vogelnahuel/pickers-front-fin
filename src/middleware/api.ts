@@ -63,7 +63,7 @@ export const post = (path:any, body:object) => {
     );
 };
 
-export const put = (path:any, body:object, query:object) => {
+export const put = (path:any, body:object, query?:object) => {
     return api.put(
         path,
         body,

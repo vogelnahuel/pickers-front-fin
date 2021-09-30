@@ -33,7 +33,7 @@ export const EmailRestore = ({postLoginEmail,validationSchema,isFetching}:IEmail
             />
 
               <button
-                className={"login-button"}
+                className={"login-button email-button"}
                 disabled={isFetching}
                 type="submit"
                 name="button"

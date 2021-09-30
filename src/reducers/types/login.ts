@@ -18,7 +18,10 @@ export interface TypesTypes{
     LOGOUT:string,
     LOGIN_EMAIL_GET_REQUEST:string,
     LOGIN_EMAIL_GET_SUCCESS:string,
-    LOGIN_EMAIL_GET_ERROR:string
+    LOGIN_EMAIL_GET_ERROR:string,
+    LOGIN_RESTORE_GET_REQUEST:string,
+    LOGIN_RESTORE_GET_SUCCESS:string,
+    LOGIN_RESTORE_GET_ERROR:string,
 }
 export interface ActionsTypes{
     getLoginRequest:Function,
@@ -27,7 +30,10 @@ export interface ActionsTypes{
     logout:Function,
     getLoginEmailRequest:Function,
     getLoginEmailSuccess:Function,
-    getLoginEmailError:Function
+    getLoginEmailError:Function,
+    getLoginRestoreRequest:Function,
+    getLoginRestoreSuccess:Function,
+    getLoginREstoreError:Function,
 }
 export interface SelectorType{
     isFetching:Function
@@ -35,4 +41,9 @@ export interface SelectorType{
 
 export interface EmailRestoreActionsTypes{
     mail: string;
+  }
+export interface RestorePasswordActionsTypes{
+    email:string,
+    password: string;
+    verificationCode:string,
   }

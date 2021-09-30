@@ -5,3 +5,4 @@ export const setAuthToken = (token:string) => {
     API.setAuthToken(token);
 };
 export const getLoginEmail = (params:object) => API.post('ms-admin-rest/api/v1.0/admin/request-change-password',params);
+export const getLoginRestore = (params:object) => API.put('/ms-admin-rest/api/v1.0/admin/change-password',params);

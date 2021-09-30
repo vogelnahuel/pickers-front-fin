@@ -17,6 +17,7 @@ const sagas = [
   takeLatest(types.LOGIN_GET_REQUEST, getLogin),
   takeLatest(types.LOGOUT, logout),
   takeLatest(types.LOGIN_EMAIL_GET_REQUEST, getLoginEmail),
+  takeLatest(types.LOGIN_RESTORE_GET_REQUEST, getLoginRestore),
 ];
 
 export default sagas;
@@ -154,4 +155,37 @@ function* getLoginEmail({
     yield put(replace("/"));
     yield put(actions.getLoginEmailSuccess());
   }
+}
+function* getLoginRestore( {params,element}:getLoginType): Generator<CallEffect<AxiosResponse<any>> | PutEffect<{ type: string; content: any; }>|PutEffect<CallHistoryMethodAction<[string, unknown?]>>,void,ILoginResponse>{
+    
+  const response = yield call(loginMiddleware.getLoginRestore, params);
+  if (response.status !== 200) {
+    switch (response.data.statusCode) {
+      case 400:
+        yield put(
+          notificationActions.showNotification({
+            level: "error",
+            title: "Error en nuestro servidor",
+            body: "Por favor, reintentalo nuevamente.",
+            element,
+          })
+        );
+
+        break;
+        
+      }
+      yield put(actions.getLoginREstoreError());
+    }
+    else{
+      yield put(
+        notificationActions.showNotification({
+          level: "success",
+          title: "Restauraste tu contraseña exitosamente",
+          body: "Ya podés ingresar con tu nueva contraseña.",
+          element,
+        })
+      );
+      yield put(replace("/"));
+      yield put(actions.getLoginRestoreSuccess());
+    }
 }
