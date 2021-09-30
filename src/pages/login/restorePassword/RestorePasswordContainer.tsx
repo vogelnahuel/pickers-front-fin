@@ -8,7 +8,6 @@ import * as yup from "yup";
 import { VALIDATION_REGEX } from "utils/constants";
 import RestorePassword from "./RestorePassword";
 import {RestorePasswordType,RestorePasswordContainer, URLRestore} from './types'
-import {selectorsTypesLogin} from '../../../reducers/types/login'
 import { useParams } from "react-router";
 
 const RestorePasswordContainerJSX = (props: RestorePasswordContainer): JSX.Element => {
@@ -35,7 +34,7 @@ const RestorePasswordContainerJSX = (props: RestorePasswordContainer): JSX.Eleme
   return <RestorePassword  {...props} email={mail} verificationCode={cod} validationSchema={validationSchema} />;
 };
 
-const mapStateToProps = (state: selectorsTypesLogin) => ({
+const mapStateToProps = (state: any) => ({
   isFetching: loginSelectors.isFetching(state),
 });
 
