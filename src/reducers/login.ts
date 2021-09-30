@@ -1,14 +1,13 @@
-import { credentialsInterface } from 'pages/login/types';
-import {ActionsTypes, EmailRestoreActionsTypes, LoginState, RestorePasswordActionsTypes, selectorsTypesLogin, SelectorType, TypesTypes} from './types/login'
-import {ActionLoginType} from './types/login'
 
+import {ActionsTypes, EmailRestoreActionsTypes, LoginState, RestorePasswordActionsTypes, TypesTypes} from './types/login'
+import {ActionLoginType} from './types/login'
 
 export const types:TypesTypes = {
     LOGIN_GET_REQUEST: `LOGIN_GET_REQUEST`,
     LOGIN_GET_SUCCESS: `LOGIN_GET_SUCCESS`,
     LOGIN_GET_ERROR: `LOGIN_GET_ERROR`,
     LOGOUT: `LOGOUT`,
-    /******EMAIL*******/ 
+    /******EMAIL*******/
     LOGIN_EMAIL_GET_REQUEST: `LOGIN_EMAIL_GET_REQUEST`,
     LOGIN_EMAIL_GET_SUCCESS: `LOGIN_EMAIL_GET_SUCCESS`,
     LOGIN_EMAIL_GET_ERROR: `LOGIN_EMAIL_GET_ERROR`,
@@ -18,13 +17,12 @@ export const types:TypesTypes = {
     LOGIN_RESTORE_GET_ERROR: `LOGIN_RESTORE_GET_ERROR`,
 };
 
-
-export const INITIAL_STATE :LoginState= {
-    fetching: false,
+export const INITIAL_STATE: LoginState = {
+  fetching: false,
 };
 
 export const actions:ActionsTypes = {
-    getLoginRequest: (params:credentialsInterface) => ({
+    getLoginRequest: (params:any) => ({
         type: types.LOGIN_GET_REQUEST,
         params 
     }),
@@ -41,7 +39,7 @@ export const actions:ActionsTypes = {
     /********EMAIL******/
     getLoginEmailRequest: (params:EmailRestoreActionsTypes) => ({
         type: types.LOGIN_EMAIL_GET_REQUEST,
-        params 
+        params
     }),
     getLoginEmailSuccess: () => ({
         type: types.LOGIN_EMAIL_GET_SUCCESS,
@@ -63,8 +61,8 @@ export const actions:ActionsTypes = {
 
 };
 
-export const selectors:SelectorType = { 
-    isFetching: ({login}:selectorsTypesLogin )  => login.fetching ,
+export const selectors: any = {
+  isFetching: ({ login }: any) => login.fetching,
 };
 
 

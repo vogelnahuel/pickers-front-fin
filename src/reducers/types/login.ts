@@ -1,15 +1,9 @@
-export interface selectorsTypesLogin{
-    login:{
-        fetching:boolean,
-        login:object
-    }
-}
-export interface ActionLoginType {
-    type:string,
-}
-export interface LoginState {
-    fetching: boolean
-  }
+export type ActionLoginType = {
+  type: string;
+};
+export type LoginState = {
+  fetching: boolean;
+};
 
 export interface TypesTypes{
     LOGIN_GET_REQUEST:string,

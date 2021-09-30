@@ -6,8 +6,6 @@ import login from "./login";
 import {actions} from "../reducers/login";
 import { Effect, ITypeError } from "./types/types";
 
-
-
 const sagas = [
     ...transactions,
     ...pickers,
@@ -16,7 +14,7 @@ const sagas = [
 ];
 //revisar el any del err
 
-export default function* rootSaga():object {
+export default function* rootSaga() {
     yield all(
         sagas.map((saga:Effect) =>
             spawn(function* listenErrors() {
