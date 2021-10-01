@@ -1,5 +1,7 @@
 
-import {ActionsTypes, EmailRestoreActionsTypes, LoginState, RestorePasswordActionsTypes, TypesTypes} from './types/login'
+import { LoginType } from 'pages/login/types';
+import { RootState } from 'store';
+import {ActionsTypes, EmailRestoreActionsTypes, LoginState, RestorePasswordActionsTypes, SelectorType, TypesTypes} from './types/login'
 import {ActionLoginType} from './types/login'
 
 export const types:TypesTypes = {
@@ -22,7 +24,7 @@ export const INITIAL_STATE: LoginState = {
 };
 
 export const actions:ActionsTypes = {
-    getLoginRequest: (params:any) => ({
+    getLoginRequest: (params:LoginType) => ({
         type: types.LOGIN_GET_REQUEST,
         params 
     }),
@@ -61,8 +63,8 @@ export const actions:ActionsTypes = {
 
 };
 
-export const selectors: any = {
-  isFetching: ({ login }: any) => login.fetching,
+export const selectors: SelectorType = {
+  isFetching: ({ login }: RootState) => login.fetching,
 };
 
 

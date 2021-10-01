@@ -10,7 +10,7 @@ import * as loginMiddleware from "../middleware/login";
 import { removeItem, saveValue } from "../utils/localStorage";
 import { CallHistoryMethodAction, replace } from "connected-react-router";
 import { actions as notificationActions } from "../reducers/notification";
-import { getLoginType, ILoginResponse } from "./types/login";
+import { getLoginType, getRestoreType, ILoginResponse } from "./types/login";
 import { AxiosResponse } from "axios";
 
 const sagas = [
@@ -93,7 +93,6 @@ function* getLoginEmail({
 }: getLoginType): Generator<
   | CallEffect<AxiosResponse<any>>
   | PutEffect<{ type: string; content: any }>
-  | CallEffect<AxiosResponse<any>> 
   | PutEffect<CallHistoryMethodAction<[string, unknown?]>>, 
   void,
   ILoginResponse
@@ -151,9 +150,10 @@ function* getLoginEmail({
     yield put(actions.getLoginEmailSuccess());
   }
 }
-function* getLoginRestore( {params,element}:getLoginType): Generator<CallEffect<AxiosResponse<any>> | PutEffect<{ type: string; content: any; }>|PutEffect<CallHistoryMethodAction<[string, unknown?]>>,void,ILoginResponse>{
+function* getLoginRestore( {params,element}:getRestoreType): Generator<CallEffect<AxiosResponse<any>> | PutEffect<{ type: string; content: any; }>|PutEffect<CallHistoryMethodAction<[string, unknown?]>>,void,ILoginResponse>{
     
   const response = yield call(loginMiddleware.getLoginRestore, params);
+  console.log(response)
   if (response.status !== 200) {
     switch (response.data.statusCode) {
       case 400:

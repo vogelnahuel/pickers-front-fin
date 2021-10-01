@@ -1,10 +1,10 @@
 
-export interface LoginInterface {
+export type LoginInterface = {
   postLogin: any;
   isFetching: boolean;
   validationSchema: Object
 }
-export interface LoginContainerInterface {
+export type LoginContainerInterface = {
   postLogin: any;
   isFetching: boolean;
 }

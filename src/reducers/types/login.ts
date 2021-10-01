@@ -5,7 +5,7 @@ export type LoginState = {
   fetching: boolean;
 };
 
-export interface TypesTypes{
+export type TypesTypes ={
     LOGIN_GET_REQUEST:string,
     LOGIN_GET_SUCCESS:string,
     LOGIN_GET_ERROR:string,
@@ -17,7 +17,7 @@ export interface TypesTypes{
     LOGIN_RESTORE_GET_SUCCESS:string,
     LOGIN_RESTORE_GET_ERROR:string,
 }
-export interface ActionsTypes{
+export type ActionsTypes={
     getLoginRequest:Function,
     getLoginSuccess:Function,
     getLoginError:Function,
@@ -29,14 +29,14 @@ export interface ActionsTypes{
     getLoginRestoreSuccess:Function,
     getLoginREstoreError:Function,
 }
-export interface SelectorType{
+export type SelectorType={
     isFetching:Function
 }
 
-export interface EmailRestoreActionsTypes{
+export type EmailRestoreActionsTypes={
     mail: string;
   }
-export interface RestorePasswordActionsTypes{
+export type RestorePasswordActionsTypes={
     email:string,
     password: string;
     verificationCode:string,
