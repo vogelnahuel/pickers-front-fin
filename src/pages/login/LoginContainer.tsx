@@ -7,10 +7,10 @@ import {
 import Login from "./Login";
 import * as yup from "yup";
 import { VALIDATION_REGEX } from "utils/constants";
-import { LoginContainerInterface, LoginType } from "./types";
+import { LoginContainerType, LoginType } from "./types";
 import { AppDispatch, RootState } from "../../store";
 
-const LoginContainer = (props: LoginContainerInterface): JSX.Element => {
+const LoginContainer = (props: LoginContainerType): JSX.Element => {
   const validationSchema: yup.SchemaOf<LoginType> = yup.object({
     email: yup
       .string()

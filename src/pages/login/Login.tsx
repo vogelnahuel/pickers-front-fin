@@ -4,13 +4,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import pickersLogo from "./../../assets/login/PickersLogo.svg";
 import canguro from "./../../assets/login/Canguro.svg";
 import { Link } from "react-router-dom";
-import {LoginInterface} from "./types";
+import {LoginTypeProps} from "./types";
 import { Form, Field } from "react-final-form";
 import { Input } from "component/inputs/Input";
 import useValidationSchema from "hooks/useValidationSchema";
 import NotificationModal from "component/modal/NotificationModal";
 
-const Login: React.FC<LoginInterface> = ({
+const Login: React.FC<LoginTypeProps> = ({
   postLogin,
   validationSchema,
   isFetching,
