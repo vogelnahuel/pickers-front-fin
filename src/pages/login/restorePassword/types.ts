@@ -1,13 +1,13 @@
 
 
-export type IRestorePassword= {
+export type RestoreEmailPasswordType= {
     postLoginRestore: any;
     isFetching: boolean;
     validationSchema: Object,
     email:string,
     verificationCode:string
   }
-  export type RestorePasswordContainer={
+  export type RestorePasswordContainerType={
     postLoginRestore: any;
     isFetching: boolean;
   }

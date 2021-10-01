@@ -7,42 +7,53 @@ import {
 import * as yup from "yup";
 import { VALIDATION_REGEX } from "utils/constants";
 import RestorePassword from "./RestorePassword";
-import {RestorePasswordType,RestorePasswordContainer, URLRestore} from './types'
+import {
+  RestorePasswordType,
+  RestorePasswordContainerType,
+  URLRestore,
+} from "./types";
 import { useParams } from "react-router";
-import { RootState } from "store";
+import { AppDispatch, RootState } from "store";
+import { RestorePasswordActionsTypes } from "reducers/types/login";
 
-const RestorePasswordContainerJSX = (props: RestorePasswordContainer): JSX.Element => {
-  
-  const {cod,mail}:URLRestore = useParams();
 
-  const validationSchema:yup.SchemaOf<RestorePasswordType> =
-  // yup.lazy(() => {
-  //  return 
-    yup.object({
-      password: yup
-        .string()
-        .required("Este campo es requerido")
-        .matches(
-          VALIDATION_REGEX.regPassword,
-          " "
-        ),
+const RestorePasswordContainer = (
+  props: RestorePasswordContainerType
+): JSX.Element => {
+  const { cod, mail }: URLRestore = useParams();
+
+  const validationSchema: yup.SchemaOf<RestorePasswordType> = yup.object({
+    password: yup
+      .string()
+      .required("Este campo es requerido")
+      .matches(VALIDATION_REGEX.regPassword, " "),
     confirmPassword: yup
-        .string()
-        .required("Este campo es requerido")
-        .oneOf([yup.ref('password'), null], 'Las contraseñas no coinciden') });
- // });
+      .string()
+      .required("Este campo es requerido")
+      .oneOf([yup.ref("password"), null], "Las contraseñas no coinciden"),
+  });
 
-  return <RestorePassword  {...props} email={mail} verificationCode={cod} validationSchema={validationSchema} />;
+  return (
+    <RestorePassword
+      {...props}
+      email={mail}
+      verificationCode={cod}
+      validationSchema={validationSchema}
+    />
+  );
 };
 
 const mapStateToProps = (state: RootState) => ({
   isFetching: loginSelectors.isFetching(state),
 });
 
-const mapDispatchToProps = (dispatch:Function) => ({
-    postLoginRestore: (params: object) => {
+const mapDispatchToProps = (dispatch: AppDispatch) => ({
+  postLoginRestore: (params: RestorePasswordActionsTypes) => {
     dispatch(loginActions.getLoginRestoreRequest(params));
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(RestorePasswordContainerJSX);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(RestorePasswordContainer);

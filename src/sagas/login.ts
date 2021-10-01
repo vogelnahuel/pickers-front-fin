@@ -10,7 +10,14 @@ import * as loginMiddleware from "../middleware/login";
 import { removeItem, saveValue } from "../utils/localStorage";
 import { CallHistoryMethodAction, replace } from "connected-react-router";
 import { actions as notificationActions } from "../reducers/notification";
-import { getLoginType, getRestoreType, ILoginResponse } from "./types/login";
+import {
+  getLoginEmailType,
+  getLoginType,
+  getRestoreType,
+  ILoginResponse,
+  LoginEmailTypeResponse,
+  RestoreEmailResponse,
+} from "./types/login";
 import { AxiosResponse } from "axios";
 
 const sagas = [
@@ -90,10 +97,10 @@ function* logout(): Generator<
 function* getLoginEmail({
   params,
   element,
-}: getLoginType): Generator<
-  | CallEffect<AxiosResponse<any>>
+}: getLoginEmailType): Generator<
+  | CallEffect<AxiosResponse<LoginEmailTypeResponse>>
   | PutEffect<{ type: string; content: any }>
-  | PutEffect<CallHistoryMethodAction<[string, unknown?]>>, 
+  | PutEffect<CallHistoryMethodAction<[string, unknown?]>>,
   void,
   ILoginResponse
 > {
@@ -110,20 +117,7 @@ function* getLoginEmail({
             element,
           })
         );
-
         break;
-      case 10005:
-        yield put(
-          notificationActions.showNotification({
-            level: "error",
-            title: "Usuario y/o contraseña inválidos",
-            body: "Tu usuario y/o contraseña ingresados son incorrectos. Por favor, ingresalos nuevamente.",
-            element,
-          })
-        );
-
-        break;
-
       default:
         yield put(
           notificationActions.showNotification({
@@ -150,10 +144,19 @@ function* getLoginEmail({
     yield put(actions.getLoginEmailSuccess());
   }
 }
-function* getLoginRestore( {params,element}:getRestoreType): Generator<CallEffect<AxiosResponse<any>> | PutEffect<{ type: string; content: any; }>|PutEffect<CallHistoryMethodAction<[string, unknown?]>>,void,ILoginResponse>{
-    
+
+function* getLoginRestore({
+  params,
+  element,
+}: getRestoreType): Generator<
+  | CallEffect<AxiosResponse<RestoreEmailResponse>>
+  | PutEffect<{ type: string; content: any }>
+  | PutEffect<CallHistoryMethodAction<[string, unknown?]>>,
+  void,
+  ILoginResponse
+> {
   const response = yield call(loginMiddleware.getLoginRestore, params);
-  console.log(response)
+  console.log(response);
   if (response.status !== 200) {
     switch (response.data.statusCode) {
       case 400:
@@ -167,20 +170,18 @@ function* getLoginRestore( {params,element}:getRestoreType): Generator<CallEffec
         );
 
         break;
-        
-      }
-      yield put(actions.getLoginREstoreError());
     }
-    else{
-      yield put(
-        notificationActions.showNotification({
-          level: "success",
-          title: "Restauraste tu contraseña exitosamente",
-          body: "Ya podés ingresar con tu nueva contraseña.",
-          element,
-        })
-      );
-      yield put(replace("/"));
-      yield put(actions.getLoginRestoreSuccess());
-    }
+    yield put(actions.getLoginREstoreError());
+  } else {
+    yield put(
+      notificationActions.showNotification({
+        level: "success",
+        title: "Restauraste tu contraseña exitosamente",
+        body: "Ya podés ingresar con tu nueva contraseña.",
+        element,
+      })
+    );
+    yield put(replace("/"));
+    yield put(actions.getLoginRestoreSuccess());
+  }
 }

@@ -7,12 +7,13 @@ import {
 import * as yup from "yup";
 import { VALIDATION_REGEX } from "utils/constants";
 import EmailRestore from "./EmailRestore";
-import { EmailRestoreType, EmailContainer } from "./types";
+import { EmailContainer } from "./types";
 import { AppDispatch, RootState } from "store";
-import { EmailRestoreActionsTypes } from "reducers/types/login";
+import { EmailType } from "sagas/types/login";
+
 
 const EmailRestoreContainer = (props: EmailContainer): JSX.Element => {
-  const validationSchema: yup.SchemaOf<EmailRestoreType> = yup.object({
+  const validationSchema: yup.SchemaOf<EmailType> = yup.object({
     email: yup
       .string()
       .required("Este campo es requerido.")
@@ -27,7 +28,7 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
-  postLoginEmail: (params: EmailRestoreActionsTypes) => {
+  postLoginEmail: (params: EmailType) => {
     dispatch(loginActions.getLoginEmailRequest(params));
   },
 });

@@ -33,9 +33,6 @@ export type SelectorType={
     isFetching:Function
 }
 
-export type EmailRestoreActionsTypes={
-    mail: string;
-  }
 export type RestorePasswordActionsTypes={
     email:string,
     password: string;

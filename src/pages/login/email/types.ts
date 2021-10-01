@@ -1,4 +1,4 @@
-
+//TODO investigar tipo postLogin
 export type IEmailRestore= {
     postLoginEmail: any;
     isFetching: boolean;
@@ -7,7 +7,4 @@ export type IEmailRestore= {
   export type EmailContainer={
     postLoginEmail: any;
     isFetching: boolean;
-  }
-  export type EmailRestoreType = {
-    email: string,
   }
