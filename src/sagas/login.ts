@@ -156,7 +156,7 @@ function* getLoginRestore({
   ILoginResponse
 > {
   const response = yield call(loginMiddleware.getLoginRestore, params);
-  console.log(response);
+
   if (response.status !== 200) {
     switch (response.data.statusCode) {
       case 400:
