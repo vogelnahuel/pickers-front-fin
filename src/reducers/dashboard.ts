@@ -1,3 +1,5 @@
+import { RootState } from "store";
+import { ActionDashboardType, ActionType, DashboardState, SelectorsDashboardType } from "./types/dashboard";
 
 export const types = {
     DASHBOARD_GET_REQUEST: `DASHBOARD_GET_REQUEST`,
@@ -5,19 +7,16 @@ export const types = {
     DASHBOARD_GET_ERROR: `DASHBOARD_GET_ERROR`,
 };
 
-
-
-export const INITIAL_STATE = {
+export const INITIAL_STATE: DashboardState = {
     fetching: false,
     dashboard: {},
 };
 
-export const actions = {
+export const actions: ActionType = {
     getDashboardRequest: () => ({
         type: types.DASHBOARD_GET_REQUEST,
-        
     }),
-    getDashboardSuccess: (dashboard) => ({
+    getDashboardSuccess: (dashboard:object) => ({
         type: types.DASHBOARD_GET_SUCCESS,
         dashboard
     }),
@@ -26,14 +25,12 @@ export const actions = {
     }),
 };
 
-export const selectors = {
-    isFetching: ({ dashboard }) => dashboard.fetching,
-    getDashboard: ({ dashboard }) => dashboard.dashboard,
+export const selectors: SelectorsDashboardType = {
+    isFetching: ({ dashboard }: RootState) => dashboard.fetching,
+    getDashboard: ({ dashboard }: RootState) => dashboard.dashboard,
 };
 
-
-
-const reducer =(state = INITIAL_STATE, action = {}) => {
+const reducer =(state: DashboardState = INITIAL_STATE, action:ActionDashboardType) => {
     switch (action.type) {
         case types.DASHBOARD_GET_REQUEST:
             return {

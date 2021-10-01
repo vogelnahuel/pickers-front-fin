@@ -8,7 +8,7 @@ import { useMemo } from 'react';
  * @param {{ path: string, message: string }} innerError A `yup` field error.
  * @returns {Object} The result of setting the new error message onto `errors`.
  */
-const setInError = (errors, innerError) => {
+const setInError = (errors:object, innerError:{ path: string, message: string }) => {
   return setIn(errors, innerError.path, innerError.message);
 };
 
@@ -29,17 +29,17 @@ const emptyObj = Object.create(null);
  * @returns {(values: Object) => Promise<?Object>} An async function that expects some `values`
  *  and resolves to either `undefined` or a map of field names to error messages.
  */
-export const makeValidate = schema => {
-  return async function validate(values) {
+export const makeValidate = (schema:{validate:Function}) => {
+  return async function validate(values:object) {
     try {
       await schema.validate(values, { abortEarly: false });
-    } catch (err) {
+    } catch (err:any) {
       return err.inner.reduce(setInError, emptyObj);
     }
   };
 };
 
-function useValidationSchema(schema) {
+function useValidationSchema(schema:any) {
   const validate = useMemo(() => makeValidate(schema), [schema]);
   return validate;
 }

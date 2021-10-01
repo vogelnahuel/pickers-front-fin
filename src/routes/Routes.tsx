@@ -2,16 +2,16 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import {Route, Switch} from 'react-router'; // react-router v4/v5
 import {ConnectedRouter} from 'connected-react-router';
-import DashboardContainer from 'pages/dashboard/DashboardAdminContainer';
-import {EmailRestore} from 'pages/login/email/EmailRestore';
+import DashboardContainer from '../pages/dashboard/DashboardAdminContainer';
+import EmailRestore from 'pages/login/email/ContainerEmail';
 import Login from 'pages/login/LoginContainer'
-import {RestorePassword} from 'pages/login/restorePassword/RestorePassword';
+import RestorePassword from 'pages/login/restorePassword/RestorePasswordContainer';
 import PickersContainer from 'pages/pickers/PickersContainer'
 import DetailPickerContainer from 'pages/pickers/detailPicker/DetailPickerContainer';
 import Transaction from 'pages/transaction/TransactionContainer';
 import store, {history} from 'store'
 
-function Routes() {
+function Routes():JSX.Element {
   return (
       <Provider store={store}>
         <ConnectedRouter history={history}>
