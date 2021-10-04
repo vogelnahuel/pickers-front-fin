@@ -3,10 +3,12 @@ import { connect } from "react-redux";
 import { actions as pendingUserActions, selectors as pendingUserSelectors} from "reducers/pickers";
 import { PendingUserAdmin } from "pages/pickers/Pickers";
 import {titulosAdminPending,titulosAdminActive} from "utils/constants"
+import { ChangePageTypes, PickersParamsType, PickersContainerTypes, ParamsTypeMiddleware } from "./types";
+import { StateType } from "reducers/types/pickeres";
 
-const PendingUserAdminContainer = (props) => {
+const PendingUserAdminContainer = (props:PickersContainerTypes) => {
    
-    const changePage = (page) => {
+    const changePage = (page:ChangePageTypes) => {
         props.setActualPage(page);
     };
 
@@ -25,12 +27,13 @@ const PendingUserAdminContainer = (props) => {
         <PendingUserAdmin
             {...props}
             changePage={changePage}
-            tableTitles={props.actualPage==="PENDING"?titulosAdminPending:titulosAdminActive}
+            tableTitles={props.actualPage==="PENDING"?titulosAdminPending:titulosAdminActive
+        }
         />
     );
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state:StateType) => ({
     pendingUsers: pendingUserSelectors.getPendingUser(state),
     isFetching: pendingUserSelectors.isFetching(state),
     filters: pendingUserSelectors.getFilters(state),
@@ -41,26 +44,26 @@ const mapStateToProps = (state) => ({
     actualPage:pendingUserSelectors.getActualPage(state),
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch:Function) => ({
     reset: () => {
         dispatch(pendingUserActions.reset());
     },
-    getPendingUser: (params) => {
+    getPendingUser: (params:ParamsTypeMiddleware) => {
         dispatch(pendingUserActions.getPendingUserRequest(params));
     },
-    setPendingUserFilters:(filters)=>{
+    setPendingUserFilters:(filters:PickersParamsType)=>{
         dispatch(pendingUserActions.setPendingUserFilters(filters));
     },
-    setPendingUserExtraFilters:(extraFilters)=>{
+    setPendingUserExtraFilters:(extraFilters:PickersParamsType)=>{
         dispatch(pendingUserActions.setPendingUserExtraFilters(extraFilters));
     },
-    setActualPage:(page)=>{
+    setActualPage:(page:String)=>{
         dispatch(pendingUserActions.setActualPage(page));
     },
-    getPendingUsersExportRequest:(params,element)=>{
+    getPendingUsersExportRequest:(params:ParamsTypeMiddleware,element:HTMLElement)=>{
         dispatch(pendingUserActions.getPendingUserExportRequest(params,element))
     },
-    getMorePendingUser: (params) => {
+    getMorePendingUser: (params:ParamsTypeMiddleware) => {
         dispatch(pendingUserActions.getMorePendingUserRequest(params));
     },
 });

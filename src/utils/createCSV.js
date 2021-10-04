@@ -1,4 +1,5 @@
 const createCSV=(datosExport) => {
+    //TODO: tipar
 
     ///datos.export .data es la informacion en CSV ,  el tipo de salida text/csv
     var blob = new Blob([datosExport.data], { type: 'text/csv;charset=utf-8;' }); 
