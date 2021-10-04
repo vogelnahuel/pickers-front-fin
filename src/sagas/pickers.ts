@@ -50,7 +50,6 @@ const sagas = [
 export default sagas;
 
 const process = (body:any):DocumentationType => {
-  debugger
   return {
     ...body,
     dateOfBirth: moment(body.dateOfBirth, "DD/MM/YYYY").format("YYYY-MM-DD"),
@@ -100,7 +99,6 @@ function* getPickers({
   void,
   PickersResposeType
 > {
-  debugger
   const response = yield call(pickersMiddleware.getPickers, params);
   if (response.status !== 200) {
     yield put(pickersActions.getPendingUserError());
@@ -172,19 +170,17 @@ function* getPendingUserExport({
 }:getPickersType): Generator<
   SimpleEffect<"CALL", CallEffectDescriptor<unknown>> | PutEffect<any>,
   void,
-  any
-  //TODO: tipar junto con el createCSV
+  any//tipar resupesta
 > {
   const response = yield call(
     pickersMiddleware.getPickersExport,
     params
-    //filterUpdate
   );
 
   if (response.status !== 200) {
     yield put(pickersActions.getPendingUserExportError());
   } else {
-    createCSV(response);
+    createCSV(response.data);
     yield put(pickersActions.getPendingUserExportSuccess(response));
     yield put(
       notificationActions.showNotification({
@@ -203,7 +199,7 @@ function* getPendingUserPickerExport({
 }:PickerExportType): Generator<
   SimpleEffect<"CALL", CallEffectDescriptor<unknown>> | PutEffect<any>,
   void,
-  PickersResposeType
+  any
 > {
   const response = yield call(
     pickersMiddleware.getPickerExport,

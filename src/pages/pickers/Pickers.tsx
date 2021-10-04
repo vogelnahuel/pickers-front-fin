@@ -45,15 +45,15 @@ export const PendingUserAdmin:  React.FC<PickerTypes> = ({
               </p>
             </h2>
             <button
-              onClick={(e) => getPendingUsersExportRequest(filters, e.target)}
-                // getPendingUsersExportRequest( {...filters,
-                //   ...filtersExtraSeeMore,
-                //   vehicleType:
-                //     filters.vehicleType &&
-                //     (filters.vehicleType.value === ""
-                //       ? undefined
-                //       : filters.vehicleType.value),
-                // }, e.target)}
+              onClick={(e) => //getPendingUsersExportRequest(filters, e.target)}
+                getPendingUsersExportRequest( {...filters,
+                  ...filtersExtraSeeMore,
+                  vehicleType:
+                    filters.vehicleType &&
+                    (filters.vehicleType.value === ""
+                      ? undefined
+                      : filters.vehicleType.value),
+                }, e.target)}
               
               className="export"
               name="export"
