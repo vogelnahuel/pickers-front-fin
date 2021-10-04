@@ -1,16 +1,17 @@
 import React from 'react';
 import { Card } from 'component/admin/DashBoard/Card';
 import {Header} from 'component/admin/Header/Header';
-import {Nav} from 'component/admin/Nav/Nav';
-import 'pages/dashboard/Dashboard.scss';
+import {Nav} from '../../component/admin/Nav/Nav';
+import './Dashboard.scss';
 import moment from "moment";
+import { DashboardTypes } from './types';
 
-export const DashboardAdmin = ({dashboard,isFetching}) => {
+export const DashboardAdmin: React.FC<DashboardTypes> = ({dashboard,isFetching}): JSX.Element => {
     return (
         <div className="background-Grey">
             <Header/>
             <div className="mainContainerFlex">
-                <Nav/>
+                <Nav isDirty={null} showNotification={null}/>
                 <div className="Admin-container">
                     <h2 className="title_Dashboard_Admin">Dashboard</h2>
                     <h3 className="subtitle_Dashboard_Admin">Visualizá la información más importante</h3>
@@ -24,6 +25,7 @@ export const DashboardAdmin = ({dashboard,isFetching}) => {
                             id="dashboard-card-Online"
                         />
                         <Card
+                            id={null}
                             subtitle="Transacciones"
                             title="Activas"
                             number={dashboard.activeTransactions}
@@ -39,6 +41,7 @@ export const DashboardAdmin = ({dashboard,isFetching}) => {
                             id="dashboard-card-pending-Assignment"
                         />
                         <Card
+                            id={null}
                             subtitle="Transacciones"
                             title="En alerta"
                             number={dashboard.inAlertTransactions}
@@ -50,8 +53,8 @@ export const DashboardAdmin = ({dashboard,isFetching}) => {
             </div>
             {   isFetching &&
             <div className="modalLoading"></div>
-
             }
         </div>
-    )
+       
+    );
 };

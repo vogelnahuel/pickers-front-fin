@@ -40,7 +40,7 @@ export const TableAdmin = (props) => {
 
                 {actualPage=== "PENDING"
                     ? data &&Array.isArray(data)?data.map((rows) => (
-                            <tr className="info table-pending" key={rows.id}>
+                            <tr className="table-info table-pending" key={rows.id}>
                                 <td></td>
                                 <td> { (rows.name+' '+rows.surname).length>20 ?  (rows.name+' '+rows.surname).substring(0,20)+'...': (rows.name+' '+rows.surname)} </td>
                                 <td> {rows.identificationNumber} </td>
@@ -67,7 +67,7 @@ export const TableAdmin = (props) => {
 
                 {actualPage === "ACTIVE"
                     ?data && Array.isArray(data)? data.map((row) => (
-                            <tr className="info table-active-correcion" key={row.id}>
+                            <tr className="table-info table-active-correcion" key={row.id}>
                                 <td></td>
                                 <td > { (row.name+' '+row.surname).length>20 ?  (row.name+' '+row.surname).substring(0,20)+'...': (row.name+' '+row.surname)} </td>
                                 <td > {row.identificationNumber} </td>
