@@ -61,7 +61,7 @@ export const Transaction = ({
 
     }
 
-    const onClose = (e:any) => {
+    const onClose = () => {
         setOpenModalTransaction(false);
     };
 
@@ -132,7 +132,7 @@ export const Transaction = ({
                             width="1190px" 
                             height={`${resolutionHeightModal}px`} 
                             isOpen={OpenModalTransaction} 
-                            onClose={()=>{}} 
+                            onClose={onClose} 
                         > 
                             <div className="modal-transaction-container">
                                 <img 

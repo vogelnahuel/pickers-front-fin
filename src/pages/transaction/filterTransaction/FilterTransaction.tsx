@@ -11,8 +11,9 @@ import {Input} from "component/inputs/Input";
 import MultipleSelect from "component/inputs/MultipleSelect";
 import {FILTER_TRANSACTION_OPTIONS} from "utils/constants";
 import useValidationSchema from "hooks/useValidationSchema";
+import { filterTransactionPropsType, filterValuesType } from "./types";
 
-export const FilterTransaction = ({ onSubmit, filters, validationSchema }:any) => {
+export const FilterTransaction = ({ onSubmit, filters, validationSchema }:filterTransactionPropsType):JSX.Element => {
 
     return (
         <Container fluid className="display-filter-transaction">
@@ -30,7 +31,13 @@ export const FilterTransaction = ({ onSubmit, filters, validationSchema }:any) =
                 <Col className="sub-container" >
                     <Row className="px-2">
                         <Form
-                            onSubmit={onSubmit}
+                            onSubmit={(values:filterValuesType)=>onSubmit({
+                                transactionCode:values.transactionCode,
+                                pickerId:values.pickerId ? Number(values.pickerId) : undefined,
+                                date:values.date,
+                                state:values.state,
+                                inAlert:values.inAlert
+                            })}
                             initialValues={filters}
                             validate={useValidationSchema(validationSchema)}
                             mutators={{

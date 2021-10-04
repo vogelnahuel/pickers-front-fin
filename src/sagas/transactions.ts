@@ -37,7 +37,7 @@ function* getTransactions({
   void,
   TransactionResponseContent
 > {
-  console.log(params)
+
   const response = yield call(transactionsMiddleware.getTransactions, params);
 
 
@@ -96,7 +96,7 @@ function* getMoreTransactions({
 > {
   const response = yield call(transactionsMiddleware.getTransactions, params);
 
-  console.log(response);
+
   if (response.status !== 200) {
     yield put(actions.getTransactionsError());
   } else {

@@ -5,11 +5,14 @@ import {FilterTransaction} from "pages/transaction/filterTransaction/FilterTrans
 import moment from "moment";
 import * as yup from "yup";
 import {VALIDATION_REGEX} from "utils/constants";
+import { AppDispatch, RootState } from "store";
+import { paramsTypeGetTransaction } from "sagas/types/transactions";
+import { dateType, filterContainerProps, filterDate, filtersAppliedType, filterValuesType } from "./types";
 
-const FilterTransactionContainer = (props:any) => {
+const FilterTransactionContainer = (props:filterContainerProps):JSX.Element => {
 
-    const formatDate = (date:any) => {
-        let result:any ={};
+    const formatDate = (date:dateType):filterDate => {
+        let result:filterDate={};
         if (date) {
             result.date=date;
             if (moment(date.from, "DD/MM/YYYY").isValid()) {
@@ -26,7 +29,7 @@ const FilterTransactionContainer = (props:any) => {
         return result;
     };
 
-    const takeFilters = (values:any) => {
+    const takeFilters = (values:filterValuesType) => {
         let formatedDate = formatDate(values.date);
         return {
             ...formatedDate,
@@ -36,10 +39,10 @@ const FilterTransactionContainer = (props:any) => {
             transactionCode: values.transactionCode
         };
     };
+  
 
-    const onSubmit = (values:any) => {
+    const onSubmit = (values:filterValuesType) => {
         let filtersApplied = takeFilters(values);
-
         props.getTransactions({...filtersApplied, ...props.filtersExtra});
         props.setFilters(filtersApplied);
     };
@@ -62,20 +65,20 @@ const FilterTransactionContainer = (props:any) => {
 }
 
 
-const mapStateToProps = (state:any) => ({
+const mapStateToProps = (state:RootState) => ({
     filters: transactionSelectors.getFilters(state),
     filtersExtra: transactionSelectors.getFiltersExtra(state),
 });
 
 
-const mapDispatchToProps = (dispatch:any) => ({
+const mapDispatchToProps = (dispatch:AppDispatch) => ({
     reset: () => {
         dispatch(transactionActions.reset());
     },
-    getTransactions: (params:any) => {
+    getTransactions: (params:paramsTypeGetTransaction) => {
         dispatch(transactionActions.getTransactionsRequest(params));
     },
-    setFilters: (filters:any) => {
+    setFilters: (filters:filtersAppliedType) => {
         dispatch(transactionActions.setTransactionFilters(filters));
     },
 });

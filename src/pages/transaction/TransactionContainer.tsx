@@ -9,7 +9,7 @@ import { AppDispatch, RootState } from "store";
 import { TransactionContainerType, URLTransactionContainerType } from "./types";
 import { paramsTypeGetTransaction } from "sagas/types/transactions";
 
-const TransactionContainer = (props:TransactionContainerType) => {
+const TransactionContainer = (props:TransactionContainerType):JSX.Element => {
     const params = useLocation()
     useEffect(() => {
         props.reset();
