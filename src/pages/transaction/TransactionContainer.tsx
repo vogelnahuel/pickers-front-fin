@@ -5,12 +5,17 @@ import {Transaction} from "pages/transaction/Transaction"
 import {useLocation} from "react-router-dom";
 import parseQueryParams from "utils/parseQueryParams"
 import moment from "moment";
+import { AppDispatch, RootState } from "store";
+import { TransactionContainerType, URLTransactionContainerType } from "./types";
+import { paramsTypeGetTransaction } from "sagas/types/transactions";
 
-const TransactionContainer = (props) => {
+const TransactionContainer = (props:TransactionContainerType) => {
     const params = useLocation()
     useEffect(() => {
         props.reset();
-        const filters = parseQueryParams(params.search);
+
+        const filters:URLTransactionContainerType = parseQueryParams(params.search);
+
         filters.maxMinDeliveryDate && (filters.date = { from: moment(filters.minMinDeliveryDate, "YYYY-MM-DD").format("DD/MM/YYYY"), until: moment(filters.maxMinDeliveryDate, "YYYY-MM-DD").format("DD/MM/YYYY") });
         const filtersExtra={limit:window.screen.height<770 ? 3 : 4};
         props.setExtraFilters(filtersExtra);
@@ -20,12 +25,12 @@ const TransactionContainer = (props) => {
     }, [])
 
     return (
-        <Transaction {...props}/>
+        <Transaction isExportDisabled={false} isFetching={false} transactions={[]} getMoreTransactions={Function} getTransactionsExportRequest={Function} filters={Function} seeMore={Function} filtersExtraSeeMore={Function} {...props}/>
     );
 }
 
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state:RootState) => ({
     transactions: transactionSelectors.getTransactions(state),
     isFetching: transactionSelectors.isFetching(state),
     isExportDisabled: transactionSelectors.isExportDisabled(state),
@@ -36,23 +41,23 @@ const mapStateToProps = (state) => ({
 });
 
 
-const mapDispatchToProps = (dispatch) => ({
-    getTransactionsExportRequest: (params,element) => {
+const mapDispatchToProps = (dispatch:AppDispatch) => ({
+    getTransactionsExportRequest: (params:URLTransactionContainerType,element:HTMLElement) => {
         dispatch(transactionActions.getTransactionsExportRequest(params,element));
     },
-    getTransactions: (params) => {
+    getTransactions: (params:paramsTypeGetTransaction) => {
         dispatch(transactionActions.getTransactionsRequest(params));
     },
     reset: () => {
         dispatch(transactionActions.reset());
     },
-    setFilters: (filters) => {
+    setFilters: (filters:Function) => {
         dispatch(transactionActions.setTransactionFilters(filters));
     },
-    setExtraFilters: (extraFilters) => {
+    setExtraFilters: (extraFilters:Function) => {
         dispatch(transactionActions.setTransactionExtraFilters(extraFilters));
     },
-    getMoreTransactions: (params) => {
+    getMoreTransactions: (params:paramsTypeGetTransaction) => {
         dispatch(transactionActions.getMoreTransactionsRequest(params));
     },
 });

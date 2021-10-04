@@ -6,10 +6,10 @@ import moment from "moment";
 import * as yup from "yup";
 import {VALIDATION_REGEX} from "utils/constants";
 
-const FilterTransactionContainer = (props) => {
+const FilterTransactionContainer = (props:any) => {
 
-    const formatDate = (date) => {
-        let result ={};
+    const formatDate = (date:any) => {
+        let result:any ={};
         if (date) {
             result.date=date;
             if (moment(date.from, "DD/MM/YYYY").isValid()) {
@@ -26,7 +26,7 @@ const FilterTransactionContainer = (props) => {
         return result;
     };
 
-    const takeFilters = (values) => {
+    const takeFilters = (values:any) => {
         let formatedDate = formatDate(values.date);
         return {
             ...formatedDate,
@@ -37,7 +37,7 @@ const FilterTransactionContainer = (props) => {
         };
     };
 
-    const onSubmit = (values) => {
+    const onSubmit = (values:any) => {
         let filtersApplied = takeFilters(values);
 
         props.getTransactions({...filtersApplied, ...props.filtersExtra});
@@ -62,20 +62,20 @@ const FilterTransactionContainer = (props) => {
 }
 
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state:any) => ({
     filters: transactionSelectors.getFilters(state),
     filtersExtra: transactionSelectors.getFiltersExtra(state),
 });
 
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch:any) => ({
     reset: () => {
         dispatch(transactionActions.reset());
     },
-    getTransactions: (params) => {
+    getTransactions: (params:any) => {
         dispatch(transactionActions.getTransactionsRequest(params));
     },
-    setFilters: (filters) => {
+    setFilters: (filters:any) => {
         dispatch(transactionActions.setTransactionFilters(filters));
     },
 });

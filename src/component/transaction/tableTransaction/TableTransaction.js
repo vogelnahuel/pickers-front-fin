@@ -18,6 +18,7 @@ export const TableTransaction = (props) => {
     const handleClickModal = (id) => {
         setOpenModalTransaction(true);
         cargarDatos(id);
+    
     }
 
     

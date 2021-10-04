@@ -12,7 +12,7 @@ import MultipleSelect from "component/inputs/MultipleSelect";
 import {FILTER_TRANSACTION_OPTIONS} from "utils/constants";
 import useValidationSchema from "hooks/useValidationSchema";
 
-export const FilterTransaction = ({ onSubmit, filters, validationSchema }) => {
+export const FilterTransaction = ({ onSubmit, filters, validationSchema }:any) => {
 
     return (
         <Container fluid className="display-filter-transaction">
@@ -71,10 +71,13 @@ export const FilterTransaction = ({ onSubmit, filters, validationSchema }) => {
                                                 type="text"
                                                 className="Admin-Pickers-input-select"
                                                 name="date"
-                                                component={DatePicker}
+                                             
                                                 placeholder="Seleccioná la fecha"
                                                 language="es"
-                                            />
+                                            >
+                                                { (props:any)=><DatePicker {...props}/>}
+                                            </Field>
+
                                         </div>
                                     </Col>
                                     <Col xxl xl={4} className="px-3">
@@ -86,7 +89,9 @@ export const FilterTransaction = ({ onSubmit, filters, validationSchema }) => {
                                             placeholder="Seleccioná el estado"
                                             onChange={form.mutators.setValue}
                                             options={FILTER_TRANSACTION_OPTIONS}
-                                            component={MultipleSelect}/>
+                                           >
+                                          { (props:any)=><MultipleSelect {...props}/>}
+                                        </Field>
                                     </Col>
                                     <Col xxl="auto" xl={4} className="px-3">
                                         <Field

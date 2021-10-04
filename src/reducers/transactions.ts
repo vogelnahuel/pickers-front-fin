@@ -1,6 +1,8 @@
+import { paramsTypeGetTransaction } from "sagas/types/transactions";
+
 export const TRANSACTIONS = "transactions/TRANSACTIONS";
 
-export const types = {
+export const types:any = {
     TRANSACTIONS_GET_REQUEST: `${TRANSACTIONS}_GET_REQUEST`,
     TRANSACTIONS_GET_MORE_REQUEST: `${TRANSACTIONS}_GET_MORE_REQUEST`,
     TRANSACTIONS_GET_SUCCESS: `${TRANSACTIONS}_GET_SUCCESS`,
@@ -36,38 +38,38 @@ export const actions = {
     reset: () => ({
         type: types.TRANSACTIONS_RESET
     }),
-    getTransactionsRequest: (params) => ({
+    getTransactionsRequest: (params:paramsTypeGetTransaction) => ({
         type: types.TRANSACTIONS_GET_REQUEST,
         params,
     }),
-    getMoreTransactionsRequest: (params) => ({
+    getMoreTransactionsRequest: (params:paramsTypeGetTransaction) => ({
         type: types.TRANSACTIONS_GET_MORE_REQUEST,
         params,
     }),
-    getTransactionsSuccess: (transactions) => ({
+    getTransactionsSuccess: (transactions:any) => ({
         type: types.TRANSACTIONS_GET_SUCCESS,
         transactions
     }),
-    getMoreTransactionsSuccess: (transactions) => ({
+    getMoreTransactionsSuccess: (transactions:any) => ({
         type: types.TRANSACTIONS_GET_MORE_SUCCESS,
         transactions
     }),
     getTransactionsError: () => ({
         type: types.TRANSACTIONS_GET_ERROR,
     }),
-    setTransactionFilters: (filters) => ({
+    setTransactionFilters: (filters:any) => ({
         type: types.TRANSACTIONS_SET_FILTERS,
         filters
     }),
-    setTransactionExtraFilters: (filtersExtra) => ({
+    setTransactionExtraFilters: (filtersExtra:any) => ({
         type: types.TRANSACTIONS_SET_EXTRA_FILTERS,
         filtersExtra
     }),
-    setExportEnabled: (enabled) => ({
+    setExportEnabled: (enabled:any) => ({
         type: types.TRANSACTIONS_EXPORT_ENABLED,
         enabled
     }),
-    getTransactionsExportRequest: (params,element) => ({
+    getTransactionsExportRequest: (params:any,element:any) => ({
         type: types.TRANSACTIONS_EXPORT_REQUEST,
         params,
         element
@@ -81,17 +83,17 @@ export const actions = {
 };
 
 export const selectors = {
-    isFetching: ({ transactions }) => transactions.fetching,
-    isExportDisabled: ({ transactions }) => transactions.exportDisabled,
-    getTransactions: ({ transactions }) => transactions.transactions,
-    getFilters:({transactions}) => transactions.filters,
-    getFiltersExtra:({transactions}) => transactions.filtersExtra,
-    getSeeMore:({transactions}) => transactions.seeMore,
-    getFiltersExtraSeeMore:({transactions}) => transactions.filtersExtraSeeMore,
+    isFetching: ({ transactions }:any) => transactions.fetching,
+    isExportDisabled: ({ transactions }:any) => transactions.exportDisabled,
+    getTransactions: ({ transactions }:any) => transactions.transactions,
+    getFilters:({transactions}:any) => transactions.filters,
+    getFiltersExtra:({transactions}:any) => transactions.filtersExtra,
+    getSeeMore:({transactions}:any) => transactions.seeMore,
+    getFiltersExtraSeeMore:({transactions}:any) => transactions.filtersExtraSeeMore,
 };
 
 
-const reducer =(state = INITIAL_STATE, action = {}) => {
+const reducer =(state:any = INITIAL_STATE, action:any = {}) => {
     switch (action.type) {
         case types.TRANSACTIONS_RESET:
             return {

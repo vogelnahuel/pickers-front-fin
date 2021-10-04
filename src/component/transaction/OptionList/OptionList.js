@@ -17,7 +17,7 @@ export const OptionList = (props) => {
     //const dispatch = useDispatch()
     const FilterSelectedTransaction = props.FilterSelectedTransaction
     const setisFetchingModal = props.setisFetchingModal;
-    
+   
     const [history, sethistory] = useState(true)
     const [reasonCancel, setreasonCancel] = useState(false);
     const [reasonCancelConfirm, setreasonCancelConfirm] = useState(false);
@@ -138,11 +138,11 @@ export const OptionList = (props) => {
                                     
 
                                     
-                                    { FilterSelectedTransaction.transaction  && (FilterSelectedTransaction.transaction.state.id === 1 || FilterSelectedTransaction.transaction.state.id === 2 || FilterSelectedTransaction.transaction.state.id === 3 || FilterSelectedTransaction.transaction.state.id === 4 )?
+                                    { FilterSelectedTransaction && FilterSelectedTransaction.transaction  && (FilterSelectedTransaction.transaction.state.id === 1 || FilterSelectedTransaction.transaction.state.id === 2 || FilterSelectedTransaction.transaction.state.id === 3 || FilterSelectedTransaction.transaction.state.id === 4 )?
                                     <>
                                     <button onClick={handleClickCancel} className="modal-transaction-finish-enabled">Cancelar</button>
                                     <button disabled={true} onClick={handleClickFinish} className="modal-transaction-cancel-disabled">Finalizar</button>
-                                    </>: FilterSelectedTransaction.transaction  && (FilterSelectedTransaction.transaction.state.id === 5 || FilterSelectedTransaction.transaction.state.id === 6 || FilterSelectedTransaction.transaction.state.id === 7 || FilterSelectedTransaction.transaction.state.id === 8 )?  <>
+                                    </>:FilterSelectedTransaction &&  FilterSelectedTransaction.transaction  && (FilterSelectedTransaction.transaction.state.id === 5 || FilterSelectedTransaction.transaction.state.id === 6 || FilterSelectedTransaction.transaction.state.id === 7 || FilterSelectedTransaction.transaction.state.id === 8 )?  <>
                                     <button disabled={true} onClick={handleClickCancel} className="modal-transaction-finish-disabled">Cancelar</button>
                                     <button onClick={handleClickFinish} className="modal-transaction-cancel-enabled">Finalizar</button>
                                     </>: <>
