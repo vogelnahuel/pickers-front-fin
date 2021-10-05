@@ -10,11 +10,12 @@ import * as transactionsMiddleware from "middleware/transactions";
 import createCSV from "utils/createCSV";
 import { actions as notificationActions } from "reducers/notification";
 import {
-  getTransactionsExportContent,
-  getTransactionType,
+  TransactionsExportContentType,
+  TransactionsActionType,
   TransactionResponseContent,
 } from "./types/transactions";
 import { AxiosResponse } from "axios";
+import { GetTransactionsSuccessType } from "reducers/types/transaction";
 
 const sagas = [
   takeLatest(types.TRANSACTIONS_GET_REQUEST, getTransactions),
@@ -26,12 +27,11 @@ export default sagas;
 
 function* getTransactions({
   params,
-}: getTransactionType): Generator<
-  | CallEffect<unknown>
+}: TransactionsActionType): Generator<
   | CallEffect<AxiosResponse<TransactionResponseContent>>
   | PutEffect<{ type: string; content: any }>
-  | PutEffect<{ type: any; transactions: any }>
-  | PutEffect<{ type: any }>,
+  | PutEffect<{ type: string; transactions: GetTransactionsSuccessType }>
+  | PutEffect<{ type: string }>,
   void,
   TransactionResponseContent
 > {
@@ -84,10 +84,9 @@ function* getTransactions({
 
 function* getMoreTransactions({
   params,
-}: getTransactionType): Generator<
+}: TransactionsActionType): Generator<
   | CallEffect<AxiosResponse<TransactionResponseContent>>
-  | PutEffect<{ type: any }>
-  | CallEffect<unknown>,
+  | PutEffect<{ type: string }>,
   void,
   TransactionResponseContent
 > {
@@ -111,12 +110,11 @@ function* getMoreTransactions({
 function* getTransactionsExport({
   params,
   element,
-}: getTransactionType): Generator<
-  | CallEffect<AxiosResponse<getTransactionsExportContent>>
-  | PutEffect<{ type: any }>
-  | CallEffect<unknown>,
+}: TransactionsActionType): Generator<
+  | CallEffect<AxiosResponse<TransactionsExportContentType>>
+  | PutEffect<{ type: string }>,
   void,
-  getTransactionsExportContent
+  TransactionsExportContentType
 > {
   const response = yield call(
     transactionsMiddleware.getTransactionsExport,

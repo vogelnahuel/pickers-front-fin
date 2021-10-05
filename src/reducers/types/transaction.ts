@@ -1,6 +1,7 @@
-import { transactionResponseTypeResult } from "sagas/types/transactions"
+import { FilterTransactionsType, TransactionResponseTypeResult } from "sagas/types/transactions"
 
-export type transactionsTypes={
+
+export type TransactionsTypes={
     TRANSACTIONS_GET_REQUEST:string,
     TRANSACTIONS_GET_MORE_REQUEST:string,
     TRANSACTIONS_GET_SUCCESS:string,
@@ -15,10 +16,10 @@ export type transactionsTypes={
     TRANSACTIONS_EXPORT_ENABLED:string,
     TRANSACTIONS_RESET:string
 }
-export type InicialStateType={
+export type TransactionStateType={
     fetching: boolean,
     exportDisabled: boolean,
-    transactions: [],
+    transactions:TransactionResponseTypeResult[],
     filters: object,
     filtersExtra:{
         limit: number,
@@ -31,14 +32,14 @@ export type InicialStateType={
     seeMore:boolean,
 }
 
-export type getTransactionsSuccessType={
-    items:transactionResponseTypeResult[]
-    limit?:number
-    offset?:number
+export type GetTransactionsSuccessType={
+    items:TransactionResponseTypeResult[]
+    limit:number
+    offset:number
     hasMore?:boolean
 }
 
-export type setFilterType={
+export type SetFilterType={
     minMinDeliveryDate:string
     maxMinDeliveryDate:string
     state:string
@@ -46,10 +47,11 @@ export type setFilterType={
     inAlert:true
     transactionCode:string
 }
-export type setFilterExtraType={
+
+export type SetFilterExtraType={
     limit ?: number
 }
-export type actionTransactionType={
+export type TransactionActionsType={
     reset:Function,
     getTransactionsRequest:Function,
     getMoreTransactionsRequest:Function,
@@ -62,4 +64,11 @@ export type actionTransactionType={
     getTransactionsExportRequest:Function,
     getTransactionsExportSuccess:Function,
     getTransactionsExportError:Function
+}
+export type TransactionActionType = {
+    type:string,
+    transactions:any//Todo revisar esto  //TransactionResponseType
+    filters:FilterTransactionsType,
+    enabled:string | number | undefined
+    filtersExtra:object
 }

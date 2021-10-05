@@ -6,9 +6,9 @@ import moment from "moment";
 import * as yup from "yup";
 import {VALIDATION_REGEX} from "utils/constants";
 import { AppDispatch, RootState } from "store";
-import { paramsTypeGetTransaction } from "sagas/types/transactions";
+import { FilterTransactionsType } from "sagas/types/transactions";
 import { dateType, filterContainerProps, filterDate, filterValuesType } from "./types";
-import { setFilterType } from "reducers/types/transaction";
+import { SetFilterType } from "reducers/types/transaction";
 
 const FilterTransactionContainer = (props:filterContainerProps):JSX.Element => {
 
@@ -76,10 +76,10 @@ const mapDispatchToProps = (dispatch:AppDispatch) => ({
     reset: () => {
         dispatch(transactionActions.reset());
     },
-    getTransactions: (params:paramsTypeGetTransaction) => {
+    getTransactions: (params:FilterTransactionsType) => {
         dispatch(transactionActions.getTransactionsRequest(params));
     },
-    setFilters: (filters:setFilterType) => {
+    setFilters: (filters:SetFilterType) => {
         dispatch(transactionActions.setTransactionFilters(filters));
     },
 });

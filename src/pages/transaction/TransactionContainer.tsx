@@ -7,8 +7,8 @@ import parseQueryParams from "utils/parseQueryParams"
 import moment from "moment";
 import { AppDispatch, RootState } from "store";
 import { TransactionContainerType, URLTransactionContainerType } from "./types";
-import { paramsTypeGetTransaction } from "sagas/types/transactions";
-import { setFilterExtraType, setFilterType } from "reducers/types/transaction";
+import { FilterTransactionsType } from "sagas/types/transactions";
+import { SetFilterExtraType, SetFilterType } from "reducers/types/transaction";
 
 const TransactionContainer = (props:TransactionContainerType):JSX.Element => {
     const params = useLocation()
@@ -52,22 +52,22 @@ const mapStateToProps = (state:RootState) => ({
 
 
 const mapDispatchToProps = (dispatch:AppDispatch) => ({
-    getTransactionsExportRequest: (params:paramsTypeGetTransaction,element:HTMLElement) => {
+    getTransactionsExportRequest: (params:FilterTransactionsType,element:HTMLElement) => {
         dispatch(transactionActions.getTransactionsExportRequest(params,element));
     },
-    getTransactions: (params:paramsTypeGetTransaction) => {
+    getTransactions: (params:FilterTransactionsType) => {
         dispatch(transactionActions.getTransactionsRequest(params));
     },
     reset: () => {
         dispatch(transactionActions.reset());
     },
-    setFilters: (filters:setFilterType) => {
+    setFilters: (filters:SetFilterType) => {
         dispatch(transactionActions.setTransactionFilters(filters));
     },
-    setExtraFilters: (extraFilters:setFilterExtraType) => {
+    setExtraFilters: (extraFilters:SetFilterExtraType) => {
         dispatch(transactionActions.setTransactionExtraFilters(extraFilters));
     },
-    getMoreTransactions: (params:paramsTypeGetTransaction) => {
+    getMoreTransactions: (params:FilterTransactionsType) => {
         dispatch(transactionActions.getMoreTransactionsRequest(params));
     },
 });
