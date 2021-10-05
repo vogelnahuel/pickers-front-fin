@@ -1,8 +1,10 @@
 import { paramsTypeGetTransaction } from "sagas/types/transactions";
+import { RootState } from "store";
+import { actionTransactionType, getTransactionsSuccessType, InicialStateType, setFilterExtraType, setFilterType, transactionsTypes } from "./types/transaction";
 
 export const TRANSACTIONS = "transactions/TRANSACTIONS";
 
-export const types:any = {
+export const types:transactionsTypes = {
     TRANSACTIONS_GET_REQUEST: `${TRANSACTIONS}_GET_REQUEST`,
     TRANSACTIONS_GET_MORE_REQUEST: `${TRANSACTIONS}_GET_MORE_REQUEST`,
     TRANSACTIONS_GET_SUCCESS: `${TRANSACTIONS}_GET_SUCCESS`,
@@ -18,7 +20,7 @@ export const types:any = {
     TRANSACTIONS_RESET: `${TRANSACTIONS}_RESET`,
 };
 
-export const INITIAL_STATE = {
+export const INITIAL_STATE:InicialStateType = {
     fetching: false,
     exportDisabled: true,
     transactions: [],
@@ -34,7 +36,7 @@ export const INITIAL_STATE = {
     seeMore:true,
 };
 
-export const actions = {
+export const actions:actionTransactionType = {
     reset: () => ({
         type: types.TRANSACTIONS_RESET
     }),
@@ -46,30 +48,30 @@ export const actions = {
         type: types.TRANSACTIONS_GET_MORE_REQUEST,
         params,
     }),
-    getTransactionsSuccess: (transactions:any) => ({
+    getTransactionsSuccess: (transactions:getTransactionsSuccessType) => ({
         type: types.TRANSACTIONS_GET_SUCCESS,
         transactions
     }),
-    getMoreTransactionsSuccess: (transactions:any) => ({
+    getMoreTransactionsSuccess: (transactions:getTransactionsSuccessType) => ({
         type: types.TRANSACTIONS_GET_MORE_SUCCESS,
         transactions
     }),
     getTransactionsError: () => ({
         type: types.TRANSACTIONS_GET_ERROR,
     }),
-    setTransactionFilters: (filters:any) => ({
+    setTransactionFilters: (filters:setFilterType) => ({
         type: types.TRANSACTIONS_SET_FILTERS,
         filters
     }),
-    setTransactionExtraFilters: (filtersExtra:any) => ({
+    setTransactionExtraFilters: (filtersExtra:setFilterExtraType) => ({
         type: types.TRANSACTIONS_SET_EXTRA_FILTERS,
         filtersExtra
     }),
-    setExportEnabled: (enabled:any) => ({
+    setExportEnabled: (enabled:string | number | undefined) => ({
         type: types.TRANSACTIONS_EXPORT_ENABLED,
         enabled
     }),
-    getTransactionsExportRequest: (params:any,element:any) => ({
+    getTransactionsExportRequest: (params:paramsTypeGetTransaction,element:HTMLElement) => ({
         type: types.TRANSACTIONS_EXPORT_REQUEST,
         params,
         element
@@ -83,17 +85,17 @@ export const actions = {
 };
 
 export const selectors = {
-    isFetching: ({ transactions }:any) => transactions.fetching,
-    isExportDisabled: ({ transactions }:any) => transactions.exportDisabled,
-    getTransactions: ({ transactions }:any) => transactions.transactions,
-    getFilters:({transactions}:any) => transactions.filters,
-    getFiltersExtra:({transactions}:any) => transactions.filtersExtra,
-    getSeeMore:({transactions}:any) => transactions.seeMore,
-    getFiltersExtraSeeMore:({transactions}:any) => transactions.filtersExtraSeeMore,
+    isFetching: ({ transactions }:RootState) => transactions.fetching,
+    isExportDisabled: ({ transactions }:RootState) => transactions.exportDisabled,
+    getTransactions: ({ transactions }:RootState) => transactions.transactions,
+    getFilters:({transactions}:RootState) => transactions.filters,
+    getFiltersExtra:({transactions}:RootState) => transactions.filtersExtra,
+    getSeeMore:({transactions}:RootState) => transactions.seeMore,
+    getFiltersExtraSeeMore:({transactions}:RootState) => transactions.filtersExtraSeeMore,
 };
 
 
-const reducer =(state:any = INITIAL_STATE, action:any = {}) => {
+const reducer =(state:InicialStateType = INITIAL_STATE, action:any = {}) => {
     switch (action.type) {
         case types.TRANSACTIONS_RESET:
             return {

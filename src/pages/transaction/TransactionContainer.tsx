@@ -8,6 +8,7 @@ import moment from "moment";
 import { AppDispatch, RootState } from "store";
 import { TransactionContainerType, URLTransactionContainerType } from "./types";
 import { paramsTypeGetTransaction } from "sagas/types/transactions";
+import { setFilterExtraType, setFilterType } from "reducers/types/transaction";
 
 const TransactionContainer = (props:TransactionContainerType):JSX.Element => {
     const params = useLocation()
@@ -51,7 +52,7 @@ const mapStateToProps = (state:RootState) => ({
 
 
 const mapDispatchToProps = (dispatch:AppDispatch) => ({
-    getTransactionsExportRequest: (params:URLTransactionContainerType,element:HTMLElement) => {
+    getTransactionsExportRequest: (params:paramsTypeGetTransaction,element:HTMLElement) => {
         dispatch(transactionActions.getTransactionsExportRequest(params,element));
     },
     getTransactions: (params:paramsTypeGetTransaction) => {
@@ -60,10 +61,10 @@ const mapDispatchToProps = (dispatch:AppDispatch) => ({
     reset: () => {
         dispatch(transactionActions.reset());
     },
-    setFilters: (filters:Function) => {
+    setFilters: (filters:setFilterType) => {
         dispatch(transactionActions.setTransactionFilters(filters));
     },
-    setExtraFilters: (extraFilters:Function) => {
+    setExtraFilters: (extraFilters:setFilterExtraType) => {
         dispatch(transactionActions.setTransactionExtraFilters(extraFilters));
     },
     getMoreTransactions: (params:paramsTypeGetTransaction) => {

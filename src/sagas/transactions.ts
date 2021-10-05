@@ -10,10 +10,8 @@ import * as transactionsMiddleware from "middleware/transactions";
 import createCSV from "utils/createCSV";
 import { actions as notificationActions } from "reducers/notification";
 import {
-  getExportType,
   getTransactionsExportContent,
   getTransactionType,
-  transactionGetMoreType,
   TransactionResponseContent,
 } from "./types/transactions";
 import { AxiosResponse } from "axios";
@@ -30,18 +28,15 @@ function* getTransactions({
   params,
 }: getTransactionType): Generator<
   | CallEffect<unknown>
-  | CallEffect<AxiosResponse<any>>
+  | CallEffect<AxiosResponse<TransactionResponseContent>>
   | PutEffect<{ type: string; content: any }>
   | PutEffect<{ type: any; transactions: any }>
   | PutEffect<{ type: any }>,
   void,
   TransactionResponseContent
 > {
-
   const response = yield call(transactionsMiddleware.getTransactions, params);
 
-
-  
   if (response.status !== 200) {
     switch (response.data.statusCode) {
       case 20011:
@@ -89,13 +84,14 @@ function* getTransactions({
 
 function* getMoreTransactions({
   params,
-}: transactionGetMoreType): Generator<
-  CallEffect<AxiosResponse<any>> | PutEffect<{ type: any }>|CallEffect<unknown>,
+}: getTransactionType): Generator<
+  | CallEffect<AxiosResponse<TransactionResponseContent>>
+  | PutEffect<{ type: any }>
+  | CallEffect<unknown>,
   void,
   TransactionResponseContent
 > {
   const response = yield call(transactionsMiddleware.getTransactions, params);
-
 
   if (response.status !== 200) {
     yield put(actions.getTransactionsError());
@@ -115,8 +111,10 @@ function* getMoreTransactions({
 function* getTransactionsExport({
   params,
   element,
-}: getExportType): Generator<
-  CallEffect<AxiosResponse<any>> | PutEffect<{ type: any }>|CallEffect<unknown>,
+}: getTransactionType): Generator<
+  | CallEffect<AxiosResponse<getTransactionsExportContent>>
+  | PutEffect<{ type: any }>
+  | CallEffect<unknown>,
   void,
   getTransactionsExportContent
 > {
