@@ -16,6 +16,7 @@ export type TransactionProps ={
     filters:object
     seeMore:any
     filtersExtraSeeMore:Function
+    
 }
 export type TransactionContainerType ={
      reset:Function
@@ -41,6 +42,7 @@ export  type TransactionContainerProps={
     filters:Object,
     seeMore:Function,
     filtersExtraSeeMore:Function,
+    resolutionHeightModal:number
 }
 export type FilterTransactionApi={
     

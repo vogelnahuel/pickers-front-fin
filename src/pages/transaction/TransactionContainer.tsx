@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import {actions as transactionActions, selectors as transactionSelectors} from "reducers/transactions";
 import {Transaction} from "pages/transaction/Transaction"
@@ -11,7 +11,16 @@ import { paramsTypeGetTransaction } from "sagas/types/transactions";
 
 const TransactionContainer = (props:TransactionContainerType):JSX.Element => {
     const params = useLocation()
+    const [resolutionHeightModal, setresolutionHeightModal] = useState(550)
+
     useEffect(() => {
+        if(window.screen.width<1300){
+            setresolutionHeightModal(496)
+            
+        }
+        if(window.screen.width>1900){
+            setresolutionHeightModal(675)
+        }
         props.reset();
 
         const filters:URLTransactionContainerType = parseQueryParams(params.search);
@@ -25,7 +34,7 @@ const TransactionContainer = (props:TransactionContainerType):JSX.Element => {
     }, [])
 
     return (
-        <Transaction isExportDisabled={false} isFetching={false} transactions={[]} getMoreTransactions={Function} getTransactionsExportRequest={Function} filters={Function} seeMore={Function} filtersExtraSeeMore={Function} {...props}/>
+        <Transaction isExportDisabled={false} isFetching={false} transactions={[]} getMoreTransactions={Function} getTransactionsExportRequest={Function} filters={Function} seeMore={Function} filtersExtraSeeMore={Function} resolutionHeightModal={resolutionHeightModal}{...props}/>
     );
 }
 

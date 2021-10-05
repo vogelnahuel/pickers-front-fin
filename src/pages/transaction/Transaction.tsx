@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {Header} from "component/admin/Header/Header";
 import {Nav} from "component/admin/Nav/Nav";
-import {TableTransaction} from "component/transaction/tableTransaction/TableTransaction";
+import { TableTransaction } from "component/transaction/tableTransaction/TableTransaction";
 import "pages/transaction/transaction.scss";
 import FilterTransaction from "./filterTransaction/FilterTransactionContainer";
 import {Modal} from "@pickit/pickit-components";
@@ -26,26 +26,14 @@ export const Transaction = ({
                                 filters,
                                 seeMore,
                                 filtersExtraSeeMore,
+                                resolutionHeightModal,
                             }:TransactionContainerProps):JSX.Element => {
 
     const [FilterSelectedTransaction, setFilterSelectedTransaction] = useState<FilterTransactionApi>();
     const [OpenModalTransaction, setOpenModalTransaction] = useState(false);
-    const [IdModalApi, setIdModalApi] = useState(""); // devuelve la consulta api
     const titulos = ["Transacción", "Id de picker", "Vencimiento SLA", "Estado"];
     const [isFetchingModal, setisFetchingModal] = useState(false)
-     const [resolutionHeightModal, setresolutionHeightModal] = useState(550)
-    // //todo: extraer a container
-     useEffect(() => {
     
-         if(window.screen.width<1300){
-             setresolutionHeightModal(496)
-             
-         }
-         if(window.screen.width>1900){
-             setresolutionHeightModal(675)
-         }
-    
-     }, [])
 
     //todo: extraer al reducer
     const cargarDatos = async(id:any)=> {
@@ -92,12 +80,9 @@ export const Transaction = ({
                     <FilterTransaction/>
                     <TableTransaction
                         setOpenModalTransaction={setOpenModalTransaction}
-                        IdModal={IdModalApi}
-                        setIdModal={setIdModalApi}
                         api={transactions}
                         titulos={titulos}
                         cargarDatos={cargarDatos}
-                        setFilterSelectedTransaction={setFilterSelectedTransaction}
                     />
                     {transactions && transactions?.length !== 0 ? <>
                             { seeMore ?
