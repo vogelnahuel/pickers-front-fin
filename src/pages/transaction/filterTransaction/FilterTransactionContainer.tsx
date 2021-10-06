@@ -12,6 +12,7 @@ import { SetFilterType } from "reducers/types/transaction";
 
 const FilterTransactionContainer = (props:FilterContainerPropsType):JSX.Element => {
 
+
     
     const formatDate = (date:DateType):FilterDateType => {
         let result:FilterDateType={};
