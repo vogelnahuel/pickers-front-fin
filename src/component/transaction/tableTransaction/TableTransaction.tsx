@@ -3,23 +3,21 @@ import './TableTransaction.css'
 import TreePoints from '../../../assets/transaction/TreePoints.svg'
 import moment from 'moment'
 import { Fragment } from 'react'
-import {TRANSACTION_STATE_ID_LABEL} from "utils/constants"
-import { tableApiProps, tableTransactionPropsTypes } from './types'
+import { TableTransactionPropsTypes } from './types'
+import { TransactionResponseTypeResult } from 'sagas/types/transactions'
 
-export const TableTransaction = (props:tableTransactionPropsTypes) => {
+
+export const TableTransaction = (props:TableTransactionPropsTypes) => {
   
     const setOpenModalTransaction =  props.setOpenModalTransaction;
     const api = props.api;
     const titulos = props.titulos;
     const cargarDatos =props.cargarDatos;
-
     const handleClickModal = (id:number) => {
         setOpenModalTransaction(true);
         cargarDatos(id);
-    
     }
 
-    const getKeyValue = function<T extends object, U extends keyof T> (obj: T, key: U) { return obj[key] }
 
     return (
         <div >
@@ -43,7 +41,7 @@ export const TableTransaction = (props:tableTransactionPropsTypes) => {
                 </thead>
                 <tbody> 
                     {
-                        JSON.stringify(api)!=='{}' && api!==undefined ? api.map((dato:tableApiProps) => dato?
+                        JSON.stringify(api)!=='{}' && api!==undefined ? api.map((dato:TransactionResponseTypeResult) => dato?
                         
                             <tr onClick={()=>handleClickModal(dato.transaction.id)} key={dato.transaction.id+"0"} >
                                 
@@ -58,7 +56,7 @@ export const TableTransaction = (props:tableTransactionPropsTypes) => {
                                      }
                                     </td>
                           
-                                    <td  data-name={dato.transaction.id} key={dato.transaction.id+"7"} > { getKeyValue(TRANSACTION_STATE_ID_LABEL, dato.transaction.state.id)}</td>
+                                    <td  data-name={dato.transaction.id} key={dato.transaction.id+"7"} > {  dato.transaction.state.name }</td>
                                    <td></td>
                                    {
                                        window.innerWidth  > 1930 ? <td  data-name={"inAlert"} key={dato.transaction.id+"8"} > {dato.transaction.inAlert?<div className="admin-table-alerta">En alerta</div>:null}</td> : null

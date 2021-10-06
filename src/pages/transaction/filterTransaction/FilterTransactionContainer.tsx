@@ -7,15 +7,15 @@ import * as yup from "yup";
 import {VALIDATION_REGEX} from "utils/constants";
 import { AppDispatch, RootState } from "store";
 import { FilterTransactionsType } from "sagas/types/transactions";
-import { dateType, filterContainerProps, filterDate, filterValuesType } from "./types";
+import { DateType, FilterContainerPropsType, FilterDateType, FilterValuesType } from "./types";
 import { SetFilterType } from "reducers/types/transaction";
 
-const FilterTransactionContainer = (props:filterContainerProps):JSX.Element => {
+const FilterTransactionContainer = (props:FilterContainerPropsType):JSX.Element => {
 
-    const formatDate = (date:dateType):filterDate => {
-        let result:filterDate={};
+    
+    const formatDate = (date:DateType):FilterDateType => {
+        let result:FilterDateType={};
         if (date) {
-            result.date=date;
             if (moment(date.from, "DD/MM/YYYY").isValid()) {
                 result.minMinDeliveryDate = moment(
                     date.from,
@@ -30,7 +30,7 @@ const FilterTransactionContainer = (props:filterContainerProps):JSX.Element => {
         return result;
     };
 
-    const takeFilters = (values:filterValuesType) => {
+    const takeFilters = (values:FilterValuesType) => {
         let formatedDate = formatDate(values.date);
         return {
             ...formatedDate,
@@ -42,7 +42,7 @@ const FilterTransactionContainer = (props:filterContainerProps):JSX.Element => {
     };
   
 
-    const onSubmit = (values:filterValuesType) => {
+    const onSubmit = (values:FilterValuesType) => {
         let filtersApplied = takeFilters(values);
         props.getTransactions({...filtersApplied, ...props.filtersExtra});
         props.setFilters(filtersApplied);

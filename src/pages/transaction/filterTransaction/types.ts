@@ -1,49 +1,34 @@
-export type filterContainerProps={
+export type FilterContainerPropsType={
     filters: object,
     filtersExtra: {limit: number, offset: number},
     getTransactions: Function,
     reset: Function,
     setFilters: Function
 }
-export type dateType={
+export type DateType={
     from:string,
     until:string
 }
-export type filterDate = {
-        date?: {from: string, until: string}
+export type FilterDateType = {
         maxMinDeliveryDate?: string
         minMinDeliveryDate?: string
 }
-export type filterValuesType={
+export type FilterValuesType={
     date: {from: string, until: string}
     inAlert: boolean
     pickerId: number
     state: string
     transactionCode: string
 }
-export type filterPropsType={
+export type FilterPropsType={
     date?: {from: string, until: string}
     maxMinDeliveryDate?: string
     minMinDeliveryDate?: string
     inAlert?: boolean
     state?: string
 }
-
-
-
-export type filterTransactionPropsType= {
+export type FilterTransactionPropsType= {
     onSubmit:Function, 
-    filters?:filterPropsType, 
+    filters?: object, 
     validationSchema:object
-}
-
-export type filtersAppliedType={
-    date: {from: string, until: string}
-    inAlert: boolean
-    maxMinDeliveryDate: string
-    minMinDeliveryDate: string
-    pickerId: number
-    state: string
-    transactionCode: string
-
 }

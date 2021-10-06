@@ -15,7 +15,8 @@ import api from "middleware/api";
 import stateName from "component/transaction/tableTransaction/statesNames";
 import {ISO8601toDDMMYYYHHMM} from 'utils/iso8601toDDMMYYHHMM'
 import NotificationModal from "component/modal/NotificationModal";
-import { FilterTransactionApi, TransactionContainerProps } from "./types";
+import {  TransactionContainerPropsType } from "./types";
+import { TransactionResponseTypeResult } from "sagas/types/transactions";
 
 export const Transaction = ({
                                 isExportDisabled,
@@ -27,26 +28,21 @@ export const Transaction = ({
                                 seeMore,
                                 filtersExtraSeeMore,
                                 resolutionHeightModal,
-                            }:TransactionContainerProps):JSX.Element => {
+                            }:TransactionContainerPropsType):JSX.Element => {
 
-    const [FilterSelectedTransaction, setFilterSelectedTransaction] = useState<FilterTransactionApi>();
+    const [FilterSelectedTransaction, setFilterSelectedTransaction] = useState<TransactionResponseTypeResult>();
     const [OpenModalTransaction, setOpenModalTransaction] = useState(false);
     const titulos = ["Transacción", "Id de picker", "Vencimiento SLA", "Estado"];
     const [isFetchingModal, setisFetchingModal] = useState(false)
     
-
-    //todo: extraer al reducer
-    const cargarDatos = async(id:any)=> {
-        
+    const cargarDatos = async(id:number)=> {
             await  api.get(`/ms-admin-rest/api/v1.0/transactions/${id}`)
             .then((res) => {
                 setFilterSelectedTransaction(res.data.result);
-             
             })
             .catch((err) => {
                 console.log(err);
             })
-
     }
 
     const onClose = () => {

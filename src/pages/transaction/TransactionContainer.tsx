@@ -35,7 +35,16 @@ const TransactionContainer = (props:TransactionContainerType):JSX.Element => {
     }, [])
 
     return (
-        <Transaction isExportDisabled={false} isFetching={false} transactions={[]} getMoreTransactions={Function} getTransactionsExportRequest={Function} filters={Function} seeMore={Function} filtersExtraSeeMore={Function} resolutionHeightModal={resolutionHeightModal}{...props}/>
+        <Transaction filters={{
+            inAlert: undefined,
+            limit: 0,
+            maxMinDeliveryDate: undefined,
+            minMinDeliveryDate: undefined,
+            offset: undefined,
+            state: undefined,
+            pickerId: undefined,
+            transactionCode: undefined
+        }} isExportDisabled={false} isFetching={false} transactions={[]} getMoreTransactions={Function} getTransactionsExportRequest={Function} seeMore={Function} filtersExtraSeeMore={Function} resolutionHeightModal={resolutionHeightModal} {...props}/>
     );
 }
 
