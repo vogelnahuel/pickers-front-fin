@@ -14,9 +14,9 @@ const LoginContainer:React.FC<LoginContainerType> = (props): JSX.Element => {
   const validationSchema: yup.SchemaOf<LoginType> = yup.object({
     email: yup
       .string()
-      .required("Este campo es requerido.")
-      .matches(VALIDATION_REGEX.regEmail, "El formato del correo es inválido"),
-    password: yup.string().required("Este campo es requerido."),
+      .required("Este campo es requerido")
+      .matches(VALIDATION_REGEX.regEmail, "El correo ingresado es inválidoo"),
+    password: yup.string().required("Este campo es requerido"),
   });
 
   return <Login {...props} validationSchema={validationSchema} />;

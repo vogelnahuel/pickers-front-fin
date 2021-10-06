@@ -43,7 +43,7 @@ const Login: React.FC<LoginTypeProps> = ({
               id="password"
               type="password"
               name="password"
-              label="Password"
+              label="Contraseña"
               animated
               className="Admin-Pickers-input"
               component={Input}

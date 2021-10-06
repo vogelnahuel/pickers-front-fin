@@ -16,7 +16,6 @@ export const Input= (props) => {
         maxLength,
         animated
     } = props;
-    //animationOrigin animationTop
 
     return (
         <div className={classNames( {
