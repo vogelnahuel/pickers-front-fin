@@ -5,7 +5,7 @@ import { TableTransaction } from "component/transaction/tableTransaction/TableTr
 import "pages/transaction/transaction.scss";
 import FilterTransaction from "./filterTransaction/FilterTransactionContainer";
 import {Modal} from "@pickit/pickit-components";
-import {OptionList} from "component/transaction/OptionList/OptionList";
+import {OptionList} from "pages/transaction/modalTransaction/OptionList/OptionList";
 import exportar from "assets/admin/PendingUser/exportar.svg";
 import or from "assets/admin/PendingUser/or.svg";
 import exportDisabledIcon from "assets/transaction/ExportDisabled.svg";

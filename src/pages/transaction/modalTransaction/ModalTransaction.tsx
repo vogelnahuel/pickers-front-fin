@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "./transaction.scss";
 import { Modal } from "@pickit/pickit-components";
-import { OptionList } from "component/transaction/OptionList/OptionList";
+import { OptionList } from "pages/transaction/modalTransaction/OptionList/OptionList";
 import Close from "assets/transaction/Close.svg";
 import stateName from "component/transaction/tableTransaction/statesNames";
+import { TransactionResponseTypeResult } from "sagas/types/transactions";
 
-export const ModalTransaction = ({ currentTransaction }) => {
+export const ModalTransaction = ({ currentTransaction }:any):JSX.Element => {
 
 
-    const [FilterSelectedTransaction, setFilterSelectedTransaction] = useState(
-        {}
-    );
+    const [FilterSelectedTransaction, setFilterSelectedTransaction] = useState<TransactionResponseTypeResult>();
     const [OpenModalTransaction, setOpenModalTransaction] = useState(false);
     //altura del modal
     const [resolutionHeightModal, setresolutionHeightModal] = useState(550)
@@ -28,7 +27,7 @@ export const ModalTransaction = ({ currentTransaction }) => {
 
     }, [])
 
-    const onClose = (e) => {
+    const onClose = () => {
         setOpenModalTransaction(false);
     };
 
@@ -37,7 +36,7 @@ export const ModalTransaction = ({ currentTransaction }) => {
         <div className="modal-transaction">
             <Modal
                 width="1190px"
-                height={resolutionHeightModal}
+                height={`${resolutionHeightModal}px`}
                 isOpen={OpenModalTransaction}
                 onClose={onClose}
             >
@@ -55,7 +54,7 @@ export const ModalTransaction = ({ currentTransaction }) => {
 
                             </p>
                             <p className="modal-transaction-fecha">
-                                {  FilterSelectedTransaction.transaction &&
+                                {FilterSelectedTransaction &&  FilterSelectedTransaction.transaction &&
                                 FilterSelectedTransaction.transaction.inAlert===true ?
                                     <>
                                         <span className="transaction-modal-alert modal-transaction-alerta">En alerta</span>
@@ -66,13 +65,13 @@ export const ModalTransaction = ({ currentTransaction }) => {
                         </div>
                         <div className="modal-transaction-subtitle">
                             <h2>
-                                {FilterSelectedTransaction.transaction
+                                { FilterSelectedTransaction && FilterSelectedTransaction.transaction
                                     ? FilterSelectedTransaction.transaction.transactionCode
                                     : ""}
                             </h2>
                             <p>
 
-                                {FilterSelectedTransaction.transaction
+                                { FilterSelectedTransaction && FilterSelectedTransaction.transaction
                                     ? stateName(FilterSelectedTransaction.transaction.state.id)
                                     : ""}
 
@@ -80,7 +79,7 @@ export const ModalTransaction = ({ currentTransaction }) => {
 
                             <p className="modal-transaction-fecha">
                                 {" "}
-                                {FilterSelectedTransaction.transaction
+                                { FilterSelectedTransaction && FilterSelectedTransaction.transaction
                                     ? FilterSelectedTransaction.transaction.maxDeliveryDateTime.substring(0,10)+" "+(parseInt(FilterSelectedTransaction.transaction.maxDeliveryDateTime.substring( 11,13))-3)+FilterSelectedTransaction.transaction.maxDeliveryDateTime.substring( 13,16)
                                     : ""}{" "}
                             </p>
