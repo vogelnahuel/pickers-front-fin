@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import transactions from "reducers/transactions";
 import dashboard from "reducers/dashboard";
+import detailTransaction from "reducers/dashboard";
 import pendingUser from "reducers/pickers";
 import pendingUserAdminPicker from "reducers/detailPicker";
 import login from "./login";
@@ -18,6 +19,7 @@ const rootReducer = (history: RouteComponentProps['history']) => combineReducers
     pendingUserAdminPicker,
     login,
     notification,
+    detailTransaction,
 });
 
 export default rootReducer;
