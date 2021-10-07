@@ -13,8 +13,8 @@ import {FILTER_TRANSACTION_OPTIONS} from "utils/constants";
 import useValidationSchema from "hooks/useValidationSchema";
 import { FilterTransactionPropsType, FilterValuesType } from "./types";
 
-export const FilterTransaction = ({ onSubmit, filters, validationSchema }:FilterTransactionPropsType):JSX.Element => {
-
+export const FilterTransaction = ({ onSubmit, filters, validationSchema,filtersExtra,getTransactions,reset,setFilters }:FilterTransactionPropsType):JSX.Element => {
+    
     return (
         <Container fluid className="display-filter-transaction">
             <Row>

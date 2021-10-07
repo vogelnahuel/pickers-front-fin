@@ -25,6 +25,8 @@ const TransactionContainer = (props:TransactionContainerType):JSX.Element => {
         props.reset();
 
         const filters:URLTransactionContainerType = parseQueryParams(params.search);
+        filters.inAlert=Boolean(filters.inAlert);
+        
 
         filters.maxMinDeliveryDate && (filters.date = { from: moment(filters.minMinDeliveryDate, "YYYY-MM-DD").format("DD/MM/YYYY"), until: moment(filters.maxMinDeliveryDate, "YYYY-MM-DD").format("DD/MM/YYYY") });
         const filtersExtra={limit:window.screen.height<770 ? 3 : 4};

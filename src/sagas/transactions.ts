@@ -49,7 +49,7 @@ function* getTransactions({
         );
         break;
       case 20013:
-        //yield put(actions.setExportEnabled());
+        yield put(actions.setExportEnabled());
         yield put(
           actions.getTransactionsSuccess({
             items: [],
@@ -62,7 +62,7 @@ function* getTransactions({
       default:
         break;
     }
-    //yield put(actions.setExportEnabled());
+    yield put(actions.setExportEnabled());
     yield put(actions.getTransactionsError());
   } else {
     const {
