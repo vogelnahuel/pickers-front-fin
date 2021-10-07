@@ -1,9 +1,21 @@
-import { DocumentationType, ParamsTypeMiddleware } from "../../pages/pickers/types";
+import {
+  DocumentationType,
+  ParamsTypeMiddleware,
+} from "../../pages/pickers/types";
 
-export type PickersResposeType = {
+export type PickerResponseType = {
   status: Number;
   data: {
-    result: any;
+    result: DocumentationType;
+    limit: Number;
+    offset: Number;
+    hasMore: boolean;
+  };
+};
+export type PickersResponseType = {
+  status?: Number;
+  data: {
+    result: { items: DocumentationType[] };
     limit: Number;
     offset: Number;
     hasMore: boolean;
@@ -28,14 +40,14 @@ export type PickerExportType = {
   goBack?: Function;
 };
 
-
 export type ParamGetPendingUser = {
-  params:Number
-}
+  params: Number;
+};
 
-export type PostEditPickerType={
-  params:DocumentationType;
-  goBack:Function;
-  element:HTMLElement
-}
+export type PostEditPickerType = {
+  params: DocumentationType;
+  goBack: Function;
+  element: HTMLElement;
+};
 
+export type CsvResponseType = { data: string; status: number };

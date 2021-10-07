@@ -8,7 +8,7 @@ import { FilterPickers } from "pages/pickers/filter/FilterPickers";
 import { VALIDATION_REGEX } from "utils/constants";
 import * as yup from "yup";
 import { ParamsTypeMiddleware, PickersParamsType } from "../types";
-import { StateType } from "reducers/types/pickeres";
+import { StateType } from "reducers/types/pickers";
 import { FilterContainerTypes } from "./types";
 
 const FilterPickersContainer = (props: FilterContainerTypes) => {

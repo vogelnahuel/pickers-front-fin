@@ -3,7 +3,6 @@ import * as API from "middleware/api";
 import { DocumentationType, EditPickerResponseType, ParamsTypeMiddleware, PickersAxiosResponseType, PickersExportResponseType } from "../pages/pickers/types";
 
 export const getPickers = (params:ParamsTypeMiddleware):Promise<AxiosResponse<PickersAxiosResponseType>> => API.get("/ms-admin-rest/api/v1.0/pickers", params);
-//TODO: tipar junto con el createCSV
 //TODO: unificar los export del csv
 export const getPickersExport = (params?:ParamsTypeMiddleware):Promise<AxiosResponse<PickersExportResponseType>> => API.get("/ms-admin-rest/api/v1.0/pickers.csv", params);
 export const getPicker = (params:Number):Promise<AxiosResponse<DocumentationType>> => API.get(`/ms-admin-rest/api/v1.0/pickers/${params}`);

@@ -1,10 +1,10 @@
-const createCSV=(datosExport:BlobPart) => {
+const createCSV=(datosExport) => {//preguntar
     console.log(datosExport,"datosExport")
     //TODO: tipar
 
     ///datos.export .data es la informacion en CSV ,  el tipo de salida text/csv
     var blob = new Blob([datosExport], { type: 'text/csv;charset=utf-8;' }); 
-    let Navigator:any = window.navigator
+    let Navigator = window.navigator
     if (Navigator.msSaveBlob) {  
         Navigator.msSaveBlob(blob, "pickers.csv");
 

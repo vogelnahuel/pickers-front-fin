@@ -1,3 +1,7 @@
+import { DocumentationType, EditPickerResponseType, ParamsTypeMiddleware, PickersExportResponseType } from "pages/pickers/types";
+import { ParamGetPendingUser } from "sagas/types/pickers";
+import { RootState } from "store";
+import { ActionType, SelectorType, StateType } from "./types/detailPicker";
 
 export const types:any = {
     PENDING_USER_ADMIN_PICKER_GET_REQUEST: `PENDING_USER_ADMIN_PICKER_GET_REQUEST`,
@@ -23,7 +27,7 @@ export const types:any = {
     PICKER_APROVE_POST_ERROR: `PICKER_APROVE_POST_ERROR`,
 };
 
-export const INITIAL_STATE = {
+export const INITIAL_STATE:StateType = {
     fetching: false,
     dirty: false,
     nameDisplay: "",
@@ -31,39 +35,39 @@ export const INITIAL_STATE = {
     pendingUserAdminPickerExport:{},
 };
 
-export const actions = {
-    getPendingUserPickerRequest: (params:any) => ({
+export const actions:ActionType = {
+    getPendingUserPickerRequest: (params:ParamGetPendingUser) => ({
         type: types.PENDING_USER_ADMIN_PICKER_GET_REQUEST,
         params,
     }),
-    getPendingUserPickerSuccess: (pendingUserAdminPicker:any) => ({
+    getPendingUserPickerSuccess: (pendingUserAdminPicker:DocumentationType) => ({
         type: types.PENDING_USER_ADMIN_PICKER_GET_SUCCESS,
         pendingUserAdminPicker
     }),
     getPendingUserPickerError: () => ({
         type: types.PENDING_USER_ADMIN_PICKER_GET_ERROR,
     }),
-    setDirty: (dirty:any) => ({
+    setDirty: (dirty:boolean) => ({
         type: types.PENDING_USER_ADMIN_PICKER_SET_DIRTY,
         dirty
     }),
-    getPendingUserPickerExportRequest: (params:any,element:any) => ({
+    getPendingUserPickerExportRequest: (params:ParamsTypeMiddleware,element:HTMLElement) => ({
         type: types.PENDING_USER_ADMIN_PICKER_EXPORT_GET_REQUEST,
         params,
         element
     }),
-    getPendingUserPickerExportSuccess: (pendingUserAdminPickerExport:any) => ({
+    getPendingUserPickerExportSuccess: (pendingUserAdminPickerExport:PickersExportResponseType) => ({
         type: types.PENDING_USER_ADMIN_PICKER_EXPORT_GET_SUCCESS,
         pendingUserAdminPickerExport
     }),
     getPendingUserPickerExportError: () => ({
         type: types.PENDING_USER_ADMIN_PICKER_EXPORT_GET_ERROR,
     }),
-    getPendingUserPickerDocumentsEditRequest: (params:any) => ({
+    getPendingUserPickerDocumentsEditRequest: (params:DocumentationType) => ({
         type: types.PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_REQUEST,
         params,
     }),
-    getPendingUserPickerDocumentsEditSuccess: (body:any) => ({
+    getPendingUserPickerDocumentsEditSuccess: (body:EditPickerResponseType) => ({
         type: types.PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_SUCCESS,
         body
     }),
@@ -71,12 +75,12 @@ export const actions = {
         type: types.PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_ERROR,
     }),
 
-    getAprovePickerRequest: (params:any, goBack:any) => ({
+    getAprovePickerRequest: (params:DocumentationType, goBack:Function) => ({
         type: types.PICKER_APROVE_POST_REQUEST,
         params,
         goBack
     }),
-    getAprovePickerSuccess: (body:any) => ({
+    getAprovePickerSuccess: (body:EditPickerResponseType) => ({
         type: types.PICKER_APROVE_POST_SUCCESS,
         body
     }),
@@ -84,12 +88,12 @@ export const actions = {
         type: types.PICKER_APROVE_POST_ERROR,
     }),
 
-    getEditPickerRequest: (params:any, goBack:any) => ({
+    getEditPickerRequest: (params:DocumentationType, goBack:Function) => ({
         type: types.PICKER_EDIT_POST_REQUEST,
         params,
         goBack
     }),
-    getEditPickerSuccess: (body:any) => ({
+    getEditPickerSuccess: (body:DocumentationType) => ({
         type: types.PICKER_EDIT_POST_SUCCESS,
         body
     }),
@@ -99,15 +103,15 @@ export const actions = {
 
 };
 
-export const selectors = {
-    isFetching: ({ pendingUserAdminPicker }:any) => pendingUserAdminPicker.fetching,
-    isDirty: ({ pendingUserAdminPicker }:any) => pendingUserAdminPicker.dirty,
-    getNameDisplay: ({ pendingUserAdminPicker }:any) => pendingUserAdminPicker.nameDisplay,
-    getPendingUserPicker: ({ pendingUserAdminPicker }:any) => pendingUserAdminPicker.pendingUserAdminPicker,
+export const selectors:SelectorType = {
+    isFetching: ({ pendingUserAdminPicker }:RootState) => pendingUserAdminPicker.fetching,
+    isDirty: ({ pendingUserAdminPicker }:RootState) => pendingUserAdminPicker.dirty,
+    getNameDisplay: ({ pendingUserAdminPicker }:RootState) => pendingUserAdminPicker.nameDisplay,
+    getPendingUserPicker: ({ pendingUserAdminPicker }:RootState) => pendingUserAdminPicker.pendingUserAdminPicker,
 };
 
 
-const reducer =(state = INITIAL_STATE, action:any) => {
+const reducer =(state:StateType = INITIAL_STATE, action:any) => {
     switch (action.type) {
         /************************************************************* */
         case types.PENDING_USER_ADMIN_PICKER_GET_REQUEST:

@@ -15,8 +15,9 @@ import { FormSpy } from 'react-final-form'
 import moment from "moment";
 import NotificationModal from "component/modal/NotificationModal";
 import  Actions from 'pages/pickers/actions/Actions'
+import { DetailPickerTypeProps } from './types'
 
-export const DetailPicker = (
+export const DetailPicker:React.FC<DetailPickerTypeProps> = (
     {
         isFetching,
         pendingUserAdminPicker,
@@ -33,8 +34,6 @@ export const DetailPicker = (
         changePage,
         validationSchema
     }) => {
-    
-
         
     return (
         <div className="background-Grey">

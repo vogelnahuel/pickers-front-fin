@@ -22,7 +22,7 @@ const mapStateToProps = (state: RootState) => ({
   isFetching: dashboardSelectors.isFetching(state),
 });
 
-const mapDispatchToProps = (dispatch: AppDispatch) => ({
+const mapDispatchToProps = (dispatch: Function) => ({
   getDashboard: () => {
     dispatch(dashboardActions.getDashboardRequest());
   },

@@ -20,10 +20,24 @@ import createCSV from ".,/../../src/utils/createCSV";
 import moment from "moment";
 import * as pickersMiddleware from "../middleware/pickers";
 import { goBack } from "connected-react-router";
-import { getPickersType, PickersResposeType,PickerExportType, ParamGetPendingUser, PostEditPickerType } from "./types/pickers";
-import { DocumentationType, PickersAxiosResponseType, } from "../pages/pickers/types";
+import {
+  getPickersType,
+  PickerResponseType,
+  PickerExportType,
+  ParamGetPendingUser,
+  PostEditPickerType,
+  CsvResponseType,
+  PickersResponseType,
+} from "./types/pickers";
+import {
+  AcountDataType,
+  PhoneType,
+  PickersAxiosResponseType,
+  PickersParamsType,
+  PickersResponse,
+  StatusType,
+} from "../pages/pickers/types";
 import { AxiosResponse } from "axios";
-
 const sagas = [
   takeLatest(pickersTypes.PENDING_USER_GET_REQUEST, getPickers),
   takeLatest(
@@ -49,7 +63,23 @@ const sagas = [
 
 export default sagas;
 
-const process = (body:any):DocumentationType => {
+const process = (body: {
+  accountingData: AcountDataType;
+  dateOfBirth: string;
+  email: string;
+  enable: boolean;
+  expirationDatePolicyPersonal: string;
+  id: number;
+  identificationNumber: string;
+  name: string;
+  phone: PhoneType;
+  registerDate: string;
+  status: StatusType;
+  surname: string;
+  vehicle: any
+  vehicleType: string;
+}) => {
+  console.log(body,"body")
   return {
     ...body,
     dateOfBirth: moment(body.dateOfBirth, "DD/MM/YYYY").format("YYYY-MM-DD"),
@@ -94,10 +124,12 @@ const process = (body:any):DocumentationType => {
 
 function* getPickers({
   params,
-}:getPickersType): Generator<
- CallEffect<AxiosResponse<PickersAxiosResponseType>> | PutEffect<any>,
+}: getPickersType): Generator<
+  | CallEffect<AxiosResponse<PickersAxiosResponseType>>
+  | PutEffect<{ type: string; pendingUsers: PickersResponse }>
+  | PutEffect<{ type: string }>,
   void,
-  PickersResposeType
+  PickersResponseType
 > {
   const response = yield call(pickersMiddleware.getPickers, params);
   if (response.status !== 200) {
@@ -117,11 +149,12 @@ function* getPickers({
 
 function* getMorePendingUser({
   params,
-}:getPickersType):Generator<
-CallEffect<AxiosResponse<PickersAxiosResponseType>> | PutEffect<any>,
-void,
- PickersResposeType
->{
+}: getPickersType): Generator<
+  | CallEffect<AxiosResponse<PickersAxiosResponseType>>
+  | PutEffect<{ type: string }>,
+  void,
+  PickersResponseType
+> {
   const response = yield call(pickersMiddleware.getPickers, params);
   if (response.status !== 200) {
     yield put(pickersActions.getPendingUserError());
@@ -145,15 +178,17 @@ void,
 
 function* getPendingUserPicker({
   params,
-}:ParamGetPendingUser): Generator<
-  SimpleEffect<"CALL", CallEffectDescriptor<unknown>> | PutEffect<any>,
+}: ParamGetPendingUser): Generator<
+  | SimpleEffect<"CALL", CallEffectDescriptor<unknown>>
+  | PutEffect<{ type: string }>,
   void,
-  PickersResposeType
+  PickerResponseType
 > {
   const response = yield call(pickersMiddleware.getPicker, params);
   if (response.status !== 200) {
     yield put(detailPickerActions.getPendingUserPickerError());
   } else {
+    console.log(response);
     const { result } = response.data;
     yield put(detailPickerActions.getPendingUserPickerSuccess(result));
     yield put(
@@ -167,15 +202,15 @@ function* getPendingUserPicker({
 function* getPendingUserExport({
   params,
   element,
-}:getPickersType): Generator<
-  SimpleEffect<"CALL", CallEffectDescriptor<unknown>> | PutEffect<any>,
+}: getPickersType): Generator<
+  | SimpleEffect<"CALL", CallEffectDescriptor<unknown>>
+  | PutEffect<{ type: string; params: PickersParamsType | undefined }>
+  | PutEffect<{ type: string; params: CsvResponseType }>
+  | PutEffect<{ type: string; content: any }>,
   void,
-  any//tipar resupesta
+  CsvResponseType
 > {
-  const response = yield call(
-    pickersMiddleware.getPickersExport,
-    params
-  );
+  const response = yield call(pickersMiddleware.getPickersExport, params);
 
   if (response.status !== 200) {
     yield put(pickersActions.getPendingUserExportError());
@@ -196,15 +231,13 @@ function* getPendingUserExport({
 function* getPendingUserPickerExport({
   params,
   element,
-}:PickerExportType): Generator<
-  SimpleEffect<"CALL", CallEffectDescriptor<unknown>> | PutEffect<any>,
+}: PickerExportType): Generator<
+  | SimpleEffect<"CALL", CallEffectDescriptor<unknown>>
+  | PutEffect<{ type: string }>,
   void,
-  any
+  CsvResponseType
 > {
-  const response = yield call(
-    pickersMiddleware.getPickerExport,
-    params
-  );
+  const response = yield call(pickersMiddleware.getPickerExport, params);
   if (response.status !== 200) {
     yield put(detailPickerActions.getPendingUserPickerExportError());
   } else {
@@ -224,16 +257,15 @@ function* getPendingUserPickerExport({
 function* postPendingUserDocumentsEdit({
   params,
   element,
-}:PostEditPickerType): Generator<
-  SimpleEffect<"CALL", CallEffectDescriptor<unknown>> | PutEffect<any>,
+}: PostEditPickerType): Generator<
+  | SimpleEffect<"CALL", CallEffectDescriptor<unknown>>
+  | PutEffect<{ type: string; content: any }>
+  | PutEffect<{ type: String }>,
   void,
-  PickersResposeType
+  PickerResponseType
 > {
   let body = process(params);
-  const response = yield call(
-    pickersMiddleware.postPickerDocumentsEdit,
-    body
-  );
+  const response = yield call(pickersMiddleware.postPickerDocumentsEdit, body);
   if (response.status !== 200) {
     yield put(
       notificationActions.showNotification({
@@ -256,10 +288,12 @@ function* postAprovePicker({
   params,
   goBack,
   element,
-}:PostEditPickerType): Generator<
-  SimpleEffect<"CALL", CallEffectDescriptor<unknown>> | PutEffect<any>,
+}: PostEditPickerType): Generator<
+  | SimpleEffect<"CALL", CallEffectDescriptor<unknown>>
+  | PutEffect<{ type: string; content: any }>
+  | PutEffect<{ type: String }>,
   void,
-  PickersResposeType
+  PickerResponseType
 > {
   let body = process(params);
   const response = yield call(pickersMiddleware.postAprovePicker, body);
@@ -291,10 +325,12 @@ function* postEditPicker({
   params,
   goBack,
   element,
-}:PostEditPickerType): Generator<
-  SimpleEffect<"CALL", CallEffectDescriptor<unknown>> | PutEffect<any>,
+}: PostEditPickerType): Generator<
+  | SimpleEffect<"CALL", CallEffectDescriptor<unknown>>
+  | PutEffect<{ type: string; content: any }>
+  | PutEffect<{ type: string }>,
   void,
-  PickersResposeType
+  PickerResponseType
 > {
   let body = process(params);
   const response = yield call(pickersMiddleware.postEditPicker, body);

@@ -31,7 +31,7 @@ export type PickersParamsType = {
   limit?: number;
   offset?: number;
 };
-//TODO: pasar a 
+//TODO: pasar a
 export type ParamsTypeMiddleware = {
   pickerStatusId?: Array<Number>;
   name?: string;
@@ -78,35 +78,42 @@ export type MotorcycleType = {
 
 export type DocumentationType = {
   accountingData: AcountDataType;
-  dateOfBirth: String;
-  email: String;
+  dateOfBirth: string;
+  email: string;
   enable: boolean;
-  expirationDatePolicyPersonal: String;
+  expirationDatePolicyPersonal: string;
   id: number;
-  identificationNumber: String;
-  name: String;
+  identificationNumber: string;
+  name: string;
   phone: PhoneType;
-  registerDate: String;
+  registerDate: string;
   status: StatusType;
-  surname: String;
+  surname: string;
   vehicle: {
     bicycle: BicycleType;
     motorcycle: MotorcycleType;
   };
-  vehicleType: String;
+  vehicleType: string;
 };
 
 export type PickerTypes = {
-  changePage: any;
-  actualPage: any;
-  tableTitles: any;
   pendingUsers: any;
+  isFetching: boolean;
   filters: any;
+  filtersExtra: any;
   filtersExtraSeeMore: any;
-  isFetching: any;
-  seeMore: any;
-  getMorePendingUser: any;
-  getPendingUsersExportRequest: any;
+  seeMore: boolean;
+  pag: string;
+  actualPage: string;
+  reset: Function;
+  getPendingUser: Function;
+  setPendingUserFilters: Function;
+  setPendingUserExtraFilters: Function;
+  setActualPage: Function;
+  getPendingUsersExportRequest: Function;
+  getMorePendingUser: Function;
+  changePage:Function;
+  tableTitles:string[];
 };
 
 export type PickersAxiosResponseType = {
@@ -130,12 +137,9 @@ export type PickersResponse = {
   hasMore: Boolean;
   limit: Number;
   offset: Number;
-    items: DocumentationType[];
+  items: DocumentationType[];
 };
 
 export type EditPickerResponseType = {
   result: Number;
 };
-
-
-

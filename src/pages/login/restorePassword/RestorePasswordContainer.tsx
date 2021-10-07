@@ -47,7 +47,7 @@ const mapStateToProps = (state: RootState) => ({
   isFetching: loginSelectors.isFetching(state),
 });
 
-const mapDispatchToProps = (dispatch: AppDispatch) => ({
+const mapDispatchToProps = (dispatch: Function) => ({
   postLoginRestore: (params: RestorePasswordActionsTypes) => {
     dispatch(loginActions.getLoginRestoreRequest(params));
   },
