@@ -1,5 +1,5 @@
 export type FilterContainerPropsType={
-    filters:filterPropsType,
+    filters:FilterPropsType,
     filtersExtra: {limit: number, offset: number},
     getTransactions: Function,
     reset: Function,
@@ -10,7 +10,7 @@ export type filterPropsType={
         until:string,
         from:string
     }
-    inAlert?: string
+    inAlert?: boolean
     maxMinDeliveryDate?: string
     minMinDeliveryDate?: string
 }
@@ -40,4 +40,8 @@ export type FilterTransactionPropsType= {
     onSubmit:Function, 
     filters: filterPropsType, 
     validationSchema:object
+    filtersExtra: {limit: number, offset: number},
+    getTransactions: Function,
+    reset: Function,
+    setFilters: Function
 }

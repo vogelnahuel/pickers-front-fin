@@ -16,6 +16,7 @@ export type URLTransactionContainerType ={
         from: string,
         until: string
     }
+    inAlert?:boolean
 }
 export  type TransactionContainerPropsType={
     isExportDisabled:boolean,

@@ -20,7 +20,7 @@ export type TransactionStateType={
     fetching: boolean,
     exportDisabled: boolean,
     transactions:TransactionResponseTypeResult[],
-    filters: object,
+    filters: FilterTransactionsType,
     filtersExtra:{
         limit: number,
         offset: number
@@ -44,7 +44,7 @@ export type SetFilterType={
     maxMinDeliveryDate:string
     state:string
     pickerId:number
-    inAlert:true
+    inAlert:boolean
     transactionCode:string
 }
 
@@ -70,5 +70,5 @@ export type TransactionActionType = {
     transactions:any//Todo revisar esto  //TransactionResponseType
     filters:FilterTransactionsType,
     enabled:string | number | undefined
-    filtersExtra:object
+    filtersExtra:SetFilterExtraType
 }

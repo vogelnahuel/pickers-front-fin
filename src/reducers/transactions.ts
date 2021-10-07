@@ -24,7 +24,16 @@ export const INITIAL_STATE:TransactionStateType = {
     fetching: false,
     exportDisabled: true,
     transactions: [],
-    filters: {},
+    filters: {
+        inAlert: undefined,
+        limit: 0,
+        maxMinDeliveryDate: undefined,
+        minMinDeliveryDate: undefined,
+        offset: undefined,
+        state: undefined,
+        pickerId: undefined,
+        transactionCode:undefined
+    },
     filtersExtra:{
         limit: 3,
         offset: 0
