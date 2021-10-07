@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {Header} from "component/admin/Header/Header";
 import {Nav} from "component/admin/Nav/Nav";
-import {TableTransaction} from "component/transaction/tableTransaction/TableTransaction";
+import { TableTransaction } from "component/transaction/tableTransaction/TableTransaction";
 import "pages/transaction/transaction.scss";
-import FilterTransaction from "pages/transaction/filterTransaction/FilterTransactionContainer";
+import FilterTransaction from "./filterTransaction/FilterTransactionContainer";
 import {Modal} from "@pickit/pickit-components";
 import {OptionList} from "component/transaction/OptionList/OptionList";
 import exportar from "assets/admin/PendingUser/exportar.svg";
@@ -15,6 +15,8 @@ import api from "middleware/api";
 import stateName from "component/transaction/tableTransaction/statesNames";
 import {ISO8601toDDMMYYYHHMM} from 'utils/iso8601toDDMMYYHHMM'
 import NotificationModal from "component/modal/NotificationModal";
+import {  TransactionContainerPropsType } from "./types";
+import { TransactionResponseTypeResult } from "sagas/types/transactions";
 
 export const Transaction = ({
                                 isExportDisabled,
@@ -25,30 +27,16 @@ export const Transaction = ({
                                 filters,
                                 seeMore,
                                 filtersExtraSeeMore,
-                            }) => {
+                                resolutionHeightModal,
+                            }:TransactionContainerPropsType):JSX.Element => {
 
-    const [FilterSelectedTransaction, setFilterSelectedTransaction] = useState({});
+    const [FilterSelectedTransaction, setFilterSelectedTransaction] = useState<TransactionResponseTypeResult>();
     const [OpenModalTransaction, setOpenModalTransaction] = useState(false);
-    const [IdModalApi, setIdModalApi] = useState(""); // devuelve la consulta api
     const titulos = ["Transacción", "Id de picker", "Vencimiento SLA", "Estado"];
     const [isFetchingModal, setisFetchingModal] = useState(false)
-     const [resolutionHeightModal, setresolutionHeightModal] = useState(550)
-    // //todo: extraer a container
-     useEffect(() => {
     
-         if(window.screen.width<1300){
-             setresolutionHeightModal(496)
-             
-         }
-         if(window.screen.width>1900){
-             setresolutionHeightModal(675)
-         }
-    
-     }, [])
-
-    //todo: extraer al reducer
-    const cargarDatos = async(id)=> {
-         await  api.get(`/ms-admin-rest/api/v1.0/transactions/${id}`)
+    const cargarDatos = async(id:number)=> {
+            await  api.get(`/ms-admin-rest/api/v1.0/transactions/${id}`)
             .then((res) => {
                 setFilterSelectedTransaction(res.data.result);
             })
@@ -57,15 +45,17 @@ export const Transaction = ({
             })
     }
 
-    const onClose = (e) => {
+    const onClose = () => {
         setOpenModalTransaction(false);
     };
+
 
     return (
         <div className="background-Grey">
             <Header />
             <div className="mainContainerFlex">
-                <Nav />
+                <Nav isDirty={""} />
+
                 <div className="transaction-container">
                     <div className="mainContainerFlex-transaction">
                         <h2 className="subTitle-transaction">
@@ -86,14 +76,11 @@ export const Transaction = ({
                     <FilterTransaction/>
                     <TableTransaction
                         setOpenModalTransaction={setOpenModalTransaction}
-                        IdModal={IdModalApi}
-                        setIdModal={setIdModalApi}
                         api={transactions}
                         titulos={titulos}
                         cargarDatos={cargarDatos}
-                        setFilterSelectedTransaction={setFilterSelectedTransaction}
                     />
-                    {transactions && transactions.length !== 0 ? <>
+                    {transactions && transactions?.length !== 0 ? <>
                             { seeMore ?
                                 <button
                                     onClick={()=>getMoreTransactions({...filtersExtraSeeMore, ...filters})}
@@ -118,11 +105,13 @@ export const Transaction = ({
                         }
                 </div>
                 <NotificationModal/>
+
+                
                 {OpenModalTransaction === true ? 
                     <div className="modal-transaction">
                         <Modal 
                             width="1190px" 
-                            height={resolutionHeightModal} 
+                            height={`${resolutionHeightModal}px`} 
                             isOpen={OpenModalTransaction} 
                             onClose={onClose} 
                         > 
@@ -139,7 +128,7 @@ export const Transaction = ({
                                         <p>Estado
                                         </p> 
                                         <p className="modal-transaction-fecha"> 
-                                            {  FilterSelectedTransaction && FilterSelectedTransaction.transaction && 
+                                            {  FilterSelectedTransaction && FilterSelectedTransaction?.transaction && 
                                             FilterSelectedTransaction.transaction.inAlert===true ? 
                                                 <> 
                                                     <span className="transaction-modal-alert modal-transaction-alerta">En alerta</span> 
@@ -150,18 +139,18 @@ export const Transaction = ({
                                     </div> 
                                     <div className="modal-transaction-subtitle"> 
                                         <h2> 
-                                            {FilterSelectedTransaction && FilterSelectedTransaction.transaction 
+                                            {FilterSelectedTransaction && FilterSelectedTransaction?.transaction 
                                                 ? FilterSelectedTransaction.transaction.transactionCode 
                                                 : ""} 
                                         </h2> 
                                         <p>
-                                            {FilterSelectedTransaction.transaction 
+                                            {FilterSelectedTransaction && FilterSelectedTransaction?.transaction 
                                                 ? stateName(FilterSelectedTransaction.transaction.state.id) 
                                                 : ""}
                                         </p>
                                         <p className="modal-transaction-fecha"> 
                                             {" "} 
-                                            {FilterSelectedTransaction.transaction 
+                                            {FilterSelectedTransaction && FilterSelectedTransaction?.transaction 
                                                 ? ISO8601toDDMMYYYHHMM(FilterSelectedTransaction.transaction.maxDeliveryDateTime)
                                                 : ""}{" "} 
                                         </p> 
@@ -186,3 +175,4 @@ export const Transaction = ({
         </div>
     );
 };
+export default Transaction;

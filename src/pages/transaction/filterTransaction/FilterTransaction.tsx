@@ -11,8 +11,9 @@ import {Input} from "component/inputs/Input";
 import MultipleSelect from "component/inputs/MultipleSelect";
 import {FILTER_TRANSACTION_OPTIONS} from "utils/constants";
 import useValidationSchema from "hooks/useValidationSchema";
+import { FilterTransactionPropsType, FilterValuesType } from "./types";
 
-export const FilterTransaction = ({ onSubmit, filters, validationSchema }) => {
+export const FilterTransaction = ({ onSubmit, filters, validationSchema }:FilterTransactionPropsType):JSX.Element => {
 
     return (
         <Container fluid className="display-filter-transaction">
@@ -30,7 +31,13 @@ export const FilterTransaction = ({ onSubmit, filters, validationSchema }) => {
                 <Col className="sub-container" >
                     <Row className="px-2">
                         <Form
-                            onSubmit={onSubmit}
+                            onSubmit={(values:FilterValuesType)=>onSubmit({
+                                transactionCode:values.transactionCode,
+                                pickerId:values.pickerId ? Number(values.pickerId) : undefined,
+                                date:values.date,
+                                state:values.state,
+                                inAlert:values.inAlert
+                            })}
                             initialValues={filters}
                             validate={useValidationSchema(validationSchema)}
                             mutators={{
@@ -71,10 +78,13 @@ export const FilterTransaction = ({ onSubmit, filters, validationSchema }) => {
                                                 type="text"
                                                 className="Admin-Pickers-input-select"
                                                 name="date"
-                                                component={DatePicker}
+                                             
                                                 placeholder="Seleccioná la fecha"
                                                 language="es"
-                                            />
+                                            >
+                                                { (props:any)=><DatePicker {...props}/>}
+                                            </Field>
+
                                         </div>
                                     </Col>
                                     <Col xxl xl={4} className="px-3">
@@ -86,7 +96,9 @@ export const FilterTransaction = ({ onSubmit, filters, validationSchema }) => {
                                             placeholder="Seleccioná el estado"
                                             onChange={form.mutators.setValue}
                                             options={FILTER_TRANSACTION_OPTIONS}
-                                            component={MultipleSelect}/>
+                                           >
+                                          { (props:any)=><MultipleSelect {...props}/>}
+                                        </Field>
                                     </Col>
                                     <Col xxl="auto" xl={4} className="px-3">
                                         <Field
