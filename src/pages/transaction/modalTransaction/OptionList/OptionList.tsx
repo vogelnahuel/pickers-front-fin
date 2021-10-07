@@ -12,7 +12,7 @@ import { Undelivered } from './undelivered/Undelivered'
 //import { changeTest } from '../../../actions/transactionAction'
 
 
-export const OptionList = (props) => {
+export const OptionList = (props:any) => {
 
     //const dispatch = useDispatch()
     const FilterSelectedTransaction = props.FilterSelectedTransaction
@@ -29,23 +29,23 @@ export const OptionList = (props) => {
 
     const [reasonId, setreasonId] = useState({})
 
-    const handleClickCancel = (e) => {
+    const handleClickCancel = (e:any) => {
 
         //dispatch(changeTest ("test2") )
 
         e.preventDefault();  
 
-        document.querySelector('.modal-transaction-difuminar1').style.display="none";
-        document.querySelector('.modal-transaction-difuminar2').style.display="none";
-        document.querySelector('.modal-transaction-difuminar3').style.display="none";
-        document.querySelector('.modal-transaction-difuminar4').style.display="none";
-        document.querySelector('.modal-transaction-difuminar5').style.display="none";
-        document.querySelector('.modal-transaction-difuminar6').style.display="none";
+        document.querySelector<HTMLElement| any>('.modal-transaction-difuminar1').style.display="none";
+        document.querySelector<HTMLElement| any>('.modal-transaction-difuminar2').style.display="none";
+        document.querySelector<HTMLElement| any>('.modal-transaction-difuminar3').style.display="none";
+        document.querySelector<HTMLElement| any>('.modal-transaction-difuminar4').style.display="none";
+        document.querySelector<HTMLElement| any>('.modal-transaction-difuminar5').style.display="none";
+        document.querySelector<HTMLElement| any>('.modal-transaction-difuminar6').style.display="none";
 
         setreasonCancel(true);
         setTimeout(() => {
             e.target.parentNode.parentNode.classList.add('animation-left-transaction')
-            const insert = document.querySelector('.insertAnimation');
+            const insert:any = document.querySelector('.insertAnimation');
             const div = document.createElement('div');
             div.classList.add('animationReasons');
             setTimeout(() => {
@@ -60,20 +60,20 @@ export const OptionList = (props) => {
         }, 0);
        
     }
-    const handleClickFinish = (e) => {
+    const handleClickFinish = (e:any) => {
        e.preventDefault();
        
-       document.querySelector('.modal-transaction-difuminar1').style.display="none";
-       document.querySelector('.modal-transaction-difuminar2').style.display="none";
-       document.querySelector('.modal-transaction-difuminar3').style.display="none";
-       document.querySelector('.modal-transaction-difuminar4').style.display="none";
-       document.querySelector('.modal-transaction-difuminar5').style.display="none";
-       document.querySelector('.modal-transaction-difuminar6').style.display="none";
+       document.querySelector<HTMLElement| any>('.modal-transaction-difuminar1').style.display="none";
+       document.querySelector<HTMLElement| any>('.modal-transaction-difuminar2').style.display="none";
+       document.querySelector<HTMLElement| any>('.modal-transaction-difuminar3').style.display="none";
+       document.querySelector<HTMLElement| any>('.modal-transaction-difuminar4').style.display="none";
+       document.querySelector<HTMLElement| any>('.modal-transaction-difuminar5').style.display="none";
+       document.querySelector<HTMLElement| any>('.modal-transaction-difuminar6').style.display="none";
 
        setfinishModal(true);
        setTimeout(() => {
         e.target.parentNode.parentNode.classList.add('animation-left-transaction')
-        const insert = document.querySelector('.insertAnimation');
+        const insert:any = document.querySelector('.insertAnimation');
         const div = document.createElement('div');
         div.classList.add('animationReasons');
         setTimeout(() => {

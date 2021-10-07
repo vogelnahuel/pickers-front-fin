@@ -3,13 +3,13 @@ import volver from 'assets/admin/PendingUser/volver.svg'
 import api from 'middleware/api';
 import './undelivered.css'
 
-export const Undelivered = (props) => {
+export const Undelivered = (props:any) => {
 
     const setundelivered = props.setundelivered;
     const setfinishModal = props.setfinishModal;
     const FilterSelectedTransaction=props.FilterSelectedTransaction
 
-const [messages, setmessages] = useState([])
+const [messages, setmessages] = useState<any>([])
 const [idSelected, setidSelected] = useState(-1)
 
 
@@ -33,7 +33,7 @@ const [idSelected, setidSelected] = useState(-1)
   //  const opc = [{key:1,value:'No logro contactar al cliente'},{key:2,value:'El paquete es incorrecto'},{key:3,value:'El cliente rechaza el paquete'}]
 
 
-    const handleClickgoBack = (e) => {
+    const handleClickgoBack = (e:any) => {
         
         e.target.parentNode.parentNode.parentNode.classList.add('animation-right-transaction')
 
@@ -52,7 +52,7 @@ const [idSelected, setidSelected] = useState(-1)
 
         
 }
-const handleClick  = async (e) => {
+const handleClick  = async (e:any) => {
     e.preventDefault();
     
   
@@ -79,7 +79,7 @@ const handleClick  = async (e) => {
                     
                    
                     {
-                        messages ? messages.map(opcion => (
+                        messages ? messages.map( (opcion:any) => (
                             <div  onClick={  ()=>setidSelected(parseInt(opcion.id)) } key={opcion.id} className={opcion.id===idSelected ? "modal-undelivered-opc-div modal-undelivered-font-bold" : "modal-undelivered-opc-div"} >
                              
                                 <p  key={opcion.id}  id={opcion.id} className="modal-undelivered-opc"> {opcion.message}</p>
