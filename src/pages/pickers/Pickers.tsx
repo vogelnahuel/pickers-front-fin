@@ -2,7 +2,7 @@ import React from "react";
 import { Header } from "component/admin/Header/Header";
 import { Nav } from "component/admin/Nav/Nav";
 import "pages/pickers/Pickers.scss";
-import { PendingBlue } from "component/admin/Sub-Title-Image/PendingBlue";
+import { PickerStatusButton } from "component/admin/Sub-Title-Image/PickerStatusButton";
 import exportar from "assets/admin/PendingUser/exportar.svg";
 import or from "assets/admin/PendingUser/or.svg";
 import FilterPickers from "pages/pickers/filter/FilterPickersContainer";
@@ -28,7 +28,7 @@ export const PendingUserAdmin:  React.FC<PickerTypes> = ({
       <div className="mainContainerFlex">
         <Nav isDirty={null} showNotification={null} />
         <div className="pending-container">
-          <PendingBlue
+          <PickerStatusButton
             showNotification={null}
             isDirty={null}
             isDetail={null}

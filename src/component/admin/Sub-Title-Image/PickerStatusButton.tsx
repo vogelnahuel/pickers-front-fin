@@ -9,10 +9,11 @@ import {useHistory} from 'react-router-dom';
 import {selectors as pendingUserAdminPickerSelectors} from "reducers/detailPicker";
 import {connect} from "react-redux";
 import {actions as notificationActions} from "reducers/notification";
-
-export const PendingBlue = ({ showNotification, changePage, actualPage, isDirty,isDetail }) => {
+import { StateType } from 'reducers/types/detailPicker';
+//PickerStatusButton
+export const PickerStatusButton = ({ showNotification, changePage, actualPage, isDirty,isDetail }:{ showNotification?:any, changePage?:any, actualPage?:any, isDirty?:any,isDetail?:any }) => {
     const Historial = useHistory();
-    const handleHistory = (e) => {
+    const handleHistory = (e:any) => {
         let onClose = ()=>{
             Historial.goBack();
         };
@@ -76,14 +77,14 @@ export const PendingBlue = ({ showNotification, changePage, actualPage, isDirty,
     )
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state:StateType) => ({
     isDirty: pendingUserAdminPickerSelectors.isDirty(state),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-    showNotification: (content) => {
+const mapDispatchToProps = (dispatch:Function) => ({
+    showNotification: (content:any) => {//falta tipar show notification
         dispatch(notificationActions.showNotification(content));
     },
 });
 
-export default connect(mapStateToProps,mapDispatchToProps)(PendingBlue);
+export default connect(mapStateToProps,mapDispatchToProps)(PickerStatusButton);

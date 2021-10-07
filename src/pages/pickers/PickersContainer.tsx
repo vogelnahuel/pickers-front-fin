@@ -3,10 +3,10 @@ import { connect } from "react-redux";
 import { actions as pendingUserActions, selectors as pendingUserSelectors} from "reducers/pickers";
 import { PendingUserAdmin } from "pages/pickers/Pickers";
 import {titulosAdminPending,titulosAdminActive} from "utils/constants"
-import { ChangePageTypes, PickersParamsType, PickersContainerTypes, ParamsTypeMiddleware, PickerTypes } from "./types";
+import { ChangePageTypes, PickersParamsType, PickersContainerTypes, ParamsTypeMiddleware, PickerContainerTypes } from "./types";
 import { StateType } from "reducers/types/pickers";
 
-const PendingUserAdminContainer:React.FC<PickerTypes> = (props:PickersContainerTypes):JSX.Element => {
+const PendingUserAdminContainer:React.FC<PickerContainerTypes> = (props:PickersContainerTypes):JSX.Element => {
    
     const changePage = (page:ChangePageTypes) => {
         props.setActualPage(page);
@@ -25,10 +25,9 @@ const PendingUserAdminContainer:React.FC<PickerTypes> = (props:PickersContainerT
 
     return (
         <PendingUserAdmin
-            {...props}
+             {...props}
             changePage={changePage}
-            tableTitles={props.actualPage==="PENDING"?titulosAdminPending:titulosAdminActive
-        }
+            tableTitles={props.actualPage==="PENDING"?titulosAdminPending:titulosAdminActive}
         />
     );
 };

@@ -3,7 +3,7 @@ import {Header} from 'component/admin/Header/Header'
 import Nav from 'component/admin/Nav/Nav'
 import 'pages/pickers/Pickers.scss'
 import 'pages/pickers/detailPicker/DetailPicker.scss'
-import PendingBlue from 'component/admin/Sub-Title-Image/PendingBlue'
+import PickerStatusButton from 'component/admin/Sub-Title-Image/PickerStatusButton'
 import {Input} from "component/inputs/Input"
 import {Switch} from "component/inputs/switch"
 import motorcycle from 'assets/admin/PendingUserAdminPicker/motorcycle.svg'
@@ -41,7 +41,7 @@ export const DetailPicker:React.FC<DetailPickerTypeProps> = (
             <div className="mainContainerFlex">
                 <Nav/>
                 <div className="pending-container">
-                    <PendingBlue changePage={changePage} actualPage={actualPage} isDetail={true}/>
+                    <PickerStatusButton changePage={changePage} actualPage={actualPage} isDetail={true}/>
                     <div>
                 </div>
                     <div

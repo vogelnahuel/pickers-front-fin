@@ -96,12 +96,12 @@ export type DocumentationType = {
   vehicleType: string;
 };
 
-export type PickerTypes = {
-  pendingUsers: any;
+export type PickerContainerTypes = {
+  pendingUsers: DocumentationType[];
   isFetching: boolean;
-  filters: any;
-  filtersExtra: any;
-  filtersExtraSeeMore: any;
+  filters: PickersParamsType;
+  filtersExtra: PickersParamsType;
+  filtersExtraSeeMore: PickersParamsType;
   seeMore: boolean;
   pag: string;
   actualPage: string;
@@ -112,8 +112,26 @@ export type PickerTypes = {
   setActualPage: Function;
   getPendingUsersExportRequest: Function;
   getMorePendingUser: Function;
-  changePage:Function;
-  tableTitles:string[];
+};
+
+export type PickerTypes = {
+  pendingUsers: any;
+  isFetching: any;
+  filters: any;
+  filtersExtra: any;
+  filtersExtraSeeMore: any;
+  seeMore: any;
+  pag: any;
+  actualPage: any;
+  reset: Function;
+  getPendingUser: Function;
+  setPendingUserFilters: Function;
+  setPendingUserExtraFilters: Function;
+  setActualPage: Function;
+  getPendingUsersExportRequest: Function;
+  getMorePendingUser: Function;
+  changePage: Function;
+  tableTitles: string[];
 };
 
 export type PickersAxiosResponseType = {
