@@ -1,7 +1,7 @@
 import React, {  } from "react";
-import Okey from "../../../../assets/transaction/Okey.svg";
-import Connector from "../../../../assets/transaction/Connector.svg";
-import Cancel from "../../../../assets/transaction/Cancel.svg";
+import Okey from "assets/transaction/Okey.svg";
+import Connector from "assets/transaction/Connector.svg";
+import Cancel from "assets/transaction/Cancel.svg";
 import "./history.css";
 import { Form, Field } from "react-final-form";
 import {ISO8601toDDMMYYYHHMM} from 'utils/iso8601toDDMMYYHHMM'
@@ -12,7 +12,7 @@ export const History = (props) => {
 
   
   const FilterTransaction = props.FilterTransaction;
-  const FilterTransactionHistory = props.FilterTransaction.transactionHistory;
+  const FilterTransactionHistory = props.FilterTransaction?.transactionHistory;
   
 
   let FilterTransactionHistoryReverse =  FilterTransactionHistory ? JSON.parse(JSON.stringify(FilterTransactionHistory)) : [];
@@ -84,13 +84,13 @@ export const History = (props) => {
         onSubmit={() => {}}
         initialValues={{
           //nroTransaccion: FilterTransaction.transaction ? FilterTransaction.transaction.id : 0,
-          codArea:FilterTransaction.picker && FilterTransaction.picker.phone?FilterTransaction.picker.phone.areaNumber:"",
-          PickerId: FilterTransaction.picker && FilterTransaction.picker.id!==null? FilterTransaction.picker.id  : "Sin asignar",
-          Picker: FilterTransaction.picker && FilterTransaction.picker.name!==null ? FilterTransaction.picker.name+ ' ' +FilterTransaction.picker.surname : "Sin asignar",
-          Telefono: FilterTransaction.picker && FilterTransaction.picker.phone ? FilterTransaction.picker.phone.number:"",
-          dirEntrega : FilterTransaction.destination ? FilterTransaction.destination.formattedAddress : "" ,
-          dirRetiro : FilterTransaction.origin ? FilterTransaction.origin.formattedAddress : "",
-          Retailer: FilterTransaction.seller ? FilterTransaction.seller.name  : "",
+          codArea:FilterTransaction && FilterTransaction.picker && FilterTransaction.picker.phone?FilterTransaction.picker.phone.areaNumber:"",
+          PickerId: FilterTransaction && FilterTransaction.picker && FilterTransaction.picker.id!==null? FilterTransaction.picker.id  : "Sin asignar",
+          Picker: FilterTransaction && FilterTransaction.picker && FilterTransaction.picker.name!==null ? FilterTransaction.picker.name+ ' ' +FilterTransaction.picker.surname : "Sin asignar",
+          Telefono: FilterTransaction && FilterTransaction.picker && FilterTransaction.picker.phone ? FilterTransaction.picker.phone.number:"",
+          dirEntrega :FilterTransaction &&  FilterTransaction.destination ? FilterTransaction.destination.formattedAddress : "" ,
+          dirRetiro :FilterTransaction && FilterTransaction.origin ? FilterTransaction.origin.formattedAddress : "",
+          Retailer:FilterTransaction && FilterTransaction.seller ? FilterTransaction.seller.name  : "",
         }}
       >
         {({ handleSumbit }) => (
@@ -226,8 +226,8 @@ export const History = (props) => {
           <hr className="modal-transaction-separate-option" />
           <Form onSubmit={()=>{}}
           initialValues={{
-            NomyApe: FilterTransaction.client ? FilterTransaction.client.name+" "+ FilterTransaction.client.lastName: "",
-            TelefonoConFinal: FilterTransaction.client ? FilterTransaction.client.phone: "",
+            NomyApe:FilterTransaction && FilterTransaction.client ? FilterTransaction.client.name+" "+ FilterTransaction.client.lastName: "",
+            TelefonoConFinal:FilterTransaction && FilterTransaction.client ? FilterTransaction.client.phone: "",
             
           }}
           >
@@ -331,7 +331,7 @@ export const History = (props) => {
            
               
               <p className="modal-transaction-part-subtitle">Pendiente de asignación</p>
-                <p className="modal-transaction-part-info">{ Object.keys(FilterTransaction).length !== 0 && FilterTransaction.transaction ?   ISO8601toDDMMYYYHHMM(FilterTransaction.transaction.minDeliveryDateTime)  : ""}     </p>
+                <p className="modal-transaction-part-info">{FilterTransaction && Object.keys(FilterTransaction).length !== 0 && FilterTransaction.transaction ?   ISO8601toDDMMYYYHHMM(FilterTransaction.transaction.minDeliveryDateTime)  : ""}     </p>
             </div>
             <div className="modal-transaction-part">
                       <img
@@ -344,7 +344,7 @@ export const History = (props) => {
             <div className="modal-transaction-part">
               <img src={Okey} alt="okey" className="modal-transaction-img-okey" />
               <p className="modal-transaction-part-subtitle">Creación</p>
-                <p className="modal-transaction-part-info">{ Object.keys(FilterTransaction).length !== 0 && FilterTransaction.transaction ? ISO8601toDDMMYYYHHMM(FilterTransaction.transaction.createdAt)  : ""}   </p>
+                <p className="modal-transaction-part-info">{ FilterTransaction &&Object.keys(FilterTransaction).length !== 0 && FilterTransaction.transaction ? ISO8601toDDMMYYYHHMM(FilterTransaction.transaction.createdAt)  : ""}   </p>
             </div>
             
           </section>

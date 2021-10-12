@@ -4,11 +4,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import pickersLogo from "./../../assets/login/PickersLogo.svg";
 import canguro from "./../../assets/login/Canguro.svg";
 import { Link } from "react-router-dom";
-import {LoginTypeProps} from "./types";
-import { Form, Field } from "react-final-form";
+import {LoginType, LoginTypeProps} from "./types";
+import { Field, withTypes } from "react-final-form";
 import { Input } from "component/inputs/Input";
 import useValidationSchema from "hooks/useValidationSchema";
 import NotificationModal from "component/modal/NotificationModal";
+const { Form } = withTypes<LoginType>()
 
 const Login: React.FC<LoginTypeProps> = ({
   postLogin,
@@ -20,7 +21,7 @@ const Login: React.FC<LoginTypeProps> = ({
     <div className="background-login">
       <img src={pickersLogo} className="pickersLogo_login" alt="" />
       <Form
-        onSubmit={postLogin}
+        onSubmit={(values:LoginType)=>postLogin(values)}
         validate={useValidationSchema(validationSchema)}
       >
         {({ handleSubmit}) => (
@@ -42,7 +43,7 @@ const Login: React.FC<LoginTypeProps> = ({
               id="password"
               type="password"
               name="password"
-              label="Password"
+              label="Contraseña"
               animated
               className="Admin-Pickers-input"
               component={Input}
