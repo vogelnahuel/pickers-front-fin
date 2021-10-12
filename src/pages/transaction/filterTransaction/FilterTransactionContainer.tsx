@@ -5,11 +5,15 @@ import {FilterTransaction} from "pages/transaction/filterTransaction/FilterTrans
 import moment from "moment";
 import * as yup from "yup";
 import {VALIDATION_REGEX} from "utils/constants";
+import { AppDispatch, RootState } from "store";
+import { FilterTransactionsType } from "sagas/types/transactions";
+import { DateType, FilterContainerPropsType, FilterDateType, FilterValuesType } from "./types";
+import { SetFilterType } from "reducers/types/transaction";
 
-const FilterTransactionContainer = (props) => {
+const FilterTransactionContainer:React.FC<FilterContainerPropsType> = (props):JSX.Element => {
 
-    const formatDate = (date) => {
-        let result ={};
+    const formatDate = (date:DateType):FilterDateType => {
+        let result:FilterDateType={};
         if (date) {
             result.date=date;
             if (moment(date.from, "DD/MM/YYYY").isValid()) {
@@ -26,7 +30,7 @@ const FilterTransactionContainer = (props) => {
         return result;
     };
 
-    const takeFilters = (values) => {
+    const takeFilters = (values:FilterValuesType) => {
         let formatedDate = formatDate(values.date);
         return {
             ...formatedDate,
@@ -36,10 +40,10 @@ const FilterTransactionContainer = (props) => {
             transactionCode: values.transactionCode
         };
     };
+  
 
-    const onSubmit = (values) => {
+    const onSubmit = (values:FilterValuesType) => {
         let filtersApplied = takeFilters(values);
-
         props.getTransactions({...filtersApplied, ...props.filtersExtra});
         props.setFilters(filtersApplied);
     };
@@ -62,20 +66,20 @@ const FilterTransactionContainer = (props) => {
 }
 
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state:RootState) => ({
     filters: transactionSelectors.getFilters(state),
     filtersExtra: transactionSelectors.getFiltersExtra(state),
 });
 
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch:AppDispatch) => ({
     reset: () => {
         dispatch(transactionActions.reset());
     },
-    getTransactions: (params) => {
+    getTransactions: (params:FilterTransactionsType) => {
         dispatch(transactionActions.getTransactionsRequest(params));
     },
-    setFilters: (filters) => {
+    setFilters: (filters:SetFilterType) => {
         dispatch(transactionActions.setTransactionFilters(filters));
     },
 });

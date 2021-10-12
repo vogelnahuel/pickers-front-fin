@@ -10,7 +10,7 @@ import { VALIDATION_REGEX } from "utils/constants";
 import { LoginContainerType, LoginType } from "./types";
 import { AppDispatch, RootState } from "../../store";
 
-const LoginContainer = (props: LoginContainerType): JSX.Element => {
+const LoginContainer: React.FC<LoginContainerType>= (props): JSX.Element => {
   const validationSchema: yup.SchemaOf<LoginType> = yup.object({
     email: yup
       .string()

@@ -5,11 +5,12 @@ import {selectors as pendingUserAdminPickerSelectors} from "reducers/detailPicke
 import {actions as notificationActions} from "reducers/notification";
 import {connect} from "react-redux";
 
-export const Nav = ({ isDirty, showNotification }) => {
+export const Nav = ({ isDirty, showNotification }:any) => {
     const Historial = useHistory();
-    let Location =useParams().id;
+    let Location:any =useParams()
+    Location = Location.id;
 
-    const handleClick =  (e) => {
+    const handleClick =  (e:any) => {
         e.preventDefault();
         let onClose = ()=>{
             Historial.push(e.target.pathname);
@@ -56,12 +57,12 @@ export const Nav = ({ isDirty, showNotification }) => {
 };
 
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state:any) => ({
     isDirty: pendingUserAdminPickerSelectors.isDirty(state),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-    showNotification: (content) => {
+const mapDispatchToProps = (dispatch:any) => ({
+    showNotification: (content:any) => {
         dispatch(notificationActions.showNotification(content));
     },
 });
