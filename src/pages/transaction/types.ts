@@ -19,7 +19,6 @@ export type URLTransactionContainerType = {
   inAlert?: boolean;
 };
 export type TransactionContainerPropsType = {
-
   isFetching: boolean;
   isExportDisabled: boolean;
   transactions: TransactionResponseTypeResult[];
