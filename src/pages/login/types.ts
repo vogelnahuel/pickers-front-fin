@@ -1,11 +1,11 @@
 
 export type LoginTypeProps= {
-  postLogin: any;
+  postLogin: Function;
   isFetching: boolean;
   validationSchema: Object
 }
 export type LoginContainerType = {
-  postLogin: any;
+  postLogin: Function;
   isFetching: boolean;
 }
 

@@ -21,7 +21,7 @@ const Login: React.FC<LoginTypeProps> = ({
     <div className="background-login">
       <img src={pickersLogo} className="pickersLogo_login" alt="" />
       <Form
-        onSubmit={postLogin}
+        onSubmit={(values:LoginType)=>postLogin(values)}
         validate={useValidationSchema(validationSchema)}
       >
         {({ handleSubmit}) => (

@@ -46,7 +46,7 @@ export const DashboardAdmin: React.FC<DashboardTypes> = ({dashboard,isFetching})
                             title="En alerta"
                             number={dashboard.inAlertTransactions?.toString()}
                             backgroundColor="#FF8F76"
-                            url={`/transaction?inAlert=true&minMinDeliveryDate=${moment().subtract(4,'d').format('YYYY-MM-DD')}&maxMinDeliveryDate=${moment().format("YYYY-MM-DD")}`}
+                            url={`/transaction?inAlert=${true}&minMinDeliveryDate=${moment().subtract(4,'d').format('YYYY-MM-DD')}&maxMinDeliveryDate=${moment().format("YYYY-MM-DD")}`}
                         />
                     </div>
                 </div>
