@@ -6,11 +6,11 @@ import {useLocation} from "react-router-dom";
 import parseQueryParams from "utils/parseQueryParams"
 import moment from "moment";
 import { AppDispatch, RootState } from "store";
-import { TransactionContainerType, URLTransactionContainerType } from "./types";
+import { TransactionContainerPropsType, URLTransactionContainerType } from "./types";
 import { FilterTransactionsType } from "sagas/types/transactions";
 import { SetFilterExtraType, SetFilterType } from "reducers/types/transaction";
 
-const TransactionContainer: React.FC<TransactionContainerType> = (props):JSX.Element => {
+const TransactionContainer: React.FC<TransactionContainerPropsType> = (props):JSX.Element => {
     const params = useLocation()
     const [resolutionHeightModal, setresolutionHeightModal] = useState(550)
 
@@ -37,7 +37,7 @@ const TransactionContainer: React.FC<TransactionContainerType> = (props):JSX.Ele
     }, [])
 
     return (
-        <Transaction  transactions={[]} getMoreTransactions={Function} getTransactionsExportRequest={Function} {...props}/>
+        <Transaction  resolutionHeightModal={resolutionHeightModal} {...props}/>
     );
 }
 

@@ -15,10 +15,10 @@ import api from "middleware/api";
 import stateName from "component/transaction/tableTransaction/statesNames";
 import {ISO8601toDDMMYYYHHMM} from 'utils/iso8601toDDMMYYHHMM'
 import NotificationModal from "component/modal/NotificationModal";
-import {  TransactionContainerPropsType } from "./types";
+import { TransactionType } from "./types";
 import { TransactionResponseTypeResult } from "sagas/types/transactions";
 
-export const Transaction = ({
+export const Transaction: React.FC<TransactionType>  = ({
                                 isExportDisabled,
                                 isFetching,
                                 transactions,
@@ -28,7 +28,7 @@ export const Transaction = ({
                                 seeMore,
                                 filtersExtraSeeMore,
                                 resolutionHeightModal,
-                            }:TransactionContainerPropsType):JSX.Element => {
+                            }):JSX.Element => {
 
     const [FilterSelectedTransaction, setFilterSelectedTransaction] = useState<TransactionResponseTypeResult>();
     const [OpenModalTransaction, setOpenModalTransaction] = useState(false);

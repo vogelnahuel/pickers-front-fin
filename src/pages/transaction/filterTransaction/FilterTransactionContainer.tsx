@@ -10,11 +10,12 @@ import { FilterTransactionsType } from "sagas/types/transactions";
 import { DateType, FilterContainerPropsType, FilterDateType, FilterValuesType } from "./types";
 import { SetFilterType } from "reducers/types/transaction";
 
-const FilterTransactionContainer = (props:FilterContainerPropsType):JSX.Element => {
+const FilterTransactionContainer:React.FC<FilterContainerPropsType> = (props):JSX.Element => {
 
     const formatDate = (date:DateType):FilterDateType => {
         let result:FilterDateType={};
         if (date) {
+            result.date=date;
             if (moment(date.from, "DD/MM/YYYY").isValid()) {
                 result.minMinDeliveryDate = moment(
                     date.from,

@@ -1,3 +1,4 @@
+
 import { FilterTransactionsType, TransactionResponseTypeResult } from "sagas/types/transactions"
 
 
@@ -21,17 +22,18 @@ export type TransactionStateType={
     exportDisabled: boolean,
     transactions:TransactionResponseTypeResult[],
     filters: FilterTransactionsType,
-    filtersExtra:{
-        limit: number,
-        offset: number
-    },
-    filtersExtraSeeMore: {
-        limit:number,
-        offset: number
-    },
+    filtersExtra:FiltersExtraType,
+    filtersExtraSeeMore: FiltersExtraSeeMoreType,
     seeMore:boolean,
 }
-
+export type FiltersExtraSeeMoreType={
+    limit:number,
+    offset: number
+}
+export type FiltersExtraType={
+    limit:number,
+    offset: number
+}
 export type GetTransactionsSuccessType={
     items:TransactionResponseTypeResult[]
     limit:number
