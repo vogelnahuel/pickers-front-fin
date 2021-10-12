@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import pickersLogo from "./../../assets/login/PickersLogo.svg";
 import canguro from "./../../assets/login/Canguro.svg";
 import { Link } from "react-router-dom";
-import {LoginTypeProps} from "./types";
+import {LoginType, LoginTypeProps} from "./types";
 import { Form, Field } from "react-final-form";
 import { Input } from "component/inputs/Input";
 import useValidationSchema from "hooks/useValidationSchema";
@@ -20,7 +20,7 @@ const Login: React.FC<LoginTypeProps> = ({
     <div className="background-login">
       <img src={pickersLogo} className="pickersLogo_login" alt="" />
       <Form
-        onSubmit={postLogin}
+        onSubmit={(values:LoginType)=>postLogin(values)}
         validate={useValidationSchema(validationSchema)}
       >
         {({ handleSubmit}) => (

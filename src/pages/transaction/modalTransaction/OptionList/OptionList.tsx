@@ -4,20 +4,20 @@ import { FinishModal } from './finish/FinishModal'
 import { ReasonsCanceledConfirm } from './reasonsCanceledConfirm/ReasonsCanceledConfirm'
 import { ReasonsCanceled } from './reasonsCanceled/ReasonsCanceled'
 import { History } from './history/History.js'
-import Reload from '../../../assets/transaction/Reload.svg'
+import Reload from 'assets/transaction/Reload.svg'
 //import {useDispatch} from 'react-redux'
-import api from '../../../middleware/api'
+import api from 'middleware/api'
 import { DniFinish } from './dniFinish/DniFinish'
 import { Undelivered } from './undelivered/Undelivered'
 //import { changeTest } from '../../../actions/transactionAction'
 
 
-export const OptionList = (props) => {
+export const OptionList = (props:any) => {
 
     //const dispatch = useDispatch()
     const FilterSelectedTransaction = props.FilterSelectedTransaction
     const setisFetchingModal = props.setisFetchingModal;
-    
+   
     const [history, sethistory] = useState(true)
     const [reasonCancel, setreasonCancel] = useState(false);
     const [reasonCancelConfirm, setreasonCancelConfirm] = useState(false);
@@ -29,23 +29,23 @@ export const OptionList = (props) => {
 
     const [reasonId, setreasonId] = useState({})
 
-    const handleClickCancel = (e) => {
+    const handleClickCancel = (e:any) => {
 
         //dispatch(changeTest ("test2") )
 
         e.preventDefault();  
 
-        document.querySelector('.modal-transaction-difuminar1').style.display="none";
-        document.querySelector('.modal-transaction-difuminar2').style.display="none";
-        document.querySelector('.modal-transaction-difuminar3').style.display="none";
-        document.querySelector('.modal-transaction-difuminar4').style.display="none";
-        document.querySelector('.modal-transaction-difuminar5').style.display="none";
-        document.querySelector('.modal-transaction-difuminar6').style.display="none";
+        document.querySelector<HTMLElement| any>('.modal-transaction-difuminar1').style.display="none";
+        document.querySelector<HTMLElement| any>('.modal-transaction-difuminar2').style.display="none";
+        document.querySelector<HTMLElement| any>('.modal-transaction-difuminar3').style.display="none";
+        document.querySelector<HTMLElement| any>('.modal-transaction-difuminar4').style.display="none";
+        document.querySelector<HTMLElement| any>('.modal-transaction-difuminar5').style.display="none";
+        document.querySelector<HTMLElement| any>('.modal-transaction-difuminar6').style.display="none";
 
         setreasonCancel(true);
         setTimeout(() => {
             e.target.parentNode.parentNode.classList.add('animation-left-transaction')
-            const insert = document.querySelector('.insertAnimation');
+            const insert:any = document.querySelector('.insertAnimation');
             const div = document.createElement('div');
             div.classList.add('animationReasons');
             setTimeout(() => {
@@ -60,20 +60,20 @@ export const OptionList = (props) => {
         }, 0);
        
     }
-    const handleClickFinish = (e) => {
+    const handleClickFinish = (e:any) => {
        e.preventDefault();
        
-       document.querySelector('.modal-transaction-difuminar1').style.display="none";
-       document.querySelector('.modal-transaction-difuminar2').style.display="none";
-       document.querySelector('.modal-transaction-difuminar3').style.display="none";
-       document.querySelector('.modal-transaction-difuminar4').style.display="none";
-       document.querySelector('.modal-transaction-difuminar5').style.display="none";
-       document.querySelector('.modal-transaction-difuminar6').style.display="none";
+       document.querySelector<HTMLElement| any>('.modal-transaction-difuminar1').style.display="none";
+       document.querySelector<HTMLElement| any>('.modal-transaction-difuminar2').style.display="none";
+       document.querySelector<HTMLElement| any>('.modal-transaction-difuminar3').style.display="none";
+       document.querySelector<HTMLElement| any>('.modal-transaction-difuminar4').style.display="none";
+       document.querySelector<HTMLElement| any>('.modal-transaction-difuminar5').style.display="none";
+       document.querySelector<HTMLElement| any>('.modal-transaction-difuminar6').style.display="none";
 
        setfinishModal(true);
        setTimeout(() => {
         e.target.parentNode.parentNode.classList.add('animation-left-transaction')
-        const insert = document.querySelector('.insertAnimation');
+        const insert:any = document.querySelector('.insertAnimation');
         const div = document.createElement('div');
         div.classList.add('animationReasons');
         setTimeout(() => {
@@ -138,11 +138,11 @@ export const OptionList = (props) => {
                                     
 
                                     
-                                    { FilterSelectedTransaction.transaction  && (FilterSelectedTransaction.transaction.state.id === 1 || FilterSelectedTransaction.transaction.state.id === 2 || FilterSelectedTransaction.transaction.state.id === 3 || FilterSelectedTransaction.transaction.state.id === 4 )?
+                                    { FilterSelectedTransaction && FilterSelectedTransaction.transaction  && (FilterSelectedTransaction.transaction.state.id === 1 || FilterSelectedTransaction.transaction.state.id === 2 || FilterSelectedTransaction.transaction.state.id === 3 || FilterSelectedTransaction.transaction.state.id === 4 )?
                                     <>
                                     <button onClick={handleClickCancel} className="modal-transaction-finish-enabled">Cancelar</button>
                                     <button disabled={true} onClick={handleClickFinish} className="modal-transaction-cancel-disabled">Finalizar</button>
-                                    </>: FilterSelectedTransaction.transaction  && (FilterSelectedTransaction.transaction.state.id === 5 || FilterSelectedTransaction.transaction.state.id === 6 || FilterSelectedTransaction.transaction.state.id === 7 || FilterSelectedTransaction.transaction.state.id === 8 )?  <>
+                                    </>:FilterSelectedTransaction &&  FilterSelectedTransaction.transaction  && (FilterSelectedTransaction.transaction.state.id === 5 || FilterSelectedTransaction.transaction.state.id === 6 || FilterSelectedTransaction.transaction.state.id === 7 || FilterSelectedTransaction.transaction.state.id === 8 )?  <>
                                     <button disabled={true} onClick={handleClickCancel} className="modal-transaction-finish-disabled">Cancelar</button>
                                     <button onClick={handleClickFinish} className="modal-transaction-cancel-enabled">Finalizar</button>
                                     </>: <>

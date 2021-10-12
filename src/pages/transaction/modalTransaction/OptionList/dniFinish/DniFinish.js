@@ -1,9 +1,9 @@
 import React,{useState} from 'react'
-import volver from '../../../../assets/admin/PendingUser/volver.svg'
-import Card from '../../../../assets/transaction/Card.svg'
+import volver from 'assets/admin/PendingUser/volver.svg'
+import Card from 'assets/transaction/Card.svg'
 import {Form,Field} from 'react-final-form'
 import './dniFinish.css'
-import api from '../../../../middleware/api'
+import api from 'middleware/api'
 
 export const DniFinish = (props) => {
     
