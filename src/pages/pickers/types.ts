@@ -1,21 +1,3 @@
-// export type PickersContainerTypes = {
-//   reset: Function;
-//   getPendingUser: Function;
-//   setPendingUserFilters: Function;
-//   setPendingUserExtraFilters: Function;
-//   setActualPage: Function;
-//   getPendingUsersExportRequest: Function;
-//   getMorePendingUser: Function;
-//   pendingUsers: Object;
-//   isFetching: Object;
-//   filters: Object;
-//   filtersExtra: Object;
-//   filtersExtraSeeMore: Object;
-//   seeMore: Object;
-//   pag: Object;
-//   actualPage: Object;
-// };
-
 export type ChangePageTypes = {
   props: {
     setActualPage: Function;

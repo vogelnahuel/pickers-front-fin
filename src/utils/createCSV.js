@@ -1,5 +1,4 @@
 const createCSV=(datosExport) => {//preguntar
-    console.log(datosExport,"datosExport")
     //TODO: tipar
 
     ///datos.export .data es la informacion en CSV ,  el tipo de salida text/csv

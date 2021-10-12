@@ -1,3 +1,5 @@
+import { PickerType } from "pages/pickers/types";
+
 export type DetailPickerTypes = {
   PENDING_USER_ADMIN_PICKER_GET_REQUEST: string;
   PENDING_USER_ADMIN_PICKER_GET_SUCCESS: string;
@@ -31,12 +33,11 @@ export type SelectorType = {
   getPendingUserPicker: Function;
 };
 
-export type StateType = {
+export type DetailPickerStateType = {
   fetching: boolean;
   dirty: boolean;
   nameDisplay: String;
-  pendingUserAdminPicker: object;
-  pendingUserAdminPickerExport: object;
+  pendingUserAdminPicker: PickerType | object;
 };
 
 export type ActionType = {

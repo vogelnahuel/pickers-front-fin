@@ -1,11 +1,9 @@
 import {
   call,
   CallEffect,
-  CallEffectDescriptor,
-  put,
+   put,
   PutEffect,
-  SimpleEffect,
-  takeLatest,
+   takeLatest,
 } from "redux-saga/effects";
 import {
   actions as pickersActions,
@@ -193,7 +191,6 @@ function* getPendingUserPicker({
   if (response.status !== 200) {
     yield put(detailPickerActions.getPendingUserPickerError());
   } else {
-    console.log(response);
     const { result } = response.data;
     yield put(detailPickerActions.getPendingUserPickerSuccess(result));
     yield put(
@@ -255,7 +252,7 @@ function* getPendingUserPickerExport({
         element,
       })
     );
-    yield put(detailPickerActions.getPendingUserPickerExportSuccess(response));
+    yield put(detailPickerActions.getPendingUserPickerExportSuccess());
   }
 }
 

@@ -1,7 +1,7 @@
 import { PickerType, EditPickerResponseType, ParamsMiddlewareType, PickersExportResponseType } from "pages/pickers/types";
 import { ParamGetPendingUser } from "sagas/types/pickers";
 import { RootState } from "store";
-import { ActionType, SelectorType, StateType as DetailPickerStateType } from "./types/detailPicker";
+import { ActionType, SelectorType, DetailPickerStateType } from "./types/detailPicker";
 
 export const types:any = {
     PENDING_USER_ADMIN_PICKER_GET_REQUEST: `PENDING_USER_ADMIN_PICKER_GET_REQUEST`,
@@ -32,7 +32,6 @@ export const INITIAL_STATE:DetailPickerStateType = {
     dirty: false,
     nameDisplay: "",
     pendingUserAdminPicker: {},
-    pendingUserAdminPickerExport:{},
 };
 
 export const actions:ActionType = {
@@ -56,9 +55,8 @@ export const actions:ActionType = {
         params,
         element
     }),
-    getPendingUserPickerExportSuccess: (pendingUserAdminPickerExport:PickersExportResponseType) => ({
+    getPendingUserPickerExportSuccess: () => ({
         type: types.PENDING_USER_ADMIN_PICKER_EXPORT_GET_SUCCESS,
-        pendingUserAdminPickerExport
     }),
     getPendingUserPickerExportError: () => ({
         type: types.PENDING_USER_ADMIN_PICKER_EXPORT_GET_ERROR,
