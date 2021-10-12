@@ -64,12 +64,22 @@ function* getLogin({
           })
         );
         break;
+      case 403:
+        yield put(
+          notificationActions.showNotification({
+            level: "error",
+            title: "Usuario y/o contraseña inválidos",
+            body: "Tu usuario y/o contraseña ingresados son incorrectos. Por favor, ingresalos nuevamente.",
+            element,
+          })
+        );
+        break;
       default:
         yield put(
           notificationActions.showNotification({
             level: "error",
-            title: "Error de conexión",
-            body: "Hubo un error de comunicación con el servidor. Por favor, intentalo nuevamente",
+            title: "Error en nuestro servidor",
+            body: "Por favor, reintentalo nuevamente.",
             element,
           })
         );
@@ -112,8 +122,18 @@ function* getLoginEmail({
         yield put(
           notificationActions.showNotification({
             level: "error",
-            title: "Error de conexión",
-            body: "Hubo un error de comunicación con el servidor. Por favor, intentalo nuevamente",
+            title: "Email incorrecto",
+            body: "El email ingresado no corresponde con una cuenta ya creada en pickers. Por favor, ingresá otro.",
+            element,
+          })
+        );
+        break;
+      case 404:
+        yield put(
+          notificationActions.showNotification({
+            level: "error",
+            title: "Email incorrecto",
+            body: "El email ingresado no corresponde con una cuenta ya creada en pickers. Por favor, ingresá otro.",
             element,
           })
         );
@@ -122,12 +142,11 @@ function* getLoginEmail({
         yield put(
           notificationActions.showNotification({
             level: "error",
-            title: "Error de conexión",
-            body: "Hubo un error de comunicación con el servidor. Por favor, intentalo nuevamente",
+            title: "Error en nuestro servidor",
+            body: "Por favor, reintentalo nuevamente.",
             element,
           })
         );
-
         break;
     }
     yield put(actions.getLoginEmailError());
@@ -159,7 +178,17 @@ function* getLoginRestore({
 
   if (response.status !== 200) {
     switch (response.data.statusCode) {
-      case 400:
+      case 10003:
+        yield put(
+          notificationActions.showNotification({
+            level: "error",
+            title: "Código de verificación vencido",
+            body: "Se venció el plazo de recuperación de tu contraseña, Solicitala nuevamente.",
+            element,
+          })
+        );
+        break;
+      default:
         yield put(
           notificationActions.showNotification({
             level: "error",
@@ -168,7 +197,6 @@ function* getLoginRestore({
             element,
           })
         );
-
         break;
     }
     yield put(actions.getLoginREstoreError());

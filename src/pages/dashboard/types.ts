@@ -1,10 +1,12 @@
+import { DashboardType } from "sagas/types/dashboard";
+
 export type DashboardTypes = {
-  dashboard: any;
-  isFetching: any;
+  dashboard: DashboardType;
+  isFetching: boolean;
 };
 
 export type DashboardContainerTypes = {
-  dashboard: any;
+  dashboard: DashboardType;
   isFetching: boolean;
   getDashboard: Function;
 };
