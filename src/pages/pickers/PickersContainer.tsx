@@ -3,20 +3,14 @@ import { connect } from "react-redux";
 import { actions as pendingUserActions, selectors as pendingUserSelectors} from "reducers/pickers";
 import  {Pickers} from "pages/pickers/Pickers";
 import {titulosAdminPending,titulosAdminActive} from "utils/constants"
-import {  PickersParamsType, ParamsMiddlewareType, } from "./types";
+import {  PickersParamsType, ParamsMiddlewareType, PickerContainerTypes, } from "./types";
 import { AppDispatch, RootState } from "store";
 
-//const PendingUserAdminContainer:React.FC<PickerContainerTypes> = (props):JSX.Element => {
-const PendingUserAdminContainer:React.FC<any> = (props):JSX.Element => {
-    // const changePage = (page:ChangePageTypes) => {
-    //     props.setActualPage(page);
-    // };
-
+const PendingUserAdminContainer:React.FC<PickerContainerTypes> = (props):JSX.Element => {
 
     useEffect(() => {
         const filters = props.actualPage==="PENDING"?{pickerStatusId:"2,3"}:{pickerStatusId:"4,5"};
         const filtersExtra={limit:3};
-        //window.screen.height<770 ? 3 : 3
         props.setPendingUserExtraFilters(filtersExtra)
         props.setPendingUserFilters(filters);
         props.getPendingUser(({...filtersExtra, ...filters}));
@@ -26,7 +20,6 @@ const PendingUserAdminContainer:React.FC<any> = (props):JSX.Element => {
     return (
         <Pickers
              {...props}
-           // changePage={changePage}
             tableTitles={props.actualPage==="PENDING"?titulosAdminPending:titulosAdminActive}
         />
     );
@@ -39,7 +32,6 @@ const mapStateToProps = (state:RootState) => ({
     filtersExtra: pendingUserSelectors.getFiltersExtra(state),
     filtersExtraSeeMore: pendingUserSelectors.getFiltersExtraSeeMore(state),
     seeMore: pendingUserSelectors.getSeeMore(state),
-    sizePage: pendingUserSelectors.getSizePage(state),
     actualPage:pendingUserSelectors.getActualPage(state),
 });
 

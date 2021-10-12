@@ -1,4 +1,4 @@
-import { AcountDataType, BicycleType, PickerType, MotorcycleType, PhoneType, StatusType } from "../types";
+import { AcountDataType, PickerType, PhoneType, StatusType } from "../types";
 
 export type DetailPickerContainerTypeProps = {
   pendingUserAdminPicker: PickerType;

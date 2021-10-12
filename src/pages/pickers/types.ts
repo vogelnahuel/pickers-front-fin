@@ -102,7 +102,7 @@ export type PickerTypes = {
   filtersExtra: PickersParamsType;
   filtersExtraSeeMore: PickersParamsType;
   seeMore: boolean;
-  pag: Number;
+  tableTitles: string[];
   actualPage: String;
   reset: Function;
   getPendingUser: Function;
@@ -111,7 +111,6 @@ export type PickerTypes = {
   setActualPage: Function;
   getPendingUsersExportRequest: Function;
   getMorePendingUser: Function;
-  tableTitles: string[];
 };
 
 export type PickersAxiosResponseType = {
