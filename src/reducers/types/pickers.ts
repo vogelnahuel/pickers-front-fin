@@ -1,6 +1,6 @@
 import {
-  DocumentationType,
-  ParamsTypeMiddleware,
+  PickerType,
+  ParamsMiddlewareType,
   PickersParamsType,
 } from "pages/pickers/types";
 
@@ -20,9 +20,9 @@ export type PickersTypes = {
   PENDING_USER_RESET: string;
 };
 
-export type StateType = {
+export type PickerStateType = {
   fetching: boolean;
-  users: DocumentationType[];
+  users: PickerType[];
   filters: PickersParamsType;
   filtersExtra: {
     limit: Number;
@@ -33,7 +33,7 @@ export type StateType = {
     offset: number;
   };
   seeMore: Boolean;
-  pag: Number;
+  sizePage: Number;
   actualPage: String;
 };
 
@@ -44,7 +44,7 @@ export type SelectorType = {
   getFiltersExtra: Function;
   getFiltersExtraSeeMore: Function;
   getSeeMore: Function;
-  getPag: Function;
+  getSizePage: Function;
   getActualPage: Function;
 };
 
@@ -56,8 +56,8 @@ export type ActionTypePickers = {
     hasMore: boolean;
     items: any;
   };
-  filters?: ParamsTypeMiddleware;
-  extraFilters?: ParamsTypeMiddleware;
+  filters?: ParamsMiddlewareType;
+  extraFilters?: ParamsMiddlewareType;
   page?: String;
 };
 

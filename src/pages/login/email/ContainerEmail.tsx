@@ -1,4 +1,3 @@
-import React from "react";
 import { connect } from "react-redux";
 import {
   actions as loginActions,
@@ -27,7 +26,7 @@ const mapStateToProps = (state: RootState) => ({
   isFetching: loginSelectors.isFetching(state),
 });
 
-const mapDispatchToProps = (dispatch: Function) => ({
+const mapDispatchToProps = (dispatch: AppDispatch) => ({
   postLoginEmail: (params: EmailType) => {
     dispatch(loginActions.getLoginEmailRequest(params));
   },

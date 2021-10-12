@@ -14,51 +14,27 @@ import {
 import * as yup from "yup";
 import { actions as notificationActions } from "reducers/notification";
 import { DetailPickerContainerTypeProps } from "./types";
-import { DocumentationType, ParamsTypeMiddleware } from "../types";
-import { StateType } from "reducers/types/pickers";
+import { PickerType, ParamsMiddlewareType } from "../types";
 import { ParamGetPendingUser } from "sagas/types/pickers";
+import { AppDispatch, RootState } from "store";
 
 const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
   props
 ): JSX.Element => {
-  const params:any = useParams();
-  const historial:any = useHistory();
+  const params: any = useParams();
+  const historial: any = useHistory();
 
   useEffect(() => {
     props.getPendingUserPicker(params.id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const changePage = (page: String, isDirty: Boolean) => {
-    let onClose = () => {
-      props.setActualPage(page);
-      historial.goBack();
-    };
-    if (isDirty) {
-      props.showNotification({
-        level: "warning",
-        title: "Guardá tus cambios",
-        body: "Si te vas sin guardar, tus cambios no van a quedar registrados",
-        onClickLabel: "Ir a guardar",
-        onCloseLabel: "No quiero guardarlos",
-        onClose: onClose,
-        onClick: () =>
-          window.scroll({
-            top: window.innerHeight,
-            left: 0,
-            behavior: "smooth",
-          }),
-      });
-    } else {
-      onClose();
-    }
-  };
+  
   let active: boolean =
     props.pendingUserAdminPicker.status &&
     (props.pendingUserAdminPicker.status.id === 4 ||
       props.pendingUserAdminPicker.status.id === 5);
 
-  const validationSchema=  yup.lazy((values) => {
+  const validationSchema = yup.lazy((values) => {
     return yup.object({
       name: yup
         .string()
@@ -90,24 +66,46 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
         .required("Este campo es requerido.")
         .matches(DATE_FORMATS.regex, "Ingresá el formato correcto"),
       vehicle:
-          // values.vehicleType === 'motorcycle' && //REVISAR VALIDACIONES
-          yup.object({
-              [values.vehicleType]: yup.object({
-                  patent: yup.string().nullable().required("Este campo es requerido.").matches(VALIDATION_REGEX.regPatent,"No se admiten caracteres especiales"),
-                  expirationDatePolicyVehicle: yup.string().nullable()
-                      .required("Este campo es requerido.")
-                      .matches(DATE_FORMATS.regex,"Ingresá el formato correcto" )
-                      .matches(DATE_FORMATS.regexValidCharacter,"No se admiten letras o caracteres especiales"),
-                  expirationDateIdentificationVehicle: yup.string().nullable()
-                      .required("Este campo es requerido.")
-                      .matches(DATE_FORMATS.regex,"Ingresá el formato correcto" )
-                      .matches(DATE_FORMATS.regexValidCharacter,"No se admiten letras o caracteres especiales"),
-                  expirationDateDriverLicense: yup.string().nullable()
-                      .required("Este campo es requerido.")
-                      .matches(DATE_FORMATS.regex,"Ingresá el formato correcto" )
-                      .matches(DATE_FORMATS.regexValidCharacter,"No se admiten letras o caracteres especiales"),
-              })
-          })
+        // values.vehicleType === 'motorcycle' && //REVISAR VALIDACIONES
+        yup.object({
+          [values.vehicleType]: yup.object({
+            patent: yup
+              .string()
+              .nullable()
+              .required("Este campo es requerido.")
+              .matches(
+                VALIDATION_REGEX.regPatent,
+                "No se admiten caracteres especiales"
+              ),
+            expirationDatePolicyVehicle: yup
+              .string()
+              .nullable()
+              .required("Este campo es requerido.")
+              .matches(DATE_FORMATS.regex, "Ingresá el formato correcto")
+              .matches(
+                DATE_FORMATS.regexValidCharacter,
+                "No se admiten letras o caracteres especiales"
+              ),
+            expirationDateIdentificationVehicle: yup
+              .string()
+              .nullable()
+              .required("Este campo es requerido.")
+              .matches(DATE_FORMATS.regex, "Ingresá el formato correcto")
+              .matches(
+                DATE_FORMATS.regexValidCharacter,
+                "No se admiten letras o caracteres especiales"
+              ),
+            expirationDateDriverLicense: yup
+              .string()
+              .nullable()
+              .required("Este campo es requerido.")
+              .matches(DATE_FORMATS.regex, "Ingresá el formato correcto")
+              .matches(
+                DATE_FORMATS.regexValidCharacter,
+                "No se admiten letras o caracteres especiales"
+              ),
+          }),
+        }),
     });
   });
 
@@ -135,7 +133,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
     }
   };
 
-  const aproveSubmit = (params: DocumentationType, goBack: Function) => {
+  const aproveSubmit = (params: PickerType, goBack: Function) => {
     props.showNotification({
       level: "info",
       title: "Aprobar picker",
@@ -150,7 +148,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
     <DetailPicker
       {...props}
       validationSchema={validationSchema}
-      changePage={changePage}
+      //changePage={changePage}
       cancel={cancel}
       goBack={() => historial.goBack()}
       aproveSubmit={aproveSubmit}
@@ -159,7 +157,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
   );
 };
 
-const mapStateToProps = (state: StateType) => ({
+const mapStateToProps = (state: RootState) => ({
   pendingUserAdminPicker:
     pendingUserAdminPickerSelectors.getPendingUserPicker(state),
   isFetching: pendingUserAdminPickerSelectors.isFetching(state),
@@ -167,11 +165,14 @@ const mapStateToProps = (state: StateType) => ({
   nameDisplay: pendingUserAdminPickerSelectors.getNameDisplay(state),
 });
 
-const mapDispatchToProps = (dispatch: Function) => ({
+const mapDispatchToProps = (dispatch: AppDispatch) => ({
   getPendingUserPicker: (params: ParamGetPendingUser) => {
     dispatch(pendingUserAdminPickerActions.getPendingUserPickerRequest(params));
   },
-  getPendingUserPickerExport: (params: ParamsTypeMiddleware, element: HTMLElement) => {
+  getPendingUserPickerExport: (
+    params: ParamsMiddlewareType,
+    element: HTMLElement
+  ) => {
     dispatch(
       pendingUserAdminPickerActions.getPendingUserPickerExportRequest(
         params,
@@ -182,22 +183,23 @@ const mapDispatchToProps = (dispatch: Function) => ({
   setDirty: (dirty: boolean) => {
     dispatch(pendingUserAdminPickerActions.setDirty(dirty));
   },
-  postAprovePickerRequest: (params: DocumentationType, goBack: Function) => {
+  postAprovePickerRequest: (params: PickerType, goBack: Function) => {
     dispatch(
       pendingUserAdminPickerActions.getAprovePickerRequest(params, goBack)
     );
   },
-  postPendingUserDocumentsEdit: (params: DocumentationType) => {
+  postPendingUserDocumentsEdit: (params: PickerType) => {
     dispatch(
       pendingUserAdminPickerActions.getPendingUserPickerDocumentsEditRequest(
         params
       )
     );
   },
-  showNotification: (content: any) => {//falta tipar shownotification
+  showNotification: (content: any) => {
+    //falta tipar shownotification
     dispatch(notificationActions.showNotification(content));
   },
-  postEditPickerRequest: (params: DocumentationType, goBack: Function) => {
+  postEditPickerRequest: (params: PickerType, goBack: Function) => {
     dispatch(
       pendingUserAdminPickerActions.getEditPickerRequest(params, goBack)
     );

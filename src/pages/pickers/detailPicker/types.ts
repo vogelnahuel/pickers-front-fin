@@ -1,7 +1,7 @@
-import { AcountDataType, DocumentationType, PhoneType, StatusType } from "../types";
+import { AcountDataType, BicycleType, PickerType, MotorcycleType, PhoneType, StatusType } from "../types";
 
 export type DetailPickerContainerTypeProps = {
-  pendingUserAdminPicker: DocumentationType;
+  pendingUserAdminPicker: PickerType;
   isFetching: Boolean;
   actualPage: String;
   nameDisplay: String;
@@ -29,7 +29,7 @@ export type DetailPickerTypeProps = {
     registerDate: string;
     status: StatusType;
     surname: string;
-    vehicle: any;
+    vehicle: any
     vehicleType: string;};
   getPendingUserPickerExport:Function
   actualPage:String
@@ -41,6 +41,5 @@ export type DetailPickerTypeProps = {
   goBack:Function
   postPendingUserDocumentsEdit:Function
   postEditPickerRequest:Function
-  changePage:Function
   validationSchema:Object
 };

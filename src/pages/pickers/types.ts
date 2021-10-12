@@ -1,20 +1,20 @@
-export type PickersContainerTypes = {
-  reset: Function;
-  getPendingUser: Function;
-  setPendingUserFilters: Function;
-  setPendingUserExtraFilters: Function;
-  setActualPage: Function;
-  getPendingUsersExportRequest: Function;
-  getMorePendingUser: Function;
-  pendingUsers: Object;
-  isFetching: Object;
-  filters: Object;
-  filtersExtra: Object;
-  filtersExtraSeeMore: Object;
-  seeMore: Object;
-  pag: Object;
-  actualPage: Object;
-};
+// export type PickersContainerTypes = {
+//   reset: Function;
+//   getPendingUser: Function;
+//   setPendingUserFilters: Function;
+//   setPendingUserExtraFilters: Function;
+//   setActualPage: Function;
+//   getPendingUsersExportRequest: Function;
+//   getMorePendingUser: Function;
+//   pendingUsers: Object;
+//   isFetching: Object;
+//   filters: Object;
+//   filtersExtra: Object;
+//   filtersExtraSeeMore: Object;
+//   seeMore: Object;
+//   pag: Object;
+//   actualPage: Object;
+// };
 
 export type ChangePageTypes = {
   props: {
@@ -31,9 +31,8 @@ export type PickersParamsType = {
   limit?: number;
   offset?: number;
 };
-//TODO: pasar a
-export type ParamsTypeMiddleware = {
-  pickerStatusId?: Array<Number>;
+export type ParamsMiddlewareType = {
+  pickerStatusId?: string;
   name?: string;
   email?: string;
   identificationNumber?: number;
@@ -76,7 +75,7 @@ export type MotorcycleType = {
   patent: String | null;
 };
 
-export type DocumentationType = {
+export type PickerType = {
   accountingData: AcountDataType;
   dateOfBirth: string;
   email: string;
@@ -97,7 +96,7 @@ export type DocumentationType = {
 };
 
 export type PickerContainerTypes = {
-  pendingUsers: DocumentationType[];
+  pendingUsers: PickerType[];
   isFetching: boolean;
   filters: PickersParamsType;
   filtersExtra: PickersParamsType;
@@ -115,14 +114,14 @@ export type PickerContainerTypes = {
 };
 
 export type PickerTypes = {
-  pendingUsers: any;
-  isFetching: any;
-  filters: any;
-  filtersExtra: any;
-  filtersExtraSeeMore: any;
-  seeMore: any;
-  pag: any;
-  actualPage: any;
+  pendingUsers: PickerType[];
+  isFetching: boolean;
+  filters: PickersParamsType;
+  filtersExtra: PickersParamsType;
+  filtersExtraSeeMore: PickersParamsType;
+  seeMore: boolean;
+  pag: Number;
+  actualPage: String;
   reset: Function;
   getPendingUser: Function;
   setPendingUserFilters: Function;
@@ -130,7 +129,6 @@ export type PickerTypes = {
   setActualPage: Function;
   getPendingUsersExportRequest: Function;
   getMorePendingUser: Function;
-  changePage: Function;
   tableTitles: string[];
 };
 
@@ -147,7 +145,7 @@ export type PickersExportResponseType = {
 export type PickersAxiosContent = {
   statusCode: number;
   result: {
-    items: DocumentationType[];
+    items: PickerType[];
   };
 };
 
@@ -155,7 +153,7 @@ export type PickersResponse = {
   hasMore: Boolean;
   limit: Number;
   offset: Number;
-  items: DocumentationType[];
+  items: PickerType[];
 };
 
 export type EditPickerResponseType = {

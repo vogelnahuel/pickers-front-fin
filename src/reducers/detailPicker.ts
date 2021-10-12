@@ -1,7 +1,7 @@
-import { DocumentationType, EditPickerResponseType, ParamsTypeMiddleware, PickersExportResponseType } from "pages/pickers/types";
+import { PickerType, EditPickerResponseType, ParamsMiddlewareType, PickersExportResponseType } from "pages/pickers/types";
 import { ParamGetPendingUser } from "sagas/types/pickers";
 import { RootState } from "store";
-import { ActionType, SelectorType, StateType } from "./types/detailPicker";
+import { ActionType, SelectorType, StateType as DetailPickerStateType } from "./types/detailPicker";
 
 export const types:any = {
     PENDING_USER_ADMIN_PICKER_GET_REQUEST: `PENDING_USER_ADMIN_PICKER_GET_REQUEST`,
@@ -27,7 +27,7 @@ export const types:any = {
     PICKER_APROVE_POST_ERROR: `PICKER_APROVE_POST_ERROR`,
 };
 
-export const INITIAL_STATE:StateType = {
+export const INITIAL_STATE:DetailPickerStateType = {
     fetching: false,
     dirty: false,
     nameDisplay: "",
@@ -40,7 +40,7 @@ export const actions:ActionType = {
         type: types.PENDING_USER_ADMIN_PICKER_GET_REQUEST,
         params,
     }),
-    getPendingUserPickerSuccess: (pendingUserAdminPicker:DocumentationType) => ({
+    getPendingUserPickerSuccess: (pendingUserAdminPicker:PickerType) => ({
         type: types.PENDING_USER_ADMIN_PICKER_GET_SUCCESS,
         pendingUserAdminPicker
     }),
@@ -51,7 +51,7 @@ export const actions:ActionType = {
         type: types.PENDING_USER_ADMIN_PICKER_SET_DIRTY,
         dirty
     }),
-    getPendingUserPickerExportRequest: (params:ParamsTypeMiddleware,element:HTMLElement) => ({
+    getPendingUserPickerExportRequest: (params:ParamsMiddlewareType,element:HTMLElement) => ({
         type: types.PENDING_USER_ADMIN_PICKER_EXPORT_GET_REQUEST,
         params,
         element
@@ -63,7 +63,7 @@ export const actions:ActionType = {
     getPendingUserPickerExportError: () => ({
         type: types.PENDING_USER_ADMIN_PICKER_EXPORT_GET_ERROR,
     }),
-    getPendingUserPickerDocumentsEditRequest: (params:DocumentationType) => ({
+    getPendingUserPickerDocumentsEditRequest: (params:PickerType) => ({
         type: types.PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_REQUEST,
         params,
     }),
@@ -75,7 +75,7 @@ export const actions:ActionType = {
         type: types.PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_ERROR,
     }),
 
-    getAprovePickerRequest: (params:DocumentationType, goBack:Function) => ({
+    getAprovePickerRequest: (params:PickerType, goBack:Function) => ({
         type: types.PICKER_APROVE_POST_REQUEST,
         params,
         goBack
@@ -88,12 +88,12 @@ export const actions:ActionType = {
         type: types.PICKER_APROVE_POST_ERROR,
     }),
 
-    getEditPickerRequest: (params:DocumentationType, goBack:Function) => ({
+    getEditPickerRequest: (params:PickerType, goBack:Function) => ({
         type: types.PICKER_EDIT_POST_REQUEST,
         params,
         goBack
     }),
-    getEditPickerSuccess: (body:DocumentationType) => ({
+    getEditPickerSuccess: (body:PickerType) => ({
         type: types.PICKER_EDIT_POST_SUCCESS,
         body
     }),
@@ -111,7 +111,7 @@ export const selectors:SelectorType = {
 };
 
 
-const reducer =(state:StateType = INITIAL_STATE, action:any) => {
+const reducer =(state:DetailPickerStateType = INITIAL_STATE, action:any) => {
     switch (action.type) {
         /************************************************************* */
         case types.PENDING_USER_ADMIN_PICKER_GET_REQUEST:

@@ -2,7 +2,7 @@
 import { LoginType } from 'pages/login/types';
 import { EmailType } from 'sagas/types/login';
 import { RootState } from 'store';
-import {ActionsTypes, LoginState, RestorePasswordActionsTypes, SelectorType, TypesTypes} from './types/login'
+import {ActionsTypes, LoginStateType, RestorePasswordActionsTypes, SelectorType, TypesTypes} from './types/login'
 import {ActionLoginType} from './types/login'
 
 export const types:TypesTypes = {
@@ -20,7 +20,7 @@ export const types:TypesTypes = {
     LOGIN_RESTORE_GET_ERROR: `LOGIN_RESTORE_GET_ERROR`,
 };
 
-export const INITIAL_STATE: LoginState = {
+export const INITIAL_STATE: LoginStateType = {
   fetching: false,
 };
 
@@ -68,7 +68,7 @@ export const selectors: SelectorType = {
   isFetching: ({ login }: RootState) => login.fetching,
 };
 
-const reducer =(state:LoginState = INITIAL_STATE, action:ActionLoginType ) => {
+const reducer =(state:LoginStateType = INITIAL_STATE, action:ActionLoginType ) => {
     switch (action.type) {
         case types.LOGIN_GET_REQUEST:
             return {

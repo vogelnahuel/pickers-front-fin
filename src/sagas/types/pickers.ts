@@ -1,12 +1,12 @@
 import {
-  DocumentationType,
-  ParamsTypeMiddleware,
+  PickerType,
+  ParamsMiddlewareType,
 } from "../../pages/pickers/types";
 
 export type PickerResponseType = {
   status: Number;
   data: {
-    result: DocumentationType;
+    result: PickerType;
     limit: Number;
     offset: Number;
     hasMore: boolean;
@@ -15,7 +15,7 @@ export type PickerResponseType = {
 export type PickersResponseType = {
   status?: Number;
   data: {
-    result: { items: DocumentationType[] };
+    result: { items: PickerType[] };
     limit: Number;
     offset: Number;
     hasMore: boolean;
@@ -24,7 +24,7 @@ export type PickersResponseType = {
 
 export type getPickersType = {
   type: string;
-  params: ParamsTypeMiddleware;
+  params: ParamsMiddlewareType;
   element: HTMLElement;
 };
 
@@ -35,7 +35,7 @@ export type getDetailPickersType = {
 
 export type PickerExportType = {
   type: string;
-  params: ParamsTypeMiddleware;
+  params: ParamsMiddlewareType;
   element: HTMLElement;
   goBack?: Function;
 };
@@ -45,7 +45,7 @@ export type ParamGetPendingUser = {
 };
 
 export type PostEditPickerType = {
-  params: DocumentationType;
+  params: PickerType;
   goBack: Function;
   element: HTMLElement;
 };

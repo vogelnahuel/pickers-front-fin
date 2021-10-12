@@ -17,12 +17,12 @@ export type DetailPickerTypes = {
   PICKER_APROVE_POST_ERROR: string;
 };
 
-export type GetPendingUserType = {
-  result: any;
-  limit: Number;
-  offset: Number;
-  hasMore: boolean;
-};
+// export type GetPendingUserType = {
+//   result: any;
+//   limit: Number;
+//   offset: Number;
+//   hasMore: boolean;
+// };
 
 export type SelectorType = {
   isFetching: Function;

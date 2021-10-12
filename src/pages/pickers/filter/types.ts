@@ -1,15 +1,20 @@
-import { ParamsTypeMiddleware } from "../types";
+import { ParamsMiddlewareType } from "../types";
 
 export type FilterContainerTypes = {
   reset: Function;
   setPendingUserFilters: Function;
   getPendingUser: Function;
-  filters: ParamsTypeMiddleware;
-  filtersExtra: ParamsTypeMiddleware;
+  filters: ParamsMiddlewareType;
+  filtersExtra: ParamsMiddlewareType;
+};
+export type FilterContainerValidationSchemaTypes = {
+  name?: string;
+  identificationNumber?: Number | string;
+  email?: string;
 };
 
 export type FilterTypes = {
   onSubmit: any;
-  filters: ParamsTypeMiddleware;
+  filters: ParamsMiddlewareType;
   validationSchema: Object;
 };

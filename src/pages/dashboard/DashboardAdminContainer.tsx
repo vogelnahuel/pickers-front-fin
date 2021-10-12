@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { connect } from "react-redux";
 import {
   actions as dashboardActions,
@@ -22,7 +22,7 @@ const mapStateToProps = (state: RootState) => ({
   isFetching: dashboardSelectors.isFetching(state),
 });
 
-const mapDispatchToProps = (dispatch: Function) => ({
+const mapDispatchToProps = (dispatch: AppDispatch) => ({
   getDashboard: () => {
     dispatch(dashboardActions.getDashboardRequest());
   },

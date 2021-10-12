@@ -31,10 +31,13 @@ import {
 } from "./types/pickers";
 import {
   AcountDataType,
+  EditPickerResponseType,
   PhoneType,
   PickersAxiosResponseType,
+  PickersExportResponseType,
   PickersParamsType,
   PickersResponse,
+  PickerType,
   StatusType,
 } from "../pages/pickers/types";
 import { AxiosResponse } from "axios";
@@ -63,7 +66,8 @@ const sagas = [
 
 export default sagas;
 
-const process = (body: {
+const process = (body: //TODO: vehiculos any?
+  {
   accountingData: AcountDataType;
   dateOfBirth: string;
   email: string;
@@ -78,8 +82,9 @@ const process = (body: {
   surname: string;
   vehicle: any
   vehicleType: string;
-}) => {
-  console.log(body,"body")
+}
+) => {
+
   return {
     ...body,
     dateOfBirth: moment(body.dateOfBirth, "DD/MM/YYYY").format("YYYY-MM-DD"),
@@ -179,7 +184,7 @@ function* getMorePendingUser({
 function* getPendingUserPicker({
   params,
 }: ParamGetPendingUser): Generator<
-  | SimpleEffect<"CALL", CallEffectDescriptor<unknown>>
+  CallEffect<AxiosResponse<PickerType>>
   | PutEffect<{ type: string }>,
   void,
   PickerResponseType
@@ -203,7 +208,7 @@ function* getPendingUserExport({
   params,
   element,
 }: getPickersType): Generator<
-  | SimpleEffect<"CALL", CallEffectDescriptor<unknown>>
+  CallEffect<AxiosResponse<PickersExportResponseType>>
   | PutEffect<{ type: string; params: PickersParamsType | undefined }>
   | PutEffect<{ type: string; params: CsvResponseType }>
   | PutEffect<{ type: string; content: any }>,
@@ -232,7 +237,7 @@ function* getPendingUserPickerExport({
   params,
   element,
 }: PickerExportType): Generator<
-  | SimpleEffect<"CALL", CallEffectDescriptor<unknown>>
+  CallEffect<AxiosResponse<PickersExportResponseType>>
   | PutEffect<{ type: string }>,
   void,
   CsvResponseType
@@ -258,7 +263,7 @@ function* postPendingUserDocumentsEdit({
   params,
   element,
 }: PostEditPickerType): Generator<
-  | SimpleEffect<"CALL", CallEffectDescriptor<unknown>>
+  CallEffect<AxiosResponse<EditPickerResponseType>> 
   | PutEffect<{ type: string; content: any }>
   | PutEffect<{ type: String }>,
   void,
@@ -289,7 +294,7 @@ function* postAprovePicker({
   goBack,
   element,
 }: PostEditPickerType): Generator<
-  | SimpleEffect<"CALL", CallEffectDescriptor<unknown>>
+  CallEffect<AxiosResponse<EditPickerResponseType>>
   | PutEffect<{ type: string; content: any }>
   | PutEffect<{ type: String }>,
   void,
@@ -326,7 +331,7 @@ function* postEditPicker({
   goBack,
   element,
 }: PostEditPickerType): Generator<
-  | SimpleEffect<"CALL", CallEffectDescriptor<unknown>>
+CallEffect<AxiosResponse<EditPickerResponseType>>
   | PutEffect<{ type: string; content: any }>
   | PutEffect<{ type: string }>,
   void,

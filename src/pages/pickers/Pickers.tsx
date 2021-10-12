@@ -2,7 +2,7 @@ import React from "react";
 import { Header } from "component/admin/Header/Header";
 import { Nav } from "component/admin/Nav/Nav";
 import "pages/pickers/Pickers.scss";
-import { PickerStatusButton } from "component/admin/Sub-Title-Image/PickerStatusButton";
+import  PickerStatusButton from "component/admin/PickerStatusButton/PickerStatusButton";
 import exportar from "assets/admin/PendingUser/exportar.svg";
 import or from "assets/admin/PendingUser/or.svg";
 import FilterPickers from "pages/pickers/filter/FilterPickersContainer";
@@ -10,8 +10,7 @@ import { TableAdmin } from "component/admin/table/TableAdmin";
 import NotificationModal from "component/modal/NotificationModal";
 import { PickerTypes } from "./types";
 
-export const PendingUserAdmin:  React.FC<PickerTypes> = ({
-  changePage,
+export const Pickers:  React.FC<PickerTypes> = ({
   actualPage,
   tableTitles,
   pendingUsers,
@@ -28,13 +27,7 @@ export const PendingUserAdmin:  React.FC<PickerTypes> = ({
       <div className="mainContainerFlex">
         <Nav isDirty={null} showNotification={null} />
         <div className="pending-container">
-          <PickerStatusButton
-            showNotification={null}
-            isDirty={null}
-            isDetail={null}
-            changePage={changePage}
-            actualPage={actualPage}
-          />
+          <PickerStatusButton/>
 
           <div className="mainContainerFlex">
             <h2 className="subTitle-pending">

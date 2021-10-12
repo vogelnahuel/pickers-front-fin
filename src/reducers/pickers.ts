@@ -1,11 +1,11 @@
 import { CsvResponseType } from "sagas/types/pickers";
 import { RootState } from "store";
 import {
-  ParamsTypeMiddleware,
+  ParamsMiddlewareType,
   PickersParamsType,
   PickersResponse,
 } from "../pages/pickers/types";
-import { ActionsType, PickersTypes, SelectorType, StateType } from "./types/pickers";
+import { ActionsType, PickersTypes, SelectorType, PickerStateType } from "./types/pickers";
 
 export const PENDING_USER = "pendingUser/PENDING_USER";
 
@@ -28,7 +28,7 @@ export const types: PickersTypes = {
   PENDING_USER_RESET: `${PENDING_USER}_RESET`,
 };
 
-export const INITIAL_STATE: StateType = {
+export const INITIAL_STATE: PickerStateType = {
   fetching: false,
   users: [],
   filters: {},
@@ -41,7 +41,7 @@ export const INITIAL_STATE: StateType = {
     offset: 0,
   },
   seeMore: true,
-  pag: 15,
+  sizePage: 15,
   actualPage: "PENDING",
 };
 
@@ -49,7 +49,7 @@ export const actions:ActionsType = {
   reset: () => ({
     type: types.PENDING_USER_RESET,
   }),
-  getPendingUserRequest: (params: ParamsTypeMiddleware) => ({
+  getPendingUserRequest: (params: ParamsMiddlewareType) => ({
     type: types.PENDING_USER_GET_REQUEST,
     params,
   }),
@@ -72,7 +72,7 @@ export const actions:ActionsType = {
     type: types.PENDING_USER_SET_EXTRA_FILTERS,
     extraFilters,
   }),
-  getMorePendingUserRequest: (params: ParamsTypeMiddleware) => ({
+  getMorePendingUserRequest: (params: ParamsMiddlewareType) => ({
     type: types.PENDING_USER_GET_MORE_REQUEST,
     params,
   }),
@@ -85,7 +85,7 @@ export const actions:ActionsType = {
   }),
 
   getPendingUserExportRequest: (
-    params: ParamsTypeMiddleware,
+    params: ParamsMiddlewareType,
     element: HTMLElement
   ) => ({
     type: types.PENDING_USER_EXPORT_GET_REQUEST,
@@ -110,11 +110,11 @@ export const selectors: SelectorType = {
   getFiltersExtraSeeMore: ({ pendingUser }: RootState) =>
     pendingUser.filtersExtraSeeMore,
   getSeeMore: ({ pendingUser }: RootState) => pendingUser.seeMore,
-  getPag: ({ pendingUser }: RootState) => pendingUser.pag,
+  getSizePage: ({ pendingUser }: RootState) => pendingUser.sizePage,
   getActualPage: ({ pendingUser }: RootState) => pendingUser.actualPage,
 };
 
-const reducer = (state: StateType = INITIAL_STATE, action: any) => {
+const reducer = (state: PickerStateType = INITIAL_STATE, action: any) => {
   switch (action.type) {
     case types.PENDING_USER_RESET:
       return {

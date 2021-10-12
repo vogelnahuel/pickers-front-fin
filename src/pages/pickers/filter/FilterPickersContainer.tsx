@@ -7,11 +7,11 @@ import {
 import { FilterPickers } from "pages/pickers/filter/FilterPickers";
 import { VALIDATION_REGEX } from "utils/constants";
 import * as yup from "yup";
-import { ParamsTypeMiddleware, PickersParamsType } from "../types";
-import { StateType } from "reducers/types/pickers";
-import { FilterContainerTypes } from "./types";
+import { ParamsMiddlewareType, PickersParamsType } from "../types";
+import { FilterContainerTypes, FilterContainerValidationSchemaTypes } from "./types";
+import { AppDispatch, RootState } from "store";
 
-const FilterPickersContainer = (props: FilterContainerTypes) => {
+const FilterPickersContainer: React.FC<FilterContainerTypes> = (props) => {
   useEffect(() => {
     if (props.filters && Object.keys(props.filters).length === 0) {
       props.reset();
@@ -33,25 +33,24 @@ const FilterPickersContainer = (props: FilterContainerTypes) => {
     props.setPendingUserFilters(values);
   };
 
-  const validationSchema = yup.lazy(() => {
-    return yup.object({
-      name: yup
-        .string()
-        .matches(
-          VALIDATION_REGEX.expName,
-          "No se admiten números o caracteres especiales"
-        ),
-      identificationNumber: yup
-        .string()
-        .matches(
-          VALIDATION_REGEX.expIdentificationNumber,
-          "No se admiten letras o caracteres especiales"
-        ),
-      email: yup
-        .string()
-        .matches(VALIDATION_REGEX.regEmail, "El formato del pepe es inválido"),
-    });
+  const validationSchema: yup.SchemaOf<FilterContainerValidationSchemaTypes> = yup.object({
+    name: yup
+      .string()
+      .matches(
+        VALIDATION_REGEX.expName,
+        "No se admiten números o caracteres especiales"
+      ),
+    identificationNumber: yup
+      .string()
+      .matches(
+        VALIDATION_REGEX.expIdentificationNumber,
+        "No se admiten letras o caracteres especiales"
+      ),
+    email: yup
+      .string()
+      .matches(VALIDATION_REGEX.regEmail, "El formato del pepe es inválido"),
   });
+
   return (
     <FilterPickers
       {...props}
@@ -61,19 +60,19 @@ const FilterPickersContainer = (props: FilterContainerTypes) => {
   );
 };
 
-const mapStateToProps = (state: StateType) => ({
+const mapStateToProps = (state: RootState) => ({
   filters: pendingUserSelectors.getFilters(state),
   filtersExtra: pendingUserSelectors.getFiltersExtra(state),
 });
 
-const mapDispatchToProps = (dispatch: Function) => ({
+const mapDispatchToProps = (dispatch: AppDispatch) => ({
   reset: () => {
     dispatch(pendingUserActions.reset());
   },
   setPendingUserFilters: (filters: PickersParamsType) => {
     dispatch(pendingUserActions.setPendingUserFilters(filters));
   },
-  getPendingUser: (params: ParamsTypeMiddleware) => {
+  getPendingUser: (params: ParamsMiddlewareType) => {
     dispatch(pendingUserActions.getPendingUserRequest(params));
   },
 });
