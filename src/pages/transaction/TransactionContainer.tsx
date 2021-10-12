@@ -10,7 +10,7 @@ import { TransactionContainerType, URLTransactionContainerType } from "./types";
 import { FilterTransactionsType } from "sagas/types/transactions";
 import { SetFilterExtraType, SetFilterType } from "reducers/types/transaction";
 
-const TransactionContainer = (props:TransactionContainerType):JSX.Element => {
+const TransactionContainer: React.FC<TransactionContainerType> = (props):JSX.Element => {
     const params = useLocation()
     const [resolutionHeightModal, setresolutionHeightModal] = useState(550)
 
@@ -37,16 +37,7 @@ const TransactionContainer = (props:TransactionContainerType):JSX.Element => {
     }, [])
 
     return (
-        <Transaction filters={{
-            inAlert: undefined,
-            limit: 0,
-            maxMinDeliveryDate: undefined,
-            minMinDeliveryDate: undefined,
-            offset: undefined,
-            state: undefined,
-            pickerId: undefined,
-            transactionCode: undefined
-        }} isExportDisabled={false} isFetching={false} transactions={[]} getMoreTransactions={Function} getTransactionsExportRequest={Function} seeMore={Function} filtersExtraSeeMore={Function} resolutionHeightModal={resolutionHeightModal} {...props}/>
+        <Transaction  transactions={[]} getMoreTransactions={Function} getTransactionsExportRequest={Function} {...props}/>
     );
 }
 

@@ -19,13 +19,13 @@ export type URLTransactionContainerType ={
     inAlert?:boolean
 }
 export  type TransactionContainerPropsType={
-    isExportDisabled:boolean,
-    isFetching:boolean,
+    isExportDisabled?:boolean,
+    isFetching?:boolean,
     transactions:TransactionResponseTypeResult[],
     getMoreTransactions:Function,
     getTransactionsExportRequest:Function,
-    filters:FilterTransactionsType,
-    seeMore:Function,
-    filtersExtraSeeMore:Function,
-    resolutionHeightModal:number
+    filters?:FilterTransactionsType,
+    seeMore?:Function,
+    filtersExtraSeeMore?:Function,
+    resolutionHeightModal?:number
 }
