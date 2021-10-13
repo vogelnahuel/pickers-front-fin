@@ -6,7 +6,7 @@ import moment from "moment";
 import * as yup from "yup";
 import {VALIDATION_REGEX} from "utils/constants";
 import { AppDispatch, RootState } from "store";
-import { FilterTransactionsType } from "sagas/types/transactions";
+import { FilterTransactionsType, FilterTransactionsValidationSchemaType } from "sagas/types/transactions";
 import { DateType, FilterContainerPropsType, FilterDateType, FilterValuesType } from "./types";
 import { SetFilterType } from "reducers/types/transaction";
 
@@ -48,13 +48,12 @@ const FilterTransactionContainer:React.FC<FilterContainerPropsType> = (props):JS
         props.setFilters(filtersApplied);
     };
 
-    const validationSchema =
-        yup.lazy(() => {
-            return yup.object({
+    const validationSchema: yup.SchemaOf<FilterTransactionsValidationSchemaType> =
+        yup.object({
                 transactionCode: yup.string().matches(VALIDATION_REGEX.regTransactionCode,"El código ingresado es erróneo"),
                 pickerId:yup.string().matches(VALIDATION_REGEX.regPickerId,"No se admiten letras o caracteres especiales"),
             })
-        });
+        
 
     return (
         <FilterTransaction

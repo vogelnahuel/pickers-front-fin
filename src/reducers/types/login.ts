@@ -1,7 +1,7 @@
 export type ActionLoginType = {
   type: string;
 };
-export type LoginState = {
+export type LoginStateType = {
   fetching: boolean;
 };
 

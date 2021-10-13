@@ -15,7 +15,7 @@ const LoginContainer:React.FC<LoginContainerType> = (props): JSX.Element => {
     email: yup
       .string()
       .required("Este campo es requerido")
-      .matches(VALIDATION_REGEX.regEmail, "El correo ingresado es inválidoo"),
+      .matches(VALIDATION_REGEX.regEmail, "El correo ingresado es inválido"),
     password: yup.string().required("Este campo es requerido"),
   });
 
