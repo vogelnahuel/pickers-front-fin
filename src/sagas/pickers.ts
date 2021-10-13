@@ -1,9 +1,9 @@
 import {
   call,
   CallEffect,
-   put,
+  put,
   PutEffect,
-   takeLatest,
+  takeLatest,
 } from "redux-saga/effects";
 import {
   actions as pickersActions,
@@ -65,7 +65,7 @@ const sagas = [
 export default sagas;
 
 const process = (body: //TODO: vehiculos any?
-  {
+{
   accountingData: AcountDataType;
   dateOfBirth: string;
   email: string;
@@ -78,11 +78,9 @@ const process = (body: //TODO: vehiculos any?
   registerDate: string;
   status: StatusType;
   surname: string;
-  vehicle: any
+  vehicle: any;
   vehicleType: string;
-}
-) => {
-
+}) => {
   return {
     ...body,
     dateOfBirth: moment(body.dateOfBirth, "DD/MM/YYYY").format("YYYY-MM-DD"),
@@ -182,8 +180,7 @@ function* getMorePendingUser({
 function* getPendingUserPicker({
   params,
 }: ParamGetPendingUser): Generator<
-  CallEffect<AxiosResponse<PickerType>>
-  | PutEffect<{ type: string }>,
+  CallEffect<AxiosResponse<PickerType>> | PutEffect<{ type: string }>,
   void,
   PickerResponseType
 > {
@@ -205,7 +202,7 @@ function* getPendingUserExport({
   params,
   element,
 }: getPickersType): Generator<
-  CallEffect<AxiosResponse<PickersExportResponseType>>
+  | CallEffect<AxiosResponse<PickersExportResponseType>>
   | PutEffect<{ type: string; params: PickersParamsType | undefined }>
   | PutEffect<{ type: string; params: CsvResponseType }>
   | PutEffect<{ type: string; content: any }>,
@@ -234,7 +231,7 @@ function* getPendingUserPickerExport({
   params,
   element,
 }: PickerExportType): Generator<
-  CallEffect<AxiosResponse<PickersExportResponseType>>
+  | CallEffect<AxiosResponse<PickersExportResponseType>>
   | PutEffect<{ type: string }>,
   void,
   CsvResponseType
@@ -260,7 +257,7 @@ function* postPendingUserDocumentsEdit({
   params,
   element,
 }: PostEditPickerType): Generator<
-  CallEffect<AxiosResponse<EditPickerResponseType>> 
+  | CallEffect<AxiosResponse<EditPickerResponseType>>
   | PutEffect<{ type: string; content: any }>
   | PutEffect<{ type: String }>,
   void,
@@ -291,7 +288,7 @@ function* postAprovePicker({
   goBack,
   element,
 }: PostEditPickerType): Generator<
-  CallEffect<AxiosResponse<EditPickerResponseType>>
+  | CallEffect<AxiosResponse<EditPickerResponseType>>
   | PutEffect<{ type: string; content: any }>
   | PutEffect<{ type: String }>,
   void,
@@ -328,7 +325,7 @@ function* postEditPicker({
   goBack,
   element,
 }: PostEditPickerType): Generator<
-CallEffect<AxiosResponse<EditPickerResponseType>>
+  | CallEffect<AxiosResponse<EditPickerResponseType>>
   | PutEffect<{ type: string; content: any }>
   | PutEffect<{ type: string }>,
   void,

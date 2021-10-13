@@ -19,12 +19,13 @@ export type DetailPickerTypes = {
   PICKER_APROVE_POST_ERROR: string;
 };
 
-// export type GetPendingUserType = {
-//   result: any;
-//   limit: Number;
-//   offset: Number;
-//   hasMore: boolean;
-// };
+export type actionType = {
+  type: string;
+  dirty: boolean;
+  pendingUserAdminPicker: PickerType;
+  params: PickerType;
+  body: PickerType;
+};
 
 export type SelectorType = {
   isFetching: Function;

@@ -1,9 +1,9 @@
 import { PickerType, EditPickerResponseType, ParamsMiddlewareType, PickersExportResponseType } from "pages/pickers/types";
 import { ParamGetPendingUser } from "sagas/types/pickers";
 import { RootState } from "store";
-import { ActionType, SelectorType, DetailPickerStateType } from "./types/detailPicker";
+import { ActionType, SelectorType, DetailPickerStateType, DetailPickerTypes, actionType } from "./types/detailPicker";
 
-export const types:any = {
+export const types:DetailPickerTypes = {
     PENDING_USER_ADMIN_PICKER_GET_REQUEST: `PENDING_USER_ADMIN_PICKER_GET_REQUEST`,
     PENDING_USER_ADMIN_PICKER_GET_SUCCESS: `PENDING_USER_ADMIN_PICKER_GET_SUCCESS`,
     PENDING_USER_ADMIN_PICKER_GET_ERROR: `PENDING_USER_ADMIN_PICKER_GET_ERROR`,
@@ -109,7 +109,7 @@ export const selectors:SelectorType = {
 };
 
 
-const reducer =(state:DetailPickerStateType = INITIAL_STATE, action:any) => {
+const reducer =(state:DetailPickerStateType = INITIAL_STATE, action:actionType) => {
     switch (action.type) {
         /************************************************************* */
         case types.PENDING_USER_ADMIN_PICKER_GET_REQUEST:

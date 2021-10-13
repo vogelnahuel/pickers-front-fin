@@ -41,10 +41,12 @@ export type PickerExportType = {
 };
 
 export type ParamGetPendingUser = {
+  type: string;
   params: Number;
 };
 
 export type PostEditPickerType = {
+  type:string
   params: PickerType;
   goBack: Function;
   element: HTMLElement;

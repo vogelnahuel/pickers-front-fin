@@ -5,7 +5,7 @@ import {
   PickersParamsType,
   PickersResponse,
 } from "../pages/pickers/types";
-import { ActionsType, PickersTypes, SelectorType, PickerStateType } from "./types/pickers";
+import { ActionsType, PickersTypes, SelectorType, PickerStateType, ActionType } from "./types/pickers";
 
 export const PENDING_USER = "pendingUser/PENDING_USER";
 
@@ -114,7 +114,7 @@ export const selectors: SelectorType = {
   getActualPage: ({ pendingUser }: RootState) => pendingUser.actualPage,
 };
 
-const reducer = (state: PickerStateType = INITIAL_STATE, action: any) => {
+const reducer = (state: PickerStateType = INITIAL_STATE, action: ActionType) => {
   switch (action.type) {
     case types.PENDING_USER_RESET:
       return {

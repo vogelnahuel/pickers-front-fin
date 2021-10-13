@@ -2,6 +2,7 @@ import {
   PickerType,
   ParamsMiddlewareType,
   PickersParamsType,
+  PickersResponse,
 } from "pages/pickers/types";
 
 export type PickersTypes = {
@@ -54,7 +55,7 @@ export type ActionTypePickers = {
     limit: number;
     offset: number;
     hasMore: boolean;
-    items: any;
+    items: PickerType[];
   };
   filters?: ParamsMiddlewareType;
   extraFilters?: ParamsMiddlewareType;
@@ -75,4 +76,12 @@ export type ActionsType = {
   getPendingUserExportRequest: Function;
   getPendingUserExportSuccess: Function;
   getPendingUserExportError: Function;
+};
+
+export type ActionType = {
+  type: string;
+  pendingUsers: PickersResponse;
+  filters: PickersParamsType;
+  page: string;
+  extraFilters: PickersParamsType;
 };

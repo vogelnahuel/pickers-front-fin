@@ -132,8 +132,8 @@ export type PickersAxiosContent = {
 
 export type PickersResponse = {
   hasMore: Boolean;
-  limit: Number;
-  offset: Number;
+  limit: number;
+  offset: number;
   items: PickerType[];
 };
 
