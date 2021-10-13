@@ -1,4 +1,4 @@
-import { PickerType, EditPickerResponseType, ParamsMiddlewareType, PickersExportResponseType } from "pages/pickers/types";
+import { PickerType, EditPickerResponseType, ParamsMiddlewareType } from "pages/pickers/types";
 import { ParamGetPendingUser } from "sagas/types/pickers";
 import { RootState } from "store";
 import { ActionType, SelectorType, DetailPickerStateType, DetailPickerTypes, actionType } from "./types/detailPicker";

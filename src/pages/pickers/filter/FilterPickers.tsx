@@ -34,7 +34,7 @@ export const FilterPickers: React.FC<FilterTypes> = ({
         <Col className="sub-container">
           <Row className="px-2">
             <Form
-              onSubmit={onSubmit}
+              onSubmit={(value)=>onSubmit(value)}
               initialValues={filters}
               mutators={{
                 setValue: ([field, value], state, { changeValue }) => {
