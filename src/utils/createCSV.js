@@ -1,9 +1,11 @@
-const createCSV=(datosExport) => {
+const createCSV=(datosExport) => {//preguntar
+    //TODO: tipar
 
     ///datos.export .data es la informacion en CSV ,  el tipo de salida text/csv
-    var blob = new Blob([datosExport.data], { type: 'text/csv;charset=utf-8;' }); 
-    if (navigator.msSaveBlob) {  
-        navigator.msSaveBlob(blob, "pickers.csv");
+    var blob = new Blob([datosExport], { type: 'text/csv;charset=utf-8;' }); 
+    let Navigator = window.navigator
+    if (Navigator.msSaveBlob) {  
+        Navigator.msSaveBlob(blob, "pickers.csv");
 
    } else { var link = document.createElement("a"); 
    if (link.download !== undefined) {
@@ -11,7 +13,7 @@ const createCSV=(datosExport) => {
         var url = URL.createObjectURL(blob);
          link.setAttribute("href", url); 
          link.setAttribute("download", "pickers.csv"); 
-         link.style = "visibility:hidden"; 
+         link.setAttribute('style',"visibility:hidden"); 
          document.body.appendChild(link); 
          link.click();
           document.body.removeChild(link); 

@@ -1,3 +1,4 @@
+import { DashboardType } from "sagas/types/dashboard";
 import { RootState } from "store";
 import { ActionDashboardType, ActionType, DashboardState, SelectorsDashboardType } from "./types/dashboard";
 
@@ -16,7 +17,7 @@ export const actions: ActionType = {
     getDashboardRequest: () => ({
         type: types.DASHBOARD_GET_REQUEST,
     }),
-    getDashboardSuccess: (dashboard:object) => ({
+    getDashboardSuccess: (dashboard:DashboardType) => ({
         type: types.DASHBOARD_GET_SUCCESS,
         dashboard
     }),

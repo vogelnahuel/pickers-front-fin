@@ -5,10 +5,11 @@ import pickersLogo from "./../../assets/login/PickersLogo.svg";
 import canguro from "./../../assets/login/Canguro.svg";
 import { Link } from "react-router-dom";
 import {LoginType, LoginTypeProps} from "./types";
-import { Form, Field } from "react-final-form";
+import { Field, withTypes } from "react-final-form";
 import { Input } from "component/inputs/Input";
 import useValidationSchema from "hooks/useValidationSchema";
 import NotificationModal from "component/modal/NotificationModal";
+const { Form } = withTypes<LoginType>()
 
 const Login: React.FC<LoginTypeProps> = ({
   postLogin,
@@ -42,7 +43,7 @@ const Login: React.FC<LoginTypeProps> = ({
               id="password"
               type="password"
               name="password"
-              label="Password"
+              label="Contraseña"
               animated
               className="Admin-Pickers-input"
               component={Input}
