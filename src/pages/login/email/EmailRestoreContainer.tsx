@@ -15,8 +15,8 @@ const EmailRestoreContainer = (props: EmailContainer): JSX.Element => {
   const validationSchema: yup.SchemaOf<EmailType> = yup.object({
     email: yup
       .string()
-      .required("Este campo es requerido.")
-      .matches(VALIDATION_REGEX.regEmail, "El formato del correo es inválido"),
+      .required("Este campo es requerido")
+      .matches(VALIDATION_REGEX.regEmail, "El correo ingresado es inválido"),
   });
 
   return <EmailRestore {...props} validationSchema={validationSchema} />;

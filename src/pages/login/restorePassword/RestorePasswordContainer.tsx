@@ -15,7 +15,6 @@ import { useParams } from "react-router";
 import { AppDispatch, RootState } from "store";
 import { RestorePasswordActionsTypes } from "reducers/types/login";
 
-
 const RestorePasswordContainer = (
   props: RestorePasswordContainerType
 ): JSX.Element => {
@@ -25,7 +24,11 @@ const RestorePasswordContainer = (
     password: yup
       .string()
       .required("Este campo es requerido")
-      .matches(VALIDATION_REGEX.regPassword, " "),
+      .matches(VALIDATION_REGEX.regPassword, " ")
+      .matches(
+        VALIDATION_REGEX.regPasswordSpecialCharacters,
+        "No se admiten caracteres especiales"
+      ),
     confirmPassword: yup
       .string()
       .required("Este campo es requerido")

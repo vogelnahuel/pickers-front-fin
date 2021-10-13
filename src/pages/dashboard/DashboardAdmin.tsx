@@ -28,14 +28,14 @@ export const DashboardAdmin: React.FC<DashboardTypes> = ({dashboard,isFetching})
                             id={null}
                             subtitle="Transacciones"
                             title="Activas"
-                            number={dashboard.activeTransactions}
+                            number={dashboard.activeTransactions?.toString()}
                             backgroundColor="#63E8A8"
                             url={`/transaction?state=ASSIGNED,IN_PICK_UP,IN_PICK_UP_POINT,PICKED_UP,IN_DELIVERY,IN_DELIVERY_POINT,IN_RETURN_TO_SENDER&minMinDeliveryDate=${moment().subtract(4,'d').format('YYYY-MM-DD')}&maxMinDeliveryDate=${moment().format("YYYY-MM-DD")}`}
                         />
                         <Card
                             subtitle="Transacciones"
                             title="Pendientes de asignación"
-                            number={dashboard.pendingTransactions}
+                            number={dashboard.pendingTransactions?.toString()}
                             backgroundColor="#BCB6FF"
                             url={`/transaction?state=PENDING_ASSIGNMENT&minMinDeliveryDate=${moment().subtract(4,'d').format('YYYY-MM-DD')}&maxMinDeliveryDate=${moment().format("YYYY-MM-DD")}`}
                             id="dashboard-card-pending-Assignment"
@@ -44,7 +44,7 @@ export const DashboardAdmin: React.FC<DashboardTypes> = ({dashboard,isFetching})
                             id={null}
                             subtitle="Transacciones"
                             title="En alerta"
-                            number={dashboard.inAlertTransactions}
+                            number={dashboard.inAlertTransactions?.toString()}
                             backgroundColor="#FF8F76"
                             url={`/transaction?inAlert=${true}&minMinDeliveryDate=${moment().subtract(4,'d').format('YYYY-MM-DD')}&maxMinDeliveryDate=${moment().format("YYYY-MM-DD")}`}
                         />
