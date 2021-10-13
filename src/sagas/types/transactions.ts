@@ -13,6 +13,12 @@ export type FilterTransactionsType = {
   pickerId?: number;
   transactionCode?: string;
 };
+
+export type FilterTransactionsValidationSchemaType = {
+  pickerId?: number | string;
+  transactionCode?: string;
+};
+
 export type TransactionResponseContent = {
   data: TransactionResponseType;
   status: number;
