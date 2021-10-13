@@ -14,7 +14,7 @@ export type FilterContainerValidationSchemaTypes = {
 };
 
 export type FilterTypes = {
-  onSubmit: any;
+  onSubmit: Function;
   filters: ParamsMiddlewareType;
   validationSchema: Object;
 };
