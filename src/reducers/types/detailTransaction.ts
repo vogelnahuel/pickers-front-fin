@@ -1,4 +1,6 @@
-export type DetailTransactionType={
+import { DetailTransactionType } from "sagas/types/detailTransactions"
+
+export type DetailTransactionTypeType={
     DETAIL_TRANSACTIONS_ID_REQUEST: string,
     DETAIL_TRANSACTIONS_ID_SUCCESS: string,
     DETAIL_TRANSACTIONS_ID_ERROR: string,
@@ -71,8 +73,9 @@ export type DetailTransactionSelectorType={
 }
 export type DetailTransactionActionType = {
     type:string,
+    detailTransaction:DetailTransactionType
 }
 export type DetailTransactionInicialStateType={
     fetching: boolean,
-    Detailtransactions?:DetailTransactionSelectorType[],
+    detailtransactions:DetailTransactionType,
 }

@@ -1,10 +1,10 @@
 import { DetailTransactionCancelItemType, postCancelType, postDevolutionUndeliveredType, postDnideliveredResponseType } from "sagas/types/detailTransactions";
 import {  } from "sagas/types/transactions";
 import { RootState } from "store";
-import { DetailTransactionActionsType, DetailTransactionActionType, DetailTransactionInicialStateType, DetailTransactionSelectorType, DetailTransactionType } from "./types/detailTransaction";
+import { DetailTransactionActionsType, DetailTransactionActionType, DetailTransactionInicialStateType, DetailTransactionSelectorType, DetailTransactionTypeType } from "./types/detailTransaction";
 export const TRANSACTIONS = "DETAIL_TRANSACTIONS";
 
-export const types:DetailTransactionType = {
+export const types:DetailTransactionTypeType = {
     DETAIL_TRANSACTIONS_ID_REQUEST: `${TRANSACTIONS}_ID_REQUEST`,
     DETAIL_TRANSACTIONS_ID_SUCCESS: `${TRANSACTIONS}_ID_SUCCESS`,
     DETAIL_TRANSACTIONS_ID_ERROR: `${TRANSACTIONS}_ID_ERROR`,
@@ -35,7 +35,86 @@ export const types:DetailTransactionType = {
 };
 
 export const INITIAL_STATE:DetailTransactionInicialStateType = {
-    fetching: false
+    fetching: false,
+    detailtransactions: {
+        transaction: {
+            id: 0,
+            orderNumber: "",
+            transactionCode: "",
+            inAlert: false,
+            sellerId: "",
+            externalPickerId: "",
+            state: {
+                id: 0,
+                name: "",
+                tag: ""
+            },
+            sla: "",
+            minDeliveryDateTime: "",
+            maxDeliveryDateTime: "",
+            finishDeliveryTime: "",
+            createdAt: "",
+            earning: 0
+        },
+        origin: {
+            name: "",
+            street: "",
+            streetNumber: "",
+            locality: "",
+            neighborhood: "",
+            state: "",
+            postalCode: "",
+            country: "",
+            floor: "",
+            apartment: "",
+            observation: "",
+            latitude: 0,
+            longitude: 0,
+            formattedAddress: "",
+            distance: 0
+        },
+        destination: {
+            name: "",
+            street: "",
+            streetNumber: "",
+            locality: "",
+            neighborhood: "",
+            state: "",
+            postalCode: "",
+            country: "",
+            floor: "",
+            apartment: "",
+            observation: "",
+            latitude: 0,
+            longitude: 0,
+            formattedAddress: "",
+            distance: 0
+        },
+        client: {
+            name: "",
+            lastName: "",
+            identificationNumber: "",
+            phone: ""
+        },
+        products: [],
+        transactionHistory: [],
+        picker: {
+            id: 0,
+            name: "",
+            surname: "",
+            phone: {
+                countryNumber: "",
+                areaNumber: "",
+                number: ""
+            }
+        },
+        seller: {
+            id: 0,
+            name: "",
+            urlNotification: "",
+            tag: ""
+        }
+    }
 };
 
 export const actions:DetailTransactionActionsType = {
@@ -43,9 +122,9 @@ export const actions:DetailTransactionActionsType = {
         type: types.DETAIL_TRANSACTIONS_ID_REQUEST,
         id,
     }),
-    getDetailTransactionSuccess: (transactions:DetailTransactionType) => ({
+    getDetailTransactionSuccess: (detailTransaction:DetailTransactionTypeType) => ({
         type: types.DETAIL_TRANSACTIONS_ID_SUCCESS,
-        transactions
+        detailTransaction
     }),
     getDetailTransactionError: () => ({
         type: types.DETAIL_TRANSACTIONS_ID_ERROR,
@@ -68,7 +147,7 @@ export const actions:DetailTransactionActionsType = {
         params,
         id
     }),
-    getDetailTransactionDevolutionUndeliveredSuccess: (transactions:DetailTransactionType) => ({
+    getDetailTransactionDevolutionUndeliveredSuccess: (transactions:DetailTransactionTypeType) => ({
         type: types.DETAIL_TRANSACTIONS_DEVOLUTION_UNDELIVERED_SUCCESS,
         transactions
     }),
@@ -81,7 +160,7 @@ export const actions:DetailTransactionActionsType = {
         params,
         id
     }),
-    getDetailTransactionReasonsCanceledSuccess: (transactions:DetailTransactionType) => ({
+    getDetailTransactionReasonsCanceledSuccess: (transactions:DetailTransactionTypeType) => ({
         type: types.DETAIL_TRANSACTIONS_REASONS_CANCELED_SUCCESS,
         transactions
     }),
@@ -94,7 +173,7 @@ export const actions:DetailTransactionActionsType = {
         type: types.DETAIL_TRANSACTIONS_FINISH_RETURNED_REQUEST,
         id
     }),
-    getDetailTransactionFinishReturnedSuccess: (transactions:DetailTransactionType) => ({
+    getDetailTransactionFinishReturnedSuccess: (transactions:DetailTransactionTypeType) => ({
         type: types.DETAIL_TRANSACTIONS_FINISH_RETURNED_SUCCESS,
         transactions
     }),
@@ -106,7 +185,7 @@ export const actions:DetailTransactionActionsType = {
         type: types.DETAIL_TRANSACTIONS_FINISH_LOST_REQUEST,
         id,
     }),
-    getDetailTransactionFinishLostSuccess: (transactions:DetailTransactionType) => ({
+    getDetailTransactionFinishLostSuccess: (transactions:DetailTransactionTypeType) => ({
         type: types.DETAIL_TRANSACTIONS_FINISH_LOST_SUCCESS,
         transactions
     }),
@@ -120,7 +199,7 @@ export const actions:DetailTransactionActionsType = {
         params,
         id
     }),
-    getDetailTransactionDniDeliveredSuccess: (transactions:DetailTransactionType) => ({
+    getDetailTransactionDniDeliveredSuccess: (transactions:DetailTransactionTypeType) => ({
         type: types.DETAIL_TRANSACTIONS_DNI_DELIVERED_SUCCESS,
         transactions
     }),
@@ -150,7 +229,8 @@ const reducer =(state:DetailTransactionInicialStateType = INITIAL_STATE, action:
         case types.DETAIL_TRANSACTIONS_ID_SUCCESS:
             return {
                     ...state,
-                    fetching: true,
+                    fetching: false,
+                    detailTransaction:action.detailTransaction
             };
         case types.DETAIL_TRANSACTIONS_ID_ERROR:
             return {

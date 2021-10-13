@@ -21,7 +21,7 @@ import { AxiosResponse } from "axios";
 
 
 const sagas:ForkEffect<never>[] = [
-  takeLatest(types.DETAIL_TRANSACTIONS_ID_REQUEST, getDetailTransactionID),
+  takeLatest(types.DETAIL_TRANSACTIONS_ID_REQUEST, getDetailTransaction),
   takeLatest(types.DETAIL_TRANSACTIONS_MENSSAGES_REQUEST, getMessages),
   takeLatest(types.DETAIL_TRANSACTIONS_DEVOLUTION_UNDELIVERED_REQUEST, postDevolutionUndelivered),
   takeLatest(types.DETAIL_TRANSACTIONS_REASONS_CANCELED_REQUEST, postReasonsCanceled),
@@ -30,10 +30,10 @@ const sagas:ForkEffect<never>[] = [
   takeLatest(types.DETAIL_TRANSACTIONS_DNI_DELIVERED_REQUEST, postDnidelivered),
 ];
 
-function* getDetailTransactionID({
+function* getDetailTransaction({
   id,
 }: DetailTransactionSagasType): Generator<
-  CallEffect<AxiosResponse<DetailTransactionResponseType>> | PutEffect<{ type: string }>,
+  CallEffect<AxiosResponse<DetailTransactionResponseType>> | PutEffect<{ type: string }> ,
   void,
   DetailTransactionResponseType
 > {
