@@ -48,7 +48,7 @@ const FilterPickersContainer: React.FC<FilterContainerTypes> = (props) => {
       ),
     email: yup
       .string()
-      .matches(VALIDATION_REGEX.regEmail, "El formato del pepe es inválido"),
+      .matches(VALIDATION_REGEX.regEmail, "El formato del correo es inválido"),
   });
 
   return (

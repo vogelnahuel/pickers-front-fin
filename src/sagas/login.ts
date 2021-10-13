@@ -183,7 +183,7 @@ function* getLoginRestore({
           notificationActions.showNotification({
             level: "error",
             title: "Código de verificación vencido",
-            body: "Se venció el plazo de recuperación de tu contraseña, Solicitala nuevamente.",
+            body: "Se venció el plazo de recuperación de tu contraseña. Solicitala nuevamente",
             element,
           })
         );
