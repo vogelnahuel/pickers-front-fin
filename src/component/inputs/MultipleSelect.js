@@ -29,7 +29,7 @@ const MultipleSelect = (
     } else {
       let length = optionsState.filter((ob)=>ob.selected).length;
       if (length >= 2) {
-        return `${length} Selecionados`;
+        return `${length} Seleccionados`;
       } else {
         return reduceState(optionsState, 'label');
       }
