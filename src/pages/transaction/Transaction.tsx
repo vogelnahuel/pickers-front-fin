@@ -30,24 +30,23 @@ export const Transaction: React.FC<TransactionType>  = ({
                                 resolutionHeightModal,
                             }):JSX.Element => {
 
-    const [FilterSelectedTransaction, setFilterSelectedTransaction] = useState<TransactionResponseTypeResult>();
-    const [OpenModalTransaction, setOpenModalTransaction] = useState(false);
-    const titulos = ["Transacción", "Id de picker", "Vencimiento SLA", "Estado"];
-    const [isFetchingModal, setisFetchingModal] = useState(false)
+    //const [FilterSelectedTransaction, setFilterSelectedTransaction] = useState<TransactionResponseTypeResult>();
+    //const [OpenModalTransaction, setOpenModalTransaction] = useState(false);
+    //const [isFetchingModal, setisFetchingModal] = useState(false)
     
-    const cargarDatos = async(id:number)=> {
-            await  api.get(`/ms-admin-rest/api/v1.0/transactions/${id}`)
-            .then((res) => {
-                setFilterSelectedTransaction(res.data.result);
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-    }
+    // const cargarDatos = async(id:number)=> {
+    //         await  api.get(`/ms-admin-rest/api/v1.0/transactions/${id}`)
+    //         .then((res) => {
+    //             setFilterSelectedTransaction(res.data.result);
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         })
+    // }
 
-    const onClose = () => {
-        setOpenModalTransaction(false);
-    };
+    // const onClose = () => {
+    //     setOpenModalTransaction(false);
+    // };
 
 
     return (
@@ -75,10 +74,8 @@ export const Transaction: React.FC<TransactionType>  = ({
                     </div>
                     <FilterTransaction/>
                     <TableTransaction
-                        setOpenModalTransaction={setOpenModalTransaction}
-                        api={transactions}
-                        titulos={titulos}
-                        cargarDatos={cargarDatos}
+                        transactions={transactions}
+                       
                     />
                     {transactions && transactions?.length !== 0 ? <>
                             { seeMore ?
@@ -105,73 +102,10 @@ export const Transaction: React.FC<TransactionType>  = ({
                         }
                 </div>
                 <NotificationModal/>
-
-                
-                {OpenModalTransaction === true ? 
-                    <div className="modal-transaction">
-                        <Modal 
-                            width="1190px" 
-                            height={`${resolutionHeightModal}px`} 
-                            isOpen={OpenModalTransaction} 
-                            onClose={onClose} 
-                        > 
-                            <div className="modal-transaction-container">
-                                <img 
-                                    onClick={onClose} 
-                                    className="modal-transaction-close" 
-                                    src={Close} 
-                                    alt="cerrar" 
-                                /> 
-                                <div> 
-                                    <div className="modal-transaction-title"> 
-                                        <h2>Código de transacción</h2> 
-                                        <p>Estado
-                                        </p> 
-                                        <p className="modal-transaction-fecha"> 
-                                            {  FilterSelectedTransaction && FilterSelectedTransaction?.transaction && 
-                                            FilterSelectedTransaction.transaction.inAlert===true ? 
-                                                <> 
-                                                    <span className="transaction-modal-alert modal-transaction-alerta">En alerta</span> 
-                                                </> 
-                                                : <span className="modal-transaction-space"></span> 
-                                            } 
-                                            Vencimiento SLA</p> 
-                                    </div> 
-                                    <div className="modal-transaction-subtitle"> 
-                                        <h2> 
-                                            {FilterSelectedTransaction && FilterSelectedTransaction?.transaction 
-                                                ? FilterSelectedTransaction.transaction.transactionCode 
-                                                : ""} 
-                                        </h2> 
-                                        <p>
-                                            {FilterSelectedTransaction && FilterSelectedTransaction?.transaction 
-                                                ? stateName(FilterSelectedTransaction.transaction.state.id) 
-                                                : ""}
-                                        </p>
-                                        <p className="modal-transaction-fecha"> 
-                                            {" "} 
-                                            {FilterSelectedTransaction && FilterSelectedTransaction?.transaction 
-                                                ? ISO8601toDDMMYYYHHMM(FilterSelectedTransaction.transaction.maxDeliveryDateTime)
-                                                : ""}{" "} 
-                                        </p> 
-                                    </div> 
-                                    <hr className="modal-transaction-separate" id="modal-transaction-hr-title"/> 
-                                </div> 
-                                <div className="modal-transaction-scroll"> 
-                                    <OptionList 
-                                        setisFetchingModal={setisFetchingModal}
-                                        FilterSelectedTransaction={FilterSelectedTransaction}
-                                        setFilterSelectedTransaction={setFilterSelectedTransaction} 
-                                    /> 
-                                </div> 
-                            </div> 
-                        </Modal> 
-                    </div> 
-                 : null}
             </div>
             
 
-            { (isFetching  || isFetchingModal) && <div className="modalLoading"/>}
+            { (isFetching/*  || isFetchingModal*/) && <div className="modalLoading"/>}
         </div>
     );
 };

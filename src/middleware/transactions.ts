@@ -8,7 +8,7 @@ import { TransactionsExportContentType, FilterTransactionsType, TransactionRespo
 export const getTransactions = (params:FilterTransactionsType) :Promise<AxiosResponse<TransactionResponseContent>>=> API.get("/ms-admin-rest/api/v1.0/transactions", params);
 export const getTransactionsExport = (params:FilterTransactionsType): Promise<AxiosResponse<TransactionsExportContentType>> => API.get("/ms-admin-rest/api/v1.0/transactions.csv", params);
 
-export const getTransactionId= (id:string): Promise<AxiosResponse<DetailTransactionResponseType>> => API.get(`/ms-admin-rest/api/v1.0/transactions/${id}`);
+export const getTransaction= (id:string): Promise<AxiosResponse<DetailTransactionResponseType>> => API.get(`/ms-admin-rest/api/v1.0/transactions/${id}`);
 export const getMessages =  (id:string): Promise<AxiosResponse<TransactionCancelResponseType>> => API.get(`ms-admin-rest/api/v1.0/transactions/${id}/message`);
 export const postDevolutionUndelivered = (params:postDevolutionUndeliveredType,id:string): Promise<AxiosResponse<DevolutionUndeliveredResponseType>> => API.post( `/ms-admin-rest/api/v1.0/transactions/${id}/in-devolution`,params);
 export const postReasonsCanceled = (params:postCancelType,id:string): Promise<AxiosResponse<DevolutionUndeliveredResponseType>> => API.get( `/ms-admin-rest/api/v1.0/transactions/${id}/cancel`,params);

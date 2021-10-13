@@ -1,4 +1,4 @@
-import { DetailTransactionType } from "sagas/types/detailTransactions"
+import { DetailTransactionCancelItemType, DetailTransactionType } from "sagas/types/detailTransactions"
 
 export type DetailTransactionTypeType={
     DETAIL_TRANSACTIONS_ID_REQUEST: string,
@@ -78,4 +78,5 @@ export type DetailTransactionActionType = {
 export type DetailTransactionInicialStateType={
     fetching: boolean,
     detailtransactions:DetailTransactionType,
+    message: DetailTransactionCancelItemType[]
 }

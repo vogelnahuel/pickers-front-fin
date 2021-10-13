@@ -114,7 +114,8 @@ export const INITIAL_STATE:DetailTransactionInicialStateType = {
             urlNotification: "",
             tag: ""
         }
-    }
+    },
+    message: []
 };
 
 export const actions:DetailTransactionActionsType = {

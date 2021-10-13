@@ -5,17 +5,17 @@ import moment from 'moment'
 import { Fragment } from 'react'
 import { TableTransactionPropsTypes } from './types'
 import { TransactionResponseTypeResult } from 'sagas/types/transactions'
+import {transactionTableTitles} from './../../../utils/constants'
 
 
-export const TableTransaction = (props:TableTransactionPropsTypes) => {
+export const TableTransaction = ({transactions}:TableTransactionPropsTypes) => {
   
-    const setOpenModalTransaction =  props.setOpenModalTransaction;
-    const api = props.api;
-    const titulos = props.titulos;
-    const cargarDatos =props.cargarDatos;
+    // const setOpenModalTransaction =  props.setOpenModalTransaction;
+    // const api = props.api;
+    // const cargarDatos =props.cargarDatos;
     const handleClickModal = (id:number) => {
-        setOpenModalTransaction(true);
-        cargarDatos(id);
+        // setOpenModalTransaction(true);
+        // cargarDatos(id);
     }
 
 
@@ -24,49 +24,48 @@ export const TableTransaction = (props:TableTransactionPropsTypes) => {
            
             <table  className="titleTableTransactions" >
                 <thead >
-                        <tr key={titulos[0]} > 
-                            <td key={titulos[1]}></td>
-                            <td key={titulos[2]}></td>
-
-                            {titulos ?  titulos.map( (titulo:string) => 
+                        <tr> 
+                            <td key="action"></td>
+                            {transactionTableTitles.map( (titulo:string) => 
                                 (
-                                    <Fragment key={titulo}>
+                                    
                                         <td key={titulo}>{titulo}</td>
-                                    </Fragment>
-                                ) )
-                                : null
+                                    
+                                ) 
+                                )
+                               
                             }
-                            <td key={titulos[3]}></td> 
+                            <td key={transactionTableTitles[3]}></td> 
                         </tr>
                 </thead>
                 <tbody> 
                     {
-                        JSON.stringify(api)!=='{}' && api!==undefined ? api.map((dato:TransactionResponseTypeResult) => dato?
+                        transactions.length>0 && transactions.map((data:TransactionResponseTypeResult) => 
                         
-                            <tr onClick={()=>handleClickModal(dato.transaction.id)} key={dato.transaction.id+"0"} >
+                            <tr onClick={()=>handleClickModal(data.transaction.id)} >
                                 
-                                    <td  data-name={dato.transaction.id} key={dato.transaction.id+"1"}  ></td>
-                                    <td  data-name={dato.transaction.id} id={`${dato.transaction.id}`} key={dato.transaction.id+"2"}  ><img key={dato.transaction.id+"3"}  data-name={dato.transaction.id} id={`${dato.transaction}`} className="img-transaction"  src={TreePoints} alt="TreePoints" /> </td>
+                                    <td    ></td>
+                                    <td   ><img  data-name={data.transaction.id} id={`${data.transaction}`} className="img-transaction"  src={TreePoints} alt="TreePoints" /> </td>
                                 
-                                    <td  data-name={dato.transaction.id} key={dato.transaction.id+"4"} > {dato.transaction.transactionCode} </td>
-                                    <td  data-name={dato.transaction.id} key={dato.transaction.id+"5"} > {dato.transaction.externalPickerId}  </td>
-                                    <td  data-name={dato.transaction.id} key={dato.transaction.id+"6"} > {moment(dato.transaction.maxDeliveryDateTime.substring(0,10),"YYYY-MM-DD").format("DD/MM/YYYY")}           
+                                    <td   > {data.transaction.transactionCode} </td>
+                                    <td  > {data.transaction.externalPickerId}  </td>
+                                    <td > {moment(data.transaction.maxDeliveryDateTime.substring(0,10),"YYYY-MM-DD").format("DD/MM/YYYY")}           
                                      {
-                                       window.innerWidth  < 1930 ?  <>{dato.transaction.inAlert?<div className="admin-table-alerta">En alerta</div>:null}</>: null
+                                       window.innerWidth  < 1930 ?  <>{data.transaction.inAlert?<div className="admin-table-alerta">En alerta</div>:null}</>: null
                                      }
                                     </td>
                           
-                                    <td  data-name={dato.transaction.id} key={dato.transaction.id+"7"} > {  dato.transaction.state.name }</td>
-                                   <td></td>
+                                    <td  > {  data.transaction.state.name }</td>
+                                   
                                    {
-                                       window.innerWidth  > 1930 ? <td  data-name={"inAlert"} key={dato.transaction.id+"8"} > {dato.transaction.inAlert?<div className="admin-table-alerta">En alerta</div>:null}</td> : null
+                                       window.innerWidth  > 1930 ? <td   > {data.transaction.inAlert?<div className="admin-table-alerta">En alerta</div>:null}</td> : null
                                    }
                                     
                             </tr>
                         
-                        :null
+                
                         )
-                        :null
+                       
 
                     }
                 </tbody>
