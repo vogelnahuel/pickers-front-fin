@@ -1,6 +1,6 @@
 import { FilterTransactionsType } from "sagas/types/transactions";
 import { RootState } from "store";
-import { TransactionActionType, TransactionActionsType, GetTransactionsSuccessType, TransactionStateType, SetFilterExtraType, SetFilterType, TransactionsTypes } from "./types/transaction";
+import { TransactionActionType, TransactionActionsType, GetTransactionsSuccessType, TransactionStateType, SetFilterExtraType, SetFilterType, TransactionsTypes, SelectorTransactionType } from "./types/transaction";
 
 export const TRANSACTIONS = "transactions/TRANSACTIONS";
 
@@ -93,7 +93,7 @@ export const actions:TransactionActionsType = {
     }),
 };
 
-export const selectors = {
+export const selectors:SelectorTransactionType = {
     isFetching: ({ transactions }:RootState) => transactions.fetching,
     isExportDisabled: ({ transactions }:RootState) => transactions.exportDisabled,
     getTransactions: ({ transactions }:RootState) => transactions.transactions,

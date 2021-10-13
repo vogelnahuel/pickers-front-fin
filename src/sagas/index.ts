@@ -3,6 +3,7 @@ import transactions from "./transactions";
 import pickers from "./pickers";
 import dashboard from "./dashboard";
 import login from "./login";
+import detailTransaction from "./detailTransaction";
 import {actions} from "../reducers/login";
 import { Effect, ITypeError } from "./types/types";
 
@@ -11,6 +12,7 @@ const sagas = [
     ...pickers,
     ...dashboard,  
     ...login,
+    ...detailTransaction
 ];
 //revisar el any del err
 

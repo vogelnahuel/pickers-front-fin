@@ -53,6 +53,15 @@ export type SetFilterType={
 export type SetFilterExtraType={
     limit ?: number
 }
+export type SelectorTransactionType={
+    isFetching:Function,
+    isExportDisabled:Function,
+    getTransactions:Function,
+    getFilters:Function,
+    getFiltersExtra:Function,
+    getSeeMore:Function,
+    getFiltersExtraSeeMore:Function,
+}
 export type TransactionActionsType={
     reset:Function,
     getTransactionsRequest:Function,

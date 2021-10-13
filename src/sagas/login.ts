@@ -1,6 +1,7 @@
 import {
   call,
   CallEffect,
+  ForkEffect,
   put,
   PutEffect,
   takeLatest,
@@ -20,7 +21,7 @@ import {
 } from "./types/login";
 import { AxiosResponse } from "axios";
 
-const sagas = [
+const sagas:ForkEffect<never>[] = [
   takeLatest(types.LOGIN_GET_REQUEST, getLogin),
   takeLatest(types.LOGOUT, logout),
   takeLatest(types.LOGIN_EMAIL_GET_REQUEST, getLoginEmail),

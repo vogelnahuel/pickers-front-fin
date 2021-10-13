@@ -1,23 +1,17 @@
 import { AxiosResponse } from "axios";
 import * as API from "middleware/api";
+import { postCancelType, DevolutionUndeliveredResponseType, postDevolutionUndeliveredType, postDnideliveredResponseType, TransactionCancelResponseType, DetailTransactionResponseType } from "sagas/types/detailTransactions";
 import { TransactionsExportContentType, FilterTransactionsType, TransactionResponseContent} from "sagas/types/transactions";
-import { GetTransactionIdType, postCancelType, postDevolutionUndeliveredResponseType, postDevolutionUndeliveredType, postDnideliveredResponseType, TransactionCancelResponseType, TransactionIdResponseType, transactionUndeliverableType } from "./types";
+
 
 
 export const getTransactions = (params:FilterTransactionsType) :Promise<AxiosResponse<TransactionResponseContent>>=> API.get("/ms-admin-rest/api/v1.0/transactions", params);
-
 export const getTransactionsExport = (params:FilterTransactionsType): Promise<AxiosResponse<TransactionsExportContentType>> => API.get("/ms-admin-rest/api/v1.0/transactions.csv", params);
 
-export const getTransactionId= (params:GetTransactionIdType): Promise<AxiosResponse<TransactionIdResponseType>> => API.get(`/ms-admin-rest/api/v1.0/transactions/${params.id}`);
-
-export const getMessages =  (params:GetTransactionIdType): Promise<AxiosResponse<TransactionCancelResponseType|transactionUndeliverableType>> => API.get(`ms-admin-rest/api/v1.0/transactions/${params.id}/message`);
-
-export const postDevolutionUndelivered = (params:postDevolutionUndeliveredType): Promise<AxiosResponse<postDevolutionUndeliveredResponseType>> => API.post( `/ms-admin-rest/api/v1.0/transactions/${params.impossibleDeliveryReasonId}/in-devolution`,params);
-
-export const postReasonsCanceled = (params:postCancelType): Promise<AxiosResponse<postDevolutionUndeliveredResponseType>> => API.get( `/ms-admin-rest/api/v1.0/transactions/${params.cancellationReasonId}/cancel`,params);
-
-export const postFinishReturned = (params:GetTransactionIdType): Promise<AxiosResponse<postDevolutionUndeliveredResponseType>> => API.get(  `/ms-admin-rest/api/v1.0/transactions/${params.id}/returned`);
-
-export const postFinishLost = (params:GetTransactionIdType): Promise<AxiosResponse<postDevolutionUndeliveredResponseType>> => API.get( `/ms-admin-rest/api/v1.0/transactions/${params.id}/lost`);
-
-export const postDnidelivered = (params:postDnideliveredResponseType): Promise<AxiosResponse<postDevolutionUndeliveredResponseType>> => API.get(`/ms-admin-rest/api/v1.0/transactions/${params.id}/delivered`,params);
+export const getTransactionId= (id:string): Promise<AxiosResponse<DetailTransactionResponseType>> => API.get(`/ms-admin-rest/api/v1.0/transactions/${id}`);
+export const getMessages =  (id:string): Promise<AxiosResponse<TransactionCancelResponseType>> => API.get(`ms-admin-rest/api/v1.0/transactions/${id}/message`);
+export const postDevolutionUndelivered = (params:postDevolutionUndeliveredType,id:string): Promise<AxiosResponse<DevolutionUndeliveredResponseType>> => API.post( `/ms-admin-rest/api/v1.0/transactions/${id}/in-devolution`,params);
+export const postReasonsCanceled = (params:postCancelType,id:string): Promise<AxiosResponse<DevolutionUndeliveredResponseType>> => API.get( `/ms-admin-rest/api/v1.0/transactions/${id}/cancel`,params);
+export const postFinishReturned = (id:string): Promise<AxiosResponse<DevolutionUndeliveredResponseType>> => API.get(  `/ms-admin-rest/api/v1.0/transactions/${id}/returned`);
+export const postFinishLost = (id:string): Promise<AxiosResponse<DevolutionUndeliveredResponseType>> => API.get( `/ms-admin-rest/api/v1.0/transactions/${id}/lost`);
+export const postDnidelivered = (params:postDnideliveredResponseType,id:string): Promise<AxiosResponse<DevolutionUndeliveredResponseType>> => API.get(`/ms-admin-rest/api/v1.0/transactions/${id}/delivered`,params);
