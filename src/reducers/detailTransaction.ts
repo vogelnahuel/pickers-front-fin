@@ -1,5 +1,5 @@
 import { DetailTransactionCancelItemType, postCancelType, postDevolutionUndeliveredType, postDnideliveredResponseType } from "sagas/types/detailTransactions";
-import {  } from "sagas/types/transactions";
+
 import { RootState } from "store";
 import { DetailTransactionActionsType, DetailTransactionActionType, DetailTransactionInicialStateType, DetailTransactionSelectorType, DetailTransactionTypeType } from "./types/detailTransaction";
 export const TRANSACTIONS = "DETAIL_TRANSACTIONS";
@@ -210,7 +210,7 @@ export const actions:DetailTransactionActionsType = {
 };
 
 export const selectors:DetailTransactionSelectorType = {
-    getDetailTransactionID: ({ transactions }:RootState) => transactions.transactions,
+    getDetailTransactionID: (detailtransactions:RootState) => detailtransactions,
     getDetailTransactionMenssages: ({ transactions }:RootState) => transactions.transactions,
     getDetailTransactionDevolutionUndelivered: ({ transactions }:RootState) => transactions.transactions,
     getDetailTransactionReasonsCanceled: ({ transactions }:RootState) => transactions.transactions,
@@ -336,7 +336,8 @@ const reducer =(state:DetailTransactionInicialStateType = INITIAL_STATE, action:
                           
     
         default:
-            break;
+            return state 
+
     }
 };
 

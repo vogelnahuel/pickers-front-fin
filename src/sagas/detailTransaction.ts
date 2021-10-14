@@ -37,7 +37,7 @@ function* getDetailTransaction({
   void,
   DetailTransactionResponseType
 > {
-  const response = yield call(transactionsMiddleware.getTransaction, id);
+  const response = yield call(transactionsMiddleware.getDetailTransaction, id);
   if (response.status !== 200) {
     yield put(actions.getDetailTransactionError());
   } else {

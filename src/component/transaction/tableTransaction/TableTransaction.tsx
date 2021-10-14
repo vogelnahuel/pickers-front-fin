@@ -1,11 +1,13 @@
 import React, {  } from 'react'
-import './TableTransaction.css'
+import './TableTransaction.scss'
 import TreePoints from '../../../assets/transaction/TreePoints.svg'
 import moment from 'moment'
 import { Fragment } from 'react'
 import { TableTransactionPropsTypes } from './types'
 import { TransactionResponseTypeResult } from 'sagas/types/transactions'
 import {transactionTableTitles} from './../../../utils/constants'
+import store from 'store'
+import { actions, selectors } from 'reducers/detailTransaction'
 
 
 export const TableTransaction = ({transactions}:TableTransactionPropsTypes) => {
@@ -16,6 +18,8 @@ export const TableTransaction = ({transactions}:TableTransactionPropsTypes) => {
     const handleClickModal = (id:number) => {
         // setOpenModalTransaction(true);
         // cargarDatos(id);
+        store.dispatch(actions.getDetailTransactionRequest("70"))
+        console.log(selectors.getDetailTransactionID())
     }
 
 
