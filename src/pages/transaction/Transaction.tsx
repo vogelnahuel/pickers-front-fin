@@ -1,22 +1,15 @@
-import React, {useState} from "react";
+import React from "react";
 import {Header} from "component/admin/Header/Header";
 import {Nav} from "component/admin/Nav/Nav";
 import { TableTransaction } from "component/transaction/tableTransaction/TableTransaction";
 import "pages/transaction/transaction.scss";
 import FilterTransaction from "./filterTransaction/FilterTransactionContainer";
-import {Modal} from "@pickit/pickit-components";
-import {OptionList} from "pages/transaction/modalTransaction/OptionList/OptionList";
 import exportar from "assets/admin/PendingUser/exportar.svg";
 import or from "assets/admin/PendingUser/or.svg";
 import exportDisabledIcon from "assets/transaction/ExportDisabled.svg";
 import orDisabled from "assets/transaction/OrDisabled.svg";
-import Close from "assets/transaction/Close.svg";
-import api from "middleware/api";
-import stateName from "component/transaction/tableTransaction/statesNames";
-import {ISO8601toDDMMYYYHHMM} from 'utils/iso8601toDDMMYYHHMM'
 import NotificationModal from "component/modal/NotificationModal";
 import { TransactionType } from "./types";
-import { TransactionResponseTypeResult } from "sagas/types/transactions";
 
 export const Transaction: React.FC<TransactionType>  = ({
                                 isExportDisabled,

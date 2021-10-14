@@ -26,6 +26,7 @@ export const TableTransaction = ({transactions}:TableTransactionPropsTypes) => {
                 <thead >
                         <tr> 
                             <td key="action"></td>
+                            <td key="actions"></td>
                             {transactionTableTitles.map( (titulo:string) => 
                                 (
                                     
@@ -42,7 +43,7 @@ export const TableTransaction = ({transactions}:TableTransactionPropsTypes) => {
                     {
                         transactions.length>0 && transactions.map((data:TransactionResponseTypeResult) => 
                         
-                            <tr onClick={()=>handleClickModal(data.transaction.id)} >
+                            <tr  key={data.transaction.id} onClick={()=>handleClickModal(data.transaction.id)} >
                                 
                                     <td    ></td>
                                     <td   ><img  data-name={data.transaction.id} id={`${data.transaction}`} className="img-transaction"  src={TreePoints} alt="TreePoints" /> </td>
@@ -51,16 +52,16 @@ export const TableTransaction = ({transactions}:TableTransactionPropsTypes) => {
                                     <td  > {data.transaction.externalPickerId}  </td>
                                     <td > {moment(data.transaction.maxDeliveryDateTime.substring(0,10),"YYYY-MM-DD").format("DD/MM/YYYY")}           
                                      {
-                                       window.innerWidth  < 1930 ?  <>{data.transaction.inAlert?<div className="admin-table-alerta">En alerta</div>:null}</>: null
+                                       window.innerWidth  < 2500 ?  <>{data.transaction.inAlert?<div className="admin-table-alerta">En alerta</div>:null}</>: null
                                      }
                                     </td>
                           
                                     <td  > {  data.transaction.state.name }</td>
                                    
                                    {
-                                       window.innerWidth  > 1930 ? <td   > {data.transaction.inAlert?<div className="admin-table-alerta">En alerta</div>:null}</td> : null
+                                       window.innerWidth  > 2500 ? <td   > {data.transaction.inAlert?<div className="admin-table-alerta">En alerta</div>:null}</td> : null
                                    }
-                                    
+                                     <td    ></td>
                             </tr>
                         
                 
