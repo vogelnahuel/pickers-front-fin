@@ -121,7 +121,7 @@ export const FinishModal = (props) => {
         </h3>
         <hr className="modal-transaction-finish-separate" />
         <p>
-          La transacción <b>{FilterSelectedTransaction.transaction.transactionCode}</b> va a
+          La transacción <b>{FilterSelectedTransaction?.transaction?.transactionCode}</b> va a
           pasar a estado:
         </p>
       </div>
@@ -130,7 +130,7 @@ export const FinishModal = (props) => {
         <div className="modal-transaction-finish-inputs">
        
         
-              <div className={FilterSelectedTransaction.transaction.state.id!==8  ? "flexItems" : "flexItems flexItems-items-center"}>
+              <div className={FilterSelectedTransaction?.transaction?.state?.id!==8  ? "flexItems" : "flexItems flexItems-items-center"}>
                   <input
                     onClick={handleClickCheck}
                     name="estado"
@@ -145,7 +145,7 @@ export const FinishModal = (props) => {
                     Siniestrado
                   </label>
               </div>
-          {FilterSelectedTransaction.transaction.state.id!==8 ?
+          {FilterSelectedTransaction?.transaction?.state?.id!==8 ?
                 <div className="flexItems">
                     <input
                       onClick={handleClickCheck}

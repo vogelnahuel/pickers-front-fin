@@ -2,11 +2,10 @@ import React, {  } from "react";
 import Okey from "assets/transaction/Okey.svg";
 import Connector from "assets/transaction/Connector.svg";
 import Cancel from "assets/transaction/Cancel.svg";
-import "./history.css";
+import "./history.scss";
 import { Form, Field } from "react-final-form";
 import {ISO8601toDDMMYYYHHMM} from 'utils/iso8601toDDMMYYHHMM'
 import { Link } from "react-router-dom";
-
 
 export const History = (props) => {
 

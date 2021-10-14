@@ -109,7 +109,6 @@ export const OptionList = (props:any) => {
     }
 
 
-
     return (
         <>
         <div className="options-transaction-flex">
@@ -136,8 +135,8 @@ export const OptionList = (props:any) => {
                                 
                                 <div className="modal-transaction-buttons-submit">
                                     
-
-                                    
+ 
+                                    {/*            pasar a  modal history                         
                                     { FilterSelectedTransaction && FilterSelectedTransaction.transaction  && (FilterSelectedTransaction.transaction.state.id === 1 || FilterSelectedTransaction.transaction.state.id === 2 || FilterSelectedTransaction.transaction.state.id === 3 || FilterSelectedTransaction.transaction.state.id === 4 )?
                                     <>
                                     <button onClick={handleClickCancel} className="modal-transaction-finish-enabled">Cancelar</button>
@@ -153,7 +152,7 @@ export const OptionList = (props:any) => {
                                     <div onClick={handleReload} className="modal-transaction-reload">
                                         <img className="modal-transaction-reload-img" src={Reload} alt="reload"/>
                                         <p>Actualizar</p>
-                                    </div>
+                                    </div> */}
                                 </div>
 
                                 

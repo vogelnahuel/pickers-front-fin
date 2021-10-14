@@ -3,51 +3,24 @@ import volver from 'assets/admin/PendingUser/volver.svg'
 import Info  from 'assets/transaction/Advertencia.svg'
 import api from 'middleware/api'
 // import { FilterTransaction } from '../../filterTransaction/FilterTransaction'
-import './reasonsCanceledConfirm.css'
+import './reasonsCanceledConfirm.scss'
 
 export const ReasonsCanceledConfirm = (props) => {
 
-    const setreasonCancel = props.setreasonCancel;
-    const setreasonCancelConfirm = props.setreasonCancelConfirm;
-    const reasonId = props.reasonId; 
     const FilterSelectedTransaction = props.FilterSelectedTransaction;
     const msgSelected=props.msgSelected;
 
-    
-
-    
-
-    const handleClickCancelConfirm = (e)=> {
+    // const handleClickCancelConfirm = (e)=> {
        
-        api.post(`/ms-admin-rest/api/v1.0/transactions/${FilterSelectedTransaction.transaction.id}/cancel`,{"cancellationReasonId":parseInt(reasonId)})
-        .then(()=>{window.location.reload();})
-        .catch((err)=>{console.log(err)})
+    //     api.post(`/ms-admin-rest/api/v1.0/transactions/${FilterSelectedTransaction.transaction.id}/cancel`,{"cancellationReasonId":parseInt(reasonId)})
+    //     .then(()=>{window.location.reload();})
+    //     .catch((err)=>{console.log(err)})
      
-    }
-
-
-    const handleClickgoBack = (e) => {
-      
-        
-        e.target.parentNode.parentNode.classList.add('animation-right-transaction')
-        
-        
-         setTimeout(() => {
-            e.target.parentNode.parentNode.classList.remove('animation-right-transaction')
-            setreasonCancel(true);
-             e.target.parentNode.parentNode.parentNode.parentNode.firstChild.classList.add('animation-right-transaction2')
-            e.target.parentNode.parentNode.parentNode.parentNode.firstChild.classList.remove('animation-right-transaction2')
-         
-            
-            setreasonCancelConfirm(false);
-         }, 600);
-        
-        }
-//
+    // }
 
     return (
         <div className="modal-transaction-reasonsCanceled">
-            <div  onClick={handleClickgoBack} className="modal-transaction-volver">
+            <div  onClick={()=>{}} className="modal-transaction-volver">
                 <img  className="modal-transaction-reasonsCanceledConfirm-volver-img" src={volver} alt ="volver" />
                 <p className="modal-transaction-reasonsCanceledConfirm-volver">Volver</p>
             </div>
@@ -64,7 +37,6 @@ export const ReasonsCanceledConfirm = (props) => {
                         ¿Querés cancelar la colecta?
                     </p>
             </div>
-      
             :
             <div className="modal-transaction-reasonsCanceledConfirm-container">
                 <img className="modal-transaction-reasonsCanceledConfirm-img" src={Info} alt ="informacionIcon" />
@@ -77,7 +49,7 @@ export const ReasonsCanceledConfirm = (props) => {
              </div>
             
             }
-            <button onClick={handleClickCancelConfirm} className="modal-transaction-reasonsCanceledConfirm-button">Sí, cancelarla</button>
+            <button onClick={()=>{}} className="modal-transaction-reasonsCanceledConfirm-button">Sí, cancelarla</button>
         </div>
     )
 }
