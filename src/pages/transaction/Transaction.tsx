@@ -1,7 +1,7 @@
 import React from "react";
 import {Header} from "component/admin/Header/Header";
 import {Nav} from "component/admin/Nav/Nav";
-import { TableTransaction } from "component/transaction/tableTransaction/TableTransaction";
+import  TableTransaction  from "./transaction/tableTransaction/TableTransaction";
 import "pages/transaction/transaction.scss";
 import FilterTransaction from "./filterTransaction/FilterTransactionContainer";
 import exportar from "assets/admin/PendingUser/exportar.svg";
@@ -66,10 +66,7 @@ export const Transaction: React.FC<TransactionType>  = ({
 
                     </div>
                     <FilterTransaction/>
-                    <TableTransaction
-                        transactions={transactions}
-                       
-                    />
+                    <TableTransaction/>
                     {transactions && transactions?.length !== 0 ? <>
                             { seeMore ?
                                 <button

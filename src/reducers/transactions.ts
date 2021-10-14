@@ -1,5 +1,6 @@
 import { FilterTransactionsType } from "sagas/types/transactions";
 import { RootState } from "store";
+import {types as detailTransactionTypes} from './detailTransaction'
 import { TransactionActionType, TransactionActionsType, GetTransactionsSuccessType, TransactionStateType, SetFilterExtraType, SetFilterType, TransactionsTypes, SelectorTransactionType } from "./types/transaction";
 
 export const TRANSACTIONS = "transactions/TRANSACTIONS";
@@ -91,6 +92,7 @@ export const actions:TransactionActionsType = {
     getTransactionsExportError: () => ({
         type: types.TRANSACTIONS_EXPORT_ERROR,
     }),
+
 };
 
 export const selectors:SelectorTransactionType = {
@@ -101,6 +103,7 @@ export const selectors:SelectorTransactionType = {
     getFiltersExtra:({transactions}:RootState) => transactions.filtersExtra,
     getSeeMore:({transactions}:RootState) => transactions.seeMore,
     getFiltersExtraSeeMore:({transactions}:RootState) => transactions.filtersExtraSeeMore,
+
 };
 
 
@@ -172,6 +175,12 @@ const reducer =(state:TransactionStateType = INITIAL_STATE, action:TransactionAc
                 ...state,
                 fetching: false,
             };
+
+        case detailTransactionTypes.DETAIL_TRANSACTIONS_ID_REQUEST:
+                return {
+                    ...state,
+                    fetching: true,
+                };
         default:
             return state;
     }

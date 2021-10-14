@@ -3,7 +3,7 @@ import "./transaction.scss";
 import { Modal } from "@pickit/pickit-components";
 import { OptionList } from "pages/transaction/modalTransaction/OptionList/OptionList";
 import Close from "assets/transaction/Close.svg";
-import stateName from "component/transaction/tableTransaction/statesNames";
+
 import { TransactionResponseTypeResult } from "sagas/types/transactions";
 
 export const ModalTransaction = ({ currentTransaction }:any):JSX.Element => {
@@ -71,9 +71,9 @@ export const ModalTransaction = ({ currentTransaction }:any):JSX.Element => {
                             </h2>
                             <p>
 
-                                { FilterSelectedTransaction && FilterSelectedTransaction.transaction
+                                {/* { FilterSelectedTransaction && FilterSelectedTransaction.transaction
                                     ? stateName(FilterSelectedTransaction.transaction.state.id)
-                                    : ""}
+                                    : ""} */}
 
                             </p>
 
