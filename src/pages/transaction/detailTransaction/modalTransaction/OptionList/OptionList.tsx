@@ -1,14 +1,15 @@
-//import {useDispatch} from 'react-redux'
-import api from 'middleware/api'
 import React, { useState } from 'react'
-import { DniFinish } from './dniFinish/DniFinish'
-import { FinishModal } from './finish/FinishModal'
-import { History } from './history/History.js'
 import './optionList.css'
-import { ReasonsCanceled } from './reasonsCanceled/ReasonsCanceled'
+import { FinishModal } from './finish/FinishModal'
 import { ReasonsCanceledConfirm } from './reasonsCanceledConfirm/ReasonsCanceledConfirm'
-import { Undelivered } from './undelivered/Undelivered'
+import { ReasonsCanceled } from './reasonsCanceled/ReasonsCanceled'
+import { History } from './history/History.js'
 import Reload from 'assets/transaction/Reload.svg'
+//import {useDispatch} from 'react-redux'
+
+import { DniFinish } from './dniFinish/DniFinish'
+import { Undelivered } from './undelivered/Undelivered'
+import api from 'middleware/api'
 //import { changeTest } from '../../../actions/transactionAction'
 
 
@@ -16,8 +17,8 @@ export const OptionList = (props:any) => {
 
     //const dispatch = useDispatch()
     const FilterSelectedTransaction = props.FilterSelectedTransaction
-   const setisFetchingModal = props.setisFetchingModal;
-   
+    const setisFetchingModal = props.setisFetchingModal;
+    
     const [history, sethistory] = useState(true)
     const [reasonCancel, setreasonCancel] = useState(false);
     const [reasonCancelConfirm, setreasonCancelConfirm] = useState(false);
@@ -35,12 +36,12 @@ export const OptionList = (props:any) => {
 
         e.preventDefault();  
 
-        document.querySelector<HTMLElement| any>('.modal-transaction-difuminar1').style.display="none";
-        document.querySelector<HTMLElement| any>('.modal-transaction-difuminar2').style.display="none";
-        document.querySelector<HTMLElement| any>('.modal-transaction-difuminar3').style.display="none";
-        document.querySelector<HTMLElement| any>('.modal-transaction-difuminar4').style.display="none";
-        document.querySelector<HTMLElement| any>('.modal-transaction-difuminar5').style.display="none";
-        document.querySelector<HTMLElement| any>('.modal-transaction-difuminar6').style.display="none";
+        document.querySelector<any>('.modal-transaction-difuminar1').style.display="none";
+        document.querySelector<any>('.modal-transaction-difuminar2').style.display="none";
+        document.querySelector<any>('.modal-transaction-difuminar3').style.display="none";
+        document.querySelector<any>('.modal-transaction-difuminar4').style.display="none";
+        document.querySelector<any>('.modal-transaction-difuminar5').style.display="none";
+        document.querySelector<any>('.modal-transaction-difuminar6').style.display="none";
 
         setreasonCancel(true);
         setTimeout(() => {
@@ -63,12 +64,12 @@ export const OptionList = (props:any) => {
     const handleClickFinish = (e:any) => {
        e.preventDefault();
        
-       document.querySelector<HTMLElement| any>('.modal-transaction-difuminar1').style.display="none";
-       document.querySelector<HTMLElement| any>('.modal-transaction-difuminar2').style.display="none";
-       document.querySelector<HTMLElement| any>('.modal-transaction-difuminar3').style.display="none";
-       document.querySelector<HTMLElement| any>('.modal-transaction-difuminar4').style.display="none";
-       document.querySelector<HTMLElement| any>('.modal-transaction-difuminar5').style.display="none";
-       document.querySelector<HTMLElement| any>('.modal-transaction-difuminar6').style.display="none";
+       document.querySelector<any>('.modal-transaction-difuminar1').style.display="none";
+       document.querySelector<any>('.modal-transaction-difuminar2').style.display="none";
+       document.querySelector<any>('.modal-transaction-difuminar3').style.display="none";
+       document.querySelector<any>('.modal-transaction-difuminar4').style.display="none";
+       document.querySelector<any>('.modal-transaction-difuminar5').style.display="none";
+       document.querySelector<any>('.modal-transaction-difuminar6').style.display="none";
 
        setfinishModal(true);
        setTimeout(() => {
@@ -109,6 +110,7 @@ export const OptionList = (props:any) => {
     }
 
 
+
     return (
         <>
         <div className="options-transaction-flex">
@@ -127,7 +129,6 @@ export const OptionList = (props:any) => {
                                 <History
                                 FilterTransaction={FilterSelectedTransaction}
                                 />
-                                
                                 <div>
                                     <div className="modal-transaction-difuminar1"> </div> 
                                     <div className="modal-transaction-difuminar2"></div>
@@ -136,13 +137,13 @@ export const OptionList = (props:any) => {
                                 
                                 <div className="modal-transaction-buttons-submit">
                                     
- 
-                                                              
-                                    { FilterSelectedTransaction && FilterSelectedTransaction.transaction  && (FilterSelectedTransaction.transaction.state.id === 1 || FilterSelectedTransaction.transaction.state.id === 2 || FilterSelectedTransaction.transaction.state.id === 3 || FilterSelectedTransaction.transaction.state.id === 4 )?
+
+                                    
+                                    { FilterSelectedTransaction.transaction  && (FilterSelectedTransaction.transaction.state.id === 1 || FilterSelectedTransaction.transaction.state.id === 2 || FilterSelectedTransaction.transaction.state.id === 3 || FilterSelectedTransaction.transaction.state.id === 4 )?
                                     <>
                                     <button onClick={handleClickCancel} className="modal-transaction-finish-enabled">Cancelar</button>
                                     <button disabled={true} onClick={handleClickFinish} className="modal-transaction-cancel-disabled">Finalizar</button>
-                                    </>:FilterSelectedTransaction &&  FilterSelectedTransaction.transaction  && (FilterSelectedTransaction.transaction.state.id === 5 || FilterSelectedTransaction.transaction.state.id === 6 || FilterSelectedTransaction.transaction.state.id === 7 || FilterSelectedTransaction.transaction.state.id === 8 )?  <>
+                                    </>: FilterSelectedTransaction.transaction  && (FilterSelectedTransaction.transaction.state.id === 5 || FilterSelectedTransaction.transaction.state.id === 6 || FilterSelectedTransaction.transaction.state.id === 7 || FilterSelectedTransaction.transaction.state.id === 8 )?  <>
                                     <button disabled={true} onClick={handleClickCancel} className="modal-transaction-finish-disabled">Cancelar</button>
                                     <button onClick={handleClickFinish} className="modal-transaction-cancel-enabled">Finalizar</button>
                                     </>: <>

@@ -78,7 +78,10 @@ export const History = (props) => {
 
 
   return (
+    <div className="modal-transaction-scroll">
     <div className="modal-transaction-optionContainer-scroll">
+    <button onClick={props.cancel} className="modal-transaction-finish-enabled">Cancelar</button>
+    <button  onClick={props.finish} className="modal-transaction-cancel-disabled">Finalizar</button>
       <Form
         onSubmit={() => {}}
         initialValues={{
@@ -350,6 +353,34 @@ export const History = (props) => {
     </div>
       
      
+      </div>
+      <div>
+                                    <div className="modal-transaction-difuminar1"> </div> 
+                                    <div className="modal-transaction-difuminar2"></div>
+                                    <div className="modal-transaction-difuminar3"></div>   
+                                </div>
+                                
+                                <div className="modal-transaction-buttons-submit">
+                                    
+
+                                    
+                                    { FilterTransaction.transaction  && (FilterTransaction.transaction.state.id === 1 || FilterTransaction.transaction.state.id === 2 || FilterTransaction.transaction.state.id === 3 || FilterTransaction.transaction.state.id === 4 )?
+                                    <>
+                                    <button onClick={()=>{}} className="modal-transaction-finish-enabled">Cancelar</button>
+                                    <button disabled={true} onClick={()=>{}} className="modal-transaction-cancel-disabled">Finalizar</button>
+                                    </>: FilterTransaction.transaction  && (FilterTransaction.transaction.state.id === 5 || FilterTransaction.transaction.state.id === 6 || FilterTransaction.transaction.state.id === 7 || FilterTransaction.transaction.state.id === 8 )?  <>
+                                    <button disabled={true} onClick={()=>{}} className="modal-transaction-finish-disabled">Cancelar</button>
+                                    <button onClick={()=>{}} className="modal-transaction-cancel-enabled">Finalizar</button>
+                                    </>: <>
+                                    <button disabled={true} onClick={()=>{}} className="modal-transaction-cancel-disabled ">Cancelar</button>
+                                    <button disabled={true} onClick={()=>{}} className="modal-transaction-finish-disabled">Finalizar</button>
+                                    </>}
+                                   
+                                    <div onClick={()=>{}} className="modal-transaction-reload">
+                                        <img className="modal-transaction-reload-img" src={"Reload"} alt="reload"/>
+                                        <p>Actualizar</p>
+                                    </div>
+                                </div>
       </div>
     
   );

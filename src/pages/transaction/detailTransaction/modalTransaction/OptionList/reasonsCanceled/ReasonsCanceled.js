@@ -34,7 +34,7 @@ export const ReasonsCanceled = (props) => {
 
     return (
         <div className="modal-transaction-reasonsCanceled">
-            <div onClick={()=>{}} className="modal-transaction-volver">
+            <div onClick={props.onBack} className="modal-transaction-volver">
                 <img className="modal-transaction-reasonsCanceled-img-volver" src={volver} alt ="volver" />
                 <p className="modal-reasonsCancel-p">Volver</p>
             </div>
