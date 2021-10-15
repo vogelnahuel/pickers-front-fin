@@ -23,6 +23,7 @@ export const types:TransactionsTypes = {
 
 export const INITIAL_STATE:TransactionStateType = {
     fetching: false,
+    detailTransactionModalOpen:false,
     exportDisabled: true,
     transactions: [],
     filters: {
@@ -103,7 +104,7 @@ export const selectors:SelectorTransactionType = {
     getFiltersExtra:({transactions}:RootState) => transactions.filtersExtra,
     getSeeMore:({transactions}:RootState) => transactions.seeMore,
     getFiltersExtraSeeMore:({transactions}:RootState) => transactions.filtersExtraSeeMore,
-
+    getDetailTransactionModalOpen:({transactions}:RootState) => transactions.detailTransactionModalOpen,
 };
 
 
@@ -180,7 +181,27 @@ const reducer =(state:TransactionStateType = INITIAL_STATE, action:TransactionAc
                 return {
                     ...state,
                     fetching: true,
+                    detailTransactionModalOpen:false
                 };
+        case detailTransactionTypes.DETAIL_TRANSACTIONS_ID_SUCCESS:
+            return {
+                    ...state,
+                    fetching: false,
+                    detailTransactionModalOpen:true
+                  
+            };
+        case detailTransactionTypes.DETAIL_TRANSACTIONS_ID_ERROR:
+            return {
+                  ...state,
+                  fetching: false,
+                  detailTransactionModalOpen:false
+              };
+
+        case detailTransactionTypes.CLOSE_MODAL_DETAIL_TRANSACTIONS:
+            return{
+                ...state,
+                detailTransactionModalOpen:false
+            }
         default:
             return state;
     }

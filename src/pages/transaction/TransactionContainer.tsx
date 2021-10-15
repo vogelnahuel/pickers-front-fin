@@ -13,6 +13,7 @@ import { SetFilterExtraType, SetFilterType } from "reducers/types/transaction";
 const TransactionContainer: React.FC<TransactionContainerPropsType> = (props):JSX.Element => {
     const params = useLocation()
     const [resolutionHeightModal, setresolutionHeightModal] = useState(550)
+    
 
     useEffect(() => {
         if(window.screen.width<1300){
@@ -37,7 +38,7 @@ const TransactionContainer: React.FC<TransactionContainerPropsType> = (props):JS
     }, [])
 
     return (
-        <Transaction  resolutionHeightModal={resolutionHeightModal} {...props}/>
+        <Transaction   resolutionHeightModal={resolutionHeightModal} {...props}/>
     );
 }
 
@@ -50,6 +51,8 @@ const mapStateToProps = (state:RootState) => ({
     filtersExtra: transactionSelectors.getFiltersExtra(state),
     seeMore: transactionSelectors.getSeeMore(state),
     filtersExtraSeeMore: transactionSelectors.getFiltersExtraSeeMore(state),
+    detailTransactionModalOpen:transactionSelectors.getDetailTransactionModalOpen(state),
+
 });
 
 
@@ -72,6 +75,7 @@ const mapDispatchToProps = (dispatch:AppDispatch) => ({
     getMoreTransactions: (params:FilterTransactionsType) => {
         dispatch(transactionActions.getMoreTransactionsRequest(params));
     },
+    
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TransactionContainer);

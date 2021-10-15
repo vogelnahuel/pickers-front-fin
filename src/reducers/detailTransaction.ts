@@ -32,11 +32,14 @@ export const types:DetailTransactionTypeType = {
     DETAIL_TRANSACTIONS_DNI_DELIVERED_REQUEST: `${TRANSACTIONS}_DNI_DELIVERED_REQUEST`,
     DETAIL_TRANSACTIONS_DNI_DELIVERED_SUCCESS: `${TRANSACTIONS}_DNI_DELIVERED_SUCCESS`,
     DETAIL_TRANSACTIONS_DNI_DELIVERED_ERROR: `${TRANSACTIONS}_DNI_DELIVERED_ERROR`,
+
+    CLOSE_MODAL_DETAIL_TRANSACTIONS:'CLOSE_MODAL_DETAIL_TRANSACTIONS',
+
 };
 
 export const INITIAL_STATE:DetailTransactionInicialStateType = {
     fetching: false,
-    detailtransactions: {
+    detailTransaction: {
         transaction: {
             id: 0,
             orderNumber: "",
@@ -207,16 +210,14 @@ export const actions:DetailTransactionActionsType = {
     getDetailTransactionDniDeliveredError: () => ({
         type: types.DETAIL_TRANSACTIONS_DNI_DELIVERED_ERROR,
     }),
+
+    getCloseModalDetailTransaction:()=>({
+        type: types.CLOSE_MODAL_DETAIL_TRANSACTIONS,
+    })
 };
 
 export const selectors:DetailTransactionSelectorType = {
-    getDetailTransactionID: (detailtransactions:RootState) => detailtransactions,
-    getDetailTransactionMenssages: ({ transactions }:RootState) => transactions.transactions,
-    getDetailTransactionDevolutionUndelivered: ({ transactions }:RootState) => transactions.transactions,
-    getDetailTransactionReasonsCanceled: ({ transactions }:RootState) => transactions.transactions,
-    getDetailTransactionFinishReturned: ({ transactions }:RootState) => transactions.transactions,
-    getDetailTransactionFinishLost: ({ transactions }:RootState) => transactions.transactions,
-    getDetailTransactionDniDelivered: ({ transactions }:RootState) => transactions.transactions,
+    getDetailTransaction: (detailtransactions:RootState) => detailtransactions.detailTransaction.detailTransaction,
 };
 
 

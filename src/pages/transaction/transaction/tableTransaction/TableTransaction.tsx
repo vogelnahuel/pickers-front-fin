@@ -1,17 +1,16 @@
-import React from "react";
-import "./TableTransaction.scss";
-import TreePoints from "../../../../assets/transaction/TreePoints.svg";
 import moment from "moment";
-
-import { TableTransactionPropsTypes } from "./types";
-import { TransactionResponseTypeResult } from "sagas/types/transactions";
-import { transactionTableTitles } from "../../../../utils/constants";
-import { AppDispatch, RootState } from "store";
-
-import { selectors as transactionSelectors} from "reducers/transactions";
-import {actions as detailTransaction} from "reducers/detailTransaction";
+import React from "react";
 import { connect } from "react-redux";
-
+import {
+  actions as detailTransaction
+} from "reducers/detailTransaction";
+import { selectors as transactionSelectors } from "reducers/transactions";
+import { TransactionResponseTypeResult } from "sagas/types/transactions";
+import { AppDispatch, RootState } from "store";
+import TreePoints from "../../../../assets/transaction/TreePoints.svg";
+import { transactionTableTitles } from "../../../../utils/constants";
+import "./TableTransaction.scss";
+import { TableTransactionPropsTypes } from "./types";
 
 
 
@@ -19,23 +18,15 @@ export const TableTransaction = ({
   transactions,
   getDetailTransaction,
 }: TableTransactionPropsTypes) => {
-
-  const handleClickModal = (id: number) => {
-    getDetailTransaction(id)
-  };
-
-
   return (
     <div>
       <table className="titleTableTransactions">
         <thead>
           <tr>
-       
             <td></td>
             {transactionTableTitles.map((titulo: string) => (
               <td key={titulo}>{titulo}</td>
             ))}
-     
           </tr>
         </thead>
         <tbody>
@@ -43,7 +34,7 @@ export const TableTransaction = ({
             transactions.map((data: TransactionResponseTypeResult) => (
               <tr
                 key={data.transaction.id}
-                onClick={() => handleClickModal(data.transaction.id)}
+                onClick={() => getDetailTransaction(data.transaction.id)}
               >
                 <td>
                   <img
@@ -71,23 +62,17 @@ export const TableTransaction = ({
             ))}
         </tbody>
       </table>
-
-             
-     
     </div>
   );
 };
 
-const mapStateToProps = (state:RootState) => ({
-    transactions: transactionSelectors.getTransactions(state),
-
+const mapStateToProps = (state: RootState) => ({
+  transactions: transactionSelectors.getTransactions(state),
 });
 
-
-const mapDispatchToProps = (dispatch:AppDispatch) => ({
-    getDetailTransaction: (id:string) => {
-        dispatch(detailTransaction.getDetailTransactionRequest(id));
-    },
-   
+const mapDispatchToProps = (dispatch: AppDispatch) => ({
+  getDetailTransaction: (id: string) => {
+    dispatch(detailTransaction.getDetailTransactionRequest(id));
+  },
 });
 export default connect(mapStateToProps, mapDispatchToProps)(TableTransaction);

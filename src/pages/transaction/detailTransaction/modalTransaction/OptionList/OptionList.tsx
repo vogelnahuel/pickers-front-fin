@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
-import './optionList.css'
-import { FinishModal } from './finish/FinishModal'
-import { ReasonsCanceledConfirm } from './reasonsCanceledConfirm/ReasonsCanceledConfirm'
-import { ReasonsCanceled } from './reasonsCanceled/ReasonsCanceled'
-import { History } from './history/History.js'
-import Reload from 'assets/transaction/Reload.svg'
 //import {useDispatch} from 'react-redux'
 import api from 'middleware/api'
+import React, { useState } from 'react'
 import { DniFinish } from './dniFinish/DniFinish'
+import { FinishModal } from './finish/FinishModal'
+import { History } from './history/History.js'
+import './optionList.css'
+import { ReasonsCanceled } from './reasonsCanceled/ReasonsCanceled'
+import { ReasonsCanceledConfirm } from './reasonsCanceledConfirm/ReasonsCanceledConfirm'
 import { Undelivered } from './undelivered/Undelivered'
+import Reload from 'assets/transaction/Reload.svg'
 //import { changeTest } from '../../../actions/transactionAction'
 
 
@@ -16,7 +16,7 @@ export const OptionList = (props:any) => {
 
     //const dispatch = useDispatch()
     const FilterSelectedTransaction = props.FilterSelectedTransaction
-    const setisFetchingModal = props.setisFetchingModal;
+   const setisFetchingModal = props.setisFetchingModal;
    
     const [history, sethistory] = useState(true)
     const [reasonCancel, setreasonCancel] = useState(false);
@@ -127,6 +127,7 @@ export const OptionList = (props:any) => {
                                 <History
                                 FilterTransaction={FilterSelectedTransaction}
                                 />
+                                
                                 <div>
                                     <div className="modal-transaction-difuminar1"> </div> 
                                     <div className="modal-transaction-difuminar2"></div>
@@ -136,7 +137,7 @@ export const OptionList = (props:any) => {
                                 <div className="modal-transaction-buttons-submit">
                                     
  
-                                    {/*            pasar a  modal history                         
+                                                              
                                     { FilterSelectedTransaction && FilterSelectedTransaction.transaction  && (FilterSelectedTransaction.transaction.state.id === 1 || FilterSelectedTransaction.transaction.state.id === 2 || FilterSelectedTransaction.transaction.state.id === 3 || FilterSelectedTransaction.transaction.state.id === 4 )?
                                     <>
                                     <button onClick={handleClickCancel} className="modal-transaction-finish-enabled">Cancelar</button>
@@ -152,7 +153,7 @@ export const OptionList = (props:any) => {
                                     <div onClick={handleReload} className="modal-transaction-reload">
                                         <img className="modal-transaction-reload-img" src={Reload} alt="reload"/>
                                         <p>Actualizar</p>
-                                    </div> */}
+                                    </div>
                                 </div>
 
                                 

@@ -25,6 +25,7 @@ export type TransactionStateType={
     filtersExtra:FiltersExtraType,
     filtersExtraSeeMore: FiltersExtraSeeMoreType,
     seeMore:boolean,
+    detailTransactionModalOpen:boolean
 }
 export type FiltersExtraSeeMoreType={
     limit:number,
@@ -61,6 +62,7 @@ export type SelectorTransactionType={
     getFiltersExtra:Function,
     getSeeMore:Function,
     getFiltersExtraSeeMore:Function,
+    getDetailTransactionModalOpen:Function
 }
 export type TransactionActionsType={
     reset:Function,

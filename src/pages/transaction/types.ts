@@ -20,6 +20,7 @@ export type URLTransactionContainerType = {
 };
 export type TransactionContainerPropsType = {
   isFetching: boolean;
+  detailTransactionModalOpen:boolean
   isExportDisabled: boolean;
   transactions: TransactionResponseTypeResult[];
   filters: FilterTransactionsType;
@@ -33,6 +34,7 @@ export type TransactionContainerPropsType = {
   reset: Function;
   setExtraFilters: Function;
   setFilters: Function;
+ 
 };
 
 export type TransactionType = {
@@ -52,4 +54,5 @@ export type TransactionType = {
   reset: Function;
   setExtraFilters: Function;
   setFilters: Function;
+  detailTransactionModalOpen:boolean
   };

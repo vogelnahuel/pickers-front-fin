@@ -28,6 +28,7 @@ export type DetailTransactionTypeType={
     DETAIL_TRANSACTIONS_DNI_DELIVERED_REQUEST: string,
     DETAIL_TRANSACTIONS_DNI_DELIVERED_SUCCESS: string,
     DETAIL_TRANSACTIONS_DNI_DELIVERED_ERROR: string,
+    CLOSE_MODAL_DETAIL_TRANSACTIONS:string
 }
 export type DetailTransactionInitialStateType={
     detailTransaction:any
@@ -61,15 +62,10 @@ export type DetailTransactionActionsType={
     getDetailTransactionDniDeliveredRequest:Function,
     getDetailTransactionDniDeliveredSuccess:Function,
     getDetailTransactionDniDeliveredError:Function,
+    getCloseModalDetailTransaction:Function
 }
 export type DetailTransactionSelectorType={
-    getDetailTransactionID:Function,
-    getDetailTransactionMenssages:Function
-    getDetailTransactionDevolutionUndelivered:Function,
-    getDetailTransactionReasonsCanceled:Function,
-    getDetailTransactionFinishReturned:Function,
-    getDetailTransactionFinishLost:Function,
-    getDetailTransactionDniDelivered:Function,
+    getDetailTransaction:Function,
 }
 export type DetailTransactionActionType = {
     type:string,
@@ -77,6 +73,6 @@ export type DetailTransactionActionType = {
 }
 export type DetailTransactionInicialStateType={
     fetching: boolean,
-    detailtransactions:DetailTransactionType,
+    detailTransaction:DetailTransactionType,
     message: DetailTransactionCancelItemType[]
 }
