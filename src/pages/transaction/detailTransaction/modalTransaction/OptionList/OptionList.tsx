@@ -35,12 +35,7 @@ export const OptionList = (props:any) => {
 
         e.preventDefault();  
 
-        document.querySelector<any>('.modal-transaction-difuminar1').style.display="none";
-        document.querySelector<any>('.modal-transaction-difuminar2').style.display="none";
-        document.querySelector<any>('.modal-transaction-difuminar3').style.display="none";
-        document.querySelector<any>('.modal-transaction-difuminar4').style.display="none";
-        document.querySelector<any>('.modal-transaction-difuminar5').style.display="none";
-        document.querySelector<any>('.modal-transaction-difuminar6').style.display="none";
+
 
         setreasonCancel(true);
         setTimeout(() => {
@@ -63,12 +58,6 @@ export const OptionList = (props:any) => {
     const handleClickFinish = (e:any) => {
        e.preventDefault();
        
-       document.querySelector<any>('.modal-transaction-difuminar1').style.display="none";
-       document.querySelector<any>('.modal-transaction-difuminar2').style.display="none";
-       document.querySelector<any>('.modal-transaction-difuminar3').style.display="none";
-       document.querySelector<any>('.modal-transaction-difuminar4').style.display="none";
-       document.querySelector<any>('.modal-transaction-difuminar5').style.display="none";
-       document.querySelector<any>('.modal-transaction-difuminar6').style.display="none";
 
        setfinishModal(true);
        setTimeout(() => {
