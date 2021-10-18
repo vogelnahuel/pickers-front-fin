@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
 import './optionList.css'
-import { FinishModal } from './finish/FinishModal'
-import { ReasonsCanceledConfirm } from './reasonsCanceledConfirm/ReasonsCanceledConfirm'
-import { ReasonsCanceled } from './reasonsCanceled/ReasonsCanceled'
-import { History } from './history/History.js'
+import { FinishModal } from '../finish/FinishModal'
+import { ReasonsCanceledConfirm } from '../reasonsCanceledConfirm/ReasonsCanceledConfirm'
+import { ReasonsCanceled } from '../reasonsCanceled/ReasonsCanceled'
 import Reload from 'assets/transaction/Reload.svg'
 //import {useDispatch} from 'react-redux'
 
-import { DniFinish } from './dniFinish/DniFinish'
-import { Undelivered } from './undelivered/Undelivered'
+import { DniFinish } from '../dniFinish/DniFinish'
+import { Undelivered } from '../undelivered/Undelivered'
 import api from 'middleware/api'
 //import { changeTest } from '../../../actions/transactionAction'
 
@@ -126,9 +125,9 @@ export const OptionList = (props:any) => {
                                      <div className="modal-transaction-difuminar6"> </div> 
                                  </div>
 
-                                <History
-                                FilterTransaction={FilterSelectedTransaction}
-                                />
+                                {/* <HistoryModalTransaction
+                                //FilterTransaction={FilterSelectedTransaction}
+                                /> */}
                                 <div>
                                     <div className="modal-transaction-difuminar1"> </div> 
                                     <div className="modal-transaction-difuminar2"></div>

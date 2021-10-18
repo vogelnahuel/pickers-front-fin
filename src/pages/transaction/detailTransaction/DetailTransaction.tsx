@@ -4,22 +4,21 @@ import useHistory from "hooks/useHistory";
 import React from "react";
 import { ISO8601toDDMMYYYHHMM } from "utils/iso8601toDDMMYYHHMM";
 import stateName from "../transaction/tableTransaction/statesNames";
-import FlowTransition from "./FlowTransition";
-import { DniFinish } from "./modalTransaction/OptionList/dniFinish/DniFinish";
-import { FinishModal } from "./modalTransaction/OptionList/finish/FinishModal";
-import { History } from "./modalTransaction/OptionList/history/History";
-import { OptionList } from "./modalTransaction/OptionList/OptionList";
-import { ReasonsCanceled } from "./modalTransaction/OptionList/reasonsCanceled/ReasonsCanceled";
-import { ReasonsCanceledConfirm } from "./modalTransaction/OptionList/reasonsCanceledConfirm/ReasonsCanceledConfirm";
-import { Undelivered } from "./modalTransaction/OptionList/undelivered/Undelivered";
+import FlowTransition from "../../../component/flowtransition/FlowTransition";
+import { DniFinish } from "./modalTransaction/dniFinish/DniFinish";
+import { FinishModal } from "./modalTransaction/finish/FinishModal";
+import  HistoryModalTransaction  from "./modalTransaction/history/HistoryModalTransaction";
+import { ReasonsCanceled } from "./modalTransaction/reasonsCanceled/ReasonsCanceled";
+import { ReasonsCanceledConfirm } from "./modalTransaction/reasonsCanceledConfirm/ReasonsCanceledConfirm";
+import { Undelivered } from "./modalTransaction/undelivered/Undelivered";
 import { DetailTransactionPropsType } from "./types";
+import { replace } from "connected-react-router";
 
-export const DetailTransaction = ({
+export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
   detailTransaction,
   resolutionHeightModal,
   closeModalDetailTransaction,
-}: DetailTransactionPropsType) => {
-
+}): JSX.Element => {
   const STEP = {
     History: "History",
     DniFinish: "DniFinish",
@@ -27,8 +26,8 @@ export const DetailTransaction = ({
     ReasonsCanceled: "ReasonsCanceled",
     ReasonsCanceledConfirm: "ReasonsCanceledConfirm",
     Undelivered: "Undelivered",
-};
-const [currentStep, setCurrentStep] = useHistory([STEP.History]);
+  };
+  const [currentStep, setCurrentStep] = useHistory([STEP.History]);
   return (
     <div className="modal-transaction">
       <Modal
@@ -52,13 +51,13 @@ const [currentStep, setCurrentStep] = useHistory([STEP.History]);
           <div className="modal-transaction-title">
             <h2>Código de transacción</h2>
             <p>Estado</p>
-            <p className="modal-transaction-fecha">
+            <p className="modal-transaction-date">
               {detailTransaction &&
               detailTransaction.transaction &&
-              detailTransaction.transaction.inAlert? (
-                  <span className="transaction-modal-alert modal-transaction-alerta">
-                    En alerta
-                  </span>
+              detailTransaction.transaction.inAlert ? (
+                <span className="transaction-modal-alert modal-transaction-alerta">
+                  En alerta
+                </span>
               ) : (
                 <span className="modal-transaction-space"></span>
               )}
@@ -67,18 +66,22 @@ const [currentStep, setCurrentStep] = useHistory([STEP.History]);
           </div>
           <div className="modal-transaction-subtitle">
             <h2>
-              {detailTransaction && detailTransaction.transaction
-                &&  detailTransaction.transaction.transactionCode}
+              {detailTransaction &&
+                detailTransaction.transaction &&
+                detailTransaction.transaction.transactionCode}
             </h2>
             <p>
-              {detailTransaction && detailTransaction.transaction
-                && stateName(detailTransaction.transaction.state.id)}
+              {detailTransaction &&
+                detailTransaction.transaction &&
+                stateName(detailTransaction.transaction.state.id)}
             </p>
 
-            <p className="modal-transaction-fecha">
-              {detailTransaction && detailTransaction.transaction
-                && ISO8601toDDMMYYYHHMM(detailTransaction.transaction.maxDeliveryDateTime)
-                }
+            <p className="modal-transaction-date">
+              {detailTransaction &&
+                detailTransaction.transaction &&
+                ISO8601toDDMMYYYHHMM(
+                  detailTransaction.transaction.maxDeliveryDateTime
+                )}
             </p>
           </div>
           <hr
@@ -86,37 +89,38 @@ const [currentStep, setCurrentStep] = useHistory([STEP.History]);
             id="modal-transaction-hr-title"
           />
 
-          
-          
-              {/* <OptionList FilterSelectedTransaction={detailTransaction} /> */}
-              <FlowTransition   
-               currentPage={currentStep}
-                pages={{
-                [STEP.History]: () => (
-                
-                    <History
-                    cancel={()=>setCurrentStep(STEP.ReasonsCanceled)}
-                    finish={()=>setCurrentStep(STEP.FinishModal)}
-                    FilterTransaction={detailTransaction}
-                    />
-                 
-                ),
-                [STEP.ReasonsCanceled]: () => (
-                  <ReasonsCanceled onBack={() => setCurrentStep(STEP.History) } />
-                ),
-                [STEP.ReasonsCanceledConfirm]: () => (
-                  <ReasonsCanceledConfirm onBack={() => setCurrentStep(STEP.History) } />
-                ),
-                [STEP.DniFinish]: () => (
-                    <DniFinish onBack={() => {} } />
-                ),
-                [STEP.Undelivered]: () => (
-                  <Undelivered onBack={() => setCurrentStep(STEP.History) } />
-                ),
-                [STEP.FinishModal]: () =>  ( <FinishModal  onBack={() => setCurrentStep(STEP.History)  }  DniFinish={()=>setCurrentStep(STEP.DniFinish)} undelivered={()=>setCurrentStep(STEP.Undelivered)} />  ),
-            }} 
-            />
-         
+          {/* <OptionList FilterSelectedTransaction={detailTransaction} /> */}
+          <FlowTransition
+            currentPage={currentStep}
+            pages={{
+              [STEP.History]: () => (
+                <HistoryModalTransaction
+                  cancel={() => setCurrentStep(STEP.ReasonsCanceled)}
+                  finish={() => setCurrentStep(STEP.FinishModal)}
+                  onSubmit={()=>{}}
+                />
+              ),
+              [STEP.ReasonsCanceled]: () => (
+                <ReasonsCanceled onBack={() => setCurrentStep(STEP.History)} />
+              ),
+              [STEP.ReasonsCanceledConfirm]: () => (
+                <ReasonsCanceledConfirm
+                  onBack={() => setCurrentStep(STEP.History)}
+                />
+              ),
+              [STEP.DniFinish]: () => <DniFinish onBack={() => {}} />,
+              [STEP.Undelivered]: () => (
+                <Undelivered onBack={() => setCurrentStep(STEP.History)} />
+              ),
+              [STEP.FinishModal]: () => (
+                <FinishModal
+                  onBack={() => setCurrentStep(STEP.History)}
+                  DniFinish={() => setCurrentStep(STEP.DniFinish)}
+                  undelivered={() => setCurrentStep(STEP.Undelivered)}
+                />
+              ),
+            }}
+          />
         </div>
       </Modal>
     </div>

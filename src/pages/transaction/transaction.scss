@@ -112,16 +112,14 @@
     color: #4D4D4D;
     width: 330px;
 }
-.modal-transaction-title .modal-transaction-fecha{
+.modal-transaction-title .modal-transaction-date{
     padding-left: 0px;
-    width: 256px;
     display: flex;
     justify-content: space-between;
 }
 
-.modal-transaction-subtitle .modal-transaction-fecha{
+.modal-transaction-subtitle .modal-transaction-date{
     padding-left: 0px;
-    width: 256px;
     display: flex;
     justify-content: flex-end;
 }
@@ -163,8 +161,7 @@
     z-index: 15 !important;
 }
 .modal-transaction-container{
-    width: 97%;
-    margin-left: 3%;
+   padding: 40px;
 
 }
 
@@ -261,10 +258,10 @@
     margin-top: 0.952vw;
 }
 .modal-transaction-close{
-    margin-left: 95.8%;
     cursor: pointer;
     width: 30px;
-    margin-top: 12px;
+
+    float: right;
 }
 .flexItems{
     display: flex;
@@ -337,8 +334,8 @@
     .modal-transaction-buttons-submit{
         margin-top: 55px;
     }
-    .modal-transaction-title .modal-transaction-fecha{
-        width: 260px;
+    .modal-transaction-title .modal-transaction-date{
+        // width: 260px;
     }
 }
 @media (max-width:1310px){
