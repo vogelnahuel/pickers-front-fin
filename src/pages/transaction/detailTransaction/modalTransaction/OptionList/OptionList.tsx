@@ -108,20 +108,7 @@ export const OptionList = (props:any) => {
                         
                         <div className="historial">       
                                        
-                                 <div>
-                                     <div className="modal-transaction-difuminar4"></div>  
-                                     <div className="modal-transaction-difuminar5"></div>
-                                     <div className="modal-transaction-difuminar6"> </div> 
-                                 </div>
-
-                                {/* <HistoryModalTransaction
-                                //FilterTransaction={FilterSelectedTransaction}
-                                /> */}
-                                <div>
-                                    <div className="modal-transaction-difuminar1"> </div> 
-                                    <div className="modal-transaction-difuminar2"></div>
-                                    <div className="modal-transaction-difuminar3"></div>   
-                                </div>
+                               
                                 
                                 <div className="modal-transaction-buttons-submit">
                                     
