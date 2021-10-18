@@ -9,7 +9,7 @@ export default function useHistory(initialHistory:any) {
         // useCallback is used for performance reasons
         // https://reactjs.org/docs/hooks-reference.html#usecallback
         setHistory(previousValues);
-    }, [history, setHistory]);
+    }, [setHistory, previousValues]);
 
     const setValue = useCallback(
         (newValue) => {

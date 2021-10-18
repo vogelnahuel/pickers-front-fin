@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import volver from "assets/admin/PendingUser/volver.svg";
 import Info from "assets/transaction/Info.svg";
 import api from "middleware/api";
@@ -6,7 +6,7 @@ import "./finishModal.css";
 
 export const FinishModal = (props) => {
   const [RadioActive, setRadioActive] = useState(false);
-  const sethistory = props.sethistory;
+  // const sethistory = props.sethistory;
   const setfinishModal = props.setfinishModal;
   const FilterSelectedTransaction = props.FilterSelectedTransaction;
   const [estado, setestado] = useState("");
@@ -82,24 +82,24 @@ export const FinishModal = (props) => {
         
 
 //
-  const handleClickgoBack = (e) => {
-    e.target.parentNode.parentNode.classList.add("animation-right-transaction");
+  // const handleClickgoBack = (e) => {
+  //   e.target.parentNode.parentNode.classList.add("animation-right-transaction");
 
-    setTimeout(() => {
-      e.target.parentNode.parentNode.classList.remove(
-        "animation-right-transaction"
-      );
-      sethistory(true);
-      e.target.parentNode.parentNode.parentNode.parentNode.firstChild.classList.add(
-        "animation-right-transaction2"
-      );
-      e.target.parentNode.parentNode.parentNode.parentNode.firstChild.classList.remove(
-        "animation-right-transaction2"
-      );
+  //   setTimeout(() => {
+  //     e.target.parentNode.parentNode.classList.remove(
+  //       "animation-right-transaction"
+  //     );
+  //     sethistory(true);
+  //     e.target.parentNode.parentNode.parentNode.parentNode.firstChild.classList.add(
+  //       "animation-right-transaction2"
+  //     );
+  //     e.target.parentNode.parentNode.parentNode.parentNode.firstChild.classList.remove(
+  //       "animation-right-transaction2"
+  //     );
 
-      setfinishModal(false);
-    }, 600);
-  }
+  //     setfinishModal(false);
+  //   }, 600);
+  // }
 
   return (
     <div className="modal-transaction-finishModal">

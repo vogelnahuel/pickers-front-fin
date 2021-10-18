@@ -1,7 +1,6 @@
-import React, {useEffect, useState} from 'react'
-import api from 'middleware/api'
-import './reasonsCanceled.scss'
 import volver from 'assets/admin/PendingUser/volver.svg'
+import React from 'react'
+import './reasonsCanceled.scss'
 
 
 

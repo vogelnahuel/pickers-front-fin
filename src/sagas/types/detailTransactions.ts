@@ -159,7 +159,7 @@ export type DetailTransactionMetaDataType = {
   value: string;
 };
 export type DetailTransactionPickerType = {
-  id: number;
+  id: number | string;
   name: string;
   surname: string;
   phone: DetailTransactionPickerPhoneType;

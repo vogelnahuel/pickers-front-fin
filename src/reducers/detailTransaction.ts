@@ -102,13 +102,13 @@ export const INITIAL_STATE:DetailTransactionInicialStateType = {
         products: [],
         transactionHistory: [],
         picker: {
-            id: 0,
-            name: "",
+            id: "Sin asignar",
+            name: "Sin asignar",
             surname: "",
             phone: {
                 countryNumber: "",
-                areaNumber: "",
-                number: ""
+                areaNumber: "-",
+                number: "-"
             }
         },
         seller: {

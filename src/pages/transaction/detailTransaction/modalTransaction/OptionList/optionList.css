@@ -3,11 +3,11 @@
     display: flex;
 }
 .modal-transaction-optionContainer-scroll{
-    height: 340px;
-    overflow-y: scroll;
+    /* height: 340px; */
+    /* overflow-y: scroll; */
     overflow-x: hidden;
-    width: 82.4vw;
-    margin-right: 1.964vw;
+    /* width: 82.4vw; */
+    /* margin-right: 1.964vw; */
 }
 .modal-transaction-button-irApicker{
     height: 50px;
@@ -23,7 +23,7 @@
     line-height: 23px;
     text-align: center;
     color: #101820;
-    margin-left: 3.7vw;
+    /* margin-left: 3.7vw; */
 }
 .modal-transaction-button-irApicker-disabled{
     height: 50px;
@@ -39,7 +39,7 @@
     line-height: 23px;
     text-align: center;
     color: #BDBDBD;
-    margin-left: 3.7vw;
+    /* margin-left: 3.7vw; */
     cursor: default !important;
 }
 
@@ -54,10 +54,10 @@
 }
 
 .modal-transaction-optionContainer-scroll{
-    overflow-y: scroll;
-    padding-right: 20px;
-    scrollbar-color: #BDBDBD #F2F2F2;
-    scrollbar-width: thin;
+    /* overflow-y: scroll; */
+    padding-right: 30px;
+    /* scrollbar-color: #BDBDBD #F2F2F2; */
+    /* scrollbar-width: thin; */
 }
 .modal-transaction-optionContainer-scroll::-webkit-scrollbar {
     width: 8px;     

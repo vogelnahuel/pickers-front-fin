@@ -1,23 +1,18 @@
+import { Input } from "component/inputs/Input";
 import React from "react";
+import { Col, Row } from "react-bootstrap";
+import { Field, Form } from "react-final-form";
 import { connect } from "react-redux";
 import { selectors as detailTransactionSelector } from "reducers/detailTransaction";
 import { AppDispatch, RootState } from "store";
 import { HistoryModalTransactionType } from "../types";
 import "./HistoryModalTransaction.scss";
-import { Input } from "component/inputs/Input";
-import { Field, Form } from "react-final-form";
-import { Col, Row } from "react-bootstrap";
-import DetailPickerContainer from "pages/pickers/detailPicker/DetailPickerContainer";
-import { Link } from "react-router-dom";
-
+import "../OptionList/optionList.css"
 
 const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
   detailTransaction,
   onSubmit,
 }): JSX.Element => {
-
-
-
   //const FilterTransaction = props.FilterTransaction;
   //const FilterTransactionHistory = props.FilterTransaction?.transactionHistory;
 
@@ -79,49 +74,31 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
   // };
   console.log(detailTransaction);
   return (
-    <div>
+    <div className="modal-transaction-scroll">
+<div className="modal-transaction-optionContainer-scroll">
       <Form
-        onSubmit={() => {onSubmit()}}
+        onSubmit={() => {
+          onSubmit();
+        }}
         initialValues={{
-          //nroTransaccion: FilterTransaction.transaction ? FilterTransaction.transaction.id : 0,
-          codArea: detailTransaction.picker.phone
-            ? detailTransaction.picker.phone.areaNumber
-            : "",
-          PickerId:
-            detailTransaction.picker.id !== null
-              ? detailTransaction.picker.id
-              : "Sin asignar",
-          Picker:
-            detailTransaction.picker.name !== null
-              ? detailTransaction.picker.name +
-                " " +
-                detailTransaction.picker.surname
-              : "Sin asignar",
-          Telefono:
-            detailTransaction.picker && detailTransaction.picker.phone
-              ? detailTransaction.picker.phone.number
-              : "",
-          dirEntrega: detailTransaction.destination
-            ? detailTransaction.destination.formattedAddress
-            : "",
-          dirRetiro: detailTransaction.origin
-            ? detailTransaction.origin.formattedAddress
-            : "",
-          Retailer: detailTransaction.seller
-            ? detailTransaction.seller.name
-            : "",
-          ReveiverName: detailTransaction.destination
-            ? detailTransaction.destination.name
-            : "",
+          areaCode: detailTransaction.picker.phone.areaNumber,
+          pickerId: detailTransaction.picker.id,
+          name: `${detailTransaction.picker.name} ${detailTransaction.picker.surname}`,
+          phone: detailTransaction.picker.phone.number,
+          deliveryAddress: detailTransaction.destination.formattedAddress,
+          pickupAddress: detailTransaction.origin.formattedAddress,
+          retailer: detailTransaction.seller.name,
+          reveiverName: `${detailTransaction.client.name} ${detailTransaction.client.lastName}`,
+          reveiverPhone: detailTransaction.client.phone,
         }}
       >
         {({ handleSubmit }) => (
-          <form className="form-filter-transaction" onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <Row>
               <Col>
                 <Field
                   type="text"
-                  name="PickerId"
+                  name="pickerId"
                   label="Id de picker"
                   component={Input}
                   className="Admin-Pickers-input"
@@ -131,7 +108,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
               <Col>
                 <Field
                   type="text"
-                  name="Picker"
+                  name="name"
                   label="Nombre y apellido"
                   component={Input}
                   className="Admin-Pickers-input"
@@ -143,7 +120,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                   <Col md={6}>
                     <Field
                       type="text"
-                      name="codArea"
+                      name="areaCode"
                       label="Código de área"
                       component={Input}
                       className="Admin-Pickers-input"
@@ -153,7 +130,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                   <Col md={6}>
                     <Field
                       type="text"
-                      name="Telefono"
+                      name="phone"
                       label="Teléfono"
                       component={Input}
                       className="Admin-Pickers-input"
@@ -162,20 +139,22 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                   </Col>
                 </Row>
               </Col>
-              <Col md={2}>{
-     
-             <button type="submit" className="modal-transaction-button-irApicker">
-                 Ir a picker
-             </button>
-           }
-
+              <Col md={2}>
+                {
+                  <button
+                    type="submit"
+                    className="modal-transaction-button-irApicker"
+                  >
+                    Ir a picker
+                  </button>
+                }
               </Col>
             </Row>
-            <Row >
+            <Row>
               <Col>
                 <Field
                   type="text"
-                  name="dirEntrega"
+                  name="deliveryAddress"
                   label="Dirección de entrega"
                   component={Input}
                   className="Admin-Pickers-input"
@@ -185,7 +164,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
               <Col>
                 <Field
                   type="text"
-                  name="dirRetiro"
+                  name="pickupAddress"
                   label="Dirección de retiro"
                   component={Input}
                   className="Admin-Pickers-input"
@@ -195,21 +174,18 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
               <Col>
                 <Field
                   type="text"
-                  name="Retailer"
+                  name="retailer"
                   label="Retailer"
                   component={Input}
                   className="Admin-Pickers-input"
                   disabled
                 />
               </Col>
-              <Col md={2}>
-                {" "}
-              </Col>
+              <Col md={2}></Col>
             </Row>
 
             <Row>
               <Row>
-                {" "}
                 <h3
                   className="modal-transaction-h3"
                   id="modal-transaction-history-Final"
@@ -225,7 +201,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
               <Col>
                 <Field
                   type="text"
-                  name="ReveiverName"
+                  name="reveiverName"
                   label="Nombre y apellido"
                   component={Input}
                   className="Admin-Pickers-input"
@@ -235,7 +211,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
               <Col>
                 <Field
                   type="text"
-                  name="picker.phone"
+                  name="reveiverPhone"
                   label="Teléfono"
                   component={Input}
                   className="Admin-Pickers-input"
@@ -246,8 +222,17 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
           </form>
         )}
       </Form>
-      <button onClick={()=>{}} className="modal-transaction-finish-enabled">Cancelar</button>
-      <button disabled={true} onClick={()=>{}} className="modal-transaction-cancel-disabled">Finalizar</button>
+      </div>
+      <button onClick={() => {}} className="modal-transaction-finish-enabled">
+        Cancelar
+      </button>
+      <button
+        disabled={true}
+        onClick={() => {}}
+        className="modal-transaction-cancel-disabled"
+      >
+        Finalizar
+      </button>
     </div>
   );
 };

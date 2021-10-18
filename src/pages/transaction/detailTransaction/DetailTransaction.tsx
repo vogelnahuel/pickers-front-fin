@@ -3,16 +3,15 @@ import Close from "assets/transaction/Close.svg";
 import useHistory from "hooks/useHistory";
 import React from "react";
 import { ISO8601toDDMMYYYHHMM } from "utils/iso8601toDDMMYYHHMM";
-import stateName from "../transaction/tableTransaction/statesNames";
 import FlowTransition from "../../../component/flowtransition/FlowTransition";
+import stateName from "../transaction/tableTransaction/statesNames";
 import { DniFinish } from "./modalTransaction/dniFinish/DniFinish";
 import { FinishModal } from "./modalTransaction/finish/FinishModal";
-import  HistoryModalTransaction  from "./modalTransaction/history/HistoryModalTransaction";
+import HistoryModalTransaction from "./modalTransaction/history/HistoryModalTransaction";
 import { ReasonsCanceled } from "./modalTransaction/reasonsCanceled/ReasonsCanceled";
 import { ReasonsCanceledConfirm } from "./modalTransaction/reasonsCanceledConfirm/ReasonsCanceledConfirm";
 import { Undelivered } from "./modalTransaction/undelivered/Undelivered";
 import { DetailTransactionPropsType } from "./types";
-import { replace } from "connected-react-router";
 
 export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
   detailTransaction,

@@ -151,8 +151,7 @@
 .modal-transaction-separate{
     border: 1px solid #BDBDBD;
     margin-top: 0px;
-    width: 97.5%;
-    margin-bottom: 0px;
+    margin-bottom: 40px;
 }
 ._3G24_nB5gK6geBR6bQ0SZx{
     background-color: white;
@@ -284,10 +283,6 @@
     line-height: 23px;
     color: #828282;
 }
-/**/
-#modal-transaction-hr-title{
-    width: 93.7%;
-}
 .transaction-modal-alert{
     display: inline-block;
     font-family: 'Mulish';
@@ -311,9 +306,6 @@
     .transaction-container{
         margin-left: 21.059vw;
         width: 77vw;
-    }
-    .modal-transaction-separate{
-        margin-bottom: 0px;
     }
     #modal-transaction-history-Final{
         margin-top: 10px;

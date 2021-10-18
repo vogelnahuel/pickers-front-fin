@@ -1,7 +1,6 @@
-import React from 'react'
 import volver from 'assets/admin/PendingUser/volver.svg'
-import Info  from 'assets/transaction/Advertencia.svg'
-import api from 'middleware/api'
+import Info from 'assets/transaction/Advertencia.svg'
+import React from 'react'
 // import { FilterTransaction } from '../../filterTransaction/FilterTransaction'
 import './reasonsCanceledConfirm.scss'
 
