@@ -7,7 +7,8 @@ import { selectors as detailTransactionSelector } from "reducers/detailTransacti
 import { AppDispatch, RootState } from "store";
 import { HistoryModalTransactionType } from "../types";
 import "./HistoryModalTransaction.scss";
-import "../OptionList/optionList.css"
+import "../OptionList/optionList.css";
+import { Link } from "react-router-dom";
 
 const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
   detailTransaction,
@@ -75,153 +76,174 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
   console.log(detailTransaction);
   return (
     <div className="modal-transaction-scroll">
-<div className="modal-transaction-optionContainer-scroll">
-      <Form
-        onSubmit={() => {
-          onSubmit();
-        }}
-        initialValues={{
-          areaCode: detailTransaction.picker.phone.areaNumber,
-          pickerId: detailTransaction.picker.id,
-          name: `${detailTransaction.picker.name} ${detailTransaction.picker.surname}`,
-          phone: detailTransaction.picker.phone.number,
-          deliveryAddress: detailTransaction.destination.formattedAddress,
-          pickupAddress: detailTransaction.origin.formattedAddress,
-          retailer: detailTransaction.seller.name,
-          reveiverName: `${detailTransaction.client.name} ${detailTransaction.client.lastName}`,
-          reveiverPhone: detailTransaction.client.phone,
-        }}
-      >
-        {({ handleSubmit }) => (
-          <form onSubmit={handleSubmit}>
-            <Row>
-              <Col>
-                <Field
-                  type="text"
-                  name="pickerId"
-                  label="Id de picker"
-                  component={Input}
-                  className="Admin-Pickers-input"
-                  disabled
-                />
-              </Col>
-              <Col>
-                <Field
-                  type="text"
-                  name="name"
-                  label="Nombre y apellido"
-                  component={Input}
-                  className="Admin-Pickers-input"
-                  disabled
-                />
-              </Col>
-              <Col>
-                <Row>
-                  <Col md={6}>
-                    <Field
-                      type="text"
-                      name="areaCode"
-                      label="Código de área"
-                      component={Input}
-                      className="Admin-Pickers-input"
-                      disabled
-                    />
-                  </Col>
-                  <Col md={6}>
-                    <Field
-                      type="text"
-                      name="phone"
-                      label="Teléfono"
-                      component={Input}
-                      className="Admin-Pickers-input"
-                      disabled
-                    />
-                  </Col>
-                </Row>
-              </Col>
-              <Col md={2}>
-                {
-                  <button
-                    type="submit"
-                    className="modal-transaction-button-irApicker"
-                  >
-                    Ir a picker
-                  </button>
-                }
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <Field
-                  type="text"
-                  name="deliveryAddress"
-                  label="Dirección de entrega"
-                  component={Input}
-                  className="Admin-Pickers-input"
-                  disabled
-                />
-              </Col>
-              <Col>
-                <Field
-                  type="text"
-                  name="pickupAddress"
-                  label="Dirección de retiro"
-                  component={Input}
-                  className="Admin-Pickers-input"
-                  disabled
-                />
-              </Col>
-              <Col>
-                <Field
-                  type="text"
-                  name="retailer"
-                  label="Retailer"
-                  component={Input}
-                  className="Admin-Pickers-input"
-                  disabled
-                />
-              </Col>
-              <Col md={2}></Col>
-            </Row>
-
-            <Row>
+      <div className="modal-transaction-optionContainer-scroll">
+        <Form
+          onSubmit={() => {
+            onSubmit();
+          }}
+          initialValues={{
+            areaCode: detailTransaction.picker.phone
+              ? detailTransaction.picker.phone.areaNumber
+              : "-",
+            pickerId: detailTransaction.picker.id
+              ? detailTransaction.picker.id
+              : "Sin asignar",
+            name: detailTransaction.picker.name
+              ? `${detailTransaction.picker.name} ${detailTransaction.picker.surname}`
+              : "Sin asignar",
+            phone: detailTransaction.picker.phone
+              ? detailTransaction.picker.phone.number
+              : "-",
+            deliveryAddress: detailTransaction.destination.formattedAddress,
+            pickupAddress: detailTransaction.origin.formattedAddress,
+            retailer: detailTransaction.seller.name,
+            reveiverName: `${detailTransaction.client.name} ${detailTransaction.client.lastName}`,
+            reveiverPhone: detailTransaction.client.phone,
+          }}
+        >
+          {({ handleSubmit }) => (
+            <form onSubmit={handleSubmit}>
               <Row>
-                <h3
-                  className="modal-transaction-h3"
-                  id="modal-transaction-history-Final"
-                >
-                  Consumidor final
-                </h3>
-                <hr
-                  className="modal-transaction-separate"
-                  id="modal-transaction-hr-title"
-                />
+                <Col>
+                  <Field
+                    type="text"
+                    name="pickerId"
+                    label="Id de picker"
+                    component={Input}
+                    className="Admin-Pickers-input"
+                    disabled
+                  />
+                </Col>
+                <Col>
+                  <Field
+                    type="text"
+                    name="name"
+                    label="Nombre y apellido"
+                    component={Input}
+                    className="Admin-Pickers-input"
+                    disabled
+                  />
+                </Col>
+                <Col>
+                  <Row>
+                    <Col md={6}>
+                      <Field
+                        type="text"
+                        name="areaCode"
+                        label="Código de área"
+                        component={Input}
+                        className="Admin-Pickers-input"
+                        disabled
+                      />
+                    </Col>
+                    <Col md={6}>
+                      <Field
+                        type="text"
+                        name="phone"
+                        label="Teléfono"
+                        component={Input}
+                        className="Admin-Pickers-input"
+                        disabled
+                      />
+                    </Col>
+                  </Row>
+                </Col>
+                <Col md={2}>
+                  <Link
+                    className="modal-transaction-button-irApicker-a"
+                    target={detailTransaction.picker.id ? "_blank" : ""}
+                    rel="noopener noreferrer"
+                    to={
+                      detailTransaction.picker.id
+                        ? `pickers/${detailTransaction.picker.id}`
+                        : "#"
+                    }
+                  >
+                    <button
+                      type="button"
+                      className={
+                        detailTransaction.picker.id
+                          ? "modal-transaction-button-irApicker"
+                          : "modal-transaction-button-irApicker-disabled"
+                      }
+                    >
+                      Ir a picker
+                    </button>
+                  </Link>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <Field
+                    type="text"
+                    name="deliveryAddress"
+                    label="Dirección de entrega"
+                    component={Input}
+                    className="Admin-Pickers-input"
+                    disabled
+                  />
+                </Col>
+                <Col>
+                  <Field
+                    type="text"
+                    name="pickupAddress"
+                    label="Dirección de retiro"
+                    component={Input}
+                    className="Admin-Pickers-input"
+                    disabled
+                  />
+                </Col>
+                <Col>
+                  <Field
+                    type="text"
+                    name="retailer"
+                    label="Retailer"
+                    component={Input}
+                    className="Admin-Pickers-input"
+                    disabled
+                  />
+                </Col>
+                <Col md={2}></Col>
               </Row>
 
-              <Col>
-                <Field
-                  type="text"
-                  name="reveiverName"
-                  label="Nombre y apellido"
-                  component={Input}
-                  className="Admin-Pickers-input"
-                  disabled
-                />
-              </Col>
-              <Col>
-                <Field
-                  type="text"
-                  name="reveiverPhone"
-                  label="Teléfono"
-                  component={Input}
-                  className="Admin-Pickers-input"
-                  disabled
-                />
-              </Col>
-            </Row>
-          </form>
-        )}
-      </Form>
+              <Row>
+                <Row>
+                  <h3
+                    className="modal-transaction-h3"
+                    id="modal-transaction-history-Final"
+                  >
+                    Consumidor final
+                  </h3>
+                  <hr
+                    className="modal-transaction-separate"
+                    id="modal-transaction-hr-title"
+                  />
+                </Row>
+
+                <Col>
+                  <Field
+                    type="text"
+                    name="reveiverName"
+                    label="Nombre y apellido"
+                    component={Input}
+                    className="Admin-Pickers-input"
+                    disabled
+                  />
+                </Col>
+                <Col>
+                  <Field
+                    type="text"
+                    name="reveiverPhone"
+                    label="Teléfono"
+                    component={Input}
+                    className="Admin-Pickers-input"
+                    disabled
+                  />
+                </Col>
+              </Row>
+            </form>
+          )}
+        </Form>
       </div>
       <button onClick={() => {}} className="modal-transaction-finish-enabled">
         Cancelar

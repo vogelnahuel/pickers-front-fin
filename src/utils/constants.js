@@ -15,7 +15,12 @@ export const titlesAdminActive = [
   "Editar",
 ];
 
-export const transactionTableTitles = ["Transacción", "Id de picker", "Vencimiento SLA", "Estado"];
+export const transactionTableTitles = [
+  "Transacción",
+  "Id de picker",
+  "Vencimiento SLA",
+  "Estado",
+];
 
 export const DATE_FORMATS = {
   regex:
@@ -135,4 +140,22 @@ export const TRANSACTION_STATE_TAG_LABEL = {
   DELIVERED: "Entregado",
   RETURNED_TO_SENDER: "Devuelto",
   LOST: "Siniestrado",
+};
+
+export const TRANSACTION_ACTIONS_TAG_LABEL = {
+  assigned_picker: "Asignado",
+  un_assigning: "Sin asignar",
+  state_pending_assigment: "Pendiente",
+  state_assigned: "Asignado",
+  state_in_pickup: "En retiro",
+  state_in_pickup_point: "En punto de retiro",
+  state_in_picked_up: "Retirado",
+  state_in_delivery: "En entrega",
+  state_in_delivery_point: "En lugar de entrega ",
+  state_in_devolution: "En devolucion",
+  state_pickup_cancelled_temporally: "Cancelado",
+  state_pickup_cancelled_permanently: "Cancelado",
+  state_delivered: "Entregado",
+  state_returned: "Devuelto",
+  state_lost: "Siniestrado",
 };
