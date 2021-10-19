@@ -181,7 +181,6 @@ const reducer =(state:TransactionStateType = INITIAL_STATE, action:TransactionAc
                 return {
                     ...state,
                     fetching: true,
-                    detailTransactionModalOpen:false
                 };
         case detailTransactionTypes.DETAIL_TRANSACTIONS_ID_SUCCESS:
             return {

@@ -96,7 +96,6 @@ export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
                 <HistoryModalTransaction
                   cancel={() => setCurrentStep(STEP.ReasonsCanceled)}
                   finish={() => setCurrentStep(STEP.FinishModal)}
-                  onSubmit={()=>{}}
                 />
               ),
               [STEP.ReasonsCanceled]: () => (

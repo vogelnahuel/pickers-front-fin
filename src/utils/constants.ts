@@ -142,7 +142,7 @@ export const TRANSACTION_STATE_TAG_LABEL = {
   LOST: "Siniestrado",
 };
 
-export const TRANSACTION_ACTIONS_TAG_LABEL = {
+export const TRANSACTION_ACTIONS_TAG_LABEL:any = {
   assigned_picker: "Asignado",
   un_assigning: "Sin asignar",
   state_pending_assigment: "Pendiente",

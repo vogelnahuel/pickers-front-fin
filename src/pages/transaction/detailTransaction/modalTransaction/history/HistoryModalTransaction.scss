@@ -42,6 +42,11 @@
     margin-top: 30px;
 }
 
+.button-container{
+    display: flex;
+    justify-content: center;
+}
+
 .form-filter-transaction-modal div div input::placeholder{
     color: #828282;
 }
