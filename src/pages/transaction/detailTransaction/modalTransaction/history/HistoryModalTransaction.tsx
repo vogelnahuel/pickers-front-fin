@@ -9,6 +9,7 @@ import { HistoryModalTransactionType } from "../types";
 import "./HistoryModalTransaction.scss";
 import "../OptionList/optionList.css";
 import { Link } from "react-router-dom";
+import TransactionStateHistory from "../transactionStateHistory/TransactionStateHistory";
 
 const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
   detailTransaction,
@@ -244,6 +245,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
             </form>
           )}
         </Form>
+        <TransactionStateHistory transactionHistory={detailTransaction.transactionHistory}/>
       </div>
       <button onClick={() => {}} className="modal-transaction-finish-enabled">
         Cancelar

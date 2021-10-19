@@ -2,11 +2,15 @@ import {
   FiltersExtraSeeMoreType,
   FiltersExtraType,
 } from "reducers/types/transaction";
+import { DetailTransactionHistoryType } from "sagas/types/detailTransactions";
 import {
   FilterTransactionsType,
   TransactionResponseTypeResult,
 } from "sagas/types/transactions";
 
+export type TransactionHistoryType= {
+  transactionHistory:DetailTransactionHistoryType[];
+}
 
 export type URLTransactionContainerType = {
   minMinDeliveryDate?: string;
