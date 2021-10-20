@@ -1,5 +1,5 @@
 import volver from 'assets/admin/PendingUser/volver.svg'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { AppDispatch, RootState } from 'store'
 import './reasonsCanceled.scss'
 import { actions as detailTransactionActions, selectors as detailTransactionSelector } from "reducers/detailTransaction";
@@ -10,8 +10,9 @@ import { connect } from "react-redux";
 
 
 
-const ReasonsCanceled: React.FC<any> = ({ getMessages,detailTransaction,onBack,Messages,ReasonsCanceledConfirm}): JSX.Element => {
- 
+const ReasonsCanceled: React.FC<any> = ({ getMessages,detailTransaction,onBack,Messages,ReasonsCanceledConfirm,setMessageSelected}): JSX.Element => {
+
+  const [SelectedClick, setSelectedClick] = useState({id:-1,state:false})
     useEffect(() => {
       getMessages(detailTransaction.transaction.id)
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -36,7 +37,7 @@ const ReasonsCanceled: React.FC<any> = ({ getMessages,detailTransaction,onBack,M
 
                                 <div  key={message.id} className="modal-transaction-reason-container">
                                     
-                                <p  onClick={ReasonsCanceledConfirm}  data-value={message.id} className="animacion-test">{message?.message}</p>
+                                <p  onClick={()=>{setMessageSelected(message);ReasonsCanceledConfirm();setSelectedClick({id:message.id,state:true}) }}  data-value={message.id} className={ (SelectedClick.id===message.id && SelectedClick.state===true)  ? "p-font-weight" :""}>{message?.message}</p>
                             </div>
                                )
                                )
@@ -62,6 +63,9 @@ const mapStateToProps = (state: RootState) => ({
     getMessages: (id: string) => {
         dispatch(detailTransactionActions.getDetailTransactionMenssagesRequest(id));
       },
+    setMessageSelected:(message:any)=>{
+      dispatch(detailTransactionActions.setMessageSelected(message))
+    }
       
   });
   

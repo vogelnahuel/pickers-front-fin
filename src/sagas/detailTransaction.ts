@@ -93,6 +93,7 @@ function* postReasonsCanceled({
   } else {
     const { result } = response.data;
     yield put(actions.getDetailTransactionSuccess(result));
+    
   }
 }
 

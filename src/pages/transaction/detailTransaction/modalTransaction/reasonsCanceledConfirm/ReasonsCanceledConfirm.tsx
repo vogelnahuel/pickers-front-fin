@@ -1,8 +1,11 @@
 import volver from 'assets/admin/PendingUser/volver.svg'
 import Info from 'assets/transaction/Advertencia.svg'
 import React from 'react'
-// import { FilterTransaction } from '../../filterTransaction/FilterTransaction'
+import { actions as detailTransactionActions, selectors as detailTransactionSelector } from "reducers/detailTransaction";
+import { connect } from "react-redux";
+
 import './reasonsCanceledConfirm.scss'
+import { AppDispatch, RootState } from 'store';
 
 export const ReasonsCanceledConfirm = (props:any) => {
 
@@ -52,3 +55,25 @@ export const ReasonsCanceledConfirm = (props:any) => {
         </div>
     )
 }
+
+
+const mapStateToProps = (state: RootState) => ({
+    detailTransaction: detailTransactionSelector.getDetailTransaction(state),
+    messageSelected:detailTransactionSelector.getDetailTransactionMessage(state)
+  });
+  
+  const mapDispatchToProps = (dispatch: AppDispatch) => ({
+
+      postReasonsCanceled:(params:any,id:any)=>{
+        dispatch(detailTransactionActions.getDetailTransactionReasonsCanceledRequest(params,id))
+      }
+
+      
+  });
+  
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(ReasonsCanceledConfirm);
+  
+
