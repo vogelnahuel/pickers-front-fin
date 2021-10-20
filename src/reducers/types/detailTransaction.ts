@@ -66,10 +66,13 @@ export type DetailTransactionActionsType={
 }
 export type DetailTransactionSelectorType={
     getDetailTransaction:Function,
+    getDetailTransactionFetching:Function,
+    getDetailTransactionMessages:Function
 }
 export type DetailTransactionActionType = {
     type:string,
-    detailTransaction:DetailTransactionType
+    detailTransaction:DetailTransactionType,
+    detailTransactionMessages:DetailTransactionCancelItemType[]
 }
 export type DetailTransactionInicialStateType={
     fetching: boolean,

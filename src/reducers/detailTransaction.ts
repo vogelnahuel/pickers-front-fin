@@ -138,9 +138,9 @@ export const actions:DetailTransactionActionsType = {
         type: types.DETAIL_TRANSACTIONS_MENSSAGES_REQUEST,
         id,
     }),
-    getDetailTransactionMenssagesSuccess: (transactions:DetailTransactionCancelItemType) => ({
+    getDetailTransactionMenssagesSuccess: (detailTransactionMessages:DetailTransactionCancelItemType[]) => ({
         type: types.DETAIL_TRANSACTIONS_MENSSAGES_SUCCESS,
-        transactions
+        detailTransactionMessages
     }),
     getDetailTransactionMenssagesError: () => ({
         type: types.DETAIL_TRANSACTIONS_MENSSAGES_ERROR,
@@ -218,6 +218,8 @@ export const actions:DetailTransactionActionsType = {
 
 export const selectors:DetailTransactionSelectorType = {
     getDetailTransaction: (detailtransactions:RootState) => detailtransactions.detailTransaction.detailTransaction,
+    getDetailTransactionFetching: (detailtransactions:RootState) => detailtransactions.detailTransaction.fetching,
+    getDetailTransactionMessages: (detailtransactions:RootState) => detailtransactions.detailTransaction.message,
 };
 
 
@@ -244,11 +246,13 @@ const reducer =(state:DetailTransactionInicialStateType = INITIAL_STATE, action:
             return {
                 ...state,
                 fetching: true,
+               
             };
         case types.DETAIL_TRANSACTIONS_MENSSAGES_SUCCESS:
             return {
                     ...state,
-                    fetching: true,
+                    fetching: false,
+                    message:action.detailTransactionMessages
             };
         case types.DETAIL_TRANSACTIONS_MENSSAGES_ERROR:
             return {

@@ -55,10 +55,10 @@ function* getMessages({
 > {
   const response = yield call(transactionsMiddleware.getMessages, id);
   if (response.status !== 200) {
-    yield put(actions.getDetailTransactionError());
+    yield put(actions.getDetailTransactionMenssagesError());
   } else {
     const { result } = response.data;
-    yield put(actions.getDetailTransactionSuccess(result));
+    yield put(actions.getDetailTransactionMenssagesSuccess(result.items));
   }
 }
 

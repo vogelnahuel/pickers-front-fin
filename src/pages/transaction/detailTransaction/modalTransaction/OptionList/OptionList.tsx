@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './optionList.css'
 import { FinishModal } from '../finish/FinishModal'
 import { ReasonsCanceledConfirm } from '../reasonsCanceledConfirm/ReasonsCanceledConfirm'
-import { ReasonsCanceled } from '../reasonsCanceled/ReasonsCanceled'
+import  ReasonsCanceled  from '../reasonsCanceled/ReasonsCanceled'
 import Reload from 'assets/transaction/Reload.svg'
 //import {useDispatch} from 'react-redux'
 

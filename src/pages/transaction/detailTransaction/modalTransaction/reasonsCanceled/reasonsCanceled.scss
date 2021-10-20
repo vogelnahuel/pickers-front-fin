@@ -1,6 +1,9 @@
 .modal-transaction-reasonsCanceled{
     margin-right: 26px;
 }
+.animacion-test:hover{
+    font-weight: bold;
+}
 .modal-reasonsCancel-p{
     margin-left: 10px;
 }
@@ -21,6 +24,7 @@
     margin-right: 300px;
     overflow-y: auto;
     margin-top: 25px;
+    overflow-x: hidden;
 }
 
 .modal-transaction-reasonsCanceled-scroll::-webkit-scrollbar {

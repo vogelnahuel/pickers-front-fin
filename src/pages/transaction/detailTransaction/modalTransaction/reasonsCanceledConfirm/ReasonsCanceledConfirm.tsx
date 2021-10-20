@@ -4,10 +4,10 @@ import React from 'react'
 // import { FilterTransaction } from '../../filterTransaction/FilterTransaction'
 import './reasonsCanceledConfirm.scss'
 
-export const ReasonsCanceledConfirm = (props) => {
+export const ReasonsCanceledConfirm = (props:any) => {
 
-    const FilterSelectedTransaction = props.FilterSelectedTransaction;
-    const msgSelected=props.msgSelected;
+    // const FilterSelectedTransaction = props.FilterSelectedTransaction;
+    // const msgSelected=props.msgSelected;
 
     // const handleClickCancelConfirm = (e)=> {
        
@@ -19,12 +19,12 @@ export const ReasonsCanceledConfirm = (props) => {
 
     return (
         <div className="modal-transaction-reasonsCanceled">
-            <div  onClick={()=>{}} className="modal-transaction-volver">
+            <div  onClick={props.onBack} className="modal-transaction-volver">
                 <img  className="modal-transaction-reasonsCanceledConfirm-volver-img" src={volver} alt ="volver" />
                 <p className="modal-transaction-reasonsCanceledConfirm-volver">Volver</p>
             </div>
 
-          {((FilterSelectedTransaction.transaction.state.name==="En retiro" &&  msgSelected==="Motivos personales o de transporte") ||
+          {/* {((FilterSelectedTransaction.transaction.state.name==="En retiro" &&  msgSelected==="Motivos personales o de transporte") ||
           (FilterSelectedTransaction.transaction.state.name==="En lugar de retiro" && msgSelected==="Motivos personales o de transporte")) 
 
           ?    <div className="modal-transaction-reasonsCanceledConfirm-container">
@@ -47,7 +47,7 @@ export const ReasonsCanceledConfirm = (props) => {
                 </p>
              </div>
             
-            }
+            } */}
             <button onClick={()=>{}} className="modal-transaction-reasonsCanceledConfirm-button">Sí, cancelarla</button>
         </div>
     )
