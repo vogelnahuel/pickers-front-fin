@@ -7,7 +7,7 @@ import './reasonsCanceled.scss'
 
 
 
-export const ReasonsCanceled = (props) => {
+export const ReasonsCanceled = (props:any) => {
     // const [messages, setmessages] = useState()
    
    

@@ -1,5 +1,6 @@
 import { TransactionHistoryType } from "pages/transaction/types";
 import React from "react";
+import './transactionStateHistory.scss'
 import { Link } from "react-router-dom";
 import { ISO8601toDDMMYYYHHMM } from "utils/iso8601toDDMMYYHHMM";
 import Cancel from "../../../../../assets/transaction/Cancel.svg";

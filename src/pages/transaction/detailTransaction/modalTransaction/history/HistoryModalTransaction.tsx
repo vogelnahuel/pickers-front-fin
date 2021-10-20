@@ -216,8 +216,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
         >
           Finalizar
         </button>
-      </div>
-      <div onClick={() => getDetailTransaction(detailTransaction.transaction.id)} className="modal-transaction-reload">
+        <div onClick={() => getDetailTransaction(detailTransaction.transaction.id)} className="modal-transaction-reload">
         <img
           className="modal-transaction-reload-img"
           src={Reload}
@@ -225,6 +224,8 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
         />
         <p>Actualizar</p>
       </div>
+      </div>
+     
     </div>
   );
 };
