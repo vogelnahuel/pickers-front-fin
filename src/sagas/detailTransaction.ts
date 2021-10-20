@@ -85,7 +85,7 @@ function* postReasonsCanceled({
   params,
   id,
 }: postReasonsCancelParamsType): Generator<
-  CallEffect<AxiosResponse<DevolutionUndeliveredResponseType>> | PutEffect<{ type: string }> ,
+  CallEffect<AxiosResponse<DevolutionUndeliveredResponseType>> | PutEffect<{ type: string }> |void ,
   void,
   DevolutionUndeliveredResponseType
 > {
@@ -100,9 +100,10 @@ function* postReasonsCanceled({
     yield put(actions.getDetailTransactionError());
   } else {
     const { result } = response.data;
-    //yield put(replace("/transaction"));
+    // yield put(replace("/transaction"));
+    yield window.location.reload();
     yield put(actions.getDetailTransactionSuccess(result));
-    window.location.reload();
+   
   }
 }
 
