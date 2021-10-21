@@ -2,21 +2,15 @@ import { Modal } from "@pickit/pickit-components";
 import Close from "assets/transaction/Close.svg";
 import useHistory from "hooks/useHistory";
 import React from "react";
+import { TRANSACTION_STATE_ID_LABEL } from "utils/constants";
 import { ISO8601toDDMMYYYHHMM } from "utils/iso8601toDDMMYYHHMM";
 import FlowTransition from "../../../component/flowtransition/FlowTransition";
-<<<<<<< HEAD
-import stateName from "../transaction/tableTransaction/statesNames";
 import DniFinish from "./modalTransaction/dniFinish/DniFinish";
-import  FinishModal  from "./modalTransaction/finish/FinishModal";
-=======
-import { TRANSACTION_STATE_ID_LABEL } from "../../../utils/constants";
-import { DniFinish } from "./modalTransaction/dniFinish/DniFinish";
-import { FinishModal } from "./modalTransaction/finish/FinishModal";
->>>>>>> 8fe8da0c9e53dd9e37c2bb40d65f0148c1b18201
+import FinishModal from "./modalTransaction/finish/FinishModal";
 import HistoryModalTransaction from "./modalTransaction/history/HistoryModalTransaction";
-import  ReasonsCanceled  from "./modalTransaction/reasonsCanceled/ReasonsCanceled";
-import  ReasonsCanceledConfirm  from "./modalTransaction/reasonsCanceledConfirm/ReasonsCanceledConfirm";
-import  Undelivered  from "./modalTransaction/undelivered/Undelivered";
+import ReasonsCanceled from "./modalTransaction/reasonsCanceled/ReasonsCanceled";
+import ReasonsCanceledConfirm from "./modalTransaction/reasonsCanceledConfirm/ReasonsCanceledConfirm";
+import Undelivered from "./modalTransaction/undelivered/Undelivered";
 import { DetailTransactionPropsType } from "./types";
 
 export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({

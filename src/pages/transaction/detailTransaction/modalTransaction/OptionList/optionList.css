@@ -1,49 +1,3 @@
-<<<<<<< HEAD
-.form-filter-transaction{
-    /*margin-top: 11px;*/
-    display: flex;
-    justify-content: center;
-}
-.modal-transaction-optionContainer-scroll{
-    /* height: 340px; */
-    /* overflow-y: scroll; */
-    overflow-x: hidden;
-    /* width: 82.4vw; */
-    /* margin-right: 1.964vw; */
-}
-.modal-transaction-button-irApicker{
-    height: 50px;
-    width: 176px;
-    border: 2.5px solid #0098FF;
-    box-sizing: border-box;
-    border-radius: 50px;
-    background-color: white;
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: 800;
-    font-size: 18px;
-    line-height: 23px;
-    text-align: center;
-    color: #101820;
-    /* margin-left: 3.7vw; */
-}
-.modal-transaction-button-irApicker-disabled{
-    height: 50px;
-    width: 176px;
-    border: 2.5px solid #BDBDBD;
-    box-sizing: border-box;
-    border-radius: 50px;
-    background-color: white;
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: 800;
-    font-size: 18px;
-    line-height: 23px;
-    text-align: center;
-    color: #BDBDBD;
-    /* margin-left: 3.7vw; */
-    cursor: default !important;
-=======
 .form-filter-transaction {
   /*margin-top: 11px;*/
   display: flex;
@@ -87,7 +41,6 @@
   color: #bdbdbd;
   /* margin-left: 3.7vw; */
   cursor: default !important;
->>>>>>> 8fe8da0c9e53dd9e37c2bb40d65f0148c1b18201
 }
 
 .modal-transaction-inputs {
