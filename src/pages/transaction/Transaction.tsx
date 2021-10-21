@@ -9,7 +9,7 @@ import "pages/transaction/transaction.scss";
 import React from "react";
 import DetailTransactionContainer from "./detailTransaction/DetailTransactionContainer";
 import FilterTransaction from "./filterTransaction/FilterTransactionContainer";
-import TableTransaction from "./transaction/tableTransaction/TableTransaction";
+import TableTransaction from "./tableTransaction/TableTransaction";
 import { TransactionType } from "./types";
 
 export const Transaction: React.FC<TransactionType>  = ({
