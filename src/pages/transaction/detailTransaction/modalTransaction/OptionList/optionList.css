@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .form-filter-transaction{
     /*margin-top: 11px;*/
     display: flex;
@@ -42,306 +43,349 @@
     color: #BDBDBD;
     /* margin-left: 3.7vw; */
     cursor: default !important;
+=======
+.form-filter-transaction {
+  /*margin-top: 11px;*/
+  display: flex;
+}
+.modal-transaction-optionContainer-scroll {
+  /* height: 340px; */
+  /* overflow-y: scroll; */
+  overflow-x: hidden;
+  /* width: 82.4vw; */
+  /* margin-right: 1.964vw; */
+}
+.modal-transaction-button-irApicker {
+  height: 50px;
+  width: 176px;
+  border: 2.5px solid #0098ff;
+  box-sizing: border-box;
+  border-radius: 50px;
+  background-color: white;
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 23px;
+  text-align: center;
+  color: #101820;
+  /* margin-left: 3.7vw; */
+}
+.modal-transaction-button-irApicker-disabled {
+  height: 50px;
+  width: 176px;
+  border: 2.5px solid #bdbdbd;
+  box-sizing: border-box;
+  border-radius: 50px;
+  background-color: white;
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 23px;
+  text-align: center;
+  color: #bdbdbd;
+  /* margin-left: 3.7vw; */
+  cursor: default !important;
+>>>>>>> 8fe8da0c9e53dd9e37c2bb40d65f0148c1b18201
 }
 
-.modal-transaction-inputs{
-    display: flex;
-    flex-wrap: wrap;
-    width: 80vw;
+.modal-transaction-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  width: 80vw;
 }
-.modal-transaction-input{
-    width: 19.351vw;
-    margin-right: 22px;
+.modal-transaction-input {
+  width: 19.351vw;
+  margin-right: 22px;
 }
 
-.modal-transaction-optionContainer-scroll{
-    /* overflow-y: scroll; */
-    padding-right: 30px;
-    /* scrollbar-color: #BDBDBD #F2F2F2; */
-    /* scrollbar-width: thin; */
+.modal-transaction-optionContainer-scroll {
+  /* overflow-y: scroll; */
+  padding-right: 30px;
+  /* scrollbar-color: #BDBDBD #F2F2F2; */
+  /* scrollbar-width: thin; */
 }
 .modal-transaction-optionContainer-scroll::-webkit-scrollbar {
-    width: 8px;     
-    height: 8px;
+  width: 8px;
+  height: 8px;
 }
 .modal-transaction-optionContainer-scroll::-webkit-scrollbar-thumb {
-    background: #BDBDBD;
-    width: 7px;     
-    height: 7px;
-    border-radius: 4px;
+  background: #bdbdbd;
+  width: 7px;
+  height: 7px;
+  border-radius: 4px;
 }
 .modal-transaction-optionContainer-scroll::-webkit-scrollbar-thumb:hover {
-    background: #BDBDBD;
-    width: 7px;     
-    height: 7px;
-    border-radius: 4px;
+  background: #bdbdbd;
+  width: 7px;
+  height: 7px;
+  border-radius: 4px;
 }
 .modal-transaction-optionContainer-scroll::-webkit-scrollbar-thumb:active {
-    background-color: #BDBDBD;
-    width: 7px;     
-    height: 7px;
-    border-radius: 4px;
+  background-color: #bdbdbd;
+  width: 7px;
+  height: 7px;
+  border-radius: 4px;
 }
 
 .modal-transaction-optionContainer-scroll::-webkit-scrollbar-track {
-    background: #F1F1F1;
-    border-radius: 4px;
+  background: #f1f1f1;
+  border-radius: 4px;
 }
 
+.modal-transaction-separate-option {
+  margin-bottom: 30px;
+  border: 1px solid #cccccc;
+}
+.modal-transaction-part {
+  display: flex;
+}
+.modal-transaction-part {
+    & > div:last-child
 
-
-
-
-.modal-transaction-separate-option{
-    margin-bottom: 30px;
-    border: 1px solid #CCCCCC;
-}
-.modal-transaction-part{
-    display: flex;
-}
-.modal-transaction-part-subtitle{
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: bold;
-    font-size: 17px;
-    line-height: 21px;
-    letter-spacing: 0.0125em;
-    color: #4D4D4D;
-    margin-left: 15px;
-}
-.modal-transaction-part-subtitle-metadata{
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: bold;
-    font-size: 17px;
-    line-height: 21px;
-    letter-spacing: 0.0125em;
-    color: #4D4D4D;
-}
-.modal-transaction-part-info{
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 15px;
-    line-height: 19px;
-    margin-left: 15px;
-    color: #BDBDBD;
-    margin-top:  0.2604166666666667vh;
-}
-.modal-transaction-img-connector{
-    margin-left: 0.702vw;
-}
-.modal-transaction-section-history{
-   margin-bottom: 30px;
-}
-.modal-transaction-reload-img{
-    cursor: pointer;
-    margin-top: 0px;
+  modal-transaction-img-connector {
+    display: none;
+  }
 }
 
-.modal-transaction-difuminar1{
-    position: absolute;
-    width: 81vw;
-    height: 15px;
-    backdrop-filter: blur(1px);
-    margin-top: -26px;
+.modal-transaction-part-subtitle {
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 17px;
+  line-height: 21px;
+  letter-spacing: 0.0125em;
+  color: #4d4d4d;
+  margin-left: 15px;
 }
-.modal-transaction-difuminar2{
-    position: absolute;
-    width: 81vw;
-    height: 15px;
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(2px);
-    margin-top: -19px; 
+.modal-transaction-part-subtitle-metadata {
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 17px;
+  line-height: 21px;
+  letter-spacing: 0.0125em;
+  color: #4d4d4d;
 }
-.modal-transaction-difuminar3{
-    position: absolute;
-    width: 81vw;
-    height: 15px;
-    background: rgba(255, 255, 255, 1);
-    backdrop-filter: blur(2px);
-    margin-top: -12px;
+.modal-transaction-part-info {
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 19px;
+  margin-left: 15px;
+  color: #bdbdbd;
+  margin-top: 0.2604166666666667vh;
 }
-.modal-transaction-difuminar4{
-    position: absolute;
-    width: 81vw;
-    height: 15px;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(1px);
-    margin-top: 0px;
+.modal-transaction-img-connector {
+  margin-left: 0.702vw;
 }
-.modal-transaction-difuminar5{
-    position: absolute;
-    width: 81vw;
-    height: 15px;
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(1px);
-    margin-top: 10px;
+.modal-transaction-section-history {
+  margin-bottom: 30px;
 }
-.modal-transaction-difuminar6{
-    position: absolute;
-    width: 81vw;
-    height: 0px;
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(1px);
-    margin-top: 3px;
+.modal-transaction-reload-img {
+  cursor: pointer;
+  margin-top: 0px;
 }
 
-.animation-left-transaction{
-    background-color: white;
-    margin-left: 3%;
-    animation: 0.6s moverIzq 1;
-    height: 100%;
+.modal-transaction-difuminar1 {
+  position: absolute;
+  width: 81vw;
+  height: 15px;
+  backdrop-filter: blur(1px);
+  margin-top: -26px;
 }
-.modalLoading-optionList{
-    backdrop-filter: blur(5px);
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    z-index: 99;
-    width: 100%;
-    height: 100%;
-    background:  rgba(255, 255, 255, 0.4) url("assets/canguro-pickers.gif") 50% 50% no-repeat;
+.modal-transaction-difuminar2 {
+  position: absolute;
+  width: 81vw;
+  height: 15px;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(2px);
+  margin-top: -19px;
+}
+.modal-transaction-difuminar3 {
+  position: absolute;
+  width: 81vw;
+  height: 15px;
+  background: rgba(255, 255, 255, 1);
+  backdrop-filter: blur(2px);
+  margin-top: -12px;
+}
+.modal-transaction-difuminar4 {
+  position: absolute;
+  width: 81vw;
+  height: 15px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(1px);
+  margin-top: 0px;
+}
+.modal-transaction-difuminar5 {
+  position: absolute;
+  width: 81vw;
+  height: 15px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(1px);
+  margin-top: 10px;
+}
+.modal-transaction-difuminar6 {
+  position: absolute;
+  width: 81vw;
+  height: 0px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(1px);
+  margin-top: 3px;
 }
 
-@keyframes moverIzq{
-    0%{margin-left: 0; }
-    30%{margin-left: 0;}
-    95%{
-        margin-left: -100%;
-        opacity: 0;
-        
-        }
+.animation-left-transaction {
+  background-color: white;
+  margin-left: 3%;
+  animation: 0.6s moverIzq 1;
+  height: 100%;
 }
-.options-transaction-flex{
-    display: flex;
-    overflow-x: hidden;
-}
-
-.animationReasons{
-    width: 1100px;
-    height: 52.171875vh;
-    position: absolute;
-    left: 50px;
-    top: 130px;
-    background-color: rgb(255, 255, 255);
-    opacity: 0.5;
+.modalLoading-optionList {
+  backdrop-filter: blur(5px);
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 99;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.4) url("assets/canguro-pickers.gif") 50% 50%
+    no-repeat;
 }
 
+@keyframes moverIzq {
+  0% {
+    margin-left: 0;
+  }
+  30% {
+    margin-left: 0;
+  }
+  95% {
+    margin-left: -100%;
+    opacity: 0;
+  }
+}
+.options-transaction-flex {
+  display: flex;
+  overflow-x: hidden;
+}
+
+.animationReasons {
+  width: 1100px;
+  height: 52.171875vh;
+  position: absolute;
+  left: 50px;
+  top: 130px;
+  background-color: rgb(255, 255, 255);
+  opacity: 0.5;
+}
 
 @media (min-width: 1310px) {
-    .modal-transaction-button-irApicker{
-        margin-top: 5px;
-    }
-    .modal-transaction-button-irApicker-disabled{
-        margin-top: 5px;
-    }
+  .modal-transaction-button-irApicker {
+    margin-top: 5px;
+  }
+  .modal-transaction-button-irApicker-disabled {
+    margin-top: 5px;
+  }
 }
-
 
 @media (min-width: 1800px) {
-  
-    .modal-transaction-button-irApicker{
-        margin-left: 0px;
-    }
-    .modal-transaction-button-irApicker-disabled{
-        margin-left: 0px;
-    }
-    .modal-transaction-difuminar1{
-        position: absolute;
-        width: 1100px;
-        height: 1.00625vh;
-        background: rgba(255, 255, 255, 0.8);
-        backdrop-filter: blur(1px);
-        margin-top: -15px;
-       
-    }
-    .modal-transaction-difuminar2{
-        position: absolute;
-        width: 1100px;
-        height: 1.00625vh;
-        background: rgba(255, 255, 255, 0.8);
-        backdrop-filter: blur(1px);
-        margin-top: -8px;
-    }
-    .modal-transaction-difuminar3{
-        position: absolute;
-        width: 1100px;
-        height: 1.00625vh;
-        background: rgba(255, 255, 255, 0.8);
-        backdrop-filter: blur(1px);
-        margin-top: -1px;
+  .modal-transaction-button-irApicker {
+    margin-left: 0px;
+  }
+  .modal-transaction-button-irApicker-disabled {
+    margin-left: 0px;
+  }
+  .modal-transaction-difuminar1 {
+    position: absolute;
+    width: 1100px;
+    height: 1.00625vh;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(1px);
+    margin-top: -15px;
+  }
+  .modal-transaction-difuminar2 {
+    position: absolute;
+    width: 1100px;
+    height: 1.00625vh;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(1px);
+    margin-top: -8px;
+  }
+  .modal-transaction-difuminar3 {
+    position: absolute;
+    width: 1100px;
+    height: 1.00625vh;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(1px);
+    margin-top: -1px;
+  }
 
-    }
-    
-    .modal-transaction-difuminar4{
-        position: absolute;
-        width: 1100px;
-        height: 1.00625vh;
-        background: rgba(255, 255, 255, 0.8);
-        backdrop-filter: blur(1px);
-        margin-top: -1px;
-       
-    }
-    .modal-transaction-difuminar5{
-        position: absolute;
-        width: 1100px;
-        height: 1.00625vh;
-        background: rgba(255, 255, 255, 0.6);
-        backdrop-filter: blur(1px);
-        margin-top: 6px;
-       
-    }
-    .modal-transaction-difuminar6{
-        position: absolute;
-        width: 1100px;
-        height: 1.00625vh;
-        background: rgba(255, 255, 255, 0.6);
-        backdrop-filter: blur(1px);
-        margin-top: 15px;
- 
-    }
-    .modal-transaction-optionContainer-scroll{
-        width: 1110px;
-    }
-    .modal-transaction-h3{
-        margin-bottom: 0px;
-    }
-    .modal-transaction-section-history{
-        margin-top: 30px;
-    }
-    .modal-transaction-img-connector{
-        margin-left: 8px;
-    }
-    .modal-transaction-reload-img{
-        margin-top: 10px;
-    }
-    .animationReasons{
-        height: 50vh;
-    }
+  .modal-transaction-difuminar4 {
+    position: absolute;
+    width: 1100px;
+    height: 1.00625vh;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(1px);
+    margin-top: -1px;
+  }
+  .modal-transaction-difuminar5 {
+    position: absolute;
+    width: 1100px;
+    height: 1.00625vh;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(1px);
+    margin-top: 6px;
+  }
+  .modal-transaction-difuminar6 {
+    position: absolute;
+    width: 1100px;
+    height: 1.00625vh;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(1px);
+    margin-top: 15px;
+  }
+  .modal-transaction-optionContainer-scroll {
+    width: 1110px;
+  }
+  .modal-transaction-h3 {
+    margin-bottom: 0px;
+  }
+  .modal-transaction-section-history {
+    margin-top: 30px;
+  }
+  .modal-transaction-img-connector {
+    margin-left: 8px;
+  }
+  .modal-transaction-reload-img {
+    margin-top: 10px;
+  }
+  .animationReasons {
+    height: 50vh;
+  }
 }
 
-@media (max-width:1310px){
-    .modal-transaction-optionContainer-scroll{
-        height: 39.572917vh;
-        width: 88.1vw;
-    }
-    .modal-transaction-separate-option{
-        
-    }
+@media (max-width: 1310px) {
+  .modal-transaction-optionContainer-scroll {
+    height: 39.572917vh;
+    width: 88.1vw;
+  }
+  .modal-transaction-separate-option {
+  }
 }
-@media (min-width:1310px){
-    .modal-transaction-optionContainer-scroll{
-        height: 320px;
-    }
+@media (min-width: 1310px) {
+  .modal-transaction-optionContainer-scroll {
+    height: 320px;
+  }
 }
-@media (min-width:1800px){
-    .modal-transaction-optionContainer-scroll{
-        height: 418px;
-        margin-left: 17px;
-    }
-    .modal-transaction-separate-option{
-        margin-bottom: 30px;
-    }
+@media (min-width: 1800px) {
+  .modal-transaction-optionContainer-scroll {
+    height: 418px;
+    margin-left: 17px;
+  }
+  .modal-transaction-separate-option {
+    margin-bottom: 30px;
+  }
 }
-

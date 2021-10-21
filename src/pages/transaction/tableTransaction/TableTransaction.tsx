@@ -1,5 +1,5 @@
-import moment from "moment";
 import React from "react";
+import moment from "moment";
 import { connect } from "react-redux";
 import {
   actions as detailTransaction
@@ -7,8 +7,8 @@ import {
 import { selectors as transactionSelectors } from "reducers/transactions";
 import { TransactionResponseTypeResult } from "sagas/types/transactions";
 import { AppDispatch, RootState } from "store";
-import TreePoints from "../../../../assets/transaction/TreePoints.svg";
-import { transactionTableTitles } from "../../../../utils/constants";
+import TreePoints from "../../../assets/transaction/TreePoints.svg";
+import { transactionTableTitles } from "../../../utils/constants";
 import "./TableTransaction.scss";
 import { TableTransactionPropsTypes } from "./types";
 

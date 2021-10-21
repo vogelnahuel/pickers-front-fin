@@ -4,9 +4,15 @@ import useHistory from "hooks/useHistory";
 import React from "react";
 import { ISO8601toDDMMYYYHHMM } from "utils/iso8601toDDMMYYHHMM";
 import FlowTransition from "../../../component/flowtransition/FlowTransition";
+<<<<<<< HEAD
 import stateName from "../transaction/tableTransaction/statesNames";
 import DniFinish from "./modalTransaction/dniFinish/DniFinish";
 import  FinishModal  from "./modalTransaction/finish/FinishModal";
+=======
+import { TRANSACTION_STATE_ID_LABEL } from "../../../utils/constants";
+import { DniFinish } from "./modalTransaction/dniFinish/DniFinish";
+import { FinishModal } from "./modalTransaction/finish/FinishModal";
+>>>>>>> 8fe8da0c9e53dd9e37c2bb40d65f0148c1b18201
 import HistoryModalTransaction from "./modalTransaction/history/HistoryModalTransaction";
 import  ReasonsCanceled  from "./modalTransaction/reasonsCanceled/ReasonsCanceled";
 import  ReasonsCanceledConfirm  from "./modalTransaction/reasonsCanceledConfirm/ReasonsCanceledConfirm";
@@ -65,14 +71,10 @@ export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
           </div>
           <div className="modal-transaction-subtitle">
             <h2>
-              {detailTransaction &&
-                detailTransaction.transaction &&
-                detailTransaction.transaction.transactionCode}
+              {detailTransaction.transaction.transactionCode}
             </h2>
             <p>
-              {detailTransaction &&
-                detailTransaction.transaction &&
-                stateName(detailTransaction.transaction.state.id)}
+              {TRANSACTION_STATE_ID_LABEL[detailTransaction.transaction.state.id]}
             </p>
 
             <p className="modal-transaction-date">

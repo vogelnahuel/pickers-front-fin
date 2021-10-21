@@ -113,11 +113,11 @@ export const FILTER_PICKERS_OPTIONS = [
   },
 ];
 
-export const TRANSACTION_STATE_ID_LABEL = {
+export const TRANSACTION_STATE_ID_LABEL: any = {
   1: "Sin asignar",
   2: "Asignado",
   3: "En retiro",
-  4: "En lugar de retiro",
+  4: "En punto de retiro",
   5: "Retirado",
   6: "En entrega",
   7: "En lugar de entrega",
@@ -159,4 +159,5 @@ export const TRANSACTION_ACTIONS_TAG_LABEL:any = {
   state_delivered: "Entregado",
   state_returned: "Devuelto",
   state_lost: "Siniestrado",
+  state_initial: "Creación"
 };
