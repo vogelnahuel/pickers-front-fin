@@ -1,31 +1,24 @@
 import volver from 'assets/admin/PendingUser/volver.svg'
 import Info from 'assets/transaction/Advertencia.svg'
 import React from 'react'
-// import { FilterTransaction } from '../../filterTransaction/FilterTransaction'
+import { actions as detailTransactionActions, selectors as detailTransactionSelector } from "reducers/detailTransaction";
+import { connect } from "react-redux";
+
 import './reasonsCanceledConfirm.scss'
+import { AppDispatch, RootState } from 'store';
+import { ReasonCanceledConfirmPropsType } from './types';
 
-export const ReasonsCanceledConfirm = (props) => {
-
-    const FilterSelectedTransaction = props.FilterSelectedTransaction;
-    const msgSelected=props.msgSelected;
-
-    // const handleClickCancelConfirm = (e)=> {
-       
-    //     api.post(`/ms-admin-rest/api/v1.0/transactions/${FilterSelectedTransaction.transaction.id}/cancel`,{"cancellationReasonId":parseInt(reasonId)})
-    //     .then(()=>{window.location.reload();})
-    //     .catch((err)=>{console.log(err)})
-     
-    // }
+const ReasonsCanceledConfirm: React.FC<ReasonCanceledConfirmPropsType>  = ({detailTransaction,messageSelected,onBack,postReasonsCanceled}):JSX.Element => {
 
     return (
         <div className="modal-transaction-reasonsCanceled">
-            <div  onClick={()=>{}} className="modal-transaction-volver">
+            <div  onClick={()=>{onBack()}} className="modal-transaction-volver">
                 <img  className="modal-transaction-reasonsCanceledConfirm-volver-img" src={volver} alt ="volver" />
                 <p className="modal-transaction-reasonsCanceledConfirm-volver">Volver</p>
             </div>
 
-          {((FilterSelectedTransaction.transaction.state.name==="En retiro" &&  msgSelected==="Motivos personales o de transporte") ||
-          (FilterSelectedTransaction.transaction.state.name==="En lugar de retiro" && msgSelected==="Motivos personales o de transporte")) 
+          {((detailTransaction.transaction.state.name==="En retiro" &&  messageSelected.message==="Motivos personales o de transporte") ||
+          (detailTransaction.transaction.state.name==="En lugar de retiro" && messageSelected.message==="Motivos personales o de transporte")) 
 
           ?    <div className="modal-transaction-reasonsCanceledConfirm-container">
                     <img className="modal-transaction-reasonsCanceledConfirm-img" src={Info} alt ="informacionIcon" />
@@ -48,7 +41,28 @@ export const ReasonsCanceledConfirm = (props) => {
              </div>
             
             }
-            <button onClick={()=>{}} className="modal-transaction-reasonsCanceledConfirm-button">Sí, cancelarla</button>
+            <button onClick={()=>{postReasonsCanceled(messageSelected.id,detailTransaction.transaction.id)}} className="modal-transaction-reasonsCanceledConfirm-button">Sí, cancelarla</button>
         </div>
     )
 }
+
+
+const mapStateToProps = (state: RootState) => ({
+    detailTransaction: detailTransactionSelector.getDetailTransaction(state),
+    messageSelected:detailTransactionSelector.getDetailTransactionMessage(state)
+  });
+  
+  const mapDispatchToProps = (dispatch: AppDispatch) => ({
+
+      postReasonsCanceled:(params:string,id:string)=>{
+        dispatch(detailTransactionActions.getDetailTransactionReasonsCanceledRequest(params,id))
+      }
+
+  });
+  
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(ReasonsCanceledConfirm);
+  
+

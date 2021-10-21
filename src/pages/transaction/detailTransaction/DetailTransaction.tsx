@@ -8,8 +8,8 @@ import { TRANSACTION_STATE_ID_LABEL } from "../../../utils/constants";
 import { DniFinish } from "./modalTransaction/dniFinish/DniFinish";
 import { FinishModal } from "./modalTransaction/finish/FinishModal";
 import HistoryModalTransaction from "./modalTransaction/history/HistoryModalTransaction";
-import { ReasonsCanceled } from "./modalTransaction/reasonsCanceled/ReasonsCanceled";
-import { ReasonsCanceledConfirm } from "./modalTransaction/reasonsCanceledConfirm/ReasonsCanceledConfirm";
+import  ReasonsCanceled  from "./modalTransaction/reasonsCanceled/ReasonsCanceled";
+import  ReasonsCanceledConfirm  from "./modalTransaction/reasonsCanceledConfirm/ReasonsCanceledConfirm";
 import { Undelivered } from "./modalTransaction/undelivered/Undelivered";
 import { DetailTransactionPropsType } from "./types";
 
@@ -95,11 +95,11 @@ export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
                 />
               ),
               [STEP.ReasonsCanceled]: () => (
-                <ReasonsCanceled onBack={() => setCurrentStep(STEP.History)} />
+                <ReasonsCanceled onBack={() => setCurrentStep(STEP.History)}   ReasonsCanceledConfirm={() => setCurrentStep(STEP.ReasonsCanceledConfirm)}/>
               ),
               [STEP.ReasonsCanceledConfirm]: () => (
                 <ReasonsCanceledConfirm
-                  onBack={() => setCurrentStep(STEP.History)}
+                  onBack={() => setCurrentStep(STEP.ReasonsCanceled)}
                 />
               ),
               [STEP.DniFinish]: () => <DniFinish onBack={() => {}} />,

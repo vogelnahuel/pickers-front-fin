@@ -12,12 +12,14 @@ import {
   DetailTransactionResponseType,
   DetailTransactionSagasType,
   DevolutionUndeliveredResponseType,
+  postCancelType,
   postDevolutionUndeliveredParamsType,
   postDniDeliveredParamsType,
   postReasonsCancelParamsType,
   TransactionCancelResponseType,
 } from "./types/detailTransactions";
 import { AxiosResponse } from "axios";
+// import { replace } from "connected-react-router";
 
 
 const sagas:ForkEffect<never>[] = [
@@ -55,10 +57,10 @@ function* getMessages({
 > {
   const response = yield call(transactionsMiddleware.getMessages, id);
   if (response.status !== 200) {
-    yield put(actions.getDetailTransactionError());
+    yield put(actions.getDetailTransactionMenssagesError());
   } else {
     const { result } = response.data;
-    yield put(actions.getDetailTransactionSuccess(result));
+    yield put(actions.getDetailTransactionMenssagesSuccess(result.items));
   }
 }
 
@@ -83,16 +85,25 @@ function* postReasonsCanceled({
   params,
   id,
 }: postReasonsCancelParamsType): Generator<
-  CallEffect<AxiosResponse<DevolutionUndeliveredResponseType>> | PutEffect<{ type: string }> ,
+  CallEffect<AxiosResponse<DevolutionUndeliveredResponseType>> | PutEffect<{ type: string }> |void ,
   void,
   DevolutionUndeliveredResponseType
 > {
-  const response = yield call(transactionsMiddleware.postReasonsCanceled, params,id);
+
+  const paramsPost:postCancelType={
+    "cancellationReasonId":parseInt(params+"")
+  }
+
+ 
+  const response = yield call(transactionsMiddleware.postReasonsCanceled, paramsPost,id);
   if (response.status !== 200) {
     yield put(actions.getDetailTransactionError());
   } else {
     const { result } = response.data;
+    // yield put(replace("/transaction"));
+    yield window.location.reload();
     yield put(actions.getDetailTransactionSuccess(result));
+   
   }
 }
 

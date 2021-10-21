@@ -35,6 +35,8 @@ export const types:DetailTransactionTypeType = {
 
     CLOSE_MODAL_DETAIL_TRANSACTIONS:'CLOSE_MODAL_DETAIL_TRANSACTIONS',
 
+    SET_MESSAGE_DETAIL_TRANSACTIONS:'SET_MESSAGE_DETAIL_TRANSACTIONS',
+
 };
 
 export const INITIAL_STATE:DetailTransactionInicialStateType = {
@@ -118,7 +120,12 @@ export const INITIAL_STATE:DetailTransactionInicialStateType = {
             tag: ""
         }
     },
-    message: []
+    message: [],
+    messageSelected: {
+        id: 0,
+        message: "",
+        internal: false
+    }
 };
 
 export const actions:DetailTransactionActionsType = {
@@ -138,9 +145,9 @@ export const actions:DetailTransactionActionsType = {
         type: types.DETAIL_TRANSACTIONS_MENSSAGES_REQUEST,
         id,
     }),
-    getDetailTransactionMenssagesSuccess: (transactions:DetailTransactionCancelItemType) => ({
+    getDetailTransactionMenssagesSuccess: (detailTransactionMessages:DetailTransactionCancelItemType[]) => ({
         type: types.DETAIL_TRANSACTIONS_MENSSAGES_SUCCESS,
-        transactions
+        detailTransactionMessages
     }),
     getDetailTransactionMenssagesError: () => ({
         type: types.DETAIL_TRANSACTIONS_MENSSAGES_ERROR,
@@ -213,11 +220,18 @@ export const actions:DetailTransactionActionsType = {
 
     getCloseModalDetailTransaction:()=>({
         type: types.CLOSE_MODAL_DETAIL_TRANSACTIONS,
+    }),
+    setMessageSelected:(messageSelected:DetailTransactionCancelItemType)=>({
+        type: types.SET_MESSAGE_DETAIL_TRANSACTIONS,
+        messageSelected
     })
 };
 
 export const selectors:DetailTransactionSelectorType = {
     getDetailTransaction: (detailtransactions:RootState) => detailtransactions.detailTransaction.detailTransaction,
+    getDetailTransactionFetching: (detailtransactions:RootState) => detailtransactions.detailTransaction.fetching,
+    getDetailTransactionMessages: (detailtransactions:RootState) => detailtransactions.detailTransaction.message,
+    getDetailTransactionMessage: (detailtransactions:RootState) => detailtransactions.detailTransaction.messageSelected,
 };
 
 
@@ -244,11 +258,13 @@ const reducer =(state:DetailTransactionInicialStateType = INITIAL_STATE, action:
             return {
                 ...state,
                 fetching: true,
+               
             };
         case types.DETAIL_TRANSACTIONS_MENSSAGES_SUCCESS:
             return {
                     ...state,
-                    fetching: true,
+                    fetching: false,
+                    message:action.detailTransactionMessages
             };
         case types.DETAIL_TRANSACTIONS_MENSSAGES_ERROR:
             return {
@@ -280,7 +296,7 @@ const reducer =(state:DetailTransactionInicialStateType = INITIAL_STATE, action:
         case types.DETAIL_TRANSACTIONS_REASONS_CANCELED_SUCCESS:
             return {
                     ...state,
-                    fetching: true,
+                    fetching: false,
             };
         case types.DETAIL_TRANSACTIONS_REASONS_CANCELED_ERROR:
             return {
@@ -333,8 +349,13 @@ const reducer =(state:DetailTransactionInicialStateType = INITIAL_STATE, action:
                 return {
                       ...state,
                       fetching: false,
-                  };       
-                          
+                  };   
+        case types.SET_MESSAGE_DETAIL_TRANSACTIONS:
+            return {
+                ...state,
+                messageSelected:action.messageSelected
+            };      
+                         
     
         default:
             return state 

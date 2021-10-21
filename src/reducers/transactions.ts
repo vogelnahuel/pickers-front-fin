@@ -201,6 +201,24 @@ const reducer =(state:TransactionStateType = INITIAL_STATE, action:TransactionAc
                 ...state,
                 detailTransactionModalOpen:false
             }
+
+        case detailTransactionTypes.DETAIL_TRANSACTIONS_MENSSAGES_REQUEST:
+                return {
+                    ...state,
+                    fetching: true,
+                   
+                };
+        case detailTransactionTypes.DETAIL_TRANSACTIONS_MENSSAGES_SUCCESS:
+                return {
+                        ...state,
+                        fetching: false,
+                       
+                };
+        case detailTransactionTypes.DETAIL_TRANSACTIONS_MENSSAGES_ERROR:
+                return {
+                      ...state,
+                      fetching: false,
+                  };
         default:
             return state;
     }
