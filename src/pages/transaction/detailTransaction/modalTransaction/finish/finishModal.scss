@@ -25,7 +25,7 @@
     margin-bottom: 15px;
 }
 
-.modal-transaction-finish-button{
+.finish-button:disabled{
     width: 176px;
     height: 50px;
     background: #BDBDBD;
@@ -92,7 +92,7 @@
     color: #4D4D4D;
 }
 
-.modal-transaction-finish-button-click{
+.finish-button{
     width: 176px;
     height: 50px;
     background: #0098FF;

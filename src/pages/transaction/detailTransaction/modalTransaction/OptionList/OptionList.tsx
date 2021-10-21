@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import './optionList.css'
-import { FinishModal } from '../finish/FinishModal'
+import  FinishModal  from '../finish/FinishModal'
 import { ReasonsCanceledConfirm } from '../reasonsCanceledConfirm/ReasonsCanceledConfirm'
 import  ReasonsCanceled  from '../reasonsCanceled/ReasonsCanceled'
 import Reload from 'assets/transaction/Reload.svg'
 //import {useDispatch} from 'react-redux'
 
-import { DniFinish } from '../dniFinish/DniFinish'
+import DniFinish from '../dniFinish/DniFinish'
 import { Undelivered } from '../undelivered/Undelivered'
 import api from 'middleware/api'
 //import { changeTest } from '../../../actions/transactionAction'
@@ -176,27 +176,27 @@ export const OptionList = (props:any) => {
                         
                         finishModal ===true ? 
                         <>
-                        <div className="insertAnimation"></div>
+                        {/* <div className="insertAnimation"></div>
                             <FinishModal
                             sethistory={sethistory}
                             setfinishModal={setfinishModal}
                             FilterSelectedTransaction={FilterSelectedTransaction}
                             setdniFinish={setdniFinish}
                             setundelivered={setundelivered}
-                            />
+                            /> */}
                         </>
                         : null
                     }
                     {
                         dniFinish === true ? 
                         <>
-                            <div className="insertAnimation"></div>
+                            {/* <div className="insertAnimation"></div>
                             <DniFinish
                             setfinishModal={setfinishModal}
                             setdniFinish={setdniFinish}
                             FilterSelectedTransaction={FilterSelectedTransaction}
 
-                            />
+                            /> */}
                         </>
                         : null 
                     }

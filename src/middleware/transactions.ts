@@ -12,6 +12,6 @@ export const getDetailTransaction= (id:string): Promise<AxiosResponse<DetailTran
 export const getMessages =  (id:string): Promise<AxiosResponse<TransactionCancelResponseType>> => API.get(`ms-admin-rest/api/v1.0/transactions/${id}/message`);
 export const postDevolutionUndelivered = (params:postDevolutionUndeliveredType,id:string): Promise<AxiosResponse<DevolutionUndeliveredResponseType>> => API.post( `/ms-admin-rest/api/v1.0/transactions/${id}/in-devolution`,params);
 export const postReasonsCanceled = (params:postCancelType,id:string): Promise<AxiosResponse<DevolutionUndeliveredResponseType>> => API.get( `/ms-admin-rest/api/v1.0/transactions/${id}/cancel`,params);
-export const postFinishReturned = (id:string): Promise<AxiosResponse<DevolutionUndeliveredResponseType>> => API.get(  `/ms-admin-rest/api/v1.0/transactions/${id}/returned`);
-export const postFinishLost = (id:string): Promise<AxiosResponse<DevolutionUndeliveredResponseType>> => API.get( `/ms-admin-rest/api/v1.0/transactions/${id}/lost`);
-export const postDnidelivered = (params:postDnideliveredResponseType,id:string): Promise<AxiosResponse<DevolutionUndeliveredResponseType>> => API.get(`/ms-admin-rest/api/v1.0/transactions/${id}/delivered`,params);
+export const postFinishReturned = (id:string): Promise<AxiosResponse<DevolutionUndeliveredResponseType>> => API.post(  `/ms-admin-rest/api/v1.0/transactions/${id}/returned`,{});
+export const postFinishLost = (id:string): Promise<AxiosResponse<DevolutionUndeliveredResponseType>> => API.post( `/ms-admin-rest/api/v1.0/transactions/${id}/lost`,{});
+export const postDnidelivered = (params:postDnideliveredResponseType,id:string): Promise<AxiosResponse<DevolutionUndeliveredResponseType>> => API.post(`/ms-admin-rest/api/v1.0/transactions/${id}/delivered`,params);

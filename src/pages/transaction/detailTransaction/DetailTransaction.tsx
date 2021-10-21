@@ -5,8 +5,8 @@ import React from "react";
 import { ISO8601toDDMMYYYHHMM } from "utils/iso8601toDDMMYYHHMM";
 import FlowTransition from "../../../component/flowtransition/FlowTransition";
 import stateName from "../transaction/tableTransaction/statesNames";
-import { DniFinish } from "./modalTransaction/dniFinish/DniFinish";
-import { FinishModal } from "./modalTransaction/finish/FinishModal";
+import DniFinish from "./modalTransaction/dniFinish/DniFinish";
+import  FinishModal  from "./modalTransaction/finish/FinishModal";
 import HistoryModalTransaction from "./modalTransaction/history/HistoryModalTransaction";
 import  ReasonsCanceled  from "./modalTransaction/reasonsCanceled/ReasonsCanceled";
 import { ReasonsCanceledConfirm } from "./modalTransaction/reasonsCanceledConfirm/ReasonsCanceledConfirm";
@@ -106,7 +106,7 @@ export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
                   onBack={() => setCurrentStep(STEP.ReasonsCanceled)}
                 />
               ),
-              [STEP.DniFinish]: () => <DniFinish onBack={() => {}} />,
+              [STEP.DniFinish]: () => <DniFinish onBack={() => setCurrentStep(STEP.FinishModal)}/>,
               [STEP.Undelivered]: () => (
                 <Undelivered onBack={() => setCurrentStep(STEP.History)} />
               ),
