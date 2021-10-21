@@ -7,7 +7,7 @@ import Reload from 'assets/transaction/Reload.svg'
 //import {useDispatch} from 'react-redux'
 
 import DniFinish from '../dniFinish/DniFinish'
-import { Undelivered } from '../undelivered/Undelivered'
+import  Undelivered  from '../undelivered/Undelivered'
 import api from 'middleware/api'
 //import { changeTest } from '../../../actions/transactionAction'
 
@@ -193,12 +193,12 @@ export const OptionList = (props:any) => {
                     {
                         undelivered === true ? 
                         <>
-                            <div className="insertAnimation"></div>
+                            {/* <div className="insertAnimation"></div>
                         <Undelivered
                          setfinishModal={setfinishModal}
                         setundelivered={setundelivered}
                         FilterSelectedTransaction={FilterSelectedTransaction}
-                        />
+                        /> */}
                         </>  : null 
                     }
 

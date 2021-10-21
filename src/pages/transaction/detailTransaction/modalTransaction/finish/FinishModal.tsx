@@ -72,7 +72,7 @@ const FinishModal: React.FC<FinishModalPropsType> = ({
         </h3>
         <hr className="modal-transaction-finish-separate" />
         <p>
-          La transacción{" "}
+        {"La transacción "}
           <b>{detailTransaction?.transaction?.transactionCode}</b> va a pasar a
           estado:
         </p>
@@ -101,7 +101,7 @@ const FinishModal: React.FC<FinishModalPropsType> = ({
               Siniestrado
             </label>
           </div>
-          {deliverableStates.includes( detailTransaction?.transaction?.state?.id) &&
+          {deliverableStates.includes( detailTransaction.transaction.state.id) &&
             <div className="flexItems">
               <input
                 onClick={handleCheckboxClick}

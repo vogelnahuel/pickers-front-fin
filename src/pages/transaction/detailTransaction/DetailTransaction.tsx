@@ -10,7 +10,7 @@ import  FinishModal  from "./modalTransaction/finish/FinishModal";
 import HistoryModalTransaction from "./modalTransaction/history/HistoryModalTransaction";
 import  ReasonsCanceled  from "./modalTransaction/reasonsCanceled/ReasonsCanceled";
 import  ReasonsCanceledConfirm  from "./modalTransaction/reasonsCanceledConfirm/ReasonsCanceledConfirm";
-import { Undelivered } from "./modalTransaction/undelivered/Undelivered";
+import  Undelivered  from "./modalTransaction/undelivered/Undelivered";
 import { DetailTransactionPropsType } from "./types";
 
 export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
@@ -115,6 +115,7 @@ export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
                   onBack={() => setCurrentStep(STEP.History)}
                   DniFinish={() => setCurrentStep(STEP.DniFinish)}
                   undelivered={() => setCurrentStep(STEP.Undelivered)}
+                 // ReasonsCanceledConfirm={() => setCurrentStep(STEP.ReasonsCanceledConfirm)}
                 />
               ),
             }}
