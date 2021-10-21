@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classNames from "classnames";
 
 
@@ -17,6 +17,8 @@ export const Input= (props) => {
         animated
     } = props;
 
+    const [Focus, setFocus] = useState(false);
+
     return (
         <div className={classNames( {
             "has-error": meta.error && meta.touched,
@@ -27,12 +29,13 @@ export const Input= (props) => {
                         "label-login":animated,
                         "readonly":disabled,
                         "last-label":lastLabel,
-                         [input.value?"animationTop":"animationOrigin"] :animated
+                         [input.value  || Focus===true?"animationTop":"animationOrigin"] :animated
                     }
                 )}>
                 {label}
             </label>
             <input
+                
                 className={ classNames( className, {
                     "readonly":disabled,
                     "inputError": meta.error && meta.touched,
@@ -45,7 +48,8 @@ export const Input= (props) => {
                 value={input.value}
                 placeholder={placeholder}
                 onChange={input.onChange}
-                onBlur={input.onBlur}
+                onFocus={() => {setFocus(true) }}
+                onBlur={()=>{setFocus(false)}}
                 maxLength={maxLength}
             />
             {
