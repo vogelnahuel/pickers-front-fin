@@ -17,7 +17,7 @@ export const Input= (props) => {
         animated
     } = props;
 
-    const [Focus, setFocus] = useState(false);
+    const [focus, setFocus] = useState(false);
 
     return (
         <div className={classNames( {
@@ -29,7 +29,7 @@ export const Input= (props) => {
                         "label-login":animated,
                         "readonly":disabled,
                         "last-label":lastLabel,
-                         [input.value  || Focus===true?"animationTop":"animationOrigin"] :animated
+                         [input.value  || focus===true?"animationTop":"animationOrigin"] :animated
                     }
                 )}>
                 {label}
