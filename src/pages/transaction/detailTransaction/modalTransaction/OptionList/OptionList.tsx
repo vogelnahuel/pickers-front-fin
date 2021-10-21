@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './optionList.css'
 import  FinishModal  from '../finish/FinishModal'
-import { ReasonsCanceledConfirm } from '../reasonsCanceledConfirm/ReasonsCanceledConfirm'
+import  ReasonsCanceledConfirm  from '../reasonsCanceledConfirm/ReasonsCanceledConfirm'
 import  ReasonsCanceled  from '../reasonsCanceled/ReasonsCanceled'
 import Reload from 'assets/transaction/Reload.svg'
 //import {useDispatch} from 'react-redux'
@@ -145,13 +145,8 @@ export const OptionList = (props:any) => {
                                 <div className="insertAnimation">
                                 </div>
                                     <div>
-                                        <ReasonsCanceled
-                                        setreasonCancel={setreasonCancel}
-                                        setreasonCancelConfirm={setreasonCancelConfirm}
-                                        setreasonId={setreasonId}
-                                        sethistory={sethistory}
-                                        setmsgSelected={setmsgSelected}
-                                        FilterSelectedTransaction={FilterSelectedTransaction}
+                                        <ReasonsCanceled onBack={()=>{}} ReasonsCanceledConfirm={()=>{}}                                  
+                                      
                                         />
                                     </div>
                             </>
@@ -162,12 +157,7 @@ export const OptionList = (props:any) => {
                         <>
                          <div className="insertAnimation"></div>
 
-                         <ReasonsCanceledConfirm
-                          setreasonCancel={setreasonCancel}
-                          reasonId={reasonId}
-                          setreasonCancelConfirm={setreasonCancelConfirm}
-                          FilterSelectedTransaction={FilterSelectedTransaction}
-                          msgSelected={msgSelected}
+                         <ReasonsCanceledConfirm onBack={()=>{}}                          
                          />
                         </>
                         : null

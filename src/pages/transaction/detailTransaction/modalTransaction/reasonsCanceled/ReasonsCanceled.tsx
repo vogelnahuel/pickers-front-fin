@@ -4,13 +4,15 @@ import { AppDispatch, RootState } from 'store'
 import './reasonsCanceled.scss'
 import { actions as detailTransactionActions, selectors as detailTransactionSelector } from "reducers/detailTransaction";
 import { connect } from "react-redux";
+import { ReasonCanceledPropsType } from './types';
+import { DetailTransactionCancelItemType } from 'sagas/types/detailTransactions';
 
 
 
 
 
 
-const ReasonsCanceled: React.FC<any> = ({ getMessages,detailTransaction,onBack,Messages,ReasonsCanceledConfirm,setMessageSelected}): JSX.Element => {
+const ReasonsCanceled: React.FC<ReasonCanceledPropsType> = ({ getMessages,detailTransaction,onBack,Messages,ReasonsCanceledConfirm,setMessageSelected}): JSX.Element => {
 
   const [SelectedClick, setSelectedClick] = useState({id:-1,state:false})
     useEffect(() => {
@@ -21,7 +23,7 @@ const ReasonsCanceled: React.FC<any> = ({ getMessages,detailTransaction,onBack,M
 
     return (
         <div className="modal-transaction-reasonsCanceled">
-            <div onClick={onBack} className="modal-transaction-volver">
+            <div onClick={()=>{onBack()} } className="modal-transaction-volver">
                 <img className="modal-transaction-reasonsCanceled-img-volver" src={volver} alt ="volver" />
                 <p className="modal-reasonsCancel-p">Volver</p>
             </div>
@@ -33,7 +35,7 @@ const ReasonsCanceled: React.FC<any> = ({ getMessages,detailTransaction,onBack,M
                                  <hr className="modal-transaction-reasonsCanceled-separate"/>
 
                             {
-                              Messages&& Messages.map((message:any)=>(
+                              Messages&& Messages.map((message:DetailTransactionCancelItemType)=>(
 
                                 <div  key={message.id} className="modal-transaction-reason-container">
                                     
@@ -63,7 +65,7 @@ const mapStateToProps = (state: RootState) => ({
     getMessages: (id: string) => {
         dispatch(detailTransactionActions.getDetailTransactionMenssagesRequest(id));
       },
-    setMessageSelected:(message:any)=>{
+    setMessageSelected:(message:DetailTransactionCancelItemType)=>{
       dispatch(detailTransactionActions.setMessageSelected(message))
     }
       

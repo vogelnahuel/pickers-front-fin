@@ -221,7 +221,7 @@ export const actions:DetailTransactionActionsType = {
     getCloseModalDetailTransaction:()=>({
         type: types.CLOSE_MODAL_DETAIL_TRANSACTIONS,
     }),
-    setMessageSelected:(messageSelected:any)=>({
+    setMessageSelected:(messageSelected:DetailTransactionCancelItemType)=>({
         type: types.SET_MESSAGE_DETAIL_TRANSACTIONS,
         messageSelected
     })
