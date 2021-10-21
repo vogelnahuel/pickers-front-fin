@@ -4,9 +4,12 @@ import { Col, Row } from "react-bootstrap";
 import { Field, Form } from "react-final-form";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { actions as detailTransactionActions, selectors as detailTransactionSelector } from "reducers/detailTransaction";
+import {
+  actions as detailTransactionActions,
+  selectors as detailTransactionSelector,
+} from "reducers/detailTransaction";
 import { AppDispatch, RootState } from "store";
-import Reload from '../../../../../assets/transaction/Reload.svg';
+import Reload from "../../../../../assets/transaction/Reload.svg";
 import "../OptionList/optionList.css";
 import TransactionStateHistory from "../history/transactionStateHistory/TransactionStateHistory";
 import { HistoryModalTransactionType } from "../types";
@@ -22,7 +25,12 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
   const finishEnabledStatus = [5, 6, 7, 8];
   return (
     <div className="modal-transaction-scroll">
-      <div className="modal-transaction-optionContainer-scroll">
+      <div>
+        <div className="modal-transaction-difuminar4"></div>
+        <div className="modal-transaction-difuminar5"></div>
+        <div className="modal-transaction-difuminar6"> </div>
+      </div>
+      <div className="modal-transaction-optionContainer-scroll py-4">
         <Form
           onSubmit={() => {}}
           initialValues={{
@@ -189,6 +197,11 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
           transactionHistory={detailTransaction.transactionHistory}
         />
       </div>
+      <div>
+        <div className="modal-transaction-difuminar1"> </div>
+        <div className="modal-transaction-difuminar2"></div>
+        <div className="modal-transaction-difuminar3"></div>
+      </div>
       <div className="button-container">
         <button
           disabled={
@@ -216,16 +229,18 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
         >
           Finalizar
         </button>
-        <div onClick={() => getDetailTransaction(detailTransaction.transaction.id)} className="modal-transaction-reload">
-        <img
-          className="modal-transaction-reload-img"
-          src={Reload}
-          alt="reload"
-        />
-        <p>Actualizar</p>
+        <div
+          onClick={() => getDetailTransaction(detailTransaction.transaction.id)}
+          className="modal-transaction-reload"
+        >
+          <img
+            className="modal-transaction-reload-img"
+            src={Reload}
+            alt="reload"
+          />
+          <p>Actualizar</p>
+        </div>
       </div>
-      </div>
-     
     </div>
   );
 };

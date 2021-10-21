@@ -90,6 +90,7 @@
     position: fixed;
 }
 .modal-transaction-title{
+    padding-right: 30px;
     display: flex;
     height: 29px;
 }
@@ -128,6 +129,7 @@
     justify-content: flex-end;
 }
 .modal-transaction-subtitle{
+    padding-right: 30px;
     display: flex;
 }
 .modal-transaction-subtitle h2{
@@ -155,6 +157,7 @@
 .modal-transaction-separate{
     border: 1px solid #BDBDBD;
     margin-top: 0px;
+    padding-right: 30px;
     margin-bottom: 20px;
 }
 ._3G24_nB5gK6geBR6bQ0SZx{
@@ -247,8 +250,9 @@
 
 .modal-transaction-reload {
     display: flex;
+    align-items: center;
     cursor: pointer;
-    justify-content: flex-end;
+    // justify-content: flex-end;
 }
 .modal-transaction-reload p{
     font-family: 'Mulish';
@@ -261,10 +265,11 @@
     margin-left: 5px;
 }
 .modal-transaction-close{
+    position: absolute;
+    right: 20px;
+    top: 20px;
     cursor: pointer;
     width: 30px;
-
-    float: right;
 }
 .flexItems{
     display: flex;
