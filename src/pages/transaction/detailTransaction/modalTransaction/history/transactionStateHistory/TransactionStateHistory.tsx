@@ -52,13 +52,15 @@ const TransactionStateHistory: React.FC<TransactionHistoryType> = ({
               </Link>
             )}
           </div>
-          <div className="modal-transaction-part">
-            <img
-              src={Connector}
-              alt="okey"
-              className="modal-transaction-img-connector"
-            />
-          </div>
+          {state.reasonTag.tag !== "state_initial" && (
+            <div className="modal-transaction-part">
+              <img
+                src={Connector}
+                alt="okey"
+                className="modal-transaction-img-connector"
+              />
+            </div>
+          )}
         </div>
       ))}
     </div>

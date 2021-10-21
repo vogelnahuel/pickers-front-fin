@@ -28,22 +28,18 @@ const FinishModal: React.FC<FinishModalPropsType> = ({
   const deliverableStates=[8];
 
   const handleCheckboxClick = (e: any) => {
-    console.log(e.target.value);
     setcheckBoxSelected(e.target.value);
     setRadioActive(true);
   };
   const finishTransaction = () => {
     switch (checkBoxSelected) {
       case finishStates.DELIVERED:
-        console.log(finishStates.DELIVERED);
         DniFinish();
         break;
       case finishStates.RETURNED:
-        console.log(finishStates.RETURNED);
         undelivered();
         break;
       case finishStates.LOST:
-        console.log(finishStates.LOST);
         getDetailTransactionFinishLostRequest(
           detailTransaction.transaction.id.toString()
         );
@@ -177,99 +173,4 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
     );
   },
 });
-export default connect(mapStateToProps, mapDispatchToProps)(FinishModal);
-
-// const sethistory = props.sethistory;
-//   const setfinishModal = props.setfinishModal;
-//   const FilterSelectedTransaction = props.FilterSelectedTransaction;
-//   const [estado, setestado] = useState("");
-//   const setdniFinish = props.setdniFinish;
-//   const setundelivered = props.setundelivered;
-
-// //   getDetailTransactionFinishReturnedRequest
-// // getDetailTransactionFinishLostRequest
-// // getDetailTransactionDniDeliveredRequest
-
-//   const handleClick = async (e:any) => {
-//       e.preventDefault();
-
-//       if(FilterSelectedTransaction.transaction.state.name==="En devolución" && estado==="Devuelto"){
-//         await api.post(
-//           `/ms-admin-rest/api/v1.0/transactions/${FilterSelectedTransaction.transaction.id}/returned`);
-//           window.location.reload();
-//       }
-//       else if(estado==="Devuelto"){
-//         setundelivered(true);
-//         setTimeout(() => {
-//             e.target.parentNode.parentNode.classList.add('animation-left-transaction')
-//             const insert:any = document.querySelector('.insertAnimation');
-//             const div = document.createElement('div');
-//             div.classList.add('animationReasons');
-//             setTimeout(() => {
-//                 insert.appendChild(div)
-//             }, 200);
-
-//             setTimeout(() => {
-//                 setfinishModal(false);
-//                 if(e.target.parentNode.parentNode!==null)
-//                 e.target.parentNode.parentNode.classList.remove('animation-left-transaction')
-//                 insert.removeChild(insert.firstChild);
-//             }, 500);
-//         }, 0);
-//       }
-//       else if(estado==="Entregado"){
-//         setdniFinish(true);
-
-//         setTimeout(() => {
-//             e.target.parentNode.parentNode.classList.add('animation-left-transaction')
-//             const insert:any = document.querySelector('.insertAnimation');
-//             const div = document.createElement('div');
-//             div.classList.add('animationReasons');
-//             setTimeout(() => {
-//                 insert.appendChild(div)
-//             }, 200);
-
-//             setTimeout(() => {
-//                 setfinishModal(false);
-//                 if(e.target.parentNode.parentNode!==null)
-//                 e.target.parentNode.parentNode.classList.remove('animation-left-transaction')
-//                 insert.removeChild(insert.firstChild);
-//             }, 500);
-//         }, 0);
-
-//       }
-
-//       if(estado=== "Siniestrado")
-//         {
-//           await api.post(
-//           `/ms-admin-rest/api/v1.0/transactions/${FilterSelectedTransaction.transaction.id}/lost`);
-//           window.location.reload();
-
-//         }
-
-// };
-
-//   const handleClickCheck = (e:any) => {
-//       setRadioActive(true);
-//       setestado(e.target.id);
-// }
-
-//
-// const handleClickgoBack = (e) => {
-//   e.target.parentNode.parentNode.classList.add("animation-right-transaction");
-
-//   setTimeout(() => {
-//     e.target.parentNode.parentNode.classList.remove(
-//       "animation-right-transaction"
-//     );
-//     sethistory(true);
-//     e.target.parentNode.parentNode.parentNode.parentNode.firstChild.classList.add(
-//       "animation-right-transaction2"
-//     );
-//     e.target.parentNode.parentNode.parentNode.parentNode.firstChild.classList.remove(
-//       "animation-right-transaction2"
-//     );
-
-//     setfinishModal(false);
-//   }, 600);
-// }
+export default connect(mapStateToProps, mapDispatchToProps)(FinishModal)

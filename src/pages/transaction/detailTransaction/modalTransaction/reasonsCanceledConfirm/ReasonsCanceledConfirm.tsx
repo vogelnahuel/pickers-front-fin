@@ -9,7 +9,6 @@ import { AppDispatch, RootState } from 'store';
 import { ReasonCanceledConfirmPropsType } from './types';
 
 const ReasonsCanceledConfirm: React.FC<ReasonCanceledConfirmPropsType>  = ({detailTransaction,messageSelected,onBack,postReasonsCanceled}):JSX.Element => {
-
     return (
         <div className="modal-transaction-reasonsCanceled">
             <div  onClick={()=>{onBack()}} className="modal-transaction-volver">
@@ -17,8 +16,8 @@ const ReasonsCanceledConfirm: React.FC<ReasonCanceledConfirmPropsType>  = ({deta
                 <p className="modal-transaction-reasonsCanceledConfirm-volver">Volver</p>
             </div>
 
-          {((detailTransaction.transaction.state.name==="En retiro" &&  messageSelected.message==="Motivos personales o de transporte") ||
-          (detailTransaction.transaction.state.name==="En lugar de retiro" && messageSelected.message==="Motivos personales o de transporte")) 
+          {((detailTransaction.transaction.state.id===3 &&  messageSelected.id===6) ||
+          (detailTransaction.transaction.state.id===4 && messageSelected.id===6)) 
 
           ?    <div className="modal-transaction-reasonsCanceledConfirm-container">
                     <img className="modal-transaction-reasonsCanceledConfirm-img" src={Info} alt ="informacionIcon" />
