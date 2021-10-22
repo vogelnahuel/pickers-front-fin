@@ -15,10 +15,13 @@ export type DetailTransactionContainerType = {
 };
 
 export type UndeliveredPropsType = {
-  onBack: Function;
   detailTransaction: DetailTransactionType;
-  messages: DetailTransactionCancelItemType;
+  messages: DetailTransactionCancelItemType[];
+  selectedMessage: DetailTransactionCancelItemType,
+  
+  onBack: Function;
   getMessages: Function;
   setMessageSelected: Function;
   getDetailTransactionFinishReturned: Function;
+  resetMessage: Function;
 };

@@ -1,14 +1,14 @@
 import volver from "assets/admin/PendingUser/volver.svg";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import {
-    actions as detailTransactionActions,
-    selectors as detailTransactionSelector
+  actions as detailTransactionActions,
+  selectors as detailTransactionSelector,
 } from "reducers/detailTransaction";
 import { DetailTransactionCancelItemType } from "sagas/types/detailTransactions";
 import { AppDispatch, RootState } from "store";
 import { UndeliveredPropsType } from "../../types";
-import { ReasonList } from "../ReasonList/ReasonList";
+import { ReasonList } from "../ReasonList";
 import "./undelivered.css";
 
 const Undelivered: React.FC<UndeliveredPropsType> = ({
@@ -16,17 +16,18 @@ const Undelivered: React.FC<UndeliveredPropsType> = ({
   detailTransaction,
   messages,
   getMessages,
+  selectedMessage,
+  resetMessage,
   setMessageSelected,
   getDetailTransactionFinishReturned,
 }): JSX.Element => {
-     useEffect(() => {
+  useEffect(() => {
+    resetMessage();
     getMessages(detailTransaction.transaction.id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const [selectedClick, setSelectedClick] = useState({ id: -1, state: false });
   const handleClick = (message: DetailTransactionCancelItemType) => {
     setMessageSelected(message);
-    setSelectedClick({ id: message.id, state: true });
   };
   return (
     <div className="modal-transaction-reasonsCanceled">
@@ -49,7 +50,7 @@ const Undelivered: React.FC<UndeliveredPropsType> = ({
         </p>
         <ReasonList
           messages={messages}
-          selectedClick={selectedClick}
+          selectedMessage={selectedMessage}
           handleClick={handleClick}
         ></ReasonList>
         <button
@@ -70,11 +71,15 @@ const Undelivered: React.FC<UndeliveredPropsType> = ({
 const mapStateToProps = (state: RootState) => ({
   detailTransaction: detailTransactionSelector.getDetailTransaction(state),
   messages: detailTransactionSelector.getDetailTransactionMessages(state),
+  selectedMessage: detailTransactionSelector.getSelectedMessage(state),
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
   getMessages: (id: string) => {
     dispatch(detailTransactionActions.getDetailTransactionMenssagesRequest(id));
+  },
+  resetMessage: () => {
+    dispatch(detailTransactionActions.getResetMessageDetailTransaccions());
   },
   setMessageSelected: (message: DetailTransactionCancelItemType) => {
     dispatch(detailTransactionActions.setMessageSelected(message));

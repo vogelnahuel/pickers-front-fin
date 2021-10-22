@@ -25,7 +25,7 @@ const FinishModal: React.FC<FinishModalPropsType> = ({
     RETURNED: "RETURNED",
     DELIVERED: "DELIVERED",
   };
-  const deliverableStates=[8];
+  const deliverableStates=[6,7];
 
   const handleCheckboxClick = (e: any) => {
     setcheckBoxSelected(e.target.value);

@@ -35,11 +35,13 @@
   margin-top: 2px;
 }
 
-.form-filter-transaction-modal {
+.form-filter-transaction {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-top: 30px;
+}
+.form-filter-transaction.modal {
+  justify-content: center;
 }
 
 .button-container {

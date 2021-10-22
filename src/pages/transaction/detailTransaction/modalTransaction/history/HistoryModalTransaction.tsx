@@ -10,7 +10,7 @@ import {
 } from "reducers/detailTransaction";
 import { AppDispatch, RootState } from "store";
 import Reload from "../../../../../assets/transaction/Reload.svg";
-import "../OptionList/optionList.css";
+import "../optionList.css";
 import TransactionStateHistory from "../history/transactionStateHistory/TransactionStateHistory";
 import { HistoryModalTransactionType } from "../types";
 import "./HistoryModalTransaction.scss";

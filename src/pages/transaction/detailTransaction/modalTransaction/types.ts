@@ -25,8 +25,8 @@ export type DniFinishPropsType = {
 };
 
 export type ReasonListPropsType = {
-  selectedClick: { id: number; state: boolean };
   messages: DetailTransactionCancelItemType[];
+  selectedMessage?: DetailTransactionCancelItemType;
   handleClick: Function;
 };
 

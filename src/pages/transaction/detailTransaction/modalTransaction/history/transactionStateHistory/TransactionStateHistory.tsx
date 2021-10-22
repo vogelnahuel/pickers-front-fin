@@ -6,7 +6,7 @@ import { ISO8601toDDMMYYYHHMM } from "utils/iso8601toDDMMYYHHMM";
 import Cancel from "../../../../../../assets/transaction/Cancel.svg";
 import Connector from "../../../../../../assets/transaction/Connector.svg";
 import Okey from "../../../../../../assets/transaction/Okey.svg";
-import { TRANSACTION_ACTIONS_TAG_LABEL } from "../../../../../../utils/constants";
+import { TRANSACTION_ACTIONS_TAG_LABEL } from "utils/constants";
 
 const TransactionStateHistory: React.FC<TransactionHistoryType> = ({
   transactionHistory,

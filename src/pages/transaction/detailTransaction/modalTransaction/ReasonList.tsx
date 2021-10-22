@@ -1,11 +1,11 @@
 import classNames from "classnames";
 import React from "react";
 import { DetailTransactionCancelItemType } from "sagas/types/detailTransactions";
-import { ReasonListPropsType } from "../types";
+import { ReasonListPropsType } from "./types";
 
 export const ReasonList: React.FC<ReasonListPropsType> = ({
-  selectedClick,
   messages,
+  selectedMessage,
   handleClick,
 }): JSX.Element => {
   return (
@@ -20,9 +20,7 @@ export const ReasonList: React.FC<ReasonListPropsType> = ({
               }}
               data-value={message.id}
               className={classNames({
-                "p-font-weight":
-                  selectedClick.id === message.id &&
-                  selectedClick.state === true,
+                "p-font-weight": selectedMessage && selectedMessage.id === message.id
               })}
             >
               {message?.message}
