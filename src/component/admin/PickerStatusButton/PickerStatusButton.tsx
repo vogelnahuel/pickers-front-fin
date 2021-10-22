@@ -85,7 +85,9 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
       <div className="FlexPending">
         <div className="FlexPending backGround-pending">
           {actualPage === "PENDING" ? (
-            <div className="container-pending pending-blue-border-izq">
+            <div  onClick={() => {
+              changePage("PENDING", isDirty);
+            }} className="container-pending pending-blue-border-izq">
               <p className="Pending-paragraph">Solicitudes pendientes</p>
               <img className="img" src={relojAzul} alt="reloj" />
             </div>
@@ -103,7 +105,10 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
             </div>
           )}
           {actualPage === "ACTIVE" ? (
-            <div className="container-pending border-pending pending-blue-border-der">
+            <div onClick={() => {
+              changePage("ACTIVE", isDirty);
+            }}
+             className="container-pending border-pending pending-blue-border-der">
               <p className="Pending-paragraph2 pending-blue">Pickers</p>
               <img className="img2" src={trabajadorAzul} alt="trabajador" />
             </div>
