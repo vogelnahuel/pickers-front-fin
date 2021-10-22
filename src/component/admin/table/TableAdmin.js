@@ -7,9 +7,9 @@ import { Link } from "react-router-dom";
 export const TableAdmin = (props) => {
     const { tableTitles, actualPage,data } = props;
 
-    const getDifDate = (date) => {
+    const getDifDate = (date) => {//revisar zonas horarias
         var regDate = moment();
-        var actualDate = moment(date, "YYYY-MM-DD hh:mm:ss");
+        var actualDate = moment(date, "YYYY-MM-DD hh:mm:ss").subtract(3,"hours");
         return regDate.diff(actualDate, "days");
     };
 
