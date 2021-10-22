@@ -23,41 +23,37 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
   isDetail,
 }) => {
   const Historial = useHistory();
-//TODO: cambiar carpeta
+  //TODO: cambiar carpeta
   const changePage = (page: String, isDirty: Boolean) => {
-    debugger
-    
-    if(isDetail || actualPage!==page){
-        let onClose = () => {
-            setActualPage(page);
-            Historial.goBack();
-          };
-          if (isDirty) {
-            showNotification({
-              level: "warning",
-              title: "Guardá tus cambios",
-              body: "Si te vas sin guardar, tus cambios no van a quedar registrados",
-              onClickLabel: "Ir a guardar",
-              onCloseLabel: "No quiero guardarlos",
-              onClose: onClose,
-              onClick: () =>
-                window.scroll({
-                  top: window.innerHeight,
-                  left: 0,
-                  behavior: "smooth",
-                }),
-            });
-          } else {
-            onClose();
-          }
-    }else{
+    if (isDetail || actualPage !== page) {
+      let onClose = () => {
         setActualPage(page);
+        Historial.goBack();
+      };
+      if (isDirty) {
+        showNotification({
+          level: "warning",
+          title: "Guardá tus cambios",
+          body: "Si te vas sin guardar, tus cambios no van a quedar registrados",
+          onClickLabel: "Ir a guardar",
+          onCloseLabel: "No quiero guardarlos",
+          onClose: onClose,
+          onClick: () =>
+            window.scroll({
+              top: window.innerHeight,
+              left: 0,
+              behavior: "smooth",
+            }),
+        });
+      } else {
+        onClose();
+      }
+    } else {
+      setActualPage(page);
     }
-  
-    
   };
 
-  const handleHistory = (e:React.MouseEvent) => {
+  const handleHistory = (e: React.MouseEvent) => {
     const eventTarget = e.target as HTMLElement;
     let onClose = () => {
       Historial.goBack();
@@ -77,7 +73,7 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
             left: 0,
             behavior: "smooth",
           }),
-        element: eventTarget.parentElement
+        element: eventTarget.parentElement,
       });
     } else {
       onClose();
@@ -88,9 +84,12 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
       <div className="FlexPending">
         <div className="FlexPending backGround-pending">
           {actualPage === "PENDING" ? (
-            <div  onClick={() => {
-              changePage("PENDING", isDirty);
-            }} className="container-pending pending-blue-border-izq">
+            <div
+              onClick={() => {
+                changePage("PENDING", isDirty);
+              }}
+              className="container-pending pending-blue-border-izq"
+            >
               <p className="Pending-paragraph">Solicitudes pendientes</p>
               <img className="img" src={relojAzul} alt="reloj" />
             </div>
@@ -108,10 +107,12 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
             </div>
           )}
           {actualPage === "ACTIVE" ? (
-            <div onClick={() => {
-              changePage("ACTIVE", isDirty);
-            }}
-             className="container-pending border-pending pending-blue-border-der">
+            <div
+              onClick={() => {
+                changePage("ACTIVE", isDirty);
+              }}
+              className="container-pending border-pending pending-blue-border-der"
+            >
               <p className="Pending-paragraph2 pending-blue">Pickers</p>
               <img className="img2" src={trabajadorAzul} alt="trabajador" />
             </div>
