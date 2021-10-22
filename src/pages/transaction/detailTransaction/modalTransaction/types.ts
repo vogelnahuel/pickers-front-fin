@@ -1,4 +1,7 @@
-import { DetailTransactionType } from "sagas/types/detailTransactions";
+import {
+  DetailTransactionCancelItemType,
+  DetailTransactionType,
+} from "sagas/types/detailTransactions";
 
 export type HistoryModalTransactionType = {
   detailTransaction: DetailTransactionType;
@@ -19,6 +22,12 @@ export type DniFinishPropsType = {
   onBack: Function;
   getDetailTransactionDniDeliveredRequest: Function;
   detailTransaction: DetailTransactionType;
+};
+
+export type ReasonListPropsType = {
+  selectedClick: { id: number; state: boolean };
+  messages: DetailTransactionCancelItemType[];
+  handleClick: Function;
 };
 
 export type DniFinishFormValuesType = { dni: number };

@@ -1,8 +1,9 @@
 import classNames from "classnames";
 import React from "react";
 import { DetailTransactionCancelItemType } from "sagas/types/detailTransactions";
+import { ReasonListPropsType } from "../types";
 
-export const ReasonList: React.FC<any> = ({
+export const ReasonList: React.FC<ReasonListPropsType> = ({
   selectedClick,
   messages,
   handleClick,
