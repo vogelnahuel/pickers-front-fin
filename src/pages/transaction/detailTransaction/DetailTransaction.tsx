@@ -83,8 +83,6 @@ export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
             className="modal-transaction-separate"
             id="modal-transaction-hr-title"
           />
-
-          {/* <OptionList FilterSelectedTransaction={detailTransaction} /> */}
           <FlowTransition
             currentPage={currentStep}
             pages={{
