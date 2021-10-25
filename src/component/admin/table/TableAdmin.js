@@ -12,10 +12,6 @@ export const TableAdmin = (props) => {
         var actualDate = moment(date, "YYYY-MM-DD hh:mm:ss");
         return regDate.diff(actualDate, "days");
     };
-
-
-
-
     return (
         <>
             <table className="table-admin">
@@ -39,25 +35,25 @@ export const TableAdmin = (props) => {
                 <tbody>
 
                 {actualPage=== "PENDING"
-                    ? data &&Array.isArray(data)?data.map((rows) => (
-                            <tr className="table-info table-pending" key={rows.id}>
+                    ? data &&Array.isArray(data)?data.map((row) => (
+                            <tr className="table-info table-pending" key={row.id}>
                                 <td></td>
-                                <td> { (rows.name+' '+rows.surname).length>20 ?  (rows.name+' '+rows.surname).substring(0,20)+'...': (rows.name+' '+rows.surname)} </td>
-                                <td> {rows.identificationNumber} </td>
+                                <td> { `${row.name} ${row.surname}` } </td>
+                                <td> {row.identificationNumber} </td>
                                 <td>
-                                    {rows.email.length > 30  &&  window.screen.width<1900 ? rows.email.substring(0,30)+'...': rows.email.length > 40  &&  window.screen.width>1900  ? rows.email.substring(0,38)+'...': rows.email }
+                                    {row.email }
                                 </td>
                                 <td>
                                     {" "}
-                                    {rows.vehicleType === "motorcycle"
+                                    {row.vehicleType === "motorcycle"
                                         ? "Moto"
-                                        : rows.vehicleType === "bicycle"
+                                        : row.vehicleType === "bicycle"
                                             ? "Bici"
                                             : null}
                                 </td>
-                                <td className="table-registro"> <div className="table-admin-enCorrecion-span">{rows.registerDate?getDifDate(rows.registerDate):null} {getDifDate(rows.registerDate)===1?"día":"días"}</div> {rows.status.id===3 ?<div className="admin-table-correction">En corrección</div> : null } </td>
+                                <td className="table-registro"> <div className="table-admin-enCorrecion-span">{row.registerDate?getDifDate(row.registerDate):null} {getDifDate(row.registerDate)===1?"día":"días"}</div> {row.status.id===3 ?<div className="admin-table-correction">En corrección</div> : null } </td>
                                 <td className="table-editar">
-                                    <Link  to ={`/pickers/${rows.id}`} > <img src={edit} className="aditar-picker-img"  alt="edit" /></Link>
+                                    <Link  to ={`/pickers/${row.id}`} > <img src={edit} className="aditar-picker-img"  alt="edit" /></Link>
 
                                 </td>
                                 <td></td>
@@ -69,9 +65,9 @@ export const TableAdmin = (props) => {
                     ?data && Array.isArray(data)? data.map((row) => (
                             <tr className="table-info table-active-correcion" key={row.id}>
                                 <td></td>
-                                <td > { (row.name+' '+row.surname).length>20 ?  (row.name+' '+row.surname).substring(0,20)+'...': (row.name+' '+row.surname)} </td>
+                                <td > { `${row.name} ${row.surname}`} </td>
                                 <td > {row.identificationNumber} </td>
-                                <td> {row.email.length > 35 ? row.email.substring(0,35)+'...': row.email}</td>
+                                <td> {row.email}</td>
                                 <td>
                                     {" "}
                                     {row.vehicleType === "motorcycle"
