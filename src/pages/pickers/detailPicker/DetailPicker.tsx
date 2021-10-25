@@ -10,7 +10,6 @@ import motorcycle from "assets/admin/PendingUserAdminPicker/motorcycle.svg";
 import bici from "assets/admin/PendingUserAdminPicker/bici.svg";
 import { Field, Form } from "react-final-form";
 import useValidationSchema from "hooks/useValidationSchema";
-import { Col, Container, Row } from "react-bootstrap";
 import { FormSpy } from "react-final-form";
 import moment from "moment";
 import NotificationModal from "component/modal/NotificationModal";
@@ -199,9 +198,9 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                     }
                   }}
                 />
-                <Container fluid className="form-part-1-admin-pickers">
-                  <Row>
-                    <Col>
+                <div className="form-part-1-admin-pickers">
+                  <div>
+                    <div>
                       <Field
                         type="text"
                         name="name"
@@ -211,8 +210,8 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                         placeholder="Ingresá el nombre"
                         maxLength={49}
                       />
-                    </Col>
-                    <Col>
+                    </div>
+                    <div>
                       <Field
                         type="text"
                         name="surname"
@@ -222,8 +221,8 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                         placeholder="Ingresá el apellido"
                         maxLength={49}
                       />
-                    </Col>
-                    <Col>
+                    </div>
+                    <div>
                       <Field
                         type="text"
                         name="identificationNumber"
@@ -233,10 +232,10 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                         className="Admin-Pickers-input readonly"
                         placeholder="Ingresá el DNI"
                       />
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col md={4}>
+                    </div>
+                  </div>
+                  <div>
+                    <div >
                       <Field
                         type="text"
                         name="email"
@@ -246,8 +245,8 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                         className="Admin-Pickers-input readonly"
                         placeholder="Ingresá el Email"
                       />
-                    </Col>
-                    <Col md={4}>
+                    </div>
+                    <div >
                       <Field
                         type="text"
                         name="dateOfBirth"
@@ -257,8 +256,8 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                         className="Admin-Pickers-input"
                         placeholder="Ingresá la fecha nac"
                       />
-                    </Col>
-                    <Col>
+                    </div>
+                    <div>
                       <Field
                         type="text"
                         name="phone.areaNumber"
@@ -268,8 +267,8 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                         placeholder="Ej: 011"
                         maxLength={5}
                       />
-                    </Col>
-                    <Col>
+                    </div>
+                    <div>
                       <Field
                         type="text"
                         name="phone.number"
@@ -279,15 +278,15 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                         placeholder="Ej: 12345678"
                         maxLength={10}
                       />
-                    </Col>
-                  </Row>
-                </Container>
+                    </div>
+                  </div>
+                </div>
                 <h3 className="subTitle-pending-data">
                   Datos contables y bancarios
                 </h3>
-                <Container fluid className="form-part-1-admin-pickers">
-                  <Row>
-                    <Col>
+                <div  className="form-part-1-admin-pickers">
+                  <div>
+                    <div>
                       <Field
                         type="text"
                         name="accountingData.fiscalNumber"
@@ -297,8 +296,8 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                         className="Admin-Pickers-input readonly"
                         placeholder="20 - 39589475 - 4"
                       />
-                    </Col>
-                    <Col>
+                    </div>
+                    <div>
                       <Field
                         type="text"
                         name="accountingData.bankIdentifier"
@@ -308,8 +307,8 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                         className="Admin-Pickers-input readonly"
                         placeholder="20 - 39589475 - 4"
                       />
-                    </Col>
-                    <Col>
+                    </div>
+                    <div>
                       <Field
                         type="text"
                         name="accountingData.bankName"
@@ -319,15 +318,15 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                         className="Admin-Pickers-input readonly"
                         placeholder="Ingresá el Nombre"
                       />
-                    </Col>
-                  </Row>
-                </Container>
+                    </div>
+                  </div>
+                </div>
                 <h3 className="subTitle-pending-data">Seguros</h3>
-                <Container fluid className="form-part-1-admin-pickers">
-                  <Row>
+                <div  className="form-part-1-admin-pickers">
+                  <div>
                     {initialValues.vehicleType === "motorcycle" && (
                       <>
-                        <Col md={4}>
+                        <div >
                           <Field
                             type="text"
                             name={`vehicle.${initialValues.vehicleType}.patent`}
@@ -337,8 +336,8 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                             placeholder="Ingresá los dígitos de la patente"
                             maxLength={7}
                           />
-                        </Col>
-                        <Col md={4}>
+                        </div>
+                        <div >
                           <Field
                             type="text"
                             name={`vehicle.${initialValues.vehicleType}.expirationDateDriverLicense`}
@@ -348,8 +347,8 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                             placeholder="día / mes / año"
                             maxLength={10}
                           />
-                        </Col>
-                        <Col md={4}>
+                        </div>
+                        <div >
                           <Field
                             type="text"
                             name={`vehicle.${initialValues.vehicleType}.expirationDateIdentificationVehicle`}
@@ -359,8 +358,8 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                             placeholder="día / mes / año"
                             maxLength={10}
                           />
-                        </Col>
-                        <Col md={4}>
+                        </div>
+                        <div >
                           <Field
                             type="text"
                             name={`vehicle.${initialValues.vehicleType}.expirationDatePolicyVehicle`}
@@ -370,10 +369,10 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                             placeholder="día / mes / año"
                             maxLength={10}
                           />
-                        </Col>
+                        </div>
                       </>
                     )}
-                    <Col md={4}>
+                    <div >
                       <Field
                         type="text"
                         name="expirationDatePolicyPersonal"
@@ -384,9 +383,9 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                         placeholder="día / mes / año"
                         maxLength={10}
                       />
-                    </Col>
-                  </Row>
-                </Container>
+                    </div>
+                  </div>
+                </div>
                 {active ? (
                   <>
                     <Field name="enable" component={Switch} />

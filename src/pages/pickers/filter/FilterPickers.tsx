@@ -5,7 +5,6 @@ import or from "assets/admin/PendingUser/or.svg";
 import search from "assets/admin/PendingUser/search.svg";
 import { Field, Form } from "react-final-form";
 import { Input } from "component/inputs/Input";
-import { Col, Container, Row } from "react-bootstrap";
 import { FILTER_PICKERS_OPTIONS } from "utils/constants";
 import Select from "component/inputs/Select";
 import useValidationSchema from "hooks/useValidationSchema";
@@ -19,9 +18,9 @@ export const FilterPickers: React.FC<FilterTypes> = ({
   validationSchema,
 }): JSX.Element => {
   return (
-    <Container className="display-filter-transaction">
-      <Row>
-        <Col md={"auto"}>
+    <div className="containerFluid display-filter-transaction">
+      <div className="containerRow">
+        <div className="containerCol3">
           <div className="filter-Imagen-width">
             <img
               className="img-filter-transaction"
@@ -30,9 +29,9 @@ export const FilterPickers: React.FC<FilterTypes> = ({
             />
             <p className="p-filter-transaction">Filtros</p>
           </div>
-        </Col>
-        <Col className="sub-container">
-          <Row className="px-2">
+        </div>
+        <div className="containerCol9 sub-container">
+          <div className="containerRow px-2">
             <Form
               onSubmit={(value)=>onSubmit(value)}
               initialValues={filters}
@@ -48,7 +47,7 @@ export const FilterPickers: React.FC<FilterTypes> = ({
                   className="form-filter-transaction"
                   onSubmit={handleSubmit}
                 >
-                  <Col xxl xl={4} className="px-3">
+                  <div className="containerCol4 px-3">
                     <Field
                       type="text"
                       name="name"
@@ -58,8 +57,8 @@ export const FilterPickers: React.FC<FilterTypes> = ({
                       placeholder="Ingresá el nombre y apellido"
                       maxLength={50}
                     />
-                  </Col>
-                  <Col xxl xl={4} className="px-3">
+                  </div>
+                  <div  className="containerCol4 px-3">
                     <Field
                       type="text"
                       name="identificationNumber"
@@ -69,8 +68,8 @@ export const FilterPickers: React.FC<FilterTypes> = ({
                       placeholder="Ingresá el DNI"
                       maxLength={9}
                     />
-                  </Col>
-                  <Col xxl xl={4} className="px-3">
+                  </div>
+                  <div  className="containerCol4 px-3">
                     <Field
                       name="vehicleType"
                       label="Vehículo"
@@ -80,8 +79,8 @@ export const FilterPickers: React.FC<FilterTypes> = ({
                     >
                       {(props: any) => <Select {...props} />}
                     </Field>
-                  </Col>
-                  <Col xxl xl={4} className="px-3">
+                  </div>
+                  <div  className="containerCol4 px-3">
                     <Field
                       type="text"
                       name="email"
@@ -91,11 +90,9 @@ export const FilterPickers: React.FC<FilterTypes> = ({
                       placeholder="Ingresá el email"
                       maxLength={250}
                     />
-                  </Col>
-                  <Col
-                    xxl={{ span: "auto", offset: 0 }}
-                    lg={{ span: 4, offset: 4 }}
-                    className="px-3"
+                  </div>
+                  <div
+                    className="containerCol4 px-3"
                   >
                     <button
                       className="search-button-transaction float-end"
@@ -106,13 +103,13 @@ export const FilterPickers: React.FC<FilterTypes> = ({
                       <img className="or-filter" src={or} alt="or" />
                       <p className="display-inline-block p-export">Buscar</p>
                     </button>
-                  </Col>
+                  </div>
                 </form>
               )}
             </Form>
-          </Row>
-        </Col>
-      </Row>
-    </Container>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };

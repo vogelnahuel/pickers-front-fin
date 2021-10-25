@@ -1,3 +1,9 @@
+@import '@pickit/pickit-grid-system';
+
+.container {
+    @include container(12, 25px);
+  }
+
 .form-fiter{
     display: flex;
     background: #FFFFFF;

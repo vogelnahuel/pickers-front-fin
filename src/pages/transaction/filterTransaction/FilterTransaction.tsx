@@ -6,7 +6,6 @@ import {DatePicker} from "@pickit/pickit-components";
 import or from "assets/admin/PendingUser/or.svg";
 import search from "assets/admin/PendingUser/search.svg";
 import {Field, Form} from "react-final-form";
-import {Col, Container, Row} from "react-bootstrap";
 import {Input} from "component/inputs/Input";
 import MultipleSelect from "component/inputs/MultipleSelect";
 import {FILTER_TRANSACTION_OPTIONS} from "utils/constants";
@@ -16,9 +15,9 @@ import { FilterTransactionPropsType, FilterValuesType } from "./types";
 export const FilterTransaction:React.FC<FilterTransactionPropsType> = ({ onSubmit, filters, validationSchema }):JSX.Element => {
     
     return (
-        <Container fluid className="display-filter-transaction">
-            <Row>
-                <Col md={"auto"}>
+        <div className="display-filter-transaction">
+            <div>
+                <div >
                     <div className="filter-Imagen-width">
                         <img
                             className="img-filter-transaction filter-cursor"
@@ -27,9 +26,9 @@ export const FilterTransaction:React.FC<FilterTransactionPropsType> = ({ onSubmi
                         />
                         <p className="p-filter-transaction">Filtros</p>
                     </div>
-                </Col>
-                <Col className="sub-container" >
-                    <Row className="px-2">
+                </div>
+                <div className="sub-container" >
+                    <div className="px-2">
                         <Form
                             onSubmit={(values:FilterValuesType)=>onSubmit({
                                 transactionCode:values.transactionCode,
@@ -48,7 +47,7 @@ export const FilterTransaction:React.FC<FilterTransactionPropsType> = ({ onSubmi
                         >
                             {({ handleSubmit, form }) => (
                                 <form className="form-filter-transaction" onSubmit={handleSubmit}>
-                                    <Col xxl xl={4} className="px-3">
+                                    <div className="px-3">
                                         <Field
                                             type="text"
                                             name="transactionCode"
@@ -58,8 +57,8 @@ export const FilterTransaction:React.FC<FilterTransactionPropsType> = ({ onSubmi
                                             placeholder="Ingresá el código"
                                             maxLength={19}
                                         />
-                                    </Col>
-                                    <Col xxl xl={4} className="px-3">
+                                    </div>
+                                    <div className="px-3">
                                         <Field
                                             type="text"
                                             name="pickerId"
@@ -68,8 +67,8 @@ export const FilterTransaction:React.FC<FilterTransactionPropsType> = ({ onSubmi
                                             className="Admin-Pickers-input"
                                             placeholder="Ingresá el número de picker"
                                         />
-                                    </Col>
-                                    <Col xxl xl={4} className="px-3">
+                                    </div>
+                                    <div  className="px-3">
                                         <div className="datePicker-filter-transaction" id="datePicker-filter-transaction">
                                             <label className="label-Admin-Pickers">
                                                 Vencimiento SLA
@@ -86,8 +85,8 @@ export const FilterTransaction:React.FC<FilterTransactionPropsType> = ({ onSubmi
                                             </Field>
 
                                         </div>
-                                    </Col>
-                                    <Col xxl xl={4} className="px-3">
+                                    </div>
+                                    <div  className="px-3">
                                          <label className="label-Admin-Pickers">
                                                 Estados
                                         </label>
@@ -99,8 +98,8 @@ export const FilterTransaction:React.FC<FilterTransactionPropsType> = ({ onSubmi
                                            >
                                           { (props:any)=><MultipleSelect {...props}/>}
                                         </Field>
-                                    </Col>
-                                    <Col xxl="auto" xl={4} className="px-3">
+                                    </div>
+                                    <div  className="px-3">
                                         <Field
                                             className="checkbox-filter-transaction"
                                             name="inAlert"
@@ -111,8 +110,8 @@ export const FilterTransaction:React.FC<FilterTransactionPropsType> = ({ onSubmi
                                         <label htmlFor="inAlert" className="label-filter-transaction-alert">
                                             En alerta
                                         </label>
-                                    </Col>
-                                    <Col xxl="auto" lg={4} className="px-3">
+                                    </div>
+                                    <div  className="px-3">
                                         <button
                                             className="search-button-transaction float-end"
                                             name="search"
@@ -122,13 +121,13 @@ export const FilterTransaction:React.FC<FilterTransactionPropsType> = ({ onSubmi
                                             <img className="or-filter" src={or} alt="or" />
                                             <p className="display-inline-block p-export">Buscar</p>
                                         </button>
-                                    </Col>
+                                    </div>
                                 </form>
                             )}
                         </Form>
-                    </Row>
-                </Col>
-            </Row>
-        </Container>
+                    </div>
+                </div>
+            </div>
+        </div>
     );
 };
