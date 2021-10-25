@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { actions as pendingUserActions, selectors as pendingUserSelectors} from "reducers/pickers";
 import  {Pickers} from "pages/pickers/Pickers";
-import {titulosAdminPending,titulosAdminActive} from "utils/constants"
+import {titlesAdminPending,titlesAdminActive} from "utils/constants"
 import {  PickersParamsType, ParamsMiddlewareType, PickerContainerTypes, } from "./types";
 import { AppDispatch, RootState } from "store";
 
@@ -20,7 +20,7 @@ const PendingUserAdminContainer:React.FC<PickerContainerTypes> = (props):JSX.Ele
     return (
         <Pickers
              {...props}
-            tableTitles={props.actualPage==="PENDING"?titulosAdminPending:titulosAdminActive}
+            tableTitles={props.actualPage==="PENDING"?titlesAdminPending:titlesAdminActive}
         />
     );
 };

@@ -90,9 +90,14 @@
     position: fixed;
 }
 .modal-transaction-title{
+    padding-right: 30px;
     display: flex;
     height: 29px;
 }
+.modal-transaction-history-container:last-child > .modal-transaction-img-connector  {
+        display: none;
+    }
+
 .modal-transaction-title h2{
     font-family: 'Mulish';
     font-style: normal;
@@ -112,22 +117,19 @@
     color: #4D4D4D;
     width: 330px;
 }
-.modal-transaction-title .modal-transaction-fecha{
+.modal-transaction-title .modal-transaction-date{
     padding-left: 0px;
-    width: 256px;
     display: flex;
     justify-content: space-between;
 }
-.modal-transaction-alerta{
-    margin-right: 2vw;
-}
-.modal-transaction-subtitle .modal-transaction-fecha{
+
+.modal-transaction-subtitle .modal-transaction-date{
     padding-left: 0px;
-    width: 256px;
     display: flex;
     justify-content: flex-end;
 }
 .modal-transaction-subtitle{
+    padding-right: 30px;
     display: flex;
 }
 .modal-transaction-subtitle h2{
@@ -155,8 +157,8 @@
 .modal-transaction-separate{
     border: 1px solid #BDBDBD;
     margin-top: 0px;
-    width: 97.5%;
-    margin-bottom: 0px;
+    padding-right: 30px;
+    margin-bottom: 20px;
 }
 ._3G24_nB5gK6geBR6bQ0SZx{
     background-color: white;
@@ -165,12 +167,12 @@
     z-index: 15 !important;
 }
 .modal-transaction-container{
-    width: 97%;
-    margin-left: 3%;
+   padding: 40px;
+   height: 30vh;
 
 }
 
-.modal-transaction-cancel-enabled{
+.button-modal-transaction{
     background: #0098FF;
     border: 4px solid #0098FF;
     box-sizing: border-box;
@@ -186,7 +188,7 @@
     color: #FFFFFF;
     margin-left: 14px;
 }
-.modal-transaction-cancel-disabled{
+.button-modal-transaction:disabled{
     background: #BDBDBD;
     border: 4px solid #BDBDBD;
     box-sizing: border-box;
@@ -248,8 +250,9 @@
 
 .modal-transaction-reload {
     display: flex;
-    margin-left: 236px;
+    align-items: center;
     cursor: pointer;
+    // justify-content: flex-end;
 }
 .modal-transaction-reload p{
     font-family: 'Mulish';
@@ -259,14 +262,14 @@
     line-height: 23px;
     text-align: center;
     color: #145A99;
-    margin-left: 0.512vw;
-    margin-top: 0.952vw;
+    margin-left: 5px;
 }
 .modal-transaction-close{
-    margin-left: 95.8%;
+    position: absolute;
+    right: 20px;
+    top: 20px;
     cursor: pointer;
     width: 30px;
-    margin-top: 12px;
 }
 .flexItems{
     display: flex;
@@ -289,10 +292,6 @@
     line-height: 23px;
     color: #828282;
 }
-/**/
-#modal-transaction-hr-title{
-    width: 93.7%;
-}
 .transaction-modal-alert{
     display: inline-block;
     font-family: 'Mulish';
@@ -300,7 +299,6 @@
     font-weight: normal;
     font-size: 13px;
     line-height: 16px;
-    margin-left: 1vw;
     letter-spacing: 0.004em;
     color: #FF1515;
     background: rgba(255, 21, 21, 0.1);
@@ -311,14 +309,12 @@
     padding-left: 0.5vw;
     width: 74px;
     padding-top: 6px;
+    margin-right: 0px;
 }
 @media (max-width:1310px){
     .transaction-container{
         margin-left: 21.059vw;
         width: 77vw;
-    }
-    .modal-transaction-separate{
-        margin-bottom: 0px;
     }
     #modal-transaction-history-Final{
         margin-top: 10px;
@@ -339,8 +335,8 @@
     .modal-transaction-buttons-submit{
         margin-top: 55px;
     }
-    .modal-transaction-title .modal-transaction-fecha{
-        width: 260px;
+    .modal-transaction-title .modal-transaction-date{
+        // width: 260px;
     }
 }
 @media (max-width:1310px){
