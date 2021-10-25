@@ -36,6 +36,7 @@ function* getTransactions({
   void,
   TransactionResponseContent
 > {
+  delete params['date'];
   const response = yield call(transactionsMiddleware.getTransactions, params);
 
   if (response.status !== 200) {
