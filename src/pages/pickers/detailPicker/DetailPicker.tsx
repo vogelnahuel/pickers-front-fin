@@ -194,9 +194,9 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                 <FormSpy
                   subscription={{ dirty: true }}
                   onChange={(pro) => {
-                    if (active) {
+                   
                       setDirty(pro.dirty);
-                    }
+                    
                   }}
                 />
                 <Container fluid className="form-part-1-admin-pickers">
