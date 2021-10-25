@@ -34,7 +34,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
     (props.pendingUserAdminPicker.status.id === 4 ||
       props.pendingUserAdminPicker.status.id === 5);
 
-  const validationSchema = yup.lazy((values) => {
+  const validationSchemaMotorcycle = yup.lazy((values) => {
     return yup.object({
       name: yup
         .string()
@@ -66,7 +66,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
         .required("Este campo es requerido.")
         .matches(DATE_FORMATS.regex, "Ingresá el formato correcto"),
       vehicle:
-        // values.vehicleType === 'motorcycle' && //REVISAR VALIDACIONES
+        //values.vehicleType === 'motorcycle' && //REVISAR VALIDACIONES
         yup.object({
           [values.vehicleType]: yup.object({
             patent: yup
@@ -108,6 +108,39 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
         }),
     });
   });
+  const validationSchemaBicycle = yup.lazy((values) => {
+    return yup.object({
+      name: yup
+        .string()
+        .required("Este campo es requerido.")
+        .matches(
+          VALIDATION_REGEX.expName,
+          "No se admiten números o caracteres especiales"
+        ),
+      surname: yup
+        .string()
+        .required("Este campo es requerido.")
+        .matches(
+          VALIDATION_REGEX.expName,
+          "No se admiten números o caracteres especiales"
+        ),
+      phone: yup.object({
+        areaNumber: yup
+          .string()
+          .required("Este campo es requerido.")
+          .matches(VALIDATION_REGEX.regArea, "Ingresá el formato correcto"),
+        number: yup
+          .string()
+          .required("Este campo es requerido.")
+          .matches(VALIDATION_REGEX.regTelefono, "Ingresá el formato correcto"),
+      }),
+      expirationDatePolicyPersonal: yup
+        .string()
+        .nullable()
+        .required("Este campo es requerido.")
+        .matches(DATE_FORMATS.regex, "Ingresá el formato correcto"),
+    });
+  });
 
   const cancel = (isDirty: Boolean, restart: Function) => {
     let onClose = () => {
@@ -147,7 +180,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
   return (
     <DetailPicker
       {...props}
-      validationSchema={validationSchema}
+      validationSchema={props.pendingUserAdminPicker.vehicleType === "bicycle" ? validationSchemaBicycle : validationSchemaMotorcycle}
       //changePage={changePage}
       cancel={cancel}
       goBack={() => historial.goBack()}
