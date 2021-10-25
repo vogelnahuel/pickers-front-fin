@@ -12,10 +12,6 @@ export const TableAdmin = (props) => {
         var actualDate = moment(date, "YYYY-MM-DD hh:mm:ss");
         return regDate.diff(actualDate, "days");
     };
-
-
-
-
     return (
         <>
             <table className="table-admin">
