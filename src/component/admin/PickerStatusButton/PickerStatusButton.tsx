@@ -23,7 +23,6 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
   isDetail,
 }) => {
   const Historial = useHistory();
-//TODO: cambiar carpeta
   const changePage = (page: String, isDirty: Boolean) => {
     if(isDetail){
         let onClose = () => {
