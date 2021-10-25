@@ -13,10 +13,15 @@ import {
 } from "reducers/pickers";
 import * as yup from "yup";
 import { actions as notificationActions } from "reducers/notification";
-import { DetailPickerContainerTypeProps } from "./types";
-import { PickerType, ParamsMiddlewareType } from "../types";
+
+import {
+  PickerType,
+  ParamsMiddlewareType,
+  DetailPickerValidationSchema,
+} from "../types";
 import { ParamGetPendingUser } from "sagas/types/pickers";
 import { AppDispatch, RootState } from "store";
+import { DetailPickerContainerTypeProps } from "./types";
 
 const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
   props
@@ -28,14 +33,14 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
     props.getPendingUserPicker(params.id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  
+
   let active: boolean =
     props.pendingUserAdminPicker.status &&
     (props.pendingUserAdminPicker.status.id === 4 ||
       props.pendingUserAdminPicker.status.id === 5);
 
-  const validationSchemaMotorcycle = yup.lazy((values) => {
-    return yup.object({
+  const validationSchema: yup.SchemaOf<DetailPickerValidationSchema> =
+    yup.object({
       name: yup
         .string()
         .required("Este campo es requerido.")
@@ -65,82 +70,51 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
         .nullable()
         .required("Este campo es requerido.")
         .matches(DATE_FORMATS.regex, "Ingresá el formato correcto"),
-      vehicle:
-        //values.vehicleType === 'motorcycle' && //REVISAR VALIDACIONES
-        yup.object({
-          [values.vehicleType]: yup.object({
-            patent: yup
-              .string()
-              .nullable()
-              .required("Este campo es requerido.")
-              .matches(
-                VALIDATION_REGEX.regPatent,
-                "No se admiten caracteres especiales"
-              ),
-            expirationDatePolicyVehicle: yup
-              .string()
-              .nullable()
-              .required("Este campo es requerido.")
-              .matches(DATE_FORMATS.regex, "Ingresá el formato correcto")
-              .matches(
-                DATE_FORMATS.regexValidCharacter,
-                "No se admiten letras o caracteres especiales"
-              ),
-            expirationDateIdentificationVehicle: yup
-              .string()
-              .nullable()
-              .required("Este campo es requerido.")
-              .matches(DATE_FORMATS.regex, "Ingresá el formato correcto")
-              .matches(
-                DATE_FORMATS.regexValidCharacter,
-                "No se admiten letras o caracteres especiales"
-              ),
-            expirationDateDriverLicense: yup
-              .string()
-              .nullable()
-              .required("Este campo es requerido.")
-              .matches(DATE_FORMATS.regex, "Ingresá el formato correcto")
-              .matches(
-                DATE_FORMATS.regexValidCharacter,
-                "No se admiten letras o caracteres especiales"
-              ),
+      vehicle: yup.object({
+        [props.pendingUserAdminPicker.vehicleType]: yup
+          .object()
+          .when("vehicleType", {
+            is: ()=>{return props.pendingUserAdminPicker.vehicleType === 'motorcycle'},
+            then: yup.object({
+              patent: yup
+                .string()
+                .nullable()
+                .required("Este campo es requerido.")
+                .matches(
+                  VALIDATION_REGEX.regPatent,
+                  "No se admiten caracteres especiales"
+                ),
+              expirationDatePolicyVehicle: yup
+                .string()
+                .nullable()
+                .required("Este campo es requerido.")
+                .matches(DATE_FORMATS.regex, "Ingresá el formato correcto")
+                .matches(
+                  DATE_FORMATS.regexValidCharacter,
+                  "No se admiten letras o caracteres especiales"
+                ),
+              expirationDateIdentificationVehicle: yup
+                .string()
+                .nullable()
+                .required("Este campo es requerido.")
+                .matches(DATE_FORMATS.regex, "Ingresá el formato correcto")
+                .matches(
+                  DATE_FORMATS.regexValidCharacter,
+                  "No se admiten letras o caracteres especiales"
+                ),
+              expirationDateDriverLicense: yup
+                .string()
+                .nullable()
+                .required("Este campo es requerido.")
+                .matches(DATE_FORMATS.regex, "Ingresá el formato correcto")
+                .matches(
+                  DATE_FORMATS.regexValidCharacter,
+                  "No se admiten letras o caracteres especiales"
+                ),
+            }),
           }),
-        }),
-    });
-  });
-  const validationSchemaBicycle = yup.lazy((values) => {
-    return yup.object({
-      name: yup
-        .string()
-        .required("Este campo es requerido.")
-        .matches(
-          VALIDATION_REGEX.expName,
-          "No se admiten números o caracteres especiales"
-        ),
-      surname: yup
-        .string()
-        .required("Este campo es requerido.")
-        .matches(
-          VALIDATION_REGEX.expName,
-          "No se admiten números o caracteres especiales"
-        ),
-      phone: yup.object({
-        areaNumber: yup
-          .string()
-          .required("Este campo es requerido.")
-          .matches(VALIDATION_REGEX.regArea, "Ingresá el formato correcto"),
-        number: yup
-          .string()
-          .required("Este campo es requerido.")
-          .matches(VALIDATION_REGEX.regTelefono, "Ingresá el formato correcto"),
       }),
-      expirationDatePolicyPersonal: yup
-        .string()
-        .nullable()
-        .required("Este campo es requerido.")
-        .matches(DATE_FORMATS.regex, "Ingresá el formato correcto"),
     });
-  });
 
   const cancel = (isDirty: Boolean, restart: Function) => {
     let onClose = () => {
@@ -180,7 +154,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
   return (
     <DetailPicker
       {...props}
-      validationSchema={props.pendingUserAdminPicker.vehicleType === "bicycle" ? validationSchemaBicycle : validationSchemaMotorcycle}
+      validationSchema={validationSchema}
       //changePage={changePage}
       cancel={cancel}
       goBack={() => historial.goBack()}
