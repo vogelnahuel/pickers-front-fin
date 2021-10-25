@@ -17,6 +17,8 @@ export const Input= (props) => {
         animated
     } = props;
 
+   
+
     const [focus, setFocus] = useState(false);
 
     return (
@@ -48,8 +50,8 @@ export const Input= (props) => {
                 value={input.value}
                 placeholder={placeholder}
                 onChange={input.onChange}
-                onFocus={() => {setFocus(true) }}
-                onBlur={()=>{setFocus(false)}}
+                onFocus={() => {animated ?  (function() { setFocus(true); input.onFocus() })() : input.onFocus() } }
+                onBlur={()=>{animated ?  (function() { setFocus(false); input.onBlur() })() : input.onBlur() } }
                 maxLength={maxLength}
             />
             {
