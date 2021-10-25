@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import transactions from "reducers/transactions";
 import dashboard from "reducers/dashboard";
-import detailTransaction from "reducers/dashboard";
+import detailTransaction from "reducers/detailTransaction";
 import pendingUser from "reducers/pickers";
 import pendingUserAdminPicker from "reducers/detailPicker";
 import login from "./login";

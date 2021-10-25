@@ -1,3 +1,5 @@
+import { DateType } from "pages/transaction/filterTransaction/types";
+
 export type TransactionsActionType = {
   type: string;
   params: FilterTransactionsType;
@@ -12,6 +14,7 @@ export type FilterTransactionsType = {
   state?: string;
   pickerId?: number;
   transactionCode?: string;
+  date?:DateType
 };
 
 export type FilterTransactionsValidationSchemaType = {

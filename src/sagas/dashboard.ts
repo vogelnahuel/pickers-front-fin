@@ -4,6 +4,7 @@ import {
   put,
   CallEffect,
   PutEffect,
+  ForkEffect,
 } from "redux-saga/effects";
 import { types, actions } from "reducers/dashboard";
 import * as dashboardMiddleware from "middleware/dashboard";
@@ -13,7 +14,7 @@ import {
 } from "./types/dashboard";
 import { AxiosResponse } from "axios";
 
-const sagas = [takeLatest(types.DASHBOARD_GET_REQUEST, getDashboard)];
+const sagas:ForkEffect<never>[] = [takeLatest(types.DASHBOARD_GET_REQUEST, getDashboard)];
 
 export default sagas;
 
