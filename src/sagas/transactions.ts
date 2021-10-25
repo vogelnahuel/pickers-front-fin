@@ -4,6 +4,7 @@ import {
   put,
   CallEffect,
   PutEffect,
+  ForkEffect,
 } from "redux-saga/effects";
 import { types, actions } from "reducers/transactions";
 import * as transactionsMiddleware from "middleware/transactions";
@@ -17,7 +18,7 @@ import {
 import { AxiosResponse } from "axios";
 import { GetTransactionsSuccessType } from "reducers/types/transaction";
 
-const sagas = [
+const sagas:ForkEffect<never>[] = [
   takeLatest(types.TRANSACTIONS_GET_REQUEST, getTransactions),
   takeLatest(types.TRANSACTIONS_EXPORT_REQUEST, getTransactionsExport),
   takeLatest(types.TRANSACTIONS_GET_MORE_REQUEST, getMoreTransactions),
