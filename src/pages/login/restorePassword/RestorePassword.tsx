@@ -42,7 +42,7 @@ export const RestorePassword = ({
               animated
               className="Admin-Pickers-input Admin-Pickers-input-restore"
               component={Input}
-              maxLength={50}
+              maxLength={20}
             />
             <Field
               type="password"
@@ -52,7 +52,7 @@ export const RestorePassword = ({
               animated
               className="Admin-Pickers-input Admin-Pickers-input-restore"
               component={Input}
-              maxLength={50}
+              maxLength={20}
             />
 
             <ul className={"ul"} id="ul-login">
