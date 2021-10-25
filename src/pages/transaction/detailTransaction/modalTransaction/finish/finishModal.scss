@@ -12,10 +12,8 @@
     color: #145A99;
     cursor: pointer;
     margin-left: 11px;
-    margin-top: 12px;
 }
 .modal-transaction-finish-volver-img{
-    margin-top: 16px;
     cursor: pointer;
 }
 .modal-transaction-finish-img{
@@ -89,6 +87,11 @@
     letter-spacing: 0.005em;
     color: #4D4D4D;
 }
+.button-container-finish{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
 
 .finish-button{
     width: 176px;
@@ -112,7 +115,7 @@
 
 @media (max-width:1310px){
     .modal-transaction-finish-img{
-        margin-top: 15px;
+        margin-top: 0;
         margin-bottom: 30px;
     }
     .modal-transaction-finish-inputs{

@@ -51,7 +51,6 @@ export const types: DetailTransactionTypeType = {
 };
 
 export const INITIAL_STATE: DetailTransactionInicialStateType = {
-  fetching: false,
   detailTransaction: {
     transaction: {
       id: 0,
@@ -261,8 +260,6 @@ export const actions: DetailTransactionActionsType = {
 export const selectors: DetailTransactionSelectorType = {
   getDetailTransaction: ({detailTransaction}: RootState) =>
     detailTransaction.detailTransaction,
-  getDetailTransactionFetching: ({detailTransaction}: RootState) =>
-    detailTransaction.fetching,
   getDetailTransactionMessages: ({detailTransaction}: RootState) =>
     detailTransaction.messages,
   getSelectedMessage: ({detailTransaction}: RootState) =>
@@ -274,11 +271,6 @@ const reducer = (
   action: DetailTransactionActionType
 ) => {
   switch (action.type) {
-    case types.DETAIL_TRANSACTIONS_ID_REQUEST:
-      return {
-        ...state,
-        fetching: true,
-      };
     case types.RESET_MESSAGE_DETAIL_TRANSACTIONS:
       return {
         ...state,
@@ -287,109 +279,12 @@ const reducer = (
     case types.DETAIL_TRANSACTIONS_ID_SUCCESS:
       return {
         ...state,
-        fetching: false,
         detailTransaction: action.detailTransaction,
-      };
-    case types.DETAIL_TRANSACTIONS_ID_ERROR:
-      return {
-        ...state,
-        fetching: false,
-      };
-
-    case types.DETAIL_TRANSACTIONS_MENSSAGES_REQUEST:
-      return {
-        ...state,
-        fetching: true,
       };
     case types.DETAIL_TRANSACTIONS_MENSSAGES_SUCCESS:
       return {
         ...state,
-        fetching: false,
         messages: action.detailTransactionMessages,
-      };
-    case types.DETAIL_TRANSACTIONS_MENSSAGES_ERROR:
-      return {
-        ...state,
-        fetching: false,
-      };
-
-    case types.DETAIL_TRANSACTIONS_DEVOLUTION_UNDELIVERED_REQUEST:
-      return {
-        ...state,
-        fetching: true,
-      };
-    case types.DETAIL_TRANSACTIONS_DEVOLUTION_UNDELIVERED_SUCCESS:
-      return {
-        ...state,
-        fetching: true,
-      };
-    case types.DETAIL_TRANSACTIONS_DEVOLUTION_UNDELIVERED_ERROR:
-      return {
-        ...state,
-        fetching: false,
-      };
-
-    case types.DETAIL_TRANSACTIONS_REASONS_CANCELED_REQUEST:
-      return {
-        ...state,
-        fetching: true,
-      };
-    case types.DETAIL_TRANSACTIONS_REASONS_CANCELED_SUCCESS:
-      return {
-        ...state,
-        fetching: false,
-      };
-    case types.DETAIL_TRANSACTIONS_REASONS_CANCELED_ERROR:
-      return {
-        ...state,
-        fetching: false,
-      };
-    case types.DETAIL_TRANSACTIONS_FINISH_RETURNED_REQUEST:
-      return {
-        ...state,
-        fetching: true,
-      };
-    case types.DETAIL_TRANSACTIONS_FINISH_RETURNED_SUCCESS:
-      return {
-        ...state,
-        fetching: true,
-      };
-    case types.DETAIL_TRANSACTIONS_FINISH_RETURNED_ERROR:
-      return {
-        ...state,
-        fetching: false,
-      };
-
-    case types.DETAIL_TRANSACTIONS_FINISH_LOST_REQUEST:
-      return {
-        ...state,
-        fetching: true,
-      };
-    case types.DETAIL_TRANSACTIONS_FINISH_LOST_SUCCESS:
-      return {
-        ...state,
-        fetching: true,
-      };
-    case types.DETAIL_TRANSACTIONS_FINISH_LOST_ERROR:
-      return {
-        ...state,
-        fetching: false,
-      };
-
-    case types.DETAIL_TRANSACTIONS_DNI_DELIVERED_REQUEST:
-      return {
-        ...state,
-        fetching: true,
-      };
-    case types.DETAIL_TRANSACTIONS_DNI_DELIVERED_SUCCESS:
-      return {
-        ...state,
-        fetching: true,
-      };
-    case types.DETAIL_TRANSACTIONS_DNI_DELIVERED_ERROR:
-      return {
-        ...state,
-        fetching: false,
       };
     case types.SET_MESSAGE_DETAIL_TRANSACTIONS:
       return {

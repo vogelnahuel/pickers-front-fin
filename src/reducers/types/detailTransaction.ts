@@ -73,7 +73,6 @@ export type DetailTransactionActionsType = {
 };
 export type DetailTransactionSelectorType = {
   getDetailTransaction: Function;
-  getDetailTransactionFetching: Function;
   getDetailTransactionMessages: Function;
   getSelectedMessage: Function;
 };
@@ -84,7 +83,6 @@ export type DetailTransactionActionType = {
   messageSelected: DetailTransactionCancelItemType;
 };
 export type DetailTransactionInicialStateType = {
-  fetching: boolean;
   detailTransaction: DetailTransactionType;
   messages: DetailTransactionCancelItemType[];
   messageSelected?: DetailTransactionCancelItemType;

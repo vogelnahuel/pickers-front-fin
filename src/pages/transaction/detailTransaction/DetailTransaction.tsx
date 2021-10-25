@@ -102,14 +102,13 @@ export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
               ),
               [STEP.DniFinish]: () => <DniFinish onBack={() => setCurrentStep(STEP.FinishModal)}/>,
               [STEP.Undelivered]: () => (
-                <Undelivered onBack={() => setCurrentStep(STEP.History)} />
+                <Undelivered onBack={() => setCurrentStep(STEP.FinishModal)} />
               ),
               [STEP.FinishModal]: () => (
                 <FinishModal
                   onBack={() => setCurrentStep(STEP.History)}
-                  DniFinish={() => setCurrentStep(STEP.DniFinish)}
+                  dniFinish={() => setCurrentStep(STEP.DniFinish)}
                   undelivered={() => setCurrentStep(STEP.Undelivered)}
-                 // ReasonsCanceledConfirm={() => setCurrentStep(STEP.ReasonsCanceledConfirm)}
                 />
               ),
             }}

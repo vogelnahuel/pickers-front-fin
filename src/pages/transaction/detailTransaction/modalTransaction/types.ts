@@ -12,10 +12,11 @@ export type HistoryModalTransactionType = {
 
 export type FinishModalPropsType = {
   detailTransaction: DetailTransactionType;
-  getDetailTransactionFinishLostRequest: Function;
   onBack: Function;
-  DniFinish: Function;
+  dniFinish: Function;
   undelivered: Function;
+  getDetailTransactionFinishLostRequest: Function;
+  getDetailTransactionFinishReturnedRequest: Function;
 };
 
 export type DniFinishPropsType = {
