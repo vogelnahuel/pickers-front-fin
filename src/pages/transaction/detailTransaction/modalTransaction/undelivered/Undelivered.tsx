@@ -53,16 +53,20 @@ const Undelivered: React.FC<UndeliveredPropsType> = ({
           selectedMessage={selectedMessage}
           handleClick={handleClick}
         ></ReasonList>
+        <div className="button-container-finish">
+
         <button
           onClick={() => {
             getDetailTransactionFinishReturned(
               detailTransaction.transaction.id
             );
           }}
+          disabled={selectedMessage === undefined}
           className="finish-button"
         >
           Finalizarla
         </button>
+        </div>
       </div>
     </div>
   );

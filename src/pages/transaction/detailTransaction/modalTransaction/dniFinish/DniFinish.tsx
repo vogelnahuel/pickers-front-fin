@@ -7,8 +7,8 @@ import { Col } from "react-bootstrap";
 import { Field, Form } from "react-final-form";
 import { connect } from "react-redux";
 import {
-    actions as detailTransactionActions,
-    selectors as detailTransactionSelector
+  actions as detailTransactionActions,
+  selectors as detailTransactionSelector,
 } from "reducers/detailTransaction";
 import { postDnideliveredResponseType } from "sagas/types/detailTransactions";
 import { AppDispatch, RootState } from "store";
@@ -17,8 +17,11 @@ import * as yup from "yup";
 import { DniFinishFormValuesType, DniFinishPropsType } from "../types";
 import "./dniFinish.scss";
 
-const DniFinish: React.FC<DniFinishPropsType> = ({ onBack,getDetailTransactionDniDeliveredRequest,detailTransaction }): JSX.Element => {
-
+const DniFinish: React.FC<DniFinishPropsType> = ({
+  onBack,
+  getDetailTransactionDniDeliveredRequest,
+  detailTransaction,
+}): JSX.Element => {
   const validationSchema: yup.SchemaOf<any> = yup.object({
     dni: yup
       .string()
@@ -27,7 +30,12 @@ const DniFinish: React.FC<DniFinishPropsType> = ({ onBack,getDetailTransactionDn
   });
   return (
     <div>
-      <div onClick={()=>{onBack()}} className="modal-transaction-finish-volver">
+      <div
+        onClick={() => {
+          onBack();
+        }}
+        className="modal-transaction-finish-volver"
+      >
         <img
           className="modal-transaction-finish-volver-img"
           src={volver}
@@ -42,28 +50,30 @@ const DniFinish: React.FC<DniFinishPropsType> = ({ onBack,getDetailTransactionDn
           Ingresá el DNI de quien recibió el paquete
         </h3>
         <Form
-          onSubmit={(values:DniFinishFormValuesType) => {
-              console.log(values.dni.toString())
-            getDetailTransactionDniDeliveredRequest({key:"identificationNumber",value:values.dni.toString()},detailTransaction.transaction.id);
+          onSubmit={(values: DniFinishFormValuesType) => {
+            console.log(values.dni.toString());
+            getDetailTransactionDniDeliveredRequest(
+              { key: "identificationNumber", value: values.dni.toString() },
+              detailTransaction.transaction.id
+            );
           }}
           validate={useValidationSchema(validationSchema)}
         >
           {({ handleSubmit, invalid }) => (
-              <form onSubmit={handleSubmit}>
-                <Col xxl={6}>
-              <div className="modal-input-dni-finish">
-                <Field
-                  name="dni"
-                  component={Input}
-                  placeholder="Ingresá el DNI"
-                  className="Admin-Pickers-input"
-                  id="dni"
-                  maxLength={8}
-                  label="DNI*"
-                ></Field>
-              </div>
-
-                </Col>
+            <form onSubmit={handleSubmit}>
+              <Col xxl={6}>
+                <div className="modal-input-dni-finish">
+                  <Field
+                    name="dni"
+                    component={Input}
+                    placeholder="Ingresá el DNI"
+                    className="Admin-Pickers-input"
+                    id="dni"
+                    maxLength={8}
+                    label="DNI*"
+                  ></Field>
+                </div>
+              </Col>
               <div>
                 <button disabled={invalid} className="finish-button">
                   Finalizarla
@@ -91,7 +101,7 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   },
 });
 
-const mapStateToProps = (state:RootState) => ({
-    detailTransaction: detailTransactionSelector.getDetailTransaction(state),
-})
+const mapStateToProps = (state: RootState) => ({
+  detailTransaction: detailTransactionSelector.getDetailTransaction(state),
+});
 export default connect(mapStateToProps, mapDispatchToProps)(DniFinish);

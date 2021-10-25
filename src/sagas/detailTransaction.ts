@@ -21,13 +21,21 @@ import {
 import { AxiosResponse } from "axios";
 // import { replace } from "connected-react-router";
 
-
-const sagas:ForkEffect<never>[] = [
+const sagas: ForkEffect<never>[] = [
   takeLatest(types.DETAIL_TRANSACTIONS_ID_REQUEST, getDetailTransaction),
   takeLatest(types.DETAIL_TRANSACTIONS_MENSSAGES_REQUEST, getMessages),
-  takeLatest(types.DETAIL_TRANSACTIONS_DEVOLUTION_UNDELIVERED_REQUEST, postDevolutionUndelivered),
-  takeLatest(types.DETAIL_TRANSACTIONS_REASONS_CANCELED_REQUEST, postReasonsCanceled),
-  takeLatest(types.DETAIL_TRANSACTIONS_FINISH_RETURNED_REQUEST, postFinishReturned),
+  takeLatest(
+    types.DETAIL_TRANSACTIONS_DEVOLUTION_UNDELIVERED_REQUEST,
+    postDevolutionUndelivered
+  ),
+  takeLatest(
+    types.DETAIL_TRANSACTIONS_REASONS_CANCELED_REQUEST,
+    postReasonsCanceled
+  ),
+  takeLatest(
+    types.DETAIL_TRANSACTIONS_FINISH_RETURNED_REQUEST,
+    postFinishReturned
+  ),
   takeLatest(types.DETAIL_TRANSACTIONS_FINISH_LOST_REQUEST, postFinishLost),
   takeLatest(types.DETAIL_TRANSACTIONS_DNI_DELIVERED_REQUEST, postDnidelivered),
 ];
@@ -35,7 +43,8 @@ const sagas:ForkEffect<never>[] = [
 function* getDetailTransaction({
   id,
 }: DetailTransactionSagasType): Generator<
-  CallEffect<AxiosResponse<DetailTransactionResponseType>> | PutEffect<{ type: string }> ,
+  | CallEffect<AxiosResponse<DetailTransactionResponseType>>
+  | PutEffect<{ type: string }>,
   void,
   DetailTransactionResponseType
 > {
@@ -51,7 +60,8 @@ function* getDetailTransaction({
 function* getMessages({
   id,
 }: DetailTransactionSagasType): Generator<
-  CallEffect<AxiosResponse<TransactionCancelResponseType>> | PutEffect<{ type: string }> ,
+  | CallEffect<AxiosResponse<TransactionCancelResponseType>>
+  | PutEffect<{ type: string }>,
   void,
   TransactionCancelResponseType
 > {
@@ -66,18 +76,23 @@ function* getMessages({
 
 function* postDevolutionUndelivered({
   params,
-  id
+  id,
 }: postDevolutionUndeliveredParamsType): Generator<
-CallEffect<AxiosResponse<DevolutionUndeliveredResponseType>> | PutEffect<{ type: string }> ,
+  | CallEffect<AxiosResponse<DevolutionUndeliveredResponseType>>
+  | PutEffect<{ type: string }>,
   void,
   DevolutionUndeliveredResponseType
 > {
-  const response = yield call(transactionsMiddleware.postDevolutionUndelivered, params,id);
+  const response = yield call(
+    transactionsMiddleware.postDevolutionUndelivered,
+    params,
+    id
+  );
   if (response.status !== 200) {
-    yield put(actions.getDetailTransactionError());
+    yield put(actions.getDetailTransactionDevolutionUndeliveredError());
   } else {
     const { result } = response.data;
-    yield put(actions.getDetailTransactionSuccess(result));
+    yield put(actions.getDetailTransactionDevolutionUndeliveredSuccess(result));
   }
 }
 
@@ -85,73 +100,83 @@ function* postReasonsCanceled({
   params,
   id,
 }: postReasonsCancelParamsType): Generator<
-  CallEffect<AxiosResponse<DevolutionUndeliveredResponseType>> | PutEffect<{ type: string }> |void ,
+  | CallEffect<AxiosResponse<DevolutionUndeliveredResponseType>>
+  | PutEffect<{ type: string }>
+  | void,
   void,
   DevolutionUndeliveredResponseType
 > {
+  const paramsPost: postCancelType = {
+    cancellationReasonId: parseInt(params + ""),
+  };
 
-  const paramsPost:postCancelType={
-    "cancellationReasonId":parseInt(params+"")
-  }
-
- 
-  const response = yield call(transactionsMiddleware.postReasonsCanceled, paramsPost,id);
+  const response = yield call(
+    transactionsMiddleware.postReasonsCanceled,
+    paramsPost,
+    id
+  );
   if (response.status !== 200) {
-    yield put(actions.getDetailTransactionError());
+    yield put(actions.getDetailTransactionReasonsCanceledError());
   } else {
     const { result } = response.data;
     // yield put(replace("/transaction"));
     yield window.location.reload();
-    yield put(actions.getDetailTransactionSuccess(result));
-   
+    yield put(actions.getDetailTransactionReasonsCanceledSuccess(result));
   }
 }
 
 function* postFinishReturned({
   id,
 }: DetailTransactionSagasType): Generator<
-  CallEffect<AxiosResponse<DevolutionUndeliveredResponseType>> | PutEffect<{ type: string }> ,
+  | CallEffect<AxiosResponse<DevolutionUndeliveredResponseType>>
+  | PutEffect<{ type: string }>,
   void,
   DevolutionUndeliveredResponseType
 > {
   const response = yield call(transactionsMiddleware.postFinishReturned, id);
   if (response.status !== 200) {
-    yield put(actions.getDetailTransactionError());
+    yield put(actions.getDetailTransactionFinishReturnedError());
   } else {
     const { result } = response.data;
-    yield put(actions.getDetailTransactionSuccess(result));
+    yield put(actions.getDetailTransactionFinishReturnedSuccess(result));
   }
 }
 
 function* postFinishLost({
   id,
 }: DetailTransactionSagasType): Generator<
-  CallEffect<AxiosResponse<DevolutionUndeliveredResponseType>> | PutEffect<{ type: string }>,
+  | CallEffect<AxiosResponse<DevolutionUndeliveredResponseType>>
+  | PutEffect<{ type: string }>,
   void,
   DevolutionUndeliveredResponseType
 > {
   const response = yield call(transactionsMiddleware.postFinishLost, id);
   if (response.status !== 200) {
-    yield put(actions.getDetailTransactionError());
+    yield put(actions.getDetailTransactionFinishLostError());
   } else {
     const { result } = response.data;
-    yield put(actions.getDetailTransactionSuccess(result));
+    yield put(actions.getDetailTransactionFinishLostSuccess(result));
   }
 }
 function* postDnidelivered({
   params,
-  id
+  id,
 }: postDniDeliveredParamsType): Generator<
-  CallEffect<AxiosResponse<DevolutionUndeliveredResponseType>>  | PutEffect<{ type: string }>,
+  | CallEffect<AxiosResponse<DevolutionUndeliveredResponseType>>
+  | PutEffect<{ type: string }>,
   void,
   DevolutionUndeliveredResponseType
 > {
-  const response = yield call(transactionsMiddleware.postDnidelivered, params,id);
+  const response = yield call(
+    transactionsMiddleware.postDnidelivered,
+    params,
+    id
+  );
   if (response.status !== 200) {
-    yield put(actions.getDetailTransactionError());
+    yield put(actions.getDetailTransactionDniDeliveredError());
   } else {
     const { result } = response.data;
-    yield put(actions.getDetailTransactionSuccess(result));
+    yield put(actions.getDetailTransactionDniDeliveredSuccess(result));
   }
 }
 

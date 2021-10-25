@@ -2,20 +2,20 @@ import volver from "assets/admin/PendingUser/volver.svg";
 import Info from "assets/transaction/Info.svg";
 import { useState } from "react";
 import { connect } from "react-redux";
-import { AppDispatch, RootState } from "store";
-import "./finishModal.scss";
 import {
   actions as detailTransactionActions,
-  selectors as detailTransactionSelector,
+  selectors as detailTransactionSelector
 } from "reducers/detailTransaction";
-import { postDnideliveredResponseType } from "sagas/types/detailTransactions";
+import { AppDispatch, RootState } from "store";
 import { FinishModalPropsType } from "../types";
+import "./finishModal.scss";
 
 const FinishModal: React.FC<FinishModalPropsType> = ({
   detailTransaction,
   getDetailTransactionFinishLostRequest,
+  getDetailTransactionFinishReturnedRequest,
   onBack,
-  DniFinish,
+  dniFinish,
   undelivered,
 }): JSX.Element => {
   const [RadioActive, setRadioActive] = useState(false);
@@ -31,13 +31,18 @@ const FinishModal: React.FC<FinishModalPropsType> = ({
     setcheckBoxSelected(e.target.value);
     setRadioActive(true);
   };
+
   const finishTransaction = () => {
     switch (checkBoxSelected) {
       case finishStates.DELIVERED:
-        DniFinish();
+        dniFinish();
         break;
-      case finishStates.RETURNED:
-        undelivered();
+        case finishStates.RETURNED:
+          if(detailTransaction.transaction.state.id === 8){
+            getDetailTransactionFinishReturnedRequest(detailTransaction.transaction.id.toString());
+          } else {
+            undelivered();
+          }
         break;
       case finishStates.LOST:
         getDetailTransactionFinishLostRequest(
@@ -131,10 +136,9 @@ const FinishModal: React.FC<FinishModalPropsType> = ({
             </label>
           </div>
         </div>
-
-        
           <button
-            type="submit"
+            type="button"
+            onClick={finishTransaction}
             className="finish-button"
             disabled={!RadioActive}
           >
@@ -159,17 +163,6 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   getDetailTransactionFinishLostRequest: (id: string) => {
     dispatch(
       detailTransactionActions.getDetailTransactionFinishLostRequest(id)
-    );
-  },
-  getDetailTransactionDniDeliveredRequest: (
-    params: postDnideliveredResponseType,
-    id: string
-  ) => {
-    dispatch(
-      detailTransactionActions.getDetailTransactionDniDeliveredRequest(
-        params,
-        id
-      )
     );
   },
 });

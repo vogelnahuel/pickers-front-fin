@@ -1,13 +1,9 @@
 .form-filter-transaction {
-  /*margin-top: 11px;*/
   display: flex;
 }
 .modal-transaction-optionContainer-scroll {
-  /* height: 340px; */
-  /* overflow-y: scroll; */
   overflow-x: hidden;
-  /* width: 82.4vw; */
-  /* margin-right: 1.964vw; */
+  height: 354px;
 }
 .modal-transaction-button-irApicker {
   height: 50px;
@@ -23,7 +19,6 @@
   line-height: 23px;
   text-align: center;
   color: #101820;
-  /* margin-left: 3.7vw; */
 }
 .modal-transaction-button-irApicker-disabled {
   height: 50px;
@@ -54,10 +49,7 @@
 }
 
 .modal-transaction-optionContainer-scroll {
-  /* overflow-y: scroll; */
-  padding-right: 30px;
-  /* scrollbar-color: #BDBDBD #F2F2F2; */
-  /* scrollbar-width: thin; */
+  padding: 30px 30px 30px 0;
 }
 .modal-transaction-optionContainer-scroll::-webkit-scrollbar {
   width: 8px;
@@ -144,30 +136,35 @@
 
 .modal-transaction-difuminar1 {
   position: absolute;
-  width: 81vw;
+  width: 95%;
+  left: 0;
   height: 15px;
+  background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(1px);
   margin-top: -26px;
 }
 .modal-transaction-difuminar2 {
   position: absolute;
-  width: 81vw;
+  width: 95%;
+  left: 0;
   height: 15px;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(2px);
   margin-top: -19px;
 }
 .modal-transaction-difuminar3 {
   position: absolute;
-  width: 81vw;
+  width: 95%;
+  left: 0;
   height: 15px;
-  background: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(2px);
   margin-top: -12px;
 }
 .modal-transaction-difuminar4 {
   position: absolute;
-  width: 81vw;
+  width: 95%;
+  left: 0;
   height: 15px;
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(1px);
@@ -175,7 +172,8 @@
 }
 .modal-transaction-difuminar5 {
   position: absolute;
-  width: 81vw;
+  width: 95%;
+  left: 0;
   height: 15px;
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(1px);
@@ -183,9 +181,10 @@
 }
 .modal-transaction-difuminar6 {
   position: absolute;
-  width: 81vw;
+  width: 95%;
+  left: 0;
   height: 0px;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(1px);
   margin-top: 3px;
 }
@@ -194,7 +193,7 @@
   background-color: white;
   margin-left: 3%;
   animation: 0.6s moverIzq 1;
-  height: 100%;
+  height: 95%;
 }
 .modalLoading-optionList {
   backdrop-filter: blur(5px);
@@ -251,55 +250,6 @@
   .modal-transaction-button-irApicker-disabled {
     margin-left: 0px;
   }
-  .modal-transaction-difuminar1 {
-    position: absolute;
-    width: 1100px;
-    height: 1.00625vh;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(1px);
-    margin-top: -15px;
-  }
-  .modal-transaction-difuminar2 {
-    position: absolute;
-    width: 1100px;
-    height: 1.00625vh;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(1px);
-    margin-top: -8px;
-  }
-  .modal-transaction-difuminar3 {
-    position: absolute;
-    width: 1100px;
-    height: 1.00625vh;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(1px);
-    margin-top: -1px;
-  }
-
-  .modal-transaction-difuminar4 {
-    position: absolute;
-    width: 1100px;
-    height: 1.00625vh;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(1px);
-    margin-top: -1px;
-  }
-  .modal-transaction-difuminar5 {
-    position: absolute;
-    width: 1100px;
-    height: 1.00625vh;
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(1px);
-    margin-top: 6px;
-  }
-  .modal-transaction-difuminar6 {
-    position: absolute;
-    width: 1100px;
-    height: 1.00625vh;
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(1px);
-    margin-top: 15px;
-  }
   .modal-transaction-optionContainer-scroll {
     width: 1110px;
   }
@@ -322,21 +272,17 @@
 
 @media (max-width: 1310px) {
   .modal-transaction-optionContainer-scroll {
-    height: 39.572917vh;
-    width: 88.1vw;
-  }
-  .modal-transaction-separate-option {
+    height: 276px;
   }
 }
 @media (min-width: 1310px) {
   .modal-transaction-optionContainer-scroll {
-    height: 320px;
+    height: 330px;
   }
 }
 @media (min-width: 1800px) {
   .modal-transaction-optionContainer-scroll {
-    height: 418px;
-    margin-left: 17px;
+    height: 455px;
   }
   .modal-transaction-separate-option {
     margin-bottom: 30px;
