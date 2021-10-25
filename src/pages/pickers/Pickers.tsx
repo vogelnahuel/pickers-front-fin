@@ -2,7 +2,7 @@ import React from "react";
 import { Header } from "component/admin/Header/Header";
 import { Nav } from "component/admin/Nav/Nav";
 import "pages/pickers/Pickers.scss";
-import  PickerStatusButton from "component/admin/PickerStatusButton/PickerStatusButton";
+import PickerStatusButton from "component/admin/PickerStatusButton/PickerStatusButton";
 import exportar from "assets/admin/PendingUser/exportar.svg";
 import or from "assets/admin/PendingUser/or.svg";
 import FilterPickers from "pages/pickers/filter/FilterPickersContainer";
@@ -10,7 +10,7 @@ import  TableAdmin  from "component/admin/table/TableAdmin";
 import NotificationModal from "component/modal/NotificationModal";
 import { PickerTypes } from "./types";
 
-export const Pickers:  React.FC<PickerTypes> = ({
+export const Pickers: React.FC<PickerTypes> = ({
   actualPage,
   tableTitles,
   pendingUsers,
@@ -20,14 +20,14 @@ export const Pickers:  React.FC<PickerTypes> = ({
   seeMore,
   getMorePendingUser,
   getPendingUsersExportRequest,
-}): JSX.Element  => {
+}): JSX.Element => {
   return (
     <div className="background-Grey">
       <Header />
       <div className="mainContainerFlex">
         <Nav isDirty={null} showNotification={null} />
         <div className="pending-container">
-          <PickerStatusButton/>
+          <PickerStatusButton />
 
           <div className="mainContainerFlex">
             <h2 className="subTitle-pending">
@@ -38,16 +38,22 @@ export const Pickers:  React.FC<PickerTypes> = ({
               </p>
             </h2>
             <button
-              onClick={(e) => //getPendingUsersExportRequest(filters, e.target)}
-                getPendingUsersExportRequest( {...filters,
-                  ...filtersExtraSeeMore,
-                  vehicleType:
-                    filters.vehicleType &&
-                    (filters.vehicleType.value === ""
-                      ? undefined
-                      : filters.vehicleType.value),
-                }, e.target)}
-              
+              onClick={(
+                e //getPendingUsersExportRequest(filters, e.target)}
+              ) =>
+                getPendingUsersExportRequest(
+                  {
+                    ...filters,
+                    ...filtersExtraSeeMore,
+                    vehicleType:
+                      filters.vehicleType &&
+                      (filters.vehicleType.value === ""
+                        ? undefined
+                        : filters.vehicleType.value),
+                  },
+                  e.target
+                )
+              }
               className="export"
               name="export"
             >

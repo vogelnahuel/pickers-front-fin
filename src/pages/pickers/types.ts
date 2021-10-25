@@ -1,3 +1,5 @@
+import { type } from "os";
+
 export type ChangePageTypes = {
   props: {
     setActualPage: Function;
@@ -9,7 +11,7 @@ export type PickersParamsType = {
   name?: string;
   email?: string;
   identificationNumber?: number;
-  vehicleType?: { label: String; value: String };
+  vehicleType?: { label: string; value: string };
   limit?: number;
   offset?: number;
 };
@@ -18,43 +20,53 @@ export type ParamsMiddlewareType = {
   name?: string;
   email?: string;
   identificationNumber?: number;
-  vehicleType?: String;
+  vehicleType?: string;
   limit?: number;
   offset?: number;
 };
 
 export type AcountDataType = {
-  bankIdentifier: String;
-  bankName: String;
-  fiscalNumber: String;
+  bankIdentifier: string;
+  bankName: string;
+  fiscalNumber: string;
 };
 
 export type PhoneType = {
-  areaNumber: String;
-  countryNumber: String;
-  number: String;
-  registerDate: String;
+  areaNumber: string;
+  countryNumber: string;
+  number: string;
+  registerDate: string;
 };
 
 export type StatusType = {
-  description: String;
+  description: string;
   id: Number;
 };
 
-export type BicycleType = {
+export type VehicleType = {
   approve: boolean | null;
-  expirationDateDriverLicense: String | null;
-  expirationDateIdentificationVehicle: String | null;
-  expirationDatePolicyVehicle: String | null;
-  patent: String | null;
+  expirationDateDriverLicense: string | null;
+  expirationDateIdentificationVehicle: string | null;
+  expirationDatePolicyVehicle: string | null;
+  patent: string | null;
 };
 
-export type MotorcycleType = {
-  approve: boolean | null;
-  expirationDateDriverLicense: String | null;
-  expirationDateIdentificationVehicle: String | null;
-  expirationDatePolicyVehicle: String | null;
-  patent: String | null;
+export type VehicleGroupType = {
+  bicycle?: VehicleType;
+  motorcycle?: VehicleType;
+};
+
+export type PhoneValidationSchemaType = {
+  areaNumber: string;
+  number: string;
+};
+
+export type DetailPickerValidationSchema = {
+  name: string;
+  surname: string;
+  phone: PhoneValidationSchemaType;
+  expirationDatePolicyPersonal?: string;
+   vehicle: any;
 };
 
 export type PickerType = {
@@ -70,10 +82,7 @@ export type PickerType = {
   registerDate: string;
   status: StatusType;
   surname: string;
-  vehicle: {
-    bicycle: BicycleType;
-    motorcycle: MotorcycleType;
-  };
+  vehicle: VehicleGroupType;
   vehicleType: string;
 };
 
@@ -103,7 +112,7 @@ export type PickerTypes = {
   filtersExtraSeeMore: PickersParamsType;
   seeMore: boolean;
   tableTitles: string[];
-  actualPage: String;
+  actualPage: string;
   reset: Function;
   getPendingUser: Function;
   setPendingUserFilters: Function;
@@ -119,7 +128,7 @@ export type PickersAxiosResponseType = {
 };
 
 export type PickersExportResponseType = {
-  data: String;
+  data: string;
   status: number;
 };
 
