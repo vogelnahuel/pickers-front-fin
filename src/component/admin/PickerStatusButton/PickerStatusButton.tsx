@@ -56,10 +56,7 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
         onClose();
       }
     } else {
-      // console.log("entre")
-      // console.log(actualPage)
-      // console.log(page)
-      // setActualPage(page);
+
     }
   };
 
