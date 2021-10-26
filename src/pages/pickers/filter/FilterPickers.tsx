@@ -18,9 +18,9 @@ export const FilterPickers: React.FC<FilterTypes> = ({
   validationSchema,
 }): JSX.Element => {
   return (
-    <div className="containerFluid display-filter-transaction">
-      <div className="containerRow">
-        <div className="containerCol3">
+    <div className="container-fluid display-filter-transaction">
+      <div className="container-row">
+        <div className="container-col-2">
           <div className="filter-Imagen-width">
             <img
               className="img-filter-transaction"
@@ -30,24 +30,21 @@ export const FilterPickers: React.FC<FilterTypes> = ({
             <p className="p-filter-transaction">Filtros</p>
           </div>
         </div>
-        <div className="containerCol9 sub-container">
-          <div className="containerRow px-2">
-            <Form
-              onSubmit={(value)=>onSubmit(value)}
-              initialValues={filters}
-              mutators={{
-                setValue: ([field, value], state, { changeValue }) => {
-                  changeValue(state, field, () => value);
-                },
-              }}
-              validate={useValidationSchema(validationSchema)}
-            >
-              {({ handleSubmit, form }) => (
-                <form
-                  className="form-filter-transaction"
-                  onSubmit={handleSubmit}
-                >
-                  <div className="containerCol4 px-3">
+        <Form
+          onSubmit={(value) => onSubmit(value)}
+          initialValues={filters}
+          mutators={{
+            setValue: ([field, value], state, { changeValue }) => {
+              changeValue(state, field, () => value);
+            },
+          }}
+          validate={useValidationSchema(validationSchema)}
+        >
+          {({ handleSubmit, form }) => (
+            <form className="form-filter-transaction" onSubmit={handleSubmit}>
+              <div className="container-col-10">
+                <div className="container-row">
+                  <div className="container-col-lg-4 container-col-xl-3 px-3">
                     <Field
                       type="text"
                       name="name"
@@ -58,7 +55,7 @@ export const FilterPickers: React.FC<FilterTypes> = ({
                       maxLength={50}
                     />
                   </div>
-                  <div  className="containerCol4 px-3">
+                  <div className="container-col-lg-4 container-col-xl-3 px-3">
                     <Field
                       type="text"
                       name="identificationNumber"
@@ -69,7 +66,7 @@ export const FilterPickers: React.FC<FilterTypes> = ({
                       maxLength={9}
                     />
                   </div>
-                  <div  className="containerCol4 px-3">
+                  <div className="container-col-lg-4 container-col-xl-3 px-3">
                     <Field
                       name="vehicleType"
                       label="Vehículo"
@@ -80,7 +77,7 @@ export const FilterPickers: React.FC<FilterTypes> = ({
                       {(props: any) => <Select {...props} />}
                     </Field>
                   </div>
-                  <div  className="containerCol4 px-3">
+                  <div className="container-col-lg-4 container-col-xl-3 px-3">
                     <Field
                       type="text"
                       name="email"
@@ -91,24 +88,24 @@ export const FilterPickers: React.FC<FilterTypes> = ({
                       maxLength={250}
                     />
                   </div>
-                  <div
-                    className="containerCol4 px-3"
-                  >
-                    <button
-                      className="search-button-transaction float-end"
-                      name="search"
-                      type="submit"
-                    >
-                      <img src={search} alt="export" />
-                      <img className="or-filter" src={or} alt="or" />
-                      <p className="display-inline-block p-export">Buscar</p>
-                    </button>
-                  </div>
-                </form>
-              )}
-            </Form>
-          </div>
-        </div>
+                  {/* <div  className="container-col-4">
+                  </div> */}
+                </div>
+              </div>
+              <div className="container-col-2 float-end">
+                <button
+                  className="search-button-transaction"
+                  name="search"
+                  type="submit"
+                >
+                  <img src={search} alt="export" />
+                  <img className="or-filter" src={or} alt="or" />
+                  <p className="display-inline-block p-export">Buscar</p>
+                </button>
+              </div>
+            </form>
+          )}
+        </Form>
       </div>
     </div>
   );
