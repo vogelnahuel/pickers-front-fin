@@ -6,7 +6,7 @@ import PickerStatusButton from "component/admin/PickerStatusButton/PickerStatusB
 import exportar from "assets/admin/PendingUser/exportar.svg";
 import or from "assets/admin/PendingUser/or.svg";
 import FilterPickers from "pages/pickers/filter/FilterPickersContainer";
-import  {TableAdmin}  from "../../component/admin/table/TableAdmin";
+import  {TableAdmin}  from "./table/TableAdmin";
 import NotificationModal from "component/modal/NotificationModal";
 import { PickerTypes } from "./types";
 
