@@ -27,7 +27,7 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
     if (isDetail || actualPage !== page) {
       let onClose = () => {
         setActualPage(page);
-        Historial.goBack();
+        //Historial.goBack();
       };
       if (isDirty) {
         showNotification({
