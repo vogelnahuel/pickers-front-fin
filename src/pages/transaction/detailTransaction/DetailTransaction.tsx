@@ -26,7 +26,7 @@ export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
     ReasonsCanceledConfirm: "ReasonsCanceledConfirm",
     Undelivered: "Undelivered",
   };
-  const [currentStep, setCurrentStep] = useHistory([STEP.History]);
+  const [currentStep, setCurrentStep, goBack] = useHistory([STEP.History]);
   return (
     <div className="modal-transaction">
       <Modal
@@ -93,20 +93,20 @@ export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
                 />
               ),
               [STEP.ReasonsCanceled]: () => (
-                <ReasonsCanceled onBack={() => setCurrentStep(STEP.History)}   ReasonsCanceledConfirm={() => setCurrentStep(STEP.ReasonsCanceledConfirm)}/>
+                <ReasonsCanceled onBack={goBack}   ReasonsCanceledConfirm={() => setCurrentStep(STEP.ReasonsCanceledConfirm)}/>
               ),
               [STEP.ReasonsCanceledConfirm]: () => (
                 <ReasonsCanceledConfirm
-                  onBack={() => setCurrentStep(STEP.ReasonsCanceled)}
+                  onBack={goBack}
                 />
               ),
-              [STEP.DniFinish]: () => <DniFinish onBack={() => setCurrentStep(STEP.FinishModal)}/>,
+              [STEP.DniFinish]: () => <DniFinish onBack={goBack}/>,
               [STEP.Undelivered]: () => (
-                <Undelivered onBack={() => setCurrentStep(STEP.FinishModal)} />
+                <Undelivered onBack={goBack} />
               ),
               [STEP.FinishModal]: () => (
                 <FinishModal
-                  onBack={() => setCurrentStep(STEP.History)}
+                  onBack={goBack}
                   dniFinish={() => setCurrentStep(STEP.DniFinish)}
                   undelivered={() => setCurrentStep(STEP.Undelivered)}
                 />
