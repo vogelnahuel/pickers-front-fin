@@ -1,13 +1,13 @@
 import { PickerType } from "pages/pickers/types";
 import React from "react";
 import { Link } from "react-router-dom";
+import { titlesAdminActive, titlesAdminPending } from "utils/constants";
 import getDifDate from "utils/difDate";
 import edit from "../../../assets/admin/PendingUser/edit.svg";
-import "./tableAdmin.scss";
+import "./TablePickers.scss";
 import { TableAdminPropsType } from "./types";
 
-export const TableAdmin: React.FC<TableAdminPropsType> = ({
-  tableTitles,
+export const TablePickers: React.FC<TableAdminPropsType> = ({
   actualPage,
   pendingUsers,
 }): JSX.Element => {
@@ -16,17 +16,14 @@ export const TableAdmin: React.FC<TableAdminPropsType> = ({
       <table className="table-admin">
         <thead>
           <tr>
-            {/* <td></td> */}
-            {tableTitles.map((titulo: string) => (
+            {(actualPage==="PENDING"? titlesAdminPending : titlesAdminActive).map((titulo: string) => (
               <td key={titulo}>{titulo}</td>
             ))}
-            {/* <td></td> */}
           </tr>
         </thead>
         <tbody>
           {pendingUsers.map((user: PickerType) => (
             <tr className="table-info table-pending" key={user.id}>
-              {/* <td></td> */}
               <td> {`${user.name} ${user.surname}`} </td>
               <td> {user.identificationNumber} </td>
               <td>{user.email}</td>
@@ -62,7 +59,6 @@ export const TableAdmin: React.FC<TableAdminPropsType> = ({
                   <img src={edit} className="aditar-picker-img" alt="edit" />
                 </Link>
               </td>
-              {/* <td></td> */}
             </tr>
           ))}
         </tbody>

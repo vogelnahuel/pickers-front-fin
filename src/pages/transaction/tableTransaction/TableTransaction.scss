@@ -47,7 +47,26 @@
     mix-blend-mode: multiply;
     cursor: pointer;
 }
-
+.admin-table-alerta {
+    display: inline-block;
+    font-family: "Mulish";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 16px;
+    margin-left: 1vw;
+    letter-spacing: 0.004em;
+    color: #ff1515;
+    background: rgba(255, 21, 21, 0.1);
+    border: 1px solid #ff1515;
+    box-sizing: border-box;
+    border-radius: 5px;
+    height: 29px;
+    padding-left: 0.5vw;
+    width: 74px;
+    padding-top: 6px;
+    margin-left: 25px;
+  }
 
 
 .titleTableTransactions thead tr td:nth-child(1){

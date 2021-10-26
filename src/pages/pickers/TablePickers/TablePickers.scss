@@ -85,13 +85,6 @@
 .table-admin thead tr td:nth-child(6) {
     width: 78px;
 }
-// .table-admin thead tr td:last-child {
-//   width: 2.635vw;
-// }
-// .table-admin tbody tr td:last-child {
-//   width: 2.635vw;
-// //   padding-left: 70px;
-// }
 
 .table-info {
   text-align: center;
@@ -132,26 +125,7 @@
   width: 99.72px;
   padding-top: 6px;
 }
-.admin-table-alerta {
-  display: inline-block;
-  font-family: "Mulish";
-  font-style: normal;
-  font-weight: normal;
-  font-size: 13px;
-  line-height: 16px;
-  margin-left: 1vw;
-  letter-spacing: 0.004em;
-  color: #ff1515;
-  background: rgba(255, 21, 21, 0.1);
-  border: 1px solid #ff1515;
-  box-sizing: border-box;
-  border-radius: 5px;
-  height: 29px;
-  padding-left: 0.5vw;
-  width: 74px;
-  padding-top: 6px;
-  margin-left: 25px;
-}
+
 .table-pending td:nth-child(2) {
   width: 12.321vw;
 }
