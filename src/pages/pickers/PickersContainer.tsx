@@ -8,6 +8,8 @@ import { AppDispatch, RootState } from "store";
 
 const PendingUserAdminContainer:React.FC<PickerContainerTypes> = (props):JSX.Element => {
 
+    console.log(props.actualPage)
+    
     useEffect(() => {
         const filters = props.actualPage==="PENDING"?{pickerStatusId:"2,3"}:{pickerStatusId:"4,5"};
         const filtersExtra={limit:3};
