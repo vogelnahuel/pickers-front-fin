@@ -6,7 +6,7 @@ import PickerStatusButton from "component/admin/PickerStatusButton/PickerStatusB
 import exportar from "assets/admin/PendingUser/exportar.svg";
 import or from "assets/admin/PendingUser/or.svg";
 import FilterPickers from "pages/pickers/filter/FilterPickersContainer";
-import { TableAdmin } from "component/admin/table/TableAdmin";
+import  {TablePickers}  from "./TablePickers/TablePIckers";
 import NotificationModal from "component/modal/NotificationModal";
 import { PickerTypes } from "./types";
 
@@ -64,11 +64,8 @@ export const Pickers: React.FC<PickerTypes> = ({
           </div>
           <FilterPickers />
           <br />
-          <TableAdmin
-            tableTitles={tableTitles}
-            data={pendingUsers}
-            actualPage={actualPage}
-          />
+          <TablePickers
+            actualPage={actualPage} pendingUsers={pendingUsers}      />
           {pendingUsers && pendingUsers.length !== 0 ? (
             <>
               {seeMore ? (
