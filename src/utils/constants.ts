@@ -44,10 +44,8 @@ export const VALIDATION_REGEX = {
   regPatent: /^([a-zA-Z0-9]){6,7}$/,
   regTransactionCode: /^[a-fA-F0-9]*$/,
   regPickerId: /^[0-9]*$/,
-  regEmail:
-    /^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9]){1,}?$/,
-  regPassword:
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\dàáèéìíòóùúñÀÁÈÉÌÍÒÓÙÚÑ@$¡!%;,*.?#^=&_-]{8,20}$/,
+  regEmail:/^(?=.*[a-zA-Z])(?=^.{1,64}$)^[a-zA-Z\d](?:(\.|[-_]+)?[a-zA-Z\d])*(?:(\+)[a-zA-Z\d]+)?(?:(\.)[a-zA-Z\d]+)*[\da-zA-Z-_]*@(?:[a-zA-Z\d](?:[a-zA-Z\d]+)?\.)+[a-zA-Z\d](?:[a-zA-Z\d]+){1,}?$/,
+    regPassword:/^(?=.*[a-zàáèéìíòóùúñ])(?=.*[A-ZÀÁÈÉÌÍÒÓÙÚÑ])(?=.*\d)[A-Za-z\dàáèéìíòóùúñÀÁÈÉÌÍÒÓÙÚÑ@$¡!%;,*.?#^=&_-]{8,20}$/,
   regPasswordSpecialCharacters:
     /^[0-9A-Za-zdàáèéìíòóùúñÀÁÈÉÌÍÒÓÙÚÑ@$¡!%;,*.?#^=&_-]*$/,
   regMayMin: /^(?=.{1,})(?=.*[a-zdàáèéìíòóùúñ])(?=.*[A-ZÀÁÈÉÌÍÒÓÙÚÑ]).*$/,
@@ -146,7 +144,7 @@ export const TRANSACTION_STATE_TAG_LABEL = {
 export const TRANSACTION_ACTIONS_TAG_LABEL:any = {
   assigned_picker: "Asignado",
   un_assigning: "Sin asignar",
-  state_pending_assigment: "Pendiente",
+  state_pending_assigment: "Pendiende de asignación",
   state_assigned: "Asignado",
   state_in_pickup: "En retiro",
   state_in_pickup_point: "En lugar de retiro",

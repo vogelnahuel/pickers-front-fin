@@ -92,6 +92,7 @@ function* getMoreTransactions({
   void,
   TransactionResponseContent
 > {
+  delete params['date'];
   const response = yield call(transactionsMiddleware.getTransactions, params);
 
   if (response.status !== 200) {
@@ -118,6 +119,7 @@ function* getTransactionsExport({
   void,
   TransactionsExportContentType
 > {
+  
   const response = yield call(
     transactionsMiddleware.getTransactionsExport,
     params
@@ -125,7 +127,8 @@ function* getTransactionsExport({
   if (response.status !== 200) {
     yield put(actions.getTransactionsExportError());
   } else {
-    createCSV(response);
+
+    createCSV(response.data);
     yield put(
       notificationActions.showNotification({
         level: "success",
