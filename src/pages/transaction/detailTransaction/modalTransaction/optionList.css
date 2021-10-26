@@ -86,13 +86,6 @@
 .modal-transaction-part {
   display: flex;
 }
-.modal-transaction-part {
-    & > div:last-child
-
-  modal-transaction-img-connector {
-    display: none;
-  }
-}
 
 .modal-transaction-part-subtitle {
   font-family: "Mulish";
