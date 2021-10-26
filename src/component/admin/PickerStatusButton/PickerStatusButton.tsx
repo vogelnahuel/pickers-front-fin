@@ -26,8 +26,16 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
   const changePage = (page: String, isDirty: Boolean) => {
     if (isDetail || actualPage !== page) {
       let onClose = () => {
+   
         setActualPage(page);
-        Historial.goBack();
+
+        if(window.location.pathname!=="/pickers" && window.history.length>1){
+          Historial.goBack();
+          //se abre en nueva pestaña desde transacciones
+        }else if(window.history.length<=1){
+          Historial.replace("/pickers");
+        }
+
       };
       if (isDirty) {
         showNotification({
@@ -48,7 +56,7 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
         onClose();
       }
     } else {
-      setActualPage(page);
+
     }
   };
 

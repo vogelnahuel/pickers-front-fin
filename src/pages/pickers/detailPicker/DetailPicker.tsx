@@ -31,6 +31,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
   postEditPickerRequest,
   validationSchema,
 }) => {
+  
   return (
     <div className="background-Grey">
       <Header />
@@ -46,9 +47,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                   pendingUserAdminPicker.status.id === 5) &&
                 `#${pendingUserAdminPicker.id}`}
               <h2 className="subTitle-pending-picker">
-                {nameDisplay.length > 25
-                  ? nameDisplay.substring(0, 22) + "..."
-                  : nameDisplay}
+                {nameDisplay}
               </h2>
             </div>
             {pendingUserAdminPicker.vehicleType === "motorcycle" ? (
@@ -194,9 +193,9 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                 <FormSpy
                   subscription={{ dirty: true }}
                   onChange={(pro) => {
-                    if (active) {
+                   
                       setDirty(pro.dirty);
-                    }
+                    
                   }}
                 />
                 <Container fluid className="form-part-1-admin-pickers">
