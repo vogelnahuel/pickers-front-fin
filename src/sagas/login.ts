@@ -44,7 +44,9 @@ function* getLogin({
   const response = yield call(loginMiddleware.getLogin, params);
 
   if (response.status !== 200) {
-    switch (response.data.statusCode) {
+    debugger
+    yield put(actions.getLoginError());
+    switch (response.data ? response.data.statusCode : response.data) {
       case 400:
         yield put(
           notificationActions.showNotification({
@@ -86,7 +88,6 @@ function* getLogin({
         );
         break;
     }
-    yield put(actions.getLoginError());
   } else {
     const { result } = response.data;
     yield call(loginMiddleware.setAuthToken, result.accessToken);
