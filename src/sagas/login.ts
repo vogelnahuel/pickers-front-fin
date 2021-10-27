@@ -160,6 +160,7 @@ function* getLoginEmail({
         );
         break;
     }
+    yield put(replace("/"));
     yield put(actions.getLoginEmailError());
   } else {
     yield put(
