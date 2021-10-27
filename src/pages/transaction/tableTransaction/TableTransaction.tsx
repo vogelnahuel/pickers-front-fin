@@ -33,22 +33,19 @@ export const TableTransaction = ({
           {transactions.length > 0 &&
             transactions.map((data: TransactionResponseTypeResult) => (
               <tr
-                key={data.transaction.id}
+                id={`${data.transaction.id}`}
                 onClick={() => getDetailTransaction(data.transaction.id)}
               >
                 <td>
                   <img
-                    data-name={data.transaction.id}
-                    id={`${data.transaction}`}
                     className="img-transaction"
                     src={TreePoints}
                     alt="TreePoints"
-                  />{" "}
+                  />
                 </td>
                 <td> {data.transaction.transactionCode} </td>
                 <td> {data.transaction.externalPickerId}</td>
                 <td>
-                  {" "}
                   {moment(
                     data.transaction.maxDeliveryDateTime.substring(0, 10),
                     "YYYY-MM-DD"
