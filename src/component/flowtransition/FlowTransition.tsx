@@ -9,7 +9,7 @@ export default function FlowTransition({ pages, currentPage,cambio,previousPage,
   if(cambio){
       setTimeout(() => {
        setcambio(false)
-      }, 50000);
+      }, 500);
     
     return  <div className="Test-Animacion"> 
               <div className="animation-left-transaction"><PageBefore/></div> 
