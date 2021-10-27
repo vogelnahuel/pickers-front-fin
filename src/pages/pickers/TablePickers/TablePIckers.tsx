@@ -32,7 +32,7 @@ export const TablePickers: React.FC<TableAdminPropsType> = ({
                 <td className="table-registro">
                   <div className="table-admin-enCorrecion-span">
                     {getDifDate(user.registerDate)}
-                    {getDifDate(user.registerDate) === 1 ? "día" : "días"}
+                    {getDifDate(user.registerDate) === 1 ? " día" : " días"}
                   </div>
                   {user.status.id === 3 && (
                     <div className="admin-table-correction">En corrección</div>
