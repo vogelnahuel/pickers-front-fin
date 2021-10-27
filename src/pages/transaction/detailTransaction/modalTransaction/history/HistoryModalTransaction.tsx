@@ -23,7 +23,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
 }): JSX.Element => {
   const cancelEnabledStatus = [1, 2, 3, 4];
   const finishEnabledStatus = [5, 6, 7, 8];
-  console.log(detailTransaction.seller)
+
   return (
     <div className="modal-transaction-scroll">
         <div>
