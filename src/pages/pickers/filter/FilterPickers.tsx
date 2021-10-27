@@ -20,7 +20,7 @@ export const FilterPickers: React.FC<FilterTypes> = ({
   return (
     <div className="container-fluid display-filter-transaction">
       <div className="container-row">
-        <div className="container-col-2">
+        <div className="container-col-1">
           <div className="filter-Imagen-width">
             <img
               className="img-filter-transaction"
@@ -30,82 +30,85 @@ export const FilterPickers: React.FC<FilterTypes> = ({
             <p className="p-filter-transaction">Filtros</p>
           </div>
         </div>
-        <Form
-          onSubmit={(value) => onSubmit(value)}
-          initialValues={filters}
-          mutators={{
-            setValue: ([field, value], state, { changeValue }) => {
-              changeValue(state, field, () => value);
-            },
-          }}
-          validate={useValidationSchema(validationSchema)}
-        >
-          {({ handleSubmit, form }) => (
-            <form className="form-filter-transaction" onSubmit={handleSubmit}>
-              <div className="container-col-10">
-                <div className="container-row">
-                  <div className="container-col-lg-4 container-col-xl-3 px-3">
-                    <Field
-                      type="text"
-                      name="name"
-                      label="Nombre y apellido"
-                      component={Input}
-                      className="Admin-Pickers-input"
-                      placeholder="Ingresá el nombre y apellido"
-                      maxLength={50}
-                    />
-                  </div>
-                  <div className="container-col-lg-4 container-col-xl-3 px-3">
-                    <Field
-                      type="text"
-                      name="identificationNumber"
-                      label="DNI"
-                      component={Input}
-                      className="Admin-Pickers-input"
-                      placeholder="Ingresá el DNI"
-                      maxLength={9}
-                    />
-                  </div>
-                  <div className="container-col-lg-4 container-col-xl-3 px-3">
-                    <Field
-                      name="vehicleType"
-                      label="Vehículo"
-                      onChange={form.mutators.setValue}
-                      placeholder="Seleccioná tipo de vehículo"
-                      options={FILTER_PICKERS_OPTIONS}
-                    >
-                      {(props: any) => <Select {...props} />}
-                    </Field>
-                  </div>
-                  <div className="container-col-lg-4 container-col-xl-3 px-3">
-                    <Field
-                      type="text"
-                      name="email"
-                      label="Email"
-                      component={Input}
-                      className="Admin-Pickers-input"
-                      placeholder="Ingresá el email"
-                      maxLength={250}
-                    />
-                  </div>
-                  {/* <div  className="container-col-4">
-                  </div> */}
-                </div>
-              </div>
-              <div className="container-col-2 float-end">
-                <button
-                  className="search-button-transaction"
-                  name="search"
-                  type="submit"
+        <div className="container-col-11">
+          <div className="container-five-fluid">
+            <Form
+              onSubmit={(value) => onSubmit(value)}
+              initialValues={filters}
+              mutators={{
+                setValue: ([field, value], state, { changeValue }) => {
+                  changeValue(state, field, () => value);
+                },
+              }}
+              validate={useValidationSchema(validationSchema)}
+            >
+              {({ handleSubmit, form }) => (
+                <form
+                  className="form-filter-transaction"
+                  onSubmit={handleSubmit}
                 >
-                  <img src={search} alt="export" />
-                  <img className="or-filter" src={or} alt="or" />
-                  <p className="display-inline-block p-export">Buscar</p>
-                </button>
-              </div>
-            </form>
-          )}
-        </Form>
+                  <div className="container-five-row">
+                    <div className="container-col-lg-4 container-five-col-xl-1">
+                      <Field
+                        type="text"
+                        name="name"
+                        label="Nombre y apellido"
+                        component={Input}
+                        className="Admin-Pickers-input"
+                        placeholder="Ingresá el nombre y apellido"
+                        maxLength={50}
+                      />
+                    </div>
+                    <div className="container-five-col-1">
+                      <Field
+                        type="text"
+                        name="identificationNumber"
+                        label="DNI"
+                        component={Input}
+                        className="Admin-Pickers-input"
+                        placeholder="Ingresá el DNI"
+                        maxLength={9}
+                      />
+                    </div>
+                    <div className="container-five-col-1">
+                      <Field
+                        name="vehicleType"
+                        label="Vehículo"
+                        onChange={form.mutators.setValue}
+                        placeholder="Seleccioná tipo de vehículo"
+                        options={FILTER_PICKERS_OPTIONS}
+                      >
+                        {(props: any) => <Select {...props} />}
+                      </Field>
+                    </div>
+                    <div className="container-five-col-1">
+                      <Field
+                        type="text"
+                        name="email"
+                        label="Email"
+                        component={Input}
+                        className="Admin-Pickers-input"
+                        placeholder="Ingresá el email"
+                        maxLength={250}
+                      />
+                    </div>
+                    <div className="container-five-col-1">
+                      <button
+                        className="search-button-transaction"
+                        name="search"
+                        type="submit"
+                      >
+                        <img src={search} alt="export" />
+                        <img className="or-filter" src={or} alt="or" />
+                        <p className="display-inline-block p-export">Buscar</p>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              )}
+            </Form>
+          </div>
+        </div>
       </div>
     </div>
   );
