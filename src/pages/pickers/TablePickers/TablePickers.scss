@@ -55,6 +55,13 @@
 .table-admin thead tr td:nth-child(2) {
   width: 10.321vw;
 }
+.table-admin tbody tr td:nth-child(1) {
+  white-space: pre;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  max-width: 12.603vw;
+  padding-right: 0.5vw;
+}
 .table-admin tbody tr td:nth-child(3) {
   white-space: nowrap;
   overflow-x: hidden;
