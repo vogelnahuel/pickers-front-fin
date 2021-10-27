@@ -21,7 +21,7 @@ import {
 } from "./types/login";
 import { AxiosResponse } from "axios";
 
-const sagas:ForkEffect<never>[] = [
+const sagas: ForkEffect<never>[] = [
   takeLatest(types.LOGIN_GET_REQUEST, getLogin),
   takeLatest(types.LOGOUT, logout),
   takeLatest(types.LOGIN_EMAIL_GET_REQUEST, getLoginEmail),
@@ -44,9 +44,8 @@ function* getLogin({
   const response = yield call(loginMiddleware.getLogin, params);
 
   if (response.status !== 200) {
-    debugger
     yield put(actions.getLoginError());
-    switch (response.data ? response.data.statusCode : response.data) {
+    switch (response.data.statusCode) {
       case 400:
         yield put(
           notificationActions.showNotification({
@@ -131,15 +130,15 @@ function* getLoginEmail({
         );
         break;
       case 403:
-          yield put(
-            notificationActions.showNotification({
-              level: "warning",
-              title: "Enviamos un correo a tu email",
-              body: "Ingresá al mismo para restaurar tu contraseña",
-              element,
-            })
-          );
-          break;
+        yield put(
+          notificationActions.showNotification({
+            level: "warning",
+            title: "Enviamos un correo a tu email",
+            body: "Ingresá al mismo para restaurar tu contraseña",
+            element,
+          })
+        );
+        break;
       case 404:
         yield put(
           notificationActions.showNotification({
