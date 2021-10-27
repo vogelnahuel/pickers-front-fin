@@ -36,7 +36,8 @@ api.interceptors.response.use(
     },
     (error) => {
         if(!error.status){
-            console.log(error)
+            console.log(error);
+            window.location.reload();
         }
         if (error.response) {
             if (error.response.status !== 401) {
