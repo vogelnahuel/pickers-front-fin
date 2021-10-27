@@ -1,0 +1,30 @@
+.animation-left-transaction {
+  background-color: white;
+  margin-left: 3%;
+  animation: 60.6s moverIzq 1;
+  height: 95%;
+  width: 1100px;
+  margin-right: 5%;
+  position: relative;
+  flex: 3;
+}
+.Test-Animacion{
+  display: flex;
+  flex: 1;
+  flex-flow: row nowrap;
+  position: relative;
+  overflow-x: hidden;
+}
+
+@keyframes moverIzq {
+  0% {
+    margin-left: 0;
+  }
+  30% {
+    margin-left: 0;
+  }
+  95% {
+    margin-left: -50%;
+    opacity: 0;
+  }
+}

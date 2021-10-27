@@ -1,6 +1,7 @@
 import { useState, useCallback } from "react";
 
 export default function useHistory(initialHistory:any) {
+    
     const [history, setHistory] = useState(initialHistory || []);
 
     const [value, ...previousValues] = history;
@@ -13,6 +14,7 @@ export default function useHistory(initialHistory:any) {
 
     const setValue = useCallback(
         (newValue) => {
+             initialHistory[1](true)
             setHistory([newValue, ...history]);
         },
         [history, setHistory],

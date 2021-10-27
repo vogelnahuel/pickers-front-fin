@@ -1,7 +1,7 @@
 import { Modal } from "@pickit/pickit-components";
 import Close from "assets/transaction/Close.svg";
 import useHistory from "hooks/useHistory";
-import React from "react";
+import React, { useState } from "react";
 import { TRANSACTION_STATE_ID_LABEL } from "utils/constants";
 import { ISO8601toDDMMYYYHHMM } from "utils/iso8601toDDMMYYHHMM";
 import FlowTransition from "../../../component/flowtransition/FlowTransition";
@@ -26,7 +26,8 @@ export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
     ReasonsCanceledConfirm: "ReasonsCanceledConfirm",
     Undelivered: "Undelivered",
   };
-  const [currentStep, setCurrentStep, goBack] = useHistory([STEP.History]);
+  const [cambio, setcambio] = useState(false)
+  const [currentStep, setCurrentStep, goBack,previousPage] = useHistory([STEP.History,setcambio]);
   return (
     <div className="modal-transaction">
       <Modal
@@ -84,6 +85,9 @@ export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
             id="modal-transaction-hr-title"
           />
           <FlowTransition
+            previousPage={previousPage}
+            cambio={cambio}  
+            setcambio={setcambio}
             currentPage={currentStep}
             pages={{
               [STEP.History]: () => (
