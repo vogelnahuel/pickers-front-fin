@@ -12,7 +12,7 @@ import "./reasonsCanceled.scss";
 import { ReasonCanceledPropsType } from "./types";
 
 const ReasonsCanceled: React.FC<ReasonCanceledPropsType> = ({
-  // onBack,
+  back,
   messages,
   reasonsCanceledConfirm,
   setMessageSelected,
@@ -34,7 +34,7 @@ const ReasonsCanceled: React.FC<ReasonCanceledPropsType> = ({
     <div className="modal-transaction-reasonsCanceled">
       <div
         onClick={() => {
-          // onBack();
+          back();
         }}
         className="modal-transaction-volver"
       >

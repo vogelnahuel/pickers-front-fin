@@ -4,7 +4,7 @@ export type ReasonCanceledPropsType={
     detailTransaction:DetailTransactionType,
     messages:DetailTransactionCancelItemType[]
     selectedMessage: DetailTransactionCancelItemType,
-    // onBack:Function
+    back:Function
     reasonsCanceledConfirm: string,
 
     getMessages:Function,
