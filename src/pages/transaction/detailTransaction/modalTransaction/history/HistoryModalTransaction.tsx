@@ -19,17 +19,19 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
   detailTransaction,
   cancel,
   finish,
+  next,
   getDetailTransaction,
 }): JSX.Element => {
   const cancelEnabledStatus = [1, 2, 3, 4];
   const finishEnabledStatus = [5, 6, 7, 8];
+
   return (
     <div className="modal-transaction-scroll">
-        <div>
-          <div className="modal-transaction-difuminar4"></div>
-          <div className="modal-transaction-difuminar5"></div>
-          <div className="modal-transaction-difuminar6"> </div>
-        </div>
+      <div>
+        <div className="modal-transaction-difuminar4"></div>
+        <div className="modal-transaction-difuminar5"></div>
+        <div className="modal-transaction-difuminar6"> </div>
+      </div>
       <div className="modal-transaction-optionContainer-scroll">
         <Form
           onSubmit={() => {}}
@@ -199,11 +201,11 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
           transactionHistory={detailTransaction.transactionHistory}
         />
       </div>
-        <div>
-          <div className="modal-transaction-difuminar1"> </div>
-          <div className="modal-transaction-difuminar2"></div>
-          <div className="modal-transaction-difuminar3"></div>
-        </div>
+      <div>
+        <div className="modal-transaction-difuminar1"> </div>
+        <div className="modal-transaction-difuminar2"></div>
+        <div className="modal-transaction-difuminar3"></div>
+      </div>
       <div className="button-container">
         <button
           disabled={
@@ -212,7 +214,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
             )
           }
           onClick={() => {
-            cancel();
+            next(cancel);
           }}
           className="button-modal-transaction"
         >
@@ -225,7 +227,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
             )
           }
           onClick={() => {
-            finish();
+            next(finish);
           }}
           className="button-modal-transaction"
         >

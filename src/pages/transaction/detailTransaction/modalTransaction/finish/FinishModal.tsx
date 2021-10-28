@@ -14,7 +14,7 @@ const FinishModal: React.FC<FinishModalPropsType> = ({
   detailTransaction,
   getDetailTransactionFinishLostRequest,
   getDetailTransactionFinishReturnedRequest,
-  onBack,
+  // onBack,
   dniFinish,
   undelivered,
 }): JSX.Element => {
@@ -35,13 +35,13 @@ const FinishModal: React.FC<FinishModalPropsType> = ({
   const finishTransaction = () => {
     switch (checkBoxSelected) {
       case finishStates.DELIVERED:
-        dniFinish();
+        console.log(dniFinish);
         break;
         case finishStates.RETURNED:
           if(detailTransaction.transaction.state.id === 8){
             getDetailTransactionFinishReturnedRequest(detailTransaction.transaction.id.toString());
           } else {
-            undelivered();
+            console.log(undelivered);
           }
         break;
       case finishStates.LOST:
@@ -54,7 +54,10 @@ const FinishModal: React.FC<FinishModalPropsType> = ({
 
   return (
     <div className="modal-transaction-finishModal">
-      <div onClick={()=>{onBack()}} className="modal-transaction-finish-volver">
+      <div onClick={()=>{
+        // onBack()
+      }
+        } className="modal-transaction-finish-volver">
         <img
           className="modal-transaction-finish-volver-img"
           src={volver}

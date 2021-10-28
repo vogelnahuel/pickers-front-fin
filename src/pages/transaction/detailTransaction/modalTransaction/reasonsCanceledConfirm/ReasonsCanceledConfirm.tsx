@@ -14,14 +14,14 @@ import { ReasonCanceledConfirmPropsType } from "./types";
 const ReasonsCanceledConfirm: React.FC<ReasonCanceledConfirmPropsType> = ({
   detailTransaction,
   messageSelected,
-  onBack,
+  // onBack,
   postReasonsCanceled,
 }): JSX.Element => {
   return (
     <div className="modal-transaction-reasonsCanceled">
       <div
         onClick={() => {
-          onBack();
+          // onBack();
         }}
         className="modal-transaction-volver"
       >

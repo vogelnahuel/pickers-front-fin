@@ -14,7 +14,7 @@ export default function useHistory(initialHistory:any) {
 
     const setValue = useCallback(
         (newValue) => {
-             initialHistory[1](true)
+            //  initialHistory[1](true)
             setHistory([newValue, ...history]);
         },
         [history, setHistory],
