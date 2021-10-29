@@ -86,7 +86,7 @@ export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
             id="modal-transaction-hr-title"
           />
           <FlowTransition
-            firstPage={[STEP.History]}
+            firstPage={STEP.History}
             pages={{
               [STEP.History]: (props: FlowTrasitionParamsType) => {
                 console.log(props);

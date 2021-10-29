@@ -1,6 +1,6 @@
 export type FlowTrasitionType = {
-    pages: object[];
-    firstPage: string[];
+    pages: {[x: string]: (props: FlowTrasitionParamsType) => JSX.Element};
+    firstPage: string;
 }
 export type FlowTrasitionParamsType = {
     next: Function;

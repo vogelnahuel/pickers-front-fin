@@ -27,5 +27,5 @@ export default function FlowTransition({ pages, firstPage }: FlowTrasitionType) 
   );
 
   const Page = pages[value];
-  return <Page className="lizan" next={setValue} back={undo} />;
+  return <Page next={setValue} back={undo} />;
 }
