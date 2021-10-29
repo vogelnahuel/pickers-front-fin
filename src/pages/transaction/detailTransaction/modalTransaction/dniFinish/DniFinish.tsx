@@ -3,7 +3,7 @@ import Card from "assets/transaction/Card.svg";
 import { Input } from "component/inputs/Input";
 import useValidationSchema from "hooks/useValidationSchema";
 import React from "react";
-import { Col } from "react-bootstrap";
+// import { Col } from "react-bootstrap";
 import { Field, Form } from "react-final-form";
 import { connect } from "react-redux";
 import {
@@ -61,7 +61,7 @@ const DniFinish: React.FC<DniFinishPropsType> = ({
         >
           {({ handleSubmit, invalid }) => (
             <form onSubmit={handleSubmit}>
-              <Col xxl={6}>
+              <div >
                 <div className="modal-input-dni-finish">
                   <Field
                     name="dni"
@@ -73,7 +73,7 @@ const DniFinish: React.FC<DniFinishPropsType> = ({
                     label="DNI*"
                   ></Field>
                 </div>
-              </Col>
+              </div>
               <div>
                 <button disabled={invalid} className="finish-button">
                   Finalizarla

@@ -1,6 +1,6 @@
 import { Input } from "component/inputs/Input";
 import React from "react";
-import { Col, Row } from "react-bootstrap";
+// import { Col, Row } from "react-bootstrap";
 import { Field, Form } from "react-final-form";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
@@ -26,11 +26,11 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
 
   return (
     <div className="modal-transaction-scroll">
-        <div>
-          <div className="modal-transaction-difuminar4"></div>
-          <div className="modal-transaction-difuminar5"></div>
-          <div className="modal-transaction-difuminar6"> </div>
-        </div>
+      <div>
+        <div className="modal-transaction-difuminar4"></div>
+        <div className="modal-transaction-difuminar5"></div>
+        <div className="modal-transaction-difuminar6"> </div>
+      </div>
       <div className="modal-transaction-optionContainer-scroll">
         <Form
           onSubmit={() => {}}
@@ -49,15 +49,18 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
               : "-",
             deliveryAddress: detailTransaction.destination.formattedAddress,
             pickupAddress: detailTransaction.origin.formattedAddress,
-            retailer: detailTransaction.seller && detailTransaction.seller.name!==null  ? detailTransaction.seller.name: "-",
+            retailer:
+              detailTransaction.seller && detailTransaction.seller.name !== null
+                ? detailTransaction.seller.name
+                : "-",
             reveiverName: `${detailTransaction.client.name} ${detailTransaction.client.lastName}`,
             reveiverPhone: detailTransaction.client.phone,
           }}
         >
           {({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
-              <Row>
-                <Col>
+              <div>
+                <div>
                   <Field
                     type="text"
                     name="pickerId"
@@ -66,8 +69,8 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                     className="Admin-Pickers-input"
                     disabled
                   />
-                </Col>
-                <Col>
+                </div>
+                <div>
                   <Field
                     type="text"
                     name="name"
@@ -76,10 +79,10 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                     className="Admin-Pickers-input"
                     disabled
                   />
-                </Col>
-                <Col>
-                  <Row>
-                    <Col md={6}>
+                </div>
+                <div>
+                  <div>
+                    <div >
                       <Field
                         type="text"
                         name="areaCode"
@@ -88,8 +91,8 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                         className="Admin-Pickers-input"
                         disabled
                       />
-                    </Col>
-                    <Col md={6}>
+                    </div>
+                    <div >
                       <Field
                         type="text"
                         name="phone"
@@ -98,10 +101,10 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                         className="Admin-Pickers-input"
                         disabled
                       />
-                    </Col>
-                  </Row>
-                </Col>
-                <Col md={2}>
+                    </div>
+                  </div>
+                </div>
+                <div >
                   <Link
                     className="modal-transaction-button-irApicker-a"
                     target={detailTransaction.picker.id ? "_blank" : ""}
@@ -123,10 +126,10 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                       Ir a picker
                     </button>
                   </Link>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
+                </div>
+              </div>
+              <div>
+                <div>
                   <Field
                     type="text"
                     name="deliveryAddress"
@@ -135,8 +138,8 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                     className="Admin-Pickers-input"
                     disabled
                   />
-                </Col>
-                <Col>
+                </div>
+                <div>
                   <Field
                     type="text"
                     name="pickupAddress"
@@ -145,8 +148,8 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                     className="Admin-Pickers-input"
                     disabled
                   />
-                </Col>
-                <Col>
+                </div>
+                <div>
                   <Field
                     type="text"
                     name="retailer"
@@ -155,10 +158,10 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                     className="Admin-Pickers-input"
                     disabled
                   />
-                </Col>
-                <Col md={2}></Col>
-              </Row>
-              <Row>
+                </div>
+                <div></div>
+              </div>
+              <div>
                 <h3
                   className="modal-transaction-h3"
                   id="modal-transaction-history-Final"
@@ -170,7 +173,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                   id="modal-transaction-hr-title"
                 />
 
-                <Col md={3}>
+                <div >
                   <Field
                     type="text"
                     name="reveiverName"
@@ -179,8 +182,8 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                     className="Admin-Pickers-input"
                     disabled
                   />
-                </Col>
-                <Col md={3}>
+                </div>
+                <div>
                   <Field
                     type="text"
                     name="reveiverPhone"
@@ -189,8 +192,8 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                     className="Admin-Pickers-input"
                     disabled
                   />
-                </Col>
-              </Row>
+                </div>
+              </div>
             </form>
           )}
         </Form>
@@ -198,11 +201,11 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
           transactionHistory={detailTransaction.transactionHistory}
         />
       </div>
-        <div>
-          <div className="modal-transaction-difuminar1"> </div>
-          <div className="modal-transaction-difuminar2"></div>
-          <div className="modal-transaction-difuminar3"></div>
-        </div>
+      <div>
+        <div className="modal-transaction-difuminar1"> </div>
+        <div className="modal-transaction-difuminar2"></div>
+        <div className="modal-transaction-difuminar3"></div>
+      </div>
       <div className="button-container">
         <button
           disabled={
