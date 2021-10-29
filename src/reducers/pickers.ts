@@ -119,6 +119,7 @@ const reducer = (state: PickerStateType = INITIAL_STATE, action: ActionType) => 
     case types.PENDING_USER_RESET:
       return {
         ...INITIAL_STATE,
+        actualPage: state.actualPage,
       };
     case types.PENDING_USER_GET_REQUEST:
       return {

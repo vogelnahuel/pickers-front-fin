@@ -13,10 +13,15 @@ import {
 } from "reducers/pickers";
 import * as yup from "yup";
 import { actions as notificationActions } from "reducers/notification";
-import { DetailPickerContainerTypeProps } from "./types";
-import { PickerType, ParamsMiddlewareType } from "../types";
+
+import {
+  PickerType,
+  ParamsMiddlewareType,
+  DetailPickerValidationSchema,
+} from "../types";
 import { ParamGetPendingUser } from "sagas/types/pickers";
 import { AppDispatch, RootState } from "store";
+import { DetailPickerContainerTypeProps } from "./types";
 
 const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
   props
@@ -28,14 +33,14 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
     props.getPendingUserPicker(params.id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  
+
   let active: boolean =
     props.pendingUserAdminPicker.status &&
     (props.pendingUserAdminPicker.status.id === 4 ||
       props.pendingUserAdminPicker.status.id === 5);
 
-  const validationSchema = yup.lazy((values) => {
-    return yup.object({
+  const validationSchema: yup.SchemaOf<DetailPickerValidationSchema> =
+    yup.object({
       name: yup
         .string()
         .required("Este campo es requerido.")
@@ -66,48 +71,48 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
         .required("Este campo es requerido.")
         .matches(DATE_FORMATS.regex, "Ingresá el formato correcto"),
       vehicle:
-        // values.vehicleType === 'motorcycle' && //REVISAR VALIDACIONES
-        yup.object({
-          [values.vehicleType]: yup.object({
-            patent: yup
-              .string()
-              .nullable()
-              .required("Este campo es requerido.")
-              .matches(
-                VALIDATION_REGEX.regPatent,
-                "No se admiten caracteres especiales"
-              ),
-            expirationDatePolicyVehicle: yup
-              .string()
-              .nullable()
-              .required("Este campo es requerido.")
-              .matches(DATE_FORMATS.regex, "Ingresá el formato correcto")
-              .matches(
-                DATE_FORMATS.regexValidCharacter,
-                "No se admiten letras o caracteres especiales"
-              ),
-            expirationDateIdentificationVehicle: yup
-              .string()
-              .nullable()
-              .required("Este campo es requerido.")
-              .matches(DATE_FORMATS.regex, "Ingresá el formato correcto")
-              .matches(
-                DATE_FORMATS.regexValidCharacter,
-                "No se admiten letras o caracteres especiales"
-              ),
-            expirationDateDriverLicense: yup
-              .string()
-              .nullable()
-              .required("Este campo es requerido.")
-              .matches(DATE_FORMATS.regex, "Ingresá el formato correcto")
-              .matches(
-                DATE_FORMATS.regexValidCharacter,
-                "No se admiten letras o caracteres especiales"
-              ),
-          }),
-        }),
+        props.pendingUserAdminPicker.vehicleType === "motorcycle"
+          ? yup.object({
+              [props.pendingUserAdminPicker.vehicleType]: yup.object({
+                patent: yup
+                  .string()
+                  .nullable()
+                  .required("Este campo es requerido.")
+                  .matches(
+                    VALIDATION_REGEX.regPatent,
+                    "No se admiten caracteres especiales"
+                  ),
+                expirationDatePolicyVehicle: yup
+                  .string()
+                  .nullable()
+                  .required("Este campo es requerido.")
+                  .matches(DATE_FORMATS.regex, "Ingresá el formato correcto")
+                  .matches(
+                    DATE_FORMATS.regexValidCharacter,
+                    "No se admiten letras o caracteres especiales"
+                  ),
+                expirationDateIdentificationVehicle: yup
+                  .string()
+                  .nullable()
+                  .required("Este campo es requerido.")
+                  .matches(DATE_FORMATS.regex, "Ingresá el formato correcto")
+                  .matches(
+                    DATE_FORMATS.regexValidCharacter,
+                    "No se admiten letras o caracteres especiales"
+                  ),
+                expirationDateDriverLicense: yup
+                  .string()
+                  .nullable()
+                  .required("Este campo es requerido.")
+                  .matches(DATE_FORMATS.regex, "Ingresá el formato correcto")
+                  .matches(
+                    DATE_FORMATS.regexValidCharacter,
+                    "No se admiten letras o caracteres especiales"
+                  ),
+              }),
+            })
+          : yup.object({}),
     });
-  });
 
   const cancel = (isDirty: Boolean, restart: Function) => {
     let onClose = () => {

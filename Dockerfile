@@ -1,4 +1,4 @@
-FROM node:lts-slim
+FROM node:14.17-slim
 
 RUN mkdir -p /usr/src/app
 

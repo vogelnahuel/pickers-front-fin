@@ -43,3 +43,16 @@ export type DetailPickerTypeProps = {
   postEditPickerRequest:Function
   validationSchema:Object
 };
+
+// export type DetailPickerValidationSchema = {
+//   name:string,
+// surname:string,
+// phone:{
+//   areaNumber:string,
+// number:string,
+// }
+// expirationDatePolicyPersonal?:string
+// vehicle?:{
+
+// }
+// }

@@ -48,22 +48,35 @@
     
 }
 .table-admin tbody tr td:first-child {
-    width: 3.660vw;
+    width: 17.660vw;
 }
 .table-admin thead tr td:nth-child(2){
     width: 10.321vw;
+}
+.table-admin tbody tr td:nth-child(2){
+    white-space: pre;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    max-width: 12.603vw;
+    padding-right: 0.5vw;
 }
 .table-admin thead tr td:nth-child(3){
     padding-left: 0.55vw;
 }
 .table-admin tbody tr td:nth-child(3){
-    padding-left: 0.5vw;
+
 }
 .table-admin thead tr td:nth-child(4){
-    padding-left: 0.5vw;
+    padding-left: 0.5vw;  
 }
 .table-admin tbody tr td:nth-child(4){
     padding-left: 0.5vw;
+    white-space: pre;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    max-width: 18.603vw;
+    padding-right: 0.5vw;
+    width: 18vw;
 }
 .table-admin tbody tr td:nth-child(6){
     padding-left: 1vw;
@@ -140,7 +153,7 @@
     margin-left: 25px;
 }
 .table-pending td:nth-child(2){
-    width: 12.321vw;
+    width: 10.221vw;
 }
 .table-active-correcion td:nth-child(2){
     width: 12.221vw;
@@ -151,6 +164,7 @@
 .table-admin-enCorrecion-span{
     width: 62px;
     display: inline-block;
+    margin-right: 16px;
 }
 @media (max-width:1310px){
     .admin-table-alerta{

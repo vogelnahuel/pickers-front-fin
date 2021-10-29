@@ -1,6 +1,7 @@
 import {
   call,
   CallEffect,
+  ForkEffect,
   put,
   PutEffect,
   takeLatest,
@@ -20,7 +21,7 @@ import {
 } from "./types/login";
 import { AxiosResponse } from "axios";
 
-const sagas = [
+const sagas: ForkEffect<never>[] = [
   takeLatest(types.LOGIN_GET_REQUEST, getLogin),
   takeLatest(types.LOGOUT, logout),
   takeLatest(types.LOGIN_EMAIL_GET_REQUEST, getLoginEmail),
@@ -43,6 +44,7 @@ function* getLogin({
   const response = yield call(loginMiddleware.getLogin, params);
 
   if (response.status !== 200) {
+    yield put(actions.getLoginError());
     switch (response.data.statusCode) {
       case 400:
         yield put(
@@ -85,7 +87,6 @@ function* getLogin({
         );
         break;
     }
-    yield put(actions.getLoginError());
   } else {
     const { result } = response.data;
     yield call(loginMiddleware.setAuthToken, result.accessToken);
@@ -121,9 +122,19 @@ function* getLoginEmail({
       case 400:
         yield put(
           notificationActions.showNotification({
-            level: "error",
-            title: "Email incorrecto",
-            body: "El email ingresado no corresponde con una cuenta ya creada en pickers. Por favor, ingresá otro.",
+            level: "warning",
+            title: "Enviamos un correo a tu email",
+            body: "Ingresá al mismo para restaurar tu contraseña",
+            element,
+          })
+        );
+        break;
+      case 403:
+        yield put(
+          notificationActions.showNotification({
+            level: "warning",
+            title: "Enviamos un correo a tu email",
+            body: "Ingresá al mismo para restaurar tu contraseña",
             element,
           })
         );
@@ -131,9 +142,9 @@ function* getLoginEmail({
       case 404:
         yield put(
           notificationActions.showNotification({
-            level: "error",
-            title: "Email incorrecto",
-            body: "El email ingresado no corresponde con una cuenta ya creada en pickers. Por favor, ingresá otro.",
+            level: "warning",
+            title: "Enviamos un correo a tu email",
+            body: "Ingresá al mismo para restaurar tu contraseña",
             element,
           })
         );
@@ -149,6 +160,7 @@ function* getLoginEmail({
         );
         break;
     }
+    yield put(replace("/"));
     yield put(actions.getLoginEmailError());
   } else {
     yield put(

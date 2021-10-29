@@ -46,6 +46,7 @@ const Login: React.FC<LoginTypeProps> = ({
               animated
               className="Admin-Pickers-input"
               component={Input}
+              maxLength={20}
             />
            
             <div className="container-animation">

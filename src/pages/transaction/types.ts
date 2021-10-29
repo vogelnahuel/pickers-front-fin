@@ -2,11 +2,15 @@ import {
   FiltersExtraSeeMoreType,
   FiltersExtraType,
 } from "reducers/types/transaction";
+import { DetailTransactionHistoryType } from "sagas/types/detailTransactions";
 import {
   FilterTransactionsType,
   TransactionResponseTypeResult,
 } from "sagas/types/transactions";
 
+export type TransactionHistoryType= {
+  transactionHistory:DetailTransactionHistoryType[];
+}
 
 export type URLTransactionContainerType = {
   minMinDeliveryDate?: string;
@@ -20,6 +24,7 @@ export type URLTransactionContainerType = {
 };
 export type TransactionContainerPropsType = {
   isFetching: boolean;
+  detailTransactionModalOpen:boolean
   isExportDisabled: boolean;
   transactions: TransactionResponseTypeResult[];
   filters: FilterTransactionsType;
@@ -33,6 +38,7 @@ export type TransactionContainerPropsType = {
   reset: Function;
   setExtraFilters: Function;
   setFilters: Function;
+ 
 };
 
 export type TransactionType = {
@@ -52,4 +58,5 @@ export type TransactionType = {
   reset: Function;
   setExtraFilters: Function;
   setFilters: Function;
+  detailTransactionModalOpen:boolean
   };
