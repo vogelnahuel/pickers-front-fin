@@ -1,8 +1,10 @@
 import React, { useCallback, useState } from "react";
 import "./flowTransition.scss";
+import { FlowTrasitionType } from "./types";
 
-export default function FlowTransition({ pages, currentPage }: any) {
-  const [history, setHistory] = useState(currentPage || []);
+export default function FlowTransition({ pages, firstPage }: FlowTrasitionType) {
+
+  const [history, setHistory] = useState([firstPage] || []);
   const [value, ...previousValues] = history;
 
   const undo = useCallback(() => {
@@ -12,12 +14,18 @@ export default function FlowTransition({ pages, currentPage }: any) {
   }, [setHistory, previousValues]);
 
   const setValue = useCallback(
-    (newValue) => {
-      setHistory([newValue, ...history]);
-    },
+    // animation true 
+    // value (pagina actual ) animacion
+    // setTimeout (
+
+      (newValue) => {
+        setHistory([newValue, ...history]);
+      },
+    //   ,500
+    // )
     [history, setHistory]
   );
 
   const Page = pages[value];
-  return <Page next={setValue} back={undo} />;
+  return <Page className="lizan" next={setValue} back={undo} />;
 }

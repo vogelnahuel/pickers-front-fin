@@ -13,6 +13,7 @@ import { ReasonCanceledPropsType } from "./types";
 
 const ReasonsCanceled: React.FC<ReasonCanceledPropsType> = ({
   back,
+  next,
   messages,
   reasonsCanceledConfirm,
   setMessageSelected,
@@ -28,7 +29,7 @@ const ReasonsCanceled: React.FC<ReasonCanceledPropsType> = ({
   }, []);
   const handleClick = (message:DetailTransactionCancelItemType) => {
     setMessageSelected(message);
-    console.log(reasonsCanceledConfirm);
+    next(reasonsCanceledConfirm);
   };
   return (
     <div className="modal-transaction-reasonsCanceled">

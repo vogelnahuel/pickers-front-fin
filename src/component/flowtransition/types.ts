@@ -1,6 +1,6 @@
 export type FlowTrasitionType = {
     pages: object[];
-    currentPage: string;
+    firstPage: string[];
 }
 export type FlowTrasitionParamsType = {
     next: Function;
