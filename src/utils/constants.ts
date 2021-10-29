@@ -143,7 +143,7 @@ export const TRANSACTION_STATE_TAG_LABEL = {
 
 export const TRANSACTION_ACTIONS_TAG_LABEL:any = {
   assigned_picker: "Asignado",
-  un_assigning: "Sin asignar",
+  un_assigning: "Pendiente de asignación",
   state_pending_assigment: "Pendiente de asignación",
   state_assigned: "Asignado",
   state_in_pickup: "En retiro",
