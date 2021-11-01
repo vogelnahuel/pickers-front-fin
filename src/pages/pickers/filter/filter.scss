@@ -1,14 +1,11 @@
 @import "@pickit/pickit-grid-system";
 
 .container {
-  @include container(12, 25px);
+  @include container(15, 25px);
 }
-
-.container-five {
-  @include container(5, 25px);
-}
-.container-three {
-  @include container(3, 25px);
+.end{
+  display: flex;
+  justify-content: flex-end;
 }
 
 .form-fiter {
@@ -254,6 +251,13 @@
 }
 .filter-admin-filter-value {
   margin-bottom: 0px;
+}
+.test{
+  @include media (md-down){
+      width: 77vw;
+      color: red;
+    
+  }
 }
 
 @media (max-width: 1300px) {
