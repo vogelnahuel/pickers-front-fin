@@ -1,3 +1,9 @@
+@import "@pickit/pickit-grid-system";
+
+.container-transaction {
+  @include container(18, 25px);
+}
+
 .display-filter-transaction{
     background: #FFFFFF;
     border: 1px solid #E5E5E5;

@@ -252,13 +252,6 @@
 .filter-admin-filter-value {
   margin-bottom: 0px;
 }
-.test{
-  @include media (md-down){
-      width: 77vw;
-      color: red;
-    
-  }
-}
 
 @media (max-width: 1300px) {
   .form-fiter {

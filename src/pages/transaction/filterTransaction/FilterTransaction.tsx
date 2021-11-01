@@ -15,9 +15,9 @@ import { FilterTransactionPropsType, FilterValuesType } from "./types";
 export const FilterTransaction:React.FC<FilterTransactionPropsType> = ({ onSubmit, filters, validationSchema }):JSX.Element => {
     
     return (
-        <div className="display-filter-transaction">
-            <div>
-                <div >
+        <div className="container-transaction-fluid display-filter-transaction">
+            <div className="container-transaction-row">
+                <div className="container-transaction-col-2" >
                     <div className="filter-Imagen-width">
                         <img
                             className="img-filter-transaction filter-cursor"
@@ -27,8 +27,8 @@ export const FilterTransaction:React.FC<FilterTransactionPropsType> = ({ onSubmi
                         <p className="p-filter-transaction">Filtros</p>
                     </div>
                 </div>
-                <div className="sub-container" >
-                    <div className="px-2">
+                <div className="container-transaction-col-16" >
+                    <div className="container-transaction-row">
                         <Form
                             onSubmit={(values:FilterValuesType)=>onSubmit({
                                 transactionCode:values.transactionCode,
@@ -47,7 +47,7 @@ export const FilterTransaction:React.FC<FilterTransactionPropsType> = ({ onSubmi
                         >
                             {({ handleSubmit, form }) => (
                                 <form className="form-filter-transaction" onSubmit={handleSubmit}>
-                                    <div className="px-3">
+                                    <div className="container-transaction-col-sm-6 container-transaction-col-xl-3">
                                         <Field
                                             type="text"
                                             name="transactionCode"
@@ -58,7 +58,7 @@ export const FilterTransaction:React.FC<FilterTransactionPropsType> = ({ onSubmi
                                             maxLength={19}
                                         />
                                     </div>
-                                    <div className="px-3">
+                                    <div className="container-transaction-col-sm-6 container-transaction-col-xl-3">
                                         <Field
                                             type="text"
                                             name="pickerId"
@@ -68,7 +68,7 @@ export const FilterTransaction:React.FC<FilterTransactionPropsType> = ({ onSubmi
                                             placeholder="Ingresá el número de picker"
                                         />
                                     </div>
-                                    <div  className="px-3">
+                                    <div  className="container-transaction-col-sm-6 container-transaction-col-xl-3">
                                         <div className="datePicker-filter-transaction" id="datePicker-filter-transaction">
                                             <label className="label-Admin-Pickers">
                                                 Vencimiento SLA
@@ -86,7 +86,7 @@ export const FilterTransaction:React.FC<FilterTransactionPropsType> = ({ onSubmi
 
                                         </div>
                                     </div>
-                                    <div  className="px-3">
+                                    <div  className="container-transaction-col-sm-6 container-transaction-col-xl-3">
                                          <label className="label-Admin-Pickers">
                                                 Estados
                                         </label>
@@ -99,7 +99,7 @@ export const FilterTransaction:React.FC<FilterTransactionPropsType> = ({ onSubmi
                                           { (props:any)=><MultipleSelect {...props}/>}
                                         </Field>
                                     </div>
-                                    <div  className="px-3">
+                                    <div  className="container-transaction-col-sm-6 container-transaction-col-xl-3">
                                         <Field
                                             className="checkbox-filter-transaction"
                                             name="inAlert"
@@ -111,9 +111,9 @@ export const FilterTransaction:React.FC<FilterTransactionPropsType> = ({ onSubmi
                                             En alerta
                                         </label>
                                     </div>
-                                    <div  className="px-3">
+                                    <div  className="container-transaction-col-sm-6 container-transaction-col-xl-3">
                                         <button
-                                            className="search-button-transaction float-end"
+                                            className="search-button-transaction"
                                             name="search"
                                             type="submit"
                                         >
