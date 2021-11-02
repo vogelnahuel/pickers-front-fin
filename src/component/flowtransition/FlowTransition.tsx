@@ -1,31 +1,49 @@
-import React, { useCallback, useState } from "react";
+import classNames from "classnames";
+import { useCallback, useState } from "react";
 import "./flowTransition.scss";
 import { FlowTrasitionType } from "./types";
 
-export default function FlowTransition({ pages, firstPage }: FlowTrasitionType) {
-
+export default function FlowTransition({
+  pages,
+  firstPage,
+}: FlowTrasitionType) {
   const [history, setHistory] = useState([firstPage] || []);
+  const [animationLeft, setAnimationLeft] = useState(false);
+  const [animationRight, setAnimationRight] = useState(false);
   const [value, ...previousValues] = history;
 
   const undo = useCallback(() => {
     // useCallback is used for performance reasons
     // https://reactjs.org/docs/hooks-reference.html#usecallback
-    setHistory(previousValues);
+    setAnimationRight(true);
+    setTimeout(() => {
+      setHistory(previousValues);
+      setAnimationRight(false);
+    }, 300);
   }, [setHistory, previousValues]);
 
   const setValue = useCallback(
-    // animation true 
-    // value (pagina actual ) animacion
-    // setTimeout (
-
-      (newValue) => {
+    (newValue) => {
+      setAnimationLeft(true);
+      setTimeout(() => {
         setHistory([newValue, ...history]);
-      },
-    //   ,500
-    // )
+        setAnimationLeft(false);
+      }, 300);
+    },
     [history, setHistory]
   );
 
   const Page = pages[value];
-  return <Page next={setValue} back={undo} />;
+  return (
+    <div className={"content"}>
+      <div
+        className={classNames({
+          "active-left": animationLeft,
+          "active-right": animationRight,
+        })}
+      >
+        <Page next={setValue} back={undo} />
+      </div>
+    </div>
+  );
 }

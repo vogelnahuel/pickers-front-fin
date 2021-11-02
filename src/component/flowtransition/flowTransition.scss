@@ -1,33 +1,30 @@
-.animation-left-transaction {
-  background-color: white;
-  margin-left: 3%;
-  animation: 0.6s moverIzq 1;
-  height: 95%;
-  width: 1110px;
-  margin-right: 5%;
-  flex: 1;
-  position: relative;
+.active-left {
+  animation: 0.3s moveLeft 1 ease-in;
 }
-.Test-Animacion{
+.active-right {
+  animation: 0.3s moveRight 1 ease-in;
+}
+
+.content{
   display: flex;
   overflow-x: hidden;
+}
 
-}
-.asd{
-  position: relative;
-}
-.modal-transaction-scroll{
-  width: 1110px;
-}
-@keyframes moverIzq {
+@keyframes moveLeft {
   0% {
-    margin-left: 0;
+    opacity: 1;
   }
-  30% {
-    margin-left: 0;
-  }
-  95% {
-    margin-left: -100%;
+  100% {
     opacity: 0;
+  transform: translateX(-100%);
+  }
+}
+@keyframes moveRight {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
   }
 }

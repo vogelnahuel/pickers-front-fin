@@ -12,7 +12,7 @@ import { ReasonList } from "../ReasonList";
 import "./undelivered.css";
 
 const Undelivered: React.FC<UndeliveredPropsType> = ({
-  // onBack,
+  back,
   detailTransaction,
   messages,
   getMessages,
@@ -33,7 +33,7 @@ const Undelivered: React.FC<UndeliveredPropsType> = ({
     <div className="modal-transaction-reasonsCanceled">
       <div
         onClick={() => {
-          // onBack();
+          back();
         }}
         className="modal-transaction-volver"
       >
