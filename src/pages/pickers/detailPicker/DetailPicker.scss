@@ -1,3 +1,10 @@
+
+@import "@pickit/pickit-grid-system";
+
+.container-detailPicker {
+  @include container(18, 25px);
+}
+
 .vehiculo-pending-picker{
     display: inline-block;
     /* margin-top: 1vh; */

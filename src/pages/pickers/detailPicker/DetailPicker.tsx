@@ -30,7 +30,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
   postEditPickerRequest,
   validationSchema,
 }) => {
-  
+
   return (
     <div className="background-Grey">
       <Header />
@@ -78,104 +78,104 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
             initialValues={
               pendingUserAdminPicker.id
                 ? {
-                    ...pendingUserAdminPicker,
-                    accountingData: {
-                      ...pendingUserAdminPicker.accountingData,
-                      fiscalNumber:
-                        pendingUserAdminPicker.accountingData.fiscalNumber.includes(
-                          "-"
-                        )
-                          ? pendingUserAdminPicker.accountingData.fiscalNumber
-                          : pendingUserAdminPicker.accountingData.fiscalNumber.slice(
-                              0,
-                              2
-                            ) +
-                            " - " +
-                            pendingUserAdminPicker.accountingData.fiscalNumber.slice(
-                              2,
-                              10
-                            ) +
-                            " - " +
-                            pendingUserAdminPicker.accountingData.fiscalNumber.slice(
-                              10,
-                              11
-                            ),
-                    },
-                    dateOfBirth:
-                      pendingUserAdminPicker.dateOfBirth &&
+                  ...pendingUserAdminPicker,
+                  accountingData: {
+                    ...pendingUserAdminPicker.accountingData,
+                    fiscalNumber:
+                      pendingUserAdminPicker.accountingData.fiscalNumber.includes(
+                        "-"
+                      )
+                        ? pendingUserAdminPicker.accountingData.fiscalNumber
+                        : pendingUserAdminPicker.accountingData.fiscalNumber.slice(
+                          0,
+                          2
+                        ) +
+                        " - " +
+                        pendingUserAdminPicker.accountingData.fiscalNumber.slice(
+                          2,
+                          10
+                        ) +
+                        " - " +
+                        pendingUserAdminPicker.accountingData.fiscalNumber.slice(
+                          10,
+                          11
+                        ),
+                  },
+                  dateOfBirth:
+                    pendingUserAdminPicker.dateOfBirth &&
                       !pendingUserAdminPicker.dateOfBirth.includes("/")
-                        ? moment(
-                            pendingUserAdminPicker.dateOfBirth,
-                            "YYYY-MM-DD"
-                          ).format("DD/MM/YYYY")
-                        : pendingUserAdminPicker.dateOfBirth,
-                    expirationDatePolicyPersonal:
-                      pendingUserAdminPicker.expirationDatePolicyPersonal &&
+                      ? moment(
+                        pendingUserAdminPicker.dateOfBirth,
+                        "YYYY-MM-DD"
+                      ).format("DD/MM/YYYY")
+                      : pendingUserAdminPicker.dateOfBirth,
+                  expirationDatePolicyPersonal:
+                    pendingUserAdminPicker.expirationDatePolicyPersonal &&
                       !pendingUserAdminPicker.expirationDatePolicyPersonal.includes(
                         "/"
                       )
-                        ? moment(
-                            pendingUserAdminPicker.expirationDatePolicyPersonal,
-                            "YYYY-MM-DD"
-                          ).format("DD/MM/YYYY")
-                        : pendingUserAdminPicker.expirationDatePolicyPersonal,
-                    vehicle: {
-                      ...pendingUserAdminPicker.vehicle,
-                      [pendingUserAdminPicker.vehicleType]: {
-                        ...pendingUserAdminPicker.vehicle[
+                      ? moment(
+                        pendingUserAdminPicker.expirationDatePolicyPersonal,
+                        "YYYY-MM-DD"
+                      ).format("DD/MM/YYYY")
+                      : pendingUserAdminPicker.expirationDatePolicyPersonal,
+                  vehicle: {
+                    ...pendingUserAdminPicker.vehicle,
+                    [pendingUserAdminPicker.vehicleType]: {
+                      ...pendingUserAdminPicker.vehicle[
+                      pendingUserAdminPicker.vehicleType
+                      ],
+                      expirationDatePolicyVehicle:
+                        pendingUserAdminPicker.vehicle[
                           pendingUserAdminPicker.vehicleType
-                        ],
-                        expirationDatePolicyVehicle:
-                          pendingUserAdminPicker.vehicle[
-                            pendingUserAdminPicker.vehicleType
-                          ].expirationDatePolicyVehicle &&
+                        ].expirationDatePolicyVehicle &&
                           !pendingUserAdminPicker.vehicle[
                             pendingUserAdminPicker.vehicleType
                           ].expirationDatePolicyVehicle.includes("/")
-                            ? moment(
-                                pendingUserAdminPicker.vehicle[
-                                  pendingUserAdminPicker.vehicleType
-                                ].expirationDatePolicyVehicle,
-                                "YYYY-MM-DD"
-                              ).format("DD/MM/YYYY")
-                            : pendingUserAdminPicker.vehicle[
-                                pendingUserAdminPicker.vehicleType
-                              ].expirationDatePolicyVehicle,
-                        expirationDateIdentificationVehicle:
-                          pendingUserAdminPicker.vehicle[
+                          ? moment(
+                            pendingUserAdminPicker.vehicle[
+                              pendingUserAdminPicker.vehicleType
+                            ].expirationDatePolicyVehicle,
+                            "YYYY-MM-DD"
+                          ).format("DD/MM/YYYY")
+                          : pendingUserAdminPicker.vehicle[
                             pendingUserAdminPicker.vehicleType
-                          ].expirationDateIdentificationVehicle &&
+                          ].expirationDatePolicyVehicle,
+                      expirationDateIdentificationVehicle:
+                        pendingUserAdminPicker.vehicle[
+                          pendingUserAdminPicker.vehicleType
+                        ].expirationDateIdentificationVehicle &&
                           !pendingUserAdminPicker.vehicle[
                             pendingUserAdminPicker.vehicleType
                           ].expirationDateIdentificationVehicle.includes("/")
-                            ? moment(
-                                pendingUserAdminPicker.vehicle[
-                                  pendingUserAdminPicker.vehicleType
-                                ].expirationDateIdentificationVehicle,
-                                "YYYY-MM-DD"
-                              ).format("DD/MM/YYYY")
-                            : pendingUserAdminPicker.vehicle[
-                                pendingUserAdminPicker.vehicleType
-                              ].expirationDateIdentificationVehicle,
-                        expirationDateDriverLicense:
-                          pendingUserAdminPicker.vehicle[
+                          ? moment(
+                            pendingUserAdminPicker.vehicle[
+                              pendingUserAdminPicker.vehicleType
+                            ].expirationDateIdentificationVehicle,
+                            "YYYY-MM-DD"
+                          ).format("DD/MM/YYYY")
+                          : pendingUserAdminPicker.vehicle[
                             pendingUserAdminPicker.vehicleType
-                          ].expirationDateDriverLicense &&
+                          ].expirationDateIdentificationVehicle,
+                      expirationDateDriverLicense:
+                        pendingUserAdminPicker.vehicle[
+                          pendingUserAdminPicker.vehicleType
+                        ].expirationDateDriverLicense &&
                           !pendingUserAdminPicker.vehicle[
                             pendingUserAdminPicker.vehicleType
                           ].expirationDateDriverLicense.includes("/")
-                            ? moment(
-                                pendingUserAdminPicker.vehicle[
-                                  pendingUserAdminPicker.vehicleType
-                                ].expirationDateDriverLicense,
-                                "YYYY-MM-DD"
-                              ).format("DD/MM/YYYY")
-                            : pendingUserAdminPicker.vehicle[
-                                pendingUserAdminPicker.vehicleType
-                              ].expirationDateDriverLicense,
-                      },
+                          ? moment(
+                            pendingUserAdminPicker.vehicle[
+                              pendingUserAdminPicker.vehicleType
+                            ].expirationDateDriverLicense,
+                            "YYYY-MM-DD"
+                          ).format("DD/MM/YYYY")
+                          : pendingUserAdminPicker.vehicle[
+                            pendingUserAdminPicker.vehicleType
+                          ].expirationDateDriverLicense,
                     },
-                  }
+                  },
+                }
                 : pendingUserAdminPicker
             }
             validate={useValidationSchema(validationSchema)}
@@ -192,14 +192,14 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                 <FormSpy
                   subscription={{ dirty: true }}
                   onChange={(pro) => {
-                   
-                      setDirty(pro.dirty);
-                    
+
+                    setDirty(pro.dirty);
+
                   }}
                 />
-                <div className="form-part-1-admin-pickers">
-                  <div>
-                    <div>
+                <div className="container-detailPicker-fluid form-part-1-admin-pickers">
+                  <div className="container-detailPicker-row">
+                    <div className="container-detailPicker-col-sm-6  ">
                       <Field
                         type="text"
                         name="name"
@@ -210,7 +210,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                         maxLength={49}
                       />
                     </div>
-                    <div>
+                    <div className="container-detailPicker-col-sm-6  ">
                       <Field
                         type="text"
                         name="surname"
@@ -221,7 +221,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                         maxLength={49}
                       />
                     </div>
-                    <div>
+                    <div className="container-detailPicker-col-sm-6  ">
                       <Field
                         type="text"
                         name="identificationNumber"
@@ -234,58 +234,60 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                     </div>
                   </div>
                   <div>
-                    <div >
-                      <Field
-                        type="text"
-                        name="email"
-                        label="E-mail"
-                        component={Input}
-                        disabled
-                        className="Admin-Pickers-input readonly"
-                        placeholder="Ingresá el Email"
-                      />
-                    </div>
-                    <div >
-                      <Field
-                        type="text"
-                        name="dateOfBirth"
-                        label="Fecha de nacimiento"
-                        component={Input}
-                        disabled
-                        className="Admin-Pickers-input"
-                        placeholder="Ingresá la fecha nac"
-                      />
-                    </div>
-                    <div>
-                      <Field
-                        type="text"
-                        name="phone.areaNumber"
-                        label="Código de área *"
-                        component={Input}
-                        className="Admin-Pickers-input"
-                        placeholder="Ej: 011"
-                        maxLength={5}
-                      />
-                    </div>
-                    <div>
-                      <Field
-                        type="text"
-                        name="phone.number"
-                        label="Teléfono *"
-                        component={Input}
-                        className="Admin-Pickers-input"
-                        placeholder="Ej: 12345678"
-                        maxLength={10}
-                      />
+                    <div className="container-detailPicker-row">
+                      <div className="container-detailPicker-col-sm-6  ">
+                        <Field
+                          type="text"
+                          name="email"
+                          label="E-mail"
+                          component={Input}
+                          disabled
+                          className="Admin-Pickers-input readonly"
+                          placeholder="Ingresá el Email"
+                        />
+                      </div>
+                      <div className="container-detailPicker-col-sm-6  ">
+                        <Field
+                          type="text"
+                          name="dateOfBirth"
+                          label="Fecha de nacimiento"
+                          component={Input}
+                          disabled
+                          className="Admin-Pickers-input"
+                          placeholder="Ingresá la fecha nac"
+                        />
+                      </div>
+                      <div className="container-detailPicker-col-sm-3  ">
+                        <Field
+                          type="text"
+                          name="phone.areaNumber"
+                          label="Código de área *"
+                          component={Input}
+                          className="Admin-Pickers-input"
+                          placeholder="Ej: 011"
+                          maxLength={5}
+                        />
+                      </div>
+                      <div className="container-detailPicker-col-sm-3  ">
+                        <Field
+                          type="text"
+                          name="phone.number"
+                          label="Teléfono *"
+                          component={Input}
+                          className="Admin-Pickers-input"
+                          placeholder="Ej: 12345678"
+                          maxLength={10}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
-                <h3 className="subTitle-pending-data">
+                <h3 className="subTitle-pending-data" >
                   Datos contables y bancarios
                 </h3>
-                <div  className="form-part-1-admin-pickers">
-                  <div>
-                    <div>
+                <div className="form-part-1-admin-pickers">
+                  <div className="container-detailPicker-row">
+                    <div className="container-detailPicker-col-sm-6  ">
                       <Field
                         type="text"
                         name="accountingData.fiscalNumber"
@@ -296,7 +298,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                         placeholder="20 - 39589475 - 4"
                       />
                     </div>
-                    <div>
+                    <div className="container-detailPicker-col-sm-6  ">
                       <Field
                         type="text"
                         name="accountingData.bankIdentifier"
@@ -307,7 +309,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                         placeholder="20 - 39589475 - 4"
                       />
                     </div>
-                    <div>
+                    <div className="container-detailPicker-col-sm-6  ">
                       <Field
                         type="text"
                         name="accountingData.bankName"
@@ -321,11 +323,11 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                   </div>
                 </div>
                 <h3 className="subTitle-pending-data">Seguros</h3>
-                <div  className="form-part-1-admin-pickers">
-                  <div>
+                <div className="form-part-1-admin-pickers">
+                  <div className="container-detailPicker-row">
                     {initialValues.vehicleType === "motorcycle" && (
                       <>
-                        <div >
+                        <div className="container-detailPicker-col-sm-6  ">
                           <Field
                             type="text"
                             name={`vehicle.${initialValues.vehicleType}.patent`}
@@ -336,7 +338,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                             maxLength={7}
                           />
                         </div>
-                        <div >
+                        <div className="container-detailPicker-col-sm-6  ">
                           <Field
                             type="text"
                             name={`vehicle.${initialValues.vehicleType}.expirationDateDriverLicense`}
@@ -347,7 +349,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                             maxLength={10}
                           />
                         </div>
-                        <div >
+                        <div className="container-detailPicker-col-sm-6  ">
                           <Field
                             type="text"
                             name={`vehicle.${initialValues.vehicleType}.expirationDateIdentificationVehicle`}
@@ -358,7 +360,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                             maxLength={10}
                           />
                         </div>
-                        <div >
+                        <div className="container-detailPicker-col-sm-6  ">
                           <Field
                             type="text"
                             name={`vehicle.${initialValues.vehicleType}.expirationDatePolicyVehicle`}
@@ -371,7 +373,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                         </div>
                       </>
                     )}
-                    <div >
+                    <div className="container-detailPicker-col-sm-6  ">
                       <Field
                         type="text"
                         name="expirationDatePolicyPersonal"

@@ -112,7 +112,7 @@ const FinishModal: React.FC<FinishModalPropsType> = ({
                 id={finishStates.DELIVERED}
               />
               <label
-                htmlFor="Entregado"
+                htmlFor={finishStates.DELIVERED}
                 className="modal-transaction-finish-label"
               >
                 Entregado
@@ -129,7 +129,7 @@ const FinishModal: React.FC<FinishModalPropsType> = ({
               id={finishStates.RETURNED}
             />
             <label
-              htmlFor="Devuelto"
+              htmlFor={finishStates.RETURNED}
               className="modal-transaction-finish-label"
             >
               Devuelto

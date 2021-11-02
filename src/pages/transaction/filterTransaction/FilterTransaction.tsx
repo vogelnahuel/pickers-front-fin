@@ -111,7 +111,7 @@ export const FilterTransaction:React.FC<FilterTransactionPropsType> = ({ onSubmi
                                             En alerta
                                         </label>
                                     </div>
-                                    <div  className="container-transaction-col-sm-6 container-transaction-col-xl-3">
+                                    <div  className="container-transaction-col-sm-6 container-transaction-col-xl-3 end">
                                         <button
                                             className="search-button-transaction"
                                             name="search"

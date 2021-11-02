@@ -80,8 +80,12 @@
 }
 
 .modal-transaction-separate-option {
-  margin-bottom: 30px;
-  border: 1px solid #cccccc;
+  border: 1px solid #BDBDBD;
+  margin-top: 0px;
+  padding-right: 30px;
+  margin-bottom: 20px;
+  opacity: .50;
+  margin-top: 7px;
 }
 .modal-transaction-part {
   display: flex;
