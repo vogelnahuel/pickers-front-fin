@@ -129,7 +129,7 @@
 
 .modal-transaction-difuminar1 {
   position: absolute;
-  width: 95%;
+  width: 1140px;
   left: 0;
   height: 15px;
   background: rgba(255, 255, 255, 0.4);
@@ -138,7 +138,7 @@
 }
 .modal-transaction-difuminar2 {
   position: absolute;
-  width: 95%;
+  width: 1140px;
   left: 0;
   height: 15px;
   background: rgba(255, 255, 255, 0.6);
@@ -147,7 +147,7 @@
 }
 .modal-transaction-difuminar3 {
   position: absolute;
-  width: 95%;
+  width: 1140px;
   left: 0;
   height: 15px;
   background: rgba(255, 255, 255, 0.8);
@@ -156,7 +156,7 @@
 }
 .modal-transaction-difuminar4 {
   position: absolute;
-  width: 95%;
+  width: 1140px;
   left: 0;
   height: 15px;
   background: rgba(255, 255, 255, 0.8);
@@ -165,7 +165,7 @@
 }
 .modal-transaction-difuminar5 {
   position: absolute;
-  width: 95%;
+  width: 1140px;
   left: 0;
   height: 15px;
   background: rgba(255, 255, 255, 0.6);
@@ -174,7 +174,7 @@
 }
 .modal-transaction-difuminar6 {
   position: absolute;
-  width: 95%;
+  width: 1140px;
   left: 0;
   height: 0px;
   background: rgba(255, 255, 255, 0.4);
@@ -182,12 +182,6 @@
   margin-top: 3px;
 }
 
-.animation-left-transaction {
-  background-color: white;
-  margin-left: 3%;
-  animation: 0.6s moverIzq 1;
-  height: 95%;
-}
 .modalLoading-optionList {
   backdrop-filter: blur(5px);
   position: absolute;
@@ -200,18 +194,6 @@
     no-repeat;
 }
 
-@keyframes moverIzq {
-  0% {
-    margin-left: 0;
-  }
-  30% {
-    margin-left: 0;
-  }
-  95% {
-    margin-left: -100%;
-    opacity: 0;
-  }
-}
 .options-transaction-flex {
   display: flex;
   overflow-x: hidden;

@@ -1,6 +1,6 @@
 import { Modal } from "@pickit/pickit-components";
 import Close from "assets/transaction/Close.svg";
-import useHistory from "hooks/useHistory";
+import { FlowTrasitionParamsType } from "component/flowtransition/types";
 import React from "react";
 import { TRANSACTION_STATE_ID_LABEL } from "utils/constants";
 import { ISO8601toDDMMYYYHHMM } from "utils/iso8601toDDMMYYHHMM";
@@ -26,7 +26,7 @@ export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
     ReasonsCanceledConfirm: "ReasonsCanceledConfirm",
     Undelivered: "Undelivered",
   };
-  const [currentStep, setCurrentStep] = useHistory([STEP.History]);
+
   return (
     <div className="modal-transaction">
       <Modal
@@ -64,11 +64,13 @@ export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
             </p>
           </div>
           <div className="modal-transaction-subtitle">
-            <h2>
-              {detailTransaction.transaction.transactionCode}
-            </h2>
+            <h2>{detailTransaction.transaction.transactionCode}</h2>
             <p>
-              {TRANSACTION_STATE_ID_LABEL[detailTransaction.transaction.state.id]}
+              {
+                TRANSACTION_STATE_ID_LABEL[
+                  detailTransaction.transaction.state.id
+                ]
+              }
             </p>
 
             <p className="modal-transaction-date">
@@ -84,31 +86,35 @@ export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
             id="modal-transaction-hr-title"
           />
           <FlowTransition
-            currentPage={currentStep}
+            firstPage={STEP.History}
             pages={{
-              [STEP.History]: () => (
-                <HistoryModalTransaction
-                  cancel={() => setCurrentStep(STEP.ReasonsCanceled)}
-                  finish={() => setCurrentStep(STEP.FinishModal)}
+              [STEP.History]: (props: FlowTrasitionParamsType) => (
+                  <HistoryModalTransaction
+                    cancel={STEP.ReasonsCanceled}
+                    finish={STEP.FinishModal}
+                    {...props}
+                  />
+                ),
+              [STEP.ReasonsCanceled]: (props: FlowTrasitionParamsType) => (
+                <ReasonsCanceled
+                  reasonsCanceledConfirm={STEP.ReasonsCanceledConfirm}
+                  {...props}
                 />
               ),
-              [STEP.ReasonsCanceled]: () => (
-                <ReasonsCanceled onBack={() => setCurrentStep(STEP.History)}   ReasonsCanceledConfirm={() => setCurrentStep(STEP.ReasonsCanceledConfirm)}/>
+              [STEP.ReasonsCanceledConfirm]: (
+                props: FlowTrasitionParamsType
+              ) => <ReasonsCanceledConfirm {...props} />,
+              [STEP.DniFinish]: (props: FlowTrasitionParamsType) => (
+                <DniFinish {...props} />
               ),
-              [STEP.ReasonsCanceledConfirm]: () => (
-                <ReasonsCanceledConfirm
-                  onBack={() => setCurrentStep(STEP.ReasonsCanceled)}
-                />
+              [STEP.Undelivered]: (props: FlowTrasitionParamsType) => (
+                <Undelivered {...props} />
               ),
-              [STEP.DniFinish]: () => <DniFinish onBack={() => setCurrentStep(STEP.FinishModal)}/>,
-              [STEP.Undelivered]: () => (
-                <Undelivered onBack={() => setCurrentStep(STEP.FinishModal)} />
-              ),
-              [STEP.FinishModal]: () => (
+              [STEP.FinishModal]: (props: FlowTrasitionParamsType) => (
                 <FinishModal
-                  onBack={() => setCurrentStep(STEP.History)}
-                  dniFinish={() => setCurrentStep(STEP.DniFinish)}
-                  undelivered={() => setCurrentStep(STEP.Undelivered)}
+                  {...props}
+                  dniFinish={STEP.DniFinish}
+                  undelivered={STEP.Undelivered}
                 />
               ),
             }}

@@ -19,7 +19,7 @@ export type UndeliveredPropsType = {
   messages: DetailTransactionCancelItemType[];
   selectedMessage: DetailTransactionCancelItemType,
   
-  onBack: Function;
+  back: Function;
   getMessages: Function;
   setMessageSelected: Function;
   getDetailTransactionFinishReturned: Function;
