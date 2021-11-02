@@ -41,18 +41,16 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
               : "-",
             pickerId: detailTransaction.picker.id
               ? detailTransaction.picker.id
-              : "Sin asignar",
+              : "-",
             name: detailTransaction.picker.name
               ? `${detailTransaction.picker.name} ${detailTransaction.picker.surname}`
-              : "Sin asignar",
+              : "-",
             phone: detailTransaction.picker.phone
               ? detailTransaction.picker.phone.number
               : "-",
             deliveryAddress: detailTransaction.destination.formattedAddress,
             pickupAddress: detailTransaction.origin.formattedAddress,
-            retailer: detailTransaction.seller
-              ? detailTransaction.seller.name
-              : "-",
+            retailer: detailTransaction.seller && detailTransaction.seller.name!==null  ? detailTransaction.seller.name: "-",
             reveiverName: `${detailTransaction.client.name} ${detailTransaction.client.lastName}`,
             reveiverPhone: detailTransaction.client.phone,
           }}

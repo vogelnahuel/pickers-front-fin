@@ -35,12 +35,15 @@ api.interceptors.response.use(
         return response;
     },
     (error) => {
+        
+        if(!error.status &&  !error.response ){
+             window.location.reload();
+        }
         if (error.response) {
             if (error.response.status !== 401) {
                 return error.response;
             }
         }
-
         // se agrega el atributo para saber que es un error de saga
         // eslint-disable-next-line
         error.httpError = true;
