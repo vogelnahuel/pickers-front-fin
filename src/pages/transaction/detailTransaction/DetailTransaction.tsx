@@ -88,16 +88,13 @@ export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
           <FlowTransition
             firstPage={STEP.History}
             pages={{
-              [STEP.History]: (props: FlowTrasitionParamsType) => {
-                console.log(props);
-                return(
+              [STEP.History]: (props: FlowTrasitionParamsType) => (
                   <HistoryModalTransaction
                     cancel={STEP.ReasonsCanceled}
                     finish={STEP.FinishModal}
                     {...props}
                   />
-                )
-              },
+                ),
               [STEP.ReasonsCanceled]: (props: FlowTrasitionParamsType) => (
                 <ReasonsCanceled
                   reasonsCanceledConfirm={STEP.ReasonsCanceledConfirm}
