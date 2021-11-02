@@ -1,0 +1,19 @@
+
+
+{    
+      "laber.input.user": "Usuario",
+      "label.inpput.password": "Contraseña",
+      "link.forgotPassword": "¿Olvidaste tu contraseña?",
+      "button.login": "Iniciar sesión",
+      "label.input.newPassword": "Nueva contraseña",
+      "label.input.confirmNewPassword": "Repetir nueva contraseña",
+      "label.passwordMustHave": "La contraseña debe contar con",
+      "label.8OrMoreCharacters": "8 o más caracteres",
+      "label.uppercaseandLowerCase": "Mayúsculas y minúsculas",
+      "label.numbersAndLeters": "Números y letras",
+      "button.save": "Guardar",
+      "label.inpput.email": "Email",
+      "label.inpput.sendMail": "Enviar correo"
+    
+
+}

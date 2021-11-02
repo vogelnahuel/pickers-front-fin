@@ -9,6 +9,8 @@ import { Field, withTypes } from "react-final-form";
 import { Input } from "component/inputs/Input";
 import useValidationSchema from "hooks/useValidationSchema";
 import NotificationModal from "component/modal/NotificationModal";
+import { useTranslation } from "react-i18next";
+import '../../i18n/es_AR/i18n';
 const { Form } = withTypes<LoginType>()
 
 const Login: React.FC<LoginTypeProps> = ({
@@ -17,6 +19,8 @@ const Login: React.FC<LoginTypeProps> = ({
   isFetching,
 }): JSX.Element => {
   
+  const {t} = useTranslation();
+
   return (
     <div className="background-login">
       <img src={pickersLogo} className="pickersLogo_login" alt="" />
@@ -32,7 +36,7 @@ const Login: React.FC<LoginTypeProps> = ({
               type="text"
               name="email"
               id="usuario"
-              label="Usuario"
+              label={t('login:laber.input.user')}
               animated
               className="Admin-Pickers-input"
               component={Input}
@@ -43,7 +47,7 @@ const Login: React.FC<LoginTypeProps> = ({
               id="password"
               type="password"
               name="password"
-              label="Contraseña"
+              label={t("login:label.inpput.password")}
               animated
               className="Admin-Pickers-input"
               component={Input}
@@ -57,7 +61,7 @@ const Login: React.FC<LoginTypeProps> = ({
                 type="submit"
                 name="button"
               >
-                <p className="login-init ">Iniciar sesión</p>
+                <p className="login-init ">{t("login:button.login")}</p>
               </button>
             </div>
           </form>
@@ -65,7 +69,7 @@ const Login: React.FC<LoginTypeProps> = ({
       </Form>
       <div className="container-login-a">
         <Link className="login-a" to={"/restore"}>
-          ¿Olvidaste tu contraseña?
+         {t("login:link.forgotPassword")}
         </Link>
       </div>
       <img className="login-img-footer" src={canguro} alt="" />

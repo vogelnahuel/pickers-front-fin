@@ -11,6 +11,8 @@ import voidCheck from "../../../assets/login/void-check.svg";
 import Okey from "../../../assets/login/Okey.svg";
 import Informacion from "../../../assets/login/Informacion.svg";
 import { VALIDATION_REGEX } from "utils/constants";
+import { useTranslation } from "react-i18next";
+import '../../../i18n/es_AR/i18n';
 
 export const RestorePassword = ({
   postLoginRestore,
@@ -19,6 +21,9 @@ export const RestorePassword = ({
   email,
   verificationCode,
 }: RestoreEmailPasswordType): JSX.Element => {
+
+  const {t} = useTranslation();
+
   return (
     <div className="background-login">
       <img src={pickersLogo} className="pickersLogo_login" alt="" />
@@ -38,7 +43,7 @@ export const RestorePassword = ({
               type="password"
               name="password"
               id="password"
-              label="Nueva contraseña"
+              label={t("login:label.input.newPassword")}
               animated
               className="Admin-Pickers-input Admin-Pickers-input-restore"
               component={Input}
@@ -48,7 +53,7 @@ export const RestorePassword = ({
               type="password"
               name="confirmPassword"
               id="confirmPassword"
-              label="Repetir nueva contraseña"
+              label={t("login:label.input.confirmNewPassword")}
               animated
               className="Admin-Pickers-input Admin-Pickers-input-restore"
               component={Input}
@@ -56,7 +61,7 @@ export const RestorePassword = ({
             />
 
             <ul className={"ul"} id="ul-login">
-              La contraseña debe contar con
+              {t("login:label.passwordMustHave")}
               <li className="display-flex">
                 {!values.password ? (
                   <img src={voidCheck} alt="ok" />
@@ -75,7 +80,7 @@ export const RestorePassword = ({
                       : "restore-p errorLi"
                   }
                 >
-                  8 o más caracteres
+                  {t("login:label.8OrMoreCharacters")}
                 </p>
               </li>
               <li className="display-flex">
@@ -95,7 +100,7 @@ export const RestorePassword = ({
                       : "restore-p errorLi"
                   }
                 >
-                  Mayúsculas y minúsculas
+                  {t("login:label.uppercaseandLowerCase")}
                 </p>
               </li>
               <li className="display-flex">
@@ -115,7 +120,7 @@ export const RestorePassword = ({
                       : "restore-p errorLi"
                   }
                 >
-                  Números y letras
+                  {t("login:label.numbersAndLeters")}
                 </p>
               </li>
             </ul>
@@ -125,7 +130,7 @@ export const RestorePassword = ({
               type="submit"
               name="button"
             >
-              <p className="login-init ">Guardar</p>
+              <p className="login-init ">{t("login:button.save")}</p>
             </button>
           </form>
         )}

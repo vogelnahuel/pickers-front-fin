@@ -9,6 +9,8 @@ import FilterPickers from "pages/pickers/filter/FilterPickersContainer";
 import  {TablePickers}  from "./TablePickers/TablePIckers";
 import NotificationModal from "component/modal/NotificationModal";
 import { PickerTypes } from "./types";
+import '../../i18n/es_AR/i18n';
+import { useTranslation } from "react-i18next";
 
 export const Pickers: React.FC<PickerTypes> = ({
   actualPage,
@@ -21,6 +23,7 @@ export const Pickers: React.FC<PickerTypes> = ({
   getMorePendingUser,
   getPendingUsersExportRequest,
 }): JSX.Element => {
+  const {t} = useTranslation();
   return (
     <div className="background-Grey">
       <Header />
@@ -33,8 +36,8 @@ export const Pickers: React.FC<PickerTypes> = ({
             <h2 className="subTitle-pending">
               <p className="subtitle-pendingUser-h2">
                 {actualPage === "PENDING"
-                  ? "Solicitudes pendientes"
-                  : "Pickers"}{" "}
+                  ? t("pickers:title.pending")
+                  : t("pickers:title.pickers")}{" "}
               </p>
             </h2>
             <button

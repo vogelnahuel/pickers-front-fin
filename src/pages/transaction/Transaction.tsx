@@ -11,78 +11,100 @@ import DetailTransactionContainer from "./detailTransaction/DetailTransactionCon
 import FilterTransaction from "./filterTransaction/FilterTransactionContainer";
 import TableTransaction from "./tableTransaction/TableTransaction";
 import { TransactionType } from "./types";
+import { useTranslation } from "react-i18next";
+import "../../i18n/es_AR/i18n";
 
-export const Transaction: React.FC<TransactionType>  = ({
-                                isExportDisabled,
-                                isFetching,
-                                transactions,
-                                getMoreTransactions,
-                                getTransactionsExportRequest,
-                                filters,
-                                seeMore,
-                                filtersExtraSeeMore,
-                                resolutionHeightModal,
-                                detailTransactionModalOpen
-                            }):JSX.Element => {
+export const Transaction: React.FC<TransactionType> = ({
+  isExportDisabled,
+  isFetching,
+  transactions,
+  getMoreTransactions,
+  getTransactionsExportRequest,
+  filters,
+  seeMore,
+  filtersExtraSeeMore,
+  resolutionHeightModal,
+  detailTransactionModalOpen,
+}): JSX.Element => {
+  const { t } = useTranslation();
 
+  return (
+    <div className="background-Grey">
+      <Header />
+      <div className="mainContainerFlex">
+        <Nav isDirty={""} />
 
-
-    return (
-        <div className="background-Grey">
-            <Header />
-            <div className="mainContainerFlex">
-                <Nav isDirty={""} />
-
-                <div className="transaction-container">
-                    <div className="mainContainerFlex-transaction">
-                        <h2 className="subTitle-transaction">
-                            <p className="subtitle-pendingUser-h2">Transacciones</p>
-                        </h2>
-                        <button
-                            disabled={isExportDisabled}
-                            onClick={(e)=>getTransactionsExportRequest(filters,e.target)}
-                            className={isExportDisabled ? "export-transaction-disabled" : "export-transaction" }
-                            name="export"
-                        >
-                            <img src={ isExportDisabled ? exportDisabledIcon : exportar} alt="export" />
-                            <img className="or-pending" src={ isExportDisabled ? orDisabled : or} alt="or" />
-                            <p className={"display-inline-block " + (isExportDisabled ? "p-export-transaction-disabled" : "p-export")}> Exportar</p>
-                        </button>
-
-                    </div>
-                    <FilterTransaction/>
-                    <TableTransaction/>
-                    {transactions && transactions?.length !== 0 ? <>
-                            { seeMore ?
-                                <button
-                                    onClick={()=>getMoreTransactions({...filtersExtraSeeMore, ...filters})}
-                                    className="paginator-button-transaction"
-                                >
-                                    Ver más
-                                </button>:
-                                <button
-                                    disabled={true}
-                                    className="paginator-button-transaction-disabled"
-                                >
-                                    Ver más
-                                </button>
-                            }
-                        </>
-                        :
-                        (<div
-                                className="paginator-button-transaction-noResult"
-                            >
-                                No obtuvimos resultados para tu búsqueda :(
-                            </div>)
-                        }
-                </div>
-                <NotificationModal/>
-                {detailTransactionModalOpen && <DetailTransactionContainer/>}
+        <div className="transaction-container">
+          <div className="mainContainerFlex-transaction">
+            <h2 className="subTitle-transaction">
+              <p className="subtitle-pendingUser-h2">{t("transaction:title.transaction")}</p>
+            </h2>
+            <button
+              disabled={isExportDisabled}
+              onClick={(e) => getTransactionsExportRequest(filters, e.target)}
+              className={
+                isExportDisabled
+                  ? "export-transaction-disabled"
+                  : "export-transaction"
+              }
+              name="export"
+            >
+              <img
+                src={isExportDisabled ? exportDisabledIcon : exportar}
+                alt="export"
+              />
+              <img
+                className="or-pending"
+                src={isExportDisabled ? orDisabled : or}
+                alt="or"
+              />
+              <p
+                className={
+                  "display-inline-block " +
+                  (isExportDisabled
+                    ? "p-export-transaction-disabled"
+                    : "p-export")
+                }
+              >
+                {" "}
+                Exportar
+              </p>
+            </button>
+          </div>
+          <FilterTransaction />
+          <TableTransaction />
+          {transactions && transactions?.length !== 0 ? (
+            <>
+              {seeMore ? (
+                <button
+                  onClick={() =>
+                    getMoreTransactions({ ...filtersExtraSeeMore, ...filters })
+                  }
+                  className="paginator-button-transaction"
+                >
+                  Ver más
+                </button>
+              ) : (
+                <button
+                  disabled={true}
+                  className="paginator-button-transaction-disabled"
+                >
+                  Ver más
+                </button>
+              )}
+            </>
+          ) : (
+            <div className="paginator-button-transaction-noResult">
+              No obtuvimos resultados para tu búsqueda :(
             </div>
-            
-
-            { (isFetching/*  || isFetchingModal*/) && <div className="modalLoading"/>}
+          )}
         </div>
-    );
+        <NotificationModal />
+        {detailTransactionModalOpen && <DetailTransactionContainer />}
+      </div>
+
+      {isFetching /*  || isFetchingModal*/ && <div className="modalLoading" />}
+    </div>
+  );
 };
 export default Transaction;
