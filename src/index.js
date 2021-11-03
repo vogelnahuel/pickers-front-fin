@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Routes from './routes/Routes';
+import Routes from './routes/Routes.tsx';
 import * as Sentry from "@sentry/react";
 import { Integrations } from "@sentry/tracing";
 import "./index.css"

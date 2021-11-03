@@ -1,0 +1,154 @@
+.modal-transaction-reasonsCanceledConfirm-volver{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 23px;
+    text-align: center;
+    color: #145A99;
+    margin-left: 10px;
+}
+.modal-transaction-reasonsCanceledConfirm-volver-img{
+    margin-top: 2px;
+}
+.modal-transaction-volver{
+    display: flex;
+  
+}
+.modal-transaction-reasonsCanceledConfirm-container{
+    width: 100vw;
+}
+.modal-transaction-reasonsCanceledConfirm-img{
+    margin-left: 516px;
+    margin-bottom: 10px;
+
+}
+.modal-transaction-reasonsCanceledConfirm-subtitle{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 25px;
+    letter-spacing: 0.01em;
+    color: #2D2D2D;
+    margin-left: 392px;
+    margin-bottom: 20px;
+}
+.modal-transaction-reasonsCanceledConfirm-separate{
+    border: 1px solid #145A99;
+    margin-left: 275px;
+    width: 566px;
+}
+.modal-transaction-reasonsCanceledConfirm-p{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 21px;
+    letter-spacing: 0.005em;
+    color: #4D4D4D;
+    margin-left: 391px;
+    margin-bottom: 1vh;
+    margin-top: 25px;
+}
+.modal-transaction-reasonsCanceledConfirm-p2{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 21px;
+    letter-spacing: 0.005em;
+    color: #4D4D4D;
+    margin-left: 478px;
+    margin-top: 20px;
+}
+.modal-transaction-reasonsCanceledConfirm-button{
+    width: 176px;
+    height: 50px;
+    background: #FFA825;
+    border: 4px solid #FFA825;
+    box-sizing: border-box;
+    border-radius: 50px;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 23px;
+    text-align: center;
+    color: #FFFFFF;
+    margin-top: 42px;
+    margin-left: 471px;
+}
+.modal-transaction-reasonsCanceledConfirm-subtitle-collection{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 25px;
+    letter-spacing: 0.01em;
+    color: #2D2D2D;
+    margin-left: 414px;
+    margin-bottom: 20px;
+}
+.modal-transaction-reasonsCanceledConfirm-p-collection{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 21px;
+    letter-spacing: 0.005em;
+    color: #4D4D4D;
+    margin-left: 310px;
+    margin-bottom: 1vh;
+    margin-top: 25px;
+}
+.modal-transaction-reasonsCanceledConfirm-p2-collection{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 21px;
+    letter-spacing: 0.005em;
+    color: #4D4D4D;
+    margin-left: 450px;
+    margin-top: 20px;
+}
+
+@media (min-width:1310px){
+    .modal-transaction-reasonsCanceledConfirm-img{
+        margin-bottom: 30px;
+    }
+    .modal-transaction-reasonsCanceledConfirm-button{
+        margin-top: 50px;
+    }
+}
+
+
+
+@media (min-width: 1800px) {
+    .modal-transaction-reasonsCanceledConfirm-img{
+        margin-top: 57px;
+    }
+    .modal-transaction-reasonsCanceledConfirm-p{ 
+        margin-top: 25px;
+    }
+    .modal-transaction-reasonsCanceledConfirm-p2{
+        margin-top: 25px;
+    }
+    .modal-transaction-reasonsCanceledConfirm-subtitle{
+        margin-bottom: 20px;
+    }
+    .modal-transaction-reasonsCanceledConfirm-p-collection{ 
+        margin-top: 25px;
+    }
+    .modal-transaction-reasonsCanceledConfirm-p2-collection{
+        margin-top: 25px;
+    }
+    .modal-transaction-reasonsCanceledConfirm-subtitle-collection{
+        margin-bottom: 20px;
+    }
+    .modal-transaction-reasonsCanceledConfirm-button{
+        margin-top: 110px;
+    }
+
+}
