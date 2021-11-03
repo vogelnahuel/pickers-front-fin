@@ -1,0 +1,30 @@
+.active-left {
+  animation: 0.3s moveLeft 1 ease-in;
+}
+.active-right {
+  animation: 0.3s moveRight 1 ease-in;
+}
+
+.content{
+  display: flex;
+  overflow-x: hidden;
+}
+
+@keyframes moveLeft {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  transform: translateX(-100%);
+  }
+}
+@keyframes moveRight {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}

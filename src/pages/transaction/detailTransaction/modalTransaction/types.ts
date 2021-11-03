@@ -5,22 +5,24 @@ import {
 
 export type HistoryModalTransactionType = {
   detailTransaction: DetailTransactionType;
-  cancel: Function;
-  finish: Function;
+  cancel: string;
+  next: Function;
+  finish: string;
   getDetailTransaction: Function;
 };
 
 export type FinishModalPropsType = {
   detailTransaction: DetailTransactionType;
-  onBack: Function;
-  dniFinish: Function;
-  undelivered: Function;
+  back: Function;
+  next: Function;
+  dniFinish: string;
+  undelivered: string;
   getDetailTransactionFinishLostRequest: Function;
   getDetailTransactionFinishReturnedRequest: Function;
 };
 
 export type DniFinishPropsType = {
-  onBack: Function;
+  back: Function;
   getDetailTransactionDniDeliveredRequest: Function;
   detailTransaction: DetailTransactionType;
 };

@@ -18,7 +18,7 @@ import { DniFinishFormValuesType, DniFinishPropsType } from "../types";
 import "./dniFinish.scss";
 
 const DniFinish: React.FC<DniFinishPropsType> = ({
-  onBack,
+  back,
   getDetailTransactionDniDeliveredRequest,
   detailTransaction,
 }): JSX.Element => {
@@ -32,7 +32,7 @@ const DniFinish: React.FC<DniFinishPropsType> = ({
     <div>
       <div
         onClick={() => {
-          onBack();
+          back();
         }}
         className="modal-transaction-finish-volver"
       >
@@ -74,7 +74,7 @@ const DniFinish: React.FC<DniFinishPropsType> = ({
                   ></Field>
                 </div>
               </Col>
-              <div>
+              <div className="finish-modal-button-container">
                 <button disabled={invalid} className="finish-button">
                   Finalizarla
                 </button>
