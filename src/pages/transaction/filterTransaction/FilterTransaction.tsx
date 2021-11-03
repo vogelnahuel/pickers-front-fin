@@ -12,9 +12,14 @@ import MultipleSelect from "component/inputs/MultipleSelect";
 import {FILTER_TRANSACTION_OPTIONS} from "utils/constants";
 import useValidationSchema from "hooks/useValidationSchema";
 import { FilterTransactionPropsType, FilterValuesType } from "./types";
+import { useTranslation } from "react-i18next";
+import '../../../i18n/es_AR/i18n';
+
 
 export const FilterTransaction:React.FC<FilterTransactionPropsType> = ({ onSubmit, filters, validationSchema }):JSX.Element => {
     
+    const {t} = useTranslation();
+
     return (
         <Container fluid className="display-filter-transaction">
             <Row>
@@ -25,7 +30,7 @@ export const FilterTransaction:React.FC<FilterTransactionPropsType> = ({ onSubmi
                             src={dropdown}
                             alt="desplegable"
                         />
-                        <p className="p-filter-transaction">Filtros</p>
+                        <p className="p-filter-transaction">{t("transactions:filter.label.filtro")}</p>
                     </div>
                 </Col>
                 <Col className="sub-container" >
@@ -52,7 +57,7 @@ export const FilterTransaction:React.FC<FilterTransactionPropsType> = ({ onSubmi
                                         <Field
                                             type="text"
                                             name="transactionCode"
-                                            label="Código de transacción"
+                                            label={t("transactions:filter.label.transactionCode")}
                                             component={Input}
                                             className="Admin-Pickers-input"
                                             placeholder="Ingresá el código"
@@ -63,7 +68,7 @@ export const FilterTransaction:React.FC<FilterTransactionPropsType> = ({ onSubmi
                                         <Field
                                             type="text"
                                             name="pickerId"
-                                            label="Id de picker"
+                                            label={t("transactions:filter.label.idPicker")}
                                             component={Input}
                                             className="Admin-Pickers-input"
                                             placeholder="Ingresá el número de picker"
@@ -72,14 +77,14 @@ export const FilterTransaction:React.FC<FilterTransactionPropsType> = ({ onSubmi
                                     <Col xxl xl={4} className="px-3">
                                         <div className="datePicker-filter-transaction" id="datePicker-filter-transaction">
                                             <label className="label-Admin-Pickers">
-                                                Vencimiento SLA
+                                                {t("transactions:filter.label.SLA")}
                                             </label>
                                             <Field
                                                 type="text"
                                                 className="Admin-Pickers-input-select"
                                                 name="date"
                                              
-                                                placeholder="Seleccioná la fecha"
+                                                placeholder={t("transactions:filter.label.selectDate")}
                                                 language="es"
                                             >
                                                 { (props:any)=><DatePicker {...props}/>}
@@ -89,11 +94,11 @@ export const FilterTransaction:React.FC<FilterTransactionPropsType> = ({ onSubmi
                                     </Col>
                                     <Col xxl xl={4} className="px-3">
                                          <label className="label-Admin-Pickers">
-                                                Estados
+                                                {t("transactions:filter.label.state")}
                                         </label>
                                         <Field
                                             name="state"
-                                            placeholder="Seleccioná el estado"
+                                            placeholder={t("transactions:filter.placeholder.selectState")}
                                             onChange={form.mutators.setValue}
                                             options={FILTER_TRANSACTION_OPTIONS}
                                            >
@@ -109,7 +114,7 @@ export const FilterTransaction:React.FC<FilterTransactionPropsType> = ({ onSubmi
                                             id="inAlert"
                                         />
                                         <label htmlFor="inAlert" className="label-filter-transaction-alert">
-                                            En alerta
+                                            {t("transactions:filter.label.inAlert")}
                                         </label>
                                     </Col>
                                     <Col xxl="auto" lg={4} className="px-3">
@@ -120,7 +125,7 @@ export const FilterTransaction:React.FC<FilterTransactionPropsType> = ({ onSubmi
                                         >
                                             <img src={search} alt="export" />
                                             <img className="or-filter" src={or} alt="or" />
-                                            <p className="display-inline-block p-export">Buscar</p>
+                                            <p className="display-inline-block p-export">{t("transactions:filter.button.search")}</p>
                                         </button>
                                     </Col>
                                 </form>

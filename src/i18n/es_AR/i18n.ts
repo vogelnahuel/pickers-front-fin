@@ -22,4 +22,4 @@ i18n
   i18n.addResourceBundle("es","login",logini18n)
    i18n.addResourceBundle("es","dashboard",dashboardi18n)
    i18n.addResourceBundle("es","pickers",pickeri18n)
-   i18n.addResourceBundle("es","transaction",transactions)
+   i18n.addResourceBundle("es","transactions",transactions)

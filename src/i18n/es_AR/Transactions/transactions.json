@@ -1,3 +1,16 @@
 {
-    "title.transaction":"Transacciones"
+    "title.transactions":"Transacciones",
+    "filter.label.filtro":"Filtros",
+    "button.export":"Exportar",
+    "button.seeMore":"Ver más",
+    "label.noResults":"No obtuvimos resultados para tu búsqueda :(",
+    "filter.label.transactionCode":"Código de transacción",
+    "filter.label.idPicker":"Id de picker",
+    "filter.label.SLA":"Vencimiento SLA",
+    "filter.placeholder.selectDate":"Seleccioná la fecha",
+    "filter.label.state":"Estados",
+    "filter.placeholder.selectState":"Seleccioná el estado",
+    "filter.label.inAlert":"En alerta",
+    "filter.button.search":"Buscar"
+
 }

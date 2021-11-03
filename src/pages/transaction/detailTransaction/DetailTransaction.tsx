@@ -12,6 +12,8 @@ import ReasonsCanceled from "./modalTransaction/reasonsCanceled/ReasonsCanceled"
 import ReasonsCanceledConfirm from "./modalTransaction/reasonsCanceledConfirm/ReasonsCanceledConfirm";
 import Undelivered from "./modalTransaction/undelivered/Undelivered";
 import { DetailTransactionPropsType } from "./types";
+import { useTranslation } from "react-i18next";
+import "../../i18n/es_AR/i18n";
 
 export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
   detailTransaction,
@@ -27,6 +29,7 @@ export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
     Undelivered: "Undelivered",
   };
   const [currentStep, setCurrentStep] = useHistory([STEP.History]);
+  const { t } = useTranslation();
   return (
     <div className="modal-transaction">
       <Modal
@@ -48,19 +51,19 @@ export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
           />
 
           <div className="modal-transaction-title">
-            <h2>Código de transacción</h2>
-            <p>Estado</p>
+            <h2>{t("transactions:filter.label.transactionCode")}</h2>
+            <p>{t("transactions:filter.label.state")}</p>
             <p className="modal-transaction-date">
               {detailTransaction &&
               detailTransaction.transaction &&
               detailTransaction.transaction.inAlert ? (
                 <span className="transaction-modal-alert modal-transaction-alerta">
-                  En alerta
+                  {t("transactions:filter.label.inAlert")}
                 </span>
               ) : (
                 <span className="modal-transaction-space"></span>
               )}
-              Vencimiento SLA
+              {t("transactions:filter.label.SLA")}
             </p>
           </div>
           <div className="modal-transaction-subtitle">
