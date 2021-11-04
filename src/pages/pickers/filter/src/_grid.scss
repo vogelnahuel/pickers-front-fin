@@ -1,37 +1,32 @@
 @import "./media";
 
+@mixin comun($gutter) {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: $gutter;
+}
+
 @mixin create-col-classes($modifier, $grid-cols, $breakpoint, $gutter) {
   @include create-mq($breakpoint) {
     &-col#{$modifier}-auto {
-      position: relative;
-      width: 100%;
-      padding-left: $gutter;
-      box-sizing: border-box;
+      @include comun($gutter);
       @include make-col-auto();
     }
     &-col#{$modifier} {
-      position: relative;
-      width: 100%;
-      padding-left: $gutter;
-      box-sizing: border-box;
+      @include comun($gutter);
       flex-basis: 0;
       flex-grow: 1;
       max-width: 100%;
     }
     @for $i from 1 through $grid-cols {
       &-col#{$modifier}-#{$i} {
-        position: relative;
-        width: 100%;
-        padding-left: $gutter;
-        box-sizing: border-box;
+        @include comun($gutter);
         @include make-col($i, $grid-cols);
       }
 
       &-col#{$modifier}-offset-#{$i} {
-        position: relative;
-        width: 100%;
-        padding-left: $gutter;
-        box-sizing: border-box;
+        @include comun($gutter);
         @include make-col-offset($i, $grid-cols);
       }
     }
