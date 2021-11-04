@@ -15,6 +15,7 @@ import {
   actions as pendingUserActions,
   selectors as pendingUserSelectors,
 } from "reducers/pickers";
+import i18next from "i18next";
 export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
   showNotification,
   setActualPage,
@@ -97,7 +98,7 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
               }}
               className="container-pending pending-blue-border-izq"
             >
-              <p className="Pending-paragraph">Solicitudes pendientes</p>
+              <p className="Pending-paragraph">{i18next.t("pickers:title.pickers.pending")}</p>
               <img className="img" src={relojAzul} alt="reloj" />
             </div>
           ) : (
@@ -108,7 +109,7 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
               className="container-pending pending-blue-border-izq"
             >
               <p className="Pending-paragraph  pending-black ">
-                Solicitudes pendientes
+               {i18next.t("pickers:title.pickers.pending")}
               </p>
               <img className="img" src={relojOscuro} alt="reloj" />
             </div>
@@ -120,7 +121,7 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
               }}
               className="container-pending border-pending pending-blue-border-der"
             >
-              <p className="Pending-paragraph2 pending-blue">Pickers</p>
+              <p className="Pending-paragraph2 pending-blue">{i18next.t("pickers:title.pickers.pickers")}</p>
               <img className="img2" src={trabajadorAzul} alt="trabajador" />
             </div>
           ) : (
@@ -130,7 +131,7 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
                 changePage("ACTIVE", isDirty);
               }}
             >
-              <p className="Pending-paragraph2">Pickers</p>
+              <p className="Pending-paragraph2">{i18next.t("pickers:title.pickers.pickers")}</p>
               <img className="img2" src={trabajadorOscuro} alt="trabajador" />
             </div>
           )}
@@ -140,7 +141,7 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
           <div>
             <button className="buttonVolver" onClick={handleHistory}>
               <img className="img3" src={volver} alt="volver" />
-              <p className="Pending-paragraph3">Volver</p>
+              <p className="Pending-paragraph3">{i18next.t("pickers:button.pickers.back")}</p>
             </button>
           </div>
         )}

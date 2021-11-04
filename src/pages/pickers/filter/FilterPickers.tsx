@@ -10,6 +10,7 @@ import { FILTER_PICKERS_OPTIONS } from "utils/constants";
 import Select from "component/inputs/Select";
 import useValidationSchema from "hooks/useValidationSchema";
 import { FilterTypes } from "./types";
+import i18next from "i18next"
 
 /****diseño del filtro y muestra inputs*/
 //TODO: revisar tipo del onSubmit
@@ -28,7 +29,7 @@ export const FilterPickers: React.FC<FilterTypes> = ({
               src={dropdown}
               alt="desplegable"
             />
-            <p className="p-filter-transaction">Filtros</p>
+            <p className="p-filter-transaction">{i18next.t("pickers-filter:title.filter.filter")}</p>
           </div>
         </Col>
         <Col className="sub-container">
@@ -52,10 +53,10 @@ export const FilterPickers: React.FC<FilterTypes> = ({
                     <Field
                       type="text"
                       name="name"
-                      label="Nombre y apellido"
+                      label={i18next.t("pickers-filter:label.filter.name")}
                       component={Input}
                       className="Admin-Pickers-input"
-                      placeholder="Ingresá el nombre y apellido"
+                      placeholder={i18next.t("pickers-filter:placeholder.filter.name")}
                       maxLength={50}
                     />
                   </Col>
@@ -63,19 +64,19 @@ export const FilterPickers: React.FC<FilterTypes> = ({
                     <Field
                       type="text"
                       name="identificationNumber"
-                      label="DNI"
+                      label={i18next.t("pickers-filter:label.filter.identifier")}
                       component={Input}
                       className="Admin-Pickers-input"
-                      placeholder="Ingresá el DNI"
+                      placeholder={i18next.t("pickers-filter:placeholder.filter.identifier")}
                       maxLength={9}
                     />
                   </Col>
                   <Col xxl xl={4} className="px-3">
                     <Field
                       name="vehicleType"
-                      label="Vehículo"
+                      label={i18next.t("pickers-filter:label.filter.vehicle")}
                       onChange={form.mutators.setValue}
-                      placeholder="Seleccioná tipo de vehículo"
+                      placeholder={i18next.t("pickers-filter:placeholder.filter.vehicle")}
                       options={FILTER_PICKERS_OPTIONS}
                     >
                       {(props: any) => <Select {...props} />}
@@ -85,10 +86,10 @@ export const FilterPickers: React.FC<FilterTypes> = ({
                     <Field
                       type="text"
                       name="email"
-                      label="Email"
+                      label={i18next.t("pickers-filter:label.filter.email")}
                       component={Input}
                       className="Admin-Pickers-input"
-                      placeholder="Ingresá el email"
+                      placeholder={i18next.t("pickers-filter:placeholder.filter.email")}
                       maxLength={250}
                     />
                   </Col>

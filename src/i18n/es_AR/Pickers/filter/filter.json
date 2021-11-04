@@ -1,0 +1,12 @@
+{
+    "title.filter.filter": "Filtros",
+    
+    "label.filter.name": "Nombre y apellido",
+    "placeholder.filter.name": "Ingresá el nombre y apellido",
+    "label.filter.identifier": "DNI",
+    "placeholder.filter.identifier": "Ingresá el DNI",
+    "label.filter.vehicle": "Vehículo",
+    "placeholder.filter.vehicle": "Seleccioná tipo de vehículo",
+    "label.filter.email": "Email",
+    "placeholder.filter.email": "Ingresá el email"
+}

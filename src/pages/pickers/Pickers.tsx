@@ -37,8 +37,8 @@ export const Pickers: React.FC<PickerTypes> = ({
             <h2 className="subTitle-pending">
               <p className="subtitle-pendingUser-h2">
                 {actualPage === "PENDING"
-                  ? t("pickers:label.title.pending")
-                  : t("pickers:label.title.pickers")}{" "}
+                  ? t("pickers:title.pickers.pending")
+                  : t("pickers:title.pickers.pickers")}{" "}
               </p>
             </h2>
             <button

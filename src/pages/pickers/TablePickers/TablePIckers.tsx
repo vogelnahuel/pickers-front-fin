@@ -6,6 +6,7 @@ import getDifDate from "utils/difDate";
 import edit from "../../../assets/admin/PendingUser/edit.svg";
 import "./TablePickers.scss";
 import { TableAdminPropsType } from "./types";
+import i18next from "i18next";
 
 export const TablePickers: React.FC<TableAdminPropsType> = ({
   actualPage,
@@ -17,7 +18,7 @@ export const TablePickers: React.FC<TableAdminPropsType> = ({
         <thead>
           <tr>
             {(actualPage==="PENDING"? titlesAdminPending : titlesAdminActive).map((titulo: string) => (
-              <td key={titulo}>{titulo}</td>
+              <td key={titulo}>{i18next.t(titulo)}</td>
             ))}
           </tr>
         </thead>

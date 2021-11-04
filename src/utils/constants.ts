@@ -1,3 +1,6 @@
+import i18next from "i18next";
+
+
 export const titlesAdminPending = [
   "Nombre",
   "DNI",
@@ -6,13 +9,14 @@ export const titlesAdminPending = [
   "Pendiente hace",
   "Editar",
 ];
+
 export const titlesAdminActive = [
-  "Nombre",
-  "DNI",
-  "Email",
-  "Vehículo",
-  "Estado",
-  "Editar",
+  "pickers-table:label.table.name",
+  "pickers-table:label.table.identifier",
+  "pickers-table:label.table.email",
+  "pickers-table:label.table.vehicle",
+  "pickers-table:label.table.status",
+  "pickers-table:label.table.edit"
 ];
 
 export const transactionTableTitles = [
