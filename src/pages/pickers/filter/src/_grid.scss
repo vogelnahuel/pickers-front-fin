@@ -1,0 +1,74 @@
+@import './media';
+
+@mixin create-col-classes($modifier, $grid-cols, $breakpoint, $gutter) {
+
+  @include create-mq($breakpoint) {
+    
+    &-col#{$modifier}-auto {
+      position: relative;
+      width: 100%;
+      padding-left: $gutter;
+      box-sizing: border-box;
+      @include make-col-auto();
+    }
+    &-col#{$modifier}{
+      position: relative;
+      width: 100%;
+      padding-left: $gutter;
+      box-sizing: border-box;
+      flex-basis: 0;
+      flex-grow: 1;
+      max-width: 100%;
+    }
+    @for $i from 1 through $grid-cols {
+
+      &-col#{$modifier}-#{$i} {
+        position: relative;
+        width: 100%;
+        padding-left: $gutter;
+        box-sizing: border-box;
+          @include make-col($i, $grid-cols);
+        }
+    }
+  }
+}
+
+@mixin container($grid__cols, $gutter, $grid__width: '') {
+  @if $grid__width != '' {
+    max-width: calc(#{$grid__width});
+    margin: 0 auto;
+  }
+
+  &-fluid {
+    margin: 0;
+    max-width: 100%;
+  }
+
+  &-row {
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    width: calc(100% + #{$gutter});
+    margin-left: calc(-#{$gutter});
+  }
+
+  @each $modifier, $breakpoint in $map-grid-props {
+    @include create-col-classes($modifier, $grid__cols, $breakpoint, $gutter);
+  }
+}
+
+
+@mixin make-col($size, $columns: $grid-columns) {
+  flex: 0 0 percentage($size / $columns);
+  max-width: percentage($size / $columns);
+}
+
+@mixin make-col-auto() {
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 100%;
+}
+// @mixin make-col-offset($size, $columns: $grid-columns) {
+//   $num: $size / $columns;
+//   margin-left: if($num == 0, 0, percentage($num));
+// }

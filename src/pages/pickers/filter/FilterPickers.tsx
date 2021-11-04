@@ -20,7 +20,7 @@ export const FilterPickers: React.FC<FilterTypes> = ({
   return (
     <div className="container-fluid display-filter-transaction">
       <div className="container-row">
-        <div className="container-col-2">
+        <div className="container-col-auto">
           <div className="filter-Imagen-width">
             <img
               className="img-filter-transaction"
@@ -30,7 +30,7 @@ export const FilterPickers: React.FC<FilterTypes> = ({
             <p className="p-filter-transaction">Filtros</p>
           </div>
         </div>
-        <div className="container-col-13">
+        <div className="container-col">
           <div className="container-row">
             <Form
               onSubmit={(value) => onSubmit(value)}
@@ -48,7 +48,7 @@ export const FilterPickers: React.FC<FilterTypes> = ({
                   onSubmit={handleSubmit}
                 >
                
-                    <div className="container-col-sm-5 container-col-xl-3">
+                    <div className="container-col-sm-1 container-col-xl">
                       <Field
                         type="text"
                         name="name"
@@ -59,7 +59,7 @@ export const FilterPickers: React.FC<FilterTypes> = ({
                         maxLength={50}
                       />
                     </div>
-                    <div className="container-col-sm-5 container-col-xl-3">
+                    <div className="container-col-sm-1 container-col-xl">
                       <Field
                         type="text"
                         name="identificationNumber"
@@ -70,7 +70,7 @@ export const FilterPickers: React.FC<FilterTypes> = ({
                         maxLength={9}
                       />
                     </div>
-                    <div className="container-col-sm-5 container-col-xl-3">
+                    <div className="container-col-sm-1 container-col-xl">
                       <Field
                         name="vehicleType"
                         label="Vehículo"
@@ -81,7 +81,7 @@ export const FilterPickers: React.FC<FilterTypes> = ({
                         {(props: any) => <Select {...props} />}
                       </Field>
                     </div>
-                    <div className="container-col-sm-5 container-col-xl-3">
+                    <div className="container-col-sm-1 container-col-xl">
                       <Field
                         type="text"
                         name="email"
@@ -92,7 +92,7 @@ export const FilterPickers: React.FC<FilterTypes> = ({
                         maxLength={250}
                       />
                     </div>
-                    <div className="container-col-sm-10 container-col-xl-3 end">
+                    <div className="container-col-sm-2 container-col-xl-auto end">
                       <button
                         className="search-button-transaction"
                         name="search"

@@ -61,7 +61,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
             <form onSubmit={handleSubmit}>
               <div className="container-history-fluid">
                 <div className="container-history-row">
-                  <div className="container-history-col-sm-6  ">
+                  <div className="container-history-col-sm  ">
                     <Field
                       type="text"
                       name="pickerId"
@@ -71,7 +71,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                       disabled
                     />
                   </div>
-                  <div className="container-history-col-sm-6  ">
+                  <div className="container-history-col-sm  ">
                     <Field
                       type="text"
                       name="name"
@@ -82,7 +82,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                     />
                   </div>
 
-                  <div className="container-history-col-sm-3  ">
+                  <div className="container-history-col-sm  ">
                     <Field
                       type="text"
                       name="areaCode"
@@ -92,7 +92,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                       disabled
                     />
                   </div>
-                  <div className="container-history-col-sm-3  ">
+                  <div className="container-history-col-sm  ">
                     <Field
                       type="text"
                       name="phone"
@@ -103,7 +103,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                     />
 
                   </div>
-                  <div className="container-history-col-sm-6  ">
+                  <div className="container-history-col-auto">
                     <Link
                       className="modal-transaction-button-irApicker-a"
                       target={detailTransaction.picker.id ? "_blank" : ""}
@@ -128,7 +128,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                   </div>
                 </div>
                 <div className="container-history-row">
-                  <div className="container-history-col-sm-6  ">
+                  <div className="container-history-col-sm ">
                     <Field
                       type="text"
                       name="deliveryAddress"
@@ -138,7 +138,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                       disabled
                     />
                   </div>
-                  <div className="container-history-col-sm-6  ">
+                  <div className="container-history-col-sm  ">
                     <Field
                       type="text"
                       name="pickupAddress"
@@ -148,7 +148,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                       disabled
                     />
                   </div>
-                  <div className="container-history-col-sm-6  ">
+                  <div className="container-history-col-sm ">
                     <Field
                       type="text"
                       name="retailer"
@@ -172,7 +172,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                     id="modal-transaction-hr-title"
                   />
                 <div className="container-history-row">
-                  <div className="container-history-col-sm-6  ">
+                  <div className="container-history-col-sm ">
                     <Field
                       type="text"
                       name="reveiverName"
@@ -182,7 +182,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                       disabled
                     />
                   </div>
-                  <div className="container-history-col-sm-6  ">
+                  <div className="container-history-col-sm ">
                     <Field
                       type="text"
                       name="reveiverPhone"

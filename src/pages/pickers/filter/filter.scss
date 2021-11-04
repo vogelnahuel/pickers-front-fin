@@ -1,7 +1,7 @@
-@import "@pickit/pickit-grid-system";
+@import  './src/index';
 
 .container {
-  @include container(15, 25px);
+  @include container(3, 25px);
 }
 .end{
   display: flex;

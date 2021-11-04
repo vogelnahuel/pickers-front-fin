@@ -1,0 +1,64 @@
+$xs: 375;
+$sm: 667;
+$md: 1280;
+$lg: 1440;
+$xl: 1920;
+
+$map-grid-props: (
+  '': 0,
+  '-xs': $xs,
+  '-sm': $sm,
+  '-md': $md,
+  '-lg': $lg,
+  '-xl': $xl,
+);
+
+@mixin media($media) {
+  @if $media == xs {
+    @media screen and (max-width: calc(#{$sm}*1px - 1px)) {
+      @content;
+    }
+  } @else if $media == sm {
+    @media screen and (min-width: $sm*1px) and (max-width: calc(#{$md}*1px - 1px)) {
+      @content;
+    }
+  } @else if $media == md {
+    @media screen and (min-width: $md*1px) and (max-width: calc(#{$lg}*1px - 1px)) {
+      @content;
+    }
+  } @else if $media == lg {
+    @media screen and (min-width: $lg*1px) and (max-width: calc(#{$xl}*1px - 1px)) {
+      @content;
+    }
+  } @else if $media == xl {
+    @media screen and (min-width: $xl*1px) {
+      @content;
+    }
+  } @else if $media == xl-down {
+    @media screen and (max-width: calc(#{$xl}*1px - 1px)) {
+      @content;
+    }
+  } @else if $media == lg-down {
+    @media screen and (max-width: calc(#{$lg}*1px - 1px)) {
+      @content;
+    }
+  } @else if $media == md-down {
+    @media screen and (max-width: calc(#{$md}*1px - 1px)) {
+      @content;
+    }
+  } @else if $media == sm-down {
+    @media screen and (max-width: calc(#{$sm}*1px - 1px)) {
+      @content;
+    }
+  }
+}
+
+@mixin create_mq($breakpoint) {
+  @if ($breakpoint == 0) {
+    @content;
+  } @else {
+    @media screen and (min-width: $breakpoint *1px) {
+      @content;
+    }
+  }
+}

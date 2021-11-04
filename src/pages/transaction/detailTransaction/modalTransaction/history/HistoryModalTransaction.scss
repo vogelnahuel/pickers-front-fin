@@ -1,5 +1,5 @@
 
-@import "@pickit/pickit-grid-system";
+@import "../../../../pickers/filter/src/index";
 
 .container-history {
   @include container(24, 25px);
@@ -46,7 +46,7 @@
 .form-filter-transaction {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  width: 100%;
 }
 .form-filter-transaction.modal {
   justify-content: center;

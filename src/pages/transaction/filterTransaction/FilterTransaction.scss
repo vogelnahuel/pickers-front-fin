@@ -1,7 +1,7 @@
-@import "@pickit/pickit-grid-system";
+@import "../../pickers/filter/src/index";
 
 .container-transaction {
-  @include container(18, 25px);
+  @include container(3, 25px);
 }
 
 .display-filter-transaction{
@@ -79,7 +79,6 @@
 .form-filter-transaction{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
 }
 .sub-container{
     form div {
