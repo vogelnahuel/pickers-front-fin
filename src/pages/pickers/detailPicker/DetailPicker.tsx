@@ -360,7 +360,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                             maxLength={10}
                           />
                         </div>
-                        <div className="container-detailPicker-col-sm-6  ">
+                        <div className="container-detailPicker-col-sm-6">
                           <Field
                             type="text"
                             name={`vehicle.${initialValues.vehicleType}.expirationDatePolicyVehicle`}
@@ -373,7 +373,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                         </div>
                       </>
                     )}
-                    <div className="container-detailPicker-col-sm-6  ">
+                    <div className="container-detailPicker-col-sm-6">
                       <Field
                         type="text"
                         name="expirationDatePolicyPersonal"

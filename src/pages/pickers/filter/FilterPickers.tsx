@@ -92,7 +92,7 @@ export const FilterPickers: React.FC<FilterTypes> = ({
                         maxLength={250}
                       />
                     </div>
-                    <div className="container-col-sm-2 container-col-xl-auto end">
+                    <div className="container-col-sm-offset-1 container-col-sm-1 container-col-xl-auto end">
                       <button
                         className="search-button-transaction"
                         name="search"

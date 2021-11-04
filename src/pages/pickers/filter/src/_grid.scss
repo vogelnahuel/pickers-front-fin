@@ -1,9 +1,7 @@
-@import './media';
+@import "./media";
 
 @mixin create-col-classes($modifier, $grid-cols, $breakpoint, $gutter) {
-
   @include create-mq($breakpoint) {
-    
     &-col#{$modifier}-auto {
       position: relative;
       width: 100%;
@@ -11,7 +9,7 @@
       box-sizing: border-box;
       @include make-col-auto();
     }
-    &-col#{$modifier}{
+    &-col#{$modifier} {
       position: relative;
       width: 100%;
       padding-left: $gutter;
@@ -21,20 +19,27 @@
       max-width: 100%;
     }
     @for $i from 1 through $grid-cols {
-
       &-col#{$modifier}-#{$i} {
         position: relative;
         width: 100%;
         padding-left: $gutter;
         box-sizing: border-box;
-          @include make-col($i, $grid-cols);
-        }
+        @include make-col($i, $grid-cols);
+      }
+
+      &-col#{$modifier}-offset-#{$i} {
+        position: relative;
+        width: 100%;
+        padding-left: $gutter;
+        box-sizing: border-box;
+        @include make-col-offset($i, $grid-cols);
+      }
     }
   }
 }
 
-@mixin container($grid__cols, $gutter, $grid__width: '') {
-  @if $grid__width != '' {
+@mixin container($grid__cols, $gutter, $grid__width: "") {
+  @if $grid__width != "" {
     max-width: calc(#{$grid__width});
     margin: 0 auto;
   }
@@ -57,9 +62,9 @@
   }
 }
 
-
 @mixin make-col($size, $columns: $grid-columns) {
   flex: 0 0 percentage($size / $columns);
+  margin-left: 0;
   max-width: percentage($size / $columns);
 }
 
@@ -67,8 +72,10 @@
   flex: 0 0 auto;
   width: auto;
   max-width: 100%;
+  margin-left: 0;
 }
-// @mixin make-col-offset($size, $columns: $grid-columns) {
-//   $num: $size / $columns;
-//   margin-left: if($num == 0, 0, percentage($num));
-// }
+
+@mixin make-col-offset($size, $columns: $grid-columns) {
+  $num: $size / $columns;
+  margin-left: if($num == 0, 0, percentage($num));
+}

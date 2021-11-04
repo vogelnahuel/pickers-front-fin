@@ -133,6 +133,7 @@
 
 .modal-transaction-difuminar1 {
   position: absolute;
+  z-index: 1;
   width: 95%;
   left: 0;
   height: 15px;
@@ -142,6 +143,7 @@
 }
 .modal-transaction-difuminar2 {
   position: absolute;
+  z-index: 1;
   width: 95%;
   left: 0;
   height: 15px;
@@ -151,6 +153,7 @@
 }
 .modal-transaction-difuminar3 {
   position: absolute;
+  z-index: 1;
   width: 95%;
   left: 0;
   height: 15px;
@@ -160,6 +163,7 @@
 }
 .modal-transaction-difuminar4 {
   position: absolute;
+  z-index: 1;
   width: 95%;
   left: 0;
   height: 15px;
@@ -169,6 +173,7 @@
 }
 .modal-transaction-difuminar5 {
   position: absolute;
+  z-index: 1;
   width: 95%;
   left: 0;
   height: 15px;
@@ -177,6 +182,7 @@
   margin-top: 10px;
 }
 .modal-transaction-difuminar6 {
+  z-index: 1;
   position: absolute;
   width: 95%;
   left: 0;

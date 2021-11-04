@@ -3,7 +3,6 @@ import Card from "assets/transaction/Card.svg";
 import { Input } from "component/inputs/Input";
 import useValidationSchema from "hooks/useValidationSchema";
 import React from "react";
-// import { Col } from "react-bootstrap";
 import { Field, Form } from "react-final-form";
 import { connect } from "react-redux";
 import {
