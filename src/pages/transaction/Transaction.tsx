@@ -12,7 +12,7 @@ import FilterTransaction from "./filterTransaction/FilterTransactionContainer";
 import TableTransaction from "./tableTransaction/TableTransaction";
 import { TransactionType } from "./types";
 import { useTranslation } from "react-i18next";
-import "../../i18n/es_AR/i18n";
+
 
 export const Transaction: React.FC<TransactionType> = ({
   isExportDisabled,

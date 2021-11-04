@@ -20,6 +20,7 @@ import {
   RestoreEmailResponse,
 } from "./types/login";
 import { AxiosResponse } from "axios";
+import i18next from "i18next";
 
 const sagas: ForkEffect<never>[] = [
   takeLatest(types.LOGIN_GET_REQUEST, getLogin),
@@ -41,6 +42,7 @@ function* getLogin({
   void,
   ILoginResponse
 > {
+  
   const response = yield call(loginMiddleware.getLogin, params);
 
   if (response.status !== 200) {
@@ -50,7 +52,7 @@ function* getLogin({
         yield put(
           notificationActions.showNotification({
             level: "error",
-            title: "Error de conexión",
+            title: `${i18next.t("Error de conexión")}`,
             body: "Hubo un error de comunicación con el servidor. Por favor, intentalo nuevamente",
             element,
           })
@@ -60,7 +62,7 @@ function* getLogin({
         yield put(
           notificationActions.showNotification({
             level: "error",
-            title: "Usuario y/o contraseña inválidos",
+            title: `${i18next.t("Usuario y/o contraseña inválidos")}`,
             body: "Tu usuario y/o contraseña ingresados son incorrectos. Por favor, ingresalos nuevamente.",
             element,
           })

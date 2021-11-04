@@ -13,7 +13,7 @@ import { FILTER_TRANSACTION_OPTIONS } from "utils/constants";
 import useValidationSchema from "hooks/useValidationSchema";
 import { FilterTransactionPropsType, FilterValuesType } from "./types";
 import { useTranslation } from "react-i18next";
-import "../../../i18n/es_AR/i18n";
+
 
 export const FilterTransaction: React.FC<FilterTransactionPropsType> = ({
   onSubmit,

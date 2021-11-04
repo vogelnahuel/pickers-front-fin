@@ -12,7 +12,8 @@ import Okey from "../../../assets/login/Okey.svg";
 import Informacion from "../../../assets/login/Informacion.svg";
 import { VALIDATION_REGEX } from "utils/constants";
 import { useTranslation } from "react-i18next";
-import '../../../i18n/es_AR/i18n';
+
+import i18next from "i18next"
 
 export const RestorePassword = ({
   postLoginRestore,
@@ -21,8 +22,8 @@ export const RestorePassword = ({
   email,
   verificationCode,
 }: RestoreEmailPasswordType): JSX.Element => {
-
-  const {t} = useTranslation();
+  
+  const [t,i18n] = useTranslation()
 
   return (
     <div className="background-login">

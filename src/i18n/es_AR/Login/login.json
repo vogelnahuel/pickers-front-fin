@@ -1,8 +1,9 @@
 
-
-{    
-      "laber.input.user": "Usuario",
-      "label.inpput.password": "Contraseña",
+{  
+       
+      "label.input.user": "Usuario",
+      "placeholder.user":"Usuario",
+      "label.input.password": "Contraseña",
       "link.forgotPassword": "¿Olvidaste tu contraseña?",
       "button.login": "Iniciar sesión",
       "label.input.newPassword": "Nueva contraseña",
@@ -12,8 +13,7 @@
       "label.uppercaseandLowerCase": "Mayúsculas y minúsculas",
       "label.numbersAndLeters": "Números y letras",
       "button.save": "Guardar",
-      "label.inpput.email": "Email",
-      "label.inpput.sendMail": "Enviar correo"
-    
+      "label.input.email": "Email",
+      "label.input.sendMail": "Enviar correo"
 
 }

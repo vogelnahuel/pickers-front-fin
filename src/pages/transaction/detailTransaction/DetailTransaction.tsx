@@ -2,6 +2,7 @@ import { Modal } from "@pickit/pickit-components";
 import Close from "assets/transaction/Close.svg";
 import { FlowTrasitionParamsType } from "component/flowtransition/types";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { TRANSACTION_STATE_ID_LABEL } from "utils/constants";
 import { ISO8601toDDMMYYYHHMM } from "utils/iso8601toDDMMYYHHMM";
 import FlowTransition from "../../../component/flowtransition/FlowTransition";
@@ -26,7 +27,7 @@ export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
     ReasonsCanceledConfirm: "ReasonsCanceledConfirm",
     Undelivered: "Undelivered",
   };
-
+  const [t,i18n] = useTranslation()
   return (
     <div className="modal-transaction">
       <Modal

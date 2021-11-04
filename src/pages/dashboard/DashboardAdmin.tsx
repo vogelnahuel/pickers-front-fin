@@ -1,26 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Card } from 'component/admin/DashBoard/Card';
 import {Header} from 'component/admin/Header/Header';
 import {Nav} from '../../component/admin/Nav/Nav';
 import './Dashboard.scss';
 import moment from "moment";
 import { DashboardTypes } from './types';
-import { useTranslation } from "react-i18next";
-import '../../i18n/es_AR/i18n'
+
+import { useTranslation } from 'react-i18next';
+
 
 export const DashboardAdmin: React.FC<DashboardTypes> = ({dashboard,isFetching}): JSX.Element => {
-   // i18next.addResourceBundle("es","dashboard",{dashboard:"Dashboard"})
-   //i18n.addResourceBundle("es","dashboard",require("../../i18n/es_AR/Dashboard/dashboard.json")) 
-   const {t} = useTranslation();
 
+  const [t,i18n] = useTranslation()
     return (
         <div className="background-Grey">
             <Header/>
             <div className="mainContainerFlex">
                 <Nav isDirty={null} showNotification={null}/>
                 <div className="Admin-container">
-                    <h2 className="title_Dashboard_Admin">{t("dashboard:title.dashboard")}</h2>
+                    <h2 className="title_Dashboard_Admin" >{t("dashboard:title.dashboard")}</h2>
                     <h3 className="subtitle_Dashboard_Admin">{t("dashboard:label.visualizeInformation")}</h3>
+                    {/* <button  className={"login-button"} onClick={()=>{console.log("pepe");i18n.changeLanguage("es_MX")}}>es_MX</button>
+      <button  className={"login-button"} onClick={()=>{console.log("pepe");i18n.changeLanguage("es_AR")}}>es_AR</button> */}
                     <div className="card-admin">
                         <Card
                             subtitle={t("dashboard:subtitle.pickers")}
@@ -54,6 +55,7 @@ export const DashboardAdmin: React.FC<DashboardTypes> = ({dashboard,isFetching})
                             backgroundColor="#FF8F76"
                             url={`/transaction?inAlert=${true}&minMinDeliveryDate=${moment().subtract(4,'d').format('YYYY-MM-DD')}&maxMinDeliveryDate=${moment().format("YYYY-MM-DD")}`}
                         />
+                        
                     </div>
                 </div>
             </div>
