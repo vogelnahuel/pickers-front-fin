@@ -118,7 +118,9 @@ export const FilterPickers: React.FC<FilterTypes> = ({
                     >
                       <img src={search} alt="export" />
                       <img className="or-filter" src={or} alt="or" />
-                      <p className="display-inline-block p-export">Buscar</p>
+                      <p className="display-inline-block p-export">
+                        {i18next.t("global:label.button.search")}
+                      </p>
                     </button>
                   </Col>
                 </form>

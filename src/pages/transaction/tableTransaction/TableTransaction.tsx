@@ -11,6 +11,7 @@ import TreePoints from "../../../assets/transaction/TreePoints.svg";
 import { transactionTableTitles } from "../../../utils/constants";
 import "./TableTransaction.scss";
 import { TableTransactionPropsTypes } from "./types";
+import i18next from "i18next"
 
 
 
@@ -51,7 +52,7 @@ export const TableTransaction = ({
                     "YYYY-MM-DD"
                   ).format("DD/MM/YYYY")}
                   {data.transaction.inAlert && (
-                    <div className="admin-table-alerta">En alerta</div>
+                    <div className="admin-table-alerta">{i18next.t("transactionTable:label.table.inAlert")}</div>
                   )}
                 </td>
                 <td> {data.transaction.state.name}</td>

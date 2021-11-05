@@ -30,6 +30,6 @@
   "label.insurance.carInsuranceExpiration": "Vencimiento del seguro de automotor *",
   "label.insurance.personalAccidentInsuranceExpiration": "Vencimiento del seguro de accidentes personales * ",
 
-  "title.notification.approved": "Aprobación exitosa",
-  "label.notification.approved": "Ya podés visualizar sus datos en la pestaña pickers"
+  "title.modal.approved": "Aprobación exitosa",
+  "label.modal.approved": "Ya podés visualizar sus datos en la pestaña pickers"
 }

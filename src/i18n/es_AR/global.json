@@ -1,20 +1,26 @@
 {
-  "button.seeMore": "Ver más",
-  "button.export": "Exportar",
+  "label.button.export": "Exportar",
   "filter.button.search": "Buscar",
+  "label.button.cancel": "Cancelar",
+  "label.button.save": "Guardar",
+  "label.button.finish": "Finalizar",
   "filter.label.inAlert": "En alerta",
+  "label.input.email": "Email",
+  "label.title.noResults": "No obtuvimos resultados para tu búsqueda :(",
+  "label.button.search": "Buscar",
+  "label.button.back": "Volver",
 
   "placeholder.input.date": "día / mes / año",
   "label.switch.title": "Estado",
   "label.switch.disabled": "Deshabilitado",
   "label.switch.enabled": "Habilitado",
 
-  "title.notification.export": "Exportaste exitosamente",
-  "label.notification.export": "El archivo se descargó correctamente",
+  "title.modal.export": "Exportaste exitosamente",
+  "label.modal.export": "El archivo se descargó correctamente",
 
-  "title.notification.connectionError": "Error de conexión",
-  "label.notification.connectionError": "Hubo un error de comunicación con el servidor. Por favor, intentalo nuevamente",
+  "title.modal.connectionError": "Error de conexión",
+  "label.modal.connectionError": "Hubo un error de comunicación con el servidor. Por favor, intentalo nuevamente",
 
-  "title.notification.changesSaved": "Datos guardados",
-  "label.notification.changesSaved": "Ya quedaron registrados los cambios"
+  "title.modal.changesSaved": "Datos guardados",
+  "label.modal.changesSaved": "Ya quedaron registrados los cambios"
 }

@@ -8,6 +8,12 @@ import pickerTablei18n from "./es_AR/Pickers/tablePickers/tablePickers.json";
 import pickerDetaili18n from "./es_AR/Pickers/detailPicker/detailPicker.json";
 import transactions from "./es_AR/Transactions/transactions.json";
 import dashboardi18nMX from "./es_Mx/dashboard/dashboard.json";
+import filterTransaction from "./es_AR/Transactions/filterTransaction/filterTransaction.json";
+import transactionTable from "./es_AR/Transactions/tableTansaction/tableTransaction.json";
+import detailTransaction from "./es_AR/Transactions/detailTransaction/detailTransaction.json";
+import global from "./es_AR/global.json";
+import email from "./es_AR/Login/email/email.json";
+import restorePassword from "./es_AR/Login/restorePassword/restorePassword.json";
 
 //{type:what_is}.{where_is}.{name}
 //error.input.name (error== rojo)
@@ -36,4 +42,11 @@ i18n.addResourceBundle("es_AR", "filterPickers", pickerFilteri18n);
 i18n.addResourceBundle("es_AR", "tablePickers", pickerTablei18n);
 i18n.addResourceBundle("es_AR", "detailPicker", pickerDetaili18n);
 i18n.addResourceBundle("es_AR", "transactions", transactions);
+i18n.addResourceBundle("es_AR", "filterTransaction", filterTransaction);
 i18n.addResourceBundle("es_MX", "dashboard", dashboardi18nMX);
+
+i18n.addResourceBundle("es_AR", "transactionTable", transactionTable);
+i18n.addResourceBundle("es_AR", "detailTransaction", detailTransaction);
+i18n.addResourceBundle("es_AR", "global", global);
+i18n.addResourceBundle("es_AR", "emailRestore", email);
+i18n.addResourceBundle("es_AR", "restorePasword", restorePassword);

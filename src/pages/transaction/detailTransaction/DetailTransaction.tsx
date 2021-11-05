@@ -2,7 +2,7 @@ import { Modal } from "@pickit/pickit-components";
 import Close from "assets/transaction/Close.svg";
 import { FlowTrasitionParamsType } from "component/flowtransition/types";
 import React from "react";
-import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 import { TRANSACTION_STATE_ID_LABEL } from "utils/constants";
 import { ISO8601toDDMMYYYHHMM } from "utils/iso8601toDDMMYYHHMM";
 import FlowTransition from "../../../component/flowtransition/FlowTransition";
@@ -27,7 +27,7 @@ export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
     ReasonsCanceledConfirm: "ReasonsCanceledConfirm",
     Undelivered: "Undelivered",
   };
-  const [t,i18n] = useTranslation()
+  
   return (
     <div className="modal-transaction">
       <Modal
@@ -49,19 +49,19 @@ export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
           />
 
           <div className="modal-transaction-title">
-            <h2>Código de transacción</h2>
-            <p>Estado</p>
+            <h2>{i18next.t("transactions:label.transactions.transactionCode")}</h2>
+            <p>{i18next.t("detailTransaction:title.detailTransaction.state")}</p>
             <p className="modal-transaction-date">
               {detailTransaction &&
               detailTransaction.transaction &&
               detailTransaction.transaction.inAlert ? (
                 <span className="transaction-modal-alert modal-transaction-alerta">
-                  En alerta
+                  {i18next.t("transactions:label.filter.inAlert")}
                 </span>
               ) : (
                 <span className="modal-transaction-space"></span>
               )}
-              Vencimiento SLA
+              {i18next.t("transactions:label.filter.SLA")}
             </p>
           </div>
           <div className="modal-transaction-subtitle">

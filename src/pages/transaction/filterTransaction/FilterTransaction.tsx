@@ -12,16 +12,13 @@ import MultipleSelect from "component/inputs/MultipleSelect";
 import { FILTER_TRANSACTION_OPTIONS } from "utils/constants";
 import useValidationSchema from "hooks/useValidationSchema";
 import { FilterTransactionPropsType, FilterValuesType } from "./types";
-import { useTranslation } from "react-i18next";
-
+import i18next from "i18next";
 
 export const FilterTransaction: React.FC<FilterTransactionPropsType> = ({
   onSubmit,
   filters,
   validationSchema,
 }): JSX.Element => {
-  const { t } = useTranslation();
-
   return (
     <Container fluid className="display-filter-transaction">
       <Row>
@@ -33,7 +30,7 @@ export const FilterTransaction: React.FC<FilterTransactionPropsType> = ({
               alt="desplegable"
             />
             <p className="p-filter-transaction">
-              {t("transactions:filter.label.filtro")}
+              {i18next.t("filterTransaction:title.filter.filters")}
             </p>
           </div>
         </Col>
@@ -63,7 +60,9 @@ export const FilterTransaction: React.FC<FilterTransactionPropsType> = ({
                   <Field
                     type="text"
                     name="transactionCode"
-                    label={t("transactions:filter.label.transactionCode")}
+                    label={i18next.t(
+                      "transactions:label.transactions.transactionCode"
+                    )}
                     component={Input}
                     className="Admin-Pickers-input"
                     placeholder="Ingresá el código"
@@ -74,7 +73,7 @@ export const FilterTransaction: React.FC<FilterTransactionPropsType> = ({
                   <Field
                     type="text"
                     name="pickerId"
-                    label={t("transactions:filter.label.idPicker")}
+                    label={i18next.t("filterTransaction:label.filter.idPicker")}
                     component={Input}
                     className="Admin-Pickers-input"
                     placeholder="Ingresá el número de picker"
@@ -86,13 +85,15 @@ export const FilterTransaction: React.FC<FilterTransactionPropsType> = ({
                     id="datePicker-filter-transaction"
                   >
                     <label className="label-Admin-Pickers">
-                      {t("transactions:filter.label.SLA")}
+                      {i18next.t("transactions:label.filter.SLA")}
                     </label>
                     <Field
                       type="text"
                       className="Admin-Pickers-input-select"
                       name="date"
-                      placeholder={t("transactions:filter.label.selectDate")}
+                      placeholder={i18next.t(
+                        "filterTransaction:label.filter.selectDate"
+                      )}
                       language="es"
                     >
                       {(props: any) => <DatePicker {...props} />}
@@ -101,12 +102,12 @@ export const FilterTransaction: React.FC<FilterTransactionPropsType> = ({
                 </Col>
                 <Col xxl xl={4} className="px-3">
                   <label className="label-Admin-Pickers">
-                    {t("transactions:filter.label.state")}
+                    {i18next.t("filterTransaction:label.filter.state")}
                   </label>
                   <Field
                     name="state"
-                    placeholder={t(
-                      "transactions:filter.placeholder.selectState"
+                    placeholder={i18next.t(
+                      "filterTransaction:placeholder.filter.selectState"
                     )}
                     onChange={form.mutators.setValue}
                     options={FILTER_TRANSACTION_OPTIONS}
@@ -126,7 +127,7 @@ export const FilterTransaction: React.FC<FilterTransactionPropsType> = ({
                     htmlFor="inAlert"
                     className="label-filter-transaction-alert"
                   >
-                    {t("transactions:filter.label.inAlert")}
+                    {i18next.t("transactions:label.filter.inAlert")}
                   </label>
                 </Col>
                 <Col xxl="auto" xl={4} className="px-3">
@@ -138,7 +139,7 @@ export const FilterTransaction: React.FC<FilterTransactionPropsType> = ({
                     <img src={search} alt="export" />
                     <img className="or-filter" src={or} alt="or" />
                     <p className="display-inline-block p-export">
-                      {t("transactions:filter.button.search")}
+                      {i18next.t("global:label.button.search")}
                     </p>
                   </button>
                 </Col>

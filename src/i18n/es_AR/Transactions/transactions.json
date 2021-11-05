@@ -1,16 +1,10 @@
 {
-    "label.title.transactions":"Transacciones",
-    "label.title.filtro":"Filtros",
-    "button.export":"Exportar",
-    "label.button.seeMore":"Ver más",
-    "label.title.noResults":"No obtuvimos resultados para tu búsqueda :(",
-    "filter.label.transactionCode":"Código de transacción",
-    "filter.label.idPicker":"Id de picker",
-    "filter.label.SLA":"Vencimiento SLA",
-    "filter.placeholder.selectDate":"Seleccioná la fecha",
-    "filter.label.state":"Estados",
-    "filter.placeholder.selectState":"Seleccioná el estado",
-    "label.label.inAlert":"En alerta",
-    "label.button.search":"Buscar"
-
+    "label.transactions.transactions":"Transacciones",
+    "button.tansactions.seeMore": "Ver más",
+    "label.transactions.transactionCode":"Código de transacción",
+    "label.filter.inAlert":"En alerta",
+    "label.filter.SLA":"Vencimiento SLA",
+    "label.input.lost":"Siniestrado",
+    "label.input.delivered":"Entregado",
+    "label.input.returned":"Devuelto"
 }

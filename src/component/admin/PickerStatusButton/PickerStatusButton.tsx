@@ -111,7 +111,7 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
               className="container-pending pending-blue-border-izq"
             >
               <p className="Pending-paragraph  pending-black ">
-                {i18next.t("pickers:title.pickers.pending")}
+                {i18next.t("pickers:label.title.pending")}
               </p>
               <img className="img" src={relojOscuro} alt="reloj" />
             </div>
@@ -148,7 +148,7 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
             <button className="buttonVolver" onClick={handleHistory}>
               <img className="img3" src={volver} alt="volver" />
               <p className="Pending-paragraph3">
-                {i18next.t("pickers:button.pickers.back")}
+                {i18next.t("global:label.button.back")}
               </p>
             </button>
           </div>

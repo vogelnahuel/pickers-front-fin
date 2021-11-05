@@ -32,6 +32,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
   postEditPickerRequest,
   validationSchema,
 }) => {
+  // TODO: Pasar a i18next los botones
   return (
     <div className="background-Grey">
       <Header />
@@ -436,14 +437,14 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                         disabled={!dirty}
                         className="button-submit-subtype"
                       >
-                        Cancelar
+                        {i18next.t("global:label.button.cancel")}
                       </button>
                       <button
                         type="submit"
                         disabled={invalid || !dirty}
                         className="button-submit-active"
                       >
-                        Guardar
+                        {i18next.t("global:label.button.save")}
                       </button>
                     </div>
                   </>

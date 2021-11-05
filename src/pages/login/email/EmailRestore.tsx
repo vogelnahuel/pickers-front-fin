@@ -32,7 +32,7 @@ export const EmailRestore = ({
               type="text"
               name="email"
               id="email"
-              label={t("email")}
+              label={t("emailRestore:label.input.email")}
               animated
               className="Admin-Pickers-input"
               component={Input}
@@ -45,7 +45,7 @@ export const EmailRestore = ({
               type="submit"
               name="button"
             >
-              <p className="login-init ">{t("sendMail")}</p>
+              <p className="login-init ">{t("emailRestore:button.email.sendMail")}</p>
             </button>
           </form>
         )}

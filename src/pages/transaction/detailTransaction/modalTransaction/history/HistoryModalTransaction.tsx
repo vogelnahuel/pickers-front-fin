@@ -14,6 +14,7 @@ import "../optionList.css";
 import TransactionStateHistory from "../history/transactionStateHistory/TransactionStateHistory";
 import { HistoryModalTransactionType } from "../types";
 import "./HistoryModalTransaction.scss";
+import i18next from "i18next";
 
 const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
   detailTransaction,
@@ -24,6 +25,8 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
 }): JSX.Element => {
   const cancelEnabledStatus = [1, 2, 3, 4];
   const finishEnabledStatus = [5, 6, 7, 8];
+
+  // TODO: Pasar a i18next
 
   return (
     <div className="modal-transaction-scroll">
@@ -50,7 +53,10 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
               : "-",
             deliveryAddress: detailTransaction.destination.formattedAddress,
             pickupAddress: detailTransaction.origin.formattedAddress,
-            retailer: detailTransaction.seller && detailTransaction.seller.name!==null  ? detailTransaction.seller.name: "-",
+            retailer:
+              detailTransaction.seller && detailTransaction.seller.name !== null
+                ? detailTransaction.seller.name
+                : "-",
             reveiverName: `${detailTransaction.client.name} ${detailTransaction.client.lastName}`,
             reveiverPhone: detailTransaction.client.phone,
           }}
@@ -121,7 +127,9 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                           : "modal-transaction-button-irApicker-disabled"
                       }
                     >
-                      Ir a picker
+                      {i18next.t(
+                        "detailTransaction:button.historyModal.picker"
+                      )}
                     </button>
                   </Link>
                 </Col>
@@ -164,7 +172,9 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                   className="modal-transaction-h3"
                   id="modal-transaction-history-Final"
                 >
-                  Consumidor final
+                  {i18next.t(
+                    "detailTransaction:title.historyModal.finalConsumer"
+                  )}
                 </h3>
                 <hr
                   className="modal-transaction-separate"
@@ -216,7 +226,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
           }}
           className="button-modal-transaction"
         >
-          Cancelar
+          {i18next.t("global:label.button.cancel")}
         </button>
         <button
           disabled={
@@ -229,7 +239,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
           }}
           className="button-modal-transaction"
         >
-          Finalizar
+          {i18next.t("global:label.button.finish")}
         </button>
         <div
           onClick={() => getDetailTransaction(detailTransaction.transaction.id)}
@@ -240,7 +250,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
             src={Reload}
             alt="reload"
           />
-          <p>Actualizar</p>
+          <p>{i18next.t("detailTransaction:button.historyModal.refresh")}</p>
         </div>
       </div>
     </div>

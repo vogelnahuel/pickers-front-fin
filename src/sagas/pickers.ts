@@ -220,8 +220,8 @@ function* getPendingUserExport({
     yield put(
       notificationActions.showNotification({
         level: "success",
-        title: i18next.t("global:title.notification.export"),
-        body: i18next.t("global:label.notification.export"),
+        title: i18next.t("global:title.modal.export"),
+        body: i18next.t("global:label.modal.export"),
         element,
       })
     );
@@ -245,8 +245,8 @@ function* getPendingUserPickerExport({
     yield put(
       notificationActions.showNotification({
         level: "success",
-        title: i18next.t("global:title.notification.export"),
-        body: i18next.t("global:label.notification.export"),
+        title: i18next.t("global:title.modal.export"),
+        body: i18next.t("global:label.modal.export"),
         element,
       })
     );
@@ -270,8 +270,8 @@ function* postPendingUserDocumentsEdit({
     yield put(
       notificationActions.showNotification({
         level: "error",
-        title: i18next.t("global:title.notification.connectionError"),
-        body: i18next.t("global:label.notification.connectionError"),
+        title: i18next.t("global:title.modal.connectionError"),
+        body: i18next.t("global:label.modal.connectionError"),
         element,
       })
     );
@@ -301,8 +301,8 @@ function* postAprovePicker({
     yield put(
       notificationActions.showNotification({
         level: "error",
-        title: i18next.t("global:title.notification.connectionError"),
-        body: i18next.t("global:label.notification.connectionError"),
+        title: i18next.t("global:title.modal.connectionError"),
+        body: i18next.t("global:label.modal.connectionError"),
         element,
       })
     );
@@ -311,8 +311,8 @@ function* postAprovePicker({
     yield put(
       notificationActions.showNotification({
         level: "success",
-        title: i18next.t("detailPicker:title.notification.approved"),
-        body: i18next.t("detailPicker:label.notification.approved"),
+        title: i18next.t("detailPicker:title.modal.approved"),
+        body: i18next.t("detailPicker:label.modal.approved"),
         onClick: goBack,
         element,
       })
@@ -338,8 +338,8 @@ function* postEditPicker({
     yield put(
       notificationActions.showNotification({
         level: "error",
-        title: i18next.t("global:title.notification.connectionError"),
-        body: i18next.t("global:label.notification.connectionError"),
+        title: i18next.t("global:title.modal.connectionError"),
+        body: i18next.t("global:label.modal.connectionError"),
         element,
       })
     );
@@ -348,8 +348,8 @@ function* postEditPicker({
     yield put(
       notificationActions.showNotification({
         level: "success",
-        title: i18next.t("global:title.notification.changesSaved"),
-        body: i18next.t("global:label.notification.changesSaved"),
+        title: i18next.t("global:title.modal.changesSaved"),
+        body: i18next.t("global:label.modal.changesSaved"),
         onClick: goBack,
         element,
       })

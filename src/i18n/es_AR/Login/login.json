@@ -2,18 +2,7 @@
 {  
        
       "label.input.user": "Usuario",
-      "placeholder.user":"Usuario",
       "label.input.password": "Contraseña",
-      "link.forgotPassword": "¿Olvidaste tu contraseña?",
-      "button.login": "Iniciar sesión",
-      "label.input.newPassword": "Nueva contraseña",
-      "label.input.confirmNewPassword": "Repetir nueva contraseña",
-      "label.passwordMustHave": "La contraseña debe contar con",
-      "label.8OrMoreCharacters": "8 o más caracteres",
-      "label.uppercaseandLowerCase": "Mayúsculas y minúsculas",
-      "label.numbersAndLeters": "Números y letras",
-      "button.save": "Guardar",
-      "label.input.email": "Email",
-      "label.input.sendMail": "Enviar correo"
-
+      "label.link.forgotPassword": "¿Olvidaste tu contraseña?",
+      "button.login.login": "Iniciar sesión"
 }
