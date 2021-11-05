@@ -68,7 +68,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                   <Field
                     type="text"
                     name="pickerId"
-                    label="Id de picker"
+                    label={i18next.t("filterTransaction:label.filter.idPicker")}
                     component={Input}
                     className="Admin-Pickers-input"
                     disabled
@@ -78,7 +78,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                   <Field
                     type="text"
                     name="name"
-                    label="Nombre y apellido"
+                    label={i18next.t("filterTransaction:label.filter.name")}
                     component={Input}
                     className="Admin-Pickers-input"
                     disabled
@@ -90,7 +90,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                       <Field
                         type="text"
                         name="areaCode"
-                        label="Código de área"
+                        label={i18next.t("detailPicker:label.user.areaCode")}
                         component={Input}
                         className="Admin-Pickers-input"
                         disabled
@@ -100,7 +100,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                       <Field
                         type="text"
                         name="phone"
-                        label="Teléfono"
+                        label={i18next.t("detailPicker:label.user.phone")}
                         component={Input}
                         className="Admin-Pickers-input"
                         disabled
@@ -139,7 +139,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                   <Field
                     type="text"
                     name="deliveryAddress"
-                    label="Dirección de entrega"
+                    label={i18next.t("detailTransaction:label.detailTransaction.deliveryAddress")}
                     component={Input}
                     className="Admin-Pickers-input"
                     disabled
@@ -149,7 +149,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                   <Field
                     type="text"
                     name="pickupAddress"
-                    label="Dirección de retiro"
+                    label={i18next.t("detailTransaction:label.detailTransaction.pickupAddress")}
                     component={Input}
                     className="Admin-Pickers-input"
                     disabled
@@ -159,7 +159,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                   <Field
                     type="text"
                     name="retailer"
-                    label="Retailer"
+                    label={i18next.t("detailTransaction:label.detailTransaction.retailer")}
                     component={Input}
                     className="Admin-Pickers-input"
                     disabled
@@ -185,7 +185,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                   <Field
                     type="text"
                     name="reveiverName"
-                    label="Nombre y apellido"
+                    label={i18next.t("filterTransaction:label.filter.name")}
                     component={Input}
                     className="Admin-Pickers-input"
                     disabled
@@ -195,7 +195,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                   <Field
                     type="text"
                     name="reveiverPhone"
-                    label="Teléfono"
+                    label={i18next.t("detailPicker:label.user.phone")}
                     component={Input}
                     className="Admin-Pickers-input"
                     disabled

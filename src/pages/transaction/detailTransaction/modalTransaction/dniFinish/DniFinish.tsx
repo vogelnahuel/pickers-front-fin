@@ -67,7 +67,7 @@ const DniFinish: React.FC<DniFinishPropsType> = ({
                   <Field
                     name="dni"
                     component={Input}
-                    placeholder="Ingresá el DNI"
+                    placeholder={i18next.t("detailTransaction:placeholeder.input.dni")}
                     className="Admin-Pickers-input"
                     id="dni"
                     maxLength={8}
