@@ -19,7 +19,7 @@ const TransactionStateHistory: React.FC<TransactionHistoryType> = ({
   ];
   return (
     <div className="modal-transaction-history-container">
-      <h3 className="modal-transaction-h3">Historial</h3>
+      <h3 className="modal-transaction-h3">{i18next.t("detailTransaction:label.detailTransaction.history")}</h3>
       <hr className="modal-transaction-separate-option " />
       {transactionHistory.map((state) => (
         <div key={state.id}>
@@ -49,7 +49,7 @@ const TransactionStateHistory: React.FC<TransactionHistoryType> = ({
                 className="modal-transaction-a"
                 to={state.curentValue ? `/pickers/${state.curentValue}` : "#"}
               >
-                Ver picker
+                {i18next.t("detailTransaction:label.detailTransaction.seePicker")}
               </Link>
             )}
           </div>

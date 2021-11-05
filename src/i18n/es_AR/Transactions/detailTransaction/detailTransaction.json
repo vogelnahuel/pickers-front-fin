@@ -12,7 +12,11 @@
     "title.finishModal.selectFinalState":"Seleccioná el estado final que quieras asignarle",
     "title.finishModal.infoFInalState":"La transacción {{transactionCode}} va a pasar a estado:",
     "button.finishModal.finish":"Finalizarla",
-    "title.dniFinish.dniReceiver":"Ingresá el DNI de quien recibió el paquete"
-
-
+    "title.dniFinish.dniReceiver":"Ingresá el DNI de quien recibió el paquete",
+    "placeholeder.input.dni":"Ingresá el DNI",
+    "label.detailTransaction.deliveryAddress":"Dirección de entrega",
+    "label.detailTransaction.pickupAddress":"Dirección de retiro",
+    "label.detailTransaction.retailer":"Retailer",
+    "label.detailTransaction.seePicker":"Ver picker",
+    "label.detailTransaction.history":"Historial"
 }
