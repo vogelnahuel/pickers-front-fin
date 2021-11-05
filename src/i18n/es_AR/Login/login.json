@@ -2,7 +2,7 @@
   "label.input.user": "Usuario",
   "label.input.password": "Contraseña",
   "label.link.forgotPassword": "¿Olvidaste tu contraseña?",
-  "button.login.login": "Iniciar sesión",
+  "label.button.login": "Iniciar sesión",
 
   "title.modal.invalid": "Usuario y/o contraseña inválidos",
   "label.modal.invalid": "Tu usuario y/o contraseña ingresados son incorrectos. Por favor, ingresalos nuevamente.",

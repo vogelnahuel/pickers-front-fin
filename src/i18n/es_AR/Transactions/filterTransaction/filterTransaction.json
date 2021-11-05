@@ -1,9 +1,11 @@
-{ 
-    "title.filter.filters":"Filtros",
-    "label.filter.idPicker":"Id de picker",
-    "label.filter.selectDate":"Seleccioná la fecha",
-    "label.filter.state":"Estados",
-    "placeholder.filter.selectState":"Seleccioná el estado",
+{
+  "label.title.filters": "Filtros",
+  "label.filter.idPicker": "Id de picker",
+  "label.filter.selectDate": "Seleccioná la fecha",
+  "label.filter.state": "Estados",
 
-    "error.input.codeTransaction":"El código ingresado es erróneo"
+  "placeholder.filter.selectState": "Seleccioná el estado",
+  "placeholder.filter.transactionCode": "Ingresá el código",
+  "placeholder.filter.idPicker": "Ingresá el número de picker",
+  "error.input.codeTransaction": "El código ingresado es erróneo"
 }

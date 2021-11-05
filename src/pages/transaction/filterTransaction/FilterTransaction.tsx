@@ -30,7 +30,7 @@ export const FilterTransaction: React.FC<FilterTransactionPropsType> = ({
               alt="desplegable"
             />
             <p className="p-filter-transaction">
-              {i18next.t("filterTransaction:title.filter.filters")}
+              {i18next.t("filterTransaction:label.title.filters")}
             </p>
           </div>
         </Col>
@@ -65,7 +65,9 @@ export const FilterTransaction: React.FC<FilterTransactionPropsType> = ({
                     )}
                     component={Input}
                     className="Admin-Pickers-input"
-                    placeholder="Ingresá el código"
+                    placeholder={i18next.t(
+                      "filterTransaction:placeholder.filter.transactionCode"
+                    )}
                     maxLength={19}
                   />
                 </Col>
@@ -76,7 +78,9 @@ export const FilterTransaction: React.FC<FilterTransactionPropsType> = ({
                     label={i18next.t("filterTransaction:label.filter.idPicker")}
                     component={Input}
                     className="Admin-Pickers-input"
-                    placeholder="Ingresá el número de picker"
+                    placeholder={i18next.t(
+                      "filterTransaction:placeholder.filter.idPicker"
+                    )}
                   />
                 </Col>
                 <Col xxl xl={4} className="px-3">

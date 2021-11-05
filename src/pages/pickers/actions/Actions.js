@@ -16,7 +16,7 @@ export const Actions = ({
     if (isDirty) {
       showNotification({
         level: "warning",
-        title:i18next.t("pickers:title.modal.changesSave"),
+        title: i18next.t("pickers:title.modal.saveChanges"),
         body: i18next.t("picker:label.modal.exportWithoutSave"),
         onClickLabel: i18next.t("picker:button.modal.goToSave"),
         onCloseLabel: i18next.t("picker:button.modal.exportWithoutSave"),

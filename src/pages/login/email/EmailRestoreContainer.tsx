@@ -11,13 +11,15 @@ import { AppDispatch, RootState } from "store";
 import { EmailType } from "sagas/types/login";
 import i18next from "i18next";
 
-
 const EmailRestoreContainer = (props: EmailContainer): JSX.Element => {
   const validationSchema: yup.SchemaOf<EmailType> = yup.object({
     email: yup
       .string()
-      .required(i18next.t("global:error.input.requier"))
-      .matches(VALIDATION_REGEX.regEmail, i18next.t("login:error.login.invalidMail")),
+      .required(i18next.t("global:error.input.required"))
+      .matches(
+        VALIDATION_REGEX.regEmail,
+        i18next.t("login:error.login.invalidMail")
+      ),
   });
 
   return <EmailRestore {...props} validationSchema={validationSchema} />;

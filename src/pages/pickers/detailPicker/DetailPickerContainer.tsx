@@ -44,14 +44,14 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
     yup.object({
       name: yup
         .string()
-        .required(i18next.t("global:error.input.requier"))
+        .required(i18next.t("global:error.input.required"))
         .matches(
           VALIDATION_REGEX.expName,
           i18next.t("global:error.input.numbersOrSpecialCharacters")
         ),
       surname: yup
         .string()
-        .required(i18next.t("global:error.input.requier"))
+        .required(i18next.t("global:error.input.required"))
         .matches(
           VALIDATION_REGEX.expName,
           i18next.t("global:error.input.numbersOrSpecialCharacters")
@@ -59,18 +59,27 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
       phone: yup.object({
         areaNumber: yup
           .string()
-          .required(i18next.t("global:error.input.requier"))
-          .matches(VALIDATION_REGEX.regArea, i18next.t("global:error.input.invalidFormat")),
+          .required(i18next.t("global:error.input.required"))
+          .matches(
+            VALIDATION_REGEX.regArea,
+            i18next.t("global:error.input.invalidFormat")
+          ),
         number: yup
           .string()
-          .required(i18next.t("global:error.input.requier"))
-          .matches(VALIDATION_REGEX.regTelefono, i18next.t("global:error.input.invalidFormat")),
+          .required(i18next.t("global:error.input.required"))
+          .matches(
+            VALIDATION_REGEX.regTelefono,
+            i18next.t("global:error.input.invalidFormat")
+          ),
       }),
       expirationDatePolicyPersonal: yup
         .string()
         .nullable()
-        .required(i18next.t("global:error.input.requier"))
-        .matches(DATE_FORMATS.regex, i18next.t("global:error.input.invalidFormat")),
+        .required(i18next.t("global:error.input.required"))
+        .matches(
+          DATE_FORMATS.regex,
+          i18next.t("global:error.input.invalidFormat")
+        ),
       vehicle:
         props.pendingUserAdminPicker.vehicleType === "motorcycle"
           ? yup.object({
@@ -78,7 +87,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
                 patent: yup
                   .string()
                   .nullable()
-                  .required(i18next.t("global:error.input.requier"))
+                  .required(i18next.t("global:error.input.required"))
                   .matches(
                     VALIDATION_REGEX.regPatent,
                     i18next.t("global:error.input.specialCharacters")
@@ -86,8 +95,11 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
                 expirationDatePolicyVehicle: yup
                   .string()
                   .nullable()
-                  .required(i18next.t("global:error.input.requier"))
-                  .matches(DATE_FORMATS.regex, i18next.t("global:error.input.invalidFormat"))
+                  .required(i18next.t("global:error.input.required"))
+                  .matches(
+                    DATE_FORMATS.regex,
+                    i18next.t("global:error.input.invalidFormat")
+                  )
                   .matches(
                     DATE_FORMATS.regexValidCharacter,
                     i18next.t("global:error.input.specialCharacters")
@@ -95,8 +107,11 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
                 expirationDateIdentificationVehicle: yup
                   .string()
                   .nullable()
-                  .required(i18next.t("global:error.input.requier"))
-                  .matches(DATE_FORMATS.regex, i18next.t("global:error.input.invalidFormat"))
+                  .required(i18next.t("global:error.input.required"))
+                  .matches(
+                    DATE_FORMATS.regex,
+                    i18next.t("global:error.input.invalidFormat")
+                  )
                   .matches(
                     DATE_FORMATS.regexValidCharacter,
                     i18next.t("global:error.input.specialCharacters")
@@ -104,8 +119,11 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
                 expirationDateDriverLicense: yup
                   .string()
                   .nullable()
-                  .required(i18next.t("global:error.input.requier"))
-                  .matches(DATE_FORMATS.regex, i18next.t("global:error.input.invalidFormat"))
+                  .required(i18next.t("global:error.input.required"))
+                  .matches(
+                    DATE_FORMATS.regex,
+                    i18next.t("global:error.input.invalidFormat")
+                  )
                   .matches(
                     DATE_FORMATS.regexValidCharacter,
                     i18next.t("global:error.input.specialCharacters")
@@ -122,8 +140,8 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
     if (isDirty) {
       props.showNotification({
         level: "warning",
-        title: i18next.t("pickers:title.modal.changesSave"),
-        body:  i18next.t("pickers:label.modal.changesSave"),
+        title: i18next.t("pickers:title.modal.saveChanges"),
+        body: i18next.t("pickers:label.modal.saveChanges"),
         onClickLabel: i18next.t("pickers:button.modal.goToSave"),
         onCloseLabel: i18next.t("pickers:button.modal.notSave"),
         onClose: onClose,
