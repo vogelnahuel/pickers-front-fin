@@ -1,3 +1,7 @@
 {
-    "label.table.inAlert":"En alerta"
+  "label.table.inAlert": "En alerta",
+  "label.table.transaction": "Transacción",
+  "label.table.idPicker": "Id de picker",
+  "label.table.slaExpiration": "Vencimiento SLA",
+  "label.table.status": "Estado"
 }

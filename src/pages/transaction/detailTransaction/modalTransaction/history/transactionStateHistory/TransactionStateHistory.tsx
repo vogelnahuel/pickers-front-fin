@@ -7,6 +7,7 @@ import Cancel from "../../../../../../assets/transaction/Cancel.svg";
 import Connector from "../../../../../../assets/transaction/Connector.svg";
 import Okey from "../../../../../../assets/transaction/Okey.svg";
 import { TRANSACTION_ACTIONS_TAG_LABEL } from "utils/constants";
+import i18next from "i18next";
 
 const TransactionStateHistory: React.FC<TransactionHistoryType> = ({
   transactionHistory,
@@ -29,7 +30,7 @@ const TransactionStateHistory: React.FC<TransactionHistoryType> = ({
               className="modal-transaction-img-okey"
             />
             <p className="modal-transaction-part-subtitle">
-              {TRANSACTION_ACTIONS_TAG_LABEL[state.reasonTag.tag]}
+              {i18next.t(TRANSACTION_ACTIONS_TAG_LABEL[state.reasonTag.tag])}
             </p>
             {state.metadata.length > 0 && (
               <p className="modal-transaction-part-subtitle-metadata">

@@ -27,7 +27,7 @@ export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
     ReasonsCanceledConfirm: "ReasonsCanceledConfirm",
     Undelivered: "Undelivered",
   };
-  
+
   return (
     <div className="modal-transaction">
       <Modal
@@ -49,8 +49,12 @@ export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
           />
 
           <div className="modal-transaction-title">
-            <h2>{i18next.t("transactions:label.transactions.transactionCode")}</h2>
-            <p>{i18next.t("detailTransaction:title.detailTransaction.state")}</p>
+            <h2>
+              {i18next.t("transactions:label.transactions.transactionCode")}
+            </h2>
+            <p>
+              {i18next.t("detailTransaction:title.detailTransaction.state")}
+            </p>
             <p className="modal-transaction-date">
               {detailTransaction &&
               detailTransaction.transaction &&
@@ -67,11 +71,11 @@ export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
           <div className="modal-transaction-subtitle">
             <h2>{detailTransaction.transaction.transactionCode}</h2>
             <p>
-              {
+              {i18next.t(
                 TRANSACTION_STATE_ID_LABEL[
                   detailTransaction.transaction.state.id
                 ]
-              }
+              )}
             </p>
 
             <p className="modal-transaction-date">
@@ -90,12 +94,12 @@ export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
             firstPage={STEP.History}
             pages={{
               [STEP.History]: (props: FlowTrasitionParamsType) => (
-                  <HistoryModalTransaction
-                    cancel={STEP.ReasonsCanceled}
-                    finish={STEP.FinishModal}
-                    {...props}
-                  />
-                ),
+                <HistoryModalTransaction
+                  cancel={STEP.ReasonsCanceled}
+                  finish={STEP.FinishModal}
+                  {...props}
+                />
+              ),
               [STEP.ReasonsCanceled]: (props: FlowTrasitionParamsType) => (
                 <ReasonsCanceled
                   reasonsCanceledConfirm={STEP.ReasonsCanceledConfirm}
@@ -115,7 +119,8 @@ export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
                 <FinishModal
                   {...props}
                   dniFinish={STEP.DniFinish}
-                  undelivered={STEP.Undelivered}                />
+                  undelivered={STEP.Undelivered}
+                />
               ),
             }}
           />

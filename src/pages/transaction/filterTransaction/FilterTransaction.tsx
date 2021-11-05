@@ -114,7 +114,10 @@ export const FilterTransaction: React.FC<FilterTransactionPropsType> = ({
                       "filterTransaction:placeholder.filter.selectState"
                     )}
                     onChange={form.mutators.setValue}
-                    options={FILTER_TRANSACTION_OPTIONS}
+                    options={FILTER_TRANSACTION_OPTIONS.map((o) => ({
+                      ...o,
+                      label: i18next.t(o.label),
+                    }))}
                   >
                     {(props: any) => <MultipleSelect {...props} />}
                   </Field>

@@ -17,10 +17,10 @@ export const titlesAdminActive = [
 ];
 
 export const transactionTableTitles = [
-  "Transacción",
-  "Id de picker",
-  "Vencimiento SLA",
-  "Estado",
+  "transactionTable:label.table.transaction",
+  "transactionTable:label.table.idPicker",
+  "transactionTable:label.table.slaExpiration",
+  "transactionTable:label.table.status",
 ];
 
 export const DATE_FORMATS = {
@@ -58,43 +58,43 @@ export const VALIDATION_REGEX = {
 
 export const FILTER_TRANSACTION_OPTIONS = [
   {
-    label: "Sin asignar",
+    label: "filterTransaction:label.select.notAssigned",
     id: "PENDING_ASSIGNMENT",
   },
   {
-    label: "En retiro",
+    label: "filterTransaction:label.select.inPickup",
     id: "IN_PICK_UP",
   },
   {
-    label: "En lugar de retiro",
+    label: "filterTransaction:label.select.inPickupPoint",
     id: "IN_PICK_UP_POINT",
   },
   {
-    label: "En entrega ",
+    label: "filterTransaction:label.select.inDelivery",
     id: "IN_DELIVERY",
   },
   {
-    label: "En lugar de entrega",
+    label: "filterTransaction:label.select.inDeliveryPoint",
     id: "IN_DELIVERY_POINT",
   },
   {
-    label: "Entregado",
+    label: "filterTransaction:label.select.delivered",
     id: "DELIVERED",
   },
   {
-    label: "En devolución",
+    label: "filterTransaction:label.select.inReturnToSender",
     id: "IN_RETURN_TO_SENDER",
   },
   {
-    label: "Devuelto",
+    label: "filterTransaction:label.select.returnedToSender",
     id: "RETURNED_TO_SENDER",
   },
   {
-    label: "Siniestrado",
+    label: "filterTransaction:label.select.lost",
     id: "LOST",
   },
   {
-    label: "Cancelado",
+    label: "filterTransaction:label.select.cancel",
     id: "CANCEL",
   },
 ];
@@ -115,50 +115,50 @@ export const FILTER_PICKERS_OPTIONS = [
 ];
 
 export const TRANSACTION_STATE_ID_LABEL: any = {
-  1: "Sin asignar",
-  2: "Asignado",
-  3: "En retiro",
-  4: "En lugar de retiro",
-  5: "Retirado",
-  6: "En entrega",
-  7: "En lugar de entrega",
-  8: "En devolución",
-  9: "Cancelado",
-  10: "Entregado",
-  11: "Devuelto",
-  12: "Siniestrado",
+  1: "filterTransaction:label.select.notAssigned",
+  2: "filterTransaction:label.select.assigned",
+  3: "filterTransaction:label.select.inPickup",
+  4: "filterTransaction:label.select.inPickupPoint",
+  5: "filterTransaction:label.select.retired",
+  6: "filterTransaction:label.select.inDelivery",
+  7: "filterTransaction:label.select.inDeliveryPoint",
+  8: "filterTransaction:label.select.inReturnToSender",
+  9: "filterTransaction:label.select.cancel",
+  10: "filterTransaction:label.select.delivered",
+  11: "filterTransaction:label.select.returnedToSender",
+  12: "filterTransaction:label.select.lost",
 };
 
 export const TRANSACTION_STATE_TAG_LABEL = {
-  PENDING_ASSIGNMENT: "Sin asignar",
-  ASSIGNED: "Asignado",
-  IN_PICK_UP: "En retiro",
-  IN_PICK_UP_POINT: "En lugar de retiro",
-  PICKED_UP: "Retirado",
-  IN_DELIVERY: "En entrega",
-  IN_DELIVERY_POINT: "En lugar de entrega",
-  IN_RETURN_TO_SENDER: "En devolución",
-  CANCEL: "Cancelado",
-  DELIVERED: "Entregado",
-  RETURNED_TO_SENDER: "Devuelto",
-  LOST: "Siniestrado",
+  PENDING_ASSIGNMENT: "filterTransaction:label.select.notAssigned",
+  ASSIGNED: "filterTransaction:label.select.assigned",
+  IN_PICK_UP: "filterTransaction:label.select.inPickup",
+  IN_PICK_UP_POINT: "filterTransaction:label.select.inPickupPoint",
+  PICKED_UP: "filterTransaction:label.select.retired",
+  IN_DELIVERY: "filterTransaction:label.select.inDelivery",
+  IN_DELIVERY_POINT: "filterTransaction:label.select.inDeliveryPoint",
+  IN_RETURN_TO_SENDER: "filterTransaction:label.select.inReturnToSender",
+  CANCEL: "filterTransaction:label.select.cancel",
+  DELIVERED: "filterTransaction:label.select.delivered",
+  RETURNED_TO_SENDER: "filterTransaction:label.select.returnedToSender",
+  LOST: "filterTransaction:label.select.lost",
 };
 
 export const TRANSACTION_ACTIONS_TAG_LABEL: any = {
-  assigned_picker: "Asignado",
-  un_assigning: "Pendiente de asignación",
-  state_pending_assigment: "Pendiente de asignación",
-  state_assigned: "Asignado",
-  state_in_pickup: "En retiro",
-  state_in_pickup_point: "En lugar de retiro",
-  state_in_picked_up: "Retirado",
-  state_in_delivery: "En entrega",
-  state_in_delivery_point: "En lugar de entrega ",
-  state_in_devolution: "En devolución",
-  state_pickup_cancelled_temporally: "Cancelado",
-  state_pickup_cancelled_permanently: "Cancelado",
-  state_delivered: "Entregado",
-  state_returned: "Devuelto",
-  state_lost: "Siniestrado",
-  state_initial: "Creación",
+  assigned_picker: "filterTransaction:label.select.assigned",
+  un_assigning: "filterTransaction:label.select.pendingAssignment",
+  state_pending_assigment: "filterTransaction:label.select.pendingAssignment",
+  state_assigned: "filterTransaction:label.select.assigned",
+  state_in_pickup: "filterTransaction:label.select.inPickup",
+  state_in_pickup_point: "filterTransaction:label.select.inPickupPoint",
+  state_in_picked_up: "filterTransaction:label.select.retired",
+  state_in_delivery: "filterTransaction:label.select.inDelivery",
+  state_in_delivery_point: "filterTransaction:label.select.inDeliveryPoint",
+  state_in_devolution: "filterTransaction:label.select.inReturnToSender",
+  state_pickup_cancelled_temporally: "filterTransaction:label.select.cancel",
+  state_pickup_cancelled_permanently: "filterTransaction:label.select.cancel",
+  state_delivered: "filterTransaction:label.select.inReturnToSender",
+  state_returned: "filterTransaction:label.select.returnedToSender",
+  state_lost: "filterTransaction:label.select.lost",
+  state_initial: "filterTransaction:label.select.created",
 };
