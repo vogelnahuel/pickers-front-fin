@@ -69,7 +69,9 @@ const FinishModal: React.FC<FinishModalPropsType> = ({
           src={volver}
           alt="volver"
         />
-        <p className="modal-transaction-finish-volver">{i18next.t("global:label.button.back")}</p>
+        <p className="modal-transaction-finish-volver">
+          {i18next.t("global:label.button.back")}
+        </p>
       </div>
       <div className="modal-transaction-finish-container">
         <img
@@ -82,7 +84,9 @@ const FinishModal: React.FC<FinishModalPropsType> = ({
         </h3>
         <hr className="modal-transaction-finish-separate" />
         <p>
-          {i18next.t("detailTransaction:title.finishModal.infoFInalState",{transactionCode:detailTransaction?.transaction?.transactionCode})}
+          {i18next.t("detailTransaction:title.finishModal.infoFInalState", {
+            transactionCode: detailTransaction?.transaction?.transactionCode,
+          })}
           {/* {"La transacción "}
           <b>{detailTransaction?.transaction?.transactionCode}</b> va a pasar a
           estado: */}
@@ -129,7 +133,7 @@ const FinishModal: React.FC<FinishModalPropsType> = ({
                 htmlFor="Entregado"
                 className="modal-transaction-finish-label"
               >
-                 {i18next.t("transactions:label.input.delivered")}
+                {i18next.t("transactions:label.input.delivered")}
               </label>
             </div>
           )}
@@ -146,7 +150,7 @@ const FinishModal: React.FC<FinishModalPropsType> = ({
               htmlFor="Devuelto"
               className="modal-transaction-finish-label"
             >
-               {i18next.t("transactions:label.input.delivered")}
+              {i18next.t("transactions:label.input.returned")}
             </label>
           </div>
         </div>

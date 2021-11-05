@@ -1,4 +1,5 @@
 import volver from "assets/admin/PendingUser/volver.svg";
+import i18next from "i18next";
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import {
@@ -42,11 +43,13 @@ const Undelivered: React.FC<UndeliveredPropsType> = ({
           src={volver}
           alt="volver"
         />
-        <p className="modal-reasonsCancel-p">Volver</p>
+        <p className="modal-reasonsCancel-p">
+          {i18next.t("global:label.button.back")}
+        </p>
       </div>
       <div className="modal-transaction-scroll">
         <p className="modal-transaction-reasonsCanceled-subtitle">
-          Seleccioná el motivo de imposible de entrega
+          {i18next.t("detailTransaction:label.undeliveredModal.reason")}
         </p>
         <ReasonList
           messages={messages}
@@ -54,18 +57,17 @@ const Undelivered: React.FC<UndeliveredPropsType> = ({
           handleClick={handleClick}
         ></ReasonList>
         <div className="button-container-finish">
-
-        <button
-          onClick={() => {
-            getDetailTransactionFinishReturned(
-              detailTransaction.transaction.id
-            );
-          }}
-          disabled={selectedMessage === undefined}
-          className="finish-button"
-        >
-          Finalizarla
-        </button>
+          <button
+            onClick={() => {
+              getDetailTransactionFinishReturned(
+                detailTransaction.transaction.id
+              );
+            }}
+            disabled={selectedMessage === undefined}
+            className="finish-button"
+          >
+            {i18next.t("detailTransaction:label.undeliveredModal.finish")}
+          </button>
         </div>
       </div>
     </div>
