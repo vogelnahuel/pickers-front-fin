@@ -16,10 +16,10 @@ export const Actions = ({
     if (isDirty) {
       showNotification({
         level: "warning",
-        title: "Guardá tus cambios",
-        body: "Si exportás sin guardar, tus cambios no van a quedar registrados ",
-        onClickLabel: "Ir a guardar",
-        onCloseLabel: "Exportar sin guardar",
+        title:i18next.t("pickers:title.modal.changesSave"),
+        body: i18next.t("picker:label.modal.exportWithoutSave"),
+        onClickLabel: i18next.t("picker:button.modal.goToSave"),
+        onCloseLabel: i18next.t("picker:button.modal.exportWithoutSave"),
         onClose: () =>
           getPendingUserPickerExport(
             { email: pendingUserAdminPicker.email },

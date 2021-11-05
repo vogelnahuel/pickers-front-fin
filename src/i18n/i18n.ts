@@ -4,7 +4,7 @@ import logini18n from "./es_AR/Login/login.json";
 import dashboardi18n from "./es_AR/Dashboard/dashboard.json";
 import pickeri18n from "./es_AR/Pickers/picker.json";
 import pickerFilteri18n from "./es_AR/Pickers/filterPickers/filterPickers.json";
-import pickerTablei18n from "./es_AR/Pickers/tablePIckers/tablePickers.json";
+import pickerTablei18n from "./es_AR/Pickers/tablePickers/tablePickers.json";
 import pickerDetaili18n from "./es_AR/Pickers/detailPicker/detailPicker.json";
 import transactions from "./es_AR/Transactions/transactions.json";
 import dashboardi18nMX from "./es_Mx/dashboard/dashboard.json";

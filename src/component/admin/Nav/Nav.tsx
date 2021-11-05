@@ -4,6 +4,7 @@ import 'component/admin/Nav/nav.scss'
 import {selectors as pendingUserAdminPickerSelectors} from "reducers/detailPicker";
 import {actions as notificationActions} from "reducers/notification";
 import {connect} from "react-redux";
+import i18next from 'i18next';
 
 export const Nav = ({ isDirty, showNotification }:any) => {
     const Historial = useHistory();
@@ -19,10 +20,10 @@ export const Nav = ({ isDirty, showNotification }:any) => {
             showNotification(
                 {
                     level:"warning",
-                    title: "Guardá tus cambios",
-                    body:"Si te vas sin guardar, tus cambios no van a quedar registrados",
-                    onClickLabel: "Ir a guardar",
-                    onCloseLabel: "No quiero guardarlos",
+                    title: i18next.t("pickers:title.modal.changesSave"),
+                    body: i18next.t("pickers:label.modal.changesSave"),
+                    onClickLabel: i18next.t("pickers:button.modal.goToSave"),
+                    onCloseLabel: i18next.t("pickers:button.modal.notSave"),
                     onClose: onClose,
                     onClick: ()=>window.scroll({ top: window.innerHeight, left: 0,  behavior: 'smooth' }),
                     element:e.target
