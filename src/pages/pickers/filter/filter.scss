@@ -1,4 +1,4 @@
-@import  './src/index';
+@import  "@pickit/pickit-grid-system";
 
 .container {
   @include container(3, 25px);

@@ -1,4 +1,4 @@
-@import "../../pickers/filter/src/index";
+@import "@pickit/pickit-grid-system";
 
 .container-transaction {
   @include container(3, 25px);
@@ -218,28 +218,11 @@ div .MKjsMK9DPt5gO-irDsCHa {
 
 
 @media (max-width:1310px){
-    .form-filter-transaction div div input{
-        //width: 248px;
-    }
     .display-inline{
         width: 17.155vw;
     }
-    //.search-button-transaction{
-    //    margin-left: 6vw;
-    //}
 }
 @media (min-width:1800px){
-    .form-filter-transaction div div input{
-        //width: 263px;
-        //margin-right: 24px;
-    }
-
-    //.transaction-container-button-width{
-    //    margin-left: 0px;
-    //}
-    //.search-button-transaction{
-    //    margin-left: 0px;
-    //}
     .checkbox-filter-transaction{
         margin-top: 14px;
     }
@@ -254,21 +237,9 @@ div .MKjsMK9DPt5gO-irDsCHa {
     .display-inline{
         width: 3.5vw;
     }
-    //.display-filter-transaction{
-    //    padding-bottom: 13px;
-    //    margin-top: 21px;
-    //}
-    //#checkbox-filter-transaction{
-    //    margin-top: 13px;
-    //}
     #padding{
         padding-top: 15px;
     }
-    //.search-button-transaction{
-    //    margin-top: 0px;
-    //}
-
-
 }
 @media (min-width: 1300px) {
     .display-filter-transaction{
