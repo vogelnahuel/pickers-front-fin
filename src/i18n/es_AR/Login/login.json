@@ -1,8 +1,9 @@
 
 {  
-       
       "label.input.user": "Usuario",
       "label.input.password": "Contraseña",
       "label.link.forgotPassword": "¿Olvidaste tu contraseña?",
-      "button.login.login": "Iniciar sesión"
+      "button.login.login": "Iniciar sesión",
+
+      "error.login.invalidMail":"El correo ingresado es inválido"
 }

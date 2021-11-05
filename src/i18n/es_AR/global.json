@@ -7,5 +7,14 @@
     "label.input.email": "Email",
     "label.title.noResults":"No obtuvimos resultados para tu búsqueda :(",
     "label.button.search":"Buscar",
-    "label.button.back":"Volver"
+    "label.button.back":"Volver",
+
+
+      "error.input.requier":"Este campo es requerido",
+      "error.input.specialCharacters":"No se admiten caracteres especiales",
+      "error.input.numbersOrSpecialCharacters":"No se admiten números o caracteres especiales",
+      "error.input.lettersOrSpecialCharacters":"No se admiten letras o caracteres especiales",
+      "error.input.invalidFormat":"Ingresá el formato correcto"
+
+
 }

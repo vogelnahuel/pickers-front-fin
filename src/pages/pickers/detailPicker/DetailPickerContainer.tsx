@@ -22,6 +22,7 @@ import {
 import { ParamGetPendingUser } from "sagas/types/pickers";
 import { AppDispatch, RootState } from "store";
 import { DetailPickerContainerTypeProps } from "./types";
+import i18next from "i18next";
 
 const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
   props
@@ -43,33 +44,33 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
     yup.object({
       name: yup
         .string()
-        .required("Este campo es requerido.")
+        .required(i18next.t("global:error.input.requier"))
         .matches(
           VALIDATION_REGEX.expName,
-          "No se admiten números o caracteres especiales"
+          i18next.t("global:error.input.numbersOrSpecialCharacters")
         ),
       surname: yup
         .string()
-        .required("Este campo es requerido.")
+        .required(i18next.t("global:error.input.requier"))
         .matches(
           VALIDATION_REGEX.expName,
-          "No se admiten números o caracteres especiales"
+          i18next.t("global:error.input.numbersOrSpecialCharacters")
         ),
       phone: yup.object({
         areaNumber: yup
           .string()
-          .required("Este campo es requerido.")
-          .matches(VALIDATION_REGEX.regArea, "Ingresá el formato correcto"),
+          .required(i18next.t("global:error.input.requier"))
+          .matches(VALIDATION_REGEX.regArea, i18next.t("global:error.input.invalidFormat")),
         number: yup
           .string()
-          .required("Este campo es requerido.")
-          .matches(VALIDATION_REGEX.regTelefono, "Ingresá el formato correcto"),
+          .required(i18next.t("global:error.input.requier"))
+          .matches(VALIDATION_REGEX.regTelefono, i18next.t("global:error.input.invalidFormat")),
       }),
       expirationDatePolicyPersonal: yup
         .string()
         .nullable()
-        .required("Este campo es requerido.")
-        .matches(DATE_FORMATS.regex, "Ingresá el formato correcto"),
+        .required(i18next.t("global:error.input.requier"))
+        .matches(DATE_FORMATS.regex, i18next.t("global:error.input.invalidFormat")),
       vehicle:
         props.pendingUserAdminPicker.vehicleType === "motorcycle"
           ? yup.object({
@@ -77,37 +78,37 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
                 patent: yup
                   .string()
                   .nullable()
-                  .required("Este campo es requerido.")
+                  .required(i18next.t("global:error.input.requier"))
                   .matches(
                     VALIDATION_REGEX.regPatent,
-                    "No se admiten caracteres especiales"
+                    i18next.t("global:error.input.specialCharacters")
                   ),
                 expirationDatePolicyVehicle: yup
                   .string()
                   .nullable()
-                  .required("Este campo es requerido.")
-                  .matches(DATE_FORMATS.regex, "Ingresá el formato correcto")
+                  .required(i18next.t("global:error.input.requier"))
+                  .matches(DATE_FORMATS.regex, i18next.t("global:error.input.invalidFormat"))
                   .matches(
                     DATE_FORMATS.regexValidCharacter,
-                    "No se admiten letras o caracteres especiales"
+                    i18next.t("global:error.input.specialCharacters")
                   ),
                 expirationDateIdentificationVehicle: yup
                   .string()
                   .nullable()
-                  .required("Este campo es requerido.")
-                  .matches(DATE_FORMATS.regex, "Ingresá el formato correcto")
+                  .required(i18next.t("global:error.input.requier"))
+                  .matches(DATE_FORMATS.regex, i18next.t("global:error.input.invalidFormat"))
                   .matches(
                     DATE_FORMATS.regexValidCharacter,
-                    "No se admiten letras o caracteres especiales"
+                    i18next.t("global:error.input.specialCharacters")
                   ),
                 expirationDateDriverLicense: yup
                   .string()
                   .nullable()
-                  .required("Este campo es requerido.")
-                  .matches(DATE_FORMATS.regex, "Ingresá el formato correcto")
+                  .required(i18next.t("global:error.input.requier"))
+                  .matches(DATE_FORMATS.regex, i18next.t("global:error.input.invalidFormat"))
                   .matches(
                     DATE_FORMATS.regexValidCharacter,
-                    "No se admiten letras o caracteres especiales"
+                    i18next.t("global:error.input.specialCharacters")
                   ),
               }),
             })
