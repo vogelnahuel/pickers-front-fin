@@ -14,13 +14,11 @@ import useValidationSchema from "hooks/useValidationSchema";
 import { FilterTransactionPropsType, FilterValuesType } from "./types";
 import i18next from "i18next";
 
-
 export const FilterTransaction: React.FC<FilterTransactionPropsType> = ({
   onSubmit,
   filters,
   validationSchema,
 }): JSX.Element => {
-
   return (
     <Container fluid className="display-filter-transaction">
       <Row>
@@ -62,7 +60,9 @@ export const FilterTransaction: React.FC<FilterTransactionPropsType> = ({
                   <Field
                     type="text"
                     name="transactionCode"
-                    label={i18next.t("transactions:label.transactions.transactionCode")}
+                    label={i18next.t(
+                      "transactions:label.transactions.transactionCode"
+                    )}
                     component={Input}
                     className="Admin-Pickers-input"
                     placeholder="Ingresá el código"
@@ -91,7 +91,9 @@ export const FilterTransaction: React.FC<FilterTransactionPropsType> = ({
                       type="text"
                       className="Admin-Pickers-input-select"
                       name="date"
-                      placeholder={i18next.t("filterTransaction:label.filter.selectDate")}
+                      placeholder={i18next.t(
+                        "filterTransaction:label.filter.selectDate"
+                      )}
                       language="es"
                     >
                       {(props: any) => <DatePicker {...props} />}
@@ -137,7 +139,7 @@ export const FilterTransaction: React.FC<FilterTransactionPropsType> = ({
                     <img src={search} alt="export" />
                     <img className="or-filter" src={or} alt="or" />
                     <p className="display-inline-block p-export">
-                      {i18next.t("transactions:filter.button.search")}
+                      {i18next.t("global:label.button.search")}
                     </p>
                   </button>
                 </Col>

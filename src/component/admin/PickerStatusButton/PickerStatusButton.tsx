@@ -27,16 +27,17 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
   const changePage = (page: String, isDirty: Boolean) => {
     if (isDetail || actualPage !== page) {
       let onClose = () => {
-   
         setActualPage(page);
 
-        if(window.location.pathname!=="/pickers" && window.history.length>1){
+        if (
+          window.location.pathname !== "/pickers" &&
+          window.history.length > 1
+        ) {
           Historial.goBack();
           //se abre en nueva pestaña desde transacciones
-        }else if(window.history.length<=1){
+        } else if (window.history.length <= 1) {
           Historial.replace("/pickers");
         }
-
       };
       if (isDirty) {
         showNotification({
@@ -57,7 +58,6 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
         onClose();
       }
     } else {
-
     }
   };
 
@@ -98,7 +98,9 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
               }}
               className="container-pending pending-blue-border-izq"
             >
-              <p className="Pending-paragraph">{i18next.t("pickers:title.pickers.pending")}</p>
+              <p className="Pending-paragraph">
+                {i18next.t("pickers:label.title.pending")}
+              </p>
               <img className="img" src={relojAzul} alt="reloj" />
             </div>
           ) : (
@@ -109,7 +111,7 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
               className="container-pending pending-blue-border-izq"
             >
               <p className="Pending-paragraph  pending-black ">
-               {i18next.t("pickers:title.pickers.pending")}
+                {i18next.t("pickers:label.title.pending")}
               </p>
               <img className="img" src={relojOscuro} alt="reloj" />
             </div>
@@ -121,7 +123,9 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
               }}
               className="container-pending border-pending pending-blue-border-der"
             >
-              <p className="Pending-paragraph2 pending-blue">{i18next.t("pickers:title.pickers.pickers")}</p>
+              <p className="Pending-paragraph2 pending-blue">
+                {i18next.t("pickers:label.title.pickers")}
+              </p>
               <img className="img2" src={trabajadorAzul} alt="trabajador" />
             </div>
           ) : (
@@ -131,7 +135,9 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
                 changePage("ACTIVE", isDirty);
               }}
             >
-              <p className="Pending-paragraph2">{i18next.t("pickers:title.pickers.pickers")}</p>
+              <p className="Pending-paragraph2">
+                {i18next.t("pickers:label.title.pickers")}
+              </p>
               <img className="img2" src={trabajadorOscuro} alt="trabajador" />
             </div>
           )}
@@ -141,7 +147,9 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
           <div>
             <button className="buttonVolver" onClick={handleHistory}>
               <img className="img3" src={volver} alt="volver" />
-              <p className="Pending-paragraph3">{i18next.t("pickers:button.pickers.back")}</p>
+              <p className="Pending-paragraph3">
+                {i18next.t("global:label.button.back")}
+              </p>
             </button>
           </div>
         )}

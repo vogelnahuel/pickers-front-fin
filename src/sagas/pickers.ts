@@ -39,6 +39,7 @@ import {
   StatusType,
 } from "../pages/pickers/types";
 import { AxiosResponse } from "axios";
+import i18next from "i18next";
 const sagas = [
   takeLatest(pickersTypes.PENDING_USER_GET_REQUEST, getPickers),
   takeLatest(
@@ -219,8 +220,8 @@ function* getPendingUserExport({
     yield put(
       notificationActions.showNotification({
         level: "success",
-        title: "Exportaste exitosamente",
-        body: "El archivo se descargó correctamente",
+        title: i18next.t("global:title.modal.export"),
+        body: i18next.t("global:label.modal.export"),
         element,
       })
     );
@@ -244,8 +245,8 @@ function* getPendingUserPickerExport({
     yield put(
       notificationActions.showNotification({
         level: "success",
-        title: "Exportaste exitosamente",
-        body: "El archivo se descargó correctamente",
+        title: i18next.t("global:title.modal.export"),
+        body: i18next.t("global:label.modal.export"),
         element,
       })
     );
@@ -269,8 +270,8 @@ function* postPendingUserDocumentsEdit({
     yield put(
       notificationActions.showNotification({
         level: "error",
-        title: "Error de conexión",
-        body: "Hubo un error de comunicación con el servidor. Por favor, intentalo nuevamente",
+        title: i18next.t("global:title.modal.connectionError"),
+        body: i18next.t("global:label.modal.connectionError"),
         element,
       })
     );
@@ -300,8 +301,8 @@ function* postAprovePicker({
     yield put(
       notificationActions.showNotification({
         level: "error",
-        title: "Error de conexión",
-        body: "Hubo un error de comunicación con el servidor. Por favor, intentalo nuevamente",
+        title: i18next.t("global:title.modal.connectionError"),
+        body: i18next.t("global:label.modal.connectionError"),
         element,
       })
     );
@@ -310,8 +311,8 @@ function* postAprovePicker({
     yield put(
       notificationActions.showNotification({
         level: "success",
-        title: "Aprobación exitosa",
-        body: "Ya podés visualizar sus datos en la pestaña pickers",
+        title: i18next.t("detailPicker:title.modal.approved"),
+        body: i18next.t("detailPicker:label.modal.approved"),
         onClick: goBack,
         element,
       })
@@ -337,8 +338,8 @@ function* postEditPicker({
     yield put(
       notificationActions.showNotification({
         level: "error",
-        title: "Error de conexión",
-        body: "Hubo un error de comunicación con el servidor. Por favor, intentalo nuevamente",
+        title: i18next.t("global:title.modal.connectionError"),
+        body: i18next.t("global:label.modal.connectionError"),
         element,
       })
     );
@@ -347,8 +348,8 @@ function* postEditPicker({
     yield put(
       notificationActions.showNotification({
         level: "success",
-        title: "Datos guardados",
-        body: "Ya quedaron registrados los cambios",
+        title: i18next.t("global:title.modal.changesSaved"),
+        body: i18next.t("global:label.modal.changesSaved"),
         onClick: goBack,
         element,
       })

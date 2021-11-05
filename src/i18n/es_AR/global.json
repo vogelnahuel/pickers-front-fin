@@ -1,20 +1,32 @@
 {
-    "label.button.export":"Exportar",
-    "filter.button.search":"Buscar",
-    "label.button.cancel":"Cancelar",
-    "label.button.finish":"Finalizar",
-    "filter.label.inAlert":"En alerta",
-    "label.input.email": "Email",
-    "label.title.noResults":"No obtuvimos resultados para tu búsqueda :(",
-    "label.button.search":"Buscar",
-    "label.button.back":"Volver",
+  "label.button.export": "Exportar",
+  "filter.button.search": "Buscar",
+  "label.button.cancel": "Cancelar",
+  "label.button.save": "Guardar",
+  "label.button.finish": "Finalizar",
+  "filter.label.inAlert": "En alerta",
+  "label.input.email": "Email",
+  "label.title.noResults": "No obtuvimos resultados para tu búsqueda :(",
+  "label.button.search": "Buscar",
+  "label.button.back": "Volver",
 
+  "placeholder.input.date": "día / mes / año",
+  "label.switch.title": "Estado",
+  "label.switch.disabled": "Deshabilitado",
+  "label.switch.enabled": "Habilitado",
 
-      "error.input.requier":"Este campo es requerido",
-      "error.input.specialCharacters":"No se admiten caracteres especiales",
-      "error.input.numbersOrSpecialCharacters":"No se admiten números o caracteres especiales",
-      "error.input.lettersOrSpecialCharacters":"No se admiten letras o caracteres especiales",
-      "error.input.invalidFormat":"Ingresá el formato correcto"
+  "title.modal.export": "Exportaste exitosamente",
+  "label.modal.export": "El archivo se descargó correctamente",
 
+  "title.modal.connectionError": "Error de conexión",
+  "label.modal.connectionError": "Hubo un error de comunicación con el servidor. Por favor, intentalo nuevamente",
 
+  "title.modal.changesSaved": "Datos guardados",
+  "label.modal.changesSaved": "Ya quedaron registrados los cambios",
+ 
+  "error.input.requier":"Este campo es requerido",
+  "error.input.specialCharacters":"No se admiten caracteres especiales",
+  "error.input.numbersOrSpecialCharacters":"No se admiten números o caracteres especiales",
+  "error.input.lettersOrSpecialCharacters":"No se admiten letras o caracteres especiales",
+  "error.input.invalidFormat":"Ingresá el formato correcto"
 }

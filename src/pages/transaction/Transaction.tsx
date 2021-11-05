@@ -11,8 +11,7 @@ import DetailTransactionContainer from "./detailTransaction/DetailTransactionCon
 import FilterTransaction from "./filterTransaction/FilterTransactionContainer";
 import TableTransaction from "./tableTransaction/TableTransaction";
 import { TransactionType } from "./types";
-import { useTranslation } from "react-i18next";
-
+import i18next from "i18next";
 
 export const Transaction: React.FC<TransactionType> = ({
   isExportDisabled,
@@ -26,8 +25,6 @@ export const Transaction: React.FC<TransactionType> = ({
   resolutionHeightModal,
   detailTransactionModalOpen,
 }): JSX.Element => {
-  const { t } = useTranslation();
-
   return (
     <div className="background-Grey">
       <Header />
@@ -37,7 +34,9 @@ export const Transaction: React.FC<TransactionType> = ({
         <div className="transaction-container">
           <div className="mainContainerFlex-transaction">
             <h2 className="subTitle-transaction">
-              <p className="subtitle-pendingUser-h2">{t("transactions:label.transactions.transactions")}</p>
+              <p className="subtitle-pendingUser-h2">
+                {i18next.t("transactions:label.transactions.transactions")}
+              </p>
             </h2>
             <button
               disabled={isExportDisabled}
@@ -67,7 +66,7 @@ export const Transaction: React.FC<TransactionType> = ({
                 }
               >
                 {" "}
-                {t("transactions:button.export")}
+                {i18next.t("global:label.button.export")}
               </p>
             </button>
           </div>
@@ -82,20 +81,20 @@ export const Transaction: React.FC<TransactionType> = ({
                   }
                   className="paginator-button-transaction"
                 >
-                  {t("transactions:button.tansactions.seeMore")}
+                  {i18next.t("transactions:button.tansactions.seeMore")}
                 </button>
               ) : (
                 <button
                   disabled={true}
                   className="paginator-button-transaction-disabled"
                 >
-                  {t("transactions:button.tansactions.seeMore")}
+                  {i18next.t("transactions:button.tansactions.seeMore")}
                 </button>
               )}
             </>
           ) : (
             <div className="paginator-button-transaction-noResult">
-              {t("transactions:label.noResults")}
+              {i18next.t("transactions:label.noResults")}
             </div>
           )}
         </div>

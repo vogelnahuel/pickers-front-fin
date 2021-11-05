@@ -1,10 +1,10 @@
-{    
-    "title.dashboard.dashboard":"Dashboard",
-    "subtitle.dashboard.description":"Visualizá la información más importante",
-    "title.card.online":"En línea",
-    "title.card.active":"Activas",
-    "title.card.inAlert":"En alerta",
-    "title.card.pendingAssigment":"Pendientes de asignación",
-    "subtitle.card.transactions":"Transacciones",
-    "subtitle.card.pickers":"Pickers"
+{
+  "label.title.dashboard": "Dashboard",
+  "label.subtitle.description": "Visualizá la información más importante",
+  "title.card.online": "En línea",
+  "title.card.active": "Activas",
+  "title.card.inAlert": "En alerta",
+  "title.card.pendingAssigment": "Pendientes de asignación",
+  "subtitle.card.transactions": "Transacciones",
+  "subtitle.card.pickers": "Pickers"
 }

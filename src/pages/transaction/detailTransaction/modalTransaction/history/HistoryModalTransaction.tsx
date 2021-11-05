@@ -26,6 +26,8 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
   const cancelEnabledStatus = [1, 2, 3, 4];
   const finishEnabledStatus = [5, 6, 7, 8];
 
+  // TODO: Pasar a i18next
+
   return (
     <div className="modal-transaction-scroll">
       <div>
@@ -51,7 +53,10 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
               : "-",
             deliveryAddress: detailTransaction.destination.formattedAddress,
             pickupAddress: detailTransaction.origin.formattedAddress,
-            retailer: detailTransaction.seller && detailTransaction.seller.name!==null  ? detailTransaction.seller.name: "-",
+            retailer:
+              detailTransaction.seller && detailTransaction.seller.name !== null
+                ? detailTransaction.seller.name
+                : "-",
             reveiverName: `${detailTransaction.client.name} ${detailTransaction.client.lastName}`,
             reveiverPhone: detailTransaction.client.phone,
           }}
@@ -122,7 +127,9 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                           : "modal-transaction-button-irApicker-disabled"
                       }
                     >
-                      {i18next.t("detailTransaction:button.historyModal.picker")}
+                      {i18next.t(
+                        "detailTransaction:button.historyModal.picker"
+                      )}
                     </button>
                   </Link>
                 </Col>
@@ -165,7 +172,9 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                   className="modal-transaction-h3"
                   id="modal-transaction-history-Final"
                 >
-                  {i18next.t("detailTransaction:title.historyModal.finalConsumer")}
+                  {i18next.t(
+                    "detailTransaction:title.historyModal.finalConsumer"
+                  )}
                 </h3>
                 <hr
                   className="modal-transaction-separate"
