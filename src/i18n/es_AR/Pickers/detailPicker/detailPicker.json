@@ -31,5 +31,8 @@
   "label.insurance.personalAccidentInsuranceExpiration": "Vencimiento del seguro de accidentes personales * ",
 
   "title.modal.approved": "Aprobación exitosa",
-  "label.modal.approved": "Ya podés visualizar sus datos en la pestaña pickers"
+  "label.modal.approved": "Ya podés visualizar sus datos en la pestaña pickers",
+
+  "label.button.save": "Guardar cambios",
+  "label.button.approve": "Aprobar picker"
 }

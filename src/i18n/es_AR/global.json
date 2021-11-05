@@ -9,6 +9,7 @@
   "label.title.noResults": "No obtuvimos resultados para tu búsqueda :(",
   "label.button.search": "Buscar",
   "label.button.back": "Volver",
+  "label.button.seeMore": "Ver más",
 
   "placeholder.input.date": "día / mes / año",
   "label.switch.title": "Estado",
@@ -20,6 +21,9 @@
 
   "title.modal.connectionError": "Error de conexión",
   "label.modal.connectionError": "Hubo un error de comunicación con el servidor. Por favor, intentalo nuevamente",
+
+  "title.modal.serverError": "Error en nuestro servidor",
+  "label.modal.serverError": "Por favor, reintentalo nuevamente.",
 
   "title.modal.changesSaved": "Datos guardados",
   "label.modal.changesSaved": "Ya quedaron registrados los cambios"

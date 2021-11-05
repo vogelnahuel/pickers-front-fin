@@ -1,8 +1,18 @@
+{
+  "label.input.user": "Usuario",
+  "label.input.password": "Contraseña",
+  "label.link.forgotPassword": "¿Olvidaste tu contraseña?",
+  "button.login.login": "Iniciar sesión",
 
-{  
-       
-      "label.input.user": "Usuario",
-      "label.input.password": "Contraseña",
-      "label.link.forgotPassword": "¿Olvidaste tu contraseña?",
-      "button.login.login": "Iniciar sesión"
+  "title.modal.invalid": "Usuario y/o contraseña inválidos",
+  "label.modal.invalid": "Tu usuario y/o contraseña ingresados son incorrectos. Por favor, ingresalos nuevamente.",
+
+  "title.modal.restore": "Enviamos un correo a tu email",
+  "label.modal.restore": "Ingresá al mismo para restaurar tu contraseña",
+
+  "title.modal.expiredCode": "Código de verificación vencido",
+  "label.modal.expiredCode": "Se venció el plazo de recuperación de tu contraseña. Solicitala nuevamente",
+
+  "title.modal.successfulRestore": "Restauraste tu contraseña exitosamente",
+  "label.modal.successfulRestore": "Ya podés ingresar con tu nueva contraseña."
 }

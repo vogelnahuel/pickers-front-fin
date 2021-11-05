@@ -87,21 +87,21 @@ export const Pickers: React.FC<PickerTypes> = ({
                     }
                     className="paginator-button"
                   >
-                    {i18next.t("transactions:button.tansactions.seeMore")}
+                    {i18next.t("global:label.button.seeMore")}
                   </button>
                 </>
               ) : (
                 <>
                   <button className="paginator-button-disabled">
                     {" "}
-                    {i18next.t("transactions:button.tansactions.seeMore")}
+                    {i18next.t("global:label.button.seeMore")}
                   </button>
                 </>
               )}
             </>
           ) : (
             <div className="paginator-button-transaction-noResult">
-              {i18next.t("transactions:label.noResults")}
+              {i18next.t("global:label.title.noResults")}
             </div>
           )}
         </div>

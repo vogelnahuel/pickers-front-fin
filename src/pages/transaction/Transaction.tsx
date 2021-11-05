@@ -35,7 +35,7 @@ export const Transaction: React.FC<TransactionType> = ({
           <div className="mainContainerFlex-transaction">
             <h2 className="subTitle-transaction">
               <p className="subtitle-pendingUser-h2">
-                {i18next.t("transactions:label.transactions.transactions")}
+                {i18next.t("transactions:label.title.transactions")}
               </p>
             </h2>
             <button
@@ -81,20 +81,20 @@ export const Transaction: React.FC<TransactionType> = ({
                   }
                   className="paginator-button-transaction"
                 >
-                  {i18next.t("transactions:button.tansactions.seeMore")}
+                  {i18next.t("global:label.button.seeMore")}
                 </button>
               ) : (
                 <button
                   disabled={true}
                   className="paginator-button-transaction-disabled"
                 >
-                  {i18next.t("transactions:button.tansactions.seeMore")}
+                  {i18next.t("global:label.button.seeMore")}
                 </button>
               )}
             </>
           ) : (
             <div className="paginator-button-transaction-noResult">
-              {i18next.t("transactions:label.noResults")}
+              {i18next.t("global:label.title.noResults")}
             </div>
           )}
         </div>
