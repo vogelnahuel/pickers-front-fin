@@ -9,6 +9,7 @@ import { AppDispatch, RootState } from "store";
 import { FilterTransactionsType, FilterTransactionsValidationSchemaType } from "sagas/types/transactions";
 import { DateType, FilterContainerPropsType, FilterDateType, FilterValuesType } from "./types";
 import { SetFilterType } from "reducers/types/transaction";
+import i18next from "i18next";
 
 const FilterTransactionContainer:React.FC<FilterContainerPropsType> = (props):JSX.Element => {
 
@@ -50,8 +51,8 @@ const FilterTransactionContainer:React.FC<FilterContainerPropsType> = (props):JS
 
     const validationSchema: yup.SchemaOf<FilterTransactionsValidationSchemaType> =
         yup.object({
-                transactionCode: yup.string().matches(VALIDATION_REGEX.regTransactionCode,"El código ingresado es erróneo"),
-                pickerId:yup.string().matches(VALIDATION_REGEX.regPickerId,"No se admiten letras o caracteres especiales"),
+                transactionCode: yup.string().matches(VALIDATION_REGEX.regTransactionCode,i18next.t("filterTransaction:error.input.codeTransaction")),
+                pickerId:yup.string().matches(VALIDATION_REGEX.regPickerId,i18next.t("global:error.input.lettersOrSpecialCharacters")),
             })
         
 

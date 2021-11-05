@@ -3,6 +3,7 @@
     "label.filter.idPicker":"Id de picker",
     "label.filter.selectDate":"Seleccioná la fecha",
     "label.filter.state":"Estados",
-    "placeholder.filter.selectState":"Seleccioná el estado"
-    
+    "placeholder.filter.selectState":"Seleccioná el estado",
+
+    "error.input.codeTransaction":"El código ingresado es erróneo"
 }

@@ -42,10 +42,10 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
       if (isDirty) {
         showNotification({
           level: "warning",
-          title: "Guardá tus cambios",
-          body: "Si te vas sin guardar, tus cambios no van a quedar registrados",
-          onClickLabel: "Ir a guardar",
-          onCloseLabel: "No quiero guardarlos",
+          title: i18next.t("pickers:title.modal.changesSave"),
+          body:  i18next.t("pickers:label.modal.changesSave"),
+          onClickLabel: i18next.t("pickers:button.modal.goToSave"),
+          onCloseLabel: i18next.t("pickers:button.modal.notSave"),
           onClose: onClose,
           onClick: () =>
             window.scroll({
@@ -70,10 +70,10 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
     if (isDirty) {
       showNotification({
         level: "warning",
-        title: "Guardá tus cambios",
-        body: "Si te vas sin guardar, tus cambios no van a quedar registrados",
-        onClickLabel: "Ir a guardar",
-        onCloseLabel: "No quiero guardarlos",
+        title: i18next.t("pickers:title.modal.changesSave"),
+        body:  i18next.t("pickers:label.modal.changesSave"),
+        onClickLabel: i18next.t("pickers:button.modal.goToSave"),
+        onCloseLabel: i18next.t("pickers:button.modal.notSave"),
         onClose: onClose,
         onClick: () =>
           window.scroll({

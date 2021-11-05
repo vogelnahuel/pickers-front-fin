@@ -2,10 +2,5 @@
   "title.menu.report": "Reportes",
   "label.menu.dashboard": "Dashboard",
   "label.menu.pickers": "Flota",
-  "label.menu.transactions": "Transacciones",
-
-  "title.modal.save": "Guardá tus cambios",
-  "label.modal.save": "Si te vas sin guardar, tus cambios no van a quedar registrados",
-  "label.button.save": "Ir a guardar",
-  "label.button.notSave": "No quiero guardarlos"
+  "label.menu.transactions": "Transacciones"
 }
