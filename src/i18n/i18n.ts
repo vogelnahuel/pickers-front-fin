@@ -3,6 +3,8 @@ import { initReactI18next } from "react-i18next";
 import logini18n from "./es_AR/Login/login.json";
 import dashboardi18n from "./es_AR/Dashboard/dashboard.json";
 import pickeri18n from "./es_AR/Pickers/picker.json";
+import pickerFilteri18n from "./es_AR/Pickers/filter/filter.json";
+import pickerTablei18n from "./es_AR/Pickers/tablePickers/tablePickers.json";
 import transactions from "./es_AR/Transactions/transactions.json";
 import dashboardi18nMX from "./es_Mx/dashboard/dashboard.json";
 import filterTransaction from "./es_AR/Transactions/filterTransaction/filterTransaction.json";
@@ -12,11 +14,12 @@ import global from "./es_AR/global.json"
 import email from "./es_AR/Login/email/email.json"
 import restorePassword from "./es_AR/Login/restorePassword/restorePassword.json"
 
+//{type:what_is}.{where_is}.{name}
 //error.input.name (error== rojo)
 //message==dinamico
 //tooltip==tooltip
 //info==coloreado
-//label.title.pending (label==duro)
+//label,title,subtitle==duro
 
 
 i18n
@@ -35,6 +38,8 @@ i18n
 i18n.addResourceBundle("es_AR", "login", logini18n);
 i18n.addResourceBundle("es_AR", "dashboard", dashboardi18n);
 i18n.addResourceBundle("es_AR", "pickers", pickeri18n);
+i18n.addResourceBundle("es_AR", "pickers-filter", pickerFilteri18n);
+i18n.addResourceBundle("es_AR", "pickers-table", pickerTablei18n);
 i18n.addResourceBundle("es_AR", "transactions", transactions);
 i18n.addResourceBundle("es_AR", "filterTransaction", filterTransaction);
 i18n.addResourceBundle("es_MX", "dashboard", dashboardi18nMX);
