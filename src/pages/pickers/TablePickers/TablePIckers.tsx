@@ -17,7 +17,10 @@ export const TablePickers: React.FC<TableAdminPropsType> = ({
       <table className="table-admin">
         <thead>
           <tr>
-            {(actualPage==="PENDING"? titlesAdminPending : titlesAdminActive).map((titulo: string) => (
+            {(actualPage === "PENDING"
+              ? titlesAdminPending
+              : titlesAdminActive
+            ).map((titulo: string) => (
               <td key={titulo}>{i18next.t(titulo)}</td>
             ))}
           </tr>
@@ -28,7 +31,13 @@ export const TablePickers: React.FC<TableAdminPropsType> = ({
               <td> {`${user.name} ${user.surname}`} </td>
               <td> {user.identificationNumber} </td>
               <td>{user.email}</td>
-              <td>{user.vehicleType === "motorcycle" ? "Moto" : "Bici"}</td>
+              <td>
+                {i18next.t(
+                  `tablePickers:label.table.${
+                    user.vehicleType === "motorcycle" ? "motorcycle" : "bicycle"
+                  }`
+                )}
+              </td>
               {actualPage === "PENDING" ? (
                 <td className="table-registro">
                   <div className="table-admin-enCorrecion-span">
@@ -36,7 +45,9 @@ export const TablePickers: React.FC<TableAdminPropsType> = ({
                     {getDifDate(user.registerDate) === 1 ? " día" : " días"}
                   </div>
                   {user.status.id === 3 && (
-                    <div className="admin-table-correction">En corrección</div>
+                    <div className="admin-table-correction">
+                      {i18next.t("tablePickers:label.table.fixing")}
+                    </div>
                   )}
                 </td>
               ) : (

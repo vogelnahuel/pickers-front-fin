@@ -24,7 +24,7 @@ const RestorePasswordContainer = (
   const validationSchema: yup.SchemaOf<RestorePasswordType> = yup.object({
     password: yup
       .string()
-      .required(i18next.t("global:error.input.requier"))
+      .required(i18next.t("global:error.input.required"))
       .matches(VALIDATION_REGEX.regPassword, " ")
       .matches(
         VALIDATION_REGEX.regPasswordSpecialCharacters,
@@ -32,8 +32,11 @@ const RestorePasswordContainer = (
       ),
     confirmPassword: yup
       .string()
-      .required(i18next.t("global:error.input.requier"))
-      .oneOf([yup.ref("password"), null], i18next.t("restorePassword:error.input.passwordNotMatch")),
+      .required(i18next.t("global:error.input.required"))
+      .oneOf(
+        [yup.ref("password"), null],
+        i18next.t("restorePassword:error.input.passwordNotMatch")
+      ),
   });
 
   return (

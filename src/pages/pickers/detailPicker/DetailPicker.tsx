@@ -468,14 +468,14 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                         onClick={() => postPendingUserDocumentsEdit(values)}
                         className="button-submit-subtype"
                       >
-                        Guardar cambios
+                        {i18next.t("detailPicker:label.button.save")}
                       </button>
                       <button
                         type="submit"
                         disabled={invalid}
                         className="button-submit-active"
                       >
-                        Aprobar picker
+                        {i18next.t("detailPicker:label.button.approve")}
                       </button>
                     </div>
                   </>

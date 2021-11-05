@@ -1,6 +1,7 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import logini18n from "./es_AR/Login/login.json";
+import navi18n from "./es_AR/nav/nav.json";
 import dashboardi18n from "./es_AR/Dashboard/dashboard.json";
 import pickeri18n from "./es_AR/Pickers/picker.json";
 import pickerFilteri18n from "./es_AR/Pickers/filterPickers/filterPickers.json";
@@ -43,10 +44,11 @@ i18n.addResourceBundle("es_AR", "tablePickers", pickerTablei18n);
 i18n.addResourceBundle("es_AR", "detailPicker", pickerDetaili18n);
 i18n.addResourceBundle("es_AR", "transactions", transactions);
 i18n.addResourceBundle("es_AR", "filterTransaction", filterTransaction);
-i18n.addResourceBundle("es_MX", "dashboard", dashboardi18nMX);
-
+i18n.addResourceBundle("es_AR", "nav", navi18n);
 i18n.addResourceBundle("es_AR", "transactionTable", transactionTable);
 i18n.addResourceBundle("es_AR", "detailTransaction", detailTransaction);
 i18n.addResourceBundle("es_AR", "global", global);
 i18n.addResourceBundle("es_AR", "emailRestore", email);
-i18n.addResourceBundle("es_AR", "restorePassword", restorePassword);
+i18n.addResourceBundle("es_AR", "restorePasword", restorePassword);
+
+i18n.addResourceBundle("es_MX", "dashboard", dashboardi18nMX);

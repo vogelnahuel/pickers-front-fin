@@ -17,8 +17,9 @@ import {
 } from "./types/transactions";
 import { AxiosResponse } from "axios";
 import { GetTransactionsSuccessType } from "reducers/types/transaction";
+import i18next from "i18next";
 
-const sagas:ForkEffect<never>[] = [
+const sagas: ForkEffect<never>[] = [
   takeLatest(types.TRANSACTIONS_GET_REQUEST, getTransactions),
   takeLatest(types.TRANSACTIONS_EXPORT_REQUEST, getTransactionsExport),
   takeLatest(types.TRANSACTIONS_GET_MORE_REQUEST, getMoreTransactions),
@@ -36,7 +37,7 @@ function* getTransactions({
   void,
   TransactionResponseContent
 > {
-  delete params['date'];
+  delete params["date"];
   const response = yield call(transactionsMiddleware.getTransactions, params);
 
   if (response.status !== 200) {
@@ -45,8 +46,8 @@ function* getTransactions({
         yield put(
           notificationActions.showNotification({
             level: "error",
-            title: "El rango seleccionado es inválido",
-            body: "Por favor, ingresá un rango menor a 31 días",
+            title: i18next.t("transactions:title.modal.rangeExceeded"),
+            body: i18next.t("transactions:label.modal.rangeExceeded"),
           })
         );
         break;
@@ -92,7 +93,7 @@ function* getMoreTransactions({
   void,
   TransactionResponseContent
 > {
-  delete params['date'];
+  delete params["date"];
   const response = yield call(transactionsMiddleware.getTransactions, params);
 
   if (response.status !== 200) {
@@ -119,7 +120,6 @@ function* getTransactionsExport({
   void,
   TransactionsExportContentType
 > {
-  
   const response = yield call(
     transactionsMiddleware.getTransactionsExport,
     params
@@ -127,13 +127,12 @@ function* getTransactionsExport({
   if (response.status !== 200) {
     yield put(actions.getTransactionsExportError());
   } else {
-
     createCSV(response.data);
     yield put(
       notificationActions.showNotification({
         level: "success",
-        title: "Exportaste exitosamente",
-        body: "El archivo se descargó correctamente",
+        title: i18next.t("global:title.modal.export"),
+        body: i18next.t("global:label.modal.export"),
         element,
       })
     );

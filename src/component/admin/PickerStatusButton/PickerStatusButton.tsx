@@ -42,8 +42,8 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
       if (isDirty) {
         showNotification({
           level: "warning",
-          title: i18next.t("pickers:title.modal.changesSave"),
-          body:  i18next.t("pickers:label.modal.changesSave"),
+          title: i18next.t("pickers:title.modal.saveChanges"),
+          body: i18next.t("pickers:label.modal.saveChanges"),
           onClickLabel: i18next.t("pickers:button.modal.goToSave"),
           onCloseLabel: i18next.t("pickers:button.modal.notSave"),
           onClose: onClose,
@@ -70,8 +70,8 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
     if (isDirty) {
       showNotification({
         level: "warning",
-        title: i18next.t("pickers:title.modal.changesSave"),
-        body:  i18next.t("pickers:label.modal.changesSave"),
+        title: i18next.t("pickers:title.modal.saveChanges"),
+        body: i18next.t("pickers:label.modal.saveChanges"),
         onClickLabel: i18next.t("pickers:button.modal.goToSave"),
         onCloseLabel: i18next.t("pickers:button.modal.notSave"),
         onClose: onClose,

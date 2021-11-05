@@ -7,18 +7,14 @@ import { Input } from "component/inputs/Input";
 import useValidationSchema from "hooks/useValidationSchema";
 import NotificationModal from "component/modal/NotificationModal";
 import { IEmailRestore } from "./types";
-import { useTranslation } from "react-i18next";
 
-import i18next from "i18next"
+import i18next from "i18next";
 
 export const EmailRestore = ({
   postLoginEmail,
   validationSchema,
   isFetching,
 }: IEmailRestore): JSX.Element => {
-
-  const [t,i18n] = useTranslation()
-  
   return (
     <div className="background-login">
       <img src={pickersLogo} className="pickersLogo_login" alt="" />
@@ -32,7 +28,7 @@ export const EmailRestore = ({
               type="text"
               name="email"
               id="email"
-              label={t("emailRestore:label.input.email")}
+              label={i18next.t("emailRestore:label.input.email")}
               animated
               className="Admin-Pickers-input"
               component={Input}
@@ -45,7 +41,9 @@ export const EmailRestore = ({
               type="submit"
               name="button"
             >
-              <p className="login-init ">{t("emailRestore:button.email.sendMail")}</p>
+              <p className="login-init ">
+                {i18next.t("emailRestore:button.email.sendMail")}
+              </p>
             </button>
           </form>
         )}

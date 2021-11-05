@@ -5,5 +5,8 @@
   "label.table.vehicle": "Vehículo",
   "label.table.status": "Estado",
   "label.table.edit": "Editar",
-  "label.table.pending": "Pendiente hace"
+  "label.table.pending": "Pendiente hace",
+  "label.table.fixing": "En corrección",
+  "label.table.bicycle": "Bici",
+  "label.table.motorcycle": "Moto"
 }
