@@ -6,11 +6,11 @@ import PickerStatusButton from "component/admin/PickerStatusButton/PickerStatusB
 import exportar from "assets/admin/PendingUser/exportar.svg";
 import or from "assets/admin/PendingUser/or.svg";
 import FilterPickers from "pages/pickers/filter/FilterPickersContainer";
-import  {TablePickers}  from "./TablePickers/TablePIckers";
+import { TablePickers } from "./TablePickers/TablePIckers";
 import NotificationModal from "component/modal/NotificationModal";
 import { PickerTypes } from "./types";
 
-import i18next from "i18next"
+import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 
 export const Pickers: React.FC<PickerTypes> = ({
@@ -24,7 +24,7 @@ export const Pickers: React.FC<PickerTypes> = ({
   getMorePendingUser,
   getPendingUsersExportRequest,
 }): JSX.Element => {
-  const [t,i18n] = useTranslation()
+  const [t, i18n] = useTranslation();
   return (
     <div className="background-Grey">
       <Header />
@@ -37,8 +37,8 @@ export const Pickers: React.FC<PickerTypes> = ({
             <h2 className="subTitle-pending">
               <p className="subtitle-pendingUser-h2">
                 {actualPage === "PENDING"
-                  ? t("pickers:title.pickers.pending")
-                  : t("pickers:title.pickers.pickers")}{" "}
+                  ? t("pickers:label.title.pending")
+                  : t("pickers:label.title.pickers")}{" "}
               </p>
             </h2>
             <button
@@ -68,8 +68,7 @@ export const Pickers: React.FC<PickerTypes> = ({
           </div>
           <FilterPickers />
           <br />
-          <TablePickers
-            actualPage={actualPage} pendingUsers={pendingUsers}      />
+          <TablePickers actualPage={actualPage} pendingUsers={pendingUsers} />
           {pendingUsers && pendingUsers.length !== 0 ? (
             <>
               {seeMore ? (

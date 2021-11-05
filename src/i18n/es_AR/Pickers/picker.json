@@ -1,5 +1,4 @@
 {
-    "title.pickers.pending":"Solicitudes pendientes",
-    "title.pickers.pickers":"Pickers",
-    "button.pickers.back": "Volver"
+  "label.title.pending": "Solicitudes pendientes",
+  "label.title.pickers": "Pickers"
 }

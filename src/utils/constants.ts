@@ -1,22 +1,19 @@
-import i18next from "i18next";
-
-
 export const titlesAdminPending = [
-  "Nombre",
-  "DNI",
-  "Email",
-  "Vehículo",
-  "Pendiente hace",
-  "Editar",
+  "tablePickers:label.table.name",
+  "tablePickers:label.table.identifier",
+  "tablePickers:label.table.email",
+  "tablePickers:label.table.vehicle",
+  "tablePickers:label.table.pending",
+  "tablePickers:label.table.edit",
 ];
 
 export const titlesAdminActive = [
-  "pickers-table:label.table.name",
-  "pickers-table:label.table.identifier",
-  "pickers-table:label.table.email",
-  "pickers-table:label.table.vehicle",
-  "pickers-table:label.table.status",
-  "pickers-table:label.table.edit"
+  "tablePickers:label.table.name",
+  "tablePickers:label.table.identifier",
+  "tablePickers:label.table.email",
+  "tablePickers:label.table.vehicle",
+  "tablePickers:label.table.status",
+  "tablePickers:label.table.edit",
 ];
 
 export const transactionTableTitles = [
@@ -48,13 +45,15 @@ export const VALIDATION_REGEX = {
   regPatent: /^([a-zA-Z0-9]){6,7}$/,
   regTransactionCode: /^[a-fA-F0-9]*$/,
   regPickerId: /^[0-9]*$/,
-  regEmail:/^(?=.*[a-zA-Z])(?=^.{1,64}$)^[a-zA-Z\d](?:(\.|[-_]+)?[a-zA-Z\d])*(?:(\+)[a-zA-Z\d]+)?(?:(\.)[a-zA-Z\d]+)*[\da-zA-Z-_]*@(?:[a-zA-Z\d](?:[a-zA-Z\d]+)?\.)+[a-zA-Z\d](?:[a-zA-Z\d]+){1,}?$/,
-    regPassword:/^(?=.*[a-zàáèéìíòóùúñ])(?=.*[A-ZÀÁÈÉÌÍÒÓÙÚÑ])(?=.*\d)[A-Za-z\dàáèéìíòóùúñÀÁÈÉÌÍÒÓÙÚÑ@$¡!%;,*.?#^=&_-]{8,20}$/,
+  regEmail:
+    /^(?=.*[a-zA-Z])(?=^.{1,64}$)^[a-zA-Z\d](?:(\.|[-_]+)?[a-zA-Z\d])*(?:(\+)[a-zA-Z\d]+)?(?:(\.)[a-zA-Z\d]+)*[\da-zA-Z-_]*@(?:[a-zA-Z\d](?:[a-zA-Z\d]+)?\.)+[a-zA-Z\d](?:[a-zA-Z\d]+){1,}?$/,
+  regPassword:
+    /^(?=.*[a-zàáèéìíòóùúñ])(?=.*[A-ZÀÁÈÉÌÍÒÓÙÚÑ])(?=.*\d)[A-Za-z\dàáèéìíòóùúñÀÁÈÉÌÍÒÓÙÚÑ@$¡!%;,*.?#^=&_-]{8,20}$/,
   regPasswordSpecialCharacters:
     /^[0-9A-Za-zdàáèéìíòóùúñÀÁÈÉÌÍÒÓÙÚÑ@$¡!%;,*.?#^=&_-]*$/,
   regMayMin: /^(?=.{1,})(?=.*[a-zdàáèéìíòóùúñ])(?=.*[A-ZÀÁÈÉÌÍÒÓÙÚÑ]).*$/,
   regLetNum: /^(?=.{1,})(?=.*[a-zA-ZdàáèéìíòóùúñÀÁÈÉÌÍÒÓÙÚÑ])(?=.*[0-9]).*$/,
-  regDNI:/^[0-9]*$/,
+  regDNI: /^[0-9]*$/,
 };
 
 export const FILTER_TRANSACTION_OPTIONS = [
@@ -102,15 +101,15 @@ export const FILTER_TRANSACTION_OPTIONS = [
 
 export const FILTER_PICKERS_OPTIONS = [
   {
-    label: "Todos",
+    label: "filterPickers:label.select.all",
     value: "",
   },
   {
-    label: "Bicicleta",
+    label: "filterPickers:label.select.bicycle",
     value: "bicycle",
   },
   {
-    label: "Moto",
+    label: "filterPickers:label.select.motorcycle",
     value: "motorcycle",
   },
 ];
@@ -145,7 +144,7 @@ export const TRANSACTION_STATE_TAG_LABEL = {
   LOST: "Siniestrado",
 };
 
-export const TRANSACTION_ACTIONS_TAG_LABEL:any = {
+export const TRANSACTION_ACTIONS_TAG_LABEL: any = {
   assigned_picker: "Asignado",
   un_assigning: "Pendiente de asignación",
   state_pending_assigment: "Pendiente de asignación",
@@ -161,5 +160,5 @@ export const TRANSACTION_ACTIONS_TAG_LABEL:any = {
   state_delivered: "Entregado",
   state_returned: "Devuelto",
   state_lost: "Siniestrado",
-  state_initial: "Creación"
+  state_initial: "Creación",
 };

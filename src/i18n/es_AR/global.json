@@ -1,6 +1,20 @@
 {
-    "button.seeMore":"Ver más",
-    "button.export":"Exportar",
-    "filter.button.search":"Buscar",
-    "filter.label.inAlert":"En alerta"
+  "button.seeMore": "Ver más",
+  "button.export": "Exportar",
+  "filter.button.search": "Buscar",
+  "filter.label.inAlert": "En alerta",
+
+  "placeholder.input.date": "día / mes / año",
+  "label.switch.title": "Estado",
+  "label.switch.disabled": "Deshabilitado",
+  "label.switch.enabled": "Habilitado",
+
+  "title.notification.export": "Exportaste exitosamente",
+  "label.notification.export": "El archivo se descargó correctamente",
+
+  "title.notification.connectionError": "Error de conexión",
+  "label.notification.connectionError": "Hubo un error de comunicación con el servidor. Por favor, intentalo nuevamente",
+
+  "title.notification.changesSaved": "Datos guardados",
+  "label.notification.changesSaved": "Ya quedaron registrados los cambios"
 }
