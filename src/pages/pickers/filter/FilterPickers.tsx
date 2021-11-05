@@ -12,8 +12,6 @@ import useValidationSchema from "hooks/useValidationSchema";
 import { FilterTypes } from "./types";
 import i18next from "i18next";
 
-/****diseño del filtro y muestra inputs*/
-//TODO: revisar tipo del onSubmit
 export const FilterPickers: React.FC<FilterTypes> = ({
   onSubmit,
   filters,

@@ -71,7 +71,6 @@ export const RestorePassword = ({
                 )}
 
                 <p
-                  id="caracteres"
                   className={
                     values?.password?.length >= 8 ||
                     values?.password === undefined
@@ -93,7 +92,6 @@ export const RestorePassword = ({
                   <img src={Informacion} alt="ok" />
                 )}
                 <p
-                  id="mayusculas"
                   className={
                     values?.password?.match(VALIDATION_REGEX.regMayMin) ||
                     values?.password === undefined
@@ -115,7 +113,6 @@ export const RestorePassword = ({
                   <img src={Informacion} alt="ok" />
                 )}
                 <p
-                  id="numeros"
                   className={
                     values?.password?.match(VALIDATION_REGEX.regLetNum) ||
                     values?.password === undefined

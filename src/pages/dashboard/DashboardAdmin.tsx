@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
 import { Card } from "component/admin/DashBoard/Card";
 import { Header } from "component/admin/Header/Header";
+import i18next from "i18next";
+import moment from "moment";
+import React from "react";
 import { Nav } from "../../component/admin/Nav/Nav";
 import "./Dashboard.scss";
-import moment from "moment";
 import { DashboardTypes } from "./types";
-import i18next from "i18next";
 
 export const DashboardAdmin: React.FC<DashboardTypes> = ({
   dashboard,
@@ -23,8 +23,6 @@ export const DashboardAdmin: React.FC<DashboardTypes> = ({
           <h3 className="subtitle_Dashboard_Admin">
             {i18next.t("dashboard:label.subtitle.description")}
           </h3>
-          {/* <button  className={"login-button"} onClick={()=>{console.log("pepe");i18n.changeLanguage("es_MX")}}>es_MX</button>
-      <button  className={"login-button"} onClick={()=>{console.log("pepe");i18n.changeLanguage("es_AR")}}>es_AR</button> */}
           <div className="card-admin">
             <Card
               subtitle={i18next.t("dashboard:subtitle.card.pickers")}
