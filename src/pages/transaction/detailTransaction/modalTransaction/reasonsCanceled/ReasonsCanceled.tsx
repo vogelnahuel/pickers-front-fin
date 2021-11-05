@@ -10,6 +10,7 @@ import { AppDispatch, RootState } from "store";
 import { ReasonList } from "../ReasonList";
 import "./reasonsCanceled.scss";
 import { ReasonCanceledPropsType } from "./types";
+import i18next from "i18next";
 
 const ReasonsCanceled: React.FC<ReasonCanceledPropsType> = ({
   back,
@@ -44,11 +45,11 @@ const ReasonsCanceled: React.FC<ReasonCanceledPropsType> = ({
           src={volver}
           alt="volver"
         />
-        <p className="modal-reasonsCancel-p">Volver</p>
+        <p className="modal-reasonsCancel-p">{i18next.t("global:label.button.back")}</p>
       </div>
       <div className="modal-transaction-scroll">
         <p className="modal-transaction-reasonsCanceled-subtitle">
-          Seleccioná el motivo de cancelación de la colecta
+         {i18next.t("detailTransaction:title.historyModal.selectCacelationReason")}
         </p>
         <ReasonList
           messages={messages}

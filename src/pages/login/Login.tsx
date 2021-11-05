@@ -59,7 +59,7 @@ const Login: React.FC<LoginTypeProps> = ({
                 type="submit"
                 name="button"
               >
-                <p className="login-init ">{i18next.t("login:button.login")}</p>
+                <p className="login-init ">{i18next.t("login:button.login.login")}</p>
               </button>
             </div>
           </form>
@@ -67,7 +67,7 @@ const Login: React.FC<LoginTypeProps> = ({
       </Form>
       <div className="container-login-a">
         <Link className="login-a" to={"/restore"}>
-         {i18next.t("login:link.forgotPassword")}
+         {i18next.t("login:label.link.forgotPassword")}
         </Link>
       </div>
       <img className="login-img-footer" src={canguro} alt="" />

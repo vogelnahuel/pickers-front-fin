@@ -5,6 +5,12 @@ import dashboardi18n from "./es_AR/Dashboard/dashboard.json";
 import pickeri18n from "./es_AR/Pickers/picker.json";
 import transactions from "./es_AR/Transactions/transactions.json";
 import dashboardi18nMX from "./es_Mx/dashboard/dashboard.json";
+import filterTransaction from "./es_AR/Transactions/filterTransaction/filterTransaction.json";
+import transactionTable from "./es_AR/Transactions/tableTansaction/tableTransaction.json"
+import detailTransaction from "./es_AR/Transactions/detailTransaction/detailTransaction.json"
+import global from "./es_AR/global.json"
+import email from "./es_AR/Login/email/email.json"
+import restorePassword from "./es_AR/Login/restorePassword/restorePassword.json"
 
 //error.input.name (error== rojo)
 //message==dinamico
@@ -30,4 +36,11 @@ i18n.addResourceBundle("es_AR", "login", logini18n);
 i18n.addResourceBundle("es_AR", "dashboard", dashboardi18n);
 i18n.addResourceBundle("es_AR", "pickers", pickeri18n);
 i18n.addResourceBundle("es_AR", "transactions", transactions);
+i18n.addResourceBundle("es_AR", "filterTransaction", filterTransaction);
 i18n.addResourceBundle("es_MX", "dashboard", dashboardi18nMX);
+
+i18n.addResourceBundle("es_AR", "transactionTable", transactionTable);
+i18n.addResourceBundle("es_AR", "detailTransaction", detailTransaction);
+i18n.addResourceBundle("es_AR", "global", global);
+i18n.addResourceBundle("es_AR", "emailRestore", email);
+i18n.addResourceBundle("es_AR", "restorePasword", restorePassword);

@@ -1,6 +1,11 @@
 {
-    "button.seeMore":"Ver más",
-    "button.export":"Exportar",
+    "label.button.export":"Exportar",
     "filter.button.search":"Buscar",
-    "filter.label.inAlert":"En alerta"
+    "label.button.cancel":"Cancelar",
+    "label.button.finish":"Finalizar",
+    "filter.label.inAlert":"En alerta",
+    "label.input.email": "Email",
+    "label.title.noResults":"No obtuvimos resultados para tu búsqueda :(",
+    "label.button.search":"Buscar",
+    "label.button.back":"Volver"
 }

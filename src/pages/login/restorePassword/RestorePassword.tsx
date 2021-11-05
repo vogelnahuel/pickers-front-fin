@@ -44,7 +44,7 @@ export const RestorePassword = ({
               type="password"
               name="password"
               id="password"
-              label={t("login:label.input.newPassword")}
+              label={t("restorePasword:label.input.newPassword")}
               animated
               className="Admin-Pickers-input Admin-Pickers-input-restore"
               component={Input}
@@ -54,7 +54,7 @@ export const RestorePassword = ({
               type="password"
               name="confirmPassword"
               id="confirmPassword"
-              label={t("login:label.input.confirmNewPassword")}
+              label={t("restorePasword:label.input.confirmNewPassword")}
               animated
               className="Admin-Pickers-input Admin-Pickers-input-restore"
               component={Input}
@@ -62,7 +62,7 @@ export const RestorePassword = ({
             />
 
             <ul className={"ul"} id="ul-login">
-              {t("login:label.passwordMustHave")}
+              {t("restorePasword:label.conditions.passwordMustHave")}
               <li className="display-flex">
                 {!values.password ? (
                   <img src={voidCheck} alt="ok" />
@@ -81,7 +81,7 @@ export const RestorePassword = ({
                       : "restore-p errorLi"
                   }
                 >
-                  {t("login:label.8OrMoreCharacters")}
+                  {t("restorePasword:label.conditions.passwordMinLength")}
                 </p>
               </li>
               <li className="display-flex">
@@ -101,7 +101,7 @@ export const RestorePassword = ({
                       : "restore-p errorLi"
                   }
                 >
-                  {t("login:label.uppercaseandLowerCase")}
+                  {t("restorePasword:label.conditions.uppercaseandLowerCase")}
                 </p>
               </li>
               <li className="display-flex">
@@ -121,7 +121,7 @@ export const RestorePassword = ({
                       : "restore-p errorLi"
                   }
                 >
-                  {t("login:label.numbersAndLeters")}
+                  {t("restorePasword:label.conditions.numbersAndLeters")}
                 </p>
               </li>
             </ul>
@@ -131,7 +131,7 @@ export const RestorePassword = ({
               type="submit"
               name="button"
             >
-              <p className="login-init ">{t("login:button.save")}</p>
+              <p className="login-init ">{t("restorePasword:label.button.save")}</p>
             </button>
           </form>
         )}
