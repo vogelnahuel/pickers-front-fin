@@ -20,6 +20,7 @@ import {
   RestoreEmailResponse,
 } from "./types/login";
 import { AxiosResponse } from "axios";
+import i18next from "i18next";
 
 const sagas: ForkEffect<never>[] = [
   takeLatest(types.LOGIN_GET_REQUEST, getLogin),
@@ -50,8 +51,8 @@ function* getLogin({
         yield put(
           notificationActions.showNotification({
             level: "error",
-            title: "Error de conexión",
-            body: "Hubo un error de comunicación con el servidor. Por favor, intentalo nuevamente",
+            title: i18next.t("global:title.modal.connectionError"),
+            body: i18next.t("global:label.modal.connectionError"),
             element,
           })
         );
@@ -60,8 +61,8 @@ function* getLogin({
         yield put(
           notificationActions.showNotification({
             level: "error",
-            title: "Usuario y/o contraseña inválidos",
-            body: "Tu usuario y/o contraseña ingresados son incorrectos. Por favor, ingresalos nuevamente.",
+            title: i18next.t("login:title.modal.invalid"),
+            body: i18next.t("login:label.modal.invalid"),
             element,
           })
         );
@@ -70,8 +71,8 @@ function* getLogin({
         yield put(
           notificationActions.showNotification({
             level: "error",
-            title: "Usuario y/o contraseña inválidos",
-            body: "Tu usuario y/o contraseña ingresados son incorrectos. Por favor, ingresalos nuevamente.",
+            title: i18next.t("login:title.modal.invalid"),
+            body: i18next.t("login:label.modal.invalid"),
             element,
           })
         );
@@ -80,8 +81,8 @@ function* getLogin({
         yield put(
           notificationActions.showNotification({
             level: "error",
-            title: "Error en nuestro servidor",
-            body: "Por favor, reintentalo nuevamente.",
+            title: i18next.t("global:title.modal.serverError"),
+            body: i18next.t("global:label.modal.serverError"),
             element,
           })
         );
@@ -123,8 +124,8 @@ function* getLoginEmail({
         yield put(
           notificationActions.showNotification({
             level: "warning",
-            title: "Enviamos un correo a tu email",
-            body: "Ingresá al mismo para restaurar tu contraseña",
+            title: i18next.t("login:title.modal.restore"),
+            body: i18next.t("login:label.modal.restore"),
             element,
           })
         );
@@ -133,8 +134,8 @@ function* getLoginEmail({
         yield put(
           notificationActions.showNotification({
             level: "warning",
-            title: "Enviamos un correo a tu email",
-            body: "Ingresá al mismo para restaurar tu contraseña",
+            title: i18next.t("login:title.modal.restore"),
+            body: i18next.t("login:label.modal.restore"),
             element,
           })
         );
@@ -143,8 +144,8 @@ function* getLoginEmail({
         yield put(
           notificationActions.showNotification({
             level: "warning",
-            title: "Enviamos un correo a tu email",
-            body: "Ingresá al mismo para restaurar tu contraseña",
+            title: i18next.t("login:title.modal.restore"),
+            body: i18next.t("login:label.modal.restore"),
             element,
           })
         );
@@ -153,8 +154,8 @@ function* getLoginEmail({
         yield put(
           notificationActions.showNotification({
             level: "error",
-            title: "Error en nuestro servidor",
-            body: "Por favor, reintentalo nuevamente.",
+            title: i18next.t("global:title.modal.serverError"),
+            body: i18next.t("global:label.modal.serverError"),
             element,
           })
         );
@@ -166,8 +167,8 @@ function* getLoginEmail({
     yield put(
       notificationActions.showNotification({
         level: "warning",
-        title: "Enviamos un correo a tu email",
-        body: "Ingresá al mismo para restaurar tu contraseña",
+        title: i18next.t("login:title.modal.restore"),
+        body: i18next.t("login:label.modal.restore"),
         element,
       })
     );
@@ -194,8 +195,8 @@ function* getLoginRestore({
         yield put(
           notificationActions.showNotification({
             level: "error",
-            title: "Código de verificación vencido",
-            body: "Se venció el plazo de recuperación de tu contraseña. Solicitala nuevamente",
+            title: i18next.t("login:title.modal.expiredCode"),
+            body: i18next.t("login:label.modal.expiredCode"),
             element,
           })
         );
@@ -204,8 +205,8 @@ function* getLoginRestore({
         yield put(
           notificationActions.showNotification({
             level: "error",
-            title: "Error en nuestro servidor",
-            body: "Por favor, reintentalo nuevamente.",
+            title: i18next.t("global:title.modal.serverError"),
+            body: i18next.t("global:label.modal.serverError"),
             element,
           })
         );
@@ -216,8 +217,8 @@ function* getLoginRestore({
     yield put(
       notificationActions.showNotification({
         level: "success",
-        title: "Restauraste tu contraseña exitosamente",
-        body: "Ya podés ingresar con tu nueva contraseña.",
+        title: i18next.t("login:title.modal.successfulRestore"),
+        body: i18next.t("login:label.modal.successfulRestore"),
         element,
       })
     );

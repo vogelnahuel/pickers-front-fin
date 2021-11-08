@@ -1,0 +1,26 @@
+{
+  "label.title.filters": "Filtros",
+  "label.filter.idPicker": "Id de picker",
+  "label.filter.selectDate": "Seleccioná la fecha",
+  "label.filter.state": "Estados",
+
+  "placeholder.filter.selectState": "Seleccioná el estado",
+  "placeholder.filter.transactionCode": "Ingresá el código",
+  "placeholder.filter.idPicker": "Ingresá el número de picker",
+  "error.input.codeTransaction": "El código ingresado es erróneo",
+
+  "label.select.created": "Creación",
+  "label.select.notAssigned": "Sin asignar",
+  "label.select.pendingAssignment": "Pendiente de asignación",
+  "label.select.assigned": "Asignado",
+  "label.select.inPickup": "En retiro",
+  "label.select.retired": "Retirado",
+  "label.select.inPickupPoint": "En lugar de retiro",
+  "label.select.inDelivery": "En entrega",
+  "label.select.inDeliveryPoint": "En lugar de entrega",
+  "label.select.delivered": "Entregado",
+  "label.select.inReturnToSender": "En devolución",
+  "label.select.returnedToSender": "Devuelto",
+  "label.select.lost": "Siniestrado",
+  "label.select.cancel": "Cancelado"
+}

@@ -2,6 +2,7 @@ import volver from "assets/admin/PendingUser/volver.svg";
 import Card from "assets/transaction/Card.svg";
 import { Input } from "component/inputs/Input";
 import useValidationSchema from "hooks/useValidationSchema";
+import i18next from "i18next";
 import React from "react";
 import { Col } from "react-bootstrap";
 import { Field, Form } from "react-final-form";
@@ -25,8 +26,11 @@ const DniFinish: React.FC<DniFinishPropsType> = ({
   const validationSchema: yup.SchemaOf<any> = yup.object({
     dni: yup
       .string()
-      .required("Este campo es requerido")
-      .matches(VALIDATION_REGEX.regDNI, "El correo ingresado es inválido"),
+      .required(i18next.t("global:error.input.required"))
+      .matches(
+        VALIDATION_REGEX.regDNI,
+        i18next.t("global:error.input.invalidEmailFormat")
+      ),
   });
   return (
     <div>
@@ -41,17 +45,18 @@ const DniFinish: React.FC<DniFinishPropsType> = ({
           src={volver}
           alt="volver"
         />
-        <p className="modal-transaction-finish-volver">Volver</p>
+        <p className="modal-transaction-finish-volver">
+          {i18next.t("global:label.button.back")}
+        </p>
       </div>
 
       <div className="modal-dni-center">
         <img className="modal-dni-finish-card" src={Card} alt="Card" />
         <h3 className="modal-dni-finish-h3">
-          Ingresá el DNI de quien recibió el paquete
+          {i18next.t("detailTransaction:title.dniFinish.dniReceiver")}
         </h3>
         <Form
           onSubmit={(values: DniFinishFormValuesType) => {
-            console.log(values.dni.toString());
             getDetailTransactionDniDeliveredRequest(
               { key: "identificationNumber", value: values.dni.toString() },
               detailTransaction.transaction.id
@@ -66,17 +71,19 @@ const DniFinish: React.FC<DniFinishPropsType> = ({
                   <Field
                     name="dni"
                     component={Input}
-                    placeholder="Ingresá el DNI"
+                    placeholder={i18next.t(
+                      "detailTransaction:placeholeder.input.dni"
+                    )}
                     className="Admin-Pickers-input"
                     id="dni"
                     maxLength={8}
-                    label="DNI*"
+                    label={i18next.t("detailTransaction:label.input.dni")}
                   ></Field>
                 </div>
               </Col>
               <div className="finish-modal-button-container">
                 <button disabled={invalid} className="finish-button">
-                  Finalizarla
+                  {i18next.t("detailTransaction:button.finishModal.finish")}
                 </button>
               </div>
             </form>

@@ -12,6 +12,7 @@ import MultipleSelect from "component/inputs/MultipleSelect";
 import { FILTER_TRANSACTION_OPTIONS } from "utils/constants";
 import useValidationSchema from "hooks/useValidationSchema";
 import { FilterTransactionPropsType, FilterValuesType } from "./types";
+import i18next from "i18next";
 
 export const FilterTransaction: React.FC<FilterTransactionPropsType> = ({
   onSubmit,
@@ -28,7 +29,9 @@ export const FilterTransaction: React.FC<FilterTransactionPropsType> = ({
               src={dropdown}
               alt="desplegable"
             />
-            <p className="p-filter-transaction">Filtros</p>
+            <p className="p-filter-transaction">
+              {i18next.t("filterTransaction:label.title.filters")}
+            </p>
           </div>
         </Col>
         <Col className="sub-container">
@@ -57,10 +60,14 @@ export const FilterTransaction: React.FC<FilterTransactionPropsType> = ({
                   <Field
                     type="text"
                     name="transactionCode"
-                    label="Código de transacción"
+                    label={i18next.t(
+                      "transactions:label.transactions.transactionCode"
+                    )}
                     component={Input}
                     className="Admin-Pickers-input"
-                    placeholder="Ingresá el código"
+                    placeholder={i18next.t(
+                      "filterTransaction:placeholder.filter.transactionCode"
+                    )}
                     maxLength={19}
                   />
                 </Col>
@@ -68,10 +75,12 @@ export const FilterTransaction: React.FC<FilterTransactionPropsType> = ({
                   <Field
                     type="text"
                     name="pickerId"
-                    label="Id de picker"
+                    label={i18next.t("filterTransaction:label.filter.idPicker")}
                     component={Input}
                     className="Admin-Pickers-input"
-                    placeholder="Ingresá el número de picker"
+                    placeholder={i18next.t(
+                      "filterTransaction:placeholder.filter.idPicker"
+                    )}
                   />
                 </Col>
                 <Col xxl xl={4} className="px-3">
@@ -80,13 +89,15 @@ export const FilterTransaction: React.FC<FilterTransactionPropsType> = ({
                     id="datePicker-filter-transaction"
                   >
                     <label className="label-Admin-Pickers">
-                      Vencimiento SLA
+                      {i18next.t("transactions:label.filter.SLA")}
                     </label>
                     <Field
                       type="text"
                       className="Admin-Pickers-input-select"
                       name="date"
-                      placeholder="Seleccioná la fecha"
+                      placeholder={i18next.t(
+                        "filterTransaction:label.filter.selectDate"
+                      )}
                       language="es"
                     >
                       {(props: any) => <DatePicker {...props} />}
@@ -94,12 +105,19 @@ export const FilterTransaction: React.FC<FilterTransactionPropsType> = ({
                   </div>
                 </Col>
                 <Col xxl xl={4} className="px-3">
-                  <label className="label-Admin-Pickers">Estados</label>
+                  <label className="label-Admin-Pickers">
+                    {i18next.t("filterTransaction:label.filter.state")}
+                  </label>
                   <Field
                     name="state"
-                    placeholder="Seleccioná el estado"
+                    placeholder={i18next.t(
+                      "filterTransaction:placeholder.filter.selectState"
+                    )}
                     onChange={form.mutators.setValue}
-                    options={FILTER_TRANSACTION_OPTIONS}
+                    options={FILTER_TRANSACTION_OPTIONS.map((o) => ({
+                      ...o,
+                      label: i18next.t(o.label),
+                    }))}
                   >
                     {(props: any) => <MultipleSelect {...props} />}
                   </Field>
@@ -116,7 +134,7 @@ export const FilterTransaction: React.FC<FilterTransactionPropsType> = ({
                     htmlFor="inAlert"
                     className="label-filter-transaction-alert"
                   >
-                    En alerta
+                    {i18next.t("transactions:label.filter.inAlert")}
                   </label>
                 </Col>
                 <Col xxl="auto" xl={4} className="px-3">
@@ -127,7 +145,9 @@ export const FilterTransaction: React.FC<FilterTransactionPropsType> = ({
                   >
                     <img src={search} alt="export" />
                     <img className="or-filter" src={or} alt="or" />
-                    <p className="display-inline-block p-export">Buscar</p>
+                    <p className="display-inline-block p-export">
+                      {i18next.t("global:label.button.search")}
+                    </p>
                   </button>
                 </Col>
               </form>
