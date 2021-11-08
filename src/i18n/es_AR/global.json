@@ -27,10 +27,12 @@
 
   "title.modal.changesSaved": "Datos guardados",
   "label.modal.changesSaved": "Ya quedaron registrados los cambios",
+  "label.button.understood": "Entendido",
 
   "error.input.required": "Este campo es requerido",
   "error.input.specialCharacters": "No se admiten caracteres especiales",
   "error.input.numbersOrSpecialCharacters": "No se admiten números o caracteres especiales",
   "error.input.lettersOrSpecialCharacters": "No se admiten letras o caracteres especiales",
-  "error.input.invalidFormat": "Ingresá el formato correcto"
+  "error.input.invalidFormat": "Ingresá el formato correcto",
+  "error.input.invalidEmailFormat": "El correo ingresado es inválido"
 }

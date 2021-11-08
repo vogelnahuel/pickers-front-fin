@@ -40,6 +40,8 @@ import {
 } from "../pages/pickers/types";
 import { AxiosResponse } from "axios";
 import i18next from "i18next";
+import { DATE_FORMATS } from "utils/constants";
+
 const sagas = [
   takeLatest(pickersTypes.PENDING_USER_GET_REQUEST, getPickers),
   takeLatest(
@@ -86,11 +88,13 @@ const process = (body: //TODO: vehiculos any?
 }) => {
   return {
     ...body,
-    dateOfBirth: moment(body.dateOfBirth, "DD/MM/YYYY").format("YYYY-MM-DD"),
+    dateOfBirth: moment(body.dateOfBirth, DATE_FORMATS.shortDate).format(
+      DATE_FORMATS.shortISODate
+    ),
     expirationDatePolicyPersonal:
       body.expirationDatePolicyPersonal &&
-      moment(body.expirationDatePolicyPersonal, "DD/MM/YYYY").format(
-        "YYYY-MM-DD"
+      moment(body.expirationDatePolicyPersonal, DATE_FORMATS.shortDate).format(
+        DATE_FORMATS.shortISODate
       ),
     accountingData: {
       ...body.accountingData,
@@ -107,20 +111,20 @@ const process = (body: //TODO: vehiculos any?
           body.vehicle[body.vehicleType].expirationDatePolicyVehicle &&
           moment(
             body.vehicle[body.vehicleType].expirationDatePolicyVehicle,
-            "DD/MM/YYYY"
-          ).format("YYYY-MM-DD"),
+            DATE_FORMATS.shortDate
+          ).format(DATE_FORMATS.shortISODate),
         expirationDateIdentificationVehicle:
           body.vehicle[body.vehicleType].expirationDateIdentificationVehicle &&
           moment(
             body.vehicle[body.vehicleType].expirationDateIdentificationVehicle,
-            "DD/MM/YYYY"
-          ).format("YYYY-MM-DD"),
+            DATE_FORMATS.shortDate
+          ).format(DATE_FORMATS.shortISODate),
         expirationDateDriverLicense:
           body.vehicle[body.vehicleType].expirationDateDriverLicense &&
           moment(
             body.vehicle[body.vehicleType].expirationDateDriverLicense,
-            "DD/MM/YYYY"
-          ).format("YYYY-MM-DD"),
+            DATE_FORMATS.shortDate
+          ).format(DATE_FORMATS.shortISODate),
       },
     },
   };

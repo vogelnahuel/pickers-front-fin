@@ -6,7 +6,7 @@ import { selectors as transactionSelectors } from "reducers/transactions";
 import { TransactionResponseTypeResult } from "sagas/types/transactions";
 import { AppDispatch, RootState } from "store";
 import TreePoints from "../../../assets/transaction/TreePoints.svg";
-import { transactionTableTitles } from "../../../utils/constants";
+import { DATE_FORMATS, transactionTableTitles } from "../../../utils/constants";
 import "./TableTransaction.scss";
 import { TableTransactionPropsTypes } from "./types";
 import i18next from "i18next";
@@ -45,8 +45,8 @@ export const TableTransaction = ({
                 <td>
                   {moment(
                     data.transaction.maxDeliveryDateTime.substring(0, 10),
-                    "YYYY-MM-DD"
-                  ).format("DD/MM/YYYY")}
+                    DATE_FORMATS.shortISODate
+                  ).format(DATE_FORMATS.shortDate)}
                   {data.transaction.inAlert && (
                     <div className="admin-table-alerta">
                       {i18next.t("transactionTable:label.table.inAlert")}

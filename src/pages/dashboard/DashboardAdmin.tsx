@@ -3,6 +3,7 @@ import { Header } from "component/admin/Header/Header";
 import i18next from "i18next";
 import moment from "moment";
 import React from "react";
+import { DATE_FORMATS } from "utils/constants";
 import { Nav } from "../../component/admin/Nav/Nav";
 import "./Dashboard.scss";
 import { DashboardTypes } from "./types";
@@ -40,8 +41,10 @@ export const DashboardAdmin: React.FC<DashboardTypes> = ({
               backgroundColor="#63E8A8"
               url={`/transaction?state=ASSIGNED,IN_PICK_UP,IN_PICK_UP_POINT,PICKED_UP,IN_DELIVERY,IN_DELIVERY_POINT,IN_RETURN_TO_SENDER&minMinDeliveryDate=${moment()
                 .subtract(4, "d")
-                .format("YYYY-MM-DD")}&maxMinDeliveryDate=${moment().format(
-                "YYYY-MM-DD"
+                .format(
+                  DATE_FORMATS.shortISODate
+                )}&maxMinDeliveryDate=${moment().format(
+                DATE_FORMATS.shortISODate
               )}`}
             />
             <Card
@@ -51,8 +54,10 @@ export const DashboardAdmin: React.FC<DashboardTypes> = ({
               backgroundColor="#BCB6FF"
               url={`/transaction?state=PENDING_ASSIGNMENT&minMinDeliveryDate=${moment()
                 .subtract(4, "d")
-                .format("YYYY-MM-DD")}&maxMinDeliveryDate=${moment().format(
-                "YYYY-MM-DD"
+                .format(
+                  DATE_FORMATS.shortISODate
+                )}&maxMinDeliveryDate=${moment().format(
+                DATE_FORMATS.shortISODate
               )}`}
               id="dashboard-card-pending-Assignment"
             />
@@ -64,8 +69,10 @@ export const DashboardAdmin: React.FC<DashboardTypes> = ({
               backgroundColor="#FF8F76"
               url={`/transaction?inAlert=${true}&minMinDeliveryDate=${moment()
                 .subtract(4, "d")
-                .format("YYYY-MM-DD")}&maxMinDeliveryDate=${moment().format(
-                "YYYY-MM-DD"
+                .format(
+                  DATE_FORMATS.shortISODate
+                )}&maxMinDeliveryDate=${moment().format(
+                DATE_FORMATS.shortISODate
               )}`}
             />
           </div>

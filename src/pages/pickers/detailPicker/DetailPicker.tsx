@@ -16,6 +16,7 @@ import moment from "moment";
 import NotificationModal from "component/modal/NotificationModal";
 import Actions from "pages/pickers/actions/Actions";
 import { DetailPickerTypeProps } from "./types";
+import { DATE_FORMATS } from "utils/constants";
 import i18next from "i18next";
 
 export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
@@ -106,8 +107,8 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                       !pendingUserAdminPicker.dateOfBirth.includes("/")
                         ? moment(
                             pendingUserAdminPicker.dateOfBirth,
-                            "YYYY-MM-DD"
-                          ).format("DD/MM/YYYY")
+                            DATE_FORMATS.shortISODate
+                          ).format(DATE_FORMATS.shortDate)
                         : pendingUserAdminPicker.dateOfBirth,
                     expirationDatePolicyPersonal:
                       pendingUserAdminPicker.expirationDatePolicyPersonal &&
@@ -116,8 +117,8 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                       )
                         ? moment(
                             pendingUserAdminPicker.expirationDatePolicyPersonal,
-                            "YYYY-MM-DD"
-                          ).format("DD/MM/YYYY")
+                            DATE_FORMATS.shortISODate
+                          ).format(DATE_FORMATS.shortDate)
                         : pendingUserAdminPicker.expirationDatePolicyPersonal,
                     vehicle: {
                       ...pendingUserAdminPicker.vehicle,
@@ -136,8 +137,8 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                                 pendingUserAdminPicker.vehicle[
                                   pendingUserAdminPicker.vehicleType
                                 ].expirationDatePolicyVehicle,
-                                "YYYY-MM-DD"
-                              ).format("DD/MM/YYYY")
+                                DATE_FORMATS.shortISODate
+                              ).format(DATE_FORMATS.shortDate)
                             : pendingUserAdminPicker.vehicle[
                                 pendingUserAdminPicker.vehicleType
                               ].expirationDatePolicyVehicle,
@@ -152,8 +153,8 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                                 pendingUserAdminPicker.vehicle[
                                   pendingUserAdminPicker.vehicleType
                                 ].expirationDateIdentificationVehicle,
-                                "YYYY-MM-DD"
-                              ).format("DD/MM/YYYY")
+                                DATE_FORMATS.shortISODate
+                              ).format(DATE_FORMATS.shortDate)
                             : pendingUserAdminPicker.vehicle[
                                 pendingUserAdminPicker.vehicleType
                               ].expirationDateIdentificationVehicle,
@@ -168,8 +169,8 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                                 pendingUserAdminPicker.vehicle[
                                   pendingUserAdminPicker.vehicleType
                                 ].expirationDateDriverLicense,
-                                "YYYY-MM-DD"
-                              ).format("DD/MM/YYYY")
+                                DATE_FORMATS.shortISODate
+                              ).format(DATE_FORMATS.shortDate)
                             : pendingUserAdminPicker.vehicle[
                                 pendingUserAdminPicker.vehicleType
                               ].expirationDateDriverLicense,

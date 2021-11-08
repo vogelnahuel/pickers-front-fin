@@ -21,8 +21,8 @@ export const Nav = ({ isDirty, showNotification }: any) => {
         level: "warning",
         title: i18next.t("pickers:title.modal.saveChanges"),
         body: i18next.t("pickers:label.modal.saveChanges"),
-        onClickLabel: i18next.t("pickers:button.modal.goToSave"),
-        onCloseLabel: i18next.t("pickers:button.modal.notSave"),
+        onClickLabel: "pickers:button.modal.goToSave",
+        onCloseLabel: "pickers:button.modal.notSave",
         onClose: onClose,
         onClick: () =>
           window.scroll({

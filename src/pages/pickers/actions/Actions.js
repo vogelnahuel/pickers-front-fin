@@ -18,8 +18,8 @@ export const Actions = ({
         level: "warning",
         title: i18next.t("pickers:title.modal.saveChanges"),
         body: i18next.t("picker:label.modal.exportWithoutSave"),
-        onClickLabel: i18next.t("picker:button.modal.goToSave"),
-        onCloseLabel: i18next.t("picker:button.modal.exportWithoutSave"),
+        onClickLabel: "picker:button.modal.goToSave",
+        onCloseLabel: "picker:button.modal.exportWithoutSave",
         onClose: () =>
           getPendingUserPickerExport(
             { email: pendingUserAdminPicker.email },

@@ -142,8 +142,8 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
         level: "warning",
         title: i18next.t("pickers:title.modal.saveChanges"),
         body: i18next.t("pickers:label.modal.saveChanges"),
-        onClickLabel: i18next.t("pickers:button.modal.goToSave"),
-        onCloseLabel: i18next.t("pickers:button.modal.notSave"),
+        onClickLabel: "pickers:button.modal.goToSave",
+        onCloseLabel: "pickers:button.modal.notSave",
         onClose: onClose,
         onClick: () =>
           window.scroll({
@@ -162,8 +162,8 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
       level: "info",
       title: i18next.t("detailPicker:title.modal.approvePicker"),
       body: i18next.t("detailPicker:label.modal.approvePicker"),
-      onClickLabel: i18next.t("detailPicker:label.button.approve"),
-      onCloseLabel: i18next.t("detailPicker:label.button.revise"),
+      onClickLabel: "detailPicker:label.button.approve",
+      onCloseLabel: "detailPicker:label.button.revise",
       onClick: () => props.postAprovePickerRequest(params, goBack),
     });
   };
