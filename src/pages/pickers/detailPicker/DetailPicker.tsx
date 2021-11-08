@@ -32,8 +32,8 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
   postPendingUserDocumentsEdit,
   postEditPickerRequest,
   validationSchema,
+  formatDate,
 }) => {
-  // TODO: Pasar a i18next los botones
   return (
     <div className="background-Grey">
       <Header />
@@ -110,70 +110,47 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                             DATE_FORMATS.shortISODate
                           ).format(DATE_FORMATS.shortDate)
                         : pendingUserAdminPicker.dateOfBirth,
-                    expirationDatePolicyPersonal:
-                      pendingUserAdminPicker.expirationDatePolicyPersonal &&
-                      !pendingUserAdminPicker.expirationDatePolicyPersonal.includes(
-                        "/"
-                      )
-                        ? moment(
-                            pendingUserAdminPicker.expirationDatePolicyPersonal,
-                            DATE_FORMATS.shortISODate
-                          ).format(DATE_FORMATS.shortDate)
-                        : pendingUserAdminPicker.expirationDatePolicyPersonal,
+                    // expirationDatePolicyPersonal:
+                    //   pendingUserAdminPicker.expirationDatePolicyPersonal &&
+                    //   pendingUserAdminPicker.expirationDatePolicyPersonal.includes(
+                    //     "/"
+                    //   ) &&
+                    //   pendingUserAdminPicker.expirationDatePolicyPersonal.match(
+                    //     DATE_FORMATS.regexshortDate
+                    //   )
+                    //     ? moment(
+                    //         pendingUserAdminPicker.expirationDatePolicyPersonal,
+                    //         DATE_FORMATS.shortISODate
+                    //       ).format(DATE_FORMATS.shortDate)
+                    //     : pendingUserAdminPicker.expirationDatePolicyPersonal,
                     vehicle: {
                       ...pendingUserAdminPicker.vehicle,
                       [pendingUserAdminPicker.vehicleType]: {
                         ...pendingUserAdminPicker.vehicle[
                           pendingUserAdminPicker.vehicleType
                         ],
-                        expirationDatePolicyVehicle:
+
+                        expirationDatePolicyPersonal: formatDate(
+                          pendingUserAdminPicker.expirationDatePolicyPersonal
+                        ),
+
+
+                        expirationDatePolicyVehicle: formatDate(
+                          pendingUserAdminPicker?.vehicle[
+                            pendingUserAdminPicker.vehicleType
+                          ].expirationDatePolicyVehicle
+                        ),
+                        expirationDateIdentificationVehicle: formatDate(
                           pendingUserAdminPicker.vehicle[
                             pendingUserAdminPicker.vehicleType
-                          ].expirationDatePolicyVehicle &&
-                          !pendingUserAdminPicker.vehicle[
-                            pendingUserAdminPicker.vehicleType
-                          ].expirationDatePolicyVehicle.includes("/")
-                            ? moment(
-                                pendingUserAdminPicker.vehicle[
-                                  pendingUserAdminPicker.vehicleType
-                                ].expirationDatePolicyVehicle,
-                                DATE_FORMATS.shortISODate
-                              ).format(DATE_FORMATS.shortDate)
-                            : pendingUserAdminPicker.vehicle[
-                                pendingUserAdminPicker.vehicleType
-                              ].expirationDatePolicyVehicle,
-                        expirationDateIdentificationVehicle:
+                          ].expirationDateIdentificationVehicle 
+                        ),
+
+                        expirationDateDriverLicense: formatDate(
                           pendingUserAdminPicker.vehicle[
                             pendingUserAdminPicker.vehicleType
-                          ].expirationDateIdentificationVehicle &&
-                          !pendingUserAdminPicker.vehicle[
-                            pendingUserAdminPicker.vehicleType
-                          ].expirationDateIdentificationVehicle.includes("/")
-                            ? moment(
-                                pendingUserAdminPicker.vehicle[
-                                  pendingUserAdminPicker.vehicleType
-                                ].expirationDateIdentificationVehicle,
-                                DATE_FORMATS.shortISODate
-                              ).format(DATE_FORMATS.shortDate)
-                            : pendingUserAdminPicker.vehicle[
-                                pendingUserAdminPicker.vehicleType
-                              ].expirationDateIdentificationVehicle,
-                        expirationDateDriverLicense:
-                          pendingUserAdminPicker.vehicle[
-                            pendingUserAdminPicker.vehicleType
-                          ].expirationDateDriverLicense &&
-                          !pendingUserAdminPicker.vehicle[
-                            pendingUserAdminPicker.vehicleType
-                          ].expirationDateDriverLicense.includes("/")
-                            ? moment(
-                                pendingUserAdminPicker.vehicle[
-                                  pendingUserAdminPicker.vehicleType
-                                ].expirationDateDriverLicense,
-                                DATE_FORMATS.shortISODate
-                              ).format(DATE_FORMATS.shortDate)
-                            : pendingUserAdminPicker.vehicle[
-                                pendingUserAdminPicker.vehicleType
-                              ].expirationDateDriverLicense,
+                          ].expirationDateDriverLicense
+                        ),
                       },
                     },
                   }
@@ -415,7 +392,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                     <Col md={4}>
                       <Field
                         type="text"
-                        name="expirationDatePolicyPersonal"
+                        name={`vehicle.${initialValues.vehicleType}.expirationDatePolicyPersonal`}
                         label={i18next.t(
                           "detailPicker:label.insurance.personalAccidentInsuranceExpiration"
                         )}
