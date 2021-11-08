@@ -12,6 +12,8 @@ import Okey from "../../../assets/login/Okey.svg";
 import Informacion from "../../../assets/login/Informacion.svg";
 import { VALIDATION_REGEX } from "utils/constants";
 
+import i18next from "i18next";
+
 export const RestorePassword = ({
   postLoginRestore,
   validationSchema,
@@ -38,7 +40,7 @@ export const RestorePassword = ({
               type="password"
               name="password"
               id="password"
-              label="Nueva contraseña"
+              label={i18next.t("restorePassword:label.input.newPassword")}
               animated
               className="Admin-Pickers-input Admin-Pickers-input-restore"
               component={Input}
@@ -48,7 +50,9 @@ export const RestorePassword = ({
               type="password"
               name="confirmPassword"
               id="confirmPassword"
-              label="Repetir nueva contraseña"
+              label={i18next.t(
+                "restorePassword:label.input.confirmNewPassword"
+              )}
               animated
               className="Admin-Pickers-input Admin-Pickers-input-restore"
               component={Input}
@@ -56,7 +60,7 @@ export const RestorePassword = ({
             />
 
             <ul className={"ul"} id="ul-login">
-              La contraseña debe contar con
+              {i18next.t("restorePassword:label.conditions.passwordMustHave")}
               <li className="display-flex">
                 {!values.password ? (
                   <img src={voidCheck} alt="ok" />
@@ -67,7 +71,6 @@ export const RestorePassword = ({
                 )}
 
                 <p
-                  id="caracteres"
                   className={
                     values?.password?.length >= 8 ||
                     values?.password === undefined
@@ -75,7 +78,9 @@ export const RestorePassword = ({
                       : "restore-p errorLi"
                   }
                 >
-                  8 o más caracteres
+                  {i18next.t(
+                    "restorePassword:label.conditions.passwordMinLength"
+                  )}
                 </p>
               </li>
               <li className="display-flex">
@@ -87,7 +92,6 @@ export const RestorePassword = ({
                   <img src={Informacion} alt="ok" />
                 )}
                 <p
-                  id="mayusculas"
                   className={
                     values?.password?.match(VALIDATION_REGEX.regMayMin) ||
                     values?.password === undefined
@@ -95,7 +99,9 @@ export const RestorePassword = ({
                       : "restore-p errorLi"
                   }
                 >
-                  Mayúsculas y minúsculas
+                  {i18next.t(
+                    "restorePassword:label.conditions.uppercaseandLowerCase"
+                  )}
                 </p>
               </li>
               <li className="display-flex">
@@ -107,7 +113,6 @@ export const RestorePassword = ({
                   <img src={Informacion} alt="ok" />
                 )}
                 <p
-                  id="numeros"
                   className={
                     values?.password?.match(VALIDATION_REGEX.regLetNum) ||
                     values?.password === undefined
@@ -115,7 +120,9 @@ export const RestorePassword = ({
                       : "restore-p errorLi"
                   }
                 >
-                  Números y letras
+                  {i18next.t(
+                    "restorePassword:label.conditions.numbersAndLeters"
+                  )}
                 </p>
               </li>
             </ul>
@@ -125,7 +132,9 @@ export const RestorePassword = ({
               type="submit"
               name="button"
             >
-              <p className="login-init ">Guardar</p>
+              <p className="login-init ">
+                {i18next.t("restorePassword:label.button.save")}
+              </p>
             </button>
           </form>
         )}

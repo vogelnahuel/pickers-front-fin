@@ -15,6 +15,7 @@ import {
   actions as pendingUserActions,
   selectors as pendingUserSelectors,
 } from "reducers/pickers";
+import i18next from "i18next";
 export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
   showNotification,
   setActualPage,
@@ -26,24 +27,25 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
   const changePage = (page: String, isDirty: Boolean) => {
     if (isDetail || actualPage !== page) {
       let onClose = () => {
-   
         setActualPage(page);
 
-        if(window.location.pathname!=="/pickers" && window.history.length>1){
+        if (
+          window.location.pathname !== "/pickers" &&
+          window.history.length > 1
+        ) {
           Historial.goBack();
           //se abre en nueva pestaña desde transacciones
-        }else if(window.history.length<=1){
+        } else if (window.history.length <= 1) {
           Historial.replace("/pickers");
         }
-
       };
       if (isDirty) {
         showNotification({
           level: "warning",
-          title: "Guardá tus cambios",
-          body: "Si te vas sin guardar, tus cambios no van a quedar registrados",
-          onClickLabel: "Ir a guardar",
-          onCloseLabel: "No quiero guardarlos",
+          title: i18next.t("pickers:title.modal.saveChanges"),
+          body: i18next.t("pickers:label.modal.saveChanges"),
+          onClickLabel: "pickers:button.modal.goToSave",
+          onCloseLabel: "pickers:button.modal.notSave",
           onClose: onClose,
           onClick: () =>
             window.scroll({
@@ -56,7 +58,6 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
         onClose();
       }
     } else {
-
     }
   };
 
@@ -69,10 +70,10 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
     if (isDirty) {
       showNotification({
         level: "warning",
-        title: "Guardá tus cambios",
-        body: "Si te vas sin guardar, tus cambios no van a quedar registrados",
-        onClickLabel: "Ir a guardar",
-        onCloseLabel: "No quiero guardarlos",
+        title: i18next.t("pickers:title.modal.saveChanges"),
+        body: i18next.t("pickers:label.modal.saveChanges"),
+        onClickLabel: "pickers:button.modal.goToSave",
+        onCloseLabel: "pickers:button.modal.notSave",
         onClose: onClose,
         onClick: () =>
           window.scroll({
@@ -97,7 +98,9 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
               }}
               className="container-pending pending-blue-border-izq"
             >
-              <p className="Pending-paragraph">Solicitudes pendientes</p>
+              <p className="Pending-paragraph">
+                {i18next.t("pickers:label.title.pending")}
+              </p>
               <img className="img" src={relojAzul} alt="reloj" />
             </div>
           ) : (
@@ -108,7 +111,7 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
               className="container-pending pending-blue-border-izq"
             >
               <p className="Pending-paragraph  pending-black ">
-                Solicitudes pendientes
+                {i18next.t("pickers:label.title.pending")}
               </p>
               <img className="img" src={relojOscuro} alt="reloj" />
             </div>
@@ -120,7 +123,9 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
               }}
               className="container-pending border-pending pending-blue-border-der"
             >
-              <p className="Pending-paragraph2 pending-blue">Pickers</p>
+              <p className="Pending-paragraph2 pending-blue">
+                {i18next.t("pickers:label.title.pickers")}
+              </p>
               <img className="img2" src={trabajadorAzul} alt="trabajador" />
             </div>
           ) : (
@@ -130,7 +135,9 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
                 changePage("ACTIVE", isDirty);
               }}
             >
-              <p className="Pending-paragraph2">Pickers</p>
+              <p className="Pending-paragraph2">
+                {i18next.t("pickers:label.title.pickers")}
+              </p>
               <img className="img2" src={trabajadorOscuro} alt="trabajador" />
             </div>
           )}
@@ -140,7 +147,9 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
           <div>
             <button className="buttonVolver" onClick={handleHistory}>
               <img className="img3" src={volver} alt="volver" />
-              <p className="Pending-paragraph3">Volver</p>
+              <p className="Pending-paragraph3">
+                {i18next.t("global:label.button.back")}
+              </p>
             </button>
           </div>
         )}

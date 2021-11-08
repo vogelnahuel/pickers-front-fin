@@ -9,6 +9,7 @@ import {
 import { AppDispatch, RootState } from "store";
 import { FinishModalPropsType } from "../types";
 import "./finishModal.scss";
+import i18next from "i18next";
 
 const FinishModal: React.FC<FinishModalPropsType> = ({
   detailTransaction,
@@ -68,7 +69,9 @@ const FinishModal: React.FC<FinishModalPropsType> = ({
           src={volver}
           alt="volver"
         />
-        <p className="modal-transaction-finish-volver">Volver</p>
+        <p className="modal-transaction-finish-volver">
+          {i18next.t("global:label.button.back")}
+        </p>
       </div>
       <div className="modal-transaction-finish-container">
         <img
@@ -77,13 +80,13 @@ const FinishModal: React.FC<FinishModalPropsType> = ({
           alt="informacionIcon"
         />
         <h3 className="modal-transaction-finish-subtitle">
-          Seleccioná el estado final que quieras asignarle
+          {i18next.t("detailTransaction:title.finishModal.selectFinalState")}
         </h3>
         <hr className="modal-transaction-finish-separate" />
         <p>
-          {"La transacción "}
-          <b>{detailTransaction?.transaction?.transactionCode}</b> va a pasar a
-          estado:
+          {i18next.t("detailTransaction:title.finishModal.infoFInalState", {
+            transactionCode: detailTransaction?.transaction?.transactionCode,
+          })}
         </p>
       </div>
 
@@ -109,7 +112,7 @@ const FinishModal: React.FC<FinishModalPropsType> = ({
               htmlFor="Siniestrado"
               className="modal-transaction-finish-label"
             >
-              Siniestrado
+              {i18next.t("transactions:label.input.lost")}
             </label>
           </div>
           {deliverableStates.includes(
@@ -127,7 +130,7 @@ const FinishModal: React.FC<FinishModalPropsType> = ({
                 htmlFor="Entregado"
                 className="modal-transaction-finish-label"
               >
-                Entregado
+                {i18next.t("transactions:label.input.delivered")}
               </label>
             </div>
           )}
@@ -144,7 +147,7 @@ const FinishModal: React.FC<FinishModalPropsType> = ({
               htmlFor="Devuelto"
               className="modal-transaction-finish-label"
             >
-              Devuelto
+              {i18next.t("transactions:label.input.returned")}
             </label>
           </div>
         </div>
@@ -155,7 +158,7 @@ const FinishModal: React.FC<FinishModalPropsType> = ({
             className="finish-button"
             disabled={!RadioActive}
           >
-            Finalizarla
+            {i18next.t("detailTransaction:button.finishModal.finish")}
           </button>
         </div>
       </form>

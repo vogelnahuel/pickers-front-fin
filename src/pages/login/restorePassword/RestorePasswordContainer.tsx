@@ -14,6 +14,7 @@ import {
 import { useParams } from "react-router";
 import { AppDispatch, RootState } from "store";
 import { RestorePasswordActionsTypes } from "reducers/types/login";
+import i18next from "i18next";
 
 const RestorePasswordContainer = (
   props: RestorePasswordContainerType
@@ -23,16 +24,19 @@ const RestorePasswordContainer = (
   const validationSchema: yup.SchemaOf<RestorePasswordType> = yup.object({
     password: yup
       .string()
-      .required("Este campo es requerido")
+      .required(i18next.t("global:error.input.required"))
       .matches(VALIDATION_REGEX.regPassword, " ")
       .matches(
         VALIDATION_REGEX.regPasswordSpecialCharacters,
-        "No se admiten caracteres especiales"
+        i18next.t("global:error.input.specialCharacters")
       ),
     confirmPassword: yup
       .string()
-      .required("Este campo es requerido")
-      .oneOf([yup.ref("password"), null], "Las contraseñas no coinciden"),
+      .required(i18next.t("global:error.input.required"))
+      .oneOf(
+        [yup.ref("password"), null],
+        i18next.t("restorePassword:error.input.passwordNotMatch")
+      ),
   });
 
   return (

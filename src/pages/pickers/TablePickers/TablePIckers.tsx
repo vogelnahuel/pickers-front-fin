@@ -6,6 +6,7 @@ import getDifDate from "utils/difDate";
 import edit from "../../../assets/admin/PendingUser/edit.svg";
 import "./TablePickers.scss";
 import { TableAdminPropsType } from "./types";
+import i18next from "i18next";
 
 export const TablePickers: React.FC<TableAdminPropsType> = ({
   actualPage,
@@ -16,8 +17,11 @@ export const TablePickers: React.FC<TableAdminPropsType> = ({
       <table className="table-admin">
         <thead>
           <tr>
-            {(actualPage==="PENDING"? titlesAdminPending : titlesAdminActive).map((titulo: string) => (
-              <td key={titulo}>{titulo}</td>
+            {(actualPage === "PENDING"
+              ? titlesAdminPending
+              : titlesAdminActive
+            ).map((titulo: string) => (
+              <td key={titulo}>{i18next.t(titulo)}</td>
             ))}
           </tr>
         </thead>
@@ -27,15 +31,23 @@ export const TablePickers: React.FC<TableAdminPropsType> = ({
               <td> {`${user.name} ${user.surname}`} </td>
               <td> {user.identificationNumber} </td>
               <td>{user.email}</td>
-              <td>{user.vehicleType === "motorcycle" ? "Moto" : "Bici"}</td>
+              <td>
+                {i18next.t(`tablePickers:label.table.${user?.vehicleType}`)}
+              </td>
               {actualPage === "PENDING" ? (
                 <td className="table-registro">
                   <div className="table-admin-enCorrecion-span">
-                    {getDifDate(user.registerDate)}
-                    {getDifDate(user.registerDate) === 1 ? " día" : " días"}
+                    {getDifDate(user.registerDate)}{" "}
+                    {i18next.t(
+                      `tablePickers:label.table.${
+                        getDifDate(user.registerDate) === 1 ? "day" : "days"
+                      }`
+                    )}
                   </div>
                   {user.status.id === 3 && (
-                    <div className="admin-table-correction">En corrección</div>
+                    <div className="admin-table-correction">
+                      {i18next.t("tablePickers:label.table.fixing")}
+                    </div>
                   )}
                 </td>
               ) : (

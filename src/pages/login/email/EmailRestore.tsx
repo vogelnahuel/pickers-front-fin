@@ -8,6 +8,8 @@ import useValidationSchema from "hooks/useValidationSchema";
 import NotificationModal from "component/modal/NotificationModal";
 import { IEmailRestore } from "./types";
 
+import i18next from "i18next";
+
 export const EmailRestore = ({
   postLoginEmail,
   validationSchema,
@@ -26,7 +28,7 @@ export const EmailRestore = ({
               type="text"
               name="email"
               id="email"
-              label="Email"
+              label={i18next.t("emailRestore:label.input.email")}
               animated
               className="Admin-Pickers-input"
               component={Input}
@@ -39,7 +41,9 @@ export const EmailRestore = ({
               type="submit"
               name="button"
             >
-              <p className="login-init ">Enviar correo</p>
+              <p className="login-init ">
+                {i18next.t("emailRestore:button.email.sendMail")}
+              </p>
             </button>
           </form>
         )}

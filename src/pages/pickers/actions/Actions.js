@@ -4,6 +4,7 @@ import or from "assets/admin/PendingUser/or.svg";
 import { connect } from "react-redux";
 import { selectors as pendingUserAdminPickerSelectors } from "reducers/detailPicker";
 import { actions as notificationActions } from "reducers/notification";
+import i18next from "i18next";
 
 export const Actions = ({
   getPendingUserPickerExport,
@@ -11,17 +12,19 @@ export const Actions = ({
   isDirty,
   showNotification,
 }) => {
-  
   const handleClick = (e) => {
     if (isDirty) {
       showNotification({
         level: "warning",
-        title: "Guardá tus cambios",
-        body: "Si exportás sin guardar, tus cambios no van a quedar registrados ",
-        onClickLabel: "Ir a guardar",
-        onCloseLabel: "Exportar sin guardar",
+        title: i18next.t("pickers:title.modal.saveChanges"),
+        body: i18next.t("picker:label.modal.exportWithoutSave"),
+        onClickLabel: "picker:button.modal.goToSave",
+        onCloseLabel: "picker:button.modal.exportWithoutSave",
         onClose: () =>
-          getPendingUserPickerExport({ email: pendingUserAdminPicker.email },e.target),
+          getPendingUserPickerExport(
+            { email: pendingUserAdminPicker.email },
+            e.target
+          ),
         onClick: () =>
           window.scroll({
             top: window.innerHeight,
@@ -30,16 +33,21 @@ export const Actions = ({
           }),
       });
     } else {
-      getPendingUserPickerExport({ email: pendingUserAdminPicker.email },e.target);
+      getPendingUserPickerExport(
+        { email: pendingUserAdminPicker.email },
+        e.target
+      );
     }
   };
-  
+
   return (
     <div>
       <button onClick={(e) => handleClick(e)} className="export" name="export">
         <img src={exportar} alt="export" />
         <img className="or-pending" src={or} alt="or" />
-        <p className="display-inline-block p-export">Exportar</p>
+        <p className="display-inline-block p-export">
+          {i18next.t("global:label.button.export")}
+        </p>
       </button>
     </div>
   );

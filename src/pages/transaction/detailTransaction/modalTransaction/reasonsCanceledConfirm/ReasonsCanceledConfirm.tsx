@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 import "./reasonsCanceledConfirm.scss";
 import { AppDispatch, RootState } from "store";
 import { ReasonCanceledConfirmPropsType } from "./types";
+import i18next from "i18next";
 
 const ReasonsCanceledConfirm: React.FC<ReasonCanceledConfirmPropsType> = ({
   detailTransaction,
@@ -31,7 +32,7 @@ const ReasonsCanceledConfirm: React.FC<ReasonCanceledConfirmPropsType> = ({
           alt="volver"
         />
         <p className="modal-transaction-reasonsCanceledConfirm-volver">
-          Volver
+          {i18next.t("global:label.button.back")}
         </p>
       </div>
 
@@ -46,14 +47,14 @@ const ReasonsCanceledConfirm: React.FC<ReasonCanceledConfirmPropsType> = ({
             alt="informacionIcon"
           />
           <h3 className="modal-transaction-reasonsCanceledConfirm-subtitle-collection">
-            Estás por cancelar la colecta
+            {i18next.t("detailTransaction:title.historyModal.cancelCollection")}
           </h3>
           <hr className="modal-transaction-reasonsCanceledConfirm-separate" />
           <p className="modal-transaction-reasonsCanceledConfirm-p-collection">
-            Al desasignar la transacción, va a volver al estado sin asignar{" "}
+            {i18next.t("detailTransaction:label.cancelModal.warning")}
           </p>
           <p className="modal-transaction-reasonsCanceledConfirm-p2-collection">
-            ¿Querés cancelar la colecta?
+            {i18next.t("detailTransaction:label.cancelModal.confirmation")}
           </p>
         </div>
       ) : (
@@ -64,14 +65,20 @@ const ReasonsCanceledConfirm: React.FC<ReasonCanceledConfirmPropsType> = ({
             alt="informacionIcon"
           />
           <h3 className="modal-transaction-reasonsCanceledConfirm-subtitle">
-            Estás por cancelar la transacción
+            {i18next.t(
+              "detailTransaction:title.historyModal.cancelTransaction"
+            )}
           </h3>
           <hr className="modal-transaction-reasonsCanceledConfirm-separate" />
           <p className="modal-transaction-reasonsCanceledConfirm-p">
-            Al hacerlo, ya no va a poder ser asignada
+            {i18next.t(
+              "detailTransaction:title.historyModal.confirmCancelTransaction"
+            )}
           </p>
           <p className="modal-transaction-reasonsCanceledConfirm-p2">
-            ¿Querés cancelarla?
+            {i18next.t(
+              "detailTransaction:title.historyModal.confirmCancelTransactionQuestion"
+            )}
           </p>
         </div>
       )}
@@ -84,7 +91,9 @@ const ReasonsCanceledConfirm: React.FC<ReasonCanceledConfirmPropsType> = ({
         }}
         className="modal-transaction-reasonsCanceledConfirm-button"
       >
-        Sí, cancelarla
+        {i18next.t(
+          "detailTransaction:title.historyModal.confirmCancelTransactionQConfimr"
+        )}
       </button>
     </div>
   );
