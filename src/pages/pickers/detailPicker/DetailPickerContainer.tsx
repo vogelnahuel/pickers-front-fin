@@ -78,6 +78,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
                   .string()
                   .nullable()
                   .required("Este campo es requerido.")
+                  .min(6,"La patente debe tener entre 6 y 7 caracteres")
                   .matches(
                     VALIDATION_REGEX.regPatent,
                     "No se admiten caracteres especiales"
