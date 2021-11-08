@@ -110,7 +110,6 @@ export const selectors:SelectorType = {
 
 
 const reducer =(state:DetailPickerStateType = INITIAL_STATE, action:actionType) => {
-    console.log(state)
     switch (action.type) {
         /************************************************************* */
         case types.PENDING_USER_ADMIN_PICKER_GET_REQUEST:

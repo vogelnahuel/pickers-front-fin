@@ -216,7 +216,6 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
     dispatch(pendingUserAdminPickerActions.setDirty(dirty));
   },
   postAprovePickerRequest: (params: PickerType, goBack: Function) => {
-    console.log(params, "params");
     dispatch(
       pendingUserAdminPickerActions.getAprovePickerRequest(params, goBack)
     );

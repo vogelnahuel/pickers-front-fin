@@ -135,8 +135,8 @@ const process = (body: //TODO: vehiculos any?
               ).format(DATE_FORMATS.shortISODate)
             : body.vehicle[body.vehicleType].expirationDateDriverLicense,
         expirationDatePolicyPersonal:
-          body.expirationDatePolicyPersonal &&
-          body.expirationDatePolicyPersonal.match(DATE_FORMATS.regexshortDate)
+          body.vehicle[body.vehicleType].expirationDatePolicyPersonal &&
+          body.vehicle[body.vehicleType].expirationDatePolicyPersonal.match(DATE_FORMATS.regexshortDate)
             ? moment(
                 body.expirationDatePolicyPersonal,
                 DATE_FORMATS.shortDate
@@ -286,12 +286,10 @@ function* postPendingUserDocumentsEdit({
   void,
   PickerResponseType
 > {
-  console.log(params);
   let body = process(params);
   const response = yield call(pickersMiddleware.postPickerDocumentsEdit, body);
 
   if (response.status !== 200) {
-    console.log(body);
     yield put(
       notificationActions.showNotification({
         level: "error",
