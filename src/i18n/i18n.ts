@@ -1,21 +1,21 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-import logini18n from "./es_AR/login/login.json";
+import logini18n from "./es_AR/Login/login.json";
 import navi18n from "./es_AR/nav/nav.json";
 import componenti18n from "./es_AR/component/component.json";
-import dashboardi18n from "./es_AR/dashboard/dashboard.json";
-import pickeri18n from "./es_AR/pickers/picker.json";
-import pickerFilteri18n from "./es_AR/pickers/filterPickers/filterPickers.json";
-import pickerTablei18n from "./es_AR/pickers/tablePickers/tablePickers.json";
-import pickerDetaili18n from "./es_AR/pickers/detailPicker/detailPicker.json";
-import transactions from "./es_AR/transactions/transactions.json";
+import dashboardi18n from "./es_AR/Dashboard/dashboard.json";
+import pickeri18n from "./es_AR/Pickers/picker.json";
+import pickerFilteri18n from "./es_AR/Pickers/filterPickers/filterPickers.json";
+import pickerTablei18n from "./es_AR/Pickers/tablePickers/tablePickers.json";
+import pickerDetaili18n from "./es_AR/Pickers/detailPicker/detailPicker.json";
+import transactions from "./es_AR/Transactions/transactions.json";
 import dashboardi18nMX from "./es_Mx/dashboard/dashboard.json";
-import filterTransaction from "./es_AR/transactions/filterTransaction/filterTransaction.json";
-import transactionTable from "./es_AR/transactions/tableTansaction/tableTransaction.json";
-import detailTransaction from "./es_AR/transactions/detailTransaction/detailTransaction.json";
+import filterTransaction from "./es_AR/Transactions/filterTransaction/filterTransaction.json";
+import transactionTable from "./es_AR/Transactions/tableTansaction/tableTransaction.json";
+import detailTransaction from "./es_AR/Transactions/detailTransaction/detailTransaction.json";
 import global from "./es_AR/global.json";
-import email from "./es_AR/login/email/email.json";
-import restorePassword from "./es_AR/login/restorePassword/restorePassword.json";
+import email from "./es_AR/Login/email/email.json";
+import restorePassword from "./es_AR/Login/restorePassword/restorePassword.json";
 
 //{type:what_is}.{where_is}.{name}
 //error.input.name (error== rojo)
