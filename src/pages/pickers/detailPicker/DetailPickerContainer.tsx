@@ -23,6 +23,7 @@ import { ParamGetPendingUser } from "sagas/types/pickers";
 import { AppDispatch, RootState } from "store";
 import { DetailPickerContainerTypeProps } from "./types";
 import i18next from "i18next";
+import moment from "moment";
 
 const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
   props
@@ -39,6 +40,12 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
     props.pendingUserAdminPicker.status &&
     (props.pendingUserAdminPicker.status.id === 4 ||
       props.pendingUserAdminPicker.status.id === 5);
+
+  const formatDate = (date: string | undefined =""): string => {
+    return (moment(date,DATE_FORMATS.shortISODate,true).isValid()) && date.length === 10
+      ? moment(date).format(DATE_FORMATS.shortDate)
+      : date;
+  };
 
   const validationSchema: yup.SchemaOf<DetailPickerValidationSchema> =
     yup.object({
@@ -178,6 +185,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
       goBack={() => historial.goBack()}
       aproveSubmit={aproveSubmit}
       active={active}
+      formatDate={formatDate}
     />
   );
 };

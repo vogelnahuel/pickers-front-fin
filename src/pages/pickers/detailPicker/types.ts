@@ -42,6 +42,7 @@ export type DetailPickerTypeProps = {
   postPendingUserDocumentsEdit:Function
   postEditPickerRequest:Function
   validationSchema:Object
+  formatDate:Function
 };
 
 // export type DetailPickerValidationSchema = {

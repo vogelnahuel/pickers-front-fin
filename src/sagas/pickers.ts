@@ -89,11 +89,6 @@ const process = (body: //TODO: vehiculos any?
     dateOfBirth: moment(body.dateOfBirth, DATE_FORMATS.shortDate).format(
       DATE_FORMATS.shortISODate
     ),
-    expirationDatePolicyPersonal:
-      body.expirationDatePolicyPersonal &&
-      moment(body.expirationDatePolicyPersonal, DATE_FORMATS.shortDate).format(
-        DATE_FORMATS.shortISODate
-      ),
     accountingData: {
       ...body.accountingData,
       fiscalNumber:
@@ -107,27 +102,50 @@ const process = (body: //TODO: vehiculos any?
         ...body.vehicle[body.vehicleType],
         expirationDatePolicyVehicle:
           body.vehicle[body.vehicleType].expirationDatePolicyVehicle &&
-          moment(
-            body.vehicle[body.vehicleType].expirationDatePolicyVehicle,
-            DATE_FORMATS.shortDate
-          ).format(DATE_FORMATS.shortISODate),
+          body.vehicle[body.vehicleType].expirationDatePolicyVehicle.match(
+            DATE_FORMATS.regexshortDate
+          )
+            ? moment(
+                body.vehicle[body.vehicleType].expirationDatePolicyVehicle,
+                DATE_FORMATS.shortDate
+              ).format(DATE_FORMATS.shortISODate)
+            : body.vehicle[body.vehicleType].expirationDatePolicyVehicle,
         expirationDateIdentificationVehicle:
           body.vehicle[body.vehicleType].expirationDateIdentificationVehicle &&
-          moment(
-            body.vehicle[body.vehicleType].expirationDateIdentificationVehicle,
-            DATE_FORMATS.shortDate
-          ).format(DATE_FORMATS.shortISODate),
+          body.vehicle[
+            body.vehicleType
+          ].expirationDateIdentificationVehicle.match(
+            DATE_FORMATS.regexshortDate
+          )
+            ? moment(
+                body.vehicle[body.vehicleType]
+                  .expirationDateIdentificationVehicle,
+                DATE_FORMATS.shortDate
+              ).format(DATE_FORMATS.shortISODate)
+            : body.vehicle[body.vehicleType]
+                .expirationDateIdentificationVehicle,
         expirationDateDriverLicense:
           body.vehicle[body.vehicleType].expirationDateDriverLicense &&
-          moment(
-            body.vehicle[body.vehicleType].expirationDateDriverLicense,
-            DATE_FORMATS.shortDate
-          ).format(DATE_FORMATS.shortISODate),
+          body.vehicle[body.vehicleType].expirationDateDriverLicense.match(
+            DATE_FORMATS.regexshortDate
+          )
+            ? moment(
+                body.vehicle[body.vehicleType].expirationDateDriverLicense,
+                DATE_FORMATS.shortDate
+              ).format(DATE_FORMATS.shortISODate)
+            : body.vehicle[body.vehicleType].expirationDateDriverLicense,
+        expirationDatePolicyPersonal:
+          body.vehicle[body.vehicleType].expirationDatePolicyPersonal &&
+          body.vehicle[body.vehicleType].expirationDatePolicyPersonal.match(DATE_FORMATS.regexshortDate)
+            ? moment(
+                body.expirationDatePolicyPersonal,
+                DATE_FORMATS.shortDate
+              ).format(DATE_FORMATS.shortISODate)
+            : body.expirationDatePolicyPersonal,
       },
     },
   };
 };
-
 function* getPickers({
   params,
 }: getPickersType): Generator<
