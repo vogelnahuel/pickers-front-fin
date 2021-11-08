@@ -34,6 +34,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
   validationSchema,
   formatDate,
 }) => {
+  
   return (
     <div className="background-Grey">
       <Header />
@@ -110,19 +111,6 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                             DATE_FORMATS.shortISODate
                           ).format(DATE_FORMATS.shortDate)
                         : pendingUserAdminPicker.dateOfBirth,
-                    // expirationDatePolicyPersonal:
-                    //   pendingUserAdminPicker.expirationDatePolicyPersonal &&
-                    //   pendingUserAdminPicker.expirationDatePolicyPersonal.includes(
-                    //     "/"
-                    //   ) &&
-                    //   pendingUserAdminPicker.expirationDatePolicyPersonal.match(
-                    //     DATE_FORMATS.regexshortDate
-                    //   )
-                    //     ? moment(
-                    //         pendingUserAdminPicker.expirationDatePolicyPersonal,
-                    //         DATE_FORMATS.shortISODate
-                    //       ).format(DATE_FORMATS.shortDate)
-                    //     : pendingUserAdminPicker.expirationDatePolicyPersonal,
                     vehicle: {
                       ...pendingUserAdminPicker.vehicle,
                       [pendingUserAdminPicker.vehicleType]: {
