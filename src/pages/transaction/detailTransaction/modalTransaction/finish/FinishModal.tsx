@@ -87,9 +87,6 @@ const FinishModal: React.FC<FinishModalPropsType> = ({
           {i18next.t("detailTransaction:title.finishModal.infoFInalState", {
             transactionCode: detailTransaction?.transaction?.transactionCode,
           })}
-          {/* {"La transacción "}
-          <b>{detailTransaction?.transaction?.transactionCode}</b> va a pasar a
-          estado: */}
         </p>
       </div>
 

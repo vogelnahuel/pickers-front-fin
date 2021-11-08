@@ -65,7 +65,6 @@ export const Transaction: React.FC<TransactionType> = ({
                     : "p-export")
                 }
               >
-                {" "}
                 {i18next.t("global:label.button.export")}
               </p>
             </button>
@@ -102,7 +101,7 @@ export const Transaction: React.FC<TransactionType> = ({
         {detailTransactionModalOpen && <DetailTransactionContainer />}
       </div>
 
-      {isFetching /*  || isFetchingModal*/ && <div className="modalLoading" />}
+      {isFetching && <div className="modalLoading" />}
     </div>
   );
 };

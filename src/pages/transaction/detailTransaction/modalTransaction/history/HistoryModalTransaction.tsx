@@ -26,8 +26,6 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
   const cancelEnabledStatus = [1, 2, 3, 4];
   const finishEnabledStatus = [5, 6, 7, 8];
 
-  // TODO: Pasar a i18next
-
   return (
     <div className="modal-transaction-scroll">
       <div>
