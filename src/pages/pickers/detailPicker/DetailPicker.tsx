@@ -475,7 +475,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                         disabled={invalid}
                         className="button-submit-active"
                       >
-                        {i18next.t("detailPicker:label.button.approve")}
+                        {i18next.t("detailPicker:label.button.approvePicker")}
                       </button>
                     </div>
                   </>

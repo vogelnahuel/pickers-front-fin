@@ -160,10 +160,10 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
   const aproveSubmit = (params: PickerType, goBack: Function) => {
     props.showNotification({
       level: "info",
-      title: "Aprobar picker",
-      body: "Al aprobar la solicitud, ya va a poder hacer envíos",
-      onClickLabel: "Aprobar",
-      onCloseLabel: "Revisar datos",
+      title: i18next.t("detailPicker:title.modal.approvePicker"),
+      body: i18next.t("detailPicker:label.modal.approvePicker"),
+      onClickLabel: i18next.t("detailPicker:label.button.approve"),
+      onCloseLabel: i18next.t("detailPicker:label.button.revise"),
       onClick: () => props.postAprovePickerRequest(params, goBack),
     });
   };
