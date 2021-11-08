@@ -1,0 +1,14 @@
+{
+  "label.table.name": "Nombre",
+  "label.table.identifier": "DNI",
+  "label.table.email": "Email",
+  "label.table.vehicle": "Vehículo",
+  "label.table.status": "Estado",
+  "label.table.edit": "Editar",
+  "label.table.pending": "Pendiente hace",
+  "label.table.fixing": "En corrección",
+  "label.table.bicycle": "Bici",
+  "label.table.motorcycle": "Moto",
+  "label.table.day": "día",
+  "label.table.days": "días"
+}

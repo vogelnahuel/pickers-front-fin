@@ -1,7 +1,8 @@
 import { Modal } from "@pickit/pickit-components";
 import Close from "assets/transaction/Close.svg";
-import useHistory from "hooks/useHistory";
+import { FlowTrasitionParamsType } from "component/flowtransition/types";
 import React from "react";
+import i18next from "i18next";
 import { TRANSACTION_STATE_ID_LABEL } from "utils/constants";
 import { ISO8601toDDMMYYYHHMM } from "utils/iso8601toDDMMYYHHMM";
 import FlowTransition from "../../../component/flowtransition/FlowTransition";
@@ -26,7 +27,7 @@ export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
     ReasonsCanceledConfirm: "ReasonsCanceledConfirm",
     Undelivered: "Undelivered",
   };
-  const [currentStep, setCurrentStep] = useHistory([STEP.History]);
+
   return (
     <div className="modal-transaction">
       <Modal
@@ -48,27 +49,33 @@ export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
           />
 
           <div className="modal-transaction-title">
-            <h2>Código de transacción</h2>
-            <p>Estado</p>
+            <h2>
+              {i18next.t("transactions:label.transactions.transactionCode")}
+            </h2>
+            <p>
+              {i18next.t("detailTransaction:title.detailTransaction.state")}
+            </p>
             <p className="modal-transaction-date">
               {detailTransaction &&
               detailTransaction.transaction &&
               detailTransaction.transaction.inAlert ? (
                 <span className="transaction-modal-alert modal-transaction-alerta">
-                  En alerta
+                  {i18next.t("transactions:label.filter.inAlert")}
                 </span>
               ) : (
                 <span className="modal-transaction-space"></span>
               )}
-              Vencimiento SLA
+              {i18next.t("transactions:label.filter.SLA")}
             </p>
           </div>
           <div className="modal-transaction-subtitle">
-            <h2>
-              {detailTransaction.transaction.transactionCode}
-            </h2>
+            <h2>{detailTransaction.transaction.transactionCode}</h2>
             <p>
-              {TRANSACTION_STATE_ID_LABEL[detailTransaction.transaction.state.id]}
+              {i18next.t(
+                TRANSACTION_STATE_ID_LABEL[
+                  detailTransaction.transaction.state.id
+                ]
+              )}
             </p>
 
             <p className="modal-transaction-date">
@@ -84,31 +91,35 @@ export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
             id="modal-transaction-hr-title"
           />
           <FlowTransition
-            currentPage={currentStep}
+            firstPage={STEP.History}
             pages={{
-              [STEP.History]: () => (
+              [STEP.History]: (props: FlowTrasitionParamsType) => (
                 <HistoryModalTransaction
-                  cancel={() => setCurrentStep(STEP.ReasonsCanceled)}
-                  finish={() => setCurrentStep(STEP.FinishModal)}
+                  cancel={STEP.ReasonsCanceled}
+                  finish={STEP.FinishModal}
+                  {...props}
                 />
               ),
-              [STEP.ReasonsCanceled]: () => (
-                <ReasonsCanceled onBack={() => setCurrentStep(STEP.History)}   ReasonsCanceledConfirm={() => setCurrentStep(STEP.ReasonsCanceledConfirm)}/>
-              ),
-              [STEP.ReasonsCanceledConfirm]: () => (
-                <ReasonsCanceledConfirm
-                  onBack={() => setCurrentStep(STEP.ReasonsCanceled)}
+              [STEP.ReasonsCanceled]: (props: FlowTrasitionParamsType) => (
+                <ReasonsCanceled
+                  reasonsCanceledConfirm={STEP.ReasonsCanceledConfirm}
+                  {...props}
                 />
               ),
-              [STEP.DniFinish]: () => <DniFinish onBack={() => setCurrentStep(STEP.FinishModal)}/>,
-              [STEP.Undelivered]: () => (
-                <Undelivered onBack={() => setCurrentStep(STEP.FinishModal)} />
+              [STEP.ReasonsCanceledConfirm]: (
+                props: FlowTrasitionParamsType
+              ) => <ReasonsCanceledConfirm {...props} />,
+              [STEP.DniFinish]: (props: FlowTrasitionParamsType) => (
+                <DniFinish {...props} />
               ),
-              [STEP.FinishModal]: () => (
+              [STEP.Undelivered]: (props: FlowTrasitionParamsType) => (
+                <Undelivered {...props} />
+              ),
+              [STEP.FinishModal]: (props: FlowTrasitionParamsType) => (
                 <FinishModal
-                  onBack={() => setCurrentStep(STEP.History)}
-                  dniFinish={() => setCurrentStep(STEP.DniFinish)}
-                  undelivered={() => setCurrentStep(STEP.Undelivered)}
+                  {...props}
+                  dniFinish={STEP.DniFinish}
+                  undelivered={STEP.Undelivered}
                 />
               ),
             }}

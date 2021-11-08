@@ -1,0 +1,11 @@
+{
+  "label.title.transactions": "Transacciones",
+  "label.transactions.transactionCode": "Código de transacción",
+  "label.filter.inAlert": "En alerta",
+  "label.filter.SLA": "Vencimiento SLA",
+  "label.input.lost": "Siniestrado",
+  "label.input.delivered": "Entregado",
+  "label.input.returned": "Devuelto",
+  "title.modal.rangeExceeded": "El rango seleccionado es inválido",
+  "label.modal.rangeExceeded": "Por favor, ingresá un rango menor a 31 días"
+}

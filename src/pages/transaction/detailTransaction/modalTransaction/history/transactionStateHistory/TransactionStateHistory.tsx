@@ -7,6 +7,7 @@ import Cancel from "../../../../../../assets/transaction/Cancel.svg";
 import Connector from "../../../../../../assets/transaction/Connector.svg";
 import Okey from "../../../../../../assets/transaction/Okey.svg";
 import { TRANSACTION_ACTIONS_TAG_LABEL } from "utils/constants";
+import i18next from "i18next";
 
 const TransactionStateHistory: React.FC<TransactionHistoryType> = ({
   transactionHistory,
@@ -18,7 +19,9 @@ const TransactionStateHistory: React.FC<TransactionHistoryType> = ({
   ];
   return (
     <div className="modal-transaction-history-container">
-      <h3 className="modal-transaction-h3">Historial</h3>
+      <h3 className="modal-transaction-h3">
+        {i18next.t("detailTransaction:label.detailTransaction.history")}
+      </h3>
       <hr className="modal-transaction-separate-option " />
       {transactionHistory.map((state) => (
         <div key={state.id}>
@@ -29,11 +32,13 @@ const TransactionStateHistory: React.FC<TransactionHistoryType> = ({
               className="modal-transaction-img-okey"
             />
             <p className="modal-transaction-part-subtitle">
-              {TRANSACTION_ACTIONS_TAG_LABEL[state.reasonTag.tag]}
+              {i18next.t(TRANSACTION_ACTIONS_TAG_LABEL[state.reasonTag.tag])}
             </p>
             {state.metadata.length > 0 && (
               <p className="modal-transaction-part-subtitle-metadata">
-                {". Motivo: "}
+                {`. ${i18next.t(
+                  "detailTransaction:label.historyModal.reason"
+                )}: `}
                 {state.metadata[0].value.toLocaleLowerCase()}
               </p>
             )}
@@ -48,7 +53,9 @@ const TransactionStateHistory: React.FC<TransactionHistoryType> = ({
                 className="modal-transaction-a"
                 to={state.curentValue ? `/pickers/${state.curentValue}` : "#"}
               >
-                Ver picker
+                {i18next.t(
+                  "detailTransaction:label.detailTransaction.seePicker"
+                )}
               </Link>
             )}
           </div>

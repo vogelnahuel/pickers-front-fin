@@ -9,9 +9,8 @@ import { FILTER_PICKERS_OPTIONS } from "utils/constants";
 import Select from "component/inputs/Select";
 import useValidationSchema from "hooks/useValidationSchema";
 import { FilterTypes } from "./types";
+import i18next from "i18next";
 
-/****diseño del filtro y muestra inputs*/
-//TODO: revisar tipo del onSubmit
 export const FilterPickers: React.FC<FilterTypes> = ({
   onSubmit,
   filters,
@@ -27,7 +26,9 @@ export const FilterPickers: React.FC<FilterTypes> = ({
               src={dropdown}
               alt="desplegable"
             />
-            <p className="p-filter-transaction">Filtros</p>
+            <p className="p-filter-transaction">
+              {i18next.t("filterPickers:label.subtitle.filter")}
+            </p>
           </div>
         </div>
         <div className="container-col">
@@ -47,15 +48,17 @@ export const FilterPickers: React.FC<FilterTypes> = ({
                   className="form-filter-transaction"
                   onSubmit={handleSubmit}
                 >
-               
+
                     <div className="container-col-sm-1 container-col-xl">
                       <Field
                         type="text"
                         name="name"
-                        label="Nombre y apellido"
+                        label={i18next.t("filterPickers:label.filter.name")}
                         component={Input}
                         className="Admin-Pickers-input test"
-                        placeholder="Ingresá el nombre y apellido"
+                        placeholder={i18next.t(
+                            "filterPickers:placeholder.filter.name"
+                        )}
                         maxLength={50}
                       />
                     </div>
@@ -63,20 +66,27 @@ export const FilterPickers: React.FC<FilterTypes> = ({
                       <Field
                         type="text"
                         name="identificationNumber"
-                        label="DNI"
+                        label={i18next.t("filterPickers:label.filter.identifier")}
                         component={Input}
                         className="Admin-Pickers-input"
-                        placeholder="Ingresá el DNI"
+                        placeholder={i18next.t(
+                            "filterPickers:placeholder.filter.identifier"
+                        )}
                         maxLength={9}
                       />
                     </div>
                     <div className="container-col-sm-1 container-col-xl">
                       <Field
                         name="vehicleType"
-                        label="Vehículo"
+                        label={i18next.t("filterPickers:label.filter.vehicle")}
                         onChange={form.mutators.setValue}
-                        placeholder="Seleccioná tipo de vehículo"
-                        options={FILTER_PICKERS_OPTIONS}
+                        placeholder={i18next.t(
+                            "filterPickers:placeholder.filter.vehicle"
+                        )}
+                        options={FILTER_PICKERS_OPTIONS.map((o) => ({
+                          ...o,
+                          label: i18next.t(o.label),
+                        }))}
                       >
                         {(props: any) => <Select {...props} />}
                       </Field>
@@ -85,10 +95,12 @@ export const FilterPickers: React.FC<FilterTypes> = ({
                       <Field
                         type="text"
                         name="email"
-                        label="Email"
+                        label={i18next.t("filterPickers:label.filter.email")}
                         component={Input}
                         className="Admin-Pickers-input"
-                        placeholder="Ingresá el email"
+                        placeholder={i18next.t(
+                            "filterPickers:placeholder.filter.email"
+                        )}
                         maxLength={250}
                       />
                     </div>
@@ -100,10 +112,12 @@ export const FilterPickers: React.FC<FilterTypes> = ({
                       >
                         <img src={search} alt="export" />
                         <img className="or-filter" src={or} alt="or" />
-                        <p className="display-inline-block p-export">Buscar</p>
+                        <p className="display-inline-block p-export">
+                          {i18next.t("global:label.button.search")}
+                        </p>
                       </button>
                     </div>
-            
+
                 </form>
               )}
             </Form>

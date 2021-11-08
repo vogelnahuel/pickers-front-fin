@@ -38,9 +38,6 @@
     text-align: center;
     color: #FFFFFF;
 }
-.modal-transaction-finish-container{
-    width: 100vw;
-}
 .modal-transaction-finish-container h3 {
     font-family: 'Mulish';
     font-style: normal;
@@ -51,7 +48,6 @@
     color: #101820;
     margin-bottom: 21px;
     margin-left: 323px;
-    
 }
 .modal-transaction-finish-container p {
     font-family: 'Mulish';
@@ -72,8 +68,14 @@
 .modal-transaction-finish-inputs{
     margin-top: 18px;
     display: flex;
-    width: 100%;
-    margin-left: 353px;
+    justify-content: center;
+}
+.modal-transaction-finishModal{
+    width: 1140px;
+}
+.finish-modal-button-container{
+    display: flex;
+    justify-content: center;
 }
 .modal-transaction-finish-inputs div{
     margin-right: 2.521%;

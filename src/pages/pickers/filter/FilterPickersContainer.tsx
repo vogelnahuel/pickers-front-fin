@@ -10,6 +10,7 @@ import * as yup from "yup";
 import { ParamsMiddlewareType, PickersParamsType } from "../types";
 import { FilterContainerTypes, FilterContainerValidationSchemaTypes } from "./types";
 import { AppDispatch, RootState } from "store";
+import i18next from "i18next";
 
 const FilterPickersContainer: React.FC<FilterContainerTypes> = (props) => {
   useEffect(() => {
@@ -38,17 +39,17 @@ const FilterPickersContainer: React.FC<FilterContainerTypes> = (props) => {
       .string()
       .matches(
         VALIDATION_REGEX.expName,
-        "No se admiten números o caracteres especiales"
+        i18next.t("global:error.input.numbersOrSpecialCharacters")
       ),
     identificationNumber: yup
       .string()
       .matches(
         VALIDATION_REGEX.expIdentificationNumber,
-        "No se admiten letras o caracteres especiales"
+        i18next.t("global:error.input.lettersOrSpecialCharacters")
       ),
     email: yup
       .string()
-      .matches(VALIDATION_REGEX.regEmail, "El formato del correo es inválido"),
+      .matches(VALIDATION_REGEX.regEmail, i18next.t("login:error.login.invalidMail")),
   });
 
   return (

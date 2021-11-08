@@ -4,17 +4,19 @@ import { useState } from "react";
 import { connect } from "react-redux";
 import {
   actions as detailTransactionActions,
-  selectors as detailTransactionSelector
+  selectors as detailTransactionSelector,
 } from "reducers/detailTransaction";
 import { AppDispatch, RootState } from "store";
 import { FinishModalPropsType } from "../types";
 import "./finishModal.scss";
+import i18next from "i18next";
 
 const FinishModal: React.FC<FinishModalPropsType> = ({
   detailTransaction,
   getDetailTransactionFinishLostRequest,
   getDetailTransactionFinishReturnedRequest,
-  onBack,
+  back,
+  next,
   dniFinish,
   undelivered,
 }): JSX.Element => {
@@ -25,7 +27,7 @@ const FinishModal: React.FC<FinishModalPropsType> = ({
     RETURNED: "RETURNED",
     DELIVERED: "DELIVERED",
   };
-  const deliverableStates=[6,7];
+  const deliverableStates = [6, 7];
 
   const handleCheckboxClick = (e: any) => {
     setcheckBoxSelected(e.target.value);
@@ -35,14 +37,16 @@ const FinishModal: React.FC<FinishModalPropsType> = ({
   const finishTransaction = () => {
     switch (checkBoxSelected) {
       case finishStates.DELIVERED:
-        dniFinish();
+        next(dniFinish);
         break;
-        case finishStates.RETURNED:
-          if(detailTransaction.transaction.state.id === 8){
-            getDetailTransactionFinishReturnedRequest(detailTransaction.transaction.id.toString());
-          } else {
-            undelivered();
-          }
+      case finishStates.RETURNED:
+        if (detailTransaction.transaction.state.id === 8) {
+          getDetailTransactionFinishReturnedRequest(
+            detailTransaction.transaction.id.toString()
+          );
+        } else {
+          next(undelivered);
+        }
         break;
       case finishStates.LOST:
         getDetailTransactionFinishLostRequest(
@@ -54,13 +58,20 @@ const FinishModal: React.FC<FinishModalPropsType> = ({
 
   return (
     <div className="modal-transaction-finishModal">
-      <div onClick={()=>{onBack()}} className="modal-transaction-finish-volver">
+      <div
+        onClick={() => {
+          back();
+        }}
+        className="modal-transaction-finish-volver"
+      >
         <img
           className="modal-transaction-finish-volver-img"
           src={volver}
           alt="volver"
         />
-        <p className="modal-transaction-finish-volver">Volver</p>
+        <p className="modal-transaction-finish-volver">
+          {i18next.t("global:label.button.back")}
+        </p>
       </div>
       <div className="modal-transaction-finish-container">
         <img
@@ -69,21 +80,23 @@ const FinishModal: React.FC<FinishModalPropsType> = ({
           alt="informacionIcon"
         />
         <h3 className="modal-transaction-finish-subtitle">
-          Seleccioná el estado final que quieras asignarle
+          {i18next.t("detailTransaction:title.finishModal.selectFinalState")}
         </h3>
         <hr className="modal-transaction-finish-separate" />
         <p>
-        {"La transacción "}
-          <b>{detailTransaction?.transaction?.transactionCode}</b> va a pasar a
-          estado:
+          {i18next.t("detailTransaction:title.finishModal.infoFInalState", {
+            transactionCode: detailTransaction?.transaction?.transactionCode,
+          })}
         </p>
       </div>
 
-      <form className="form-filter-transaction" onSubmit={finishTransaction}>
+      <form onSubmit={finishTransaction}>
         <div className="modal-transaction-finish-inputs">
           <div
             className={
-             deliverableStates.includes( detailTransaction?.transaction?.state?.id)
+              deliverableStates.includes(
+                detailTransaction?.transaction?.state?.id
+              )
                 ? "flexItems"
                 : "flexItems flexItems-items-center"
             }
@@ -99,10 +112,12 @@ const FinishModal: React.FC<FinishModalPropsType> = ({
               htmlFor="Siniestrado"
               className="modal-transaction-finish-label"
             >
-              Siniestrado
+              {i18next.t("transactions:label.input.lost")}
             </label>
           </div>
-          {deliverableStates.includes( detailTransaction.transaction.state.id) &&
+          {deliverableStates.includes(
+            detailTransaction.transaction.state.id
+          ) && (
             <div className="flexItems">
               <input
                 onClick={handleCheckboxClick}
@@ -115,10 +130,10 @@ const FinishModal: React.FC<FinishModalPropsType> = ({
                 htmlFor={finishStates.DELIVERED}
                 className="modal-transaction-finish-label"
               >
-                Entregado
+                {i18next.t("transactions:label.input.delivered")}
               </label>
             </div>
-          }
+          )}
 
           <div className="flexItems">
             <input
@@ -132,19 +147,20 @@ const FinishModal: React.FC<FinishModalPropsType> = ({
               htmlFor={finishStates.RETURNED}
               className="modal-transaction-finish-label"
             >
-              Devuelto
+              {i18next.t("transactions:label.input.returned")}
             </label>
           </div>
         </div>
+        <div className="finish-modal-button-container">
           <button
             type="button"
             onClick={finishTransaction}
             className="finish-button"
             disabled={!RadioActive}
           >
-            Finalizarla
+            {i18next.t("detailTransaction:button.finishModal.finish")}
           </button>
-        
+        </div>
       </form>
     </div>
   );
@@ -166,4 +182,4 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
     );
   },
 });
-export default connect(mapStateToProps, mapDispatchToProps)(FinishModal)
+export default connect(mapStateToProps, mapDispatchToProps)(FinishModal);

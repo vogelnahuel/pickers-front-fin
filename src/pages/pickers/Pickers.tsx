@@ -6,9 +6,11 @@ import PickerStatusButton from "component/admin/PickerStatusButton/PickerStatusB
 import exportar from "assets/admin/PendingUser/exportar.svg";
 import or from "assets/admin/PendingUser/or.svg";
 import FilterPickers from "pages/pickers/filter/FilterPickersContainer";
-import  {TablePickers}  from "./TablePickers/TablePIckers";
+import { TablePickers } from "./TablePickers/TablePIckers";
 import NotificationModal from "component/modal/NotificationModal";
 import { PickerTypes } from "./types";
+
+import i18next from "i18next";
 
 export const Pickers: React.FC<PickerTypes> = ({
   actualPage,
@@ -33,8 +35,8 @@ export const Pickers: React.FC<PickerTypes> = ({
             <h2 className="subTitle-pending">
               <p className="subtitle-pendingUser-h2">
                 {actualPage === "PENDING"
-                  ? "Solicitudes pendientes"
-                  : "Pickers"}{" "}
+                  ? i18next.t("pickers:label.title.pending")
+                  : i18next.t("pickers:label.title.pickers")}
               </p>
             </h2>
             <button
@@ -59,13 +61,14 @@ export const Pickers: React.FC<PickerTypes> = ({
             >
               <img src={exportar} alt="export" />
               <img className="or-pending" src={or} alt="or" />
-              <p className="display-inline-block p-export"> Exportar</p>
+              <p className="display-inline-block p-export">
+                {i18next.t("global:label.button.export")}
+              </p>
             </button>
           </div>
           <FilterPickers />
           <br />
-          <TablePickers
-            actualPage={actualPage} pendingUsers={pendingUsers}      />
+          <TablePickers actualPage={actualPage} pendingUsers={pendingUsers} />
           {pendingUsers && pendingUsers.length !== 0 ? (
             <>
               {seeMore ? (
@@ -84,18 +87,21 @@ export const Pickers: React.FC<PickerTypes> = ({
                     }
                     className="paginator-button"
                   >
-                    Ver más
+                    {i18next.t("global:label.button.seeMore")}
                   </button>
                 </>
               ) : (
                 <>
-                  <button className="paginator-button-disabled">Ver más</button>
+                  <button className="paginator-button-disabled">
+                    {" "}
+                    {i18next.t("global:label.button.seeMore")}
+                  </button>
                 </>
               )}
             </>
           ) : (
             <div className="paginator-button-transaction-noResult">
-              No obtuvimos resultados para tu búsqueda :(
+              {i18next.t("global:label.title.noResults")}
             </div>
           )}
         </div>

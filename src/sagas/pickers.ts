@@ -39,6 +39,9 @@ import {
   StatusType,
 } from "../pages/pickers/types";
 import { AxiosResponse } from "axios";
+import i18next from "i18next";
+import { DATE_FORMATS } from "utils/constants";
+
 const sagas = [
   takeLatest(pickersTypes.PENDING_USER_GET_REQUEST, getPickers),
   takeLatest(
@@ -83,11 +86,13 @@ const process = (body: //TODO: vehiculos any?
 }) => {
   return {
     ...body,
-    dateOfBirth: moment(body.dateOfBirth, "DD/MM/YYYY").format("YYYY-MM-DD"),
+    dateOfBirth: moment(body.dateOfBirth, DATE_FORMATS.shortDate).format(
+      DATE_FORMATS.shortISODate
+    ),
     expirationDatePolicyPersonal:
       body.expirationDatePolicyPersonal &&
-      moment(body.expirationDatePolicyPersonal, "DD/MM/YYYY").format(
-        "YYYY-MM-DD"
+      moment(body.expirationDatePolicyPersonal, DATE_FORMATS.shortDate).format(
+        DATE_FORMATS.shortISODate
       ),
     accountingData: {
       ...body.accountingData,
@@ -104,20 +109,20 @@ const process = (body: //TODO: vehiculos any?
           body.vehicle[body.vehicleType].expirationDatePolicyVehicle &&
           moment(
             body.vehicle[body.vehicleType].expirationDatePolicyVehicle,
-            "DD/MM/YYYY"
-          ).format("YYYY-MM-DD"),
+            DATE_FORMATS.shortDate
+          ).format(DATE_FORMATS.shortISODate),
         expirationDateIdentificationVehicle:
           body.vehicle[body.vehicleType].expirationDateIdentificationVehicle &&
           moment(
             body.vehicle[body.vehicleType].expirationDateIdentificationVehicle,
-            "DD/MM/YYYY"
-          ).format("YYYY-MM-DD"),
+            DATE_FORMATS.shortDate
+          ).format(DATE_FORMATS.shortISODate),
         expirationDateDriverLicense:
           body.vehicle[body.vehicleType].expirationDateDriverLicense &&
           moment(
             body.vehicle[body.vehicleType].expirationDateDriverLicense,
-            "DD/MM/YYYY"
-          ).format("YYYY-MM-DD"),
+            DATE_FORMATS.shortDate
+          ).format(DATE_FORMATS.shortISODate),
       },
     },
   };
@@ -219,8 +224,8 @@ function* getPendingUserExport({
     yield put(
       notificationActions.showNotification({
         level: "success",
-        title: "Exportaste exitosamente",
-        body: "El archivo se descargó correctamente",
+        title: i18next.t("global:title.modal.export"),
+        body: i18next.t("global:label.modal.export"),
         element,
       })
     );
@@ -240,12 +245,12 @@ function* getPendingUserPickerExport({
   if (response.status !== 200) {
     yield put(detailPickerActions.getPendingUserPickerExportError());
   } else {
-    createCSV(response);
+    createCSV(response.data);
     yield put(
       notificationActions.showNotification({
         level: "success",
-        title: "Exportaste exitosamente",
-        body: "El archivo se descargó correctamente",
+        title: i18next.t("global:title.modal.export"),
+        body: i18next.t("global:label.modal.export"),
         element,
       })
     );
@@ -265,12 +270,13 @@ function* postPendingUserDocumentsEdit({
 > {
   let body = process(params);
   const response = yield call(pickersMiddleware.postPickerDocumentsEdit, body);
+
   if (response.status !== 200) {
     yield put(
       notificationActions.showNotification({
         level: "error",
-        title: "Error de conexión",
-        body: "Hubo un error de comunicación con el servidor. Por favor, intentalo nuevamente",
+        title: i18next.t("global:title.modal.connectionError"),
+        body: i18next.t("global:label.modal.connectionError"),
         element,
       })
     );
@@ -300,8 +306,8 @@ function* postAprovePicker({
     yield put(
       notificationActions.showNotification({
         level: "error",
-        title: "Error de conexión",
-        body: "Hubo un error de comunicación con el servidor. Por favor, intentalo nuevamente",
+        title: i18next.t("global:title.modal.connectionError"),
+        body: i18next.t("global:label.modal.connectionError"),
         element,
       })
     );
@@ -310,8 +316,8 @@ function* postAprovePicker({
     yield put(
       notificationActions.showNotification({
         level: "success",
-        title: "Aprobación exitosa",
-        body: "Ya podés visualizar sus datos en la pestaña pickers",
+        title: i18next.t("detailPicker:title.modal.approved"),
+        body: i18next.t("detailPicker:label.modal.approved"),
         onClick: goBack,
         element,
       })
@@ -337,8 +343,8 @@ function* postEditPicker({
     yield put(
       notificationActions.showNotification({
         level: "error",
-        title: "Error de conexión",
-        body: "Hubo un error de comunicación con el servidor. Por favor, intentalo nuevamente",
+        title: i18next.t("global:title.modal.connectionError"),
+        body: i18next.t("global:label.modal.connectionError"),
         element,
       })
     );
@@ -347,8 +353,8 @@ function* postEditPicker({
     yield put(
       notificationActions.showNotification({
         level: "success",
-        title: "Datos guardados",
-        body: "Ya quedaron registrados los cambios",
+        title: i18next.t("global:title.modal.changesSaved"),
+        body: i18next.t("global:label.modal.changesSaved"),
         onClick: goBack,
         element,
       })

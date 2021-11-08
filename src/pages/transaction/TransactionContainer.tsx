@@ -15,6 +15,7 @@ import {
 } from "./types";
 import { FilterTransactionsType } from "sagas/types/transactions";
 import { SetFilterExtraType, SetFilterType } from "reducers/types/transaction";
+import { DATE_FORMATS } from "utils/constants";
 
 const TransactionContainer: React.FC<TransactionContainerPropsType> = (
   props
@@ -38,12 +39,14 @@ const TransactionContainer: React.FC<TransactionContainerPropsType> = (
 
     filters.maxMinDeliveryDate &&
       (filters.date = {
-        from: moment(filters.minMinDeliveryDate, "YYYY-MM-DD").format(
-          "DD/MM/YYYY"
-        ),
-        until: moment(filters.maxMinDeliveryDate, "YYYY-MM-DD").format(
-          "DD/MM/YYYY"
-        ),
+        from: moment(
+          filters.minMinDeliveryDate,
+          DATE_FORMATS.shortISODate
+        ).format(DATE_FORMATS.shortDate),
+        until: moment(
+          filters.maxMinDeliveryDate,
+          DATE_FORMATS.shortISODate
+        ).format(DATE_FORMATS.shortDate),
       });
     const filtersExtra = { limit: window.innerHeight < 770 ? 3 : 4 };
     props.setExtraFilters(filtersExtra);

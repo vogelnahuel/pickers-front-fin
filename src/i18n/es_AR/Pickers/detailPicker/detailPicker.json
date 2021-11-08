@@ -1,0 +1,43 @@
+{
+  "label.user.name": "Nombre/s *",
+  "placeholder.user.name": "Ingresá el nombre",
+  "label.user.surname": "Apellido/s *",
+  "placeholder.user.surname": "Ingresá el apellido",
+  "label.user.identifier": "DNI",
+  "placeholder.user.identifier": "Ingresá el DNI",
+  "label.user.email": "Email",
+  "placeholder.user.email": "Ingresá el email",
+  "label.user.birthdate": "Fecha de nacimiento",
+  "placeholder.user.birthdate": "Ingresá la fecha de nac.",
+  "label.user.areaCode": "Código de área *",
+  "placeholder.user.areaCode": "Ej: 011",
+  "label.user.phone": "Teléfono *",
+  "placeholder.user.phone": "Ej: 12345678",
+
+  "label.subtitle.account": "Datos contables y bancarios",
+  "label.account.fiscalNumber": "Número de CUIT",
+  "placeholder.account.fiscalNumber": "20-39589475-4",
+  "label.account.bankIdentifier": "Número de CBU",
+  "placeholder.account.bankIdentifier": "123-4567-1-1212121212121-1",
+  "label.account.bankName": "Nombre del banco",
+  "placeholder.account.bankName": "Ingresá el nombre del banco",
+
+  "label.subtitle.insurance": "Seguros",
+  "label.insurance.patent": "Patente del vehículo *",
+  "placeholder.insurance.patent": "Ingresá los dígitos de la patente",
+  "label.insurance.licenseExpiration": "Vencimiento de la licencia *",
+  "label.insurance.identifierExpiration": "Vencimiento de la cédula *",
+  "label.insurance.carInsuranceExpiration": "Vencimiento del seguro de automotor *",
+  "label.insurance.personalAccidentInsuranceExpiration": "Vencimiento del seguro de accidentes personales * ",
+
+  "title.modal.approved": "Aprobación exitosa",
+  "label.modal.approved": "Ya podés visualizar sus datos en la pestaña pickers",
+
+  "label.button.save": "Guardar cambios",
+  "label.button.approvePicker": "Aprobar picker",
+
+  "label.button.approve": "Aprobar",
+  "label.button.revise": "Revisar datos",
+  "title.modal.approvePicker": "Aprobar picker",
+  "label.modal.approvePicker": "Al aprobar la solicitud, ya va a poder hacer envíos"
+}

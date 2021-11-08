@@ -1,16 +1,17 @@
 import React from "react";
 import dropdown from "assets/admin/PendingUser/desplegable.svg";
 import "pages/transaction/filterTransaction/FilterTransaction.scss";
-import "pages/pickers/detailPicker/DetailPicker.scss"
-import {DatePicker} from "@pickit/pickit-components";
+import "pages/pickers/detailPicker/DetailPicker.scss";
+import { DatePicker } from "@pickit/pickit-components";
 import or from "assets/admin/PendingUser/or.svg";
 import search from "assets/admin/PendingUser/search.svg";
 import {Field, Form} from "react-final-form";
 import {Input} from "component/inputs/Input";
 import MultipleSelect from "component/inputs/MultipleSelect";
-import {FILTER_TRANSACTION_OPTIONS} from "utils/constants";
+import { FILTER_TRANSACTION_OPTIONS } from "utils/constants";
 import useValidationSchema from "hooks/useValidationSchema";
 import { FilterTransactionPropsType, FilterValuesType } from "./types";
+import i18next from "i18next";
 
 export const FilterTransaction:React.FC<FilterTransactionPropsType> = ({ onSubmit, filters, validationSchema }):JSX.Element => {
     
@@ -24,7 +25,9 @@ export const FilterTransaction:React.FC<FilterTransactionPropsType> = ({ onSubmi
                             src={dropdown}
                             alt="desplegable"
                         />
-                        <p className="p-filter-transaction">Filtros</p>
+                        <p className="p-filter-transaction">
+                            {i18next.t("filterTransaction:label.title.filters")}
+                        </p>
                     </div>
                 </div>
                 <div className="container-transaction-col" >
@@ -51,10 +54,14 @@ export const FilterTransaction:React.FC<FilterTransactionPropsType> = ({ onSubmi
                                         <Field
                                             type="text"
                                             name="transactionCode"
-                                            label="Código de transacción"
+                                            label={i18next.t(
+                                                "transactions:label.transactions.transactionCode"
+                                            )}
                                             component={Input}
                                             className="Admin-Pickers-input"
-                                            placeholder="Ingresá el código"
+                                            placeholder={i18next.t(
+                                                "filterTransaction:placeholder.filter.transactionCode"
+                                            )}
                                             maxLength={19}
                                         />
                                     </div>
@@ -62,23 +69,26 @@ export const FilterTransaction:React.FC<FilterTransactionPropsType> = ({ onSubmi
                                         <Field
                                             type="text"
                                             name="pickerId"
-                                            label="Id de picker"
+                                            label={i18next.t("filterTransaction:label.filter.idPicker")}
                                             component={Input}
                                             className="Admin-Pickers-input"
-                                            placeholder="Ingresá el número de picker"
+                                            placeholder={i18next.t(
+                                                "filterTransaction:placeholder.filter.idPicker"
+                                            )}
                                         />
                                     </div>
                                     <div  className="container-transaction-col-sm-1 container-transaction-col-xl">
                                         <div className="datePicker-filter-transaction" id="datePicker-filter-transaction">
                                             <label className="label-Admin-Pickers">
-                                                Vencimiento SLA
+                                                {i18next.t("transactions:label.filter.SLA")}
                                             </label>
                                             <Field
                                                 type="text"
                                                 className="Admin-Pickers-input-select"
                                                 name="date"
-                                             
-                                                placeholder="Seleccioná la fecha"
+                                                placeholder={i18next.t(
+                                                    "filterTransaction:label.filter.selectDate"
+                                                )}
                                                 language="es"
                                             >
                                                 { (props:any)=><DatePicker {...props}/>}
@@ -88,14 +98,18 @@ export const FilterTransaction:React.FC<FilterTransactionPropsType> = ({ onSubmi
                                     </div>
                                     <div  className="container-transaction-col-sm-1 container-transaction-col-xl">
                                          <label className="label-Admin-Pickers">
-                                                Estados
+                                             {i18next.t("filterTransaction:label.filter.state")}
                                         </label>
                                         <Field
                                             name="state"
-                                            placeholder="Seleccioná el estado"
+                                            placeholder={i18next.t(
+                                                "filterTransaction:placeholder.filter.selectState"
+                                            )}
                                             onChange={form.mutators.setValue}
-                                            options={FILTER_TRANSACTION_OPTIONS}
-                                           >
+                                            options={FILTER_TRANSACTION_OPTIONS.map((o) => ({
+                                                ...o,
+                                                label: i18next.t(o.label),
+                                            }))}                                           >
                                           { (props:any)=><MultipleSelect {...props}/>}
                                         </Field>
                                     </div>
@@ -108,7 +122,7 @@ export const FilterTransaction:React.FC<FilterTransactionPropsType> = ({ onSubmi
                                             id="inAlert"
                                         />
                                         <label htmlFor="inAlert" className="label-filter-transaction-alert">
-                                            En alerta
+                                            {i18next.t("transactions:label.filter.inAlert")}
                                         </label>
                                     </div>
                                     <div  className="container-transaction-col-sm-1 container-transaction-col-xl-auto end">
@@ -119,7 +133,9 @@ export const FilterTransaction:React.FC<FilterTransactionPropsType> = ({ onSubmi
                                         >
                                             <img src={search} alt="export" />
                                             <img className="or-filter" src={or} alt="or" />
-                                            <p className="display-inline-block p-export">Buscar</p>
+                                            <p className="display-inline-block p-export">
+                                                {i18next.t("global:label.button.search")}
+                                            </p>
                                         </button>
                                     </div>
                                 </form>
