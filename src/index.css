@@ -49,8 +49,8 @@
     width: 0px !important;
 }
 input[type='radio']:after {
-    width: 15px;
-    height: 15px;
+    width: 0px;
+    height: 0px;
     border-radius: 13px;
     top: -3px;
     position: relative;
@@ -62,15 +62,15 @@ input[type='radio']:after {
 }
 
 input[type='radio']:checked:after {
-    width: 9px;
-    height: 9px;
+    width: 6px;
+    height: 6px;
     border-radius: 9px;
-    top: -6px;
+    top: 0px;
     left: 3px;
     position: relative;
     background-color:  #0098FF;
     content: '';
     display: inline-block;
     visibility: visible;
-    border: 2px solid  #0098FF;
+   
 }

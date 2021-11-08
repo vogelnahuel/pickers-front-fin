@@ -34,5 +34,6 @@
   "error.input.numbersOrSpecialCharacters": "No se admiten números o caracteres especiales",
   "error.input.lettersOrSpecialCharacters": "No se admiten letras o caracteres especiales",
   "error.input.invalidFormat": "Ingresá el formato correcto",
-  "error.input.invalidEmailFormat": "El correo ingresado es inválido"
+  "error.input.invalidEmailFormat": "El correo ingresado es inválido",
+  "error.input.patentLong": "La patente debe tener entre 6 y 7 caracteres"
 }

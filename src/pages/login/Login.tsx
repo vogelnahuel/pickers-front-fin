@@ -1,6 +1,5 @@
 import React from "react";
 import "./Login.scss";
-import "bootstrap/dist/css/bootstrap.min.css";
 import pickersLogo from "./../../assets/login/PickersLogo.svg";
 import canguro from "./../../assets/login/Canguro.svg";
 import { Link } from "react-router-dom";

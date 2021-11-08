@@ -95,6 +95,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
                   .string()
                   .nullable()
                   .required(i18next.t("global:error.input.required"))
+                  .min(6,i18next.t("global:error.input.patentLong"))
                   .matches(
                     VALIDATION_REGEX.regPatent,
                     i18next.t("global:error.input.specialCharacters")

@@ -127,7 +127,7 @@ const FinishModal: React.FC<FinishModalPropsType> = ({
                 id={finishStates.DELIVERED}
               />
               <label
-                htmlFor="Entregado"
+                htmlFor={finishStates.DELIVERED}
                 className="modal-transaction-finish-label"
               >
                 {i18next.t("transactions:label.input.delivered")}
@@ -144,7 +144,7 @@ const FinishModal: React.FC<FinishModalPropsType> = ({
               id={finishStates.RETURNED}
             />
             <label
-              htmlFor="Devuelto"
+              htmlFor={finishStates.RETURNED}
               className="modal-transaction-finish-label"
             >
               {i18next.t("transactions:label.input.returned")}

@@ -263,7 +263,7 @@ function* getPendingUserPickerExport({
   if (response.status !== 200) {
     yield put(detailPickerActions.getPendingUserPickerExportError());
   } else {
-    createCSV(response);
+    createCSV(response.data);
     yield put(
       notificationActions.showNotification({
         level: "success",
