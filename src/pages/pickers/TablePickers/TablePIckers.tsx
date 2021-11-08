@@ -32,17 +32,17 @@ export const TablePickers: React.FC<TableAdminPropsType> = ({
               <td> {user.identificationNumber} </td>
               <td>{user.email}</td>
               <td>
-                {i18next.t(
-                  `tablePickers:label.table.${
-                    user.vehicleType === "motorcycle" ? "motorcycle" : "bicycle"
-                  }`
-                )}
+                {i18next.t(`tablePickers:label.table.${user?.vehicleType}`)}
               </td>
               {actualPage === "PENDING" ? (
                 <td className="table-registro">
                   <div className="table-admin-enCorrecion-span">
-                    {getDifDate(user.registerDate)}
-                    {getDifDate(user.registerDate) === 1 ? " día" : " días"}
+                    {getDifDate(user.registerDate)}{" "}
+                    {i18next.t(
+                      `tablePickers:label.table.${
+                        getDifDate(user.registerDate) === 1 ? "day" : "days"
+                      }`
+                    )}
                   </div>
                   {user.status.id === 3 && (
                     <div className="admin-table-correction">

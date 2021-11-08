@@ -34,5 +34,10 @@
   "label.modal.approved": "Ya podés visualizar sus datos en la pestaña pickers",
 
   "label.button.save": "Guardar cambios",
-  "label.button.approve": "Aprobar picker"
+  "label.button.approvePicker": "Aprobar picker",
+
+  "label.button.approve": "Aprobar",
+  "label.button.revise": "Revisar datos",
+  "title.modal.approvePicker": "Aprobar picker",
+  "label.modal.approvePicker": "Al aprobar la solicitud, ya va a poder hacer envíos"
 }
