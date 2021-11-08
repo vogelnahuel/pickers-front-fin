@@ -65,8 +65,6 @@ const sagas = [
 
 export default sagas;
 
-// TODO: Agregar el boton de "Entendido"
-
 const process = (body: //TODO: vehiculos any?
 {
   accountingData: AcountDataType;
