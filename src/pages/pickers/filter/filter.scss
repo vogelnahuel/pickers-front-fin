@@ -1,328 +1,325 @@
-.form-fiter{
-    display: flex;
-    background: #FFFFFF;
-    border: 1px solid #E5E5E5;
-    box-sizing: border-box;
-    border-radius: 10px;
-    padding: 30px;
-    margin-top: 3vh;
-    width: 77.965vw;
-    padding-bottom: 0px;
-    padding-top: 16px;
-    padding-right: 25px;
-    margin-bottom: 15px;
+@import  "@pickit/pickit-grid-system";
+
+.container {
+  @include container(3, 25px);
 }
-.filter-padding{
-    padding-top: 15px;
-    display: flex;
-    flex-wrap: wrap;
-}
-.flota-div-label{
-    height: 20px;
-}
-.flota-div-label label{
-    margin-top: 0px;
-    position: relative;
-}
-.tamImgFilter{
-    width:  1.4rem;
-    height: auto;
-    position: absolute;
-    margin-left: 5px;
-}
-.Filter-p{
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 20px;
-    margin-left: 40px;
-}
-.filter-inputs{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-.label-filter{
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 20px;
-    color: #4D4D4D;
-    width: 20vw;
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 15px;
-    line-height: 19px;
-    letter-spacing: 0.0025em;
-}
-.filter-input{
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 17px;
-    line-height: 27px;
-    color: #101820;
-    border: 0;
-    outline: none;
-    border-bottom:  1px solid #828282;
-    margin-bottom:  4.6875vh;
-    width: 20.2vw;
+.end{
+  display: flex;
+  justify-content: flex-end;
 }
 
-    
-.filter-select{
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 20px;
-    color: #999999;
-    border: 0;
-    border-bottom:  1px solid #828282;
-    background-color: white;
-    outline: none;
-    width: 20vw;
-   
+.form-fiter {
+  display: flex;
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 30px;
+  margin-top: 3vh;
+  width: 77.965vw;
+  padding-bottom: 0px;
+  padding-top: 16px;
+  padding-right: 25px;
+  margin-bottom: 15px;
+}
+.filter-padding {
+  padding-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.flota-div-label {
+  height: 20px;
+}
+.flota-div-label label {
+  margin-top: 0px;
+  position: relative;
+}
+.tamImgFilter {
+  width: 1.4rem;
+  height: auto;
+  position: absolute;
+  margin-left: 5px;
+}
+.Filter-p {
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 20px;
+  margin-left: 40px;
+}
+.filter-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.label-filter {
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: #4d4d4d;
+  width: 20vw;
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 19px;
+  letter-spacing: 0.0025em;
+}
+.filter-input {
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 17px;
+  line-height: 27px;
+  color: #101820;
+  border: 0;
+  outline: none;
+  border-bottom: 1px solid #828282;
+  margin-bottom: 4.6875vh;
+  width: 20.2vw;
 }
 
-
-.filter-button{
-    box-sizing: border-box;
-    border-radius: 50px;
-    border: 2.5px solid #0098FF;
-    width: 154px;
-    height: 50px;
-    padding-top: 5px;
-    background-color: white;
-    text-align: center;
-
-    /* position: relative; */
-    margin-left: 3.660vw    ;
-}
-.filter-space{
-    margin-left: 26px;
-}
-.or-filter{
-    margin-left: 0.5rem;
-}
-.option{
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 23px;
-    color: #000000;
-    border-radius: 10px;
-    border-radius: 50px;
-    cursor: pointer;
-    width: 1000px;
+.filter-select {
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+  color: #999999;
+  border: 0;
+  border-bottom: 1px solid #828282;
+  background-color: white;
+  outline: none;
+  width: 20vw;
 }
 
-.optionHover{
-    background-color: #95E1BF;
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 23px;
-    color: #000000;
-    width: 90%;
+.filter-button {
+  box-sizing: border-box;
+  border-radius: 50px;
+  border: 2.5px solid #0098ff;
+  width: 154px;
+  height: 50px;
+  padding-top: 5px;
+  background-color: white;
+  text-align: center;
+
+  /* position: relative; */
+  margin-left: 3.66vw;
 }
-.container-button-width{
-    /* width: 22vw; */
-    margin-left: 30vw;
+.filter-space {
+  margin-left: 26px;
+}
+.or-filter {
+  margin-left: 0.5rem;
+}
+.option {
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 23px;
+  color: #000000;
+  border-radius: 10px;
+  border-radius: 50px;
+  cursor: pointer;
+  width: 1000px;
 }
 
-.form-filter-img-p{
-    display: flex;
-    width: 150px;
+.optionHover {
+  background-color: #95e1bf;
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 23px;
+  color: #000000;
+  width: 90%;
+}
+.container-button-width {
+  /* width: 22vw; */
+  margin-left: 30vw;
 }
 
-
-
-
-
+.form-filter-img-p {
+  display: flex;
+  width: 150px;
+}
 
 /*****************SELECT**********/
 
-
-.filter-admin-select{
-    width: 100%;
-    cursor: pointer;
+.filter-admin-select {
+  width: 100%;
+  cursor: pointer;
 }
 
-.filter-admin-selectBox{
-    width: 20vw;
-    margin: auto;
-    position: relative;
+.filter-admin-selectBox {
+  width: 20vw;
+  margin: auto;
+  position: relative;
 }
-.filter-admin-contenedor{
-    width: 90%;
-    margin: auto;
-    max-width: 1000px;
-    padding: 40px 0;
-}
-
-.filter-admin-parrafoLabel{
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 15px;
-    line-height: 21px;
-    letter-spacing: 0.0025em;
-    color: #4D4D4D;
-    height: 20px;
+.filter-admin-contenedor {
+  width: 90%;
+  margin: auto;
+  max-width: 1000px;
+  padding: 40px 0;
 }
 
-.filter-admin-inputSelect{
-    border: 0;
-    outline: none;
-    border-bottom: 1px solid #828282;
-    width: 20.2vw;
-    cursor: pointer;
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 17px;
-    line-height: 26px;
-    letter-spacing: 0.005em;
-    color: #828282;
-    background: #FFFFFF;
-    margin-top: 1px;
+.filter-admin-parrafoLabel {
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 21px;
+  letter-spacing: 0.0025em;
+  color: #4d4d4d;
+  height: 20px;
+}
+
+.filter-admin-inputSelect {
+  border: 0;
+  outline: none;
+  border-bottom: 1px solid #828282;
+  width: 20.2vw;
+  cursor: pointer;
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 17px;
+  line-height: 26px;
+  letter-spacing: 0.005em;
+  color: #828282;
+  background: #ffffff;
+  margin-top: 1px;
 }
 .filter-admin-inputSelect p {
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 17px;
-    line-height: 26px;
-    letter-spacing: 0.005em;
-    
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 17px;
+  line-height: 26px;
+  letter-spacing: 0.005em;
 }
-.filter-admin-Imagen{
-    position: absolute;
-    left: 95%;
+.filter-admin-Imagen {
+  position: absolute;
+  left: 95%;
+  top: 30px;
+}
+.filter-admin-option-paragraph {
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 17px;
+  line-height: 21px;
+  letter-spacing: 0.005em;
+  color: #4d4d4d;
+  padding-top: 10px;
+  padding-left: 9px;
+  cursor: pointer;
+}
+.filter-admin-opciones {
+  background: #ffffff;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 11px;
+  padding: 10px 10px 10px 10px;
+
+  width: 20vw;
+}
+.filter-admin-opciones.active {
+  position: absolute;
+  display: block;
+}
+.filter-admin-content-option {
+  height: 40px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.filter-admin-selecionado {
+  background: #95e1bf;
+  mix-blend-mode: multiply;
+  border-radius: 5px;
+}
+.filter-admin-colorSelecionado {
+  color: #101010;
+}
+.filter-admin-content-option:hover {
+  background: #95e1bf;
+  mix-blend-mode: multiply;
+  border-radius: 5px;
+}
+.filter-admin-filter-value {
+  margin-bottom: 0px;
+}
+
+@media (max-width: 1300px) {
+  .form-fiter {
+    width: 77vw;
+    margin-bottom: 15px;
+  }
+  .filter-input {
+    width: 19.4vw;
+  }
+  .filter-admin-inputSelect {
+    width: 19.4vw;
+  }
+  .flota-div-label label {
+    width: 19.4vw;
+  }
+  .filter-admin-Imagen {
+    left: 92%;
     top: 30px;
-}
-.filter-admin-option-paragraph{
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 17px;
-    line-height: 21px;
-    letter-spacing: 0.005em;
-    color: #4D4D4D;
-    padding-top: 10px;
-    padding-left: 9px;
-    cursor: pointer;
-}
-.filter-admin-opciones{
-    background: #FFFFFF;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
-    border-radius: 11px;
-    padding: 10px 10px 10px 10px;
-
-    width: 20vw;
-}
-.filter-admin-opciones.active{
-    position: absolute;
-    display: block;
-}
-.filter-admin-content-option{
-   height: 40px;
-   overflow: hidden;
-   cursor: pointer;
-}
-.filter-admin-selecionado{
-    background: #95E1BF;
-    mix-blend-mode: multiply;
-    border-radius: 5px;
-}
-.filter-admin-colorSelecionado{
-    color: #101010;
-}
-.filter-admin-content-option:hover{
-    background: #95E1BF;
-    mix-blend-mode: multiply;
-    border-radius: 5px;
-}
-.filter-admin-filter-value{
-    margin-bottom: 0px;
+  }
+  .container-button-width {
+    margin-left: 28vw;
+  }
 }
 
-
-@media (max-width:1300px){
-    .form-fiter{
-        width: 77vw;
-        margin-bottom: 15px;
-    }
-    .filter-input{
-        width: 19.4vw;
-    }
-    .filter-admin-inputSelect{
-        width: 19.4vw;
-    }
-    .flota-div-label label{
-        width: 19.4vw;
-    }
-    .filter-admin-Imagen{
-        left: 92%;
-        top: 30px;
-    }
-    .container-button-width{
-        margin-left: 28vw;
-    }
-
+@media (max-width: 1270px) {
+  .filter-input {
+    width: 18.4vw;
+  }
+  .filter-button {
+    margin-left: 1vw;
+  }
+  .filter-space {
+    margin-left: 15px;
+  }
 }
 
- @media (max-width:1270px){
-    .filter-input{
-        width: 18.4vw;
-    }
-    .filter-button{
-        margin-left: 1vw;
-    }
-    .filter-space{
-        margin-left: 15px;
-    }
- }
-
- @media(min-width:1800px){
-    .form-fiter{
-        width: 100%;
-    }
-    .filter-input{
-        width: 293px;
-    }
-    .label-filter {
+@media (min-width: 1800px) {
+  .form-fiter {
+    width: 100%;
+  }
+  .filter-input {
+    width: 293px;
+  }
+  .label-filter {
     width: 280px;
-    }
-    .filter-admin-inputSelect{
-        width: 293px;
-    }
-    .filter-admin-selectBox
-    {
-        width: 293px;
-    }
-    .container-button-width{
-        margin-left: 33px;
-    }
-    .form-filter-img-p{
-        width: 95px;
-    }
-    .filter-padding{
-        flex-wrap: nowrap;
-    }
-    .filter-button{
-        margin-left: 0px;
-    }
-    .mainContainerFlex{
-        margin-top: 40px;
-    }
-    .filter-admin-opciones{
-        width: 295px;
-    }
- }
+  }
+  .filter-admin-inputSelect {
+    width: 293px;
+  }
+  .filter-admin-selectBox {
+    width: 293px;
+  }
+  .container-button-width {
+    margin-left: 33px;
+  }
+  .form-filter-img-p {
+    width: 95px;
+  }
+  .filter-padding {
+    flex-wrap: nowrap;
+  }
+  .filter-button {
+    margin-left: 0px;
+  }
+  .mainContainerFlex {
+    margin-top: 40px;
+  }
+  .filter-admin-opciones {
+    width: 295px;
+  }
+}

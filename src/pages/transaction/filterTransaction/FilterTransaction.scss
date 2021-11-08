@@ -1,3 +1,9 @@
+@import "@pickit/pickit-grid-system";
+
+.container-transaction {
+  @include container(3, 25px);
+}
+
 .display-filter-transaction{
     background: #FFFFFF;
     border: 1px solid #E5E5E5;
@@ -73,7 +79,6 @@
 .form-filter-transaction{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
 }
 .sub-container{
     form div {
@@ -154,13 +159,22 @@
     //padding-top: 5px;
     background-color: white;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
     //margin-top: 10px;
     //margin-left: 7.5vw;
     //margin-right: 26px;
 
 }
-#padding{
-    padding-top: 27px;
+
+.float-end {
+    display: flex;
+    justify-content: flex-end;
+}
+    #padding{
+        padding-top: 27px;
 }
 
 
@@ -204,28 +218,11 @@ div .MKjsMK9DPt5gO-irDsCHa {
 
 
 @media (max-width:1310px){
-    .form-filter-transaction div div input{
-        //width: 248px;
-    }
     .display-inline{
         width: 17.155vw;
     }
-    //.search-button-transaction{
-    //    margin-left: 6vw;
-    //}
 }
 @media (min-width:1800px){
-    .form-filter-transaction div div input{
-        //width: 263px;
-        //margin-right: 24px;
-    }
-
-    //.transaction-container-button-width{
-    //    margin-left: 0px;
-    //}
-    //.search-button-transaction{
-    //    margin-left: 0px;
-    //}
     .checkbox-filter-transaction{
         margin-top: 14px;
     }
@@ -240,21 +237,9 @@ div .MKjsMK9DPt5gO-irDsCHa {
     .display-inline{
         width: 3.5vw;
     }
-    //.display-filter-transaction{
-    //    padding-bottom: 13px;
-    //    margin-top: 21px;
-    //}
-    //#checkbox-filter-transaction{
-    //    margin-top: 13px;
-    //}
     #padding{
         padding-top: 15px;
     }
-    //.search-button-transaction{
-    //    margin-top: 0px;
-    //}
-
-
 }
 @media (min-width: 1300px) {
     .display-filter-transaction{
