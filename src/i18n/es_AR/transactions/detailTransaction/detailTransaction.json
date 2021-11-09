@@ -25,5 +25,5 @@
   "label.cancelModal.confirmation": "¿Querés cancelar la colecta?",
   "label.undeliveredModal.reason": "Seleccioná el motivo de imposible de entrega",
   "label.undeliveredModal.finish": "Finalizarla",
-  "error.input.dniInvalid": "El correo dni es inválido"
+  "error.input.dniInvalid": "El dni es inválido"
 }
