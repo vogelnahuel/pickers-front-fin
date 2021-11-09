@@ -51,6 +51,6 @@ i18n.addResourceBundle("es_AR", "transactionTable", transactionTable);
 i18n.addResourceBundle("es_AR", "detailTransaction", detailTransaction);
 i18n.addResourceBundle("es_AR", "global", global);
 i18n.addResourceBundle("es_AR", "emailRestore", email);
-i18n.addResourceBundle("es_AR", "restorePasword", restorePassword);
+i18n.addResourceBundle("es_AR", "restorePassword", restorePassword);
 
 i18n.addResourceBundle("es_MX", "dashboard", dashboardi18nMX);
