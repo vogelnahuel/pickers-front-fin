@@ -84,9 +84,9 @@ const FinishModal: React.FC<FinishModalPropsType> = ({
         </h3>
         <hr className="modal-transaction-finish-separate" />
         <p>
-          {i18next.t("detailTransaction:title.finishModal.infoFInalState", {
-            transactionCode: detailTransaction?.transaction?.transactionCode,
-          })}
+          {i18next.t("detailTransaction:title.finishModal.infoTransaction")}
+           <b className="transaction-code"> {detailTransaction?.transaction?.transactionCode}</b>
+          {i18next.t("detailTransaction:title.finishModal.infoFinalState")}
         </p>
       </div>
 
