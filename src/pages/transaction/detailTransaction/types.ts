@@ -22,6 +22,6 @@ export type UndeliveredPropsType = {
   back: Function;
   getMessages: Function;
   setMessageSelected: Function;
-  getDetailTransactionFinishReturned: Function;
+  getDetailTransactionDevolutionUndelivered: Function;
   resetMessage: Function;
 };

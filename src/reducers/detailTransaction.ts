@@ -167,12 +167,12 @@ export const actions: DetailTransactionActionsType = {
   }),
 
   getDetailTransactionDevolutionUndeliveredRequest: (
+    id: number,
     params: postDevolutionUndeliveredType,
-    id: string
   ) => ({
     type: types.DETAIL_TRANSACTIONS_DEVOLUTION_UNDELIVERED_REQUEST,
-    params,
     id,
+    params,
   }),
   getDetailTransactionDevolutionUndeliveredSuccess: (
     transactions: DetailTransactionTypeType
