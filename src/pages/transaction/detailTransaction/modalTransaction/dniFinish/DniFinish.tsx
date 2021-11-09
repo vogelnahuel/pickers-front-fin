@@ -28,7 +28,7 @@ const DniFinish: React.FC<DniFinishPropsType> = ({
       .required(i18next.t("global:error.input.required"))
       .matches(
         VALIDATION_REGEX.regDNI,
-        i18next.t("global:error.input.invalidEmailFormat")
+        i18next.t("detailTransaction:error.input.dniInvalid")
       ),
   });
   return (
