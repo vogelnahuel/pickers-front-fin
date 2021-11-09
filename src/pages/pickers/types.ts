@@ -65,7 +65,6 @@ export type DetailPickerValidationSchema = {
   name: string;
   surname: string;
   phone: PhoneValidationSchemaType;
-  expirationDatePolicyPersonal?: string;
    vehicle: any;
 };
 

@@ -41,8 +41,9 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
     (props.pendingUserAdminPicker.status.id === 4 ||
       props.pendingUserAdminPicker.status.id === 5);
 
-  const formatDate = (date: string | undefined =""): string => {
-    return (moment(date,DATE_FORMATS.shortISODate,true).isValid()) && date.length === 10
+  const formatDate = (date: string | undefined = ""): string => {
+    return moment(date, DATE_FORMATS.shortISODate, true).isValid() &&
+      date.length === 10
       ? moment(date).format(DATE_FORMATS.shortDate)
       : date;
   };
@@ -79,14 +80,6 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
             i18next.t("global:error.input.invalidFormat")
           ),
       }),
-      expirationDatePolicyPersonal: yup
-        .string()
-        .nullable()
-        .required(i18next.t("global:error.input.required"))
-        .matches(
-          DATE_FORMATS.regex,
-          i18next.t("global:error.input.invalidFormat")
-        ),
       vehicle:
         props.pendingUserAdminPicker.vehicleType === "motorcycle"
           ? yup.object({
@@ -95,10 +88,18 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
                   .string()
                   .nullable()
                   .required(i18next.t("global:error.input.required"))
-                  .min(6,i18next.t("global:error.input.patentLong"))
+                  .min(6, i18next.t("global:error.input.patentLong"))
                   .matches(
                     VALIDATION_REGEX.regPatent,
                     i18next.t("global:error.input.specialCharacters")
+                  ),
+                expirationDatePolicyPersonal: yup
+                  .string()
+                  .nullable()
+                  .required(i18next.t("global:error.input.required"))
+                  .matches(
+                    DATE_FORMATS.regex,
+                    i18next.t("global:error.input.invalidFormat")
                   ),
                 expirationDatePolicyVehicle: yup
                   .string()
