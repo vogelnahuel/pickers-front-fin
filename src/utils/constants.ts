@@ -162,7 +162,7 @@ export const TRANSACTION_ACTIONS_TAG_LABEL: any = {
   state_in_devolution: "filterTransaction:label.select.inReturnToSender",
   state_pickup_cancelled_temporally: "filterTransaction:label.select.cancel",
   state_pickup_cancelled_permanently: "filterTransaction:label.select.cancel",
-  state_delivered: "filterTransaction:label.select.inReturnToSender",
+  state_delivered: "filterTransaction:label.select.delivered",
   state_returned: "filterTransaction:label.select.returnedToSender",
   state_lost: "filterTransaction:label.select.lost",
   state_initial: "filterTransaction:label.select.created",
