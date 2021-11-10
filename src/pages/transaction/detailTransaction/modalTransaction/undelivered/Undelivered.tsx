@@ -20,7 +20,7 @@ const Undelivered: React.FC<UndeliveredPropsType> = ({
   selectedMessage,
   resetMessage,
   setMessageSelected,
-  getDetailTransactionFinishReturned,
+  getDetailTransactionDevolutionUndelivered,
 }): JSX.Element => {
   useEffect(() => {
     resetMessage();
@@ -59,9 +59,10 @@ const Undelivered: React.FC<UndeliveredPropsType> = ({
         <div className="button-container-finish">
           <button
             onClick={() => {
-              getDetailTransactionFinishReturned(
-                detailTransaction.transaction.id
-              );
+              getDetailTransactionDevolutionUndelivered(
+                detailTransaction.transaction.id,
+                selectedMessage.id
+                  );
             }}
             disabled={selectedMessage === undefined}
             className="finish-button"
@@ -90,10 +91,11 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   setMessageSelected: (message: DetailTransactionCancelItemType) => {
     dispatch(detailTransactionActions.setMessageSelected(message));
   },
-  getDetailTransactionFinishReturned: (id: string) => {
-    dispatch(
-      detailTransactionActions.getDetailTransactionFinishReturnedRequest(id)
-    );
-  },
+   getDetailTransactionDevolutionUndelivered: (id: number,idSelected:number) => {
+     dispatch(
+      detailTransactionActions.getDetailTransactionDevolutionUndeliveredRequest(id,idSelected)
+     );
+   },
+  
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Undelivered);
