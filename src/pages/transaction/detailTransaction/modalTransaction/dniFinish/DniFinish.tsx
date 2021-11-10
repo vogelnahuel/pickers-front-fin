@@ -25,10 +25,11 @@ const DniFinish: React.FC<DniFinishPropsType> = ({
   const validationSchema: yup.SchemaOf<any> = yup.object({
     dni: yup
       .string()
+      .min(7,"El DNI debe tener entre 7 y 8 caracteres numéricos")
       .required(i18next.t("global:error.input.required"))
       .matches(
         VALIDATION_REGEX.regDNI,
-        i18next.t("global:error.input.invalidEmailFormat")
+        i18next.t("detailTransaction:error.input.dniInvalid")
       ),
   });
   return (

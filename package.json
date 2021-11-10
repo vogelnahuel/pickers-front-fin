@@ -45,7 +45,7 @@
     "yup": "^0.32.9"
   },
   "scripts": {
-    "start:dev": "env-cmd -f ./environments/.env.dev react-scripts start",
+    "start:dev": "PORT=33000 env-cmd -f ./environments/.env.dev react-scripts start",
     "start:prod": "PORT=33000 env-cmd -f ./environments/.env.production react-scripts start",
     "start:test": "PORT=33000 env-cmd -f ./environments/.env.test react-scripts start",
     "build:dev": " env-cmd -f ./environments/.env.dev react-scripts build",
@@ -76,7 +76,7 @@
     ]
   },
   "devDependencies": {
-    "@pickit/pickit-components": "^2.0.25",
+    "@pickit/pickit-components": "2.0.32",
     "@pickit/pickit-grid-system": "^1.1.0",
     "@types/react-router-dom": "^5.3.0"
   }

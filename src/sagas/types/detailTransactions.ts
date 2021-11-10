@@ -8,7 +8,7 @@ export type DetailTransactionSagasType={
 
 
 export type postDevolutionUndeliveredType = {
-  impossibleDeliveryReasonId: string;
+  impossibleDeliveryReasonId: number;
 };
 export type postDevolutionUndeliveredParamsType = {
   type:string
