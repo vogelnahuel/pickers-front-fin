@@ -1,4 +1,10 @@
-import { createSlice, PayloadAction, createAction } from "@reduxjs/toolkit";
+import {
+  createSlice,
+  PayloadAction,
+  createAction,
+  createDraftSafeSelector,
+} from "@reduxjs/toolkit";
+import { RootState } from "store";
 
 export type CounterState = {
   value: number;
@@ -37,3 +43,5 @@ export const { increment, decrement, incrementByAmount } = counterSlice.actions;
 
 // Se exporta el reducer/slice para asociarlo en la creación del store
 export default counterSlice.reducer;
+
+export const counterSelector = (state: RootState) => state.counter;

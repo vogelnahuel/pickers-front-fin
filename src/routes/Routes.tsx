@@ -1,5 +1,5 @@
 import React from "react";
-import { Provider } from "react-redux";
+import { connect, Provider } from "react-redux";
 // import { Route, Switch } from "react-router"; // react-router v4/v5
 // import { ConnectedRouter } from "connected-react-router";
 // import DashboardContainer from "../pages/dashboard/DashboardAdminContainer";
@@ -10,9 +10,9 @@ import { Provider } from "react-redux";
 // import Transaction from "../pages/transaction/TransactionContainer";
 // import store, { history } from "store";
 // import EmailRestore from "pages/login/email/EmailRestoreContainer";
-import { useAppDispatch, useAppSelector } from "hooks/useRedux";
-import { store } from "../store";
+import { RootState, store } from "../store";
 import {
+  counterSelector,
   decrement,
   increment,
   incrementAsync,
@@ -38,24 +38,36 @@ import {
 
 const Routes = () => (
   <Provider store={store}>
-    <CounterTest />
+    <CounterTestContainer />
   </Provider>
 );
 
-const CounterTest = () => {
-  const state = useAppSelector((state) => state.counter.value);
-  const dispatch = useAppDispatch();
+const CounterTest = ({ value, increment, decrement, incrementAsync }: any) => {
+  //const state = useAppSelector((state) => state.counter.value);
 
   return (
     <div>
-      <input value={state} />
-      <button onClick={() => dispatch(increment())}>Increment</button>
-      <button onClick={() => dispatch(incrementAsync())}>
-        Increment Async
-      </button>
-      <button onClick={() => dispatch(decrement())}>Decrement</button>
+      <input value={value} />
+      <button onClick={increment}>Increment</button>
+      <button onClick={incrementAsync}>Increment Async</button>
+      <button onClick={decrement}>Decrement</button>
     </div>
   );
 };
+
+const mapStateToProps = (state: RootState) => ({
+  value: counterSelector(state).value,
+});
+
+const mapDispatchToProps = (dispatch: any) => ({
+  increment: () => dispatch(increment()),
+  incrementAsync: () => dispatch(incrementAsync()),
+  decrement: () => dispatch(decrement()),
+});
+
+const CounterTestContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CounterTest);
 
 export default Routes;

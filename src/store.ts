@@ -59,6 +59,7 @@ export const store = configureStore({
     dashboard: dashboardReducer,
     login: loginReducer,
   },
+  devTools: process.env.NODE_ENV !== "production",
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ thunk: false }).concat(sagaMiddleware),
 });
