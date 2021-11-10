@@ -58,7 +58,7 @@ export const VALIDATION_REGEX = {
     /^[0-9A-Za-zdàáèéìíòóùúñÀÁÈÉÌÍÒÓÙÚÑ@$¡!%;,*.?#^=&_-]*$/,
   regMayMin: /^(?=.{1,})(?=.*[a-zdàáèéìíòóùúñ])(?=.*[A-ZÀÁÈÉÌÍÒÓÙÚÑ]).*$/,
   regLetNum: /^(?=.{1,})(?=.*[a-zA-ZdàáèéìíòóùúñÀÁÈÉÌÍÒÓÙÚÑ])(?=.*[0-9]).*$/,
-  regDNI: /^[0-9]{7,8}$/,
+  regDNI: /^[0-9]*$/,
 };
 
 export const FILTER_TRANSACTION_OPTIONS = [
