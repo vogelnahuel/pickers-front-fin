@@ -81,9 +81,8 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
           ),
       }),
       vehicle:
-        props.pendingUserAdminPicker.vehicleType === "motorcycle"
+        props.pendingUserAdminPicker.vehicle.type === "motorcycle"
           ? yup.object({
-              [props.pendingUserAdminPicker.vehicleType]: yup.object({
                 patent: yup
                   .string()
                   .nullable()
@@ -137,7 +136,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
                     DATE_FORMATS.regexValidCharacter,
                     i18next.t("global:error.input.specialCharacters")
                   ),
-              }),
+  
             })
           : yup.object({}),
     });

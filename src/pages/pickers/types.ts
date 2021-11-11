@@ -1,4 +1,4 @@
-import { type } from "os";
+
 
 export type ChangePageTypes = {
   props: {
@@ -42,7 +42,7 @@ export type DetailPickerValidationSchema = {
   name: string;
   surname: string;
   phone: PhoneValidationSchemaType;
-   vehicle: any;
+  vehicle: any;
 };
 
 
@@ -73,94 +73,6 @@ expirationDateDriverLicense: string,
 expirationDateIdentificationVehicle: string,
 expirationDatePolicyVehicle: string
 };
-// "result": {
-//   "id": 192,
-//   "enable": false,
-//   "registerDatetime": null,
-//   "status": {
-//       "id": 1,
-//       "description": "string"
-//   },
-//   "personalData": {
-//       "name": null,
-//       "surname": null,
-//       "dateOfBirth": null,
-//       "identificationNumber": null,
-//       "email": "user@pickit.net",
-//       "phone": {
-//           "countryNumber": null,
-//           "areaNumber": null,
-//           "number": null
-//       }
-//   },
-//   "accountingData": {
-//       "bankIdentifier": null,
-//       "bankName": null,
-//       "fiscalNumber": null,
-//   },
-//   "vehicle": {
-//       "type": "motorcycle",
-//       "active": true,
-//       "approve": true,
-//       "patent": "string",
-//       "expirationDateDriverLicense": "string",
-//       "expirationDateIdentificationVehicle": "string",
-//       "expirationDatePolicyVehicle": "string"
-//   },
-//   "files": {
-//       "personalData": {
-//           "status": "COMPLETED" | "EMPTY" | "PENDING",
-//           "contents": [
-//               {
-//                   "tag": "{TAG_DNI_DORSO}", //contiene el tag definido para el dorso del dni
-//                   "isUpload": true | false //valor por defecto en false
-//               },
-//               {
-//                   "tag": "{TAG_DNI_FRENTE}",
-//                   "isUpload": true | false
-//               },
-//               {
-//                   "tag": "{TAG_ROSTRO_USUARIO}",
-//                   "isUpload": true | false
-//               }
-//           ]
-//       },
-//       "accountingData": {
-//           "status": "COMPLETED" | "EMPTY" | "PENDING",
-//           "contents": [
-//               {
-//                   "tag": "{TAG_CBU}",
-//                   "isUpload": true | false
-//               },
-//               {
-//                   "tag": "{TAG_CUIT}",
-//                   "isUpload": true | false
-//               }
-//           ]
-//       },
-//       "vehicle": { //vehiculo habilitado
-//           "status": "COMPLETED" | "EMPTY" | "PENDING",
-//           "contents": [
-//               {
-//                   "tag": "{TAG_LICENCIA_CONDUCTOR}",
-//                   "isUpload": true
-//               },
-//               {
-//                   "tag": "{TAG_CEDULA_FRENTE}",
-//                   "isUpload": false
-//               },
-//               {
-//                   "tag": "{TAG_CEDULA_DORSO}",
-//                   "isUpload": false
-//               },
-//               {
-//                   "tag": "{TAG_SEGURO_AUTOMORO}",
-//                   "isUpload": false
-//               }
-//           ]
-//       }
-//   }
-// }
 export type AcountDataType = {
   bankIdentifier: string;
   bankName: string;
@@ -190,7 +102,7 @@ export type PickerType = {
   status: StatusType;
   personalData:  PersonalDataType;
   accountingData:AcountDataType
-  vehicle: VehicleType;
+  vehicle: VehicleType ;
   files:filesType
 };
 
