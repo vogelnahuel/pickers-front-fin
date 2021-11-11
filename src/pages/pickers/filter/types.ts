@@ -9,7 +9,7 @@ export type FilterContainerTypes = {
 };
 export type FilterContainerValidationSchemaTypes = {
   name?: string;
-  identificationNumber?: Number | string;
+  identificationNumber?: number | string;
   email?: string;
 };
 

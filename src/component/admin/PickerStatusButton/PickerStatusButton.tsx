@@ -14,7 +14,7 @@ import { PickerStatusButtonType } from "./types";
 import {
   actions as pendingUserActions,
   selectors as pendingUserSelectors,
-} from "reducers/pickers";
+} from "reducers/pickers_old";
 import i18next from "i18next";
 export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
   showNotification,
@@ -24,7 +24,7 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
   isDetail,
 }) => {
   const Historial = useHistory();
-  const changePage = (page: String, isDirty: Boolean) => {
+  const changePage = (page: string, isDirty: boolean) => {
     if (isDetail || actualPage !== page) {
       let onClose = () => {
         setActualPage(page);
@@ -168,7 +168,7 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
     //falta tipar show notification
     dispatch(notificationActions.showNotification(content));
   },
-  setActualPage: (page: String) => {
+  setActualPage: (page: string) => {
     dispatch(pendingUserActions.setActualPage(page));
   },
 });

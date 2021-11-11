@@ -10,7 +10,7 @@ import { useHistory, useParams } from "react-router-dom";
 import {
   actions as pendingUserActions,
   selectors as pendingUserSelectors,
-} from "reducers/pickers";
+} from "reducers/pickers_old";
 import * as yup from "yup";
 import { actions as notificationActions } from "reducers/notification";
 
@@ -142,7 +142,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
           : yup.object({}),
     });
 
-  const cancel = (isDirty: Boolean, restart: Function) => {
+  const cancel = (isDirty: boolean, restart: Function) => {
     let onClose = () => {
       restart();
     };
@@ -238,7 +238,7 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
       pendingUserAdminPickerActions.getEditPickerRequest(params, goBack)
     );
   },
-  setActualPage: (page: String) => {
+  setActualPage: (page: string) => {
     dispatch(pendingUserActions.setActualPage(page));
   },
 });

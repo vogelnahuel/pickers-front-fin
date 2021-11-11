@@ -1,6 +1,6 @@
 // import { createStore, applyMiddleware, compose } from "redux";
-// import { createBrowserHistory } from "history";
-// import { routerMiddleware } from "connected-react-router";
+import { createBrowserHistory } from "history";
+import { connectRouter, routerMiddleware } from "connected-react-router";
 // import reducer from "./reducers/index";
 
 // import createSagaMiddleware from "redux-saga";
@@ -46,22 +46,23 @@ import { configureStore } from "@reduxjs/toolkit";
 import rootSaga from "./sagas";
 
 // Se obtienen todos los reduces
-import counterReducer from "slices/counter/counterSlice";
-import dashboardReducer from "slices/dashboard";
-import loginReducer from "slices/login";
+// import counterReducer from "slices/counter/counterSlice";
+// import pickersReducer from "reducers/pickers";
+// import dashboardReducer from "slices/dashboard";
+// import loginReducer from "slices/login";
+import rootReducer from "reducers";
 
 const sagaMiddleware = createSagaMiddleware();
+export const history = createBrowserHistory();
 
 // Crea el store de redux y configura automáticamente la extensión Redux DevTools
 export const store = configureStore({
-  reducer: {
-    counter: counterReducer,
-    dashboard: dashboardReducer,
-    login: loginReducer,
-  },
+  reducer: rootReducer(history),
   devTools: process.env.NODE_ENV !== "production",
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({ thunk: false }).concat(sagaMiddleware),
+    getDefaultMiddleware({ thunk: false })
+      .concat(sagaMiddleware)
+      .concat(routerMiddleware(history)),
 });
 
 // Inicio el middleware de saga

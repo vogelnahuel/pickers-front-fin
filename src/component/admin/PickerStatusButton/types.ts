@@ -1,7 +1,7 @@
 export type PickerStatusButtonType = {
   isDirty: boolean;
-  actualPage: String;
+  actualPage: string;
   showNotification: Function;
   setActualPage: Function;
-  isDetail?:boolean;
+  isDetail?: boolean;
 };

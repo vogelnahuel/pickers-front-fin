@@ -84,7 +84,6 @@ function* postDevolutionUndelivered({
   void,
   DevolutionUndeliveredResponseType
 > {
-
   const paramsPost: postDevolutionUndeliveredType = {
     impossibleDeliveryReasonId: Number(params),
   };

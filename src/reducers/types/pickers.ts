@@ -26,16 +26,16 @@ export type PickerStateType = {
   users: PickerType[];
   filters: PickersParamsType;
   filtersExtra: {
-    limit: Number;
-    offset: Number;
+    limit: number;
+    offset: number;
   };
   filtersExtraSeeMore: {
     limit: number;
     offset: number;
   };
-  seeMore: Boolean;
-  sizePage: Number;
-  actualPage: String;
+  seeMore: boolean;
+  sizePage: number;
+  actualPage: string;
 };
 
 export type SelectorType = {
@@ -59,7 +59,7 @@ export type ActionTypePickers = {
   };
   filters?: ParamsMiddlewareType;
   extraFilters?: ParamsMiddlewareType;
-  page?: String;
+  page?: string;
 };
 
 export type ActionsType = {

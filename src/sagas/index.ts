@@ -4,23 +4,16 @@ import pickers from "./pickers";
 import dashboard from "./dashboard";
 import login from "./login";
 import detailTransaction from "./detailTransaction";
-import counter from "./counter";
 import { actions } from "../reducers/login";
 import { Effect, ITypeError } from "./types/types";
 
-// const sagas = [
-//     ...transactions,
-//     ...pickers,
-//     ...dashboard,
-//     ...login,
-//     ...detailTransaction
-// ];
-const sagas = [...counter];
-//revisar el any del err
-
-// export default function* rootSaga() {
-//   yield all(sagas);
-// }
+const sagas = [
+  ...transactions,
+  ...pickers,
+  ...dashboard,
+  ...login,
+  ...detailTransaction,
+];
 
 export default function* rootSaga() {
   yield all(

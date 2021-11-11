@@ -6,6 +6,10 @@ import {
   takeLatest,
 } from "redux-saga/effects";
 import {
+  actions as pickersActions,
+  types as pickersTypes,
+} from "../reducers/pickers_old";
+import {
   actions as detailPickerActions,
   types as detailPickerTypes,
 } from "../reducers/detailPicker";
@@ -26,7 +30,6 @@ import {
 import {
   AcountDataType,
   EditPickerResponseType,
-  ParamsMiddlewareType,
   PhoneType,
   PickersAxiosResponseType,
   PickersExportResponseType,
@@ -39,16 +42,13 @@ import { AxiosResponse } from "axios";
 import i18next from "i18next";
 import { DATE_FORMATS } from "utils/constants";
 
-import { actions } from "reducers/pickers";
-import { PayloadAction } from "@reduxjs/toolkit";
-
 const sagas = [
-  takeLatest(actions.getPendingUserRequest.toString(), getPickers),
+  takeLatest(pickersTypes.PENDING_USER_GET_REQUEST, getPickers),
   takeLatest(
-    actions.getPendingUserExportRequest.toString(),
+    pickersTypes.PENDING_USER_EXPORT_GET_REQUEST,
     getPendingUserExport
   ),
-  takeLatest(actions.getMorePendingUserRequest.toString(), getMorePendingUser),
+  takeLatest(pickersTypes.PENDING_USER_GET_MORE_REQUEST, getMorePendingUser),
   takeLatest(
     detailPickerTypes.PENDING_USER_ADMIN_PICKER_GET_REQUEST,
     getPendingUserPicker
@@ -149,45 +149,56 @@ const process = (body: //TODO: vehiculos any?
   };
 };
 function* getPickers({
-  payload: params,
-}: any): Generator<
+  params,
+}: getPickersType): Generator<
   | CallEffect<AxiosResponse<PickersAxiosResponseType>>
   | PutEffect<{ type: string; pendingUsers: PickersResponse }>
   | PutEffect<{ type: string }>,
   void,
   PickersResponseType
 > {
-  console.log("GET PICKERS PARAMS: ", params);
   const response = yield call(pickersMiddleware.getPickers, params);
   if (response.status !== 200) {
-    yield put(actions.getPendingUserError());
+    yield put(pickersActions.getPendingUserError());
   } else {
     const {
       result: { items },
-      ...rest
+      limit,
+      offset,
+      hasMore,
     } = response.data;
-    yield put(actions.getPendingUserSuccess({ items, ...rest }));
+    yield put(
+      pickersActions.getPendingUserSuccess({ items, limit, offset, hasMore })
+    );
   }
 }
 
 function* getMorePendingUser({
-  payload,
-}: PayloadAction<ParamsMiddlewareType>): Generator<
+  params,
+}: getPickersType): Generator<
   | CallEffect<AxiosResponse<PickersAxiosResponseType>>
   | PutEffect<{ type: string }>,
   void,
   PickersResponseType
 > {
-  console.log("PARAMS: ", payload);
-  const response = yield call(pickersMiddleware.getPickers, payload);
+  const response = yield call(pickersMiddleware.getPickers, params);
   if (response.status !== 200) {
-    yield put(actions.getPendingUserError());
+    yield put(pickersActions.getPendingUserError());
   } else {
     const {
       result: { items },
-      ...rest
+      limit,
+      offset,
+      hasMore,
     } = response.data;
-    yield put(actions.getMorePendingUserSuccess({ items, ...rest }));
+    yield put(
+      pickersActions.getMorePendingUserSuccess({
+        items,
+        limit,
+        offset,
+        hasMore,
+      })
+    );
   }
 }
 
@@ -205,7 +216,7 @@ function* getPendingUserPicker({
     const { result } = response.data;
     yield put(detailPickerActions.getPendingUserPickerSuccess(result));
     yield put(
-      actions.setActualPage(
+      pickersActions.setActualPage(
         result.status.id === 4 || result.status.id === 5 ? "ACTIVE" : "PENDING"
       )
     );
@@ -217,17 +228,19 @@ function* getPendingUserExport({
   element,
 }: getPickersType): Generator<
   | CallEffect<AxiosResponse<PickersExportResponseType>>
-  | PutEffect<{ type: string }>,
+  | PutEffect<{ type: string; params: PickersParamsType | undefined }>
+  | PutEffect<{ type: string; params: CsvResponseType }>
+  | PutEffect<{ type: string; content: any }>,
   void,
   CsvResponseType
 > {
   const response = yield call(pickersMiddleware.getPickersExport, params);
 
   if (response.status !== 200) {
-    yield put(actions.getPendingUserExportError());
+    yield put(pickersActions.getPendingUserExportError());
   } else {
     createCSV(response.data);
-    yield put(actions.getPendingUserExportSuccess());
+    yield put(pickersActions.getPendingUserExportSuccess(response));
     yield put(
       notificationActions.showNotification({
         level: "success",
