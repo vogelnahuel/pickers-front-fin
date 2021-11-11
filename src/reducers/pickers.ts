@@ -59,7 +59,7 @@ export const pickersSlice = createSlice({
       state.seeMore = payload.hasMore;
       state.filtersExtraSeeMore.offset = payload.offset + payload.limit;
     },
-    getPendingUserError: (state: PickerStateType) => {},
+    getPendingUserError: () => {},
     setPendingUserFilters: (
       state: PickerStateType,
       action: PayloadAction<PickersParamsType>
@@ -89,7 +89,7 @@ export const pickersSlice = createSlice({
       state.filtersExtraSeeMore.offset = payload.offset + payload.limit;
       state.seeMore = payload.hasMore;
     },
-    getMorePendingUserError: (state: PickerStateType) => {},
+    getMorePendingUserError: () => {},
     getPendingUserExportRequest: (
       state: PickerStateType,
       action: PayloadAction<{
@@ -97,8 +97,8 @@ export const pickersSlice = createSlice({
         element: HTMLElement;
       }>
     ) => {},
-    getPendingUserExportSuccess: (state: PickerStateType) => {},
-    getPendingUserExportError: (state: PickerStateType) => {},
+    getPendingUserExportSuccess: () => {},
+    getPendingUserExportError: () => {},
   },
   extraReducers: (builder) =>
     builder

@@ -5,6 +5,7 @@ import {
   PutEffect,
   takeLatest,
 } from "redux-saga/effects";
+import { PayloadAction } from "@reduxjs/toolkit";
 import {
   actions as detailPickerActions,
   types as detailPickerTypes,
@@ -40,7 +41,6 @@ import i18next from "i18next";
 import { DATE_FORMATS } from "utils/constants";
 
 import { actions } from "reducers/pickers";
-import { PayloadAction } from "@reduxjs/toolkit";
 
 const sagas = [
   takeLatest(actions.getPendingUserRequest.toString(), getPickers),
@@ -149,16 +149,16 @@ const process = (body: //TODO: vehiculos any?
   };
 };
 function* getPickers({
-  payload: params,
-}: any): Generator<
+  payload,
+}: PayloadAction<ParamsMiddlewareType>): Generator<
   | CallEffect<AxiosResponse<PickersAxiosResponseType>>
   | PutEffect<{ type: string; pendingUsers: PickersResponse }>
   | PutEffect<{ type: string }>,
   void,
   PickersResponseType
 > {
-  console.log("GET PICKERS PARAMS: ", params);
-  const response = yield call(pickersMiddleware.getPickers, params);
+  console.log("GET PICKERS PARAMS: ", payload);
+  const response = yield call(pickersMiddleware.getPickers, payload);
   if (response.status !== 200) {
     yield put(actions.getPendingUserError());
   } else {
@@ -178,7 +178,6 @@ function* getMorePendingUser({
   void,
   PickersResponseType
 > {
-  console.log("PARAMS: ", payload);
   const response = yield call(pickersMiddleware.getPickers, payload);
   if (response.status !== 200) {
     yield put(actions.getPendingUserError());

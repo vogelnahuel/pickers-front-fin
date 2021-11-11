@@ -95,8 +95,8 @@ export type PickerContainerTypes = {
   pag: string;
   actualPage: string;
   reset: Function;
-  //getPendingUser: Function;
-  getPendingUser: (params: ParamsMiddlewareType) => void;
+  getPendingUser: Function;
+  //getPendingUser: (params: ParamsMiddlewareType) => void;
   setPendingUserFilters: Function;
   setPendingUserExtraFilters: Function;
   setActualPage: Function;

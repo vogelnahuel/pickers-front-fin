@@ -21,8 +21,6 @@ const PendingUserAdminContainer: React.FC<PickerContainerTypes> = (
     const filtersExtra = { limit: 3 };
     props.setPendingUserExtraFilters(filtersExtra);
     props.setPendingUserFilters(filters);
-    const request = { ...filtersExtra, ...filters };
-    console.log("Request: ", request);
     props.getPendingUser({ ...filtersExtra, ...filters });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.actualPage]);

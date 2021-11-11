@@ -1,6 +1,5 @@
 // import { createStore, applyMiddleware, compose } from "redux";
-import { createBrowserHistory } from "history";
-import { connectRouter, routerMiddleware } from "connected-react-router";
+
 // import reducer from "./reducers/index";
 
 // import createSagaMiddleware from "redux-saga";
@@ -41,15 +40,13 @@ import { connectRouter, routerMiddleware } from "connected-react-router";
 
 // export default store;
 
+import { createBrowserHistory } from "history";
+import { routerMiddleware } from "connected-react-router";
 import createSagaMiddleware from "@redux-saga/core";
 import { configureStore } from "@reduxjs/toolkit";
 import rootSaga from "./sagas";
 
-// Se obtienen todos los reduces
-// import counterReducer from "slices/counter/counterSlice";
-// import pickersReducer from "reducers/pickers";
-// import dashboardReducer from "slices/dashboard";
-// import loginReducer from "slices/login";
+// Se obtienen todos los reducers
 import rootReducer from "reducers";
 
 const sagaMiddleware = createSagaMiddleware();
