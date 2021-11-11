@@ -25,36 +25,13 @@ export type ParamsMiddlewareType = {
   offset?: number;
 };
 
-export type AcountDataType = {
-  bankIdentifier: string;
-  bankName: string;
-  fiscalNumber: string;
-};
 
-export type PhoneType = {
-  areaNumber: string;
-  countryNumber: string;
-  number: string;
-  registerDate: string;
-};
 
 export type StatusType = {
   description: string;
   id: Number;
 };
 
-export type VehicleType = {
-  approve: boolean | null;
-  expirationDateDriverLicense: string | null;
-  expirationDateIdentificationVehicle: string | null;
-  expirationDatePolicyVehicle: string | null;
-  patent: string | null;
-};
-
-export type VehicleGroupType = {
-  bicycle?: VehicleType;
-  motorcycle?: VehicleType;
-};
 
 export type PhoneValidationSchemaType = {
   areaNumber: string;
@@ -68,21 +45,153 @@ export type DetailPickerValidationSchema = {
    vehicle: any;
 };
 
-export type PickerType = {
-  accountingData: AcountDataType;
-  dateOfBirth: string;
-  email: string;
-  enable: boolean;
-  expirationDatePolicyPersonal: string;
-  id: number;
-  identificationNumber: string;
-  name: string;
+
+
+export type PhoneType = {
+  areaNumber: string;
+  countryNumber: string;
+  number: string;
+  registerDate?: string;
+};
+
+
+export type PersonalDataType= {
+  name: string,
+  surname: string,
+  dateOfBirth: string | null,
+  identificationNumber: number | null,
+  email: string,
   phone: PhoneType;
-  registerDate: string;
+};
+
+export type VehicleType = {
+type: string,
+active: boolean,
+approve: boolean,
+patent: string,
+expirationDateDriverLicense: string,
+expirationDateIdentificationVehicle: string,
+expirationDatePolicyVehicle: string
+};
+// "result": {
+//   "id": 192,
+//   "enable": false,
+//   "registerDatetime": null,
+//   "status": {
+//       "id": 1,
+//       "description": "string"
+//   },
+//   "personalData": {
+//       "name": null,
+//       "surname": null,
+//       "dateOfBirth": null,
+//       "identificationNumber": null,
+//       "email": "user@pickit.net",
+//       "phone": {
+//           "countryNumber": null,
+//           "areaNumber": null,
+//           "number": null
+//       }
+//   },
+//   "accountingData": {
+//       "bankIdentifier": null,
+//       "bankName": null,
+//       "fiscalNumber": null,
+//   },
+//   "vehicle": {
+//       "type": "motorcycle",
+//       "active": true,
+//       "approve": true,
+//       "patent": "string",
+//       "expirationDateDriverLicense": "string",
+//       "expirationDateIdentificationVehicle": "string",
+//       "expirationDatePolicyVehicle": "string"
+//   },
+//   "files": {
+//       "personalData": {
+//           "status": "COMPLETED" | "EMPTY" | "PENDING",
+//           "contents": [
+//               {
+//                   "tag": "{TAG_DNI_DORSO}", //contiene el tag definido para el dorso del dni
+//                   "isUpload": true | false //valor por defecto en false
+//               },
+//               {
+//                   "tag": "{TAG_DNI_FRENTE}",
+//                   "isUpload": true | false
+//               },
+//               {
+//                   "tag": "{TAG_ROSTRO_USUARIO}",
+//                   "isUpload": true | false
+//               }
+//           ]
+//       },
+//       "accountingData": {
+//           "status": "COMPLETED" | "EMPTY" | "PENDING",
+//           "contents": [
+//               {
+//                   "tag": "{TAG_CBU}",
+//                   "isUpload": true | false
+//               },
+//               {
+//                   "tag": "{TAG_CUIT}",
+//                   "isUpload": true | false
+//               }
+//           ]
+//       },
+//       "vehicle": { //vehiculo habilitado
+//           "status": "COMPLETED" | "EMPTY" | "PENDING",
+//           "contents": [
+//               {
+//                   "tag": "{TAG_LICENCIA_CONDUCTOR}",
+//                   "isUpload": true
+//               },
+//               {
+//                   "tag": "{TAG_CEDULA_FRENTE}",
+//                   "isUpload": false
+//               },
+//               {
+//                   "tag": "{TAG_CEDULA_DORSO}",
+//                   "isUpload": false
+//               },
+//               {
+//                   "tag": "{TAG_SEGURO_AUTOMORO}",
+//                   "isUpload": false
+//               }
+//           ]
+//       }
+//   }
+// }
+export type AcountDataType = {
+  bankIdentifier: string;
+  bankName: string;
+  fiscalNumber: string;
+};
+export type DataContentType={
+  tag:string,
+  isUpload:boolean
+}
+
+export type DataFilesType ={
+  status   : string
+  contents : DataContentType[]
+}
+
+
+export type filesType= {
+  personalData:DataFilesType
+  accountingData:DataFilesType
+  vehicle:DataFilesType
+}
+
+export type PickerType = {
+  id: number;
+  enable: boolean,
+  registerDatetime: string,
   status: StatusType;
-  surname: string;
-  vehicle: VehicleGroupType;
-  vehicleType: string;
+  personalData:  PersonalDataType;
+  accountingData:AcountDataType
+  vehicle: VehicleType;
+  files:filesType
 };
 
 export type PickerContainerTypes = {

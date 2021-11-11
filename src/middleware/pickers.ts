@@ -38,3 +38,10 @@ export const postAprovePicker = (
   params: PickerType
 ): Promise<AxiosResponse<EditPickerResponseType>> =>
   API.post(`/ms-admin-rest/api/v1.0/pickers/${params.id}/approve`, params);
+
+export const fileUpload = (id:number,params:any):Promise<AxiosResponse<any>> => API.put(`/ms-admin-rest/api/v1.0/pickers/${id}/files`, params)
+
+export const getFile = (id:number,tag:string):Promise<AxiosResponse<any>> => API.get(`/ms-admin-rest/api/v1.0/pickers/${id}/files/${tag}`)
+
+export const deleteFile = (id:number,tag:string):Promise<AxiosResponse<any>> => API.remove(`/ms-admin-rest/api/v1.0/pickers/${id}/files/${tag}`)
+
