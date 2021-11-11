@@ -215,7 +215,6 @@ const reducer = (
         ...state,
         detailTransactionModalOpen: false,
       };
-
     case types.TRANSACTIONS_GET_MORE_REQUEST:
     case detailTransactionTypes.DETAIL_TRANSACTIONS_MENSSAGES_REQUEST:
     case detailTransactionTypes.DETAIL_TRANSACTIONS_DEVOLUTION_UNDELIVERED_REQUEST:
