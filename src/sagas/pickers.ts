@@ -89,6 +89,14 @@ const process = (body: //TODO: vehiculos any?
     dateOfBirth: moment(body.dateOfBirth, DATE_FORMATS.shortDate).format(
       DATE_FORMATS.shortISODate
     ),
+    expirationDatePolicyPersonal:
+    body.expirationDatePolicyPersonal &&
+    body.expirationDatePolicyPersonal.match(DATE_FORMATS.regexshortDate)
+      ? moment(
+          body.expirationDatePolicyPersonal,
+          DATE_FORMATS.shortDate
+        ).format(DATE_FORMATS.shortISODate)
+      : body.expirationDatePolicyPersonal,
     accountingData: {
       ...body.accountingData,
       fiscalNumber:
@@ -134,14 +142,7 @@ const process = (body: //TODO: vehiculos any?
                 DATE_FORMATS.shortDate
               ).format(DATE_FORMATS.shortISODate)
             : body.vehicle[body.vehicleType].expirationDateDriverLicense,
-        expirationDatePolicyPersonal:
-          body.vehicle[body.vehicleType].expirationDatePolicyPersonal &&
-          body.vehicle[body.vehicleType].expirationDatePolicyPersonal.match(DATE_FORMATS.regexshortDate)
-            ? moment(
-                body.expirationDatePolicyPersonal,
-                DATE_FORMATS.shortDate
-              ).format(DATE_FORMATS.shortISODate)
-            : body.expirationDatePolicyPersonal,
+      
       },
     },
   };

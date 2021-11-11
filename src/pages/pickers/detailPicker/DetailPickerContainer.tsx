@@ -80,6 +80,14 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
             i18next.t("global:error.input.invalidFormat")
           ),
       }),
+      expirationDatePolicyPersonal: yup
+        .string()
+        .nullable()
+        .required(i18next.t("global:error.input.required"))
+        .matches(
+          DATE_FORMATS.regex,
+          i18next.t("global:error.input.invalidFormat")
+        ),
       vehicle:
         props.pendingUserAdminPicker.vehicleType === "motorcycle"
           ? yup.object({
@@ -93,14 +101,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
                     VALIDATION_REGEX.regPatent,
                     i18next.t("global:error.input.specialCharacters")
                   ),
-                expirationDatePolicyPersonal: yup
-                  .string()
-                  .nullable()
-                  .required(i18next.t("global:error.input.required"))
-                  .matches(
-                    DATE_FORMATS.regex,
-                    i18next.t("global:error.input.invalidFormat")
-                  ),
+
                 expirationDatePolicyVehicle: yup
                   .string()
                   .nullable()
@@ -108,10 +109,6 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
                   .matches(
                     DATE_FORMATS.regex,
                     i18next.t("global:error.input.invalidFormat")
-                  )
-                  .matches(
-                    DATE_FORMATS.regexValidCharacter,
-                    i18next.t("global:error.input.specialCharacters")
                   ),
                 expirationDateIdentificationVehicle: yup
                   .string()
@@ -120,10 +117,6 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
                   .matches(
                     DATE_FORMATS.regex,
                     i18next.t("global:error.input.invalidFormat")
-                  )
-                  .matches(
-                    DATE_FORMATS.regexValidCharacter,
-                    i18next.t("global:error.input.specialCharacters")
                   ),
                 expirationDateDriverLicense: yup
                   .string()
@@ -132,10 +125,6 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
                   .matches(
                     DATE_FORMATS.regex,
                     i18next.t("global:error.input.invalidFormat")
-                  )
-                  .matches(
-                    DATE_FORMATS.regexValidCharacter,
-                    i18next.t("global:error.input.specialCharacters")
                   ),
               }),
             })

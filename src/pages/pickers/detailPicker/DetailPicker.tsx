@@ -100,25 +100,25 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                               11
                             ),
                     },
+                    
+                                            expirationDatePolicyPersonal: formatDate(
+                                              pendingUserAdminPicker.expirationDatePolicyPersonal
+                                            ),
+
                     dateOfBirth:
                       pendingUserAdminPicker.dateOfBirth &&
                       !pendingUserAdminPicker.dateOfBirth.includes("/")
                         ? moment(
                             pendingUserAdminPicker.dateOfBirth,
                             DATE_FORMATS.shortISODate
-                          ).format(DATE_FORMATS.shortDate)
-                        : pendingUserAdminPicker.dateOfBirth,
-                    vehicle: {
+                          ).format(DATE_FORMATS.shortDate)  
+                        : pendingUserAdminPicker.dateOfBirth,  
+                    vehicle: {  
                       ...pendingUserAdminPicker.vehicle,
                       [pendingUserAdminPicker.vehicleType]: {
                         ...pendingUserAdminPicker.vehicle[
                           pendingUserAdminPicker.vehicleType
-                        ],
-
-                        expirationDatePolicyPersonal: formatDate(
-                          pendingUserAdminPicker.expirationDatePolicyPersonal
-                        ),
-
+                        ],                          
 
                         expirationDatePolicyVehicle: formatDate(
                           pendingUserAdminPicker?.vehicle[
@@ -377,7 +377,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                     <div className="container-detailPicker-col-sm-6">
                       <Field
                         type="text"
-                        name={`vehicle.${initialValues.vehicleType}.expirationDatePolicyPersonal`}
+                        name={`expirationDatePolicyPersonal`}
                         label={i18next.t(
                           "detailPicker:label.insurance.personalAccidentInsuranceExpiration"
                         )}
