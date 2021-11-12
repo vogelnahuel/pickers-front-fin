@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ParamsMiddlewareType, PickerType } from "pages/pickers/types";
 import { DetailPickerStateType } from "./types/detailPicker";
-import { ParamGetPendingUser } from "sagas/types/pickers";
+
 import { RootState } from "store";
 import { isRequestAction, isResponseAction } from "reducers";
 
@@ -14,16 +14,21 @@ export const initialState: DetailPickerStateType = {
     enable: false,
     registerDatetime: "",
     status: {
-      id: 0,
       description: "",
+      id: 0,
     },
     personalData: {
       name: "",
       surname: "",
-      dateOfBirth: "",
+      dateOfBirth: null,
       identificationNumber: null,
       email: "",
-      phone: {},
+      phone: {
+        areaNumber: "",
+        countryNumber: "",
+        number: "",
+        registerDate: undefined,
+      },
     },
     accountingData: {
       bankIdentifier: "",
@@ -31,19 +36,26 @@ export const initialState: DetailPickerStateType = {
       fiscalNumber: "",
     },
     vehicle: {
-      bicycle: {
-        approve: false,
-        expirationDateDriverLicense: "",
-        expirationDateIdentificationVehicle: "",
-        expirationDatePolicyVehicle: "",
-        patent: "",
+      type: "",
+      active: false,
+      approve: false,
+      patent: "",
+      expirationDateDriverLicense: "",
+      expirationDateIdentificationVehicle: "",
+      expirationDatePolicyVehicle: "",
+    },
+    files: {
+      personalData: {
+        status: "",
+        contents: [],
       },
-      motorcycle: {
-        approve: false,
-        expirationDateDriverLicense: "",
-        expirationDateIdentificationVehicle: "",
-        expirationDatePolicyVehicle: "",
-        patent: "",
+      accountingData: {
+        status: "",
+        contents: [],
+      },
+      vehicle: {
+        status: "",
+        contents: [],
       },
     },
   },
@@ -55,7 +67,7 @@ export const detailPickerSlice = createSlice({
   reducers: {
     getPendingUserPickerRequest: (
       state: DetailPickerStateType,
-      action: PayloadAction<ParamGetPendingUser>
+      action: PayloadAction<number>
     ) => {},
     getPendingUserPickerSuccess: (
       state: DetailPickerStateType,
@@ -63,7 +75,7 @@ export const detailPickerSlice = createSlice({
     ) => {
       const { payload } = action;
       state.pendingUserAdminPicker = payload;
-      state.nameDisplay = `${payload.name} ${payload.surname}`;
+      state.nameDisplay = `${payload.personalData.name} ${payload.personalData.surname}`;
     },
     getPendingUserPickerError: () => {},
     setDirty: (

@@ -1,3 +1,5 @@
+import { TypeOfShape } from "yup/lib/object";
+
 export type ChangePageTypes = {
   props: {
     setActualPage: Function;
@@ -23,35 +25,9 @@ export type ParamsMiddlewareType = {
   offset?: number;
 };
 
-export type AcountDataType = {
-  bankIdentifier: string;
-  bankName: string;
-  fiscalNumber: string;
-};
-
-export type PhoneType = {
-  areaNumber: string;
-  countryNumber: string;
-  number: string;
-  registerDate: string;
-};
-
 export type StatusType = {
   description: string;
   id: number;
-};
-
-export type VehicleType = {
-  approve: boolean | null;
-  expirationDateDriverLicense: string | null;
-  expirationDateIdentificationVehicle: string | null;
-  expirationDatePolicyVehicle: string | null;
-  patent: string | null;
-};
-
-export type VehicleGroupType = {
-  bicycle?: VehicleType;
-  motorcycle?: VehicleType;
 };
 
 export type PhoneValidationSchemaType = {
@@ -59,28 +35,78 @@ export type PhoneValidationSchemaType = {
   number: string;
 };
 
-export type DetailPickerValidationSchema = {
+export type PersonalDataValidationType = {
   name: string;
   surname: string;
   phone: PhoneValidationSchemaType;
-  vehicle: any;
+};
+export type vehicleValidationType = {
+  patent: string;
+  expirationDatePolicyVehicle: string;
+  expirationDateIdentificationVehicle: string;
+  expirationDateDriverLicense: string;
+};
+
+export type DetailPickerValidationSchema = {
+  personalData: PersonalDataValidationType;
+  vehicle: vehicleValidationType | TypeOfShape<{}>;
+};
+
+export type PhoneType = {
+  areaNumber: string;
+  countryNumber: string;
+  number: string;
+  registerDate?: string;
+};
+
+export type PersonalDataType = {
+  name: string;
+  surname: string;
+  dateOfBirth: string | null;
+  identificationNumber: number | null;
+  email: string;
+  phone: PhoneType;
+};
+
+export type VehicleType = {
+  type: string;
+  active: boolean;
+  approve: boolean;
+  patent: string;
+  expirationDateDriverLicense: string;
+  expirationDateIdentificationVehicle: string;
+  expirationDatePolicyVehicle: string;
+};
+export type AcountDataType = {
+  bankIdentifier: string;
+  bankName: string;
+  fiscalNumber: string;
+};
+export type DataContentType = {
+  tag: string;
+  isUpload: boolean;
+};
+
+export type DataFilesType = {
+  status: string;
+  contents: DataContentType[];
+};
+
+export type FilesType = {
+  personalData: DataFilesType;
+  accountingData: DataFilesType;
+  vehicle: DataFilesType;
 };
 
 export type PickerType = {
-  accountingData: AcountDataType;
-  dateOfBirth: string;
-  email: string;
-  enable: boolean;
-  expirationDatePolicyPersonal: string;
   id: number;
-  identificationNumber: string;
-  name: string;
-  phone: PhoneType;
-  registerDate: string;
+  enable: boolean;
+  registerDatetime: string;
   status: StatusType;
-  surname: string;
-  vehicle: VehicleGroupType;
-  vehicleType: string;
+  personalData: PersonalDataType;
+  accountingData: AcountDataType;
+  vehicle: VehicleType;
+  files: FilesType;
 };
 
 export type PickerContainerTypes = {

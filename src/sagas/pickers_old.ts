@@ -22,7 +22,6 @@ import {
   getPickersType,
   PickerResponseType,
   PickerExportType,
-  ParamGetPendingUser,
   PostEditPickerType,
   CsvResponseType,
   PickersResponseType,
@@ -57,12 +56,12 @@ const sagas = [
     detailPickerTypes.PENDING_USER_ADMIN_PICKER_EXPORT_GET_REQUEST,
     getPendingUserPickerExport
   ),
-  takeLatest(
-    detailPickerTypes.PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_REQUEST,
-    postPendingUserDocumentsEdit
-  ),
-  takeLatest(detailPickerTypes.PICKER_APROVE_POST_REQUEST, postAprovePicker),
-  takeLatest(detailPickerTypes.PICKER_EDIT_POST_REQUEST, postEditPicker),
+  // takeLatest(
+  //   detailPickerTypes.PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_REQUEST,
+  //   postPendingUserDocumentsEdit
+  // ),
+  // takeLatest(detailPickerTypes.PICKER_APROVE_POST_REQUEST, postAprovePicker),
+  // takeLatest(detailPickerTypes.PICKER_EDIT_POST_REQUEST, postEditPicker),
 ];
 
 export default sagas;
@@ -204,7 +203,7 @@ function* getMorePendingUser({
 
 function* getPendingUserPicker({
   params,
-}: ParamGetPendingUser): Generator<
+}: any): Generator<
   CallEffect<AxiosResponse<PickerType>> | PutEffect<{ type: string }>,
   void,
   PickerResponseType
@@ -278,107 +277,107 @@ function* getPendingUserPickerExport({
   }
 }
 
-function* postPendingUserDocumentsEdit({
-  params,
-  element,
-}: PostEditPickerType): Generator<
-  | CallEffect<AxiosResponse<EditPickerResponseType>>
-  | PutEffect<{ type: string; content: any }>
-  | PutEffect<{ type: string }>,
-  void,
-  PickerResponseType
-> {
-  let body = process(params);
-  const response = yield call(pickersMiddleware.postPickerDocumentsEdit, body);
+// function* postPendingUserDocumentsEdit({
+//   params,
+//   element,
+// }: PostEditPickerType): Generator<
+//   | CallEffect<AxiosResponse<EditPickerResponseType>>
+//   | PutEffect<{ type: string; content: any }>
+//   | PutEffect<{ type: string }>,
+//   void,
+//   PickerResponseType
+// > {
+//   let body = process(params);
+//   const response = yield call(pickersMiddleware.postPickerDocumentsEdit, body);
 
-  if (response.status !== 200) {
-    yield put(
-      notificationActions.showNotification({
-        level: "error",
-        title: i18next.t("global:title.modal.connectionError"),
-        body: i18next.t("global:label.modal.connectionError"),
-        element,
-      })
-    );
-    yield put(detailPickerActions.getPendingUserPickerDocumentsEditError());
-  } else {
-    yield put(goBack());
-    yield put(
-      detailPickerActions.getPendingUserPickerDocumentsEditSuccess(body)
-    );
-  }
-}
+//   if (response.status !== 200) {
+//     yield put(
+//       notificationActions.showNotification({
+//         level: "error",
+//         title: i18next.t("global:title.modal.connectionError"),
+//         body: i18next.t("global:label.modal.connectionError"),
+//         element,
+//       })
+//     );
+//     yield put(detailPickerActions.getPendingUserPickerDocumentsEditError());
+//   } else {
+//     yield put(goBack());
+//     yield put(
+//       detailPickerActions.getPendingUserPickerDocumentsEditSuccess(body)
+//     );
+//   }
+// }
 
-function* postAprovePicker({
-  params,
-  goBack,
-  element,
-}: PostEditPickerType): Generator<
-  | CallEffect<AxiosResponse<EditPickerResponseType>>
-  | PutEffect<{ type: string; content: any }>
-  | PutEffect<{ type: string }>,
-  void,
-  PickerResponseType
-> {
-  let body = process(params);
-  const response = yield call(pickersMiddleware.postAprovePicker, body);
-  if (response.status !== 200) {
-    yield put(
-      notificationActions.showNotification({
-        level: "error",
-        title: i18next.t("global:title.modal.connectionError"),
-        body: i18next.t("global:label.modal.connectionError"),
-        element,
-      })
-    );
-    yield put(detailPickerActions.getAprovePickerError());
-  } else {
-    yield put(
-      notificationActions.showNotification({
-        level: "success",
-        title: i18next.t("detailPicker:title.modal.approved"),
-        body: i18next.t("detailPicker:label.modal.approved"),
-        onClick: goBack,
-        element,
-      })
-    );
-    yield put(detailPickerActions.getAprovePickerSuccess(body));
-  }
-}
+// function* postAprovePicker({
+//   params,
+//   goBack,
+//   element,
+// }: PostEditPickerType): Generator<
+//   | CallEffect<AxiosResponse<EditPickerResponseType>>
+//   | PutEffect<{ type: string; content: any }>
+//   | PutEffect<{ type: string }>,
+//   void,
+//   PickerResponseType
+// > {
+//   let body = process(params);
+//   const response = yield call(pickersMiddleware.postAprovePicker, body);
+//   if (response.status !== 200) {
+//     yield put(
+//       notificationActions.showNotification({
+//         level: "error",
+//         title: i18next.t("global:title.modal.connectionError"),
+//         body: i18next.t("global:label.modal.connectionError"),
+//         element,
+//       })
+//     );
+//     yield put(detailPickerActions.getAprovePickerError());
+//   } else {
+//     yield put(
+//       notificationActions.showNotification({
+//         level: "success",
+//         title: i18next.t("detailPicker:title.modal.approved"),
+//         body: i18next.t("detailPicker:label.modal.approved"),
+//         onClick: goBack,
+//         element,
+//       })
+//     );
+//     yield put(detailPickerActions.getAprovePickerSuccess(body));
+//   }
+// }
 
-function* postEditPicker({
-  params,
-  goBack,
-  element,
-}: PostEditPickerType): Generator<
-  | CallEffect<AxiosResponse<EditPickerResponseType>>
-  | PutEffect<{ type: string; content: any }>
-  | PutEffect<{ type: string }>,
-  void,
-  PickerResponseType
-> {
-  let body = process(params);
-  const response = yield call(pickersMiddleware.postEditPicker, body);
-  if (response.status !== 200) {
-    yield put(
-      notificationActions.showNotification({
-        level: "error",
-        title: i18next.t("global:title.modal.connectionError"),
-        body: i18next.t("global:label.modal.connectionError"),
-        element,
-      })
-    );
-    yield put(detailPickerActions.getEditPickerError());
-  } else {
-    yield put(
-      notificationActions.showNotification({
-        level: "success",
-        title: i18next.t("global:title.modal.changesSaved"),
-        body: i18next.t("global:label.modal.changesSaved"),
-        onClick: goBack,
-        element,
-      })
-    );
-    yield put(detailPickerActions.getEditPickerSuccess(body));
-  }
-}
+// function* postEditPicker({
+//   params,
+//   goBack,
+//   element,
+// }: PostEditPickerType): Generator<
+//   | CallEffect<AxiosResponse<EditPickerResponseType>>
+//   | PutEffect<{ type: string; content: any }>
+//   | PutEffect<{ type: string }>,
+//   void,
+//   PickerResponseType
+// > {
+//   let body = process(params);
+//   const response = yield call(pickersMiddleware.postEditPicker, body);
+//   if (response.status !== 200) {
+//     yield put(
+//       notificationActions.showNotification({
+//         level: "error",
+//         title: i18next.t("global:title.modal.connectionError"),
+//         body: i18next.t("global:label.modal.connectionError"),
+//         element,
+//       })
+//     );
+//     yield put(detailPickerActions.getEditPickerError());
+//   } else {
+//     yield put(
+//       notificationActions.showNotification({
+//         level: "success",
+//         title: i18next.t("global:title.modal.changesSaved"),
+//         body: i18next.t("global:label.modal.changesSaved"),
+//         onClick: goBack,
+//         element,
+//       })
+//     );
+//     yield put(detailPickerActions.getEditPickerSuccess(body));
+//   }
+// }

@@ -74,6 +74,7 @@
     font-weight: 800;
     font-size: 18px;
     text-align: center;
+    cursor: pointer;
 }
 .modal-button-submit.error {
     background: #EB5757;
@@ -105,6 +106,7 @@
     border: 2.5px solid #0098FF;
     box-sizing: border-box;
     border-radius: 50px;
+    cursor: pointer;
 }
 .modal-button-cancel.warning {
     border-color: #0098FF;

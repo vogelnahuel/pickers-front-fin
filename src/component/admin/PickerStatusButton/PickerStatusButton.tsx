@@ -13,8 +13,8 @@ import { AppDispatch, RootState } from "store";
 import { PickerStatusButtonType } from "./types";
 import {
   actions as pendingUserActions,
-  selectors as pendingUserSelectors,
-} from "reducers/pickers_old";
+  pickersSelector as pendingUserSelectors,
+} from "reducers/pickers";
 import i18next from "i18next";
 export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
   showNotification,
@@ -160,7 +160,7 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
 
 const mapStateToProps = (state: RootState) => ({
   isDirty: pendingUserAdminPickerSelectors(state).dirty,
-  actualPage: pendingUserSelectors.getActualPage(state),
+  actualPage: pendingUserSelectors(state).actualPage,
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
