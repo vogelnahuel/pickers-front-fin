@@ -1,3 +1,4 @@
+import { TypeOfShape } from "yup/lib/object";
 
 
 export type ChangePageTypes = {
@@ -38,12 +39,23 @@ export type PhoneValidationSchemaType = {
   number: string;
 };
 
-export type DetailPickerValidationSchema = {
-  name: string;
-  surname: string;
+export type PersonalDataValidationType ={
+  name:string,
+  surname:string
   phone: PhoneValidationSchemaType;
-  vehicle: any;
+}
+export type vehicleValidationType={
+  patent:string
+  expirationDatePolicyVehicle:string
+  expirationDateIdentificationVehicle:string
+  expirationDateDriverLicense:string
+}
+
+export type DetailPickerValidationSchema = {
+  personalData:PersonalDataValidationType;
+  vehicle:  vehicleValidationType | TypeOfShape<{}>;
 };
+
 
 
 

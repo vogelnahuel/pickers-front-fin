@@ -32,7 +32,7 @@ export const TablePickers: React.FC<TableAdminPropsType> = ({
               <td> {user.personalData.identificationNumber} </td>
               <td>{user.personalData.email}</td>
               <td>
-                {i18next.t(`tablePickers:label.table.${user?.vehicle}`)}
+                {i18next.t(`tablePickers:label.table.${user?.vehicle.type}`)}
               </td>
               {actualPage === "PENDING" ? (
                 <td className="table-registro">
