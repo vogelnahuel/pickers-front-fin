@@ -52,4 +52,8 @@ export type PostEditPickerType = {
   element: HTMLElement;
 };
 
+export type PickerExportParamType={
+  email:string | undefined;
+}
+
 export type CsvResponseType = { data: string; status: number };

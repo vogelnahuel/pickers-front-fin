@@ -33,7 +33,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
   validationSchema,
   formatDate,
 }) => {
-  console.log(pendingUserAdminPicker)
+
   return (
     <div className="background-Grey">
       <Header />
@@ -64,7 +64,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
             )}
             <div className="export-container">
               <Actions
-                getPendingUserPickerExport={getPendingUserPickerExport}
+                getPendingUserPickerExport={()=>{getPendingUserPickerExport(pendingUserAdminPicker.personalData)}}
                 pendingUserAdminPicker={pendingUserAdminPicker}
               />
             </div>

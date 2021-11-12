@@ -26,6 +26,7 @@ import {
   PostEditPickerType,
   CsvResponseType,
   PickersResponseType,
+  PickerExportParamType,
 } from "./types/pickers";
 import {
   AcountDataType,
@@ -235,6 +236,8 @@ function* getPendingUserExport({
   void,
   CsvResponseType
 > {
+  console.log("exports")
+
   const response = yield call(pickersMiddleware.getPickersExport, params);
 
   if (response.status !== 200) {
@@ -262,7 +265,12 @@ function* getPendingUserPickerExport({
   void,
   CsvResponseType
 > {
-  const response = yield call(pickersMiddleware.getPickerExport, params);
+  
+  const paramsPost: PickerExportParamType = {
+    email: params.email ,
+  };
+
+  const response = yield call(pickersMiddleware.getPickerExport, paramsPost);
   if (response.status !== 200) {
     yield put(detailPickerActions.getPendingUserPickerExportError());
   } else {
