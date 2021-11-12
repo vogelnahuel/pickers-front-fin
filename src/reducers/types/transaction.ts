@@ -39,7 +39,7 @@ export type GetTransactionsSuccessType={
     items:TransactionResponseTypeResult[]
     limit:number
     offset:number
-    hasMore?:boolean
+    hasMore:boolean
 }
 
 export type SetFilterType={

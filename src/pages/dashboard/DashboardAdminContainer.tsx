@@ -2,9 +2,8 @@ import { useEffect } from "react";
 import { connect } from "react-redux";
 import {
   actions as dashboardActions,
- dashboardSelector,
+  dashboardSelector
 } from "reducers/dashboard";
-import { actions } from "reducers/detailTransaction";
 import { AppDispatch, RootState } from "store";
 import { DashboardAdmin } from "./DashboardAdmin";
 import { DashboardContainerTypes } from "./types";

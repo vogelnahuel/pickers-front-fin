@@ -19,7 +19,7 @@ export const NotificationModal = ({
   body,
   onCloseLabel,
   onClickLabel,
-  element,
+  // element,
 }) => {
   const cerrarModal = useCallback(
     (e) => {
@@ -39,9 +39,8 @@ export const NotificationModal = ({
 
   useEffect(() => {
     if (isOpen) {
-      if (element) {
-        element.blur();
-      }
+      // if (element) {
+      // }
       document.addEventListener("keydown", (e) => cerrarModal(e, level));
     }
     return () => {
@@ -89,7 +88,7 @@ const mapStateToProps = (state) => ({
   body: notificationSelectors.getBody(state),
   onClick: notificationSelectors.onClick(state),
   onClose: notificationSelectors.onClose(state),
-  element: notificationSelectors.element(state),
+  // element: notificationSelectors.element(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

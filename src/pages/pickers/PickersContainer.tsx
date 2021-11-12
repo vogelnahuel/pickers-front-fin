@@ -65,7 +65,8 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
     params: ParamsMiddlewareType,
     element: HTMLElement
   ) => {
-    dispatch(actions.getPendingUserExportRequest({ params, element }));
+    element.blur();
+    dispatch(actions.getPendingUserExportRequest(params));
   },
   getMorePendingUser: (params: ParamsMiddlewareType) => {
     dispatch(actions.getMorePendingUserRequest(params));

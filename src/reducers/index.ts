@@ -1,4 +1,4 @@
-import { combineReducers } from "@reduxjs/toolkit";
+import { AnyAction, combineReducers } from "@reduxjs/toolkit";
 import transactions from "reducers/transactions";
 //import dashboard from "reducers/dashboard_old";
 import dashboard from "reducers/dashboard";
@@ -11,6 +11,14 @@ import notification from "reducers/notification";
 import { connectRouter } from "connected-react-router";
 
 import { RouteComponentProps } from "react-router-dom";
+
+export const isRequestAction = (action: AnyAction) => {
+  return action.type.endsWith("Request");
+};
+
+export const isResponseAction = (action: AnyAction) => {
+  return action.type.endsWith("Success") || action.type.endsWith("Error");
+};
 
 const rootReducer = (history: RouteComponentProps["history"]) =>
   combineReducers({

@@ -1,19 +1,12 @@
 import { createSlice, PayloadAction, AnyAction } from "@reduxjs/toolkit";
 import { DashboardType } from "sagas/types/dashboard";
+import { isRequestAction, isResponseAction } from "reducers";
 import { RootState } from "store";
 import { DashboardState } from "./types/dashboard";
 
 export const initialState: DashboardState = {
   fetching: false,
   dashboard: {},
-};
-
-const isRequestAction = (action: AnyAction) => {
-  return action.type.endsWith("Request");
-};
-
-const isResponseAction = (action: AnyAction) => {
-  return action.type.endsWith("Success") || action.type.endsWith("Error");
 };
 
 export const dashboardSlice = createSlice({
@@ -37,12 +30,8 @@ export const dashboardSlice = createSlice({
     }),
 });
 
-
-// Se exporta el reducer/slice para asociarlo en la creación del store
-export default dashboardSlice.reducer;
-
-// Selector del slice "pickers"
 export const dashboardSelector = (state: RootState) => state.dashboard;
 
-// Se exportan todas las acciones
 export const actions = dashboardSlice.actions;
+
+export default dashboardSlice.reducer;
