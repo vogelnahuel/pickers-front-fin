@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import {
   actions as loginActions,
-  selectors as loginSelectors,
+  loginSelector,
 } from "../../reducers/login";
 import Login from "./Login";
 import * as yup from "yup";
@@ -27,11 +27,11 @@ const LoginContainer: React.FC<LoginContainerType> = (props): JSX.Element => {
 };
 
 const mapStateToProps = (state: RootState) => ({
-  isFetching: loginSelectors.isFetching(state),
+  isFetching: loginSelector(state).fetching,
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
-  postLogin: (params: LoginType): void => {
+  postLogin: (params: LoginType) => {
     dispatch(loginActions.getLoginRequest(params));
   },
 });
