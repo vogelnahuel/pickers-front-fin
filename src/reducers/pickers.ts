@@ -2,9 +2,8 @@ import { AnyAction, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
   ParamsMiddlewareType,
   PickersParamsType,
-  PickersResponse
+  PickersResponse,
 } from "pages/pickers/types";
-//import { isRequestAction, isResponseAction } from "reducers";
 import { RootState } from "store";
 import { PickerStateType } from "./types/pickers";
 
@@ -25,11 +24,11 @@ export const initialState: PickerStateType = {
   actualPage: "PENDING",
 };
 
-export const isRequestAction = (action: AnyAction) => {
+const isRequestAction = (action: AnyAction) => {
   return action.type.endsWith("Request");
 };
 
-export const isResponseAction = (action: AnyAction) => {
+const isResponseAction = (action: AnyAction) => {
   return action.type.endsWith("Success") || action.type.endsWith("Error");
 };
 

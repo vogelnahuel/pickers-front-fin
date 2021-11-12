@@ -1,8 +1,10 @@
+import createCSV from ".,/../../src/utils/createCSV";
 import { PayloadAction } from "@reduxjs/toolkit";
 import { AxiosResponse } from "axios";
 import { goBack } from "connected-react-router";
 import i18next from "i18next";
 import moment from "moment";
+import { actions } from "reducers/pickers";
 import {
   call,
   CallEffect,
@@ -10,20 +12,13 @@ import {
   PutEffect,
   takeLatest,
 } from "redux-saga/effects";
-
-import { actions } from "reducers/pickers";
-import { actions as detailPickerActions } from "../reducers/detailPicker";
-import { actions as notificationActions } from "../reducers/notification";
-
-import createCSV from ".,/../../src/utils/createCSV";
 import { DATE_FORMATS } from "utils/constants";
 import * as pickersMiddleware from "../middleware/pickers";
-
 import {
   AcountDataType,
   EditPickerResponseType,
-  ParamsMiddlewareType,
   FilesType,
+  ParamsMiddlewareType,
   PersonalDataType,
   PickersAxiosResponseType,
   PickersExportResponseType,
@@ -32,15 +27,13 @@ import {
   StatusType,
   VehicleType,
 } from "../pages/pickers/types";
-
+import { actions as detailPickerActions } from "../reducers/detailPicker";
+import { actions as notificationActions } from "../reducers/notification";
 import {
   CsvResponseType,
-  PickerExportType,
+  PickerExportParamType,
   PickerResponseType,
   PickersResponseType,
-  PostEditPickerType,
-  getPickersType,
-  PickerExportParamType,
 } from "./types/pickers";
 
 const sagas = [
@@ -64,17 +57,6 @@ const sagas = [
 ];
 
 export default sagas;
-
-// export type PickerType = {
-//   id: number;
-//   enable: boolean,
-//   registerDatetime: string,
-//   status: StatusType;
-//   personalData:  PersonalDataType;
-//   accountingData:AcountDataType
-//   vehicle: VehicleType ;
-//   files:filesType
-// };
 
 const process = (body: //TODO: vehiculos any?
 {
@@ -232,15 +214,15 @@ function* getPendingUserExport({
 }
 
 function* getPendingUserPickerExport({
-  payload: { params, element },
-}: PayloadAction<PickerExportType>): Generator<
+  payload,
+}: PayloadAction<ParamsMiddlewareType>): Generator<
   | CallEffect<AxiosResponse<PickersExportResponseType>>
   | PutEffect<{ type: string }>,
   void,
   CsvResponseType
 > {
   const paramsPost: PickerExportParamType = {
-    email: params.email,
+    email: payload.email,
   };
 
   const response = yield call(pickersMiddleware.getPickerExport, paramsPost);
@@ -253,7 +235,6 @@ function* getPendingUserPickerExport({
         level: "success",
         title: i18next.t("global:title.modal.export"),
         body: i18next.t("global:label.modal.export"),
-        element,
       })
     );
     yield put(detailPickerActions.getPendingUserPickerExportSuccess());
@@ -278,7 +259,6 @@ function* postPendingUserDocumentsEdit({
         level: "error",
         title: i18next.t("global:title.modal.connectionError"),
         body: i18next.t("global:label.modal.connectionError"),
-        //element,
       })
     );
     yield put(detailPickerActions.getPendingUserPickerDocumentsEditError());
@@ -291,8 +271,8 @@ function* postPendingUserDocumentsEdit({
 }
 
 function* postAprovePicker({
-  payload: { params, goBack, element },
-}: PayloadAction<PostEditPickerType>): Generator<
+  payload: { params, goBack },
+}: PayloadAction<{ params: PickerType; goBack: Function }>): Generator<
   | CallEffect<AxiosResponse<EditPickerResponseType>>
   | PutEffect<{ type: string; content: any }>
   | PutEffect<{ type: string }>,
@@ -307,7 +287,6 @@ function* postAprovePicker({
         level: "error",
         title: i18next.t("global:title.modal.connectionError"),
         body: i18next.t("global:label.modal.connectionError"),
-        element,
       })
     );
     yield put(detailPickerActions.getAprovePickerError());
@@ -318,7 +297,6 @@ function* postAprovePicker({
         title: i18next.t("detailPicker:title.modal.approved"),
         body: i18next.t("detailPicker:label.modal.approved"),
         onClick: goBack,
-        element,
       })
     );
     yield put(detailPickerActions.getAprovePickerSuccess(body));
@@ -326,8 +304,8 @@ function* postAprovePicker({
 }
 
 function* postEditPicker({
-  payload: { params, goBack, element },
-}: PayloadAction<PostEditPickerType>): Generator<
+  payload: { params, goBack },
+}: PayloadAction<{ params: PickerType; goBack: Function }>): Generator<
   | CallEffect<AxiosResponse<EditPickerResponseType>>
   | PutEffect<{ type: string; content: any }>
   | PutEffect<{ type: string }>,
@@ -342,7 +320,6 @@ function* postEditPicker({
         level: "error",
         title: i18next.t("global:title.modal.connectionError"),
         body: i18next.t("global:label.modal.connectionError"),
-        element,
       })
     );
     yield put(detailPickerActions.getEditPickerError());
@@ -353,7 +330,6 @@ function* postEditPicker({
         title: i18next.t("global:title.modal.changesSaved"),
         body: i18next.t("global:label.modal.changesSaved"),
         onClick: goBack,
-        element,
       })
     );
     yield put(detailPickerActions.getEditPickerSuccess(body));

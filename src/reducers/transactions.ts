@@ -1,10 +1,11 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { isRequestAction, isResponseAction } from "reducers";
+import { createSlice, PayloadAction, AnyAction } from "@reduxjs/toolkit";
 import { FilterTransactionsType } from "sagas/types/transactions";
 import { RootState } from "store";
 import {
-  GetTransactionsSuccessType, SetFilterExtraType,
-  SetFilterType, TransactionStateType
+  GetTransactionsSuccessType,
+  SetFilterExtraType,
+  SetFilterType,
+  TransactionStateType,
 } from "./types/transaction";
 
 export const initialState: TransactionStateType = {
@@ -32,6 +33,14 @@ export const initialState: TransactionStateType = {
   seeMore: true,
 };
 
+const isRequestAction = (action: AnyAction) => {
+  return action.type.endsWith("Request");
+};
+
+const isResponseAction = (action: AnyAction) => {
+  return action.type.endsWith("Success") || action.type.endsWith("Error");
+};
+
 export const transactionSlice = createSlice({
   name: "transaction",
   initialState,
@@ -44,47 +53,54 @@ export const transactionSlice = createSlice({
     getTransactionsRequest: (
       state: TransactionStateType,
       action: PayloadAction<FilterTransactionsType>
-      ) => {},
+    ) => {},
     getMoreTransactionsRequest: (
       state: TransactionStateType,
       action: PayloadAction<FilterTransactionsType>
-      ) => {},
+    ) => {},
     getTransactionsSuccess: (
       state: TransactionStateType,
-      action: PayloadAction<GetTransactionsSuccessType>) => {
-        state.transactions= action.payload.items;
-        state.seeMore= action.payload.hasMore;
-        state.filtersExtraSeeMore.offset= action.payload.offset + action.payload.limit;
-        state.fetching= false;
+      action: PayloadAction<GetTransactionsSuccessType>
+    ) => {
+      state.transactions = action.payload.items;
+      state.seeMore = action.payload.hasMore;
+      state.filtersExtraSeeMore.offset =
+        action.payload.offset + action.payload.limit;
+      state.fetching = false;
     },
     getMoreTransactionsSuccess: (
       state: TransactionStateType,
       action: PayloadAction<GetTransactionsSuccessType>
     ) => {
-      state.transactions= state.transactions.concat(action.payload.items);
-      state.seeMore= action.payload.hasMore;
-      state.filtersExtraSeeMore.offset= action.payload.offset + action.payload.limit;
-      state.fetching= false;
+      state.transactions = state.transactions.concat(action.payload.items);
+      state.seeMore = action.payload.hasMore;
+      state.filtersExtraSeeMore.offset =
+        action.payload.offset + action.payload.limit;
+      state.fetching = false;
     },
     getTransactionsError: () => {},
     setTransactionFilters: (
       state: TransactionStateType,
-      action: PayloadAction<SetFilterType>) => {
+      action: PayloadAction<SetFilterType>
+    ) => {
       state.filters = action.payload;
     },
-    setTransactionExtraFilters: (      
+    setTransactionExtraFilters: (
       state: TransactionStateType,
-      action: PayloadAction<SetFilterExtraType>) => {
+      action: PayloadAction<SetFilterExtraType>
+    ) => {
       state.filtersExtra = { ...state.filtersExtra, ...action.payload };
     },
     setExportEnabled: (
       state: TransactionStateType,
-      action: PayloadAction< string | number | undefined>) => {
-      state.exportDisabled= action.payload === undefined;
+      action: PayloadAction<string | number | undefined>
+    ) => {
+      state.exportDisabled = action.payload === undefined;
     },
     getTransactionsExportRequest: (
       state: TransactionStateType,
-      action: PayloadAction<FilterTransactionsType>) => {},
+      action: PayloadAction<FilterTransactionsType>
+    ) => {},
     getTransactionsExportSuccess: () => {},
     getTransactionsExportError: () => {},
   },

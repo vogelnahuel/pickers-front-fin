@@ -1,9 +1,8 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, AnyAction } from "@reduxjs/toolkit";
 import { ParamsMiddlewareType, PickerType } from "pages/pickers/types";
 import { DetailPickerStateType } from "./types/detailPicker";
 
 import { RootState } from "store";
-import { isRequestAction, isResponseAction } from "reducers";
 
 export const initialState: DetailPickerStateType = {
   fetching: false,
@@ -59,6 +58,14 @@ export const initialState: DetailPickerStateType = {
       },
     },
   },
+};
+
+const isRequestAction = (action: AnyAction) => {
+  return action.type.endsWith("Request");
+};
+
+const isResponseAction = (action: AnyAction) => {
+  return action.type.endsWith("Success") || action.type.endsWith("Error");
 };
 
 export const detailPickerSlice = createSlice({
