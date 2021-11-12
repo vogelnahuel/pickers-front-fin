@@ -1,3 +1,8 @@
+import { PayloadAction } from "@reduxjs/toolkit";
+import { AxiosResponse } from "axios";
+import { goBack } from "connected-react-router";
+import i18next from "i18next";
+import moment from "moment";
 import {
   call,
   CallEffect,
@@ -5,25 +10,14 @@ import {
   PutEffect,
   takeLatest,
 } from "redux-saga/effects";
-import { PayloadAction } from "@reduxjs/toolkit";
-import moment from "moment";
 
 import { actions } from "reducers/pickers";
 import { actions as detailPickerActions } from "../reducers/detailPicker";
 import { actions as notificationActions } from "../reducers/notification";
 
 import createCSV from ".,/../../src/utils/createCSV";
+import { DATE_FORMATS } from "utils/constants";
 import * as pickersMiddleware from "../middleware/pickers";
-import { goBack } from "connected-react-router";
-import {
-  getPickersType,
-  PickerResponseType,
-  PickerExportType,
-  ParamGetPendingUser,
-  PostEditPickerType,
-  CsvResponseType,
-  PickersResponseType,
-} from "./types/pickers";
 import {
   AcountDataType,
   EditPickerResponseType,
@@ -35,9 +29,15 @@ import {
   PickerType,
   StatusType,
 } from "../pages/pickers/types";
-import { AxiosResponse } from "axios";
-import i18next from "i18next";
-import { DATE_FORMATS } from "utils/constants";
+
+import {
+  CsvResponseType,
+  ParamGetPendingUser,
+  PickerExportType,
+  PickerResponseType,
+  PickersResponseType,
+  PostEditPickerType,
+} from "./types/pickers";
 
 const sagas = [
   takeLatest(actions.getPendingUserRequest.type, getPickers),
@@ -205,27 +205,25 @@ function* getPendingUserPicker({
 }
 
 function* getPendingUserExport({
-  params,
-  element,
-}: getPickersType): Generator<
+  payload,
+}: PayloadAction<ParamsMiddlewareType>): Generator<
   | CallEffect<AxiosResponse<PickersExportResponseType>>
   | PutEffect<{ type: string }>,
   void,
   CsvResponseType
 > {
-  const response = yield call(pickersMiddleware.getPickersExport, params);
+  const response = yield call(pickersMiddleware.getPickersExport, payload);
 
   if (response.status !== 200) {
     yield put(actions.getPendingUserExportError());
   } else {
-    createCSV(response.data);
+    createCSV(response.data, "pickers");
     yield put(actions.getPendingUserExportSuccess());
     yield put(
       notificationActions.showNotification({
         level: "success",
         title: i18next.t("global:title.modal.export"),
         body: i18next.t("global:label.modal.export"),
-        element,
       })
     );
   }
@@ -244,7 +242,7 @@ function* getPendingUserPickerExport({
   if (response.status !== 200) {
     yield put(detailPickerActions.getPendingUserPickerExportError());
   } else {
-    createCSV(response.data);
+    createCSV(response.data, "pickers");
     yield put(
       notificationActions.showNotification({
         level: "success",

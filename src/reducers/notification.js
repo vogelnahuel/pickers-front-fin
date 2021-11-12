@@ -14,7 +14,6 @@ export const INITIAL_STATE = {
   onClickLabel: "global:label.button.understood",
   onClick: undefined,
   onClose: undefined,
-  element: undefined,
 };
 
 export const actions = {
@@ -37,7 +36,6 @@ export const selectors = {
   getBody: ({ notification }) => notification.body,
   onClose: ({ notification }) => notification.onClose,
   onClick: ({ notification }) => notification.onClick,
-  element: ({ notification }) => notification.element,
 };
 
 const reducer = (state = INITIAL_STATE, action = {}) => {
@@ -61,9 +59,6 @@ const reducer = (state = INITIAL_STATE, action = {}) => {
         onClose: action.content.onClose
           ? action.content.onClose
           : state.onClose,
-        element: action.content.element
-          ? action.content.element
-          : state.element,
       };
     case types.NOTIFICATION_SET_HIDE:
       return {
