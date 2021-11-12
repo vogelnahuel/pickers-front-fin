@@ -53,7 +53,6 @@ function* getLogin({
             level: "error",
             title: i18next.t("global:title.modal.connectionError"),
             body: i18next.t("global:label.modal.connectionError"),
-            //element,
           })
         );
         break;
@@ -63,7 +62,6 @@ function* getLogin({
             level: "error",
             title: i18next.t("login:title.modal.invalid"),
             body: i18next.t("login:label.modal.invalid"),
-            //element,
           })
         );
         break;
@@ -73,7 +71,6 @@ function* getLogin({
             level: "error",
             title: i18next.t("login:title.modal.invalid"),
             body: i18next.t("login:label.modal.invalid"),
-            //element,
           })
         );
         break;
@@ -83,7 +80,6 @@ function* getLogin({
             level: "error",
             title: i18next.t("global:title.modal.serverError"),
             body: i18next.t("global:label.modal.serverError"),
-            //element,
           })
         );
         break;
@@ -126,7 +122,6 @@ function* getLoginEmail({
             level: "warning",
             title: i18next.t("login:title.modal.restore"),
             body: i18next.t("login:label.modal.restore"),
-            // element,
           })
         );
         break;
@@ -136,7 +131,6 @@ function* getLoginEmail({
             level: "warning",
             title: i18next.t("login:title.modal.restore"),
             body: i18next.t("login:label.modal.restore"),
-            // element,
           })
         );
         break;
@@ -146,7 +140,6 @@ function* getLoginEmail({
             level: "warning",
             title: i18next.t("login:title.modal.restore"),
             body: i18next.t("login:label.modal.restore"),
-            // element,
           })
         );
         break;
@@ -156,7 +149,6 @@ function* getLoginEmail({
             level: "error",
             title: i18next.t("global:title.modal.serverError"),
             body: i18next.t("global:label.modal.serverError"),
-            // element,
           })
         );
         break;
@@ -169,7 +161,6 @@ function* getLoginEmail({
         level: "warning",
         title: i18next.t("login:title.modal.restore"),
         body: i18next.t("login:label.modal.restore"),
-        // element,
       })
     );
     yield put(replace("/"));
@@ -197,7 +188,6 @@ function* getLoginRestore({
             level: "error",
             title: i18next.t("login:title.modal.expiredCode"),
             body: i18next.t("login:label.modal.expiredCode"),
-            // element,
           })
         );
         break;
@@ -207,7 +197,6 @@ function* getLoginRestore({
             level: "error",
             title: i18next.t("global:title.modal.serverError"),
             body: i18next.t("global:label.modal.serverError"),
-            // element,
           })
         );
         break;
@@ -219,7 +208,6 @@ function* getLoginRestore({
         level: "success",
         title: i18next.t("login:title.modal.successfulRestore"),
         body: i18next.t("login:label.modal.successfulRestore"),
-        // element,
       })
     );
     yield put(replace("/"));
