@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import {
   actions as pendingUserActions,
-  selectors as pendingUserSelectors,
-} from "reducers/pickers_old";
+  pickersSelector as pendingUserSelectors,
+} from "reducers/pickers";
 import { FilterPickers } from "pages/pickers/filter/FilterPickers";
 import { VALIDATION_REGEX } from "utils/constants";
 import * as yup from "yup";
@@ -69,8 +69,8 @@ const FilterPickersContainer: React.FC<FilterContainerTypes> = (props) => {
 };
 
 const mapStateToProps = (state: RootState) => ({
-  filters: pendingUserSelectors.getFilters(state),
-  filtersExtra: pendingUserSelectors.getFiltersExtra(state),
+  filters: pendingUserSelectors(state).filters,
+  filtersExtra: pendingUserSelectors(state).filtersExtra,
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({

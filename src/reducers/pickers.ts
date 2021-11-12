@@ -4,6 +4,7 @@ import {
   PickersParamsType,
   PickersResponse,
 } from "pages/pickers/types";
+//import { isRequestAction, isResponseAction } from "reducers";
 import { RootState } from "store";
 import { PickerStateType } from "./types/pickers";
 
@@ -24,11 +25,11 @@ export const initialState: PickerStateType = {
   actualPage: "PENDING",
 };
 
-const isRequestAction = (action: AnyAction) => {
+export const isRequestAction = (action: AnyAction) => {
   return action.type.endsWith("Request");
 };
 
-const isResponseAction = (action: AnyAction) => {
+export const isResponseAction = (action: AnyAction) => {
   return action.type.endsWith("Success") || action.type.endsWith("Error");
 };
 

@@ -2,7 +2,7 @@ import React from "react";
 import exportar from "assets/admin/PendingUser/exportar.svg";
 import or from "assets/admin/PendingUser/or.svg";
 import { connect } from "react-redux";
-import { selectors as pendingUserAdminPickerSelectors } from "reducers/detailPicker";
+import { detailPickerSelector as pendingUserAdminPickerSelectors } from "reducers/detailPicker";
 import { actions as notificationActions } from "reducers/notification";
 import i18next from "i18next";
 
@@ -54,7 +54,7 @@ export const Actions = ({
 };
 
 const mapStateToProps = (state) => ({
-  isDirty: pendingUserAdminPickerSelectors.isDirty(state),
+  isDirty: pendingUserAdminPickerSelectors(state).dirty,
 });
 const mapDispatchToProps = (dispatch) => ({
   showNotification: (content) => {

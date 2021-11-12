@@ -1,17 +1,20 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import i18next from "i18next";
+import moment from "moment";
+import { useHistory, useParams } from "react-router-dom";
+import * as yup from "yup";
+
+import { AppDispatch, RootState } from "store";
+
 import {
   actions as pendingUserAdminPickerActions,
-  selectors as pendingUserAdminPickerSelectors,
+  detailPickerSelector,
 } from "reducers/detailPicker";
-import { DetailPicker } from "pages/pickers/detailPicker/DetailPicker";
-import { DATE_FORMATS, VALIDATION_REGEX } from "utils/constants";
-import { useHistory, useParams } from "react-router-dom";
 import {
+  pickersSelector,
   actions as pendingUserActions,
-  selectors as pendingUserSelectors,
-} from "reducers/pickers_old";
-import * as yup from "yup";
+} from "reducers/pickers";
 import { actions as notificationActions } from "reducers/notification";
 
 import {
@@ -19,11 +22,11 @@ import {
   ParamsMiddlewareType,
   DetailPickerValidationSchema,
 } from "../types";
-import { ParamGetPendingUser } from "sagas/types/pickers";
-import { AppDispatch, RootState } from "store";
 import { DetailPickerContainerTypeProps } from "./types";
-import i18next from "i18next";
-import moment from "moment";
+
+import { ParamGetPendingUser } from "sagas/types/pickers";
+import { DetailPicker } from "pages/pickers/detailPicker/DetailPicker";
+import { DATE_FORMATS, VALIDATION_REGEX } from "utils/constants";
 
 const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
   props
@@ -192,11 +195,10 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
 };
 
 const mapStateToProps = (state: RootState) => ({
-  pendingUserAdminPicker:
-    pendingUserAdminPickerSelectors.getPendingUserPicker(state),
-  isFetching: pendingUserAdminPickerSelectors.isFetching(state),
-  actualPage: pendingUserSelectors.getActualPage(state),
-  nameDisplay: pendingUserAdminPickerSelectors.getNameDisplay(state),
+  pendingUserAdminPicker: detailPickerSelector(state).pendingUserAdminPicker,
+  isFetching: detailPickerSelector(state).fetching,
+  actualPage: pickersSelector(state).actualPage,
+  nameDisplay: detailPickerSelector(state).nameDisplay,
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
@@ -208,10 +210,10 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
     element: HTMLElement
   ) => {
     dispatch(
-      pendingUserAdminPickerActions.getPendingUserPickerExportRequest(
+      pendingUserAdminPickerActions.getPendingUserPickerExportRequest({
         params,
-        element
-      )
+        element,
+      })
     );
   },
   setDirty: (dirty: boolean) => {
@@ -219,7 +221,7 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   },
   postAprovePickerRequest: (params: PickerType, goBack: Function) => {
     dispatch(
-      pendingUserAdminPickerActions.getAprovePickerRequest(params, goBack)
+      pendingUserAdminPickerActions.getAprovePickerRequest({ params, goBack })
     );
   },
   postPendingUserDocumentsEdit: (params: PickerType) => {
@@ -230,12 +232,11 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
     );
   },
   showNotification: (content: any) => {
-    //falta tipar shownotification
     dispatch(notificationActions.showNotification(content));
   },
   postEditPickerRequest: (params: PickerType, goBack: Function) => {
     dispatch(
-      pendingUserAdminPickerActions.getEditPickerRequest(params, goBack)
+      pendingUserAdminPickerActions.getEditPickerRequest({ params, goBack })
     );
   },
   setActualPage: (page: string) => {

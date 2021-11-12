@@ -6,13 +6,13 @@ import {
   takeLatest,
 } from "redux-saga/effects";
 import { PayloadAction } from "@reduxjs/toolkit";
-import {
-  actions as detailPickerActions,
-  types as detailPickerTypes,
-} from "../reducers/detailPicker";
-import { actions as notificationActions } from "../reducers/notification";
-import createCSV from ".,/../../src/utils/createCSV";
 import moment from "moment";
+
+import { actions } from "reducers/pickers";
+import { actions as detailPickerActions } from "../reducers/detailPicker";
+import { actions as notificationActions } from "../reducers/notification";
+
+import createCSV from ".,/../../src/utils/createCSV";
 import * as pickersMiddleware from "../middleware/pickers";
 import { goBack } from "connected-react-router";
 import {
@@ -31,7 +31,6 @@ import {
   PhoneType,
   PickersAxiosResponseType,
   PickersExportResponseType,
-  PickersParamsType,
   PickersResponse,
   PickerType,
   StatusType,
@@ -40,29 +39,24 @@ import { AxiosResponse } from "axios";
 import i18next from "i18next";
 import { DATE_FORMATS } from "utils/constants";
 
-import { actions } from "reducers/pickers";
-
 const sagas = [
-  takeLatest(actions.getPendingUserRequest.toString(), getPickers),
+  takeLatest(actions.getPendingUserRequest.type, getPickers),
+  takeLatest(actions.getPendingUserExportRequest.type, getPendingUserExport),
+  takeLatest(actions.getMorePendingUserRequest.type, getMorePendingUser),
   takeLatest(
-    actions.getPendingUserExportRequest.toString(),
-    getPendingUserExport
-  ),
-  takeLatest(actions.getMorePendingUserRequest.toString(), getMorePendingUser),
-  takeLatest(
-    detailPickerTypes.PENDING_USER_ADMIN_PICKER_GET_REQUEST,
+    detailPickerActions.getPendingUserPickerRequest.type,
     getPendingUserPicker
   ),
   takeLatest(
-    detailPickerTypes.PENDING_USER_ADMIN_PICKER_EXPORT_GET_REQUEST,
+    detailPickerActions.getPendingUserPickerExportRequest.type,
     getPendingUserPickerExport
   ),
   takeLatest(
-    detailPickerTypes.PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_REQUEST,
+    detailPickerActions.getPendingUserPickerDocumentsEditRequest.type,
     postPendingUserDocumentsEdit
   ),
-  takeLatest(detailPickerTypes.PICKER_APROVE_POST_REQUEST, postAprovePicker),
-  takeLatest(detailPickerTypes.PICKER_EDIT_POST_REQUEST, postEditPicker),
+  takeLatest(detailPickerActions.getAprovePickerRequest.type, postAprovePicker),
+  takeLatest(detailPickerActions.getEditPickerRequest.type, postEditPicker),
 ];
 
 export default sagas;
@@ -157,7 +151,6 @@ function* getPickers({
   void,
   PickersResponseType
 > {
-  console.log("GET PICKERS PARAMS: ", payload);
   const response = yield call(pickersMiddleware.getPickers, payload);
   if (response.status !== 200) {
     yield put(actions.getPendingUserError());
@@ -265,9 +258,8 @@ function* getPendingUserPickerExport({
 }
 
 function* postPendingUserDocumentsEdit({
-  params,
-  element,
-}: PostEditPickerType): Generator<
+  payload: { params, element },
+}: PayloadAction<PostEditPickerType>): Generator<
   | CallEffect<AxiosResponse<EditPickerResponseType>>
   | PutEffect<{ type: string; content: any }>
   | PutEffect<{ type: string }>,

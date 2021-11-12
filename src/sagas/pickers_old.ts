@@ -12,7 +12,7 @@ import {
 import {
   actions as detailPickerActions,
   types as detailPickerTypes,
-} from "../reducers/detailPicker";
+} from "../reducers/detailPicker_old";
 import { actions as notificationActions } from "../reducers/notification";
 import createCSV from ".,/../../src/utils/createCSV";
 import moment from "moment";

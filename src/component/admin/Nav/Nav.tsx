@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import "component/admin/Nav/nav.scss";
-import { selectors as pendingUserAdminPickerSelectors } from "reducers/detailPicker";
+import { detailPickerSelector as pendingUserAdminPickerSelectors } from "reducers/detailPicker";
 import { actions as notificationActions } from "reducers/notification";
 import { connect } from "react-redux";
 import i18next from "i18next";
@@ -74,7 +74,7 @@ export const Nav = ({ isDirty, showNotification }: any) => {
 };
 
 const mapStateToProps = (state: any) => ({
-  isDirty: pendingUserAdminPickerSelectors.isDirty(state),
+  isDirty: pendingUserAdminPickerSelectors(state).dirty,
 });
 
 const mapDispatchToProps = (dispatch: any) => ({

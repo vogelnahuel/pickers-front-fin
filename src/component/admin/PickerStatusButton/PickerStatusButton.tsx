@@ -6,7 +6,7 @@ import trabajadorOscuro from "assets/admin/PendingUser/trabajadorOscuro.svg";
 import trabajadorAzul from "assets/admin/PendingUser/trabajadorAzul.svg";
 import "component/admin/PickerStatusButton/pending.scss";
 import { useHistory } from "react-router-dom";
-import { selectors as pendingUserAdminPickerSelectors } from "reducers/detailPicker";
+import { detailPickerSelector as pendingUserAdminPickerSelectors } from "reducers/detailPicker";
 import { connect } from "react-redux";
 import { actions as notificationActions } from "reducers/notification";
 import { AppDispatch, RootState } from "store";
@@ -159,7 +159,7 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
 };
 
 const mapStateToProps = (state: RootState) => ({
-  isDirty: pendingUserAdminPickerSelectors.isDirty(state),
+  isDirty: pendingUserAdminPickerSelectors(state).dirty,
   actualPage: pendingUserSelectors.getActualPage(state),
 });
 
