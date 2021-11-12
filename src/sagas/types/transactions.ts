@@ -7,7 +7,7 @@ export type TransactionsActionType = {
 };
 export type FilterTransactionsType = {
   inAlert?: boolean;
-  limit: number;
+  // limit: number;
   maxMinDeliveryDate?: string;
   minMinDeliveryDate?: string;
   offset?: number;
@@ -27,9 +27,9 @@ export type TransactionResponseContent = {
   status: number;
 };
 export type TransactionResponseType = {
-  hasMore?: boolean;
-  limit?: number;
-  offset?: number;
+  hasMore: boolean;
+  limit: number;
+  offset: number;
   statusCode?: number;
   error?: string;
   message?: string;

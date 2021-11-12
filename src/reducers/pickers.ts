@@ -1,8 +1,8 @@
-import { createSlice, PayloadAction, AnyAction } from "@reduxjs/toolkit";
+import { AnyAction, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
   ParamsMiddlewareType,
   PickersParamsType,
-  PickersResponse,
+  PickersResponse
 } from "pages/pickers/types";
 import { RootState } from "store";
 import { PickerStateType } from "./types/pickers";
@@ -92,10 +92,7 @@ export const pickersSlice = createSlice({
     getMorePendingUserError: () => {},
     getPendingUserExportRequest: (
       state: PickerStateType,
-      action: PayloadAction<{
-        params: ParamsMiddlewareType;
-        element: HTMLElement;
-      }>
+      action: PayloadAction<ParamsMiddlewareType>
     ) => {},
     getPendingUserExportSuccess: () => {},
     getPendingUserExportError: () => {},
