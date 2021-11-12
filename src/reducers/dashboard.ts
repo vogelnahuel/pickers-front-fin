@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction, AnyAction } from "@reduxjs/toolkit";
+import { DashboardType } from "sagas/types/dashboard";
 import { RootState } from "store";
 import { DashboardState } from "./types/dashboard";
 
@@ -20,7 +21,7 @@ export const dashboardSlice = createSlice({
   initialState,
   reducers: {
     getDashboardRequest: (state:DashboardState) =>{},
-    getDashboardSuccess: (state:DashboardState, action:any) => {
+    getDashboardSuccess: (state:DashboardState, action:PayloadAction<DashboardType>) => {
         const {payload} = action;
         state.dashboard=payload
     },
