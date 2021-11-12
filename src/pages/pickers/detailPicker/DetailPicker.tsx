@@ -361,20 +361,6 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                         </div>
                       </>
                     )}
-                    {/* <div className="container-detailPicker-col-sm-6">
-                      <Field
-                        type="text"
-                        name={`vehicle.expirationDatePolicyPersonal`}
-                        label={i18next.t(
-                          "detailPicker:label.insurance.personalAccidentInsuranceExpiration"
-                        )}
-                        lastLabel
-                        component={Input}
-                        className="Admin-Pickers-input"
-                        placeholder={i18next.t("global:placeholder.input.date")}
-                        maxLength={10}
-                      />
-                    </div> */}
                   </div>
                 </div>
                 {active ? (

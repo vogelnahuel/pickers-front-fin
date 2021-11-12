@@ -96,14 +96,6 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
                     VALIDATION_REGEX.regPatent,
                     i18next.t("global:error.input.specialCharacters")
                   ),
-                // expirationDatePolicyPersonal: yup
-                //   .string()
-                //   .nullable()
-                //   .required(i18next.t("global:error.input.required"))
-                //   .matches(
-                //     DATE_FORMATS.regex,
-                //     i18next.t("global:error.input.invalidFormat")
-                //   ),
                 expirationDatePolicyVehicle: yup
                   .string()
                   .nullable()

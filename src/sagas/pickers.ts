@@ -31,7 +31,7 @@ import {
 import {
   AcountDataType,
   EditPickerResponseType,
-  filesType,
+  FilesType,
   PersonalDataType,
   PickersAxiosResponseType,
   PickersExportResponseType,
@@ -91,7 +91,7 @@ const process = (body: //TODO: vehiculos any?
   personalData:  PersonalDataType;
   accountingData: AcountDataType;
   vehicle: VehicleType;
-  files:filesType
+  files:FilesType
 }) => {
   return {
     ...body,

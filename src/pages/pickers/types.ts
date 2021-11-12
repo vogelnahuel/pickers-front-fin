@@ -1,6 +1,5 @@
 import { TypeOfShape } from "yup/lib/object";
 
-
 export type ChangePageTypes = {
   props: {
     setActualPage: Function;
@@ -26,38 +25,32 @@ export type ParamsMiddlewareType = {
   offset?: number;
 };
 
-
-
 export type StatusType = {
   description: string;
   id: Number;
 };
-
 
 export type PhoneValidationSchemaType = {
   areaNumber: string;
   number: string;
 };
 
-export type PersonalDataValidationType ={
-  name:string,
-  surname:string
+export type PersonalDataValidationType = {
+  name: string;
+  surname: string;
   phone: PhoneValidationSchemaType;
-}
-export type vehicleValidationType={
-  patent:string
-  expirationDatePolicyVehicle:string
-  expirationDateIdentificationVehicle:string
-  expirationDateDriverLicense:string
-}
-
-export type DetailPickerValidationSchema = {
-  personalData:PersonalDataValidationType;
-  vehicle:  vehicleValidationType | TypeOfShape<{}>;
+};
+export type vehicleValidationType = {
+  patent: string;
+  expirationDatePolicyVehicle: string;
+  expirationDateIdentificationVehicle: string;
+  expirationDateDriverLicense: string;
 };
 
-
-
+export type DetailPickerValidationSchema = {
+  personalData: PersonalDataValidationType;
+  vehicle: vehicleValidationType | TypeOfShape<{}>;
+};
 
 export type PhoneType = {
   areaNumber: string;
@@ -66,56 +59,54 @@ export type PhoneType = {
   registerDate?: string;
 };
 
-
-export type PersonalDataType= {
-  name: string,
-  surname: string,
-  dateOfBirth: string | null,
-  identificationNumber: number | null,
-  email: string,
+export type PersonalDataType = {
+  name: string;
+  surname: string;
+  dateOfBirth: string | null;
+  identificationNumber: number | null;
+  email: string;
   phone: PhoneType;
 };
 
 export type VehicleType = {
-type: string,
-active: boolean,
-approve: boolean,
-patent: string,
-expirationDateDriverLicense: string,
-expirationDateIdentificationVehicle: string,
-expirationDatePolicyVehicle: string
+  type: string;
+  active: boolean;
+  approve: boolean;
+  patent: string;
+  expirationDateDriverLicense: string;
+  expirationDateIdentificationVehicle: string;
+  expirationDatePolicyVehicle: string;
 };
 export type AcountDataType = {
   bankIdentifier: string;
   bankName: string;
   fiscalNumber: string;
 };
-export type DataContentType={
-  tag:string,
-  isUpload:boolean
-}
+export type DataContentType = {
+  tag: string;
+  isUpload: boolean;
+};
 
-export type DataFilesType ={
-  status   : string
-  contents : DataContentType[]
-}
+export type DataFilesType = {
+  status: string;
+  contents: DataContentType[];
+};
 
-
-export type filesType= {
-  personalData:DataFilesType
-  accountingData:DataFilesType
-  vehicle:DataFilesType
-}
+export type FilesType = {
+  personalData: DataFilesType;
+  accountingData: DataFilesType;
+  vehicle: DataFilesType;
+};
 
 export type PickerType = {
   id: number;
-  enable: boolean,
-  registerDatetime: string,
+  enable: boolean;
+  registerDatetime: string;
   status: StatusType;
-  personalData:  PersonalDataType;
-  accountingData:AcountDataType
-  vehicle: VehicleType ;
-  files:filesType
+  personalData: PersonalDataType;
+  accountingData: AcountDataType;
+  vehicle: VehicleType;
+  files: FilesType;
 };
 
 export type PickerContainerTypes = {
