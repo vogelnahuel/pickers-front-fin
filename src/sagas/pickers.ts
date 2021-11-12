@@ -70,19 +70,7 @@ const sagas = [
 
 export default sagas;
 
-// export type PickerType = {
-//   id: number;
-//   enable: boolean,
-//   registerDatetime: string,
-//   status: StatusType;
-//   personalData:  PersonalDataType;
-//   accountingData:AcountDataType
-//   vehicle: VehicleType ;
-//   files:filesType
-// };
-
-
-const process = (body: //TODO: vehiculos any?
+const process = (body:
 {
   id: number;
   enable: boolean;
@@ -95,9 +83,13 @@ const process = (body: //TODO: vehiculos any?
 }) => {
   return {
     ...body,
-    dateOfBirth: moment(body.personalData.dateOfBirth, DATE_FORMATS.shortDate).format(
-      DATE_FORMATS.shortISODate
-    ),
+   
+    personalData:{
+      ...body.personalData,
+      dateOfBirth: moment(body.personalData.dateOfBirth, DATE_FORMATS.shortDate).format(
+        DATE_FORMATS.shortISODate
+      ),
+    },
     accountingData: {
       ...body.accountingData,
       fiscalNumber:
@@ -138,14 +130,6 @@ const process = (body: //TODO: vehiculos any?
                 DATE_FORMATS.shortDate
               ).format(DATE_FORMATS.shortISODate)
             : body.vehicle.expirationDateDriverLicense,
-        // expirationDatePolicyPersonal:
-        //   body.vehicle[body.vehicleType].expirationDatePolicyPersonal &&
-        //   body.vehicle[body.vehicleType].expirationDatePolicyPersonal.match(DATE_FORMATS.regexshortDate)
-        //     ? moment(
-        //         body.expirationDatePolicyPersonal,
-        //         DATE_FORMATS.shortDate
-        //       ).format(DATE_FORMATS.shortISODate)
-        //     : body.expirationDatePolicyPersonal,
     },
 
   };
@@ -236,7 +220,7 @@ function* getPendingUserExport({
   void,
   CsvResponseType
 > {
-  console.log("exports")
+
 
   const response = yield call(pickersMiddleware.getPickersExport, params);
 

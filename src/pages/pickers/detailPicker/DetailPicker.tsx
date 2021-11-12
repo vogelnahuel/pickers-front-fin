@@ -80,6 +80,17 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
               pendingUserAdminPicker.id
                 ? {
                     ...pendingUserAdminPicker,
+                    personalData:{
+                      ...pendingUserAdminPicker.personalData,
+                      dateOfBirth:
+                      pendingUserAdminPicker.personalData.dateOfBirth &&
+                      pendingUserAdminPicker.personalData.dateOfBirth.includes("-")
+                        ? moment(
+                            pendingUserAdminPicker.personalData.dateOfBirth,
+                            DATE_FORMATS.shortISODate
+                          ).format(DATE_FORMATS.shortDate)
+                        :pendingUserAdminPicker.personalData.dateOfBirth,
+                    },
                     accountingData: {
                       ...pendingUserAdminPicker.accountingData,
                       fiscalNumber:
@@ -102,14 +113,8 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                               11
                             ),
                     },
-                    dateOfBirth:
-                      pendingUserAdminPicker.personalData.dateOfBirth &&
-                      !pendingUserAdminPicker.personalData.dateOfBirth.includes("/")
-                        ? moment(
-                            pendingUserAdminPicker.personalData.dateOfBirth,
-                            DATE_FORMATS.shortISODate
-                          ).format(DATE_FORMATS.shortDate)
-                        : pendingUserAdminPicker.personalData.dateOfBirth,
+                    
+                   
                     vehicle: {
                       ...pendingUserAdminPicker.vehicle,
                    

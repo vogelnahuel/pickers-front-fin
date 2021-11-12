@@ -82,8 +82,6 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
                 ),
             }),
       }),
-
-     
       vehicle:
         props.pendingUserAdminPicker.vehicle  && props.pendingUserAdminPicker.vehicle.type === "motorcycle"
           ? yup.object({

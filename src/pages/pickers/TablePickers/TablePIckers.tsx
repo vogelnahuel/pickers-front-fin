@@ -12,6 +12,7 @@ export const TablePickers: React.FC<TableAdminPropsType> = ({
   actualPage,
   pendingUsers,
 }): JSX.Element => {
+
   return (
     <>
       <table className="table-admin">
@@ -28,11 +29,11 @@ export const TablePickers: React.FC<TableAdminPropsType> = ({
         <tbody>
           {pendingUsers.map((user: PickerType) => (
             <tr className="table-info table-pending" key={user.id}>
-              <td> {`${user.personalData.name} ${user.personalData.surname}`} </td>
-              <td> {user.personalData.identificationNumber} </td>
-              <td>{user.personalData.email}</td>
+              <td> {`${user?.personalData.name} ${user?.personalData.surname}`} </td>
+              <td> {user?.personalData.identificationNumber} </td>
+              <td>{user?.personalData.email}</td>
               <td>
-                {i18next.t(`tablePickers:label.table.${user?.vehicle.type}`)}
+                {i18next.t(`tablePickers:label.table.${user?.vehicle?.type}`)}
               </td>
               {actualPage === "PENDING" ? (
                 <td className="table-registro">
