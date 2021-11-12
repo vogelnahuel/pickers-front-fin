@@ -1,5 +1,6 @@
 import { AnyAction, combineReducers } from "@reduxjs/toolkit";
 import transactions from "reducers/transactions";
+//import dashboard from "reducers/dashboard_old";
 import dashboard from "reducers/dashboard";
 import detailTransaction from "reducers/detailTransaction";
 import pendingUser from "reducers/pickers_old";
