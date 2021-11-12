@@ -51,6 +51,10 @@ api.interceptors.response.use(
   }
 );
 
+export const remove = (path: any, body?: object) => {
+  return api.delete(path, { params: body });
+};
+
 export const get = (path: any, query?: object) => {
   return api.get(path, { params: query });
 };

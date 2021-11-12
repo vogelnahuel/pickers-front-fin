@@ -37,16 +37,20 @@ export type PickerExportType = {
   goBack?: Function;
 };
 
-export type ParamGetPendingUser = {
-  type: string;
-  params: number;
-};
+// export type ParamGetPendingUser = {
+//   type: string;
+//   params: number;
+// };
 
 export type PostEditPickerType = {
   type: string;
   params: PickerType;
   goBack: Function;
   element: HTMLElement;
+};
+
+export type PickerExportParamType = {
+  email: string | undefined;
 };
 
 export type CsvResponseType = { data: string; status: number };

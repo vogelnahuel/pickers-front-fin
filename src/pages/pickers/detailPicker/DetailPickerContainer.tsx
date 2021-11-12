@@ -24,7 +24,6 @@ import {
 } from "../types";
 import { DetailPickerContainerTypeProps } from "./types";
 
-import { ParamGetPendingUser } from "sagas/types/pickers";
 import { DetailPicker } from "pages/pickers/detailPicker/DetailPicker";
 import { DATE_FORMATS, VALIDATION_REGEX } from "utils/constants";
 
@@ -53,94 +52,88 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
 
   const validationSchema: yup.SchemaOf<DetailPickerValidationSchema> =
     yup.object({
-      name: yup
-        .string()
-        .required(i18next.t("global:error.input.required"))
-        .matches(
-          VALIDATION_REGEX.expName,
-          i18next.t("global:error.input.numbersOrSpecialCharacters")
-        ),
-      surname: yup
-        .string()
-        .required(i18next.t("global:error.input.required"))
-        .matches(
-          VALIDATION_REGEX.expName,
-          i18next.t("global:error.input.numbersOrSpecialCharacters")
-        ),
-      phone: yup.object({
-        areaNumber: yup
+      personalData: yup.object({
+        name: yup
           .string()
           .required(i18next.t("global:error.input.required"))
           .matches(
-            VALIDATION_REGEX.regArea,
-            i18next.t("global:error.input.invalidFormat")
+            VALIDATION_REGEX.expName,
+            i18next.t("global:error.input.numbersOrSpecialCharacters")
           ),
-        number: yup
+        surname: yup
           .string()
           .required(i18next.t("global:error.input.required"))
           .matches(
-            VALIDATION_REGEX.regTelefono,
-            i18next.t("global:error.input.invalidFormat")
+            VALIDATION_REGEX.expName,
+            i18next.t("global:error.input.numbersOrSpecialCharacters")
           ),
+        phone: yup.object({
+          areaNumber: yup
+            .string()
+            .required(i18next.t("global:error.input.required"))
+            .matches(
+              VALIDATION_REGEX.regArea,
+              i18next.t("global:error.input.invalidFormat")
+            ),
+          number: yup
+            .string()
+            .required(i18next.t("global:error.input.required"))
+            .matches(
+              VALIDATION_REGEX.regTelefono,
+              i18next.t("global:error.input.invalidFormat")
+            ),
+        }),
       }),
+
       vehicle:
-        props.pendingUserAdminPicker.vehicleType === "motorcycle"
+        props.pendingUserAdminPicker.vehicle &&
+        props.pendingUserAdminPicker.vehicle.type === "motorcycle"
           ? yup.object({
-              [props.pendingUserAdminPicker.vehicleType]: yup.object({
-                patent: yup
-                  .string()
-                  .nullable()
-                  .required(i18next.t("global:error.input.required"))
-                  .min(6, i18next.t("global:error.input.patentLong"))
-                  .matches(
-                    VALIDATION_REGEX.regPatent,
-                    i18next.t("global:error.input.specialCharacters")
-                  ),
-                expirationDatePolicyPersonal: yup
-                  .string()
-                  .nullable()
-                  .required(i18next.t("global:error.input.required"))
-                  .matches(
-                    DATE_FORMATS.regex,
-                    i18next.t("global:error.input.invalidFormat")
-                  ),
-                expirationDatePolicyVehicle: yup
-                  .string()
-                  .nullable()
-                  .required(i18next.t("global:error.input.required"))
-                  .matches(
-                    DATE_FORMATS.regex,
-                    i18next.t("global:error.input.invalidFormat")
-                  )
-                  .matches(
-                    DATE_FORMATS.regexValidCharacter,
-                    i18next.t("global:error.input.specialCharacters")
-                  ),
-                expirationDateIdentificationVehicle: yup
-                  .string()
-                  .nullable()
-                  .required(i18next.t("global:error.input.required"))
-                  .matches(
-                    DATE_FORMATS.regex,
-                    i18next.t("global:error.input.invalidFormat")
-                  )
-                  .matches(
-                    DATE_FORMATS.regexValidCharacter,
-                    i18next.t("global:error.input.specialCharacters")
-                  ),
-                expirationDateDriverLicense: yup
-                  .string()
-                  .nullable()
-                  .required(i18next.t("global:error.input.required"))
-                  .matches(
-                    DATE_FORMATS.regex,
-                    i18next.t("global:error.input.invalidFormat")
-                  )
-                  .matches(
-                    DATE_FORMATS.regexValidCharacter,
-                    i18next.t("global:error.input.specialCharacters")
-                  ),
-              }),
+              patent: yup
+                .string()
+                .nullable()
+                .required(i18next.t("global:error.input.required"))
+                .min(6, i18next.t("global:error.input.patentLong"))
+                .matches(
+                  VALIDATION_REGEX.regPatent,
+                  i18next.t("global:error.input.specialCharacters")
+                ),
+              expirationDatePolicyVehicle: yup
+                .string()
+                .nullable()
+                .required(i18next.t("global:error.input.required"))
+                .matches(
+                  DATE_FORMATS.regex,
+                  i18next.t("global:error.input.invalidFormat")
+                )
+                .matches(
+                  DATE_FORMATS.regexValidCharacter,
+                  i18next.t("global:error.input.specialCharacters")
+                ),
+              expirationDateIdentificationVehicle: yup
+                .string()
+                .nullable()
+                .required(i18next.t("global:error.input.required"))
+                .matches(
+                  DATE_FORMATS.regex,
+                  i18next.t("global:error.input.invalidFormat")
+                )
+                .matches(
+                  DATE_FORMATS.regexValidCharacter,
+                  i18next.t("global:error.input.specialCharacters")
+                ),
+              expirationDateDriverLicense: yup
+                .string()
+                .nullable()
+                .required(i18next.t("global:error.input.required"))
+                .matches(
+                  DATE_FORMATS.regex,
+                  i18next.t("global:error.input.invalidFormat")
+                )
+                .matches(
+                  DATE_FORMATS.regexValidCharacter,
+                  i18next.t("global:error.input.specialCharacters")
+                ),
             })
           : yup.object({}),
     });
@@ -202,7 +195,7 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
-  getPendingUserPicker: (params: ParamGetPendingUser) => {
+  getPendingUserPicker: (params: number) => {
     dispatch(pendingUserAdminPickerActions.getPendingUserPickerRequest(params));
   },
   getPendingUserPickerExport: (

@@ -18,25 +18,29 @@ import { actions as notificationActions } from "../reducers/notification";
 import createCSV from ".,/../../src/utils/createCSV";
 import { DATE_FORMATS } from "utils/constants";
 import * as pickersMiddleware from "../middleware/pickers";
+
 import {
   AcountDataType,
   EditPickerResponseType,
   ParamsMiddlewareType,
-  PhoneType,
+  FilesType,
+  PersonalDataType,
   PickersAxiosResponseType,
   PickersExportResponseType,
   PickersResponse,
   PickerType,
   StatusType,
+  VehicleType,
 } from "../pages/pickers/types";
 
 import {
   CsvResponseType,
-  ParamGetPendingUser,
   PickerExportType,
   PickerResponseType,
   PickersResponseType,
   PostEditPickerType,
+  getPickersType,
+  PickerExportParamType,
 } from "./types/pickers";
 
 const sagas = [
@@ -61,28 +65,34 @@ const sagas = [
 
 export default sagas;
 
+// export type PickerType = {
+//   id: number;
+//   enable: boolean,
+//   registerDatetime: string,
+//   status: StatusType;
+//   personalData:  PersonalDataType;
+//   accountingData:AcountDataType
+//   vehicle: VehicleType ;
+//   files:filesType
+// };
+
 const process = (body: //TODO: vehiculos any?
 {
-  accountingData: AcountDataType;
-  dateOfBirth: string;
-  email: string;
-  enable: boolean;
-  expirationDatePolicyPersonal: string;
   id: number;
-  identificationNumber: string;
-  name: string;
-  phone: PhoneType;
-  registerDate: string;
+  enable: boolean;
+  registerDatetime: string;
   status: StatusType;
-  surname: string;
-  vehicle: any;
-  vehicleType: string;
+  personalData: PersonalDataType;
+  accountingData: AcountDataType;
+  vehicle: VehicleType;
+  files: FilesType;
 }) => {
   return {
     ...body,
-    dateOfBirth: moment(body.dateOfBirth, DATE_FORMATS.shortDate).format(
-      DATE_FORMATS.shortISODate
-    ),
+    dateOfBirth: moment(
+      body.personalData.dateOfBirth,
+      DATE_FORMATS.shortDate
+    ).format(DATE_FORMATS.shortISODate),
     accountingData: {
       ...body.accountingData,
       fiscalNumber:
@@ -92,53 +102,45 @@ const process = (body: //TODO: vehiculos any?
     },
     vehicle: {
       ...body.vehicle,
-      [body.vehicleType]: {
-        ...body.vehicle[body.vehicleType],
-        expirationDatePolicyVehicle:
-          body.vehicle[body.vehicleType].expirationDatePolicyVehicle &&
-          body.vehicle[body.vehicleType].expirationDatePolicyVehicle.match(
-            DATE_FORMATS.regexshortDate
-          )
-            ? moment(
-                body.vehicle[body.vehicleType].expirationDatePolicyVehicle,
-                DATE_FORMATS.shortDate
-              ).format(DATE_FORMATS.shortISODate)
-            : body.vehicle[body.vehicleType].expirationDatePolicyVehicle,
-        expirationDateIdentificationVehicle:
-          body.vehicle[body.vehicleType].expirationDateIdentificationVehicle &&
-          body.vehicle[
-            body.vehicleType
-          ].expirationDateIdentificationVehicle.match(
-            DATE_FORMATS.regexshortDate
-          )
-            ? moment(
-                body.vehicle[body.vehicleType]
-                  .expirationDateIdentificationVehicle,
-                DATE_FORMATS.shortDate
-              ).format(DATE_FORMATS.shortISODate)
-            : body.vehicle[body.vehicleType]
-                .expirationDateIdentificationVehicle,
-        expirationDateDriverLicense:
-          body.vehicle[body.vehicleType].expirationDateDriverLicense &&
-          body.vehicle[body.vehicleType].expirationDateDriverLicense.match(
-            DATE_FORMATS.regexshortDate
-          )
-            ? moment(
-                body.vehicle[body.vehicleType].expirationDateDriverLicense,
-                DATE_FORMATS.shortDate
-              ).format(DATE_FORMATS.shortISODate)
-            : body.vehicle[body.vehicleType].expirationDateDriverLicense,
-        expirationDatePolicyPersonal:
-          body.vehicle[body.vehicleType].expirationDatePolicyPersonal &&
-          body.vehicle[body.vehicleType].expirationDatePolicyPersonal.match(
-            DATE_FORMATS.regexshortDate
-          )
-            ? moment(
-                body.expirationDatePolicyPersonal,
-                DATE_FORMATS.shortDate
-              ).format(DATE_FORMATS.shortISODate)
-            : body.expirationDatePolicyPersonal,
-      },
+
+      expirationDatePolicyVehicle:
+        body.vehicle.expirationDatePolicyVehicle &&
+        body.vehicle.expirationDatePolicyVehicle.match(
+          DATE_FORMATS.regexshortDate
+        )
+          ? moment(
+              body.vehicle.expirationDatePolicyVehicle,
+              DATE_FORMATS.shortDate
+            ).format(DATE_FORMATS.shortISODate)
+          : body.vehicle.expirationDatePolicyVehicle,
+      expirationDateIdentificationVehicle:
+        body.vehicle.expirationDateIdentificationVehicle &&
+        body.vehicle.expirationDateIdentificationVehicle.match(
+          DATE_FORMATS.regexshortDate
+        )
+          ? moment(
+              body.vehicle.expirationDateIdentificationVehicle,
+              DATE_FORMATS.shortDate
+            ).format(DATE_FORMATS.shortISODate)
+          : body.vehicle.expirationDateIdentificationVehicle,
+      expirationDateDriverLicense:
+        body.vehicle.expirationDateDriverLicense &&
+        body.vehicle.expirationDateDriverLicense.match(
+          DATE_FORMATS.regexshortDate
+        )
+          ? moment(
+              body.vehicle.expirationDateDriverLicense,
+              DATE_FORMATS.shortDate
+            ).format(DATE_FORMATS.shortISODate)
+          : body.vehicle.expirationDateDriverLicense,
+      // expirationDatePolicyPersonal:
+      //   body.vehicle[body.vehicleType].expirationDatePolicyPersonal &&
+      //   body.vehicle[body.vehicleType].expirationDatePolicyPersonal.match(DATE_FORMATS.regexshortDate)
+      //     ? moment(
+      //         body.expirationDatePolicyPersonal,
+      //         DATE_FORMATS.shortDate
+      //       ).format(DATE_FORMATS.shortISODate)
+      //     : body.expirationDatePolicyPersonal,
     },
   };
 };
@@ -184,13 +186,13 @@ function* getMorePendingUser({
 }
 
 function* getPendingUserPicker({
-  params,
-}: ParamGetPendingUser): Generator<
+  payload,
+}: PayloadAction<number>): Generator<
   CallEffect<AxiosResponse<PickerType>> | PutEffect<{ type: string }>,
   void,
   PickerResponseType
 > {
-  const response = yield call(pickersMiddleware.getPicker, params);
+  const response = yield call(pickersMiddleware.getPicker, payload);
   if (response.status !== 200) {
     yield put(detailPickerActions.getPendingUserPickerError());
   } else {
@@ -230,15 +232,18 @@ function* getPendingUserExport({
 }
 
 function* getPendingUserPickerExport({
-  params,
-  element,
-}: PickerExportType): Generator<
+  payload: { params, element },
+}: PayloadAction<PickerExportType>): Generator<
   | CallEffect<AxiosResponse<PickersExportResponseType>>
   | PutEffect<{ type: string }>,
   void,
   CsvResponseType
 > {
-  const response = yield call(pickersMiddleware.getPickerExport, params);
+  const paramsPost: PickerExportParamType = {
+    email: params.email,
+  };
+
+  const response = yield call(pickersMiddleware.getPickerExport, paramsPost);
   if (response.status !== 200) {
     yield put(detailPickerActions.getPendingUserPickerExportError());
   } else {
@@ -256,15 +261,15 @@ function* getPendingUserPickerExport({
 }
 
 function* postPendingUserDocumentsEdit({
-  payload: { params, element },
-}: PayloadAction<PostEditPickerType>): Generator<
+  payload,
+}: PayloadAction<PickerType>): Generator<
   | CallEffect<AxiosResponse<EditPickerResponseType>>
   | PutEffect<{ type: string; content: any }>
   | PutEffect<{ type: string }>,
   void,
   PickerResponseType
 > {
-  let body = process(params);
+  let body = process(payload);
   const response = yield call(pickersMiddleware.postPickerDocumentsEdit, body);
 
   if (response.status !== 200) {
@@ -273,7 +278,7 @@ function* postPendingUserDocumentsEdit({
         level: "error",
         title: i18next.t("global:title.modal.connectionError"),
         body: i18next.t("global:label.modal.connectionError"),
-        element,
+        //element,
       })
     );
     yield put(detailPickerActions.getPendingUserPickerDocumentsEditError());
@@ -286,10 +291,8 @@ function* postPendingUserDocumentsEdit({
 }
 
 function* postAprovePicker({
-  params,
-  goBack,
-  element,
-}: PostEditPickerType): Generator<
+  payload: { params, goBack, element },
+}: PayloadAction<PostEditPickerType>): Generator<
   | CallEffect<AxiosResponse<EditPickerResponseType>>
   | PutEffect<{ type: string; content: any }>
   | PutEffect<{ type: string }>,
@@ -323,10 +326,8 @@ function* postAprovePicker({
 }
 
 function* postEditPicker({
-  params,
-  goBack,
-  element,
-}: PostEditPickerType): Generator<
+  payload: { params, goBack, element },
+}: PayloadAction<PostEditPickerType>): Generator<
   | CallEffect<AxiosResponse<EditPickerResponseType>>
   | PutEffect<{ type: string; content: any }>
   | PutEffect<{ type: string }>,

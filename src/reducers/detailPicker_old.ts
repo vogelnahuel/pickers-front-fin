@@ -3,7 +3,6 @@ import {
   EditPickerResponseType,
   ParamsMiddlewareType,
 } from "pages/pickers/types";
-import { ParamGetPendingUser } from "sagas/types/pickers";
 import { RootState } from "store";
 import {
   ActionType,
@@ -41,11 +40,60 @@ export const INITIAL_STATE: DetailPickerStateType = {
   fetching: false,
   dirty: false,
   nameDisplay: "",
-  pendingUserAdminPicker: {},
+  pendingUserAdminPicker: {
+    id: 0,
+    enable: false,
+    registerDatetime: "",
+    status: {
+      description: "",
+      id: 0,
+    },
+    personalData: {
+      name: "",
+      surname: "",
+      dateOfBirth: null,
+      identificationNumber: null,
+      email: "",
+      phone: {
+        areaNumber: "",
+        countryNumber: "",
+        number: "",
+        registerDate: undefined,
+      },
+    },
+    accountingData: {
+      bankIdentifier: "",
+      bankName: "",
+      fiscalNumber: "",
+    },
+    vehicle: {
+      type: "",
+      active: false,
+      approve: false,
+      patent: "",
+      expirationDateDriverLicense: "",
+      expirationDateIdentificationVehicle: "",
+      expirationDatePolicyVehicle: "",
+    },
+    files: {
+      personalData: {
+        status: "",
+        contents: [],
+      },
+      accountingData: {
+        status: "",
+        contents: [],
+      },
+      vehicle: {
+        status: "",
+        contents: [],
+      },
+    },
+  },
 };
 
 export const actions: ActionType = {
-  getPendingUserPickerRequest: (params: ParamGetPendingUser) => ({
+  getPendingUserPickerRequest: (params: number) => ({
     type: types.PENDING_USER_ADMIN_PICKER_GET_REQUEST,
     params,
   }),
@@ -141,7 +189,7 @@ const reducer = (
       return {
         ...state,
         pendingUserAdminPicker: action.pendingUserAdminPicker,
-        nameDisplay: `${action.pendingUserAdminPicker.name} ${action.pendingUserAdminPicker.surname}`,
+        //nameDisplay: `${action.pendingUserAdminPicker.name} ${action.pendingUserAdminPicker.surname}`,
         fetching: false,
       };
     case types.PENDING_USER_ADMIN_PICKER_GET_ERROR:
