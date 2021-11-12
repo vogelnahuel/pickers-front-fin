@@ -2,8 +2,9 @@ import { useEffect } from "react";
 import { connect } from "react-redux";
 import {
   actions as dashboardActions,
-  selectors as dashboardSelectors,
+ dashboardSelector,
 } from "reducers/dashboard";
+import { actions } from "reducers/detailTransaction";
 import { AppDispatch, RootState } from "store";
 import { DashboardAdmin } from "./DashboardAdmin";
 import { DashboardContainerTypes } from "./types";
@@ -18,8 +19,8 @@ const DashboardContainer = (props: DashboardContainerTypes): JSX.Element => {
 };
 
 const mapStateToProps = (state: RootState) => ({
-  dashboard: dashboardSelectors.getDashboard(state),
-  isFetching: dashboardSelectors.isFetching(state),
+  dashboard: dashboardSelector(state).dashboard,
+  isFetching: dashboardSelector(state).fetching,
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
