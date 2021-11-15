@@ -1,6 +1,7 @@
-import { createSlice, PayloadAction, AnyAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, Action } from "@reduxjs/toolkit";
 import { FilterTransactionsType } from "sagas/types/transactions";
 import { RootState } from "store";
+import { endsWithAny } from "utils/endsWithAny";
 import {
   GetTransactionsSuccessType,
   SetFilterExtraType,
@@ -33,16 +34,20 @@ export const initialState: TransactionStateType = {
   seeMore: true,
 };
 
-const isRequestAction = (action: AnyAction) => {
-  return action.type.endsWith("Request");
+const SLICE_NAME = "transaction";
+
+const isRequestAction = (action: Action<string>) => {
+  const { type } = action;
+  return type.startsWith(SLICE_NAME) && type.endsWith("Request");
 };
 
-const isResponseAction = (action: AnyAction) => {
-  return action.type.endsWith("Success") || action.type.endsWith("Error");
+const isResponseAction = (action: Action<string>) => {
+  const { type } = action;
+  return type.startsWith(SLICE_NAME) && endsWithAny(type, ["Error", "Success"]);
 };
 
 export const transactionSlice = createSlice({
-  name: "transaction",
+  name: SLICE_NAME,
   initialState,
   reducers: {
     reset: (state: TransactionStateType) => {

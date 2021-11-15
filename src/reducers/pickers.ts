@@ -1,10 +1,11 @@
-import { AnyAction, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Action, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
   ParamsMiddlewareType,
   PickersParamsType,
   PickersResponse,
 } from "pages/pickers/types";
 import { RootState } from "store";
+import { endsWithAny } from "utils/endsWithAny";
 import { PickerStateType } from "./types/pickers";
 
 export const initialState: PickerStateType = {
@@ -24,12 +25,16 @@ export const initialState: PickerStateType = {
   actualPage: "PENDING",
 };
 
-const isRequestAction = (action: AnyAction) => {
-  return action.type.endsWith("Request");
+const SLICE_NAME = "pickers";
+
+const isRequestAction = (action: Action<string>) => {
+  const { type } = action;
+  return type.startsWith(SLICE_NAME) && type.endsWith("Request");
 };
 
-const isResponseAction = (action: AnyAction) => {
-  return action.type.endsWith("Success") || action.type.endsWith("Error");
+const isResponseAction = (action: Action<string>) => {
+  const { type } = action;
+  return type.startsWith(SLICE_NAME) && endsWithAny(type, ["Error", "Success"]);
 };
 
 // Una de las ventajas con la que cuenta redux toolkit es la positibilidad de
@@ -37,7 +42,7 @@ const isResponseAction = (action: AnyAction) => {
 // No realiza la mutación del estado ya que utiliza la libreria Immer, la cual
 // detecta los cambios en un estado "draft" y produce un nuevo estado inmutable.
 export const pickersSlice = createSlice({
-  name: "pickers",
+  name: SLICE_NAME,
   initialState,
   reducers: {
     reset: (state: PickerStateType) => {

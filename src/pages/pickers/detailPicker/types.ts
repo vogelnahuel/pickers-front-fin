@@ -1,3 +1,4 @@
+import { NotificationStateType } from "reducers/types/notification";
 import { PickerType } from "../types";
 
 export type DetailPickerContainerTypeProps = {
@@ -10,7 +11,7 @@ export type DetailPickerContainerTypeProps = {
   setDirty: Function;
   postAprovePickerRequest: Function;
   postPendingUserDocumentsEdit: Function;
-  showNotification: Function;
+  showNotification: (notification: NotificationStateType) => void;
   postEditPickerRequest: Function;
   setActualPage: Function;
 };

@@ -1,12 +1,14 @@
-import React, { useCallback, useEffect } from "react";
-import { connect } from "react-redux";
 import { Modal } from "@pickit/pickit-components";
 import "component/modal/notificationModal.scss";
-import {
-  selectors as notificationSelectors,
-  actions as notificationActions,
-} from "reducers/notification";
 import i18next from "i18next";
+import React, { useCallback, useEffect } from "react";
+import { connect } from "react-redux";
+import {
+  actions as notificationActions,
+  notificationSelector,
+} from "reducers/notification";
+import { AppDispatch, RootState } from "store";
+import { KEYS, NotificationLevel, NotificationType } from "./types";
 
 export const NotificationModal = ({
   isOpen,
@@ -19,39 +21,44 @@ export const NotificationModal = ({
   body,
   onCloseLabel,
   onClickLabel,
-  // element,
-}) => {
-  const cerrarModal = useCallback(
+}: NotificationType) => {
+  const closeModal = useCallback(
     (e) => {
-      if (e.keyCode === 27 && (level === "warning" || level === "info")) {
+      e.stopPropagation();
+      if (e.keyCode === KEYS.ESC && (level === "warning" || level === "info")) {
         e.preventDefault();
         setClose();
       } else if (
-        (e.keyCode === 27 || e.keyCode === 13) &&
+        (e.keyCode === KEYS.ESC || e.keyCode === KEYS.ENTER) &&
         (level === "success" || level === "error")
       ) {
         e.preventDefault();
-        setClose();
+        onClose ? doAction(onClose) : onClick ? doAction(onClick) : setClose();
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [setClose, level]
   );
 
   useEffect(() => {
-    if (isOpen) {
-      // if (element) {
-      // }
-      document.addEventListener("keydown", (e) => cerrarModal(e, level));
-    }
+    if (isOpen) document.addEventListener("keydown", closeModal);
+
     return () => {
-      document.removeEventListener("keydown", cerrarModal);
+      document.removeEventListener("keydown", closeModal);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 
-  return isOpen ? (
+  if (!isOpen) return null;
+
+  return (
     <div className="modal-notification-background">
-      <Modal width="750px" height="304px" isOpen={isOpen}>
+      <Modal
+        width="750px"
+        height="304px"
+        isOpen={isOpen}
+        onClose={() => onClose && onClose()}
+      >
         <div className={`modal-title ${level}`}>
           <p>{title}</p>
         </div>
@@ -70,35 +77,31 @@ export const NotificationModal = ({
               onClick={onClick ? () => doAction(onClick) : () => setClose()}
               className={`modal-button-submit ${level} mh-10`}
             >
-              {i18next.t(onClickLabel)}
+              {i18next.t(onClickLabel || "")}
             </button>
           </div>
         </div>
       </Modal>
     </div>
-  ) : null;
+  );
 };
 
-const mapStateToProps = (state) => ({
-  isOpen: notificationSelectors.isOpen(state),
-  onCloseLabel: notificationSelectors.getOnCloseLabel(state),
-  onClickLabel: notificationSelectors.getOnClickLabel(state),
-  level: notificationSelectors.getLevel(state),
-  title: notificationSelectors.getTitle(state),
-  body: notificationSelectors.getBody(state),
-  onClick: notificationSelectors.onClick(state),
-  onClose: notificationSelectors.onClose(state),
-  // element: notificationSelectors.element(state),
+const mapStateToProps = (state: RootState) => ({
+  isOpen: notificationSelector(state).open || false,
+  onCloseLabel: notificationSelector(state).onCloseLabel,
+  onClickLabel: notificationSelector(state).onClickLabel,
+  level: notificationSelector(state).level,
+  title: notificationSelector(state).title,
+  body: notificationSelector(state).body,
+  onClick: notificationSelector(state).onClick,
+  onClose: notificationSelector(state).onClose,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  setOpen: () => {
-    dispatch(notificationActions.showNotification());
-  },
+const mapDispatchToProps = (dispatch: AppDispatch) => ({
   setClose: () => {
     dispatch(notificationActions.hideNotification());
   },
-  doAction: (action) => {
+  doAction: (action: Function | undefined) => {
     action && action();
     dispatch(notificationActions.hideNotification());
   },

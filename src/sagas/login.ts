@@ -4,6 +4,7 @@ import { CallHistoryMethodAction, replace } from "connected-react-router";
 import i18next from "i18next";
 import { LoginType } from "pages/login/types";
 import { RestorePasswordActionsTypes } from "reducers/types/login";
+import { NotificationStateType } from "reducers/types/notification";
 import {
   call,
   CallEffect,
@@ -105,9 +106,9 @@ function* logout(): Generator<
 function* getLoginEmail({
   payload,
 }: PayloadAction<EmailType>): Generator<
+  | PutEffect<{ payload: NotificationStateType; type: string }>
   | PutEffect<{ payload: undefined; type: string }>
   | CallEffect<AxiosResponse<LoginEmailTypeResponse>>
-  | PutEffect<{ type: string; content: any }>
   | PutEffect<CallHistoryMethodAction<[string, unknown?]>>,
   void,
   ILoginResponse
@@ -172,8 +173,8 @@ function* getLoginRestore({
   payload,
 }: PayloadAction<RestorePasswordActionsTypes>): Generator<
   | PutEffect<{ payload: undefined; type: string }>
+  | PutEffect<{ payload: NotificationStateType; type: string }>
   | CallEffect<AxiosResponse<RestoreEmailResponse>>
-  | PutEffect<{ type: string; content: any }>
   | PutEffect<CallHistoryMethodAction<[string, unknown?]>>,
   void,
   ILoginResponse

@@ -5,6 +5,7 @@ import { goBack } from "connected-react-router";
 import i18next from "i18next";
 import moment from "moment";
 import { actions } from "reducers/pickers";
+import { NotificationStateType } from "reducers/types/notification";
 import {
   call,
   CallEffect,
@@ -245,7 +246,7 @@ function* postPendingUserDocumentsEdit({
   payload,
 }: PayloadAction<PickerType>): Generator<
   | CallEffect<AxiosResponse<EditPickerResponseType>>
-  | PutEffect<{ type: string; content: any }>
+  | PutEffect<{ type: string; content: NotificationStateType }>
   | PutEffect<{ type: string }>,
   void,
   PickerResponseType
@@ -274,7 +275,7 @@ function* postAprovePicker({
   payload: { params, goBack },
 }: PayloadAction<{ params: PickerType; goBack: Function }>): Generator<
   | CallEffect<AxiosResponse<EditPickerResponseType>>
-  | PutEffect<{ type: string; content: any }>
+  | PutEffect<{ type: string; content: NotificationStateType }>
   | PutEffect<{ type: string }>,
   void,
   PickerResponseType
@@ -307,7 +308,7 @@ function* postEditPicker({
   payload: { params, goBack },
 }: PayloadAction<{ params: PickerType; goBack: Function }>): Generator<
   | CallEffect<AxiosResponse<EditPickerResponseType>>
-  | PutEffect<{ type: string; content: any }>
+  | PutEffect<{ type: string; content: NotificationStateType }>
   | PutEffect<{ type: string }>,
   void,
   PickerResponseType

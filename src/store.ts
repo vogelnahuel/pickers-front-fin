@@ -15,7 +15,10 @@ export const store = configureStore({
   reducer: rootReducer(history),
   devTools: process.env.NODE_ENV !== "production",
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({ thunk: false })
+    getDefaultMiddleware({
+      thunk: false,
+      serializableCheck: false,
+    })
       .concat(sagaMiddleware)
       .concat(routerMiddleware(history)),
 });
