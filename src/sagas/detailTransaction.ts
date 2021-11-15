@@ -19,7 +19,9 @@ import {
   postReasonsCancelParamsType,
   TransactionCancelResponseType,
 } from "./types/detailTransactions";
+import { actions as notificationActions } from "../reducers/notification";
 import { AxiosResponse } from "axios";
+import i18next from "i18next";
 // import { replace } from "connected-react-router";
 
 const sagas: ForkEffect<never>[] = [
@@ -52,6 +54,14 @@ function* getDetailTransaction({
   const response = yield call(transactionsMiddleware.getDetailTransaction, id);
   if (response.status !== 200) {
     yield put(actions.getDetailTransactionError());
+    yield put(
+      notificationActions.showNotification({
+        level: "error",
+        title: i18next.t("global:title.modal.serverError"),
+        body: i18next.t("global:label.modal.serverError")
+        
+      }));
+
   } else {
     const { result } = response.data;
     yield put(actions.getDetailTransactionSuccess(result));
@@ -69,6 +79,14 @@ function* getMessages({
   const response = yield call(transactionsMiddleware.getMessages, id);
   if (response.status !== 200) {
     yield put(actions.getDetailTransactionMenssagesError());
+    yield put(
+      notificationActions.showNotification({
+        level: "error",
+        title: i18next.t("global:title.modal.serverError"),
+        body: i18next.t("global:label.modal.serverError")
+        
+      }));
+
   } else {
     const { result } = response.data;
     yield put(actions.getDetailTransactionMenssagesSuccess(result.items));
@@ -95,6 +113,14 @@ function* postDevolutionUndelivered({
   );
   if (response.status !== 200) {
     yield put(actions.getDetailTransactionDevolutionUndeliveredError());
+    yield put(
+      notificationActions.showNotification({
+        level: "error",
+        title: i18next.t("global:title.modal.serverError"),
+        body: i18next.t("global:label.modal.serverError")
+        
+      }));
+
   } else {
     const { result } = response.data;
     yield put(actions.getDetailTransactionDevolutionUndeliveredSuccess(result));
@@ -122,6 +148,14 @@ function* postReasonsCanceled({
   );
   if (response.status !== 200) {
     yield put(actions.getDetailTransactionReasonsCanceledError());
+    yield put(
+      notificationActions.showNotification({
+        level: "error",
+        title: i18next.t("global:title.modal.serverError"),
+        body: i18next.t("global:label.modal.serverError")
+        
+      }));
+
   } else {
     const { result } = response.data;
     // yield put(replace("/transaction"));
@@ -141,6 +175,14 @@ function* postFinishReturned({
   const response = yield call(transactionsMiddleware.postFinishReturned, id);
   if (response.status !== 200) {
     yield put(actions.getDetailTransactionFinishReturnedError());
+    yield put(
+      notificationActions.showNotification({
+        level: "error",
+        title: i18next.t("global:title.modal.serverError"),
+        body: i18next.t("global:label.modal.serverError")
+        
+      }));
+
   } else {
     const { result } = response.data;
     yield put(actions.getDetailTransactionFinishReturnedSuccess(result));
@@ -158,6 +200,14 @@ function* postFinishLost({
   const response = yield call(transactionsMiddleware.postFinishLost, id);
   if (response.status !== 200) {
     yield put(actions.getDetailTransactionFinishLostError());
+    yield put(
+      notificationActions.showNotification({
+        level: "error",
+        title: i18next.t("global:title.modal.serverError"),
+        body: i18next.t("global:label.modal.serverError")
+        
+      }));
+
   } else {
     const { result } = response.data;
     yield put(actions.getDetailTransactionFinishLostSuccess(result));
@@ -179,6 +229,16 @@ function* postDnidelivered({
   );
   if (response.status !== 200) {
     yield put(actions.getDetailTransactionDniDeliveredError());
+    
+    yield put(
+      notificationActions.showNotification({
+        level: "error",
+        title: i18next.t("global:title.modal.serverError"),
+        body: i18next.t("global:label.modal.serverError")
+        
+      }));
+
+
   } else {
     const { result } = response.data;
     yield put(actions.getDetailTransactionDniDeliveredSuccess(result));
