@@ -1,4 +1,4 @@
-import { AcountDataType, PickerType, PhoneType, StatusType } from "../types";
+import {PickerType} from "../types";
 
 export type DetailPickerContainerTypeProps = {
   pendingUserAdminPicker: PickerType;
@@ -17,20 +17,7 @@ export type DetailPickerContainerTypeProps = {
 
 export type DetailPickerTypeProps = {
   isFetching:Boolean
-  pendingUserAdminPicker:{accountingData: AcountDataType;
-    dateOfBirth: string;
-    email: string;
-    enable: boolean;
-    expirationDatePolicyPersonal: string;
-    id: number;
-    identificationNumber: string;
-    name: string;
-    phone: PhoneType;
-    registerDate: string;
-    status: StatusType;
-    surname: string;
-    vehicle: any
-    vehicleType: string;};
+  pendingUserAdminPicker:PickerType;
   getPendingUserPickerExport:Function
   actualPage:String
   setDirty:Function
@@ -44,16 +31,3 @@ export type DetailPickerTypeProps = {
   validationSchema:Object
   formatDate:Function
 };
-
-// export type DetailPickerValidationSchema = {
-//   name:string,
-// surname:string,
-// phone:{
-//   areaNumber:string,
-// number:string,
-// }
-// expirationDatePolicyPersonal?:string
-// vehicle?:{
-
-// }
-// }

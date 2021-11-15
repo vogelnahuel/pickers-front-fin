@@ -126,7 +126,7 @@ const reducer =(state:DetailPickerStateType = INITIAL_STATE, action:actionType) 
             return {
                 ...state,
                 pendingUserAdminPicker: action.pendingUserAdminPicker,
-                nameDisplay: `${action.pendingUserAdminPicker.name} ${action.pendingUserAdminPicker.surname}`,
+                nameDisplay: `${action.pendingUserAdminPicker.personalData.name} ${action.pendingUserAdminPicker.personalData.surname}`,
                 fetching: false,
             };
         case types.PENDING_USER_ADMIN_PICKER_GET_ERROR:

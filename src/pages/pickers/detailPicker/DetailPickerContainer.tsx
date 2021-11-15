@@ -50,40 +50,41 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
 
   const validationSchema: yup.SchemaOf<DetailPickerValidationSchema> =
     yup.object({
-      name: yup
-        .string()
-        .required(i18next.t("global:error.input.required"))
-        .matches(
-          VALIDATION_REGEX.expName,
-          i18next.t("global:error.input.numbersOrSpecialCharacters")
-        ),
-      surname: yup
-        .string()
-        .required(i18next.t("global:error.input.required"))
-        .matches(
-          VALIDATION_REGEX.expName,
-          i18next.t("global:error.input.numbersOrSpecialCharacters")
-        ),
-      phone: yup.object({
-        areaNumber: yup
+      personalData:  yup.object({
+          name: yup
           .string()
           .required(i18next.t("global:error.input.required"))
           .matches(
-            VALIDATION_REGEX.regArea,
-            i18next.t("global:error.input.invalidFormat")
+            VALIDATION_REGEX.expName,
+            i18next.t("global:error.input.numbersOrSpecialCharacters")
           ),
-        number: yup
+        surname: yup
           .string()
           .required(i18next.t("global:error.input.required"))
           .matches(
-            VALIDATION_REGEX.regTelefono,
-            i18next.t("global:error.input.invalidFormat")
+            VALIDATION_REGEX.expName,
+            i18next.t("global:error.input.numbersOrSpecialCharacters")
           ),
+            phone: yup.object({
+              areaNumber: yup
+                .string()
+                .required(i18next.t("global:error.input.required"))
+                .matches(
+                  VALIDATION_REGEX.regArea,
+                  i18next.t("global:error.input.invalidFormat")
+                ),
+              number: yup
+                .string()
+                .required(i18next.t("global:error.input.required"))
+                .matches(
+                  VALIDATION_REGEX.regTelefono,
+                  i18next.t("global:error.input.invalidFormat")
+                ),
+            }),
       }),
       vehicle:
-        props.pendingUserAdminPicker.vehicleType === "motorcycle"
+        props.pendingUserAdminPicker.vehicle  && props.pendingUserAdminPicker.vehicle.type === "motorcycle"
           ? yup.object({
-              [props.pendingUserAdminPicker.vehicleType]: yup.object({
                 patent: yup
                   .string()
                   .nullable()
@@ -92,14 +93,6 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
                   .matches(
                     VALIDATION_REGEX.regPatent,
                     i18next.t("global:error.input.specialCharacters")
-                  ),
-                expirationDatePolicyPersonal: yup
-                  .string()
-                  .nullable()
-                  .required(i18next.t("global:error.input.required"))
-                  .matches(
-                    DATE_FORMATS.regex,
-                    i18next.t("global:error.input.invalidFormat")
                   ),
                 expirationDatePolicyVehicle: yup
                   .string()
@@ -137,7 +130,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
                     DATE_FORMATS.regexValidCharacter,
                     i18next.t("global:error.input.specialCharacters")
                   ),
-              }),
+  
             })
           : yup.object({}),
     });

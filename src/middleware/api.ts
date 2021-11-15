@@ -52,6 +52,14 @@ api.interceptors.response.use(
     },
 );
 
+export const remove = (path:any,  body?:object) => {
+    return api.delete(
+        path,
+        {params: body}
+    );
+};
+
+
 export const get = (path:any, query?: object) => {
     return api.get(
         path,
@@ -73,5 +81,7 @@ export const put = (path:any, body:object, query?:object) => {
         query
     );
 };
+
+
 
 export default api;

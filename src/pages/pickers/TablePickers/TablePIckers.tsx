@@ -12,6 +12,7 @@ export const TablePickers: React.FC<TableAdminPropsType> = ({
   actualPage,
   pendingUsers,
 }): JSX.Element => {
+
   return (
     <>
       <table className="table-admin">
@@ -28,19 +29,19 @@ export const TablePickers: React.FC<TableAdminPropsType> = ({
         <tbody>
           {pendingUsers.map((user: PickerType) => (
             <tr className="table-info table-pending" key={user.id}>
-              <td> {`${user.name} ${user.surname}`} </td>
-              <td> {user.identificationNumber} </td>
-              <td>{user.email}</td>
+              <td> {`${user?.personalData.name} ${user?.personalData.surname}`} </td>
+              <td> {user?.personalData.identificationNumber} </td>
+              <td>{user?.personalData.email}</td>
               <td>
-                {i18next.t(`tablePickers:label.table.${user?.vehicleType}`)}
+                {i18next.t(`tablePickers:label.table.${user?.vehicle?.type}`)}
               </td>
               {actualPage === "PENDING" ? (
                 <td className="table-registro">
                   <div className="table-admin-enCorrecion-span">
-                    {getDifDate(user.registerDate)}{" "}
+                    {getDifDate(user.registerDatetime)}{" "}
                     {i18next.t(
                       `tablePickers:label.table.${
-                        getDifDate(user.registerDate) === 1 ? "day" : "days"
+                        getDifDate(user.registerDatetime) === 1 ? "day" : "days"
                       }`
                     )}
                   </div>
