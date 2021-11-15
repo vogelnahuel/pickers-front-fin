@@ -143,6 +143,21 @@ export const transactionSlice = createSlice({
           state.detailTransactionModalOpen = true;
         }
       )
+      .addCase(
+        detailTransactionAction.getDetailTransactionMenssagesRequest.type, (state: TransactionStateType)=> {
+          state.fetching = true;
+        }
+      )
+      .addCase(
+        detailTransactionAction.getDetailTransactionMenssagesSuccess.type, (state: TransactionStateType)=> {
+          state.fetching = false;
+        }
+      )
+      .addCase(
+        detailTransactionAction.getDetailTransactionError.type, (state: TransactionStateType)=> {
+          state.fetching = false;
+        }
+      )
       .addMatcher(isRequestAction, (state: TransactionStateType) => {
         state.fetching = true;
       })
