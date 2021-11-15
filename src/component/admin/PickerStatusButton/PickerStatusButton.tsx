@@ -16,6 +16,7 @@ import {
   pickersSelector as pendingUserSelectors,
 } from "reducers/pickers";
 import i18next from "i18next";
+import { NotificationStateType } from "reducers/types/notification";
 export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
   showNotification,
   setActualPage,
@@ -67,6 +68,7 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
       Historial.goBack();
     };
 
+    eventTarget.blur();
     if (isDirty) {
       showNotification({
         level: "warning",
@@ -81,7 +83,6 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
             left: 0,
             behavior: "smooth",
           }),
-        element: eventTarget.parentElement,
       });
     } else {
       onClose();
@@ -164,8 +165,7 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
-  showNotification: (content: any) => {
-    //falta tipar show notification
+  showNotification: (content: NotificationStateType) => {
     dispatch(notificationActions.showNotification(content));
   },
   setActualPage: (page: string) => {

@@ -1,8 +1,9 @@
-import { createSlice, PayloadAction, AnyAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, Action } from "@reduxjs/toolkit";
 import { ParamsMiddlewareType, PickerType } from "pages/pickers/types";
 import { DetailPickerStateType } from "./types/detailPicker";
 
 import { RootState } from "store";
+import { endsWithAny } from "utils/endsWithAny";
 
 export const initialState: DetailPickerStateType = {
   fetching: false,
@@ -60,16 +61,20 @@ export const initialState: DetailPickerStateType = {
   },
 };
 
-const isRequestAction = (action: AnyAction) => {
-  return action.type.endsWith("Request");
+const SLICE_NAME = "detailPicker";
+
+const isRequestAction = (action: Action<string>) => {
+  const { type } = action;
+  return type.startsWith(SLICE_NAME) && type.endsWith("Request");
 };
 
-const isResponseAction = (action: AnyAction) => {
-  return action.type.endsWith("Success") || action.type.endsWith("Error");
+const isResponseAction = (action: Action<string>) => {
+  const { type } = action;
+  return type.startsWith(SLICE_NAME) && endsWithAny(type, ["Error", "Success"]);
 };
 
 export const detailPickerSlice = createSlice({
-  name: "detailPicker",
+  name: SLICE_NAME,
   initialState,
   reducers: {
     getPendingUserPickerRequest: (
@@ -93,10 +98,7 @@ export const detailPickerSlice = createSlice({
     },
     getPendingUserPickerExportRequest: (
       state: DetailPickerStateType,
-      action: PayloadAction<{
-        params: ParamsMiddlewareType;
-        element: HTMLElement;
-      }>
+      action: PayloadAction<ParamsMiddlewareType>
     ) => {},
     getPendingUserPickerExportSuccess: () => {},
     getPendingUserPickerExportError: () => {},

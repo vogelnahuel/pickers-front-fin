@@ -4,6 +4,7 @@ import i18next from "i18next";
 import * as transactionsMiddleware from "middleware/transactions";
 import { actions as notificationActions } from "reducers/notification";
 import { actions } from "reducers/transactions";
+import { NotificationStateType } from "reducers/types/notification";
 import { GetTransactionsSuccessType } from "reducers/types/transaction";
 import {
   call,
@@ -11,12 +12,13 @@ import {
   ForkEffect,
   put,
   PutEffect,
-  takeLatest
+  takeLatest,
 } from "redux-saga/effects";
 import createCSV from "utils/createCSV";
 import {
   FilterTransactionsType,
-  TransactionResponseContent, TransactionsExportContentType
+  TransactionResponseContent,
+  TransactionsExportContentType,
 } from "./types/transactions";
 
 const sagas: ForkEffect<never>[] = [
@@ -31,7 +33,7 @@ function* getTransactions({
   payload,
 }: PayloadAction<FilterTransactionsType>): Generator<
   | CallEffect<AxiosResponse<TransactionResponseContent>>
-  | PutEffect<{ type: string; content: any }>
+  | PutEffect<{ type: string; content: NotificationStateType }>
   | PutEffect<{ type: string; transactions: GetTransactionsSuccessType }>
   | PutEffect<{ type: string }>,
   void,
@@ -127,7 +129,8 @@ function* getTransactionsExport({
   payload,
 }: PayloadAction<FilterTransactionsType>): Generator<
   | CallEffect<AxiosResponse<TransactionsExportContentType>>
-  | PutEffect<{ type: string }>,
+  | PutEffect<{ type: string; payload: NotificationStateType }>
+  | PutEffect<{ type: string; payload: undefined }>,
   void,
   TransactionsExportContentType
 > {
@@ -138,12 +141,12 @@ function* getTransactionsExport({
   if (response.status !== 200) {
     yield put(actions.getTransactionsExportError());
   } else {
-    createCSV(response.data,"transactions");
+    createCSV(response.data, "transactions");
     yield put(
       notificationActions.showNotification({
         level: "success",
         title: i18next.t("global:title.modal.export"),
-        body: i18next.t("global:label.modal.export")
+        body: i18next.t("global:label.modal.export"),
       })
     );
     yield put(actions.getTransactionsExportSuccess());

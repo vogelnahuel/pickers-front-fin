@@ -1,6 +1,7 @@
-import { createSlice, PayloadAction, AnyAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, Action } from "@reduxjs/toolkit";
 import { DashboardType } from "sagas/types/dashboard";
 import { RootState } from "store";
+import { endsWithAny } from "utils/endsWithAny";
 import { DashboardState } from "./types/dashboard";
 
 export const initialState: DashboardState = {
@@ -8,19 +9,23 @@ export const initialState: DashboardState = {
   dashboard: {},
 };
 
-const isRequestAction = (action: AnyAction) => {
-  return action.type.endsWith("Request");
+const SLICE_NAME = "dashboard";
+
+const isRequestAction = (action: Action<string>) => {
+  const { type } = action;
+  return type.startsWith(SLICE_NAME) && type.endsWith("Request");
 };
 
-const isResponseAction = (action: AnyAction) => {
-  return action.type.endsWith("Success") || action.type.endsWith("Error");
+const isResponseAction = (action: Action<string>) => {
+  const { type } = action;
+  return type.startsWith(SLICE_NAME) && endsWithAny(type, ["Error", "Success"]);
 };
 
 export const dashboardSlice = createSlice({
-  name: "dashboard",
+  name: SLICE_NAME,
   initialState,
   reducers: {
-    getDashboardRequest: (state: DashboardState) => {},
+    getDashboardRequest: () => {},
     getDashboardSuccess: (
       state: DashboardState,
       action: PayloadAction<DashboardType>
@@ -28,7 +33,7 @@ export const dashboardSlice = createSlice({
       const { payload } = action;
       state.dashboard = payload;
     },
-    getDashboardError: (state: DashboardState) => {},
+    getDashboardError: () => {},
   },
   extraReducers: (builder) =>
     builder

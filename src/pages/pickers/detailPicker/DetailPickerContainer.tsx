@@ -26,6 +26,7 @@ import { DetailPickerContainerTypeProps } from "./types";
 
 import { DetailPicker } from "pages/pickers/detailPicker/DetailPicker";
 import { DATE_FORMATS, VALIDATION_REGEX } from "utils/constants";
+import { NotificationStateType } from "reducers/types/notification";
 
 const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
   props
@@ -170,6 +171,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
       onClickLabel: "detailPicker:label.button.approve",
       onCloseLabel: "detailPicker:label.button.revise",
       onClick: () => props.postAprovePickerRequest(params, goBack),
+      onClose: undefined,
     });
   };
 
@@ -198,15 +200,9 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   getPendingUserPicker: (params: number) => {
     dispatch(pendingUserAdminPickerActions.getPendingUserPickerRequest(params));
   },
-  getPendingUserPickerExport: (
-    params: ParamsMiddlewareType,
-    element: HTMLElement
-  ) => {
+  getPendingUserPickerExport: (params: ParamsMiddlewareType) => {
     dispatch(
-      pendingUserAdminPickerActions.getPendingUserPickerExportRequest({
-        params,
-        element,
-      })
+      pendingUserAdminPickerActions.getPendingUserPickerExportRequest(params)
     );
   },
   setDirty: (dirty: boolean) => {
@@ -224,7 +220,7 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
       )
     );
   },
-  showNotification: (content: any) => {
+  showNotification: (content: NotificationStateType) => {
     dispatch(notificationActions.showNotification(content));
   },
   postEditPickerRequest: (params: PickerType, goBack: Function) => {
