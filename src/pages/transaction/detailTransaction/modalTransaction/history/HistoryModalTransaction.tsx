@@ -81,7 +81,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                           type="text"
                           name="name"
                           label={i18next.t(
-                            "filterTransaction:label.filter.name"
+                            "filterPickers:label.filter.name"
                           )}
                           component={Input}
                           className="Admin-Pickers-input"
@@ -194,7 +194,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                           type="text"
                           name="reveiverName"
                           label={i18next.t(
-                            "filterTransaction:label.filter.name"
+                            "filterPickers:label.filter.name"
                           )}
                           component={Input}
                           className="Admin-Pickers-input"
