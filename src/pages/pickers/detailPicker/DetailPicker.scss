@@ -37,7 +37,7 @@
 .label-Admin-Pickers {
   font-family: "Mulish";
   font-style: normal;
-  font-weight: 300;
+  font-weight: 400;
   font-size: 15px;
   line-height: 20px;
   color: #4d4d4d;
@@ -314,9 +314,11 @@
   font-weight: 800;
   font-size: 18px;
   text-align: center;
+  cursor: pointer;
 }
 .button-submit-active:disabled {
   background: #bdbdbd;
+  cursor:default;
 }
 .button-modal-aprobar-exito {
   background: #6fcf97;
@@ -352,6 +354,7 @@
   margin: 0 10px;
   height: 50px;
   background-color: white;
+  cursor: pointer;
 }
 .button-submit-subtype:disabled {
   border: 2.5px solid #bdbdbd;

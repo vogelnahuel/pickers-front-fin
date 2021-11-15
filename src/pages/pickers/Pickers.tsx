@@ -14,7 +14,6 @@ import i18next from "i18next";
 
 export const Pickers: React.FC<PickerTypes> = ({
   actualPage,
-  tableTitles,
   pendingUsers,
   filters,
   filtersExtraSeeMore,

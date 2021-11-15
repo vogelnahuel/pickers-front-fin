@@ -14,6 +14,7 @@ import {
   DevolutionUndeliveredResponseType,
   postCancelType,
   postDevolutionUndeliveredParamsType,
+  postDevolutionUndeliveredType,
   postDniDeliveredParamsType,
   postReasonsCancelParamsType,
   TransactionCancelResponseType,
@@ -75,17 +76,21 @@ function* getMessages({
 }
 
 function* postDevolutionUndelivered({
-  params,
   id,
+  params,
 }: postDevolutionUndeliveredParamsType): Generator<
   | CallEffect<AxiosResponse<DevolutionUndeliveredResponseType>>
   | PutEffect<{ type: string }>,
   void,
   DevolutionUndeliveredResponseType
 > {
+
+  const paramsPost: postDevolutionUndeliveredType = {
+    impossibleDeliveryReasonId: Number(params),
+  };
   const response = yield call(
     transactionsMiddleware.postDevolutionUndelivered,
-    params,
+    paramsPost,
     id
   );
   if (response.status !== 200) {

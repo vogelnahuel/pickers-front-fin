@@ -25,6 +25,7 @@ const DniFinish: React.FC<DniFinishPropsType> = ({
   const validationSchema: yup.SchemaOf<any> = yup.object({
     dni: yup
       .string()
+      .min(7,i18next.t("detailTransaction:error.input.dniLong") )
       .required(i18next.t("global:error.input.required"))
       .matches(
         VALIDATION_REGEX.regDNI,
