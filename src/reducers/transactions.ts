@@ -141,6 +141,13 @@ export const transactionSlice = createSlice({
         detailTransactionAction.getDetailTransactionSuccess.type,
         (state: TransactionStateType) => {
           state.detailTransactionModalOpen = true;
+          state.fetching = false;
+        }
+      )
+      .addCase(
+        detailTransactionAction.getDetailTransactionRequest.type,
+        (state: TransactionStateType) => {
+          state.fetching = true;
         }
       )
       .addCase(
