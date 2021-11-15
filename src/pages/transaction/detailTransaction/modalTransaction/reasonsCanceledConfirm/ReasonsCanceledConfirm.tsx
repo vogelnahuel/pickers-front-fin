@@ -3,7 +3,7 @@ import Info from "assets/transaction/Advertencia.svg";
 import React from "react";
 import {
   actions as detailTransactionActions,
-  selectors as detailTransactionSelector,
+  detailTransactionSelector,
 } from "reducers/detailTransaction";
 import { connect } from "react-redux";
 
@@ -11,6 +11,7 @@ import "./reasonsCanceledConfirm.scss";
 import { AppDispatch, RootState } from "store";
 import { ReasonCanceledConfirmPropsType } from "./types";
 import i18next from "i18next";
+import { postCancelType } from "sagas/types/detailTransactions";
 
 const ReasonsCanceledConfirm: React.FC<ReasonCanceledConfirmPropsType> = ({
   detailTransaction,
@@ -37,9 +38,9 @@ const ReasonsCanceledConfirm: React.FC<ReasonCanceledConfirmPropsType> = ({
       </div>
 
       {(detailTransaction.transaction.state.id === 3 &&
-        messageSelected.id === 6) ||
+        messageSelected?.id === 6) ||
       (detailTransaction.transaction.state.id === 4 &&
-        messageSelected.id === 6) ? (
+        messageSelected?.id === 6) ? (
         <div className="modal-transaction-reasonsCanceledConfirm-container">
           <img
             className="modal-transaction-reasonsCanceledConfirm-img"
@@ -85,7 +86,7 @@ const ReasonsCanceledConfirm: React.FC<ReasonCanceledConfirmPropsType> = ({
       <button
         onClick={() => {
           postReasonsCanceled(
-            messageSelected.id,
+            messageSelected?.id,
             detailTransaction.transaction.id
           );
         }}
@@ -100,17 +101,17 @@ const ReasonsCanceledConfirm: React.FC<ReasonCanceledConfirmPropsType> = ({
 };
 
 const mapStateToProps = (state: RootState) => ({
-  detailTransaction: detailTransactionSelector.getDetailTransaction(state),
-  messageSelected: detailTransactionSelector.getSelectedMessage(state),
+  detailTransaction: detailTransactionSelector(state).detailTransaction,
+  messageSelected: detailTransactionSelector(state).messageSelected,
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
-  postReasonsCanceled: (params: string, id: string) => {
+  postReasonsCanceled: (params: postCancelType, id: string) => {
     dispatch(
-      detailTransactionActions.getDetailTransactionReasonsCanceledRequest(
+      detailTransactionActions.getDetailTransactionReasonsCanceledRequest({
+        id,
         params,
-        id
-      )
+      })
     );
   },
 });

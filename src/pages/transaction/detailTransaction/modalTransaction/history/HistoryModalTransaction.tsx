@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import {
   actions as detailTransactionActions,
-  selectors as detailTransactionSelector,
+  detailTransactionSelector,
 } from "reducers/detailTransaction";
 import { AppDispatch, RootState } from "store";
 import Reload from "../../../../../assets/transaction/Reload.svg";
@@ -295,7 +295,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
 };
 
 const mapStateToProps = (state: RootState) => ({
-  detailTransaction: detailTransactionSelector.getDetailTransaction(state),
+  detailTransaction: detailTransactionSelector(state).detailTransaction,
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({

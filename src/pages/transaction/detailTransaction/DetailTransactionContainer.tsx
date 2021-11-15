@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import {
-  actions as detailTransactionActions,
-  selectors as detailTransactionSelector,
+  detailTransactionSelector
 } from "reducers/detailTransaction";
+import {
+  actions as transactionActions
+} from "reducers/transactions";
 import { AppDispatch, RootState } from "store";
 import { DetailTransaction } from "./DetailTransaction";
 import { DetailTransactionContainerType } from "./types";
@@ -31,12 +33,12 @@ const DetailTransactionContainer: React.FC<DetailTransactionContainerType> = (
 };
 
 const mapStateToProps = (state: RootState) => ({
-  detailTransaction: detailTransactionSelector.getDetailTransaction(state),
+  detailTransaction: detailTransactionSelector(state).detailTransaction,
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
   closeModalDetailTransaction: () => {
-    dispatch(detailTransactionActions.getCloseModalDetailTransaction());
+    dispatch(transactionActions.getCloseModalDetailTransaction());
   },
 });
 

@@ -1,13 +1,11 @@
-import {
-  call,
-  takeLatest,
-  put,
-  CallEffect,
-  PutEffect,
-  ForkEffect,
-} from "redux-saga/effects";
-import { types, actions } from "reducers/detailTransaction";
+import { PayloadAction } from "@reduxjs/toolkit";
+import { AxiosResponse } from "axios";
 import * as transactionsMiddleware from "middleware/transactions";
+import { actions } from "reducers/detailTransaction";
+import { actions as transactionActions } from "reducers/transactions";
+import {
+  call, CallEffect, ForkEffect, put, PutEffect, takeLatest
+} from "redux-saga/effects";
 import {
   DetailTransactionResponseType,
   DetailTransactionSagasType,
@@ -17,39 +15,34 @@ import {
   postDevolutionUndeliveredType,
   postDniDeliveredParamsType,
   postReasonsCancelParamsType,
-  TransactionCancelResponseType,
+  TransactionCancelResponseType
 } from "./types/detailTransactions";
-import { AxiosResponse } from "axios";
-// import { replace } from "connected-react-router";
 
 const sagas: ForkEffect<never>[] = [
-  takeLatest(types.DETAIL_TRANSACTIONS_ID_REQUEST, getDetailTransaction),
-  takeLatest(types.DETAIL_TRANSACTIONS_MENSSAGES_REQUEST, getMessages),
-  takeLatest(
-    types.DETAIL_TRANSACTIONS_DEVOLUTION_UNDELIVERED_REQUEST,
+  takeLatest(actions.getDetailTransactionRequest.type, getDetailTransaction),
+  takeLatest(actions.getDetailTransactionMenssagesRequest.type, getMessages),
+  takeLatest(actions.getDetailTransactionDevolutionUndeliveredRequest.type,
     postDevolutionUndelivered
   ),
-  takeLatest(
-    types.DETAIL_TRANSACTIONS_REASONS_CANCELED_REQUEST,
+  takeLatest(actions.getDetailTransactionReasonsCanceledRequest.type,
     postReasonsCanceled
   ),
-  takeLatest(
-    types.DETAIL_TRANSACTIONS_FINISH_RETURNED_REQUEST,
+  takeLatest(actions.getDetailTransactionFinishReturnedRequest.type,
     postFinishReturned
   ),
-  takeLatest(types.DETAIL_TRANSACTIONS_FINISH_LOST_REQUEST, postFinishLost),
-  takeLatest(types.DETAIL_TRANSACTIONS_DNI_DELIVERED_REQUEST, postDnidelivered),
+  takeLatest(actions.getDetailTransactionFinishLostRequest.type, postFinishLost),
+  takeLatest(actions.getDetailTransactionDniDeliveredRequest.type, postDnidelivered),
 ];
 
 function* getDetailTransaction({
-  id,
-}: DetailTransactionSagasType): Generator<
+  payload,
+}: PayloadAction<string>): Generator<
   | CallEffect<AxiosResponse<DetailTransactionResponseType>>
   | PutEffect<{ type: string }>,
   void,
   DetailTransactionResponseType
 > {
-  const response = yield call(transactionsMiddleware.getDetailTransaction, id);
+  const response = yield call(transactionsMiddleware.getDetailTransaction, payload);
   if (response.status !== 200) {
     yield put(actions.getDetailTransactionError());
   } else {
@@ -95,8 +88,7 @@ function* postDevolutionUndelivered({
   if (response.status !== 200) {
     yield put(actions.getDetailTransactionDevolutionUndeliveredError());
   } else {
-    const { result } = response.data;
-    yield put(actions.getDetailTransactionDevolutionUndeliveredSuccess(result));
+    yield put(transactionActions.getDetailTransactionDevolutionUndeliveredSuccess());
   }
 }
 
@@ -122,10 +114,8 @@ function* postReasonsCanceled({
   if (response.status !== 200) {
     yield put(actions.getDetailTransactionReasonsCanceledError());
   } else {
-    const { result } = response.data;
-    // yield put(replace("/transaction"));
     yield window.location.reload();
-    yield put(actions.getDetailTransactionReasonsCanceledSuccess(result));
+    yield put(transactionActions.getDetailTransactionReasonsCanceledSuccess());
   }
 }
 
@@ -141,8 +131,7 @@ function* postFinishReturned({
   if (response.status !== 200) {
     yield put(actions.getDetailTransactionFinishReturnedError());
   } else {
-    const { result } = response.data;
-    yield put(actions.getDetailTransactionFinishReturnedSuccess(result));
+    yield put(transactionActions.getDetailTransactionFinishReturnedSuccess());
   }
 }
 
@@ -158,8 +147,7 @@ function* postFinishLost({
   if (response.status !== 200) {
     yield put(actions.getDetailTransactionFinishLostError());
   } else {
-    const { result } = response.data;
-    yield put(actions.getDetailTransactionFinishLostSuccess(result));
+    yield put(transactionActions.getDetailTransactionFinishLostSuccess());
   }
 }
 function* postDnidelivered({
@@ -179,8 +167,7 @@ function* postDnidelivered({
   if (response.status !== 200) {
     yield put(actions.getDetailTransactionDniDeliveredError());
   } else {
-    const { result } = response.data;
-    yield put(actions.getDetailTransactionDniDeliveredSuccess(result));
+    yield put(transactionActions.getDetailTransactionDniDeliveredSuccess());
   }
 }
 

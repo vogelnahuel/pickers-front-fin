@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction, AnyAction } from "@reduxjs/toolkit";
 import { FilterTransactionsType } from "sagas/types/transactions";
 import { RootState } from "store";
+import { actions as detailTransactionAction } from "reducers/detailTransaction";
 import {
   GetTransactionsSuccessType,
   SetFilterExtraType,
@@ -103,9 +104,40 @@ export const transactionSlice = createSlice({
     ) => {},
     getTransactionsExportSuccess: () => {},
     getTransactionsExportError: () => {},
+
+    getDetailTransactionDevolutionUndeliveredSuccess: (
+      state: TransactionStateType
+    ) => {
+      state.detailTransactionModalOpen = false;
+    },
+    getDetailTransactionReasonsCanceledSuccess: (
+      state: TransactionStateType
+    ) => {
+      state.detailTransactionModalOpen = false;
+    },
+    getDetailTransactionFinishReturnedSuccess: (
+      state: TransactionStateType
+    ) => {
+      state.detailTransactionModalOpen = false;
+    },
+    getDetailTransactionFinishLostSuccess: (state: TransactionStateType) => {
+      state.detailTransactionModalOpen = false;
+    },
+    getDetailTransactionDniDeliveredSuccess: (state: TransactionStateType) => {
+      state.detailTransactionModalOpen = false;
+    },
+    getCloseModalDetailTransaction: (state: TransactionStateType) => {
+      state.detailTransactionModalOpen = false;
+    },
   },
   extraReducers: (builder) =>
     builder
+      .addCase(
+        detailTransactionAction.getDetailTransactionSuccess.type,
+        (state: TransactionStateType) => {
+          state.detailTransactionModalOpen = true;
+        }
+      )
       .addMatcher(isRequestAction, (state: TransactionStateType) => {
         state.fetching = true;
       })
