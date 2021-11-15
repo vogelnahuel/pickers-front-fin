@@ -16,7 +16,7 @@
   "button.finishModal.finish": "Finalizarla",
   "title.dniFinish.dniReceiver": "Ingresá el DNI de quien recibió el paquete",
   "placeholeder.input.dni": "Ingresá el DNI",
-  "label.input.dni": "DNI*",
+  "label.input.dni": "DNI *",
   "label.detailTransaction.deliveryAddress": "Dirección de entrega",
   "label.detailTransaction.pickupAddress": "Dirección de retiro",
   "label.detailTransaction.retailer": "Retailer",
@@ -26,5 +26,6 @@
   "label.cancelModal.confirmation": "¿Querés cancelar la colecta?",
   "label.undeliveredModal.reason": "Seleccioná el motivo de imposible de entrega",
   "label.undeliveredModal.finish": "Finalizarla",
-  "error.input.dniInvalid": "El dni es inválido"
+  "error.input.dniInvalid": "El DNI es inválido",
+  "error.input.dniLong":"El DNI debe tener entre 7 y 8 caracteres numéricos"
 }

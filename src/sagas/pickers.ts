@@ -59,8 +59,7 @@ const sagas = [
 
 export default sagas;
 
-const process = (body: //TODO: vehiculos any?
-{
+const process = (body: {
   id: number;
   enable: boolean;
   registerDatetime: string;
@@ -72,10 +71,14 @@ const process = (body: //TODO: vehiculos any?
 }) => {
   return {
     ...body,
-    dateOfBirth: moment(
-      body.personalData.dateOfBirth,
-      DATE_FORMATS.shortDate
-    ).format(DATE_FORMATS.shortISODate),
+
+    personalData: {
+      ...body.personalData,
+      dateOfBirth: moment(
+        body.personalData.dateOfBirth,
+        DATE_FORMATS.shortDate
+      ).format(DATE_FORMATS.shortISODate),
+    },
     accountingData: {
       ...body.accountingData,
       fiscalNumber:
@@ -116,14 +119,6 @@ const process = (body: //TODO: vehiculos any?
               DATE_FORMATS.shortDate
             ).format(DATE_FORMATS.shortISODate)
           : body.vehicle.expirationDateDriverLicense,
-      // expirationDatePolicyPersonal:
-      //   body.vehicle[body.vehicleType].expirationDatePolicyPersonal &&
-      //   body.vehicle[body.vehicleType].expirationDatePolicyPersonal.match(DATE_FORMATS.regexshortDate)
-      //     ? moment(
-      //         body.expirationDatePolicyPersonal,
-      //         DATE_FORMATS.shortDate
-      //       ).format(DATE_FORMATS.shortISODate)
-      //     : body.expirationDatePolicyPersonal,
     },
   };
 };

@@ -1,22 +1,15 @@
+import React from "react";
 import { ConnectedRouter } from "connected-react-router";
-//import store, { history } from "store";
 import EmailRestore from "pages/login/email/EmailRestoreContainer";
 import Login from "pages/login/LoginContainer";
 import RestorePassword from "pages/login/restorePassword/RestorePasswordContainer";
 import DetailPickerContainer from "pages/pickers/detailPicker/DetailPickerContainer";
 import PickersContainer from "pages/pickers/PickersContainer";
-import React from "react";
 import { Provider } from "react-redux";
 import { Route, Switch } from "react-router"; // react-router v4/v5
 import DashboardContainer from "../pages/dashboard/DashboardAdminContainer";
 import Transaction from "../pages/transaction/TransactionContainer";
 import { history, store } from "../store";
-// import {
-//   counterSelector,
-//   decrement,
-//   increment,
-//   incrementAsync,
-// } from "slices/counter/counterSlice";
 
 const Routes = (): JSX.Element => {
   return (
@@ -35,38 +28,5 @@ const Routes = (): JSX.Element => {
     </Provider>
   );
 };
-
-// const Routes = () => (
-//   <Provider store={store}>
-//     <CounterTestContainer />
-//   </Provider>
-// );
-
-// const CounterTest = ({ value, increment, decrement, incrementAsync }: any) => {
-
-//   return (
-//     <div>
-//       <input value={value} />
-//       <button onClick={increment}>Increment</button>
-//       <button onClick={incrementAsync}>Increment Async</button>
-//       <button onClick={decrement}>Decrement</button>
-//     </div>
-//   );
-// };
-
-// const mapStateToProps = (state: RootState) => ({
-//   value: counterSelector(state).value,
-// });
-
-// const mapDispatchToProps = (dispatch: any) => ({
-//   increment: () => dispatch(increment()),
-//   incrementAsync: () => dispatch(incrementAsync()),
-//   decrement: () => dispatch(decrement()),
-// });
-
-// const CounterTestContainer = connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(CounterTest);
 
 export default Routes;

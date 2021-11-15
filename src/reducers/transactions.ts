@@ -151,17 +151,20 @@ export const transactionSlice = createSlice({
         }
       )
       .addCase(
-        detailTransactionAction.getDetailTransactionMenssagesRequest.type, (state: TransactionStateType)=> {
+        detailTransactionAction.getDetailTransactionMenssagesRequest.type,
+        (state: TransactionStateType) => {
           state.fetching = true;
         }
       )
       .addCase(
-        detailTransactionAction.getDetailTransactionMenssagesSuccess.type, (state: TransactionStateType)=> {
+        detailTransactionAction.getDetailTransactionMenssagesSuccess.type,
+        (state: TransactionStateType) => {
           state.fetching = false;
         }
       )
       .addCase(
-        detailTransactionAction.getDetailTransactionError.type, (state: TransactionStateType)=> {
+        detailTransactionAction.getDetailTransactionError.type,
+        (state: TransactionStateType) => {
           state.fetching = false;
         }
       )
