@@ -5,10 +5,10 @@ import React, { useCallback, useEffect } from "react";
 import { connect } from "react-redux";
 import {
   actions as notificationActions,
-  notificationSelector,
+  notificationSelector
 } from "reducers/notification";
 import { AppDispatch, RootState } from "store";
-import { KEYS, NotificationLevel, NotificationType } from "./types";
+import { KEYS, NotificationType } from "./types";
 
 export const NotificationModal = ({
   isOpen,
