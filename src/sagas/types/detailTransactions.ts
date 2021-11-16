@@ -1,3 +1,4 @@
+import { TransactionActionTagType } from "pages/transaction/types";
 
 
 export type DetailTransactionSagasType={
@@ -152,7 +153,7 @@ export type DetailTransactionHistoryType = {
 };
 export type DetailTransactionReasonTagType = {
   id: number;
-  tag: string;
+  tag: keyof TransactionActionTagType;
 };
 export type DetailTransactionMetaDataType = {
   key: number;

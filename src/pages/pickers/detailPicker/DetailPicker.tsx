@@ -17,6 +17,7 @@ import Actions from "pages/pickers/actions/Actions";
 import { DetailPickerTypeProps } from "./types";
 import { DATE_FORMATS } from "utils/constants";
 import i18next from "i18next";
+import { ExpandableFile } from "component/admin/ExpandableFile/ExpandableFile";
 
 export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
   isFetching,
@@ -48,8 +49,8 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                 `#${pendingUserAdminPicker.id}`}
               <h2 className="subTitle-pending-picker">{nameDisplay}</h2>
             </div>
-            {pendingUserAdminPicker.vehicle &&
-            pendingUserAdminPicker.vehicle.type === "motorcycle" ? (
+            {pendingUserAdminPicker?.vehicle &&
+            pendingUserAdminPicker?.vehicle?.type === "motorcycle" ? (
               <img
                 className="vehiculo-pending-picker"
                 src={motorcycle}
@@ -238,6 +239,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                           maxLength={5}
                         />
                       </div>
+
                       <div className="container-detailPicker-col-sm-3  ">
                         <Field
                           type="text"
@@ -253,6 +255,9 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                       </div>
                     </div>
                   </div>
+                  <ExpandableFile
+                    files={pendingUserAdminPicker?.files?.personalData}
+                  />
                 </div>
                 <h3 className="subTitle-pending-data">
                   {i18next.t("detailPicker:label.subtitle.account")}
@@ -303,79 +308,91 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                       />
                     </div>
                   </div>
+                  <ExpandableFile
+                    files={pendingUserAdminPicker?.files?.accountingData}
+                  />
                 </div>
-                <h3 className="subTitle-pending-data">
-                  {i18next.t("detailPicker:label.subtitle.insurance")}
-                </h3>
-                <div className="form-part-1-admin-pickers">
-                  <div className="container-detailPicker-row">
-                    {initialValues.vehicle &&
-                      initialValues.vehicle.type === "motorcycle" && (
-                        <>
-                          <div className="container-detailPicker-col-sm-6  ">
-                            <Field
-                              type="text"
-                              name={`vehicle.patent`}
-                              label={i18next.t(
-                                "detailPicker:label.insurance.patent"
-                              )}
-                              component={Input}
-                              className="Admin-Pickers-input"
-                              placeholder={i18next.t(
-                                "detailPicker:placeholder.insurance.patent"
-                              )}
-                              maxLength={7}
-                            />
-                          </div>
-                          <div className="container-detailPicker-col-sm-6  ">
-                            <Field
-                              type="text"
-                              name={`vehicle.expirationDateDriverLicense`}
-                              label={i18next.t(
-                                "detailPicker:label.insurance.licenseExpiration"
-                              )}
-                              component={Input}
-                              className="Admin-Pickers-input"
-                              placeholder={i18next.t(
-                                "global:placeholder.input.date"
-                              )}
-                              maxLength={10}
-                            />
-                          </div>
-                          <div className="container-detailPicker-col-sm-6  ">
-                            <Field
-                              type="text"
-                              name={`vehicle.expirationDateIdentificationVehicle`}
-                              label={i18next.t(
-                                "detailPicker:label.insurance.identifierExpiration"
-                              )}
-                              component={Input}
-                              className="Admin-Pickers-input"
-                              placeholder={i18next.t(
-                                "global:placeholder.input.date"
-                              )}
-                              maxLength={10}
-                            />
-                          </div>
-                          <div className="container-detailPicker-col-sm-6">
-                            <Field
-                              type="text"
-                              name={`vehicle.expirationDatePolicyVehicle`}
-                              label={i18next.t(
-                                "detailPicker:label.insurance.carInsuranceExpiration"
-                              )}
-                              component={Input}
-                              className="Admin-Pickers-input"
-                              placeholder={i18next.t(
-                                "global:placeholder.input.date"
-                              )}
-                              maxLength={10}
-                            />
-                          </div>
-                        </>
-                      )}
-                  </div>
-                </div>
+
+                {initialValues?.vehicle?.type === "motorcycle" && (
+                  <>
+                    <h3 className="subTitle-pending-data">
+                      {i18next.t("detailPicker:label.subtitle.insurance")}
+                    </h3>
+                    <div className="form-part-1-admin-pickers">
+                      <div className="container-detailPicker-row">
+                        {initialValues.vehicle &&
+                          initialValues.vehicle.type === "motorcycle" && (
+                            <>
+                              <div className="container-detailPicker-col-sm-6  ">
+                                <Field
+                                  type="text"
+                                  name={`vehicle.patent`}
+                                  label={i18next.t(
+                                    "detailPicker:label.insurance.patent"
+                                  )}
+                                  component={Input}
+                                  className="Admin-Pickers-input"
+                                  placeholder={i18next.t(
+                                    "detailPicker:placeholder.insurance.patent"
+                                  )}
+                                  maxLength={7}
+                                />
+                              </div>
+                              <div className="container-detailPicker-col-sm-6  ">
+                                <Field
+                                  type="text"
+                                  name={`vehicle.expirationDateDriverLicense`}
+                                  label={i18next.t(
+                                    "detailPicker:label.insurance.licenseExpiration"
+                                  )}
+                                  component={Input}
+                                  className="Admin-Pickers-input"
+                                  placeholder={i18next.t(
+                                    "global:placeholder.input.date"
+                                  )}
+                                  maxLength={10}
+                                />
+                              </div>
+                              <div className="container-detailPicker-col-sm-6  ">
+                                <Field
+                                  type="text"
+                                  name={`vehicle.expirationDateIdentificationVehicle`}
+                                  label={i18next.t(
+                                    "detailPicker:label.insurance.identifierExpiration"
+                                  )}
+                                  component={Input}
+                                  className="Admin-Pickers-input"
+                                  placeholder={i18next.t(
+                                    "global:placeholder.input.date"
+                                  )}
+                                  maxLength={10}
+                                />
+                              </div>
+                              <div className="container-detailPicker-col-sm-6">
+                                <Field
+                                  type="text"
+                                  name={`vehicle.expirationDatePolicyVehicle`}
+                                  label={i18next.t(
+                                    "detailPicker:label.insurance.carInsuranceExpiration"
+                                  )}
+                                  component={Input}
+                                  className="Admin-Pickers-input"
+                                  placeholder={i18next.t(
+                                    "global:placeholder.input.date"
+                                  )}
+                                  maxLength={10}
+                                />
+                              </div>
+                            </>
+                          )}
+                      </div>
+                      <ExpandableFile
+                        files={pendingUserAdminPicker?.files?.vehicle}
+                      />
+                    </div>
+                  </>
+                )}
+
                 {active ? (
                   <>
                     <Field name="enable" component={Switch} />

@@ -1,5 +1,5 @@
 import { NotificationStateType } from "reducers/types/notification";
-import { PickerType } from "../types";
+import { DataFilesType, PickerType } from "../types";
 
 export type DetailPickerContainerTypeProps = {
   pendingUserAdminPicker: PickerType;
@@ -20,15 +20,18 @@ export type DetailPickerTypeProps = {
   isFetching: boolean;
   pendingUserAdminPicker: PickerType;
   getPendingUserPickerExport: Function;
-  actualPage: String;
+  actualPage: string;
   setDirty: Function;
   active: boolean;
   cancel: Function;
   aproveSubmit: Function;
-  nameDisplay: String;
+  nameDisplay: string;
   goBack: Function;
   postPendingUserDocumentsEdit: Function;
   postEditPickerRequest: Function;
   validationSchema: Object;
   formatDate: Function;
+};
+export type ExpandableFilePropsType = {
+  files: DataFilesType;
 };
