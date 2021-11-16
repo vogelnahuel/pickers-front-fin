@@ -7,14 +7,13 @@ export type TransactionsActionType = {
 };
 export type FilterTransactionsType = {
   inAlert?: boolean;
-  limit: number;
   maxMinDeliveryDate?: string;
   minMinDeliveryDate?: string;
   offset?: number;
   state?: string;
   pickerId?: number;
   transactionCode?: string;
-  date?:DateType
+  date?: DateType;
 };
 
 export type FilterTransactionsValidationSchemaType = {
@@ -27,9 +26,9 @@ export type TransactionResponseContent = {
   status: number;
 };
 export type TransactionResponseType = {
-  hasMore?: boolean;
-  limit?: number;
-  offset?: number;
+  hasMore: boolean;
+  limit: number;
+  offset: number;
   statusCode?: number;
   error?: string;
   message?: string;

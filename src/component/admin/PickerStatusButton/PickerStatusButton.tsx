@@ -6,16 +6,17 @@ import trabajadorOscuro from "assets/admin/PendingUser/trabajadorOscuro.svg";
 import trabajadorAzul from "assets/admin/PendingUser/trabajadorAzul.svg";
 import "component/admin/PickerStatusButton/pending.scss";
 import { useHistory } from "react-router-dom";
-import { selectors as pendingUserAdminPickerSelectors } from "reducers/detailPicker";
+import { detailPickerSelector as pendingUserAdminPickerSelectors } from "reducers/detailPicker";
 import { connect } from "react-redux";
 import { actions as notificationActions } from "reducers/notification";
 import { AppDispatch, RootState } from "store";
 import { PickerStatusButtonType } from "./types";
 import {
   actions as pendingUserActions,
-  selectors as pendingUserSelectors,
+  pickersSelector as pendingUserSelectors,
 } from "reducers/pickers";
 import i18next from "i18next";
+import { NotificationStateType } from "reducers/types/notification";
 export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
   showNotification,
   setActualPage,
@@ -24,7 +25,7 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
   isDetail,
 }) => {
   const Historial = useHistory();
-  const changePage = (page: String, isDirty: Boolean) => {
+  const changePage = (page: string, isDirty: boolean) => {
     if (isDetail || actualPage !== page) {
       let onClose = () => {
         setActualPage(page);
@@ -67,6 +68,7 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
       Historial.goBack();
     };
 
+    eventTarget.blur();
     if (isDirty) {
       showNotification({
         level: "warning",
@@ -81,7 +83,6 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
             left: 0,
             behavior: "smooth",
           }),
-        element: eventTarget.parentElement,
       });
     } else {
       onClose();
@@ -159,16 +160,15 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
 };
 
 const mapStateToProps = (state: RootState) => ({
-  isDirty: pendingUserAdminPickerSelectors.isDirty(state),
-  actualPage: pendingUserSelectors.getActualPage(state),
+  isDirty: pendingUserAdminPickerSelectors(state).dirty,
+  actualPage: pendingUserSelectors(state).actualPage,
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
-  showNotification: (content: any) => {
-    //falta tipar show notification
+  showNotification: (content: NotificationStateType) => {
     dispatch(notificationActions.showNotification(content));
   },
-  setActualPage: (page: String) => {
+  setActualPage: (page: string) => {
     dispatch(pendingUserActions.setActualPage(page));
   },
 });

@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import {
   actions as transactionActions,
-  selectors as transactionSelectors,
+  transactionsSelector,
 } from "reducers/transactions";
 import { FilterTransaction } from "pages/transaction/filterTransaction/FilterTransaction";
 import moment from "moment";
@@ -87,8 +87,8 @@ const FilterTransactionContainer: React.FC<FilterContainerPropsType> = (
 };
 
 const mapStateToProps = (state: RootState) => ({
-  filters: transactionSelectors.getFilters(state),
-  filtersExtra: transactionSelectors.getFiltersExtra(state),
+  filters: transactionsSelector(state).filters,
+  filtersExtra: transactionsSelector(state).filtersExtra,
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({

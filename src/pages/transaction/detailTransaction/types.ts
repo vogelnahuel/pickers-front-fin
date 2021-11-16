@@ -17,7 +17,7 @@ export type DetailTransactionContainerType = {
 export type UndeliveredPropsType = {
   detailTransaction: DetailTransactionType;
   messages: DetailTransactionCancelItemType[];
-  selectedMessage: DetailTransactionCancelItemType,
+  selectedMessage?: DetailTransactionCancelItemType,
   
   back: Function;
   getMessages: Function;

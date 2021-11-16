@@ -8,7 +8,7 @@ import { Field, Form } from "react-final-form";
 import { connect } from "react-redux";
 import {
   actions as detailTransactionActions,
-  selectors as detailTransactionSelector,
+  detailTransactionSelector,
 } from "reducers/detailTransaction";
 import { postDnideliveredResponseType } from "sagas/types/detailTransactions";
 import { AppDispatch, RootState } from "store";
@@ -100,15 +100,16 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
     id: string
   ) => {
     dispatch(
-      detailTransactionActions.getDetailTransactionDniDeliveredRequest(
+      detailTransactionActions.getDetailTransactionDniDeliveredRequest({
         params,
         id
+      }
       )
     );
   },
 });
 
 const mapStateToProps = (state: RootState) => ({
-  detailTransaction: detailTransactionSelector.getDetailTransaction(state),
+  detailTransaction: detailTransactionSelector(state).detailTransaction,
 });
 export default connect(mapStateToProps, mapDispatchToProps)(DniFinish);

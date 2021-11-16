@@ -4,9 +4,9 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import {
   actions as detailTransactionActions,
-  selectors as detailTransactionSelector,
+  detailTransactionSelector,
 } from "reducers/detailTransaction";
-import { DetailTransactionCancelItemType } from "sagas/types/detailTransactions";
+import { DetailTransactionCancelItemType, postDevolutionUndeliveredType } from "sagas/types/detailTransactions";
 import { AppDispatch, RootState } from "store";
 import { UndeliveredPropsType } from "../../types";
 import { ReasonList } from "../ReasonList";
@@ -61,7 +61,7 @@ const Undelivered: React.FC<UndeliveredPropsType> = ({
             onClick={() => {
               getDetailTransactionDevolutionUndelivered(
                 detailTransaction.transaction.id,
-                selectedMessage.id
+                selectedMessage?.id
                   );
             }}
             disabled={selectedMessage === undefined}
@@ -76,9 +76,9 @@ const Undelivered: React.FC<UndeliveredPropsType> = ({
 };
 
 const mapStateToProps = (state: RootState) => ({
-  detailTransaction: detailTransactionSelector.getDetailTransaction(state),
-  messages: detailTransactionSelector.getDetailTransactionMessages(state),
-  selectedMessage: detailTransactionSelector.getSelectedMessage(state),
+  detailTransaction: detailTransactionSelector(state).detailTransaction,
+  messages: detailTransactionSelector(state).messages,
+  selectedMessage: detailTransactionSelector(state).messageSelected,
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
@@ -91,9 +91,9 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   setMessageSelected: (message: DetailTransactionCancelItemType) => {
     dispatch(detailTransactionActions.setMessageSelected(message));
   },
-   getDetailTransactionDevolutionUndelivered: (id: number,idSelected:number) => {
+   getDetailTransactionDevolutionUndelivered: (id: number,params:postDevolutionUndeliveredType) => {
      dispatch(
-      detailTransactionActions.getDetailTransactionDevolutionUndeliveredRequest(id,idSelected)
+      detailTransactionActions.getDetailTransactionDevolutionUndeliveredRequest({id,params})
      );
    },
   

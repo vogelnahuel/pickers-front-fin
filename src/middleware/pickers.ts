@@ -17,7 +17,7 @@ export const getPickersExport = (
   params?: ParamsMiddlewareType
 ): Promise<AxiosResponse<PickersExportResponseType>> =>
   API.get("/ms-admin-rest/api/v1.0/pickers.csv", params);
-export const getPicker = (params: Number): Promise<AxiosResponse<PickerType>> =>
+export const getPicker = (params: number): Promise<AxiosResponse<PickerType>> =>
   API.get(`/ms-admin-rest/api/v1.0/pickers/${params}`);
 export const getPickerExport = (
   params: ParamsMiddlewareType

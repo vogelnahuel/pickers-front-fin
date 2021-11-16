@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import {
   actions as detailTransactionActions,
-  selectors as detailTransactionSelector
+  detailTransactionSelector
 } from "reducers/detailTransaction";
 import { DetailTransactionCancelItemType } from "sagas/types/detailTransactions";
 import { AppDispatch, RootState } from "store";
@@ -63,9 +63,9 @@ const ReasonsCanceled: React.FC<ReasonCanceledPropsType> = ({
 };
 
 const mapStateToProps = (state: RootState) => ({
-  detailTransaction: detailTransactionSelector.getDetailTransaction(state),
-  messages: detailTransactionSelector.getDetailTransactionMessages(state),
-  selectedMessage: detailTransactionSelector.getSelectedMessage(state),
+  detailTransaction: detailTransactionSelector(state).detailTransaction,
+  messages: detailTransactionSelector(state).messages,
+  selectedMessage: detailTransactionSelector(state).messageSelected,
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({

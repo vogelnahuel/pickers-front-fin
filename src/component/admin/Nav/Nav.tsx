@@ -1,12 +1,15 @@
 import React from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import "component/admin/Nav/nav.scss";
-import { selectors as pendingUserAdminPickerSelectors } from "reducers/detailPicker";
+import { detailPickerSelector } from "reducers/detailPicker";
 import { actions as notificationActions } from "reducers/notification";
 import { connect } from "react-redux";
 import i18next from "i18next";
+import { NotificationStateType } from "reducers/types/notification";
+import { AppDispatch, RootState } from "store";
+import { NavType } from "./types";
 
-export const Nav = ({ isDirty, showNotification }: any) => {
+export const Nav = ({ isDirty, showNotification }: NavType) => {
   const Historial = useHistory();
   let Location: any = useParams();
   Location = Location.id;
@@ -16,7 +19,7 @@ export const Nav = ({ isDirty, showNotification }: any) => {
     let onClose = () => {
       Historial.push(e.target.pathname);
     };
-    if (isDirty) {
+    if (isDirty && showNotification) {
       showNotification({
         level: "warning",
         title: i18next.t("pickers:title.modal.saveChanges"),
@@ -30,7 +33,6 @@ export const Nav = ({ isDirty, showNotification }: any) => {
             left: 0,
             behavior: "smooth",
           }),
-        element: e.target,
       });
     } else {
       onClose();
@@ -73,12 +75,12 @@ export const Nav = ({ isDirty, showNotification }: any) => {
   );
 };
 
-const mapStateToProps = (state: any) => ({
-  isDirty: pendingUserAdminPickerSelectors.isDirty(state),
+const mapStateToProps = (state: RootState) => ({
+  isDirty: detailPickerSelector(state).dirty,
 });
 
-const mapDispatchToProps = (dispatch: any) => ({
-  showNotification: (content: any) => {
+const mapDispatchToProps = (dispatch: AppDispatch) => ({
+  showNotification: (content: NotificationStateType) => {
     dispatch(notificationActions.showNotification(content));
   },
 });
