@@ -24,20 +24,17 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
   isDirty,
   isDetail,
 }) => {
-  const Historial = useHistory();
+  const history = useHistory();
   const changePage = (page: string, isDirty: boolean) => {
     if (isDetail || actualPage !== page) {
       let onClose = () => {
         setActualPage(page);
 
-        if (
-          window.location.pathname !== "/pickers" &&
-          window.history.length > 1
-        ) {
-          Historial.goBack();
-          //se abre en nueva pestaña desde transacciones
-        } else if (window.history.length <= 1) {
-          Historial.replace("/pickers");
+        if (history.location.pathname !== "/pickers" && history.length > 1)
+          history.goBack();
+        //se abre en nueva pestaña desde transacciones
+        else if (history.length <= 1) {
+          history.replace("/pickers");
         }
       };
       if (isDirty) {
@@ -65,7 +62,7 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
   const handleHistory = (e: React.MouseEvent) => {
     const eventTarget = e.target as HTMLElement;
     let onClose = () => {
-      Historial.goBack();
+      history.goBack();
     };
 
     eventTarget.blur();
