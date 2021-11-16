@@ -22,7 +22,7 @@ export type DetailPickerTypeProps = {
   getPendingUserPickerExport: Function;
   actualPage: string;
   setDirty: Function;
-  active: Boolean;
+  active: boolean;
   cancel: Function;
   aproveSubmit: Function;
   nameDisplay: string;
