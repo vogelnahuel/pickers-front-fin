@@ -9,12 +9,15 @@ import FileLoad from "assets/admin/fileLoad.svg";
 import { DETAIL_PICKER_TAG } from "utils/constants";
 import { ExpandableFilePropsType } from "../../../pages/pickers/detailPicker/types";
 import './ExpandableFile.scss'
+import { DataContentType } from "pages/pickers/types";
+
 
 export const ExpandableFile: React.FC<ExpandableFilePropsType> = ({ files }) => {
   const [open, setOpen] = useState(false);
   return (
     <>
       <hr className="border-row" />
+
       <div className="">
         <div className="container-detailPicker-row ">
           <div
@@ -32,17 +35,17 @@ export const ExpandableFile: React.FC<ExpandableFilePropsType> = ({ files }) => 
               }
               alt="archivo"
             />
-            <p className="p-file">Archivos</p>
+            <p className="paragraphFileExpandableFile">{i18next.t("detailPicker:label.card.file")}</p>
           </div>
           {
             files?.content.map(
-              (element) => (
-                <>
+              (element:DataContentType) => (
+                <section className="sectionExpandableFilePicker" key={element.tag}>
                   <div className="container-detailPicker-col-sm-6">
                     <div>
                       <ul
                         className={
-                          open ? "p-li" : "display-none"
+                          open ? "optionsListExpandableFile" : "display-none"
                         }
                       >
                         <li className="display-flex" key={element.tag}>
@@ -86,7 +89,7 @@ export const ExpandableFile: React.FC<ExpandableFilePropsType> = ({ files }) => 
                       nuevamente
                     </p> */}
                   </div>
-                </>
+                </section>
               )
             )}
         </div>
