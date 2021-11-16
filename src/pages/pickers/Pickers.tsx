@@ -39,9 +39,7 @@ export const Pickers: React.FC<PickerTypes> = ({
               </p>
             </h2>
             <button
-              onClick={(
-                e //getPendingUsersExportRequest(filters, e.target)}
-              ) =>
+              onClick={(e) =>
                 getPendingUsersExportRequest(
                   {
                     ...filters,

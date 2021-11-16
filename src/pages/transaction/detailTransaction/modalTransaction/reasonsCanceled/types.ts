@@ -3,7 +3,7 @@ import { DetailTransactionCancelItemType, DetailTransactionType } from "sagas/ty
 export type ReasonCanceledPropsType={
     detailTransaction:DetailTransactionType,
     messages:DetailTransactionCancelItemType[]
-    selectedMessage: DetailTransactionCancelItemType,
+    selectedMessage?: DetailTransactionCancelItemType,
     back:Function
     next:Function
     reasonsCanceledConfirm: string,

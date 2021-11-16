@@ -1,17 +1,20 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import i18next from "i18next";
+import moment from "moment";
+import { useHistory, useParams } from "react-router-dom";
+import * as yup from "yup";
+
+import { AppDispatch, RootState } from "store";
+
 import {
   actions as pendingUserAdminPickerActions,
-  selectors as pendingUserAdminPickerSelectors,
+  detailPickerSelector,
 } from "reducers/detailPicker";
-import { DetailPicker } from "pages/pickers/detailPicker/DetailPicker";
-import { DATE_FORMATS, VALIDATION_REGEX } from "utils/constants";
-import { useHistory, useParams } from "react-router-dom";
 import {
+  pickersSelector,
   actions as pendingUserActions,
-  selectors as pendingUserSelectors,
 } from "reducers/pickers";
-import * as yup from "yup";
 import { actions as notificationActions } from "reducers/notification";
 
 import {
@@ -19,11 +22,11 @@ import {
   ParamsMiddlewareType,
   DetailPickerValidationSchema,
 } from "../types";
-import { ParamGetPendingUser } from "sagas/types/pickers";
-import { AppDispatch, RootState } from "store";
 import { DetailPickerContainerTypeProps } from "./types";
-import i18next from "i18next";
-import moment from "moment";
+
+import { DetailPicker } from "pages/pickers/detailPicker/DetailPicker";
+import { DATE_FORMATS, VALIDATION_REGEX } from "utils/constants";
+import { NotificationStateType } from "reducers/types/notification";
 
 const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
   props
@@ -50,8 +53,8 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
 
   const validationSchema: yup.SchemaOf<DetailPickerValidationSchema> =
     yup.object({
-      personalData:  yup.object({
-          name: yup
+      personalData: yup.object({
+        name: yup
           .string()
           .required(i18next.t("global:error.input.required"))
           .matches(
@@ -65,77 +68,78 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
             VALIDATION_REGEX.expName,
             i18next.t("global:error.input.numbersOrSpecialCharacters")
           ),
-            phone: yup.object({
-              areaNumber: yup
-                .string()
-                .required(i18next.t("global:error.input.required"))
-                .matches(
-                  VALIDATION_REGEX.regArea,
-                  i18next.t("global:error.input.invalidFormat")
-                ),
-              number: yup
-                .string()
-                .required(i18next.t("global:error.input.required"))
-                .matches(
-                  VALIDATION_REGEX.regTelefono,
-                  i18next.t("global:error.input.invalidFormat")
-                ),
-            }),
+        phone: yup.object({
+          areaNumber: yup
+            .string()
+            .required(i18next.t("global:error.input.required"))
+            .matches(
+              VALIDATION_REGEX.regArea,
+              i18next.t("global:error.input.invalidFormat")
+            ),
+          number: yup
+            .string()
+            .required(i18next.t("global:error.input.required"))
+            .matches(
+              VALIDATION_REGEX.regTelefono,
+              i18next.t("global:error.input.invalidFormat")
+            ),
+        }),
       }),
+
       vehicle:
-        props.pendingUserAdminPicker.vehicle  && props.pendingUserAdminPicker.vehicle.type === "motorcycle"
+        props.pendingUserAdminPicker.vehicle &&
+        props.pendingUserAdminPicker.vehicle.type === "motorcycle"
           ? yup.object({
-                patent: yup
-                  .string()
-                  .nullable()
-                  .required(i18next.t("global:error.input.required"))
-                  .min(6, i18next.t("global:error.input.patentLong"))
-                  .matches(
-                    VALIDATION_REGEX.regPatent,
-                    i18next.t("global:error.input.specialCharacters")
-                  ),
-                expirationDatePolicyVehicle: yup
-                  .string()
-                  .nullable()
-                  .required(i18next.t("global:error.input.required"))
-                  .matches(
-                    DATE_FORMATS.regex,
-                    i18next.t("global:error.input.invalidFormat")
-                  )
-                  .matches(
-                    DATE_FORMATS.regexValidCharacter,
-                    i18next.t("global:error.input.specialCharacters")
-                  ),
-                expirationDateIdentificationVehicle: yup
-                  .string()
-                  .nullable()
-                  .required(i18next.t("global:error.input.required"))
-                  .matches(
-                    DATE_FORMATS.regex,
-                    i18next.t("global:error.input.invalidFormat")
-                  )
-                  .matches(
-                    DATE_FORMATS.regexValidCharacter,
-                    i18next.t("global:error.input.specialCharacters")
-                  ),
-                expirationDateDriverLicense: yup
-                  .string()
-                  .nullable()
-                  .required(i18next.t("global:error.input.required"))
-                  .matches(
-                    DATE_FORMATS.regex,
-                    i18next.t("global:error.input.invalidFormat")
-                  )
-                  .matches(
-                    DATE_FORMATS.regexValidCharacter,
-                    i18next.t("global:error.input.specialCharacters")
-                  ),
-  
+              patent: yup
+                .string()
+                .nullable()
+                .required(i18next.t("global:error.input.required"))
+                .min(6, i18next.t("global:error.input.patentLong"))
+                .matches(
+                  VALIDATION_REGEX.regPatent,
+                  i18next.t("global:error.input.specialCharacters")
+                ),
+              expirationDatePolicyVehicle: yup
+                .string()
+                .nullable()
+                .required(i18next.t("global:error.input.required"))
+                .matches(
+                  DATE_FORMATS.regex,
+                  i18next.t("global:error.input.invalidFormat")
+                )
+                .matches(
+                  DATE_FORMATS.regexValidCharacter,
+                  i18next.t("global:error.input.specialCharacters")
+                ),
+              expirationDateIdentificationVehicle: yup
+                .string()
+                .nullable()
+                .required(i18next.t("global:error.input.required"))
+                .matches(
+                  DATE_FORMATS.regex,
+                  i18next.t("global:error.input.invalidFormat")
+                )
+                .matches(
+                  DATE_FORMATS.regexValidCharacter,
+                  i18next.t("global:error.input.specialCharacters")
+                ),
+              expirationDateDriverLicense: yup
+                .string()
+                .nullable()
+                .required(i18next.t("global:error.input.required"))
+                .matches(
+                  DATE_FORMATS.regex,
+                  i18next.t("global:error.input.invalidFormat")
+                )
+                .matches(
+                  DATE_FORMATS.regexValidCharacter,
+                  i18next.t("global:error.input.specialCharacters")
+                ),
             })
           : yup.object({}),
     });
 
-  const cancel = (isDirty: Boolean, restart: Function) => {
+  const cancel = (isDirty: boolean, restart: Function) => {
     let onClose = () => {
       restart();
     };
@@ -167,6 +171,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
       onClickLabel: "detailPicker:label.button.approve",
       onCloseLabel: "detailPicker:label.button.revise",
       onClick: () => props.postAprovePickerRequest(params, goBack),
+      onClose: undefined,
     });
   };
 
@@ -185,26 +190,19 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
 };
 
 const mapStateToProps = (state: RootState) => ({
-  pendingUserAdminPicker:
-    pendingUserAdminPickerSelectors.getPendingUserPicker(state),
-  isFetching: pendingUserAdminPickerSelectors.isFetching(state),
-  actualPage: pendingUserSelectors.getActualPage(state),
-  nameDisplay: pendingUserAdminPickerSelectors.getNameDisplay(state),
+  pendingUserAdminPicker: detailPickerSelector(state).pendingUserAdminPicker,
+  isFetching: detailPickerSelector(state).fetching,
+  actualPage: pickersSelector(state).actualPage,
+  nameDisplay: detailPickerSelector(state).nameDisplay,
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
-  getPendingUserPicker: (params: ParamGetPendingUser) => {
+  getPendingUserPicker: (params: number) => {
     dispatch(pendingUserAdminPickerActions.getPendingUserPickerRequest(params));
   },
-  getPendingUserPickerExport: (
-    params: ParamsMiddlewareType,
-    element: HTMLElement
-  ) => {
+  getPendingUserPickerExport: (params: ParamsMiddlewareType) => {
     dispatch(
-      pendingUserAdminPickerActions.getPendingUserPickerExportRequest(
-        params,
-        element
-      )
+      pendingUserAdminPickerActions.getPendingUserPickerExportRequest(params)
     );
   },
   setDirty: (dirty: boolean) => {
@@ -212,7 +210,7 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   },
   postAprovePickerRequest: (params: PickerType, goBack: Function) => {
     dispatch(
-      pendingUserAdminPickerActions.getAprovePickerRequest(params, goBack)
+      pendingUserAdminPickerActions.getAprovePickerRequest({ params, goBack })
     );
   },
   postPendingUserDocumentsEdit: (params: PickerType) => {
@@ -222,16 +220,15 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
       )
     );
   },
-  showNotification: (content: any) => {
-    //falta tipar shownotification
+  showNotification: (content: NotificationStateType) => {
     dispatch(notificationActions.showNotification(content));
   },
   postEditPickerRequest: (params: PickerType, goBack: Function) => {
     dispatch(
-      pendingUserAdminPickerActions.getEditPickerRequest(params, goBack)
+      pendingUserAdminPickerActions.getEditPickerRequest({ params, goBack })
     );
   },
-  setActualPage: (page: String) => {
+  setActualPage: (page: string) => {
     dispatch(pendingUserActions.setActualPage(page));
   },
 });

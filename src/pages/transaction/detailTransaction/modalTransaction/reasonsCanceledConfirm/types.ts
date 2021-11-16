@@ -2,7 +2,7 @@ import { DetailTransactionCancelItemType, DetailTransactionType } from "sagas/ty
 
 export type ReasonCanceledConfirmPropsType={
     detailTransaction:DetailTransactionType,
-    messageSelected:DetailTransactionCancelItemType
+    messageSelected?:DetailTransactionCancelItemType
 
     back:Function
 
