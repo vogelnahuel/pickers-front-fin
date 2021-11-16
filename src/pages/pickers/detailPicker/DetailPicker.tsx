@@ -50,8 +50,8 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                 `#${pendingUserAdminPicker.id}`}
               <h2 className="subTitle-pending-picker">{nameDisplay}</h2>
             </div>
-            {pendingUserAdminPicker.vehicle &&
-            pendingUserAdminPicker.vehicle.type === "motorcycle" ? (
+            {pendingUserAdminPicker?.vehicle &&
+            pendingUserAdminPicker?.vehicle?.type === "motorcycle" ? (
               <img
                 className="vehiculo-pending-picker"
                 src={motorcycle}
@@ -315,7 +315,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                   />
                 </div>
 
-                {initialValues.vehicle.type === "motorcycle" && (
+                {initialValues?.vehicle?.type === "motorcycle" && (
                   <>
                     <h3 className="subTitle-pending-data">
                       {i18next.t("detailPicker:label.subtitle.insurance")}

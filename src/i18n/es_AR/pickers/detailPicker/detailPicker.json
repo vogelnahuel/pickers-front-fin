@@ -22,12 +22,12 @@
   "label.account.bankName": "Nombre del banco",
   "placeholder.account.bankName": "Ingresá el nombre del banco",
 
-  "label.subtitle.insurance": "Seguros",
+  "label.subtitle.insurance": "Datos del vehículo",
   "label.insurance.patent": "Patente del vehículo *",
   "placeholder.insurance.patent": "Ingresá los dígitos de la patente",
-  "label.insurance.licenseExpiration": "Vencimiento de la licencia *",
-  "label.insurance.identifierExpiration": "Vencimiento de la cédula *",
-  "label.insurance.carInsuranceExpiration": "Vencimiento del seguro de automotor *",
+  "label.insurance.licenseExpiration": "Licencia de conducir *",
+  "label.insurance.identifierExpiration": "Cédula de conducir *",
+  "label.insurance.carInsuranceExpiration": "Seguro de automotor *",
   "label.insurance.personalAccidentInsuranceExpiration": "Vencimiento del seguro de accidentes personales * ",
 
   "title.modal.approved": "Aprobación exitosa",
@@ -49,6 +49,7 @@
   "label.card.driverLicense":"Licencia de conducir",
   "label.card.vehicleIdentificationBack":"Cédula frente",
   "label.card.vehicleIdentificationFront":"Cédula dorso",
-  "label.card.driverInsuranceCard":"Seguro de automotor"
+  "label.card.driverInsuranceCard":"Seguro de automotor",
 
+  "label.card.file":"Archivo"
 }

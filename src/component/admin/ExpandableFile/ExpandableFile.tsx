@@ -13,6 +13,7 @@ import { actions as detailPickerActions } from "../../../reducers/detailPicker";
 import "./ExpandableFile.scss";
 import { AppDispatch } from "store";
 import { ExpandableFilePropsType } from "./types";
+import { DataContentType } from "pages/pickers/types";
 
 const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
   files,
@@ -23,6 +24,7 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
   return (
     <>
       <hr className="border-row" />
+
       <div className="">
         <div className="container-detailPicker-row ">
           <div
@@ -39,13 +41,19 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
               }
               alt="archivo"
             />
-            <p className="p-file">Archivos</p>
+            <p className="paragraphFileExpandableFile">
+              {i18next.t("detailPicker:label.card.file")}
+            </p>
           </div>
-          {files?.content.map((element) => (
-            <React.Fragment key={element.tag}>
+          {files?.content.map((element: DataContentType) => (
+            <section className="sectionExpandableFilePicker" key={element.tag}>
               <div className="container-detailPicker-col-sm-6">
                 <div>
-                  <ul className={open ? "p-li" : "display-none"}>
+                  <ul
+                    className={
+                      open ? "optionsListExpandableFile" : "display-none"
+                    }
+                  >
                     <li className="display-flex" key={element.tag}>
                       <p
                         className={element.isUpload ? "" : "picker-color-gray"}
@@ -90,7 +98,7 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
                       nuevamente
                     </p> */}
               </div>
-            </React.Fragment>
+            </section>
           ))}
         </div>
       </div>
