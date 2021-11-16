@@ -47,15 +47,15 @@ export const initialState: DetailPickerStateType = {
     files: {
       personalData: {
         status: "",
-        contents: [],
+        content: [],
       },
       accountingData: {
         status: "",
-        contents: [],
+        content: [],
       },
       vehicle: {
         status: "",
-        contents: [],
+        content: [],
       },
     },
   },

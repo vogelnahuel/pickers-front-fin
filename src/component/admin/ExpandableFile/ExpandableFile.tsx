@@ -7,7 +7,8 @@ import FileReplace from "assets/admin/fileReplace.svg";
 import FileDelete from "assets/admin/fileDelete.svg";
 import FileLoad from "assets/admin/fileLoad.svg";
 import { DETAIL_PICKER_TAG } from "utils/constants";
-import { ExpandableFilePropsType } from "./types";
+import { ExpandableFilePropsType } from "../../../pages/pickers/detailPicker/types";
+import './ExpandableFile.scss'
 
 export const ExpandableFile: React.FC<ExpandableFilePropsType> = ({ files }) => {
   const [open, setOpen] = useState(false);
