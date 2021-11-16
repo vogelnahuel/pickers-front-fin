@@ -4,7 +4,6 @@ export type FilterContainerTypes = {
   reset: Function;
   setPendingUserFilters: Function;
   getPendingUser: Function;
-  //filters: ParamsMiddlewareType;
   filters: PickersParamsType;
   filtersExtra: ParamsMiddlewareType;
 };
@@ -16,7 +15,6 @@ export type FilterContainerValidationSchemaTypes = {
 
 export type FilterTypes = {
   onSubmit: Function;
-  //filters: ParamsMiddlewareType;
   filters: PickersParamsType;
   validationSchema: Object;
 };

@@ -17,12 +17,12 @@ export type DetailPickerContainerTypeProps = {
 };
 
 export type DetailPickerTypeProps = {
-  isFetching: Boolean;
+  isFetching: boolean;
   pendingUserAdminPicker: PickerType;
   getPendingUserPickerExport: Function;
   actualPage: String;
   setDirty: Function;
-  active: Boolean;
+  active: boolean;
   cancel: Function;
   aproveSubmit: Function;
   nameDisplay: String;
