@@ -5,7 +5,7 @@ import React, { useCallback, useEffect } from "react";
 import { connect } from "react-redux";
 import {
   actions as notificationActions,
-  notificationSelector
+  notificationSelector,
 } from "reducers/notification";
 import { AppDispatch, RootState } from "store";
 import { KEYS, NotificationType } from "./types";
@@ -57,7 +57,7 @@ export const NotificationModal = ({
         width="750px"
         height="304px"
         isOpen={isOpen}
-        onClose={() => onClose && onClose()}
+        onClose={() => setClose()}
       >
         <div className={`modal-title ${level}`}>
           <p>{title}</p>

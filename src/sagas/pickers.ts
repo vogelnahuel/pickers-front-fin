@@ -4,6 +4,7 @@ import { AxiosResponse } from "axios";
 import { goBack } from "connected-react-router";
 import i18next from "i18next";
 import moment from "moment";
+import { PickerFileRequestType } from "pages/pickers/detailPicker/types";
 import { actions } from "reducers/pickers";
 import { NotificationStateType } from "reducers/types/notification";
 import {
@@ -21,6 +22,7 @@ import {
   FilesType,
   ParamsMiddlewareType,
   PersonalDataType,
+  PickerFileResponseType,
   PickersAxiosResponseType,
   PickersExportResponseType,
   PickersResponse,
@@ -32,7 +34,6 @@ import { actions as detailPickerActions } from "../reducers/detailPicker";
 import { actions as notificationActions } from "../reducers/notification";
 import {
   CsvResponseType,
-  PickerExportParamType,
   PickerResponseType,
   PickersResponseType,
 } from "./types/pickers";
@@ -55,6 +56,7 @@ const sagas = [
   ),
   takeLatest(detailPickerActions.getAprovePickerRequest.type, postAprovePicker),
   takeLatest(detailPickerActions.getEditPickerRequest.type, postEditPicker),
+  takeLatest(detailPickerActions.getPickerFileRequest.type, getPickerFile),
 ];
 
 export default sagas;
@@ -210,18 +212,14 @@ function* getPendingUserExport({
 }
 
 function* getPendingUserPickerExport({
-  payload,
+  payload: { email },
 }: PayloadAction<ParamsMiddlewareType>): Generator<
   | CallEffect<AxiosResponse<PickersExportResponseType>>
   | PutEffect<{ type: string }>,
   void,
   CsvResponseType
 > {
-  const paramsPost: PickerExportParamType = {
-    email: payload.email,
-  };
-
-  const response = yield call(pickersMiddleware.getPickerExport, paramsPost);
+  const response = yield call(pickersMiddleware.getPickerExport, { email });
   if (response.status !== 200) {
     yield put(detailPickerActions.getPendingUserPickerExportError());
   } else {
@@ -329,5 +327,24 @@ function* postEditPicker({
       })
     );
     yield put(detailPickerActions.getEditPickerSuccess(body));
+  }
+}
+
+function* getPickerFile({
+  payload,
+}: PayloadAction<PickerFileRequestType>): Generator<
+  | CallEffect<AxiosResponse<PickerFileResponseType>>
+  | PutEffect<{ type: string }>,
+  void,
+  { status: number; data: PickerFileResponseType }
+> {
+  const response = yield call(pickersMiddleware.getFile, payload);
+
+  if (response.status !== 200) {
+    yield put(detailPickerActions.getPickerFileError());
+  } else {
+    const { result } = response.data;
+    if (result.url) window.open(result.url, "_blank");
+    yield put(detailPickerActions.getPickerFileSuccess());
   }
 }

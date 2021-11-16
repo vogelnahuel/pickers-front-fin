@@ -4,6 +4,7 @@ import { DetailPickerStateType } from "./types/detailPicker";
 
 import { RootState } from "store";
 import { endsWithAny } from "utils/endsWithAny";
+import { PickerFileRequestType } from "pages/pickers/detailPicker/types";
 
 export const initialState: DetailPickerStateType = {
   fetching: false,
@@ -139,6 +140,12 @@ export const detailPickerSlice = createSlice({
       state.pendingUserAdminPicker = action.payload;
     },
     getEditPickerError: () => {},
+    getPickerFileRequest: (
+      state: DetailPickerStateType,
+      action: PayloadAction<PickerFileRequestType>
+    ) => {},
+    getPickerFileSuccess: () => {},
+    getPickerFileError: () => {},
   },
   extraReducers: (builder) =>
     builder

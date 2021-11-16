@@ -1,11 +1,13 @@
 import { AxiosResponse } from "axios";
 import * as API from "middleware/api";
+import { PickerFileRequestType } from "pages/pickers/detailPicker/types";
 import {
   PickerType,
   EditPickerResponseType,
   ParamsMiddlewareType,
   PickersAxiosResponseType,
   PickersExportResponseType,
+  PickerFileResponseType,
 } from "../pages/pickers/types";
 
 export const getPickers = (
@@ -39,9 +41,20 @@ export const postAprovePicker = (
 ): Promise<AxiosResponse<EditPickerResponseType>> =>
   API.post(`/ms-admin-rest/api/v1.0/pickers/${params.id}/approve`, params);
 
-export const fileUpload = (id:number,params:any):Promise<AxiosResponse<any>> => API.put(`/ms-admin-rest/api/v1.0/pickers/${id}/files`, params)
+export const fileUpload = (
+  id: number,
+  params: any
+): Promise<AxiosResponse<any>> =>
+  API.put(`/ms-admin-rest/api/v1.0/pickers/${id}/files`, params);
 
-export const getFile = (id:number,tag:string):Promise<AxiosResponse<any>> => API.get(`/ms-admin-rest/api/v1.0/pickers/${id}/files/${tag}`)
+export const getFile = ({
+  pickerId,
+  tag,
+}: PickerFileRequestType): Promise<AxiosResponse<PickerFileResponseType>> =>
+  API.get(`/ms-admin-rest/api/v1.0/pickers/${pickerId}/files/${tag}`);
 
-export const deleteFile = (id:number,tag:string):Promise<AxiosResponse<any>> => API.remove(`/ms-admin-rest/api/v1.0/pickers/${id}/files/${tag}`)
-
+export const deleteFile = (
+  id: number,
+  tag: string
+): Promise<AxiosResponse<any>> =>
+  API.remove(`/ms-admin-rest/api/v1.0/pickers/${id}/files/${tag}`);

@@ -13,18 +13,12 @@ import useValidationSchema from "hooks/useValidationSchema";
 import { FormSpy } from "react-final-form";
 import moment from "moment";
 import NotificationModal from "component/modal/NotificationModal";
-import Actions from "pages/pickers/actions/Actions";
+import ExportAction from "../actions/ExportAction";
 import { DetailPickerTypeProps } from "./types";
 import { DATE_FORMATS } from "utils/constants";
 import i18next from "i18next";
 
-import Folder from "assets/admin/folder.svg";
-import FolderError from "assets/admin/folderError.svg";
-import FolderAdd from "assets/admin/folderAdd.svg";
-import FileReplace from "assets/admin/fileReplace.svg";
-import FileDelete from "assets/admin/fileDelete.svg";
-import FileLoad from "assets/admin/fileLoad.svg";
-import { ExpandableFile } from "component/admin/ExpandableFile/ExpandableFile";
+import ExpandableFile from "component/admin/ExpandableFile/ExpandableFile";
 
 export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
   isFetching,
@@ -71,13 +65,12 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
               />
             )}
             <div className="export-container">
-              <Actions
+              <ExportAction
                 getPendingUserPickerExport={() => {
                   getPendingUserPickerExport(
                     pendingUserAdminPicker.personalData
                   );
                 }}
-                pendingUserAdminPicker={pendingUserAdminPicker}
               />
             </div>
           </div>
@@ -264,6 +257,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                   </div>
                   <ExpandableFile
                     files={pendingUserAdminPicker?.files?.personalData}
+                    pickerId={pendingUserAdminPicker.id}
                   />
                 </div>
                 <h3 className="subTitle-pending-data">
@@ -317,6 +311,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                   </div>
                   <ExpandableFile
                     files={pendingUserAdminPicker?.files?.accountingData}
+                    pickerId={pendingUserAdminPicker.id}
                   />
                 </div>
 
@@ -395,6 +390,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                       </div>
                       <ExpandableFile
                         files={pendingUserAdminPicker?.files?.vehicle}
+                        pickerId={pendingUserAdminPicker.id}
                       />
                     </div>
                   </>
