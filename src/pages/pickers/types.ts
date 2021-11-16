@@ -1,4 +1,3 @@
-
 import { TypeOfShape } from "yup/lib/object";
 
 export type ChangePageTypes = {
@@ -173,14 +172,21 @@ export type PickersResponse = {
 export type EditPickerResponseType = {
   result: number;
 };
+
+export type PickerFileResponseType = {
+  result: {
+    url: string;
+  };
+};
+
 export type DetailPickerTagFileType = {
-  "dni-front":                    string;
-  "dni-back":                     string;
-  "user-face":                    string;
-  "cbu-certificate":              string;
-  "cuit-certificate":             string;
-  "driver-license":               string;
-  "vehicle-identification-back":  string;
+  "dni-front": string;
+  "dni-back": string;
+  "user-face": string;
+  "cbu-certificate": string;
+  "cuit-certificate": string;
+  "driver-license": string;
+  "vehicle-identification-back": string;
   "vehicle-identification-front": string;
-  "driver-insurance-card":        string;
-}
+  "driver-insurance-card": string;
+};

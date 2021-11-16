@@ -1,5 +1,5 @@
+import { DetailPickerTagFileType, PickerType } from "../types";
 import { NotificationStateType } from "reducers/types/notification";
-import { DataFilesType, PickerType } from "../types";
 
 export type DetailPickerContainerTypeProps = {
   pendingUserAdminPicker: PickerType;
@@ -32,6 +32,8 @@ export type DetailPickerTypeProps = {
   validationSchema: Object;
   formatDate: Function;
 };
-export type ExpandableFilePropsType = {
-  files: DataFilesType;
+
+export type PickerFileRequestType = {
+  pickerId: number;
+  tag: keyof DetailPickerTagFileType;
 };

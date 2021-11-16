@@ -13,11 +13,12 @@ import useValidationSchema from "hooks/useValidationSchema";
 import { FormSpy } from "react-final-form";
 import moment from "moment";
 import NotificationModal from "component/modal/NotificationModal";
-import Actions from "pages/pickers/actions/Actions";
+import ExportAction from "../actions/ExportAction";
 import { DetailPickerTypeProps } from "./types";
 import { DATE_FORMATS } from "utils/constants";
 import i18next from "i18next";
-import { ExpandableFile } from "component/admin/ExpandableFile/ExpandableFile";
+
+import ExpandableFile from "component/admin/ExpandableFile/ExpandableFile";
 
 export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
   isFetching,
@@ -43,10 +44,10 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
           <PickerStatusButton isDetail={true} />
           <div className="mainContainerFlex-picker">
             <div className="picker-id">
-              {pendingUserAdminPicker.id &&
-                (pendingUserAdminPicker.status.id === 4 ||
-                  pendingUserAdminPicker.status.id === 5) &&
-                `#${pendingUserAdminPicker.id}`}
+              {pendingUserAdminPicker?.id &&
+                (pendingUserAdminPicker?.status?.id === 4 ||
+                  pendingUserAdminPicker?.status?.id === 5) &&
+                `#${pendingUserAdminPicker?.id}`}
               <h2 className="subTitle-pending-picker">{nameDisplay}</h2>
             </div>
             {pendingUserAdminPicker?.vehicle &&
@@ -64,13 +65,12 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
               />
             )}
             <div className="export-container">
-              <Actions
+              <ExportAction
                 getPendingUserPickerExport={() => {
                   getPendingUserPickerExport(
-                    pendingUserAdminPicker.personalData
+                    pendingUserAdminPicker?.personalData
                   );
                 }}
-                pendingUserAdminPicker={pendingUserAdminPicker}
               />
             </div>
           </div>
@@ -85,36 +85,36 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                 ? {
                     ...pendingUserAdminPicker,
                     personalData: {
-                      ...pendingUserAdminPicker.personalData,
+                      ...pendingUserAdminPicker?.personalData,
                       dateOfBirth:
-                        pendingUserAdminPicker.personalData.dateOfBirth &&
-                        pendingUserAdminPicker.personalData.dateOfBirth.includes(
+                        pendingUserAdminPicker?.personalData?.dateOfBirth &&
+                        pendingUserAdminPicker?.personalData?.dateOfBirth.includes(
                           "-"
                         )
                           ? moment(
-                              pendingUserAdminPicker.personalData.dateOfBirth,
+                              pendingUserAdminPicker?.personalData?.dateOfBirth,
                               DATE_FORMATS.shortISODate
                             ).format(DATE_FORMATS.shortDate)
-                          : pendingUserAdminPicker.personalData.dateOfBirth,
+                          : pendingUserAdminPicker?.personalData?.dateOfBirth,
                     },
                     accountingData: {
-                      ...pendingUserAdminPicker.accountingData,
+                      ...pendingUserAdminPicker?.accountingData,
                       fiscalNumber:
-                        pendingUserAdminPicker.accountingData.fiscalNumber.includes(
+                        pendingUserAdminPicker?.accountingData?.fiscalNumber?.includes(
                           "-"
                         )
-                          ? pendingUserAdminPicker.accountingData.fiscalNumber
-                          : pendingUserAdminPicker.accountingData.fiscalNumber.slice(
+                          ? pendingUserAdminPicker?.accountingData?.fiscalNumber
+                          : pendingUserAdminPicker?.accountingData?.fiscalNumber?.slice(
                               0,
                               2
                             ) +
                             " - " +
-                            pendingUserAdminPicker.accountingData.fiscalNumber.slice(
+                            pendingUserAdminPicker?.accountingData?.fiscalNumber?.slice(
                               2,
                               10
                             ) +
                             " - " +
-                            pendingUserAdminPicker.accountingData.fiscalNumber.slice(
+                            pendingUserAdminPicker?.accountingData?.fiscalNumber?.slice(
                               10,
                               11
                             ),
@@ -125,15 +125,15 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
 
                       expirationDatePolicyVehicle: formatDate(
                         pendingUserAdminPicker?.vehicle
-                          .expirationDatePolicyVehicle
+                          ?.expirationDatePolicyVehicle
                       ),
                       expirationDateIdentificationVehicle: formatDate(
-                        pendingUserAdminPicker.vehicle
-                          .expirationDateIdentificationVehicle
+                        pendingUserAdminPicker?.vehicle
+                          ?.expirationDateIdentificationVehicle
                       ),
                       expirationDateDriverLicense: formatDate(
-                        pendingUserAdminPicker.vehicle
-                          .expirationDateDriverLicense
+                        pendingUserAdminPicker?.vehicle
+                          ?.expirationDateDriverLicense
                       ),
                     },
                   }
@@ -257,6 +257,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                   </div>
                   <ExpandableFile
                     files={pendingUserAdminPicker?.files?.personalData}
+                    pickerId={pendingUserAdminPicker?.id}
                   />
                 </div>
                 <h3 className="subTitle-pending-data">
@@ -310,6 +311,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                   </div>
                   <ExpandableFile
                     files={pendingUserAdminPicker?.files?.accountingData}
+                    pickerId={pendingUserAdminPicker.id}
                   />
                 </div>
 
@@ -388,6 +390,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                       </div>
                       <ExpandableFile
                         files={pendingUserAdminPicker?.files?.vehicle}
+                        pickerId={pendingUserAdminPicker.id}
                       />
                     </div>
                   </>

@@ -5,26 +5,24 @@ import { connect } from "react-redux";
 import { detailPickerSelector as pendingUserAdminPickerSelectors } from "reducers/detailPicker";
 import { actions as notificationActions } from "reducers/notification";
 import i18next from "i18next";
+import { AppDispatch, RootState } from "store";
+import { NotificationStateType } from "reducers/types/notification";
+import { ExportActionPropsType } from "./types";
 
-export const Actions = ({
+const ExportAction = ({
   getPendingUserPickerExport,
-  pendingUserAdminPicker,
   isDirty,
   showNotification,
-}) => {
-  const handleClick = (e) => {
-    if (isDirty) {
+}: ExportActionPropsType) => {
+  const handleClick = () => {
+    if (isDirty && showNotification) {
       showNotification({
         level: "warning",
         title: i18next.t("pickers:title.modal.saveChanges"),
-        body: i18next.t("picker:label.modal.exportWithoutSave"),
-        onClickLabel: "picker:button.modal.goToSave",
-        onCloseLabel: "picker:button.modal.exportWithoutSave",
-        onClose: () =>
-          getPendingUserPickerExport(
-            { email: pendingUserAdminPicker.email },
-            e.target
-          ),
+        body: i18next.t("pickers:label.modal.exportWithoutSave"),
+        onClickLabel: "pickers:button.modal.goToSave",
+        onCloseLabel: "pickers:button.modal.exportWithoutSave",
+        onClose: () => getPendingUserPickerExport(),
         onClick: () =>
           window.scroll({
             top: window.innerHeight,
@@ -33,16 +31,13 @@ export const Actions = ({
           }),
       });
     } else {
-      getPendingUserPickerExport(
-        { email: pendingUserAdminPicker.email },
-        e.target
-      );
+      getPendingUserPickerExport();
     }
   };
 
   return (
     <div>
-      <button onClick={(e) => handleClick(e)} className="export" name="export">
+      <button onClick={handleClick} className="export" name="export">
         <img src={exportar} alt="export" />
         <img className="or-pending" src={or} alt="or" />
         <p className="display-inline-block p-export">
@@ -53,12 +48,12 @@ export const Actions = ({
   );
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: RootState) => ({
   isDirty: pendingUserAdminPickerSelectors(state).dirty,
 });
-const mapDispatchToProps = (dispatch) => ({
-  showNotification: (content) => {
+const mapDispatchToProps = (dispatch: AppDispatch) => ({
+  showNotification: (content: NotificationStateType) => {
     dispatch(notificationActions.showNotification(content));
   },
 });
-export default connect(mapStateToProps, mapDispatchToProps)(Actions);
+export default connect(mapStateToProps, mapDispatchToProps)(ExportAction);
