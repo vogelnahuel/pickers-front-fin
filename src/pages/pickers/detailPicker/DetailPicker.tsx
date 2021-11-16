@@ -259,7 +259,6 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                     files={pendingUserAdminPicker?.files?.personalData}
                   />
                 </div>
-
                 <h3 className="subTitle-pending-data">
                   {i18next.t("detailPicker:label.subtitle.account")}
                 </h3>

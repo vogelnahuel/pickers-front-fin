@@ -4,7 +4,7 @@ import { useState } from "react";
 import { connect } from "react-redux";
 import {
   actions as detailTransactionActions,
-  selectors as detailTransactionSelector,
+  detailTransactionSelector,
 } from "reducers/detailTransaction";
 import { AppDispatch, RootState } from "store";
 import { FinishModalPropsType } from "../types";
@@ -167,7 +167,7 @@ const FinishModal: React.FC<FinishModalPropsType> = ({
 };
 
 const mapStateToProps = (state: RootState) => ({
-  detailTransaction: detailTransactionSelector.getDetailTransaction(state),
+  detailTransaction: detailTransactionSelector(state).detailTransaction,
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({

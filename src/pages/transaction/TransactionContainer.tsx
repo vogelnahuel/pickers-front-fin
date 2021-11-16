@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import {
   actions as transactionActions,
-  selectors as transactionSelectors,
+  transactionsSelector,
 } from "reducers/transactions";
 import { Transaction } from "pages/transaction/Transaction";
 import { useLocation } from "react-router-dom";
@@ -61,15 +61,15 @@ const TransactionContainer: React.FC<TransactionContainerPropsType> = (
 };
 
 const mapStateToProps = (state: RootState) => ({
-  transactions: transactionSelectors.getTransactions(state),
-  isFetching: transactionSelectors.isFetching(state),
-  isExportDisabled: transactionSelectors.isExportDisabled(state),
-  filters: transactionSelectors.getFilters(state),
-  filtersExtra: transactionSelectors.getFiltersExtra(state),
-  seeMore: transactionSelectors.getSeeMore(state),
-  filtersExtraSeeMore: transactionSelectors.getFiltersExtraSeeMore(state),
+  transactions: transactionsSelector(state).transactions,
+  isFetching: transactionsSelector(state).fetching,
+  isExportDisabled: transactionsSelector(state).exportDisabled,
+  filters: transactionsSelector(state).filters,
+  filtersExtra: transactionsSelector(state).filtersExtra,
+  seeMore: transactionsSelector(state).seeMore,
+  filtersExtraSeeMore: transactionsSelector(state).filtersExtraSeeMore,
   detailTransactionModalOpen:
-    transactionSelectors.getDetailTransactionModalOpen(state),
+    transactionsSelector(state).detailTransactionModalOpen,
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
@@ -77,7 +77,8 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
     params: FilterTransactionsType,
     element: HTMLElement
   ) => {
-    dispatch(transactionActions.getTransactionsExportRequest(params, element));
+    element.blur();
+    dispatch(transactionActions.getTransactionsExportRequest(params));
   },
   getTransactions: (params: FilterTransactionsType) => {
     dispatch(transactionActions.getTransactionsRequest(params));

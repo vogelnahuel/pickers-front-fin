@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import {
   actions as loginActions,
-  selectors as loginSelectors,
+  loginSelector,
 } from "../../../reducers/login";
 import * as yup from "yup";
 import { VALIDATION_REGEX } from "utils/constants";
@@ -50,7 +50,7 @@ const RestorePasswordContainer = (
 };
 
 const mapStateToProps = (state: RootState) => ({
-  isFetching: loginSelectors.isFetching(state),
+  isFetching: loginSelector(state).fetching,
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({

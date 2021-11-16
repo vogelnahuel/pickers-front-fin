@@ -1,212 +1,160 @@
-import { PickerType, EditPickerResponseType, ParamsMiddlewareType } from "pages/pickers/types";
-import { ParamGetPendingUser } from "sagas/types/pickers";
+import { createSlice, PayloadAction, Action } from "@reduxjs/toolkit";
+import { ParamsMiddlewareType, PickerType } from "pages/pickers/types";
+import { DetailPickerStateType } from "./types/detailPicker";
+
 import { RootState } from "store";
-import { ActionType, SelectorType, DetailPickerStateType, DetailPickerTypes, actionType } from "./types/detailPicker";
+import { endsWithAny } from "utils/endsWithAny";
 
-export const types:DetailPickerTypes = {
-    PENDING_USER_ADMIN_PICKER_GET_REQUEST: `PENDING_USER_ADMIN_PICKER_GET_REQUEST`,
-    PENDING_USER_ADMIN_PICKER_GET_SUCCESS: `PENDING_USER_ADMIN_PICKER_GET_SUCCESS`,
-    PENDING_USER_ADMIN_PICKER_GET_ERROR: `PENDING_USER_ADMIN_PICKER_GET_ERROR`,
-
-    PENDING_USER_ADMIN_PICKER_SET_DIRTY: `PENDING_USER_ADMIN_PICKER_SET_DIRTY`,
-
-    PENDING_USER_ADMIN_PICKER_EXPORT_GET_REQUEST: `PENDING_USER_ADMIN_PICKER_EXPORT_GET_REQUEST`,
-    PENDING_USER_ADMIN_PICKER_EXPORT_GET_SUCCESS: `PENDING_USER_ADMIN_PICKER_EXPORT_GET_SUCCESS`,
-    PENDING_USER_ADMIN_PICKER_EXPORT_GET_ERROR: `PENDING_USER_ADMIN_PICKER_EXPORT_GET_ERROR`,
-
-    PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_REQUEST: `PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_REQUEST`,
-    PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_SUCCESS: `PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_SUCCESS`,
-    PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_ERROR: `PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_ERROR`,
-
-    PICKER_EDIT_POST_REQUEST: `PICKER_EDIT_POST_REQUEST`,
-    PICKER_EDIT_POST_SUCCESS: `PICKER_EDIT_POST_SUCCESS`,
-    PICKER_EDIT_POST_ERROR: `PICKER_EDIT_POST_ERROR`,
-
-    PICKER_APROVE_POST_REQUEST: `PICKER_APROVE_POST_REQUEST`,
-    PICKER_APROVE_POST_SUCCESS: `PICKER_APROVE_POST_SUCCESS`,
-    PICKER_APROVE_POST_ERROR: `PICKER_APROVE_POST_ERROR`,
+export const initialState: DetailPickerStateType = {
+  fetching: false,
+  dirty: false,
+  nameDisplay: "",
+  pendingUserAdminPicker: {
+    id: 0,
+    enable: false,
+    registerDatetime: "",
+    status: {
+      description: "",
+      id: 0,
+    },
+    personalData: {
+      name: "",
+      surname: "",
+      dateOfBirth: null,
+      identificationNumber: null,
+      email: "",
+      phone: {
+        areaNumber: "",
+        countryNumber: "",
+        number: "",
+        registerDate: undefined,
+      },
+    },
+    accountingData: {
+      bankIdentifier: "",
+      bankName: "",
+      fiscalNumber: "",
+    },
+    vehicle: {
+      type: "",
+      active: false,
+      approve: false,
+      patent: "",
+      expirationDateDriverLicense: "",
+      expirationDateIdentificationVehicle: "",
+      expirationDatePolicyVehicle: "",
+    },
+    files: {
+      personalData: {
+        status: "",
+        content: [],
+      },
+      accountingData: {
+        status: "",
+        content: [],
+      },
+      vehicle: {
+        status: "",
+        content: [],
+      },
+    },
+  },
 };
 
-export const INITIAL_STATE:DetailPickerStateType = {
-    fetching: false,
-    dirty: false,
-    nameDisplay: "",
-    pendingUserAdminPicker: {},
+const SLICE_NAME = "detailPicker";
+
+const isRequestAction = (action: Action<string>) => {
+  const { type } = action;
+  return type.startsWith(SLICE_NAME) && type.endsWith("Request");
 };
 
-export const actions:ActionType = {
-    getPendingUserPickerRequest: (params:ParamGetPendingUser) => ({
-        type: types.PENDING_USER_ADMIN_PICKER_GET_REQUEST,
-        params,
-    }),
-    getPendingUserPickerSuccess: (pendingUserAdminPicker:PickerType) => ({
-        type: types.PENDING_USER_ADMIN_PICKER_GET_SUCCESS,
-        pendingUserAdminPicker
-    }),
-    getPendingUserPickerError: () => ({
-        type: types.PENDING_USER_ADMIN_PICKER_GET_ERROR,
-    }),
-    setDirty: (dirty:boolean) => ({
-        type: types.PENDING_USER_ADMIN_PICKER_SET_DIRTY,
-        dirty
-    }),
-    getPendingUserPickerExportRequest: (params:ParamsMiddlewareType,element:HTMLElement) => ({
-        type: types.PENDING_USER_ADMIN_PICKER_EXPORT_GET_REQUEST,
-        params,
-        element
-    }),
-    getPendingUserPickerExportSuccess: () => ({
-        type: types.PENDING_USER_ADMIN_PICKER_EXPORT_GET_SUCCESS,
-    }),
-    getPendingUserPickerExportError: () => ({
-        type: types.PENDING_USER_ADMIN_PICKER_EXPORT_GET_ERROR,
-    }),
-    getPendingUserPickerDocumentsEditRequest: (params:PickerType) => ({
-        type: types.PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_REQUEST,
-        params,
-    }),
-    getPendingUserPickerDocumentsEditSuccess: (body:EditPickerResponseType) => ({
-        type: types.PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_SUCCESS,
-        body
-    }),
-    getPendingUserPickerDocumentsEditError: () => ({
-        type: types.PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_ERROR,
-    }),
-
-    getAprovePickerRequest: (params:PickerType, goBack:Function) => ({
-        type: types.PICKER_APROVE_POST_REQUEST,
-        params,
-        goBack
-    }),
-    getAprovePickerSuccess: (body:EditPickerResponseType) => ({
-        type: types.PICKER_APROVE_POST_SUCCESS,
-        body
-    }),
-    getAprovePickerError: () => ({
-        type: types.PICKER_APROVE_POST_ERROR,
-    }),
-
-    getEditPickerRequest: (params:PickerType, goBack:Function) => ({
-        type: types.PICKER_EDIT_POST_REQUEST,
-        params,
-        goBack
-    }),
-    getEditPickerSuccess: (body:PickerType) => ({
-        type: types.PICKER_EDIT_POST_SUCCESS,
-        body
-    }),
-    getEditPickerError: () => ({
-        type: types.PICKER_EDIT_POST_ERROR,
-    }),
-
+const isResponseAction = (action: Action<string>) => {
+  const { type } = action;
+  return type.startsWith(SLICE_NAME) && endsWithAny(type, ["Error", "Success"]);
 };
 
-export const selectors:SelectorType = {
-    isFetching: ({ pendingUserAdminPicker }:RootState) => pendingUserAdminPicker.fetching,
-    isDirty: ({ pendingUserAdminPicker }:RootState) => pendingUserAdminPicker.dirty,
-    getNameDisplay: ({ pendingUserAdminPicker }:RootState) => pendingUserAdminPicker.nameDisplay,
-    getPendingUserPicker: ({ pendingUserAdminPicker }:RootState) => pendingUserAdminPicker.pendingUserAdminPicker,
-};
+export const detailPickerSlice = createSlice({
+  name: SLICE_NAME,
+  initialState,
+  reducers: {
+    getPendingUserPickerRequest: (
+      state: DetailPickerStateType,
+      action: PayloadAction<number>
+    ) => {},
+    getPendingUserPickerSuccess: (
+      state: DetailPickerStateType,
+      action: PayloadAction<PickerType>
+    ) => {
+      const { payload } = action;
+      state.pendingUserAdminPicker = payload;
+      state.nameDisplay = `${payload.personalData.name} ${payload.personalData.surname}`;
+    },
+    getPendingUserPickerError: () => {},
+    setDirty: (
+      state: DetailPickerStateType,
+      action: PayloadAction<boolean>
+    ) => {
+      state.dirty = action.payload;
+    },
+    getPendingUserPickerExportRequest: (
+      state: DetailPickerStateType,
+      action: PayloadAction<ParamsMiddlewareType>
+    ) => {},
+    getPendingUserPickerExportSuccess: () => {},
+    getPendingUserPickerExportError: () => {},
+    getPendingUserPickerDocumentsEditRequest: (
+      state: DetailPickerStateType,
+      action: PayloadAction<PickerType>
+    ) => {
+      state.pendingUserAdminPicker = action.payload;
+    },
+    getPendingUserPickerDocumentsEditSuccess: (
+      state: DetailPickerStateType,
+      action: PayloadAction<PickerType>
+    ) => {
+      state.pendingUserAdminPicker = action.payload;
+    },
+    getPendingUserPickerDocumentsEditError: () => {},
+    getAprovePickerRequest: (
+      state: DetailPickerStateType,
+      action: PayloadAction<{ params: PickerType; goBack: Function }>
+    ) => {
+      state.pendingUserAdminPicker = action.payload.params;
+    },
+    getAprovePickerSuccess: (
+      state: DetailPickerStateType,
+      action: PayloadAction<PickerType>
+    ) => {
+      state.pendingUserAdminPicker = action.payload;
+    },
+    getAprovePickerError: () => {},
+    getEditPickerRequest: (
+      state: DetailPickerStateType,
+      action: PayloadAction<{ params: PickerType; goBack: Function }>
+    ) => {},
+    getEditPickerSuccess: (
+      state: DetailPickerStateType,
+      action: PayloadAction<PickerType>
+    ) => {
+      state.pendingUserAdminPicker = action.payload;
+    },
+    getEditPickerError: () => {},
+  },
+  extraReducers: (builder) =>
+    builder
+      .addMatcher(isRequestAction, (state: DetailPickerStateType) => {
+        state.fetching = true;
+      })
+      .addMatcher(isResponseAction, (state: DetailPickerStateType) => {
+        state.fetching = false;
+      }),
+});
 
+// Se exporta el reducer/slice para asociarlo en la creación del store
+export default detailPickerSlice.reducer;
 
-const reducer =(state:DetailPickerStateType = INITIAL_STATE, action:actionType) => {
-    switch (action.type) {
-        /************************************************************* */
-        case types.PENDING_USER_ADMIN_PICKER_GET_REQUEST:
-            return {
-                ...state,
-                fetching: true,
-            };
-        case types.PENDING_USER_ADMIN_PICKER_SET_DIRTY:
-            return {
-                ...state,
-                dirty: action.dirty,
-            };
-        case types.PENDING_USER_ADMIN_PICKER_GET_SUCCESS:
-            return {
-                ...state,
-                pendingUserAdminPicker: action.pendingUserAdminPicker,
-                nameDisplay: `${action.pendingUserAdminPicker.personalData.name} ${action.pendingUserAdminPicker.personalData.surname}`,
-                fetching: false,
-            };
-        case types.PENDING_USER_ADMIN_PICKER_GET_ERROR:
-            return {
-                ...state,
-                fetching: false,
-            };
-        /************************************************************* */
-        case types.PENDING_USER_ADMIN_PICKER_EXPORT_GET_REQUEST:
-            return {
-                ...state,
-                fetching: true,
+// Selector del slice "detailPicker"
+export const detailPickerSelector = (state: RootState) => state.detailPicker;
 
-            };
-        case types.PENDING_USER_ADMIN_PICKER_EXPORT_GET_SUCCESS:
-            return {
-                ...state,
-                fetching: false,
-            };
-        case types.PENDING_USER_ADMIN_PICKER_EXPORT_GET_ERROR:
-            return {
-                ...state,
-                fetching: false,
-            };
-        /************************************************************* */
-        case types.PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_REQUEST:
-            return {
-                ...state,
-                fetching: true,
-                pendingUserAdminPicker: action.params
-            };
-        case types.PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_SUCCESS:
-            return {
-                ...state,
-                pendingUserAdminPicker: action.body,
-                fetching: false,
-            };
-        case types.PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_ERROR:
-            return{
-                ...state,
-                fetching:false
-            };
-        /************************************************************* */
-        case types.PICKER_APROVE_POST_REQUEST:
-            return {
-                ...state,
-                pendingUserAdminPicker: action.params,
-                fetching: true,
-            };
-        case types.PICKER_APROVE_POST_SUCCESS:
-            return {
-                ...state,
-                pendingUserAdminPicker: action.body,
-                fetching: false,
-            };
-        case types.PICKER_APROVE_POST_ERROR:
-            return{
-                ...state,
-                fetching:false
-            };
-        /************************************************************* */
-        case types.PICKER_EDIT_POST_REQUEST:
-            return {
-                ...state,
-                fetching: true,
-            };
-        case types.PICKER_EDIT_POST_SUCCESS:
-            return {
-                ...state,
-                pendingUserAdminPicker: action.body,
-                fetching: false,
-            };
-        case types.PICKER_EDIT_POST_ERROR:
-            return{
-                ...state,
-                fetching:false
-            };
-        default:
-            return state;
-    }
-};
-
-export default reducer;
+// Se exportan todas las acciones
+export const actions = detailPickerSlice.actions;

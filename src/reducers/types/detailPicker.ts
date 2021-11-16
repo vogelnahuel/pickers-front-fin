@@ -37,8 +37,8 @@ export type SelectorType = {
 export type DetailPickerStateType = {
   fetching: boolean;
   dirty: boolean;
-  nameDisplay: String;
-  pendingUserAdminPicker: PickerType | object;
+  nameDisplay: string;
+  pendingUserAdminPicker: PickerType;
 };
 
 export type ActionType = {
