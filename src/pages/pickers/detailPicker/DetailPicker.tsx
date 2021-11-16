@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Header } from "component/admin/Header/Header";
 import Nav from "component/admin/Nav/Nav";
 import "pages/pickers/Pickers.scss";
@@ -15,16 +15,9 @@ import moment from "moment";
 import NotificationModal from "component/modal/NotificationModal";
 import Actions from "pages/pickers/actions/Actions";
 import { DetailPickerTypeProps } from "./types";
-import { DATE_FORMATS, DETAIL_PICKER_TAG } from "utils/constants";
+import { DATE_FORMATS } from "utils/constants";
 import i18next from "i18next";
-
-import   Folder  from  "assets/admin/folder.svg";
-import   FolderError  from  "assets/admin/folderError.svg";
-import   FolderAdd  from  "assets/admin/folderAdd.svg";
-import   FileReplace  from  "assets/admin/fileReplace.svg";
-import   FileDelete  from  "assets/admin/fileDelete.svg";
-import   FileLoad  from  "assets/admin/fileLoad.svg";
-import { ExpandableFile } from "./ExpandableFile";
+import { ExpandableFile } from "component/admin/ExpandableFile/ExpandableFile";
 
 export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
   isFetching,
@@ -41,14 +34,6 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
   validationSchema,
   formatDate,
 }) => {
-
-  const [activarOpciones, setactivarOpciones] = useState({
-    PersonalData:false,
-    AccountingData:false,
-    VehicleData:false
-  })
-
-
   return (
     <div className="background-Grey">
       <Header />
@@ -64,7 +49,8 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                 `#${pendingUserAdminPicker.id}`}
               <h2 className="subTitle-pending-picker">{nameDisplay}</h2>
             </div>
-            {pendingUserAdminPicker.vehicle && pendingUserAdminPicker.vehicle.type === "motorcycle" ? (
+            {pendingUserAdminPicker.vehicle &&
+            pendingUserAdminPicker.vehicle.type === "motorcycle" ? (
               <img
                 className="vehiculo-pending-picker"
                 src={motorcycle}
@@ -79,7 +65,11 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
             )}
             <div className="export-container">
               <Actions
-                getPendingUserPickerExport={()=>{getPendingUserPickerExport(pendingUserAdminPicker.personalData)}}
+                getPendingUserPickerExport={() => {
+                  getPendingUserPickerExport(
+                    pendingUserAdminPicker.personalData
+                  );
+                }}
                 pendingUserAdminPicker={pendingUserAdminPicker}
               />
             </div>
@@ -91,20 +81,21 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                 : aproveSubmit(values, goBack)
             }
             initialValues={
-
               pendingUserAdminPicker.id
                 ? {
                     ...pendingUserAdminPicker,
-                    personalData:{
+                    personalData: {
                       ...pendingUserAdminPicker.personalData,
                       dateOfBirth:
-                      pendingUserAdminPicker.personalData.dateOfBirth &&
-                      pendingUserAdminPicker.personalData.dateOfBirth.includes("-")
-                        ? moment(
-                            pendingUserAdminPicker.personalData.dateOfBirth,
-                            DATE_FORMATS.shortISODate
-                          ).format(DATE_FORMATS.shortDate)
-                        :pendingUserAdminPicker.personalData.dateOfBirth,
+                        pendingUserAdminPicker.personalData.dateOfBirth &&
+                        pendingUserAdminPicker.personalData.dateOfBirth.includes(
+                          "-"
+                        )
+                          ? moment(
+                              pendingUserAdminPicker.personalData.dateOfBirth,
+                              DATE_FORMATS.shortISODate
+                            ).format(DATE_FORMATS.shortDate)
+                          : pendingUserAdminPicker.personalData.dateOfBirth,
                     },
                     accountingData: {
                       ...pendingUserAdminPicker.accountingData,
@@ -128,22 +119,22 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                               11
                             ),
                     },
-                    
-                   
+
                     vehicle: {
                       ...pendingUserAdminPicker.vehicle,
-                   
-                    
-                        expirationDatePolicyVehicle: formatDate(
-                          pendingUserAdminPicker?.vehicle.expirationDatePolicyVehicle
-                        ),
-                        expirationDateIdentificationVehicle: formatDate(
-                          pendingUserAdminPicker.vehicle.expirationDateIdentificationVehicle 
-                        ),
-                        expirationDateDriverLicense: formatDate(
-                          pendingUserAdminPicker.vehicle.expirationDateDriverLicense
-                        ),
-                      
+
+                      expirationDatePolicyVehicle: formatDate(
+                        pendingUserAdminPicker?.vehicle
+                          .expirationDatePolicyVehicle
+                      ),
+                      expirationDateIdentificationVehicle: formatDate(
+                        pendingUserAdminPicker.vehicle
+                          .expirationDateIdentificationVehicle
+                      ),
+                      expirationDateDriverLicense: formatDate(
+                        pendingUserAdminPicker.vehicle
+                          .expirationDateDriverLicense
+                      ),
                     },
                   }
                 : pendingUserAdminPicker
@@ -218,8 +209,9 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                           disabled
                           className="Admin-Pickers-input readonly"
                           placeholder={i18next.t(
-                              "detailPicker:placeholder.user.email"
-                          )}                        />
+                            "detailPicker:placeholder.user.email"
+                          )}
+                        />
                       </div>
                       <div className="container-detailPicker-col-sm-6  ">
                         <Field
@@ -230,8 +222,9 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                           disabled
                           className="Admin-Pickers-input"
                           placeholder={i18next.t(
-                              "detailPicker:placeholder.user.birthdate"
-                          )}                        />
+                            "detailPicker:placeholder.user.birthdate"
+                          )}
+                        />
                       </div>
                       <div className="container-detailPicker-col-sm-3  ">
                         <Field
@@ -241,12 +234,12 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                           component={Input}
                           className="Admin-Pickers-input"
                           placeholder={i18next.t(
-                              "detailPicker:placeholder.user.areaCode"
+                            "detailPicker:placeholder.user.areaCode"
                           )}
                           maxLength={5}
                         />
                       </div>
-                    
+
                       <div className="container-detailPicker-col-sm-3  ">
                         <Field
                           type="text"
@@ -255,18 +248,20 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                           component={Input}
                           className="Admin-Pickers-input"
                           placeholder={i18next.t(
-                              "detailPicker:placeholder.user.phone"
+                            "detailPicker:placeholder.user.phone"
                           )}
                           maxLength={10}
                         />
                       </div>
                     </div>
                   </div>
-                    <ExpandableFile files={pendingUserAdminPicker?.files?.personalData}/>
+                  <ExpandableFile
+                    files={pendingUserAdminPicker?.files?.personalData}
+                  />
                 </div>
-               
-                <h3 className="subTitle-pending-data" >
-                    {i18next.t("detailPicker:label.subtitle.account")}
+
+                <h3 className="subTitle-pending-data">
+                  {i18next.t("detailPicker:label.subtitle.account")}
                 </h3>
                 <div className="form-part-1-admin-pickers">
                   <div className="container-detailPicker-row">
@@ -314,156 +309,91 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                       />
                     </div>
                   </div>
-                  <hr className="border-row"/>
-                  <div className="">
-                    <div className="container-detailPicker-row " >
-                   
-                        <div className="container-detailPicker-col-18 display-flex cursor-pointer"  onClick={()=>setactivarOpciones( {...activarOpciones , AccountingData:!activarOpciones.AccountingData} ) }>
-                          <img src={pendingUserAdminPicker?.files?.accountingData?.status==="EMPTY"?FolderAdd : pendingUserAdminPicker?.files?.accountingData?.status==="COMPLETED" ? Folder : FolderError}  alt="archivo"/>
-                          <p className="p-file">Archivos</p>
-                        </div>
-
-                        <div className="container-detailPicker-col-sm-6" >
-                     
-                            <div>
-                            <ul className={activarOpciones.AccountingData ? "p-li" :"display-none"}>
-                                  {
-                                      pendingUserAdminPicker&&   pendingUserAdminPicker.files &&   pendingUserAdminPicker.files.accountingData && pendingUserAdminPicker.files.accountingData.content && pendingUserAdminPicker.files.accountingData.content.map( (element) => (
-                                      <li className="display-flex" key={element.tag}>
-                                        {
-                                              element.isUpload ?  <>
-                                                                    <p className=""> 
-                                                                        { i18next.t( DETAIL_PICKER_TAG[element.tag] ) }
-                                                                    </p>  
-                                                                    <div className="container-img-picker"> 
-                                                                          <img className="picker-replace" src={FileReplace} alt=""/> 
-                                                                          <img className="padding-left picker-delete" src={FileDelete} alt=""/> 
-                                                                    </div> 
-                                                                </>
-                                                              :
-                                                                  <>
-                                                                    <p className="picker-color-gray"> 
-                                                                        { i18next.t( DETAIL_PICKER_TAG[element.tag] ) }
-                                                                    </p>  
-                                                                    <div className="container-img-picker"> 
-                                                                          <img className="picker-replace" src={FileLoad} alt=""/> 
-                                                                    </div> 
-                                                                  </>                 
-                                          }
-                                        </li>
-                                      ))
-                                  }
-                              </ul>
-                            </div>
-
-                        </div>
-                        <div className="container-detailPicker-col-sm-6">
-                        </div>
-                        <div className="container-detailPicker-col-sm-6">
-                        </div>
-                    </div>
-                  </div>
-                  
+                  <ExpandableFile
+                    files={pendingUserAdminPicker?.files?.accountingData}
+                  />
                 </div>
-                <h3 className="subTitle-pending-data">
-                    {i18next.t("detailPicker:label.subtitle.insurance")}
-                </h3>
-                <div className="form-part-1-admin-pickers">
-                  <div className="container-detailPicker-row">
-                    {initialValues.vehicle && initialValues.vehicle.type === "motorcycle" && (
-                      <>
-                        <div className="container-detailPicker-col-sm-6  ">
-                          <Field
-                            type="text"
-                            name={`vehicle.patent`}
-                            label={i18next.t(
-                              "detailPicker:label.insurance.patent"
-                            )}
-                            component={Input}
-                            className="Admin-Pickers-input"
-                            placeholder={i18next.t(
-                              "detailPicker:placeholder.insurance.patent"
-                            )}
-                            maxLength={7}
-                          />
-                        </div>
-                        <div className="container-detailPicker-col-sm-6  ">
-                          <Field
-                            type="text"
-                            name={`vehicle.expirationDateDriverLicense`}
-                            label={i18next.t(
-                              "detailPicker:label.insurance.licenseExpiration"
-                            )}
-                            component={Input}
-                            className="Admin-Pickers-input"
-                            placeholder={i18next.t(
-                              "global:placeholder.input.date"
-                            )}
-                            maxLength={10}
-                          />
-                        </div>
-                        <div className="container-detailPicker-col-sm-6  ">
-                          <Field
-                            type="text"
-                            name={`vehicle.expirationDateIdentificationVehicle`}
-                            label={i18next.t(
-                              "detailPicker:label.insurance.identifierExpiration"
-                            )}
-                            component={Input}
-                            className="Admin-Pickers-input"
-                            placeholder={i18next.t(
-                              "global:placeholder.input.date"
-                            )}
-                            maxLength={10}
-                          />
-                        </div>
-                        <div className="container-detailPicker-col-sm-6">
-                          <Field
-                            type="text"
-                            name={`vehicle.expirationDatePolicyVehicle`}
-                            label={i18next.t(
-                              "detailPicker:label.insurance.carInsuranceExpiration"
-                            )}
-                            component={Input}
-                            className="Admin-Pickers-input"
-                            placeholder={i18next.t(
-                              "global:placeholder.input.date"
-                            )}
-                            maxLength={10}
-                          />
-                        </div>
-                      </>
-                    )}
-                  </div>
-                  <hr className="border-row"/>
-                  <div className="">
-                    <div className="container-detailPicker-row " >
-                   
-                        <div className="container-detailPicker-col-18 display-flex cursor-pointer"  onClick={()=>setactivarOpciones( {...activarOpciones , VehicleData:!activarOpciones.VehicleData} ) }>
-                          <img src={pendingUserAdminPicker?.files?.vehicle?.status==="EMPTY"?FolderAdd : pendingUserAdminPicker?.files?.vehicle?.status==="COMPLETED" ? Folder : FolderError}  alt="archivo"/>
-                          <p className="p-file">Archivos</p>
-                        </div>
 
-                        <div className="container-detailPicker-col-sm-6" >
-                     
-                            <div>
-                            <ul className={activarOpciones.VehicleData ? "p-li" :"display-none"}>
-                                  {
-                                      pendingUserAdminPicker&&   pendingUserAdminPicker.files &&   pendingUserAdminPicker.files.vehicle && pendingUserAdminPicker.files.vehicle.content && pendingUserAdminPicker.files.vehicle.content.map( (element) => (
-                                      <li className="display-flex" key={element.tag}> <p className={element.isUpload ? "azul" : "gris"}>  { i18next.t( DETAIL_PICKER_TAG[element.tag] ) }</p>   <div className="container-img-picker">  <img className="picker-replace" src={FileReplace} alt=""/> <img className="padding-left picker-delete" src={FileDelete} alt=""/>  </div> </li>
-                                      ))
-                                  }
-                              </ul>
-                            </div>
-
-                        </div>
-                        <div className="container-detailPicker-col-sm-6">
-                        </div>
-                        <div className="container-detailPicker-col-sm-6">
-                        </div>
+                {initialValues.vehicle.type === "motorcycle" && (
+                  <>
+                    <h3 className="subTitle-pending-data">
+                      {i18next.t("detailPicker:label.subtitle.insurance")}
+                    </h3>
+                    <div className="form-part-1-admin-pickers">
+                      <div className="container-detailPicker-row">
+                        {initialValues.vehicle &&
+                          initialValues.vehicle.type === "motorcycle" && (
+                            <>
+                              <div className="container-detailPicker-col-sm-6  ">
+                                <Field
+                                  type="text"
+                                  name={`vehicle.patent`}
+                                  label={i18next.t(
+                                    "detailPicker:label.insurance.patent"
+                                  )}
+                                  component={Input}
+                                  className="Admin-Pickers-input"
+                                  placeholder={i18next.t(
+                                    "detailPicker:placeholder.insurance.patent"
+                                  )}
+                                  maxLength={7}
+                                />
+                              </div>
+                              <div className="container-detailPicker-col-sm-6  ">
+                                <Field
+                                  type="text"
+                                  name={`vehicle.expirationDateDriverLicense`}
+                                  label={i18next.t(
+                                    "detailPicker:label.insurance.licenseExpiration"
+                                  )}
+                                  component={Input}
+                                  className="Admin-Pickers-input"
+                                  placeholder={i18next.t(
+                                    "global:placeholder.input.date"
+                                  )}
+                                  maxLength={10}
+                                />
+                              </div>
+                              <div className="container-detailPicker-col-sm-6  ">
+                                <Field
+                                  type="text"
+                                  name={`vehicle.expirationDateIdentificationVehicle`}
+                                  label={i18next.t(
+                                    "detailPicker:label.insurance.identifierExpiration"
+                                  )}
+                                  component={Input}
+                                  className="Admin-Pickers-input"
+                                  placeholder={i18next.t(
+                                    "global:placeholder.input.date"
+                                  )}
+                                  maxLength={10}
+                                />
+                              </div>
+                              <div className="container-detailPicker-col-sm-6">
+                                <Field
+                                  type="text"
+                                  name={`vehicle.expirationDatePolicyVehicle`}
+                                  label={i18next.t(
+                                    "detailPicker:label.insurance.carInsuranceExpiration"
+                                  )}
+                                  component={Input}
+                                  className="Admin-Pickers-input"
+                                  placeholder={i18next.t(
+                                    "global:placeholder.input.date"
+                                  )}
+                                  maxLength={10}
+                                />
+                              </div>
+                            </>
+                          )}
+                      </div>
+                      <ExpandableFile
+                        files={pendingUserAdminPicker?.files?.vehicle}
+                      />
                     </div>
-                  </div>
-                </div>
+                  </>
+                )}
+
                 {active ? (
                   <>
                     <Field name="enable" component={Switch} />
