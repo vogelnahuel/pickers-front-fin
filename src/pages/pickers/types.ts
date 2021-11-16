@@ -1,3 +1,4 @@
+
 import { TypeOfShape } from "yup/lib/object";
 
 export type ChangePageTypes = {
@@ -83,13 +84,13 @@ export type AcountDataType = {
   fiscalNumber: string;
 };
 export type DataContentType = {
-  tag: string;
+  tag: keyof DetailPickerTagFileType;
   isUpload: boolean;
 };
 
 export type DataFilesType = {
   status: string;
-  contents: DataContentType[];
+  content: DataContentType[];
 };
 
 export type FilesType = {
@@ -172,3 +173,14 @@ export type PickersResponse = {
 export type EditPickerResponseType = {
   result: Number;
 };
+export type DetailPickerTagFileType = {
+  "dni-front":                    string;
+  "dni-back":                     string;
+  "user-face":                    string;
+  "cbu-certificate":              string;
+  "cuit-certificate":             string;
+  "driver-license":               string;
+  "vehicle-identification-back":  string;
+  "vehicle-identification-front": string;
+  "driver-insurance-card":        string;
+}

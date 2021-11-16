@@ -60,3 +60,21 @@ export type TransactionType = {
   setFilters: Function;
   detailTransactionModalOpen:boolean
   };
+  export type TransactionActionTagType = {
+    assigned_picker:                    string;
+    un_assigning:                       string;
+    state_pending_assigment:            string;
+    state_assigned:                     string;
+    state_in_pickup:                    string;
+    state_in_pickup_point:              string;
+    state_in_picked_up:                 string;
+    state_in_delivery:                  string;
+    state_in_delivery_point:            string;
+    state_in_devolution:                string;
+    state_pickup_cancelled_temporally:  string;
+    state_pickup_cancelled_permanently: string;
+    state_delivered:                    string;
+    state_returned:                     string;
+    state_lost:                         string;
+    state_initial:                      string;
+  }

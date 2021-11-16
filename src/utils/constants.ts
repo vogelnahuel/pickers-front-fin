@@ -1,4 +1,7 @@
-export const titlesAdminPending = [
+import { DetailPickerTagFileType } from "pages/pickers/types";
+import { TransactionActionTagType } from "pages/transaction/types";
+
+export const titlesAdminPending:string[] = [
   "tablePickers:label.table.name",
   "tablePickers:label.table.identifier",
   "tablePickers:label.table.email",
@@ -7,7 +10,7 @@ export const titlesAdminPending = [
   "tablePickers:label.table.edit",
 ];
 
-export const titlesAdminActive = [
+export const titlesAdminActive:string[] = [
   "tablePickers:label.table.name",
   "tablePickers:label.table.identifier",
   "tablePickers:label.table.email",
@@ -16,7 +19,7 @@ export const titlesAdminActive = [
   "tablePickers:label.table.edit",
 ];
 
-export const transactionTableTitles = [
+export const transactionTableTitles:string[] = [
   "transactionTable:label.table.transaction",
   "transactionTable:label.table.idPicker",
   "transactionTable:label.table.slaExpiration",
@@ -104,7 +107,7 @@ export const FILTER_TRANSACTION_OPTIONS = [
   },
 ];
 
-export const FILTER_PICKERS_OPTIONS = [
+export const FILTER_PICKERS_OPTIONS= [
   {
     label: "filterPickers:label.select.all",
     value: "",
@@ -149,21 +152,38 @@ export const TRANSACTION_STATE_TAG_LABEL = {
   LOST: "filterTransaction:label.select.lost",
 };
 
-export const TRANSACTION_ACTIONS_TAG_LABEL: any = {
-  assigned_picker: "filterTransaction:label.select.assigned",
-  un_assigning: "filterTransaction:label.select.pendingAssignment",
-  state_pending_assigment: "filterTransaction:label.select.pendingAssignment",
-  state_assigned: "filterTransaction:label.select.assigned",
-  state_in_pickup: "filterTransaction:label.select.inPickup",
-  state_in_pickup_point: "filterTransaction:label.select.inPickupPoint",
-  state_in_picked_up: "filterTransaction:label.select.retired",
-  state_in_delivery: "filterTransaction:label.select.inDelivery",
-  state_in_delivery_point: "filterTransaction:label.select.inDeliveryPoint",
-  state_in_devolution: "filterTransaction:label.select.inReturnToSender",
-  state_pickup_cancelled_temporally: "filterTransaction:label.select.cancel",
-  state_pickup_cancelled_permanently: "filterTransaction:label.select.cancel",
-  state_delivered: "filterTransaction:label.select.delivered",
-  state_returned: "filterTransaction:label.select.returnedToSender",
-  state_lost: "filterTransaction:label.select.lost",
-  state_initial: "filterTransaction:label.select.created",
+export const TRANSACTION_ACTIONS_TAG_LABEL: TransactionActionTagType = {
+  "assigned_picker": "filterTransaction:label.select.assigned",
+  "un_assigning": "filterTransaction:label.select.pendingAssignment",
+  "state_pending_assigment": "filterTransaction:label.select.pendingAssignment",
+  "state_assigned": "filterTransaction:label.select.assigned",
+  "state_in_pickup": "filterTransaction:label.select.inPickup",
+  "state_in_pickup_point": "filterTransaction:label.select.inPickupPoint",
+  "state_in_picked_up": "filterTransaction:label.select.retired",
+  "state_in_delivery": "filterTransaction:label.select.inDelivery",
+  "state_in_delivery_point": "filterTransaction:label.select.inDeliveryPoint",
+  "state_in_devolution": "filterTransaction:label.select.inReturnToSender",
+  "state_pickup_cancelled_temporally": "filterTransaction:label.select.cancel",
+  "state_pickup_cancelled_permanently": "filterTransaction:label.select.cancel",
+  "state_delivered": "filterTransaction:label.select.delivered",
+  "state_returned": "filterTransaction:label.select.returnedToSender",
+  "state_lost": "filterTransaction:label.select.lost",
+  "state_initial": "filterTransaction:label.select.created"
 };
+
+
+export const DETAIL_PICKER_TAG:DetailPickerTagFileType = {
+  "dni-front": "detailPicker:label.card.dniFront",
+  "dni-back": "detailPicker:label.card.dniBack",
+  "user-face": "detailPicker:label.card.userFace",
+  "cbu-certificate": "detailPicker:label.card.cbuCertificate",
+  "cuit-certificate": "detailPicker:label.card.cuitCertificate",
+  "driver-license": "detailPicker:label.card.driverLicense",
+  "vehicle-identification-back": "detailPicker:label.card.vehicleIdentificationBack",
+  "vehicle-identification-front": "detailPicker:label.card.vehicleIdentificationFront",
+  "driver-insurance-card": "detailPicker:label.card.driverInsuranceCard"
+};
+
+
+
+

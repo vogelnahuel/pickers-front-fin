@@ -1,4 +1,4 @@
-import {PickerType} from "../types";
+import {DataFilesType, PickerType} from "../types";
 
 export type DetailPickerContainerTypeProps = {
   pendingUserAdminPicker: PickerType;
@@ -31,3 +31,6 @@ export type DetailPickerTypeProps = {
   validationSchema:Object
   formatDate:Function
 };
+export type ExpandableFilePropsType={
+  files:DataFilesType
+}
