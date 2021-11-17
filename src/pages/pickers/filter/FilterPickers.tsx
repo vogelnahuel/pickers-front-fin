@@ -72,7 +72,7 @@ export const FilterPickers: React.FC<FilterTypes> = ({
                         placeholder={i18next.t(
                             "filterPickers:placeholder.filter.identifier"
                         )}
-                        maxLength={9}
+                        maxLength={8}
                       />
                     </div>
                     <div className="container-col-sm-1 container-col-xl">
