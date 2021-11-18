@@ -8,6 +8,8 @@ import { PickerFileRequestType } from "pages/pickers/detailPicker/types";
 
 export const initialState: DetailPickerStateType = {
   fetching: false,
+  tagError:undefined,
+  serverError:false,
   dirty: false,
   nameDisplay: "",
   pendingUserAdminPicker: {
@@ -146,6 +148,19 @@ export const detailPickerSlice = createSlice({
     ) => {},
     getPickerFileSuccess: () => {},
     getPickerFileError: () => {},
+
+    getPickerFileSaveRequest:(
+      state: DetailPickerStateType, //estado actual del  state
+      action: PayloadAction<any> // params Payload<tipo>
+    ) => {},
+    getPickerFileSaveSuccess: () => {},
+    getPickerFileSaveError: (
+      state: DetailPickerStateType, 
+      action: PayloadAction<any>
+    ) => {
+      state.serverError=true;
+      state.tagError=action.payload;
+    },
   },
   extraReducers: (builder) =>
     builder

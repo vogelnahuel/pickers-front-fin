@@ -1,4 +1,4 @@
-import { PickerType } from "pages/pickers/types";
+import { DetailPickerTagFileType, PickerType } from "pages/pickers/types";
 
 export type DetailPickerTypes = {
   PENDING_USER_ADMIN_PICKER_GET_REQUEST: string;
@@ -39,6 +39,8 @@ export type DetailPickerStateType = {
   dirty: boolean;
   nameDisplay: string;
   pendingUserAdminPicker: PickerType;
+  serverError:boolean;
+  tagError?:keyof DetailPickerTagFileType;
 };
 
 export type ActionType = {

@@ -1,6 +1,7 @@
 import { AxiosResponse } from "axios";
 import * as API from "middleware/api";
 import { PickerFileRequestType } from "pages/pickers/detailPicker/types";
+import { ExpandableFileLoadParamType } from "sagas/types/pickers";
 import {
   PickerType,
   EditPickerResponseType,
@@ -41,10 +42,11 @@ export const postAprovePicker = (
 ): Promise<AxiosResponse<EditPickerResponseType>> =>
   API.post(`/ms-admin-rest/api/v1.0/pickers/${params.id}/approve`, params);
 
+
 export const fileUpload = (
   id: number,
-  params: any
-): Promise<AxiosResponse<any>> =>
+  params: ExpandableFileLoadParamType
+): Promise<AxiosResponse<{}>> =>
   API.put(`/ms-admin-rest/api/v1.0/pickers/${id}/files`, params);
 
 export const getFile = ({
