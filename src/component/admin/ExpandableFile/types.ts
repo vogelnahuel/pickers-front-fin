@@ -5,7 +5,12 @@ export type ExpandableFilePropsType = {
   pickerId: number;
   files: DataFilesType;
   openFile?: (params: PickerFileRequestType) => void;
-  saveFile:  (params: any) => void;
-  serverError:boolean,
-  tagError?:keyof DetailPickerTagFileType;
+  saveFile: (params: ExpandableFileSaveParamsType) => void;
+  serverError: boolean;
+  tagError?: keyof DetailPickerTagFileType;
+};
+export type ExpandableFileSaveParamsType = {
+  id: number;
+  tag: keyof DetailPickerTagFileType;
+  content: string | unknown;
 };

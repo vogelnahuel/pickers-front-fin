@@ -5,6 +5,7 @@ import { DetailPickerStateType } from "./types/detailPicker";
 import { RootState } from "store";
 import { endsWithAny } from "utils/endsWithAny";
 import { PickerFileRequestType } from "pages/pickers/detailPicker/types";
+import { ExpandableFileSaveParamsType } from "component/admin/ExpandableFile/types";
 
 export const initialState: DetailPickerStateType = {
   fetching: false,
@@ -151,7 +152,7 @@ export const detailPickerSlice = createSlice({
 
     getPickerFileSaveRequest:(
       state: DetailPickerStateType, //estado actual del  state
-      action: PayloadAction<any> // params Payload<tipo>
+      action: PayloadAction<ExpandableFileSaveParamsType> // params Payload<tipo>
     ) => {},
     getPickerFileSaveSuccess: () => {},
     getPickerFileSaveError: (

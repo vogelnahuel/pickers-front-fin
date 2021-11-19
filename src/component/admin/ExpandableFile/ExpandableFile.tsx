@@ -12,7 +12,7 @@ import { PickerFileRequestType } from "../../../pages/pickers/detailPicker/types
 import { actions as detailPickerActions } from "../../../reducers/detailPicker";
 import "./ExpandableFile.scss";
 import { AppDispatch, RootState } from "store";
-import { ExpandableFilePropsType } from "./types";
+import { ExpandableFilePropsType, ExpandableFileSaveParamsType } from "./types";
 import { DataContentType } from "pages/pickers/types";
 import { toBase64 } from "utils/toBase64";
 import { detailPickerSelector } from "reducers/detailPicker";
@@ -36,10 +36,6 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
   })
 
   const  verifyError = async(event:any,element:any) => {
-
-    console.log(event.target.files[0])
-    console.log(element)
-
 
     if(event.target.files[0].type!=="application/pdf" && event.target.files[0].type !== "image/png" && event.target.files[0].type !== "image/jpg"){
         setError({
@@ -150,12 +146,20 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
                       <div className="container-img-picker">
                         {element.isUpload ? (
                           <>
-                            {" "}
-                            <img
-                              className="picker-replace"
-                              src={FileReplace}
-                              alt=""
-                            />
+                          <label>
+                                <img
+                                  className="picker-replace"
+                                  src={FileReplace}
+                                  alt=""
+                                />
+                                <input
+                                  id="myFile"
+                                  type="file"
+                                  onChange={(event: React.FormEvent<HTMLInputElement>) =>
+                                    verifyError(event,element.tag)
+                                  }
+                                />
+                          </label>
                             <img
                               className="padding-left picker-delete"
                               src={FileDelete}
@@ -172,7 +176,7 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
                             <input
                               id="myFile"
                               type="file"
-                              onChange={(event: any) =>
+                              onChange={(event: React.FormEvent<HTMLInputElement>) =>
                                 verifyError(event,element.tag)
                               }
                             />
@@ -224,7 +228,7 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   openFile: (params: PickerFileRequestType) => {
     dispatch(detailPickerActions.getPickerFileRequest(params));
   },
-  saveFile: (params: any) => {
+  saveFile: (params: ExpandableFileSaveParamsType) => {
     dispatch(detailPickerActions.getPickerFileSaveRequest(params));
   },
 });

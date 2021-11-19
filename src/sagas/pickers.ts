@@ -353,7 +353,7 @@ function* getPickerFile({
 
 function* putFileUpload({
   payload: { id,content,tag },
-}: PayloadAction<{id:any,content:any,tag:keyof DetailPickerTagFileType}>): Generator<
+}: PayloadAction<{id:number,content:string,tag:keyof DetailPickerTagFileType}>): Generator<
 | CallEffect<AxiosResponse<{}>>
 | PutEffect<{ type: string }>
 | void,
