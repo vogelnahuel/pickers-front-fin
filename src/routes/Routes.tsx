@@ -9,6 +9,7 @@ import { Provider } from "react-redux";
 import { Route, Switch } from "react-router"; // react-router v4/v5
 import DashboardContainer from "../pages/dashboard/DashboardAdminContainer";
 import Transaction from "../pages/transaction/TransactionContainer";
+import PreliquidationContainer from "pages/preliquidation/PreliquidationContainer";
 import { history, store } from "../store";
 
 const Routes = (): JSX.Element => {
@@ -23,6 +24,11 @@ const Routes = (): JSX.Element => {
           <Route path="/pickers" exact component={PickersContainer} />
           <Route path="/pickers/:id" exact component={DetailPickerContainer} />
           <Route path="/transaction" exact component={Transaction} />
+          <Route
+            path="/preliquidation"
+            exact
+            component={PreliquidationContainer}
+          />
         </Switch>
       </ConnectedRouter>
     </Provider>
