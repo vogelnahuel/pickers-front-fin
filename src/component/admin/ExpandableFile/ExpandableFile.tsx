@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useRef, useState } from "react";
 import i18next from "i18next";
 import { connect } from "react-redux";
 import Folder from "assets/admin/folder.svg";
@@ -7,23 +7,32 @@ import FolderAdd from "assets/admin/folderAdd.svg";
 import FileReplace from "assets/admin/fileReplace.svg";
 import FileDelete from "assets/admin/fileDelete.svg";
 import FileLoad from "assets/admin/fileLoad.svg";
-import { DETAIL_PICKER_TAG } from "utils/constants";
+import { DETAIL_PICKER_TAG, MAX_FILE_SIZE } from "utils/constants";
 import { PickerFileRequestType } from "../../../pages/pickers/detailPicker/types";
 import { actions as detailPickerActions } from "../../../reducers/detailPicker";
 import "./ExpandableFile.scss";
 import { AppDispatch, RootState } from "store";
-import { ExpandableFilePropsType, ExpandableFileSaveParamsType } from "./types";
+import { ExpandableFilePropsType, ExpandableFileSaveParamsType, ExpandableFileStateType, TagsErrorType } from "./types";
 import { DataContentType, DetailPickerTagFileType } from "pages/pickers/types";
 import { toBase64 } from "utils/toBase64";
 import { detailPickerSelector } from "reducers/detailPicker";
 
-const initialState = {
-  load:false,
-  size:false,
-  format:false,
-  loadTag:"",
-  sizeTag:"",
-  formatTag:"",
+const tagInitialState: TagsErrorType = {
+  "dni-front": false,
+  "dni-back": false,
+  "user-face": false,
+  "cbu-certificate": false,
+  "cuit-certificate": false,
+  "driver-license": false,
+  "vehicle-identification-back": false,
+  "vehicle-identification-front": false,
+  "driver-insurance-card": false,
+  }
+
+const initialState: ExpandableFileStateType = {
+  loadTag: tagInitialState,
+  sizeTag: tagInitialState,
+  formatTag: tagInitialState,
 }
 
 const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
@@ -34,43 +43,63 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
   serverError,
   tagError,
 }) => {
+  const inputFile= useRef<any>(null)
   const [open, setOpen] = useState(false);
-  const [Error, setError] = useState({
-    load:false,
-    size:false,
-    format:false,
-    loadTag:"",
-    sizeTag:"",
-    formatTag:"",
-  })
+  const [viewReplace, setviewReplace] = useState(tagInitialState);
+  const [Error, setError] = useState<typeof initialState>(initialState)
+
+  const resetTag = (element: keyof DetailPickerTagFileType) => {
+    setError((err: typeof initialState) => ({
+      ...err,
+      loadTag: { ...err.loadTag, [element]: false},
+      sizeTag: { ...err.sizeTag, [element]: false},
+      formatTag: { ...err.formatTag, [element]: false},
+    }))
+  }
+
+  const setErrorTag = (tag: keyof typeof initialState, element: keyof DetailPickerTagFileType) => {
+    setError((err: typeof initialState) => ({
+      ...err,
+      loadTag: { ...err.loadTag, [element]: false},
+      sizeTag: { ...err.sizeTag, [element]: false},
+      formatTag: { ...err.formatTag, [element]: false},
+      [tag]: { ...err[tag], [element]: true},
+    }))
+  } 
+
+  const hasError = (element: keyof DetailPickerTagFileType) => {
+    return Error["sizeTag"][element] || Error["loadTag"][element] || Error["formatTag"][element] || serverError;
+  }
+
+  const hasCardError = () => {
+    const sizeTag = Object.values(Error.sizeTag).filter(v => v);
+    const loadTag = Object.values(Error.loadTag).filter(v => v);
+    const formatTag = Object.values(Error.formatTag).filter(v => v);
+    return  sizeTag.length>0  || loadTag.length>0  || formatTag.length>0 ; 
+  }
 
   const  verifyError = async(event:React.FormEvent<HTMLInputElement>,element: keyof DetailPickerTagFileType) => {
     const target= event.target as HTMLInputElement;
     const file: File = (target.files as FileList)[0];
+    if(!file) return;
+
+    if(inputFile.current) inputFile.current.value = ""; // si el valor del value es el mismo no hace el onchange
+
     if(file.type!=="application/pdf" && file.type !== "image/png" && file.type !== "image/jpg"){
-        setError({
-        ...initialState,
-        format:true,
-        formatTag:element,
-      })
+      setErrorTag("formatTag", element);
       return
     }
 
-    if(file.size>5000000){
-      setError({
-        ...initialState,
-        size:true,
-        sizeTag:element,
-      })
+    if(file.size> MAX_FILE_SIZE){
+      setErrorTag("sizeTag", element);
       return
     }
     
     try {
+      
       const base64= await toBase64(file);
 
-      setError({
-        ...initialState,
-      })
+      resetTag(element);
       saveFile({
         id: pickerId,
         tag: element,
@@ -78,21 +107,31 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
       })
 
     } catch (error) {
-      setError({
-        ...initialState,
-        load:true,
-        loadTag:element,
-      })
+      setErrorTag("loadTag", element);
 
     }
 
+  }
+
+
+  const uploadFile = (e:any, isUpload: boolean,tag : keyof DetailPickerTagFileType) => {
+    e.preventDefault();
+    if(!isUpload && inputFile.current) {
+      inputFile.current.click()
+    }
+    else{
+      setviewReplace({
+        ...viewReplace,
+        [tag]:true
+      })
+    }
   }
 
   return (
     <>
       <hr className="border-row" />
 
-      <div className="">
+      <div className={!open && hasCardError() ? "background-error" : "" }>
         <div className="container-detailPicker-row ">
           <div
             className="container-detailPicker-col-18 display-flex cursor-pointer"
@@ -100,15 +139,15 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
           >
             <img
               src={
-                files?.status === "EMPTY" || files?.status === "PENDING"
-                  ? FolderAdd
-                  : files?.status === "COMPLETED"
+                (files?.status === "EMPTY" || files?.status === "PENDING") && !hasCardError() ?
+                   FolderAdd
+                  : files?.status === "COMPLETED" && !hasCardError()
                   ? Folder
                   : FolderError
               }
               alt="archivo"
             />
-            <p className="paragraphFileExpandableFile">
+            <p className={ !hasCardError() ? "paragraphFileExpandableFile" : "color-Error paragraphFileExpandableFile"}>
               {i18next.t("expandableFile:label.card.file")}
             </p>
           </div>
@@ -123,7 +162,7 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
                   >
                     <li className="display-flex" key={element.tag}>
                       <p
-                        className={element.isUpload ? "" : "picker-color-gray"}
+                        className={element.isUpload  && !hasError(element.tag)? "" :  !hasError(element.tag)? "picker-color-gray" :"color-Error"}
                         onClick={() =>
                           element.isUpload &&
                           openFile &&
@@ -133,64 +172,51 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
                         {i18next.t(DETAIL_PICKER_TAG[element.tag])}
                       </p>
                       <div className="container-img-picker">
-                        {element.isUpload ? (
-                          <>
-                          <label>
-                                <img
-                                  className="picker-replace"
-                                  src={FileReplace}
-                                  alt=""
-                                />
-                                <input
-                                  id="myFile"
-                                  type="file"
-                                  onChange={(event: React.FormEvent<HTMLInputElement>) =>
-                                    verifyError(event,element.tag)
-                                  }
-                                />
-                          </label>
-                            <img
-                              className="padding-left picker-delete"
-                              src={FileDelete}
-                              alt=""
-                            />
-                          </>
-                        ) : (
-                          <label>
-                            <img
-                              className="picker-replace"
-                              src={FileLoad}
-                              alt=""
-                            />
-                            <input
-                              id="myFile"
-                              type="file"
-                              onChange={(event: React.FormEvent<HTMLInputElement>) =>
-                                verifyError(event,element.tag)
-                              }
-                            />
-                          </label>
-                        )}
+                        <>
+                          <img
+                            className="picker-replace"
+                            src={element.isUpload ? FileReplace : FileLoad}
+                            alt=""
+                            onClick={(e) => uploadFile(e, element.isUpload,element.tag)}
+                          />
+                          <input
+                            ref={inputFile}
+                            id="myFile"
+                            type="file"
+                            accept=".png,.jpg,.pdf"
+                            onChange={(event: React.FormEvent<HTMLInputElement>) =>
+                              verifyError(event,element.tag)
+                            }
+                          />
+                        </>
+                        { element.isUpload && <img
+                            className="padding-left picker-delete"
+                            src={FileDelete}
+                            alt=""
+                          />
+                        }
                       </div>
                     </li>
                   </ul>
                 </div>
               </div>
 
-              <div className="container-detailPicker-col-sm-12 ">
+              <div className={
+                      open ? "container-detailPicker-col-sm-12" : "display-none"
+                    } >
                 {
            
-                  Error.format && element.tag === Error.formatTag ? (
+                  Error["formatTag"][element.tag]  ? (
                     <p className="p-error margin-top">
                       {i18next.t("expandableFile:label.card.ErrorFormat")}        
                   </p>
                   )
-                 :  Error.size && element.tag === Error.sizeTag ? (
+                 :  Error["sizeTag"][element.tag] ? (
                   <p className="p-error margin-top">
                      {i18next.t("expandableFile:label.card.ErrorSize")} 
 
                 </p>)
-                  :  Error.load && element.tag === Error.loadTag ? (
+                  : Error["loadTag"][element.tag]  ? (
                     <p className="p-error margin-top">
                        {i18next.t("expandableFile:label.card.ErrorLoad")} 
                      
@@ -199,10 +225,33 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
                 ( 
                    <p className="p-error margin-top">
                       {i18next.t("expandableFile:label.card.ErrorServer")} 
-                  
                    </p>
                  )
                 }
+                 
+                  
+                   
+                   <div>
+                     {
+                        viewReplace[element.tag] &&
+                        <>
+                              <p className="margin-top">
+                              ¿Querés reemplazar el archivo?
+                              </p>
+                              <p
+                                onClick={(e)=>uploadFile(e,false,element.tag)}
+                                >
+                              Si
+                              </p>
+                              <p>
+                              No
+                              </p>
+                          </>
+                     }
+                     
+                  </div>
+                
+                
               </div>
             </Fragment>
           ))}

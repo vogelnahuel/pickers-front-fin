@@ -1,6 +1,8 @@
 import { DetailPickerTagFileType } from "pages/pickers/types";
 import { TransactionActionTagType } from "pages/transaction/types";
 
+export const MAX_FILE_SIZE = 5000000;
+
 export const titlesAdminPending:string[] = [
   "tablePickers:label.table.name",
   "tablePickers:label.table.identifier",

@@ -14,3 +14,13 @@ export type ExpandableFileSaveParamsType = {
   tag: keyof DetailPickerTagFileType;
   content: string | unknown;
 };
+
+export type TagsErrorType = {
+  [key in keyof DetailPickerTagFileType]: boolean;
+}
+
+export type ExpandableFileStateType = {
+  formatTag: TagsErrorType;
+  loadTag: TagsErrorType;
+  sizeTag: TagsErrorType;
+}

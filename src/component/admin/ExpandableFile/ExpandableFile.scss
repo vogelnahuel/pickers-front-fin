@@ -66,7 +66,7 @@
     cursor: pointer;
   }
   .p-error{
-    color: #FF1515;
+    color: #FF1515 !important;
     font-family: "Mulish";
     font-style: normal;
     font-weight: normal;
@@ -74,7 +74,9 @@
     line-height: 15px;
     letter-spacing: 0.004em;
   }
-  
+  .color-Error{
+    color: #FF1515 !important;
+  }
   
   .padding-left{
     margin-left: 16px;
