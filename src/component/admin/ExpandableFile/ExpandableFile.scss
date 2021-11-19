@@ -57,8 +57,26 @@
     
   }
   
-  
-  
+  .align-item-center{
+    align-items: center;
+    gap: 20px;
+    font-family: "Mulish";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.004em;
+    color: #2D2D2D;
+  }
+  .confirm-option{
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.0025em;
+    color: #0098FF;
+  }
   .display-none{
     display: none;
   }
