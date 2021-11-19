@@ -13,9 +13,18 @@ import { actions as detailPickerActions } from "../../../reducers/detailPicker";
 import "./ExpandableFile.scss";
 import { AppDispatch, RootState } from "store";
 import { ExpandableFilePropsType, ExpandableFileSaveParamsType } from "./types";
-import { DataContentType } from "pages/pickers/types";
+import { DataContentType, DetailPickerTagFileType } from "pages/pickers/types";
 import { toBase64 } from "utils/toBase64";
 import { detailPickerSelector } from "reducers/detailPicker";
+
+const initialState = {
+  load:false,
+  size:false,
+  format:false,
+  loadTag:"",
+  sizeTag:"",
+  formatTag:"",
+}
 
 const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
   files,
@@ -35,44 +44,32 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
     formatTag:"",
   })
 
-  const  verifyError = async(event:any,element:any) => {
-
-    if(event.target.files[0].type!=="application/pdf" && event.target.files[0].type !== "image/png" && event.target.files[0].type !== "image/jpg"){
+  const  verifyError = async(event:React.FormEvent<HTMLInputElement>,element: keyof DetailPickerTagFileType) => {
+    const target= event.target as HTMLInputElement;
+    const file: File = (target.files as FileList)[0];
+    if(file.type!=="application/pdf" && file.type !== "image/png" && file.type !== "image/jpg"){
         setError({
-        ...Error,
+        ...initialState,
         format:true,
-        size:false,
-        load:false,
         formatTag:element,
-        loadTag:"",
-        sizeTag:"",
-        
       })
       return
     }
-    if(event.target.files[0].size>500000){
+
+    if(file.size>5000000){
       setError({
-        ...Error,
-        format:false,
+        ...initialState,
         size:true,
-        load:false,
-        formatTag:"",
-        loadTag:"",
         sizeTag:element,
       })
       return
     }
+    
     try {
-      const base64= await toBase64(event.target.files[0]);
+      const base64= await toBase64(file);
 
       setError({
-        ...Error,
-        format:false,
-        size:false,
-        load:false,
-        formatTag:"",
-        loadTag:"",
-        sizeTag:"",
+        ...initialState,
       })
       saveFile({
         id: pickerId,
@@ -82,21 +79,13 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
 
     } catch (error) {
       setError({
-        ...Error,
-        format:false,
-        size:false,
+        ...initialState,
         load:true,
-        formatTag:"",
         loadTag:element,
-        sizeTag:"",
       })
-      return
+
     }
-  
 
-
- 
-   
   }
 
   return (
@@ -120,7 +109,7 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
               alt="archivo"
             />
             <p className="paragraphFileExpandableFile">
-              {i18next.t("detailPicker:label.card.file")}
+              {i18next.t("expandableFile:label.card.file")}
             </p>
           </div>
           {files?.content.map((element: DataContentType) => (
@@ -193,22 +182,24 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
            
                   Error.format && element.tag === Error.formatTag ? (
                     <p className="p-error margin-top">
-                     El formato es incorrecto. Subí un archivo JPG,PNG O PDF de hasta 5mb
+                      {i18next.t("expandableFile:label.card.ErrorFormat")}        
                   </p>
                   )
                  :  Error.size && element.tag === Error.sizeTag ? (
                   <p className="p-error margin-top">
-                   El archivo es muy pesado, subí un archivo JPG, PNG O PDF de hasta 5mb
+                     {i18next.t("expandableFile:label.card.ErrorSize")} 
+
                 </p>)
                   :  Error.load && element.tag === Error.loadTag ? (
                     <p className="p-error margin-top">
-                     Hubo un error del navegador. Inténtalo nuevamente
+                       {i18next.t("expandableFile:label.card.ErrorLoad")} 
+                     
                   </p>)
                 :  serverError && tagError===element.tag &&
                 ( 
                    <p className="p-error margin-top">
-                     Ocurrió un error de conexión con el servidor. Intentalo
-                     nuevamente
+                      {i18next.t("expandableFile:label.card.ErrorServer")} 
+                  
                    </p>
                  )
                 }

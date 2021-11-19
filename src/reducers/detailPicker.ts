@@ -6,6 +6,7 @@ import { RootState } from "store";
 import { endsWithAny } from "utils/endsWithAny";
 import { PickerFileRequestType } from "pages/pickers/detailPicker/types";
 import { ExpandableFileSaveParamsType } from "component/admin/ExpandableFile/types";
+import { ActionErrorPickersType } from "./types/pickers";
 
 export const initialState: DetailPickerStateType = {
   fetching: false,
@@ -157,10 +158,10 @@ export const detailPickerSlice = createSlice({
     getPickerFileSaveSuccess: () => {},
     getPickerFileSaveError: (
       state: DetailPickerStateType, 
-      action: PayloadAction<any>
+      action: PayloadAction<ActionErrorPickersType>
     ) => {
-      state.serverError=true;
-      state.tagError=action.payload;
+      state.serverError=action.payload.serverError;
+      state.tagError=action.payload.tag;
     },
   },
   extraReducers: (builder) =>

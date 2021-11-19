@@ -358,14 +358,13 @@ function* putFileUpload({
 | PutEffect<{ type: string }>
 | void,
   void,
-  any
+  { status: number; data: {} }
 > {
   const response = yield call(pickersMiddleware.fileUpload, id,{content:content,tag:tag} );
   if (response.status !== 200) {
-    yield put(detailPickerActions.getPickerFileSaveError(tag));
+    yield put(detailPickerActions.getPickerFileSaveError({serverError:true, tag:tag}));
   } else {
-    yield window.location.reload();
-    // yield put(detailPickerActions.getPickerFileSaveSuccess());
+    yield put(detailPickerActions.getPendingUserPickerRequest(id));
   }
 }
 

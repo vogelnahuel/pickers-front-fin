@@ -1,0 +1,8 @@
+{
+    "label.card.ErrorFormat": "El formato es incorrecto. Subí un archivo JPG,PNG O PDF de hasta 5mb",
+    "label.card.ErrorSize": "El archivo es muy pesado, subí un archivo JPG, PNG O PDF de hasta 5mb",
+    "label.card.ErrorLoad": "Hubo un error del navegador. Inténtalo nuevamente",
+    "label.card.ErrorServer": "   Ocurrió un error de conexión con el servidor. Intentalonuevamente",
+    "label.card.file":"Archivo"
+  }
+  
