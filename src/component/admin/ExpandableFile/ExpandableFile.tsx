@@ -7,7 +7,11 @@ import FolderAdd from "assets/admin/folderAdd.svg";
 import FileReplace from "assets/admin/fileReplace.svg";
 import FileDelete from "assets/admin/fileDelete.svg";
 import FileLoad from "assets/admin/fileLoad.svg";
-import { DETAIL_PICKER_TAG, MAX_FILE_SIZE } from "utils/constants";
+import {
+  DETAIL_PICKER_TAG,
+  PICKERS_MAX_FILE_SIZE,
+  PICKERS_FILE_EXT,
+} from "utils/constants";
 import { PickerFileRequestType } from "../../../pages/pickers/detailPicker/types";
 import { actions as detailPickerActions } from "../../../reducers/detailPicker";
 import "./ExpandableFile.scss";
@@ -48,7 +52,7 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
   saveFile,
   serverError,
   tagError,
-  actualPage
+  actualPage,
 }) => {
   const [open, setOpen] = useState(false);
   const [viewReplace, setviewReplace] = useState(tagInitialState);
@@ -111,16 +115,12 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
     ) as HTMLInputElement;
     if (inputFile) inputFile.value = ""; // si el valor del value es el mismo no hace el onchange
 
-    if (
-      file.type !== "application/pdf" &&
-      file.type !== "image/png" &&
-      file.type !== "image/jpg"
-    ) {
+    if (!PICKERS_FILE_EXT.includes(file.type)) {
       setErrorTag("formatTag", element);
       return;
     }
 
-    if (file.size > MAX_FILE_SIZE) {
+    if (file.size > PICKERS_MAX_FILE_SIZE) {
       setErrorTag("sizeTag", element);
       return;
     }
@@ -233,7 +233,7 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
                             ) => verifyError(event, element.tag)}
                           />
                         </>
-                        {element.isUpload && actualPage==="PENDING" &&(
+                        {element.isUpload && actualPage === "PENDING" && (
                           <img
                             className="padding-left picker-delete"
                             src={FileDelete}
