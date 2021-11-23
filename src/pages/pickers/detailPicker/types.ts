@@ -16,6 +16,7 @@ export type DetailPickerContainerTypeProps = {
   postEditPickerRequest: Function;
   setActualPage: Function;
   wrongFiles: boolean;
+  loadedFiles: boolean;
 };
 
 export type DetailPickerTypeProps = {
@@ -35,6 +36,7 @@ export type DetailPickerTypeProps = {
   formatDate: Function;
   wrongFiles: boolean;
   showNotification: (notification: NotificationStateType) => void;
+  loadedFiles: boolean;
 };
 
 export type PickerFileRequestType = {

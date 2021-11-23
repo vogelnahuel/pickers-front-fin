@@ -219,6 +219,20 @@ export const hasPickerWrongFilesSelector = createSelector(
   (state: RootState) => state.detailPicker,
   (picker) => Object.values(picker.wrongFiles).some((v) => v)
 );
+export const hasPickerAllFilesLoadedSelector = createSelector(
+  (state: RootState) => state.detailPicker,
+  (picker) => {
+    const personalData = picker.pendingUserAdminPicker.files.personalData;
+    const accountingData = picker.pendingUserAdminPicker.files.accountingData;
+    const vehicle = picker.pendingUserAdminPicker.files.vehicle;
+    const type  = picker.pendingUserAdminPicker.vehicle.type;
+
+    if(type==="motorcycle"){
+      return personalData.status==="COMPLETED" && accountingData.status==="COMPLETED" && vehicle.status==="COMPLETED"
+    }
+    return  personalData.status==="COMPLETED" && accountingData.status==="COMPLETED"
+  }
+);
 
 // Se exportan todas las acciones
 export const actions = detailPickerSlice.actions;

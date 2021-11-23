@@ -60,6 +60,17 @@ const tagInitialState: TagsErrorType = {
   "vehicle-identification-front": false,
   "driver-insurance-card": false,
 };
+// const tagInitialStateLoad: TagsErrorType = {
+//   "dni-front": false,
+//   "dni-back": false,
+//   "user-face": false,
+//   "cbu-certificate": false,
+//   "cuit-certificate": false,
+//   "driver-license": false,
+//   "vehicle-identification-back": false,
+//   "vehicle-identification-front": false,
+//   "driver-insurance-card": false,
+// };
 
 const initialState: ExpandableFileStateType = {
   loadTag: tagInitialState,

@@ -42,9 +42,8 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
           history.replace("/pickers");
         }
       };
-      if (wrongFiles) {
+      if (isDirty) {
         // TODO: Mostrar notification
-        console.log("Has wrong files");
         showNotification({
           level: "warning",
           title: i18next.t("pickers:title.modal.saveChanges"),
@@ -59,7 +58,7 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
               behavior: "smooth",
             }),
         });
-      } else if (isDirty) {
+      } else if (wrongFiles) {
         showNotification({
           level: "warning",
           title: i18next.t("pickers:title.modal.saveChanges"),

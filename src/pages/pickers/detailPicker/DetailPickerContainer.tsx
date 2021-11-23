@@ -11,6 +11,7 @@ import {
   actions as pendingUserAdminPickerActions,
   detailPickerSelector,
   hasPickerWrongFilesSelector,
+  hasPickerAllFilesLoadedSelector
 } from "reducers/detailPicker";
 import {
   pickersSelector,
@@ -38,6 +39,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
   useEffect(() => {
     props.getPendingUserPicker(params.id);
     props.resetWrongFiles();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -196,6 +198,7 @@ const mapStateToProps = (state: RootState) => ({
   actualPage: pickersSelector(state).actualPage,
   nameDisplay: detailPickerSelector(state).nameDisplay,
   wrongFiles: hasPickerWrongFilesSelector(state),
+  loadedFiles: hasPickerAllFilesLoadedSelector(state)
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({

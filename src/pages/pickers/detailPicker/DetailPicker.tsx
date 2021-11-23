@@ -35,7 +35,8 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
   validationSchema,
   formatDate,
   wrongFiles,
-  showNotification
+  showNotification,
+  loadedFiles
 }) => {
   return (
     <div className="background-Grey">
@@ -455,7 +456,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                       </button>
                       <button
                         type="submit"
-                        disabled={invalid || wrongFiles}
+                        disabled={ (invalid || wrongFiles) || !loadedFiles} 
                         className="button-submit-active"
                       >
                         {i18next.t("detailPicker:label.button.approvePicker")}
