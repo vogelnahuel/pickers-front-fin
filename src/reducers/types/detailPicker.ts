@@ -1,3 +1,4 @@
+import { TagsErrorType } from "component/admin/ExpandableFile/types";
 import { DetailPickerTagFileType, PickerType } from "pages/pickers/types";
 
 export type DetailPickerTypes = {
@@ -37,10 +38,16 @@ export type SelectorType = {
 export type DetailPickerStateType = {
   fetching: boolean;
   dirty: boolean;
+  wrongFiles: TagsErrorType;
   nameDisplay: string;
   pendingUserAdminPicker: PickerType;
-  serverError:boolean;
-  tagError?:keyof DetailPickerTagFileType;
+  serverError: boolean;
+  tagError?: keyof DetailPickerTagFileType;
+};
+
+export type PickerWrongFilePayloadType = {
+  type: keyof TagsErrorType;
+  value: boolean;
 };
 
 export type ActionType = {

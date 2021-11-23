@@ -187,4 +187,9 @@ export const DETAIL_PICKER_TAG: DetailPickerTagFileType = {
 };
 
 export const PICKERS_MAX_FILE_SIZE = 5000000;
-export const PICKERS_FILE_EXT = ["application/pdf", "image/png", "image/jpg"];
+export const PICKERS_FILE_EXT = [
+  "application/pdf",
+  "image/png",
+  "image/jpg",
+  "image/jpeg",
+];

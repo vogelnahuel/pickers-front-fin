@@ -26,6 +26,7 @@ import { DataContentType, DetailPickerTagFileType } from "pages/pickers/types";
 import { toBase64 } from "utils/toBase64";
 import { detailPickerSelector } from "reducers/detailPicker";
 import { pickersSelector } from "reducers/pickers";
+import { PickerWrongFilePayloadType } from "reducers/types/detailPicker";
 
 const tagInitialState: TagsErrorType = {
   "dni-front": false,
@@ -50,6 +51,7 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
   pickerId,
   openFile,
   saveFile,
+  setWrongFile,
   serverError,
   tagError,
   actualPage,
@@ -59,6 +61,7 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
   const [Error, setError] = useState<typeof initialState>(initialState);
 
   const resetTag = (element: keyof DetailPickerTagFileType) => {
+    if (setWrongFile) setWrongFile({ type: element, value: false });
     setError((err: typeof initialState) => ({
       ...err,
       loadTag: { ...err.loadTag, [element]: false },
@@ -71,6 +74,7 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
     tag: keyof typeof initialState,
     element: keyof DetailPickerTagFileType
   ) => {
+    if (setWrongFile) setWrongFile({ type: element, value: true });
     setError((err: typeof initialState) => ({
       ...err,
       loadTag: { ...err.loadTag, [element]: false },
@@ -311,6 +315,9 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   },
   saveFile: (params: ExpandableFileSaveParamsType) => {
     dispatch(detailPickerActions.getPickerFileSaveRequest(params));
+  },
+  setWrongFile: (wrongFile: PickerWrongFilePayloadType) => {
+    dispatch(detailPickerActions.setWrongFile(wrongFile));
   },
 });
 export default connect(mapStateToProps, mapDispatchToProps)(ExpandableFile);
