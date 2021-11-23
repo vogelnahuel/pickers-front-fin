@@ -34,6 +34,7 @@ export type DetailPickerTypeProps = {
   validationSchema: Object;
   formatDate: Function;
   wrongFiles: boolean;
+  showNotification: (notification: NotificationStateType) => void;
 };
 
 export type PickerFileRequestType = {

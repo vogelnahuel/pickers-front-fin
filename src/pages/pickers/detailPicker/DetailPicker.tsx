@@ -35,6 +35,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
   validationSchema,
   formatDate,
   wrongFiles,
+  showNotification
 }) => {
   return (
     <div className="background-Grey">
@@ -441,7 +442,11 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                         type="button"
                         onClick={() =>
                           wrongFiles
-                            ? console.log("Show notification")
+                            ?  showNotification({
+                                  level: "error",
+                                  title: i18next.t("global:title.modal.connectionError"),
+                                  body: i18next.t("global:label.modal.connectionError"),
+                                })
                             : postPendingUserDocumentsEdit(values)
                         }
                         className="button-submit-subtype"
@@ -450,7 +455,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                       </button>
                       <button
                         type="submit"
-                        disabled={invalid}
+                        disabled={invalid || wrongFiles}
                         className="button-submit-active"
                       >
                         {i18next.t("detailPicker:label.button.approvePicker")}

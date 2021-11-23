@@ -233,8 +233,9 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   setActualPage: (page: string) => {
     dispatch(pendingUserActions.setActualPage(page));
   },
-  resetWrongFiles: () =>
-    dispatch(pendingUserAdminPickerActions.resetWrongFiles()),
+  resetWrongFiles: () =>{
+    dispatch( pendingUserAdminPickerActions.resetWrongFiles() )
+  },
 });
 
 export default connect(
