@@ -15,7 +15,6 @@ import { endsWithAny } from "utils/endsWithAny";
 import { PickerFileRequestType } from "pages/pickers/detailPicker/types";
 import {
   ExpandableFileSaveParamsType,
-  TagsErrorType,
 } from "component/admin/ExpandableFile/types";
 import { ActionErrorPickersType } from "./types/pickers";
 
