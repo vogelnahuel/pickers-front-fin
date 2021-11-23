@@ -28,26 +28,6 @@ import { detailPickerSelector } from "reducers/detailPicker";
 import { pickersSelector } from "reducers/pickers";
 import { PickerWrongFilePayloadType } from "reducers/types/detailPicker";
 
-// TODO: Analizar si no es necesario cambiar la forma
-// {
-//   "loadTag": {
-//     "dni-front": true,
-//     "dni-back": false
-//   },
-//   "sizeTag": {
-//     "dni-front": true,
-//     "dni-back": false
-//   },
-//   "formatTag": {
-//     "dni-front": true,
-//     "dni-back": false
-//   }
-// }
-//
-// {
-//   "dni-front": "loadTag" | "sizeTag" | "formatTag" | "serverTag" | "none",
-//
-// }
 
 const tagInitialState: TagsErrorType = {
   "dni-front": false,
@@ -60,17 +40,6 @@ const tagInitialState: TagsErrorType = {
   "vehicle-identification-front": false,
   "driver-insurance-card": false,
 };
-// const tagInitialStateLoad: TagsErrorType = {
-//   "dni-front": false,
-//   "dni-back": false,
-//   "user-face": false,
-//   "cbu-certificate": false,
-//   "cuit-certificate": false,
-//   "driver-license": false,
-//   "vehicle-identification-back": false,
-//   "vehicle-identification-front": false,
-//   "driver-insurance-card": false,
-// };
 
 const initialState: ExpandableFileStateType = {
   loadTag: tagInitialState,
@@ -92,8 +61,6 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
   const [open, setOpen] = useState(false);
   const [viewReplace, setviewReplace] = useState(tagInitialState);
   const [Error, setError] = useState<typeof initialState>(initialState);
-
-  console.log("Input: ", props);
 
   const resetTag = (element: keyof DetailPickerTagFileType) => {
     if (setWrongFile) setWrongFile({ type: element, value: false });
@@ -129,10 +96,10 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
   };
 
   const hasCardError = () => {
-    const sizeTag = Object.values(Error.sizeTag).filter((v) => v);
-    const loadTag = Object.values(Error.loadTag).filter((v) => v);
-    const formatTag = Object.values(Error.formatTag).filter((v) => v);
-    return sizeTag.length > 0 || loadTag.length > 0 || formatTag.length > 0;
+    const sizeTag = Object.values(Error.sizeTag).some((v) => v);
+    const loadTag = Object.values(Error.loadTag).some((v) => v);
+    const formatTag = Object.values(Error.formatTag).some((v) => v);
+    return sizeTag|| loadTag|| formatTag;
   };
 
   const verifyError = async (
@@ -179,7 +146,7 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
   };
 
   const uploadFile = (
-    e: any,
+    e: React.MouseEvent<HTMLParagraphElement, MouseEvent>,
     isUpload: boolean,
     tag: keyof DetailPickerTagFileType
   ) => {
@@ -292,12 +259,12 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
               >
                 {viewReplace[element.tag] ? (
                   <div className="display-flex align-item-center">
-                    <p className="">¿Querés reemplazar el archivo?</p>
+                    <p className="">{i18next.t("expandableFile:label.card.replaceFile")}</p>
                     <p
                       className="confirm-option"
                       onClick={(e) => uploadFile(e, false, element.tag)}
                     >
-                      Si
+                      {i18next.t("expandableFile:label.card.yes")}
                     </p>
                     <p
                       className="confirm-option"
@@ -308,7 +275,7 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
                         })
                       }
                     >
-                      No
+                      {i18next.t("expandableFile:label.card.no")}
                     </p>
                   </div>
                 ) : Error["formatTag"][element.tag] ? (
