@@ -28,6 +28,27 @@ import { detailPickerSelector } from "reducers/detailPicker";
 import { pickersSelector } from "reducers/pickers";
 import { PickerWrongFilePayloadType } from "reducers/types/detailPicker";
 
+// TODO: Analizar si no es necesario cambiar la forma
+// {
+//   "loadTag": {
+//     "dni-front": true,
+//     "dni-back": false
+//   },
+//   "sizeTag": {
+//     "dni-front": true,
+//     "dni-back": false
+//   },
+//   "formatTag": {
+//     "dni-front": true,
+//     "dni-back": false
+//   }
+// }
+//
+// {
+//   "dni-front": "loadTag" | "sizeTag" | "formatTag" | "serverTag" | "none",
+//
+// }
+
 const tagInitialState: TagsErrorType = {
   "dni-front": false,
   "dni-back": false,
@@ -55,10 +76,13 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
   serverError,
   tagError,
   actualPage,
+  ...props
 }) => {
   const [open, setOpen] = useState(false);
   const [viewReplace, setviewReplace] = useState(tagInitialState);
   const [Error, setError] = useState<typeof initialState>(initialState);
+
+  console.log("Input: ", props);
 
   const resetTag = (element: keyof DetailPickerTagFileType) => {
     if (setWrongFile) setWrongFile({ type: element, value: false });

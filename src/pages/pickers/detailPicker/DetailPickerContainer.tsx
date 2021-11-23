@@ -10,6 +10,7 @@ import { AppDispatch, RootState } from "store";
 import {
   actions as pendingUserAdminPickerActions,
   detailPickerSelector,
+  hasPickerWrongFilesSelector,
 } from "reducers/detailPicker";
 import {
   pickersSelector,
@@ -36,6 +37,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
 
   useEffect(() => {
     props.getPendingUserPicker(params.id);
+    props.resetWrongFiles();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -85,7 +87,6 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
             ),
         }),
       }),
-
       vehicle:
         props.pendingUserAdminPicker.vehicle &&
         props.pendingUserAdminPicker.vehicle.type === "motorcycle"
@@ -194,6 +195,7 @@ const mapStateToProps = (state: RootState) => ({
   isFetching: detailPickerSelector(state).fetching,
   actualPage: pickersSelector(state).actualPage,
   nameDisplay: detailPickerSelector(state).nameDisplay,
+  wrongFiles: hasPickerWrongFilesSelector(state),
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
@@ -231,6 +233,8 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   setActualPage: (page: string) => {
     dispatch(pendingUserActions.setActualPage(page));
   },
+  resetWrongFiles: () =>
+    dispatch(pendingUserAdminPickerActions.resetWrongFiles()),
 });
 
 export default connect(

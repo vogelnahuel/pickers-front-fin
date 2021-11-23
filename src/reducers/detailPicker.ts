@@ -19,22 +19,24 @@ import {
 } from "component/admin/ExpandableFile/types";
 import { ActionErrorPickersType } from "./types/pickers";
 
+const wrongFilesInitialValue = {
+  "dni-front": false,
+  "dni-back": false,
+  "user-face": false,
+  "cbu-certificate": false,
+  "driver-insurance-card": false,
+  "cuit-certificate": false,
+  "driver-license": false,
+  "vehicle-identification-back": false,
+  "vehicle-identification-front": false,
+};
+
 export const initialState: DetailPickerStateType = {
   fetching: false,
   tagError: undefined,
   serverError: false,
   dirty: false,
-  wrongFiles: {
-    "dni-front": false,
-    "dni-back": false,
-    "user-face": false,
-    "cbu-certificate": false,
-    "driver-insurance-card": false,
-    "cuit-certificate": false,
-    "driver-license": false,
-    "vehicle-identification-back": false,
-    "vehicle-identification-front": false,
-  },
+  wrongFiles: wrongFilesInitialValue,
   nameDisplay: "",
   pendingUserAdminPicker: {
     id: 0,
@@ -129,6 +131,9 @@ export const detailPickerSlice = createSlice({
     ) => {
       const { type, value } = action.payload;
       state.wrongFiles[type] = value;
+    },
+    resetWrongFiles: (state: DetailPickerStateType) => {
+      state.wrongFiles = wrongFilesInitialValue;
     },
     getPendingUserPickerExportRequest: (
       state: DetailPickerStateType,

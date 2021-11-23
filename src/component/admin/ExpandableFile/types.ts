@@ -11,6 +11,8 @@ export type ExpandableFilePropsType = {
   serverError: boolean;
   tagError?: keyof DetailPickerTagFileType;
   actualPage: string;
+  input?: any;
+  meta?: any;
 };
 export type ExpandableFileSaveParamsType = {
   id: number;

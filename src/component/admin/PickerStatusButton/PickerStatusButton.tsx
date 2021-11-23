@@ -45,6 +45,20 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
       if (wrongFiles) {
         // TODO: Mostrar notification
         console.log("Has wrong files");
+        showNotification({
+          level: "warning",
+          title: i18next.t("pickers:title.modal.saveChanges"),
+          body: i18next.t("pickers:label.modal.saveChanges"),
+          onClickLabel: "pickers:button.modal.goToSave",
+          onCloseLabel: "pickers:button.modal.notSave",
+          onClose: onClose,
+          onClick: () =>
+            window.scroll({
+              top: window.innerHeight,
+              left: 0,
+              behavior: "smooth",
+            }),
+        });
       } else if (isDirty) {
         showNotification({
           level: "warning",
