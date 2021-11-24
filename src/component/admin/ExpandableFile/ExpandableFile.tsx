@@ -29,9 +29,8 @@ import { toBase64 } from "utils/toBase64";
 import { detailPickerSelector } from "reducers/detailPicker";
 import { pickersSelector } from "reducers/pickers";
 import { PickerWrongFilePayloadType } from "reducers/types/detailPicker";
-import  Confirm  from "./Confirm";
+import Confirm from "./Confirm";
 import classNames from "classnames";
-
 
 const tagInitialState: TagsErrorType = {
   "dni-front": false,
@@ -45,15 +44,15 @@ const tagInitialState: TagsErrorType = {
   "driver-insurance-card": false,
 };
 const tagConfirmInitialState: TagConfimationType = {
-  "dni-front": {delete:false,replace:false},
-  "dni-back": {delete:false,replace:false},
-  "user-face": {delete:false,replace:false},
-  "cbu-certificate": {delete:false,replace:false},
-  "cuit-certificate": {delete:false,replace:false},
-  "driver-license": {delete:false,replace:false},
-  "vehicle-identification-back": {delete:false,replace:false},
-  "vehicle-identification-front": {delete:false,replace:false},
-  "driver-insurance-card": {delete:false,replace:false},
+  "dni-front": { delete: false, replace: false },
+  "dni-back": { delete: false, replace: false },
+  "user-face": { delete: false, replace: false },
+  "cbu-certificate": { delete: false, replace: false },
+  "cuit-certificate": { delete: false, replace: false },
+  "driver-license": { delete: false, replace: false },
+  "vehicle-identification-back": { delete: false, replace: false },
+  "vehicle-identification-front": { delete: false, replace: false },
+  "driver-insurance-card": { delete: false, replace: false },
 };
 
 const initialState: ExpandableFileStateType = {
@@ -71,10 +70,9 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
   serverError,
   actualPage,
 }) => {
+  console.log(files);
 
-
-
-  const [viewConfrim, setViewConfrim] = useState(tagConfirmInitialState);
+  const [viewConfirm, setViewConfirm] = useState(tagConfirmInitialState);
   const [open, setOpen] = useState(false);
   // const [openDelete, setOpenDelete] = useState(false);
   const [viewReplace, setviewReplace] = useState(tagInitialState);
@@ -117,7 +115,7 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
     const sizeTag = Object.values(error.sizeTag).some((v) => v);
     const loadTag = Object.values(error.loadTag).some((v) => v);
     const formatTag = Object.values(error.formatTag).some((v) => v);
-    return sizeTag|| loadTag|| formatTag;
+    return sizeTag || loadTag || formatTag;
   };
 
   const verifyError = async (
@@ -168,7 +166,7 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
     isUpload: boolean,
     tag: keyof DetailPickerTagFileType
   ) => {
-   // e.preventDefault();
+    // e.preventDefault();
     const inputFile = document.getElementById(`file-${tag}`);
     if (!isUpload && inputFile) {
       inputFile.click();
@@ -177,20 +175,21 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
         ...viewReplace,
         [tag]: true,
       });
-      setViewConfrim({
-        ...viewConfrim,
-        [tag]: { delete: false,
-          replace: !viewConfrim[tag].replace,},})
-    
+      setViewConfirm({
+        ...viewConfirm,
+        [tag]: { delete: false, replace: !viewConfirm[tag].replace },
+      });
     }
   };
 
   return (
     <>
       <hr className="border-row" />
-      <div className={classNames({
-        "background-error" : !open && hasCardError()
-      })}>
+      <div
+        className={classNames({
+          "background-error": !open && hasCardError(),
+        })}
+      >
         <div className="container-detailPicker-row ">
           <div
             className="container-detailPicker-col-18 display-flex cursor-pointer"
@@ -250,7 +249,7 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
                             src={element.isUpload ? FileReplace : FileLoad}
                             alt=""
                             onClick={(e) =>
-                              uploadFile( element.isUpload, element.tag)
+                              uploadFile(element.isUpload, element.tag)
                             }
                           />
                           <input
@@ -268,24 +267,34 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
                             className="padding-left picker-delete"
                             src={FileDelete}
                             alt=""
-                            onClick={()=>{
-                              // setOpenDelete(true); 
-                              setViewConfrim({
-                              ...viewConfrim,
-                              [element.tag]: { delete: !viewConfrim[element.tag].delete,
-                                replace: false,},})
+                            onClick={() => {
+                              // setOpenDelete(true);
+                              setViewConfirm({
+                                ...viewConfirm,
+                                [element.tag]: {
+                                  delete: !viewConfirm[element.tag].delete,
+                                  replace: false,
+                                },
+                              });
                             }}
                           />
-                          
-          
                         )}
-                        
                       </div>
                     </li>
                   </ul>
                 </div>
               </div>
-              <Confirm open={open} uploadFile={uploadFile} Error={Error} tag={element.tag}  pickerId={pickerId} viewConfrim={viewConfrim} setViewConfrim={setViewConfrim}></Confirm>
+              {viewConfirm && (
+                <Confirm
+                  open={open}
+                  uploadFile={uploadFile}
+                  Error={Error}
+                  tag={element.tag}
+                  pickerId={pickerId}
+                  viewConfirm={viewConfirm}
+                  setViewConfirm={setViewConfirm}
+                ></Confirm>
+              )}
             </Fragment>
           ))}
         </div>

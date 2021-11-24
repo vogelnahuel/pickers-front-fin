@@ -10,41 +10,42 @@ const Confirm: React.FC<any> = ({
   tag,
   deleteFile,
   pickerId,
-  viewConfrim,
-  setViewConfrim,
+  viewConfirm,
+  setViewConfirm,
   uploadFile,
   Error,
   serverError,
   tagError,
 }): JSX.Element => {
+    console.log(tag,viewConfirm)
   return (
     <div className={open ? "container-detailPicker-col-sm-12" : "display-none"}>
-      {viewConfrim[tag].delete || viewConfrim[tag].replace ? (
+      {viewConfirm[tag]?.delete || viewConfirm[tag]?.replace ? (
         <div className="display-flex align-item-center">
           <p className="">
-            {viewConfrim[tag].delete
+            {viewConfirm[tag]?.delete
               ? i18next.t("expandableFile:label.card.deleteFile")
               : i18next.t("expandableFile:label.card.replaceFile")}
           </p>
           <p
             className="confirm-option"
             onClick={() => {
-              if (viewConfrim[tag].delete) {
+              if (viewConfirm[tag]?.delete) {
                 deleteFile({ id: pickerId, tag: tag });
-                setViewConfrim({
-                  ...viewConfrim,
+                setViewConfirm({
+                  ...viewConfirm,
                   [tag]: {
-                    delete: !viewConfrim[tag].delete,
-                    replace: viewConfrim[tag].replace,
+                    delete: !viewConfirm[tag].delete,
+                    replace: viewConfirm[tag]?.replace,
                   },
                 });
               } else {
                 uploadFile(false, tag);
-                setViewConfrim({
-                  ...viewConfrim,
+                setViewConfirm({
+                  ...viewConfirm,
                   [tag]: {
-                    delete: viewConfrim[tag].delete,
-                    replace: !viewConfrim[tag].replace,
+                    delete: viewConfirm[tag]?.delete,
+                    replace: !viewConfirm[tag]?.replace,
                   },
                 });
               }
@@ -55,8 +56,8 @@ const Confirm: React.FC<any> = ({
           <p
             className="confirm-option"
             onClick={() => {
-              setViewConfrim({
-                ...viewConfrim,
+              setViewConfirm({
+                ...viewConfirm,
                 [tag]: {
                   delete: false,
                   replace: false,
