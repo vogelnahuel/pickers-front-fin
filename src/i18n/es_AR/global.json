@@ -27,7 +27,15 @@
 
   "title.modal.changesSaved": "Datos guardados",
   "label.modal.changesSaved": "Ya quedaron registrados los cambios",
+
+  "title.modal.withoutSaving": "No se van a guardar tus archivos",
+  "label.modal.withoutSaving": "Hay errores en la carga. Si te vas sin resolverlos, no se van a guardar los cambios.",
+
+
   "label.button.understood": "Entendido",
+
+  "label.button.continue": "Continuar",
+  "label.button.checkErrors": "Revisar errores",
 
   "error.input.required": "Este campo es requerido",
   "error.input.specialCharacters": "No se admiten caracteres especiales",

@@ -27,6 +27,7 @@ import { toBase64 } from "utils/toBase64";
 import { detailPickerSelector } from "reducers/detailPicker";
 import { pickersSelector } from "reducers/pickers";
 import { PickerWrongFilePayloadType } from "reducers/types/detailPicker";
+import classNames from "classnames";
 
 
 const tagInitialState: TagsErrorType = {
@@ -165,8 +166,9 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
   return (
     <>
       <hr className="border-row" />
-
-      <div className={!open && hasCardError() ? "background-error" : ""}>
+      <div className={classNames({
+        "background-error" : !open && hasCardError()
+      })}>
         <div className="container-detailPicker-row ">
           <div
             className="container-detailPicker-col-18 display-flex cursor-pointer"
@@ -186,8 +188,8 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
             <p
               className={
                 !hasCardError()
-                  ? "paragraphFileExpandableFile"
-                  : "color-Error paragraphFileExpandableFile"
+                  ? "paragraph-expandable-file"
+                  : "color-Error paragraph-expandable-file"
               }
             >
               {i18next.t("expandableFile:label.card.file")}

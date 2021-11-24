@@ -17,7 +17,7 @@
     margin-top: 20px;
     cursor: pointer;  
   }
-  .paragraphFileExpandableFile{
+  .paragraph-expandable-file{
 
     @include styleParagraph(bold,#4D4D4D);
   
@@ -102,7 +102,7 @@
   .optionsListExpandableFile li p.color-Error{
     @extend %error;
   }
-  .paragraphFileExpandableFile.color-Error{
+  .paragraph-expandable-file.color-Error{
     @extend %error;
   }
   

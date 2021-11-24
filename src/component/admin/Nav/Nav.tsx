@@ -37,10 +37,10 @@ export const Nav = ({ isDirty, showNotification,wrongFiles }: NavType) => {
     }else if (wrongFiles && showNotification) {
       showNotification({
         level: "warning",
-        title: i18next.t("pickers:title.modal.saveChanges"),
-        body: i18next.t("pickers:label.modal.saveChanges"),
-        onClickLabel: "pickers:button.modal.goToSave",
-        onCloseLabel: "pickers:button.modal.notSave",
+        title: i18next.t("global:title.modal.withoutSaving"),
+        body:  i18next.t("global:label.modal.withoutSaving"),
+        onClickLabel: i18next.t("global:label.button.continue"),
+        onCloseLabel: i18next.t("global:label.button.checkErrors"),
         onClose: onClose,
         onClick: () =>
           window.scroll({
