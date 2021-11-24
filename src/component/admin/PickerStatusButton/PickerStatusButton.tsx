@@ -37,13 +37,11 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
 
         if (history.location.pathname !== "/pickers" && history.length > 1)
           history.goBack();
-        //se abre en nueva pestaña desde transacciones
         else if (history.length <= 1) {
           history.replace("/pickers");
         }
       };
       if (isDirty) {
-        // TODO: Mostrar notification
         showNotification({
           level: "warning",
           title: i18next.t("pickers:title.modal.saveChanges"),
@@ -61,10 +59,10 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
       } else if (wrongFiles) {
         showNotification({
           level: "warning",
-          title: i18next.t("pickers:title.modal.saveChanges"),
-          body: i18next.t("pickers:label.modal.saveChanges"),
-          onClickLabel: "pickers:button.modal.goToSave",
-          onCloseLabel: "pickers:button.modal.notSave",
+          title: i18next.t("global:title.modal.withoutSaving"),
+          body:  i18next.t("global:label.modal.withoutSaving"),
+          onClickLabel: i18next.t("global:label.button.checkErrors"),
+          onCloseLabel: i18next.t("global:label.button.continue"),
           onClose: onClose,
           onClick: () =>
             window.scroll({
@@ -105,10 +103,10 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
     } else if (wrongFiles) {
       showNotification({
         level: "warning",
-        title: i18next.t("pickers:title.modal.saveChanges"),
-        body: i18next.t("pickers:label.modal.saveChanges"),
-        onClickLabel: "pickers:button.modal.goToSave",
-        onCloseLabel: "pickers:button.modal.notSave",
+        title: i18next.t("global:title.modal.withoutSaving"),
+        body:  i18next.t("global:label.modal.withoutSaving"),
+        onClickLabel: i18next.t("global:label.button.checkErrors"),
+        onCloseLabel: i18next.t("global:label.button.continue"),
         onClose: onClose,
         onClick: () =>
           window.scroll({
@@ -116,7 +114,7 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
             left: 0,
             behavior: "smooth",
           }),
-      })
+      });
     }
       else {
       onClose();

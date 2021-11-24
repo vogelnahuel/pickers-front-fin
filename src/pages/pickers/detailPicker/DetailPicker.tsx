@@ -17,7 +17,6 @@ import ExportAction from "../actions/ExportAction";
 import { DetailPickerTypeProps } from "./types";
 import { DATE_FORMATS } from "utils/constants";
 import i18next from "i18next";
-
 import ExpandableFile from "component/admin/ExpandableFile/ExpandableFile";
 
 export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
@@ -36,8 +35,10 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
   formatDate,
   wrongFiles,
   showNotification,
-  loadedFiles
+  loadedFiles,
+  Close
 }) => {
+
   return (
     <div className="background-Grey">
       <Header />
@@ -443,11 +444,21 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                         type="button"
                         onClick={() =>
                           wrongFiles
-                            ?  showNotification({
-                                  level: "error",
-                                  title: i18next.t("global:title.modal.connectionError"),
-                                  body: i18next.t("global:label.modal.connectionError"),
-                                })
+                            ?  
+                              showNotification({
+                                level: "warning",
+                                title: i18next.t("global:title.modal.withoutSaving"),
+                                body:  i18next.t("global:label.modal.withoutSaving"),
+                                onClickLabel: i18next.t("global:label.button.checkErrors"),
+                                onCloseLabel: i18next.t("global:label.button.continue"),
+                                onClose: Close,
+                                onClick: () =>
+                                  window.scroll({
+                                    top: window.innerHeight,
+                                    left: 0,
+                                    behavior: "smooth",
+                                  }),
+                              })
                             : postPendingUserDocumentsEdit(values)
                         }
                         className="button-submit-subtype"
