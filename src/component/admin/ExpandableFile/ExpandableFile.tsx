@@ -60,7 +60,7 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
 }) => {
   const [open, setOpen] = useState(false);
   const [viewReplace, setviewReplace] = useState(tagInitialState);
-  const [Error, setError] = useState<typeof initialState>(initialState);
+  const [error, setError] = useState<typeof initialState>(initialState);
 
   const resetTag = (element: keyof DetailPickerTagFileType) => {
     if (setWrongFile) setWrongFile({ type: element, value: false });
@@ -88,17 +88,17 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
 
   const hasError = (element: keyof DetailPickerTagFileType) => {
     return (
-      Error["sizeTag"][element] ||
-      Error["loadTag"][element] ||
-      Error["formatTag"][element] ||
+      error["sizeTag"][element] ||
+      error["loadTag"][element] ||
+      error["formatTag"][element] ||
       serverError
     );
   };
 
   const hasCardError = () => {
-    const sizeTag = Object.values(Error.sizeTag).some((v) => v);
-    const loadTag = Object.values(Error.loadTag).some((v) => v);
-    const formatTag = Object.values(Error.formatTag).some((v) => v);
+    const sizeTag = Object.values(error.sizeTag).some((v) => v);
+    const loadTag = Object.values(error.loadTag).some((v) => v);
+    const formatTag = Object.values(error.formatTag).some((v) => v);
     return sizeTag|| loadTag|| formatTag;
   };
 
@@ -278,15 +278,15 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
                       {i18next.t("expandableFile:label.card.no")}
                     </p>
                   </div>
-                ) : Error["formatTag"][element.tag] ? (
+                ) : error["formatTag"][element.tag] ? (
                   <p className="p-error margin-top">
                     {i18next.t("expandableFile:label.card.ErrorFormat")}
                   </p>
-                ) : Error["sizeTag"][element.tag] ? (
+                ) : error["sizeTag"][element.tag] ? (
                   <p className="p-error margin-top">
                     {i18next.t("expandableFile:label.card.ErrorSize")}
                   </p>
-                ) : Error["loadTag"][element.tag] ? (
+                ) : error["loadTag"][element.tag] ? (
                   <p className="p-error margin-top">
                     {i18next.t("expandableFile:label.card.ErrorLoad")}
                   </p>
