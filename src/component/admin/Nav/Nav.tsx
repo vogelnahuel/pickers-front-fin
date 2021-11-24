@@ -15,6 +15,7 @@ export const Nav = ({ isDirty, showNotification,wrongFiles }: NavType) => {
   Location = Location.id;
 
   const handleClick = (e: any) => {
+    
     e.preventDefault();
     let onClose = () => {
       Historial.push(e.target.pathname);
@@ -39,8 +40,8 @@ export const Nav = ({ isDirty, showNotification,wrongFiles }: NavType) => {
         level: "warning",
         title: i18next.t("global:title.modal.withoutSaving"),
         body:  i18next.t("global:label.modal.withoutSaving"),
-        onClickLabel: i18next.t("global:label.button.continue"),
-        onCloseLabel: i18next.t("global:label.button.checkErrors"),
+        onClickLabel: i18next.t("global:label.button.checkErrors"),
+        onCloseLabel: i18next.t("global:label.button.continue"),
         onClose: onClose,
         onClick: () =>
           window.scroll({

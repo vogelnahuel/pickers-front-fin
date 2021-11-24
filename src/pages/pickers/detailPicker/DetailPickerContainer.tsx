@@ -35,7 +35,9 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
 ): JSX.Element => {
   const params: any = useParams();
   const historial: any = useHistory();
-
+  let Close = () => {
+    historial.goBack();
+  };
   useEffect(() => {
     props.getPendingUserPicker(params.id);
     props.resetWrongFiles();
@@ -54,6 +56,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
       ? moment(date).format(DATE_FORMATS.shortDate)
       : date;
   };
+
 
   const validationSchema: yup.SchemaOf<DetailPickerValidationSchema> =
     yup.object({
@@ -188,6 +191,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
       aproveSubmit={aproveSubmit}
       active={active}
       formatDate={formatDate}
+      Close={Close}
     />
   );
 };
