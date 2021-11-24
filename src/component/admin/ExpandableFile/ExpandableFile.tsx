@@ -30,6 +30,7 @@ import { detailPickerSelector } from "reducers/detailPicker";
 import { pickersSelector } from "reducers/pickers";
 import { PickerWrongFilePayloadType } from "reducers/types/detailPicker";
 import  Confirm  from "./Confirm";
+import classNames from "classnames";
 
 
 const tagInitialState: TagsErrorType = {
@@ -77,7 +78,7 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
   const [open, setOpen] = useState(false);
   // const [openDelete, setOpenDelete] = useState(false);
   const [viewReplace, setviewReplace] = useState(tagInitialState);
-  const [Error, setError] = useState<typeof initialState>(initialState);
+  const [error, setError] = useState<typeof initialState>(initialState);
 
   const resetTag = (element: keyof DetailPickerTagFileType) => {
     if (setWrongFile) setWrongFile({ type: element, value: false });
@@ -105,17 +106,17 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
 
   const hasError = (element: keyof DetailPickerTagFileType) => {
     return (
-      Error["sizeTag"][element] ||
-      Error["loadTag"][element] ||
-      Error["formatTag"][element] ||
+      error["sizeTag"][element] ||
+      error["loadTag"][element] ||
+      error["formatTag"][element] ||
       serverError
     );
   };
 
   const hasCardError = () => {
-    const sizeTag = Object.values(Error.sizeTag).some((v) => v);
-    const loadTag = Object.values(Error.loadTag).some((v) => v);
-    const formatTag = Object.values(Error.formatTag).some((v) => v);
+    const sizeTag = Object.values(error.sizeTag).some((v) => v);
+    const loadTag = Object.values(error.loadTag).some((v) => v);
+    const formatTag = Object.values(error.formatTag).some((v) => v);
     return sizeTag|| loadTag|| formatTag;
   };
 
@@ -187,8 +188,9 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
   return (
     <>
       <hr className="border-row" />
-
-      <div className={!open && hasCardError() ? "background-error" : ""}>
+      <div className={classNames({
+        "background-error" : !open && hasCardError()
+      })}>
         <div className="container-detailPicker-row ">
           <div
             className="container-detailPicker-col-18 display-flex cursor-pointer"
@@ -208,8 +210,8 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
             <p
               className={
                 !hasCardError()
-                  ? "paragraphFileExpandableFile"
-                  : "color-Error paragraphFileExpandableFile"
+                  ? "paragraph-expandable-file"
+                  : "color-Error paragraph-expandable-file"
               }
             >
               {i18next.t("expandableFile:label.card.file")}

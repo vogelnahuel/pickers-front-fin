@@ -185,8 +185,8 @@ export const detailPickerSlice = createSlice({
     getPickerFileError: () => {},
 
     getPickerFileSaveRequest: (
-      state: DetailPickerStateType, //estado actual del  state
-      action: PayloadAction<ExpandableFileSaveParamsType> // params Payload<tipo>
+      state: DetailPickerStateType, 
+      action: PayloadAction<ExpandableFileSaveParamsType> 
     ) => {},
     getPickerFileSaveSuccess: () => {},
     getPickerFileSaveError: (
