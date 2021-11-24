@@ -6,7 +6,10 @@ import trabajadorOscuro from "assets/admin/PendingUser/trabajadorOscuro.svg";
 import trabajadorAzul from "assets/admin/PendingUser/trabajadorAzul.svg";
 import "component/admin/PickerStatusButton/pending.scss";
 import { useHistory } from "react-router-dom";
-import { detailPickerSelector as pendingUserAdminPickerSelectors } from "reducers/detailPicker";
+import {
+  detailPickerSelector as pendingUserAdminPickerSelectors,
+  hasPickerWrongFilesSelector,
+} from "reducers/detailPicker";
 import { connect } from "react-redux";
 import { actions as notificationActions } from "reducers/notification";
 import { AppDispatch, RootState } from "store";
@@ -22,9 +25,11 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
   setActualPage,
   actualPage,
   isDirty,
+  wrongFiles,
   isDetail,
 }) => {
   const history = useHistory();
+
   const changePage = (page: string, isDirty: boolean) => {
     if (isDetail || actualPage !== page) {
       let onClose = () => {
@@ -32,7 +37,6 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
 
         if (history.location.pathname !== "/pickers" && history.length > 1)
           history.goBack();
-        //se abre en nueva pestaña desde transacciones
         else if (history.length <= 1) {
           history.replace("/pickers");
         }
@@ -44,6 +48,21 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
           body: i18next.t("pickers:label.modal.saveChanges"),
           onClickLabel: "pickers:button.modal.goToSave",
           onCloseLabel: "pickers:button.modal.notSave",
+          onClose: onClose,
+          onClick: () =>
+            window.scroll({
+              top: window.innerHeight,
+              left: 0,
+              behavior: "smooth",
+            }),
+        });
+      } else if (wrongFiles) {
+        showNotification({
+          level: "warning",
+          title: i18next.t("global:title.modal.withoutSaving"),
+          body:  i18next.t("global:label.modal.withoutSaving"),
+          onClickLabel: i18next.t("global:label.button.checkErrors"),
+          onCloseLabel: i18next.t("global:label.button.continue"),
           onClose: onClose,
           onClick: () =>
             window.scroll({
@@ -81,7 +100,23 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
             behavior: "smooth",
           }),
       });
-    } else {
+    } else if (wrongFiles) {
+      showNotification({
+        level: "warning",
+        title: i18next.t("global:title.modal.withoutSaving"),
+        body:  i18next.t("global:label.modal.withoutSaving"),
+        onClickLabel: i18next.t("global:label.button.checkErrors"),
+        onCloseLabel: i18next.t("global:label.button.continue"),
+        onClose: onClose,
+        onClick: () =>
+          window.scroll({
+            top: window.innerHeight,
+            left: 0,
+            behavior: "smooth",
+          }),
+      });
+    }
+      else {
       onClose();
     }
   };
@@ -159,6 +194,7 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
 const mapStateToProps = (state: RootState) => ({
   isDirty: pendingUserAdminPickerSelectors(state).dirty,
   actualPage: pendingUserSelectors(state).actualPage,
+  wrongFiles: hasPickerWrongFilesSelector(state),
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import "component/admin/Nav/nav.scss";
-import { detailPickerSelector } from "reducers/detailPicker";
+import { detailPickerSelector ,hasPickerWrongFilesSelector} from "reducers/detailPicker";
 import { actions as notificationActions } from "reducers/notification";
 import { connect } from "react-redux";
 import i18next from "i18next";
@@ -9,12 +9,13 @@ import { NotificationStateType } from "reducers/types/notification";
 import { AppDispatch, RootState } from "store";
 import { NavType } from "./types";
 
-export const Nav = ({ isDirty, showNotification }: NavType) => {
+export const Nav = ({ isDirty, showNotification,wrongFiles }: NavType) => {
   const Historial = useHistory();
   let Location: any = useParams();
   Location = Location.id;
 
   const handleClick = (e: any) => {
+    
     e.preventDefault();
     let onClose = () => {
       Historial.push(e.target.pathname);
@@ -34,7 +35,23 @@ export const Nav = ({ isDirty, showNotification }: NavType) => {
             behavior: "smooth",
           }),
       });
-    } else {
+    }else if (wrongFiles && showNotification) {
+      showNotification({
+        level: "warning",
+        title: i18next.t("global:title.modal.withoutSaving"),
+        body:  i18next.t("global:label.modal.withoutSaving"),
+        onClickLabel: i18next.t("global:label.button.checkErrors"),
+        onCloseLabel: i18next.t("global:label.button.continue"),
+        onClose: onClose,
+        onClick: () =>
+          window.scroll({
+            top: window.innerHeight,
+            left: 0,
+            behavior: "smooth",
+          }),
+      });
+    }
+    else {
       onClose();
     }
   };
@@ -77,6 +94,7 @@ export const Nav = ({ isDirty, showNotification }: NavType) => {
 
 const mapStateToProps = (state: RootState) => ({
   isDirty: detailPickerSelector(state).dirty,
+  wrongFiles: hasPickerWrongFilesSelector(state),
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({

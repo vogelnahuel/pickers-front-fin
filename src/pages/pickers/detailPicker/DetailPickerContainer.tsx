@@ -10,6 +10,8 @@ import { AppDispatch, RootState } from "store";
 import {
   actions as pendingUserAdminPickerActions,
   detailPickerSelector,
+  hasPickerWrongFilesSelector,
+  hasPickerAllFilesLoadedSelector
 } from "reducers/detailPicker";
 import {
   pickersSelector,
@@ -33,9 +35,13 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
 ): JSX.Element => {
   const params: any = useParams();
   const historial: any = useHistory();
-
+  let Close = () => {
+    historial.goBack();
+  };
   useEffect(() => {
     props.getPendingUserPicker(params.id);
+    props.resetWrongFiles();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -50,6 +56,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
       ? moment(date).format(DATE_FORMATS.shortDate)
       : date;
   };
+
 
   const validationSchema: yup.SchemaOf<DetailPickerValidationSchema> =
     yup.object({
@@ -85,7 +92,6 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
             ),
         }),
       }),
-
       vehicle:
         props.pendingUserAdminPicker.vehicle &&
         props.pendingUserAdminPicker.vehicle.type === "motorcycle"
@@ -97,7 +103,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
                 .min(6, i18next.t("global:error.input.patentLong"))
                 .matches(
                   VALIDATION_REGEX.regPatent,
-                  i18next.t("global:error.input.specialCharacters")
+                  i18next.t("global:error.input.patentFormat")
                 ),
               expirationDatePolicyVehicle: yup
                 .string()
@@ -185,6 +191,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
       aproveSubmit={aproveSubmit}
       active={active}
       formatDate={formatDate}
+      Close={Close}
     />
   );
 };
@@ -194,6 +201,8 @@ const mapStateToProps = (state: RootState) => ({
   isFetching: detailPickerSelector(state).fetching,
   actualPage: pickersSelector(state).actualPage,
   nameDisplay: detailPickerSelector(state).nameDisplay,
+  wrongFiles: hasPickerWrongFilesSelector(state),
+  loadedFiles: hasPickerAllFilesLoadedSelector(state)
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
@@ -230,6 +239,9 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   },
   setActualPage: (page: string) => {
     dispatch(pendingUserActions.setActualPage(page));
+  },
+  resetWrongFiles: () =>{
+    dispatch( pendingUserAdminPickerActions.resetWrongFiles() )
   },
 });
 

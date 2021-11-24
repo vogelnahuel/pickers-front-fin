@@ -5,5 +5,6 @@ export type PickerStatusButtonType = {
   actualPage: string;
   showNotification: (notification: NotificationStateType) => void;
   setActualPage: Function;
+  wrongFiles?: boolean;
   isDetail?: boolean;
 };

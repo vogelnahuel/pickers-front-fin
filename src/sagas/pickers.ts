@@ -18,6 +18,7 @@ import { DATE_FORMATS } from "utils/constants";
 import * as pickersMiddleware from "../middleware/pickers";
 import {
   AcountDataType,
+  DetailPickerTagFileType,
   EditPickerResponseType,
   FilesType,
   ParamsMiddlewareType,
@@ -57,6 +58,7 @@ const sagas = [
   takeLatest(detailPickerActions.getAprovePickerRequest.type, postAprovePicker),
   takeLatest(detailPickerActions.getEditPickerRequest.type, postEditPicker),
   takeLatest(detailPickerActions.getPickerFileRequest.type, getPickerFile),
+  takeLatest(detailPickerActions.getPickerFileSaveRequest.type, putFileUpload),
 ];
 
 export default sagas;
@@ -348,3 +350,21 @@ function* getPickerFile({
     yield put(detailPickerActions.getPickerFileSuccess());
   }
 }
+
+function* putFileUpload({
+  payload: { id,content,tag },
+}: PayloadAction<{id:number,content:string,tag:keyof DetailPickerTagFileType}>): Generator<
+| CallEffect<AxiosResponse<{}>>
+| PutEffect<{ type: string }>
+| void,
+  void,
+  { status: number; data: {} }
+> {
+  const response = yield call(pickersMiddleware.fileUpload, id,{content:content,tag:tag} );
+  if (response.status !== 200) {
+    yield put(detailPickerActions.getPickerFileSaveError({serverError:true, tag:tag}));
+  } else {
+    yield put(detailPickerActions.getPendingUserPickerRequest(id));
+  }
+}
+

@@ -1,17 +1,31 @@
+%error{
+  color: #FF1515;
+}
+
+
+@mixin styleParagraph($font-weight,$color) {
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: $font-weight;
+  color: $color;
+}
+
+
+
 .display-flex{
     display: flex;
     margin-top: 20px;
     cursor: pointer;  
   }
-  .paragraphFileExpandableFile{
-    font-family: "Mulish";
-    font-style: normal;
-    font-weight: bold;
+  .paragraph-expandable-file{
+
+    @include styleParagraph(bold,#4D4D4D);
+  
     font-size: 16px;
     line-height: 20px;
     text-align: center;
     letter-spacing: 0.0125em;
-    color: #4D4D4D;
+   
     margin-left: 8px;
     margin-top: 2px;
   }
@@ -35,9 +49,7 @@
       margin-top: 20px;
       cursor: pointer;
       p{
-        font-family: "Mulish";
-        font-style: normal;
-        font-weight: bold;
+        @include styleParagraph(bold,#0098FF);
         font-size: 14px;
         line-height: 18px;
         letter-spacing: 0.0025em;
@@ -57,8 +69,23 @@
     
   }
   
-  
-  
+  .align-item-center{
+    @include styleParagraph(normal,#2D2D2D);
+    align-items: center;
+    gap: 20px;
+    font-size: 12px;
+    line-height: 15px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.004em;
+  }
+  .confirm-option{
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.0025em;
+    color: #0098FF;
+  }
   .display-none{
     display: none;
   }
@@ -66,9 +93,18 @@
     cursor: pointer;
   }
   .p-error{
-    color: #FF1515;
+    @extend %error;
+    @include styleParagraph(normal,#FF1515);
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0.004em;
   }
-  
+  .optionsListExpandableFile li p.color-Error{
+    @extend %error;
+  }
+  .paragraph-expandable-file.color-Error{
+    @extend %error;
+  }
   
   .padding-left{
     margin-left: 16px;
@@ -82,6 +118,7 @@
   .picker-replace{
     width: 15px;
     height: auto;
+    cursor: pointer;
   }
   .picker-delete{
     width: 15px;
@@ -100,4 +137,7 @@
     width: 100%;
   }
   
-  
+
+.pickers-display-inline{
+  display: inline-block;
+}

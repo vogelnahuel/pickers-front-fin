@@ -110,6 +110,8 @@ export const pickersSlice = createSlice({
       .addMatcher(isResponseAction, (state: PickerStateType) => {
         state.fetching = false;
       }),
+
+
 });
 
 // Se exporta el reducer/slice para asociarlo en la creación del store

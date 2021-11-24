@@ -49,7 +49,5 @@
   "label.card.driverLicense":"Licencia de conducir",
   "label.card.vehicleIdentificationBack":"Cédula frente",
   "label.card.vehicleIdentificationFront":"Cédula dorso",
-  "label.card.driverInsuranceCard":"Seguro de automotor",
-
-  "label.card.file":"Archivo"
+  "label.card.driverInsuranceCard":"Seguro de automotor"
 }

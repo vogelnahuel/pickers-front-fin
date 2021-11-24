@@ -1,14 +1,41 @@
-import { createSlice, PayloadAction, Action } from "@reduxjs/toolkit";
+import {
+  createSlice,
+  PayloadAction,
+  Action,
+  createSelector,
+} from "@reduxjs/toolkit";
 import { ParamsMiddlewareType, PickerType } from "pages/pickers/types";
-import { DetailPickerStateType } from "./types/detailPicker";
+import {
+  DetailPickerStateType,
+  PickerWrongFilePayloadType,
+} from "./types/detailPicker";
 
 import { RootState } from "store";
 import { endsWithAny } from "utils/endsWithAny";
 import { PickerFileRequestType } from "pages/pickers/detailPicker/types";
+import {
+  ExpandableFileSaveParamsType,
+} from "component/admin/ExpandableFile/types";
+import { ActionErrorPickersType } from "./types/pickers";
+
+const wrongFilesInitialValue = {
+  "dni-front": false,
+  "dni-back": false,
+  "user-face": false,
+  "cbu-certificate": false,
+  "driver-insurance-card": false,
+  "cuit-certificate": false,
+  "driver-license": false,
+  "vehicle-identification-back": false,
+  "vehicle-identification-front": false,
+};
 
 export const initialState: DetailPickerStateType = {
   fetching: false,
+  tagError: undefined,
+  serverError: false,
   dirty: false,
+  wrongFiles: wrongFilesInitialValue,
   nameDisplay: "",
   pendingUserAdminPicker: {
     id: 0,
@@ -97,6 +124,16 @@ export const detailPickerSlice = createSlice({
     ) => {
       state.dirty = action.payload;
     },
+    setWrongFile: (
+      state: DetailPickerStateType,
+      action: PayloadAction<PickerWrongFilePayloadType>
+    ) => {
+      const { type, value } = action.payload;
+      state.wrongFiles[type] = value;
+    },
+    resetWrongFiles: (state: DetailPickerStateType) => {
+      state.wrongFiles = wrongFilesInitialValue;
+    },
     getPendingUserPickerExportRequest: (
       state: DetailPickerStateType,
       action: PayloadAction<ParamsMiddlewareType>
@@ -146,6 +183,19 @@ export const detailPickerSlice = createSlice({
     ) => {},
     getPickerFileSuccess: () => {},
     getPickerFileError: () => {},
+
+    getPickerFileSaveRequest: (
+      state: DetailPickerStateType, 
+      action: PayloadAction<ExpandableFileSaveParamsType> 
+    ) => {},
+    getPickerFileSaveSuccess: () => {},
+    getPickerFileSaveError: (
+      state: DetailPickerStateType,
+      action: PayloadAction<ActionErrorPickersType>
+    ) => {
+      state.serverError = action.payload.serverError;
+      state.tagError = action.payload.tag;
+    },
   },
   extraReducers: (builder) =>
     builder
@@ -162,6 +212,26 @@ export default detailPickerSlice.reducer;
 
 // Selector del slice "detailPicker"
 export const detailPickerSelector = (state: RootState) => state.detailPicker;
+
+// Has picker wrong files?
+export const hasPickerWrongFilesSelector = createSelector(
+  (state: RootState) => state.detailPicker,
+  (picker) => Object.values(picker.wrongFiles).some((v) => v)
+);
+export const hasPickerAllFilesLoadedSelector = createSelector(
+  (state: RootState) => state.detailPicker,
+  (picker) => {
+    const personalData = picker.pendingUserAdminPicker.files.personalData;
+    const accountingData = picker.pendingUserAdminPicker.files.accountingData;
+    const vehicle = picker.pendingUserAdminPicker.files.vehicle;
+    const type  = picker.pendingUserAdminPicker.vehicle.type;
+
+    if(type==="motorcycle"){
+      return personalData.status==="COMPLETED" && accountingData.status==="COMPLETED" && vehicle.status==="COMPLETED"
+    }
+    return  personalData.status==="COMPLETED" && accountingData.status==="COMPLETED"
+  }
+);
 
 // Se exportan todas las acciones
 export const actions = detailPickerSlice.actions;
