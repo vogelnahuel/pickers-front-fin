@@ -44,5 +44,6 @@
   "error.input.invalidFormat": "Ingresá el formato correcto",
   "error.input.invalidEmailFormat": "El correo ingresado es inválido",
   "error.input.patentLong": "La patente debe tener entre 6 y 7 caracteres",
+  "error.input.patentFormat": "La patente ingresada es inválida",
   "error.input.dniLength": "El DNI debe tener entre 7 y 8 caracteres numéricos"
 }

@@ -103,7 +103,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
                 .min(6, i18next.t("global:error.input.patentLong"))
                 .matches(
                   VALIDATION_REGEX.regPatent,
-                  i18next.t("global:error.input.specialCharacters")
+                  i18next.t("global:error.input.patentFormat")
                 ),
               expirationDatePolicyVehicle: yup
                 .string()
