@@ -55,8 +55,10 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
   serverError,
   tagError,
   actualPage,
+  deleteFile,
 }) => {
   const [open, setOpen] = useState(false);
+  const [openDelete, setOpenDelete] = useState(false);
   const [viewReplace, setviewReplace] = useState(tagInitialState);
   const [Error, setError] = useState<typeof initialState>(initialState);
 
@@ -242,25 +244,64 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
                             className="padding-left picker-delete"
                             src={FileDelete}
                             alt=""
+                            onClick={()=>{setOpenDelete(true); setviewReplace({
+                              ...viewReplace,
+                              [element.tag]: true,})
+                              /**/}}
                           />
+                          
+          
                         )}
+                        
                       </div>
                     </li>
                   </ul>
                 </div>
               </div>
-
+              { <div
+                        className={
+                            openDelete ? "container-detailPicker-col-sm-12" : "display-none"
+                          }
+                        >
+                         { viewReplace[element.tag] && openDelete ?( 
+                            <div className="display-flex align-item-center">
+                              <p className="">¿Querés eliminar el archivo?</p>
+                              <p
+                                className="confirm-option"
+                                onClick={(e) =>{deleteFile && deleteFile({id:pickerId,tag:element.tag}); setviewReplace({
+                                  ...viewReplace,
+                                  [element.tag]: false,
+                                })
+                              setOpenDelete(false)
+                              } }
+                              >
+                                Si
+                              </p>
+                              <p
+                                className="confirm-option"
+                                onClick={() =>{setOpenDelete(false);setviewReplace({
+                                  ...viewReplace,
+                                  [element.tag]: false,
+                                })}}
+                                
+                              >
+                                No
+                              </p>
+                            </div>):<></>}
+                              
+                            </div>}
+                          
               <div
                 className={
                   open ? "container-detailPicker-col-sm-12" : "display-none"
                 }
               >
-                {viewReplace[element.tag] ? (
+                {viewReplace[element.tag] && !openDelete? (
                   <div className="display-flex align-item-center">
                     <p className="">¿Querés reemplazar el archivo?</p>
                     <p
                       className="confirm-option"
-                      onClick={(e) => uploadFile(e, false, element.tag)}
+                      onClick={(e) => {uploadFile(e, false, element.tag)} }
                     >
                       Si
                     </p>
@@ -315,6 +356,9 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   },
   saveFile: (params: ExpandableFileSaveParamsType) => {
     dispatch(detailPickerActions.getPickerFileSaveRequest(params));
+  },
+  deleteFile: (params: any) => {
+    dispatch(detailPickerActions.getPickerFileDeleteRequest(params));
   },
   setWrongFile: (wrongFile: PickerWrongFilePayloadType) => {
     dispatch(detailPickerActions.setWrongFile(wrongFile));

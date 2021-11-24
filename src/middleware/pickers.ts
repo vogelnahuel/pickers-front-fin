@@ -58,5 +58,5 @@ export const getFile = ({
 export const deleteFile = (
   id: number,
   tag: string
-): Promise<AxiosResponse<any>> =>
+): Promise<AxiosResponse<{}>> =>
   API.remove(`/ms-admin-rest/api/v1.0/pickers/${id}/files/${tag}`);
