@@ -42,10 +42,23 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
           history.replace("/pickers");
         }
       };
-      if (wrongFiles) {
+      if (isDirty) {
         // TODO: Mostrar notification
-        console.log("Has wrong files");
-      } else if (isDirty) {
+        showNotification({
+          level: "warning",
+          title: i18next.t("pickers:title.modal.saveChanges"),
+          body: i18next.t("pickers:label.modal.saveChanges"),
+          onClickLabel: "pickers:button.modal.goToSave",
+          onCloseLabel: "pickers:button.modal.notSave",
+          onClose: onClose,
+          onClick: () =>
+            window.scroll({
+              top: window.innerHeight,
+              left: 0,
+              behavior: "smooth",
+            }),
+        });
+      } else if (wrongFiles) {
         showNotification({
           level: "warning",
           title: i18next.t("pickers:title.modal.saveChanges"),
@@ -89,7 +102,23 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
             behavior: "smooth",
           }),
       });
-    } else {
+    } else if (wrongFiles) {
+      showNotification({
+        level: "warning",
+        title: i18next.t("pickers:title.modal.saveChanges"),
+        body: i18next.t("pickers:label.modal.saveChanges"),
+        onClickLabel: "pickers:button.modal.goToSave",
+        onCloseLabel: "pickers:button.modal.notSave",
+        onClose: onClose,
+        onClick: () =>
+          window.scroll({
+            top: window.innerHeight,
+            left: 0,
+            behavior: "smooth",
+          }),
+      })
+    }
+      else {
       onClose();
     }
   };

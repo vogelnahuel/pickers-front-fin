@@ -11,9 +11,12 @@ export type DetailPickerContainerTypeProps = {
   setDirty: Function;
   postAprovePickerRequest: Function;
   postPendingUserDocumentsEdit: Function;
+  resetWrongFiles: () => void;
   showNotification: (notification: NotificationStateType) => void;
   postEditPickerRequest: Function;
   setActualPage: Function;
+  wrongFiles: boolean;
+  loadedFiles: boolean;
 };
 
 export type DetailPickerTypeProps = {
@@ -31,6 +34,9 @@ export type DetailPickerTypeProps = {
   postEditPickerRequest: Function;
   validationSchema: Object;
   formatDate: Function;
+  wrongFiles: boolean;
+  showNotification: (notification: NotificationStateType) => void;
+  loadedFiles: boolean;
 };
 
 export type PickerFileRequestType = {

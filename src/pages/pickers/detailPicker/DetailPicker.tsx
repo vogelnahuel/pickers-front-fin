@@ -34,6 +34,9 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
   postEditPickerRequest,
   validationSchema,
   formatDate,
+  wrongFiles,
+  showNotification,
+  loadedFiles
 }) => {
   return (
     <div className="background-Grey">
@@ -119,7 +122,6 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                               11
                             ),
                     },
-
                     vehicle: {
                       ...pendingUserAdminPicker.vehicle,
 
@@ -151,7 +153,9 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
             }) => (
               <form className="Admin-Pickers-inputs" onSubmit={handleSubmit}>
                 <FormSpy
-                  subscription={{ dirty: true }}
+                  subscription={{
+                    dirty: true,
+                  }}
                   onChange={(pro) => {
                     setDirty(pro.dirty);
                   }}
@@ -169,6 +173,9 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                           "detailPicker:placeholder.user.name"
                         )}
                         maxLength={49}
+                        onClick={() => {
+                          form.mutators.upper("personalData.name");
+                        }}
                       />
                     </div>
                     <div className="container-detailPicker-col-sm-6  ">
@@ -434,14 +441,22 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                     <div className="pending-admin-picker-button">
                       <button
                         type="button"
-                        onClick={() => postPendingUserDocumentsEdit(values)}
+                        onClick={() =>
+                          wrongFiles
+                            ?  showNotification({
+                                  level: "error",
+                                  title: i18next.t("global:title.modal.connectionError"),
+                                  body: i18next.t("global:label.modal.connectionError"),
+                                })
+                            : postPendingUserDocumentsEdit(values)
+                        }
                         className="button-submit-subtype"
                       >
                         {i18next.t("detailPicker:label.button.save")}
                       </button>
                       <button
                         type="submit"
-                        disabled={invalid}
+                        disabled={ (invalid || wrongFiles) || !loadedFiles} 
                         className="button-submit-active"
                       >
                         {i18next.t("detailPicker:label.button.approvePicker")}
