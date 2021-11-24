@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react";
 import i18next from "i18next";
 import { connect } from "react-redux";
+import { Tooltip, ToolTipPosition } from "@pickit/pickit-components";
 import Folder from "assets/admin/folder.svg";
 import FolderError from "assets/admin/folderError.svg";
 import FolderAdd from "assets/admin/folderAdd.svg";
@@ -27,7 +28,6 @@ import { toBase64 } from "utils/toBase64";
 import { detailPickerSelector } from "reducers/detailPicker";
 import { pickersSelector } from "reducers/pickers";
 import { PickerWrongFilePayloadType } from "reducers/types/detailPicker";
-
 
 const tagInitialState: TagsErrorType = {
   "dni-front": false,
@@ -99,7 +99,7 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
     const sizeTag = Object.values(error.sizeTag).some((v) => v);
     const loadTag = Object.values(error.loadTag).some((v) => v);
     const formatTag = Object.values(error.formatTag).some((v) => v);
-    return sizeTag|| loadTag|| formatTag;
+    return sizeTag || loadTag || formatTag;
   };
 
   const verifyError = async (
@@ -221,7 +221,17 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
                       </p>
                       <div className="container-img-picker">
                         <>
+                          <Tooltip
+                            position={ToolTipPosition.bottom}
+                            target={`"picker-replace-icon-${element.tag}"`}
+                            message={i18next.t(
+                              `expandableFile:label.tooltip.${
+                                element.isUpload ? "replace" : "load"
+                              }`
+                            )}
+                          />
                           <img
+                            id={`"picker-replace-icon-${element.tag}"`}
                             className="picker-replace"
                             src={element.isUpload ? FileReplace : FileLoad}
                             alt=""
@@ -240,11 +250,21 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
                           />
                         </>
                         {element.isUpload && actualPage === "PENDING" && (
-                          <img
-                            className="padding-left picker-delete"
-                            src={FileDelete}
-                            alt=""
-                          />
+                          <>
+                            <Tooltip
+                              position={ToolTipPosition.bottom}
+                              target={`"picker-delete-icon-${element.tag}"`}
+                              message={i18next.t(
+                                "expandableFile:label.tooltip.delete"
+                              )}
+                            />
+                            <img
+                              id={`"picker-delete-icon-${element.tag}"`}
+                              className="padding-left picker-delete"
+                              src={FileDelete}
+                              alt=""
+                            />
+                          </>
                         )}
                       </div>
                     </li>
@@ -259,7 +279,9 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
               >
                 {viewReplace[element.tag] ? (
                   <div className="display-flex align-item-center">
-                    <p className="">{i18next.t("expandableFile:label.card.replaceFile")}</p>
+                    <p className="">
+                      {i18next.t("expandableFile:label.card.replaceFile")}
+                    </p>
                     <p
                       className="confirm-option"
                       onClick={(e) => uploadFile(e, false, element.tag)}

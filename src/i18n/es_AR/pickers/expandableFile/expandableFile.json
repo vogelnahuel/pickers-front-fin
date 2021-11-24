@@ -6,5 +6,8 @@
   "label.card.file": "Archivo",
   "label.card.replaceFile": "¿Querés reemplazar el archivo?",
   "label.card.yes": "Si",
-  "label.card.no": "No"
+  "label.card.no": "No",
+  "label.tooltip.replace": "Reemplazar",
+  "label.tooltip.delete": "Eliminar",
+  "label.tooltip.load": "Cargar archivo"
 }
