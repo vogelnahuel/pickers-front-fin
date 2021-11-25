@@ -55,7 +55,10 @@ const tagConfirmInitialState: TagConfimationType = {
   "driver-insurance-card": { delete: false, replace: false },
 };
 
-const labelsConfirm = ["expandableFile:label.card.deleteFile","expandableFile:label.card.replaceFile"]
+const labelsConfirm = [
+  "expandableFile:label.card.deleteFile",
+  "expandableFile:label.card.replaceFile",
+];
 
 const initialState: ExpandableFileStateType = {
   loadTag: tagInitialState,
@@ -72,46 +75,43 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
   serverError,
   actualPage,
   tagError,
-  deleteFile
+  deleteFile,
 }) => {
- 
   const [viewConfirm, setViewConfirm] = useState(tagConfirmInitialState);
   const [open, setOpen] = useState(false);
   const [error, setError] = useState<typeof initialState>(initialState);
 
-const optionYes = (tag:any,viewConfirm:any) => {
-  if (viewConfirm[tag]?.delete) {
-    deleteFile({ id: pickerId, tag: tag });
+  const optionYes = (tag: any, viewConfirm: any) => {
+    if (viewConfirm[tag]?.delete) {
+      deleteFile({ id: pickerId, tag: tag });
+      setViewConfirm({
+        ...viewConfirm,
+        [tag]: {
+          delete: !viewConfirm[tag].delete,
+          replace: viewConfirm[tag]?.replace,
+        },
+      });
+    } else {
+      uploadFile(false, tag);
+      setViewConfirm({
+        ...viewConfirm,
+        [tag]: {
+          delete: viewConfirm[tag]?.delete,
+          replace: !viewConfirm[tag]?.replace,
+        },
+      });
+      setError(initialState);
+    }
+  };
+  const optionNo = (tag: any, viewConfirm: any) => {
     setViewConfirm({
       ...viewConfirm,
       [tag]: {
-        delete: !viewConfirm[tag].delete,
-        replace: viewConfirm[tag]?.replace,
+        delete: false,
+        replace: false,
       },
     });
-  } else {
-    uploadFile(false, tag);
-    setViewConfirm({
-      ...viewConfirm,
-      [tag]: {
-        delete: viewConfirm[tag]?.delete,
-        replace: !viewConfirm[tag]?.replace,
-      },
-    });
-    setError(initialState)
-  }
-}
-const optionNo = (tag:any,viewConfirm:any) => {
-  setViewConfirm({
-    ...viewConfirm,
-    [tag]: {
-      delete: false,
-      replace: false,
-    },
-  });
-}
-
-
+  };
 
   const resetTag = (element: keyof DetailPickerTagFileType) => {
     if (setWrongFile) setWrongFile({ type: element, value: false });
@@ -165,7 +165,7 @@ const optionNo = (tag:any,viewConfirm:any) => {
     const inputFile = document.getElementById(
       `file-${element}`
     ) as HTMLInputElement;
-    if (inputFile) inputFile.value = ""; // si el valor del value es el mismo no hace el onchange
+    if (inputFile) inputFile.value = "";
 
     if (!PICKERS_FILE_EXT.includes(file.type)) {
       setErrorTag("formatTag", element);
@@ -307,35 +307,42 @@ const optionNo = (tag:any,viewConfirm:any) => {
                   </ul>
                 </div>
               </div>
-              <div className={open ? "container-detailPicker-col-sm-12" : "display-none"}>
-              {viewConfirm[element.tag]?.delete || viewConfirm[element.tag]?.replace ? (
-                <Confirm
-                  tag={element.tag}
-                  viewConfirm={viewConfirm}
-                  optionYes={optionYes}
-                  optionNo={optionNo}
-                  labels={labelsConfirm}
-                ></Confirm>
-              ):(error["formatTag"][element.tag] ? (
-                <p className="p-error margin-top">
-                  {i18next.t("expandableFile:label.card.ErrorFormat")}
-                </p>
-              ) : error["sizeTag"][element.tag] ? (
-                <p className="p-error margin-top">
-                  {i18next.t("expandableFile:label.card.ErrorSize")}
-                </p>
-              ) : error["loadTag"][element.tag] ? (
-                <p className="p-error margin-top">
-                  {i18next.t("expandableFile:label.card.ErrorLoad")}
-                </p>
-              ) : (
-                serverError &&
-                tagError === element.tag && (
+              <div
+                className={
+                  open ? "container-detailPicker-col-sm-12" : "display-none"
+                }
+              >
+                {viewConfirm[element.tag]?.delete ||
+                viewConfirm[element.tag]?.replace ? (
+                  <Confirm
+                    question={
+                      viewConfirm[element.tag]?.delete
+                        ? i18next.t(labelsConfirm[0])
+                        : i18next.t(labelsConfirm[1])
+                    }
+                    optionYes={() => optionYes(element.tag, viewConfirm)}
+                    optionNo={() => optionNo(element.tag, viewConfirm)}
+                  />
+                ) : error["formatTag"][element.tag] ? (
                   <p className="p-error margin-top">
-                    {i18next.t("expandableFile:label.card.ErrorServer")}
+                    {i18next.t("expandableFile:label.card.ErrorFormat")}
                   </p>
-                )
-              ))}
+                ) : error["sizeTag"][element.tag] ? (
+                  <p className="p-error margin-top">
+                    {i18next.t("expandableFile:label.card.ErrorSize")}
+                  </p>
+                ) : error["loadTag"][element.tag] ? (
+                  <p className="p-error margin-top">
+                    {i18next.t("expandableFile:label.card.ErrorLoad")}
+                  </p>
+                ) : (
+                  serverError &&
+                  tagError === element.tag && (
+                    <p className="p-error margin-top">
+                      {i18next.t("expandableFile:label.card.ErrorServer")}
+                    </p>
+                  )
+                )}
               </div>
             </Fragment>
           ))}
