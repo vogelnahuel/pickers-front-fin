@@ -2,12 +2,6 @@ import React, { Fragment, useState } from "react";
 import i18next from "i18next";
 import { connect } from "react-redux";
 import { Tooltip, ToolTipPosition } from "@pickit/pickit-components";
-import Folder from "assets/admin/folder.svg";
-import FolderError from "assets/admin/folderError.svg";
-import FolderAdd from "assets/admin/folderAdd.svg";
-import FileReplace from "assets/admin/fileReplace.svg";
-import FileDelete from "assets/admin/fileDelete.svg";
-import FileLoad from "assets/admin/fileLoad.svg";
 import {
   DETAIL_PICKER_TAG,
   PICKERS_MAX_FILE_SIZE,
@@ -166,30 +160,31 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
   return (
     <>
       <hr className="border-row" />
-      <div className={classNames({
-        "background-error" : !open && hasCardError()
-      })}>
+      <div
+        className={classNames({
+          "background-error": !open && hasCardError(),
+        })}
+      >
         <div className="container-detailPicker-row ">
           <div
-            className="container-detailPicker-col-18 display-flex cursor-pointer"
+            className="container-detailPicker-col-18 header display-flex cursor-pointer"
             onClick={() => setOpen(!open)}
           >
-            <img
-              src={
+            <div
+              className={`folder-icon${
                 (files?.status === "EMPTY" || files?.status === "PENDING") &&
                 !hasCardError()
-                  ? FolderAdd
+                  ? "-add"
                   : files?.status === "COMPLETED" && !hasCardError()
-                  ? Folder
-                  : FolderError
-              }
-              alt="archivo"
+                  ? ""
+                  : "-error"
+              }`}
             />
             <p
               className={
                 !hasCardError()
                   ? "paragraph-expandable-file"
-                  : "color-Error paragraph-expandable-file"
+                  : "color-error paragraph-expandable-file"
               }
             >
               {i18next.t("expandableFile:label.card.file")}
@@ -211,7 +206,7 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
                             ? ""
                             : !hasError(element.tag)
                             ? "picker-color-gray"
-                            : "color-Error"
+                            : "color-error"
                         }
                         onClick={() =>
                           element.isUpload &&
@@ -225,18 +220,20 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
                         <>
                           <Tooltip
                             position={ToolTipPosition.bottom}
-                            target={`"picker-replace-icon-${element.tag}"`}
+                            target={`picker-replace-icon-${element.tag}`}
                             message={i18next.t(
                               `expandableFile:label.tooltip.${
                                 element.isUpload ? "replace" : "load"
                               }`
                             )}
                           />
-                          <img
-                            id={`"picker-replace-icon-${element.tag}"`}
-                            className="picker-replace"
-                            src={element.isUpload ? FileReplace : FileLoad}
-                            alt=""
+                          <div
+                            id={`picker-replace-icon-${element.tag}`}
+                            className={
+                              element.isUpload
+                                ? "replace-icon-svg"
+                                : "load-icon-svg"
+                            }
                             onClick={(e) =>
                               uploadFile(e, element.isUpload, element.tag)
                             }
@@ -260,11 +257,10 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
                                 "expandableFile:label.tooltip.delete"
                               )}
                             />
-                            <img
+
+                            <div
                               id={`"picker-delete-icon-${element.tag}"`}
-                              className="padding-left picker-delete"
-                              src={FileDelete}
-                              alt=""
+                              className="delete-icon-svg padding-left"
                             />
                           </>
                         )}

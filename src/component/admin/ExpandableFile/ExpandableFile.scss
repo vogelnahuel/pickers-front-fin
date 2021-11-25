@@ -1,143 +1,214 @@
-%error{
-  color: #FF1515;
+$text-color: #4d4d4d;
+$text-color-darker: #2d2d2d;
+$error-color: #ff1515;
+$error-color-darker: #e00000;
+$icon-color: #808080;
+$icon-color-hover: #4d4d4d;
+$primary-color: #0098ff;
+$primary-color-darker: #007acc;
+
+%error {
+  color: $error-color;
 }
 
+%icon {
+  background-color: $icon-color;
+  width: 18px;
+  height: auto;
+  cursor: pointer;
+  transition: all 0.2s;
 
-@mixin styleParagraph($font-weight,$color) {
+  &:hover {
+    background-color: $icon-color-hover;
+  }
+}
+
+%folder {
+  width: 20px;
+  height: auto;
+  transition: all 0.2s;
+}
+
+@mixin styleParagraph($font-weight, $color) {
   font-family: "Mulish";
   font-style: normal;
   font-weight: $font-weight;
   color: $color;
 }
 
+.delete-icon-svg {
+  -webkit-mask: url("../../../assets/admin/fileDelete.svg") no-repeat center;
+  mask: url("../../../assets/admin/fileDelete.svg") no-repeat center;
+  @extend %icon;
+}
 
+.load-icon-svg {
+  -webkit-mask: url("../../../assets/admin/fileLoad.svg") no-repeat center;
+  mask: url("../../../assets/admin/fileLoad.svg") no-repeat center;
+  @extend %icon;
+}
 
-.display-flex{
-    display: flex;
+.replace-icon-svg {
+  -webkit-mask: url("../../../assets/admin/fileReplace.svg") no-repeat center;
+  mask: url("../../../assets/admin/fileReplace.svg") no-repeat center;
+  @extend %icon;
+}
+
+.folder-icon {
+  -webkit-mask: url("../../../assets/admin/folder.svg") no-repeat center;
+  mask: url("../../../assets/admin/folder.svg") no-repeat center;
+  @extend %folder;
+  background-color: $text-color;
+}
+
+.folder-icon-add {
+  -webkit-mask: url("../../../assets/admin/folderAdd.svg") no-repeat center;
+  mask: url("../../../assets/admin/folderAdd.svg") no-repeat center;
+  @extend %folder;
+  background-color: $primary-color;
+}
+
+.folder-icon-error {
+  -webkit-mask: url("../../../assets/admin/folderError.svg") no-repeat center;
+  mask: url("../../../assets/admin/folderError.svg") no-repeat center;
+  @extend %folder;
+  background-color: $error-color;
+}
+
+.header:hover {
+  .paragraph-expandable-file {
+    color: $text-color-darker;
+  }
+
+  .paragraph-expandable-file.color-error {
+    color: $error-color-darker;
+  }
+
+  .folder-icon {
+    background-color: $text-color-darker;
+  }
+
+  .folder-icon-add {
+    background-color: $primary-color-darker;
+  }
+
+  .folder-icon-error {
+    background-color: $error-color-darker;
+  }
+}
+
+.display-flex {
+  display: flex;
+  margin-top: 20px;
+}
+.paragraph-expandable-file {
+  @include styleParagraph(700, $text-color);
+
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: 0.0125em;
+
+  margin-left: 8px;
+  margin-top: 2px;
+}
+.border-row {
+  border-top: 1px solid #e5e5e5;
+  width: 100%;
+  margin-top: 20px;
+}
+.container-detailPicker-row {
+  padding-right: 35px;
+  padding-left: 35px;
+  padding-bottom: 25px;
+}
+.background-error {
+  background-color: #fff3f3;
+}
+
+.optionsListExpandableFile {
+  li {
     margin-top: 20px;
-    cursor: pointer;  
-  }
-  .paragraph-expandable-file{
-
-    @include styleParagraph(bold,#4D4D4D);
-  
-    font-size: 16px;
-    line-height: 20px;
-    text-align: center;
-    letter-spacing: 0.0125em;
-   
-    margin-left: 8px;
-    margin-top: 2px;
-  }
-  .border-row{
-    border-top: 1px solid #e5e5e5;
-    width: 100%;
-    margin-top: 20px;
-  }
-  .container-detailPicker-row{
-    padding-right: 35px;
-    padding-left: 35px;
-    padding-bottom: 25px;
-  }
-  .background-error{
-    background-color: #FFF3F3;
-  }
-  
-  .optionsListExpandableFile{
-  
-    li {
-      margin-top: 20px;
+    p {
+      @include styleParagraph(700, $primary-color);
+      font-size: 14px;
+      line-height: 18px;
+      letter-spacing: 0.0025em;
+      color: $primary-color;
+      width: 100%;
       cursor: pointer;
-      p{
-        @include styleParagraph(bold,#0098FF);
-        font-size: 14px;
-        line-height: 18px;
-        letter-spacing: 0.0025em;
-        color: #0098FF;
-        width: 100%;
-        &:hover{
-          color: #007ACC;
-          cursor: pointer;
-        }
+      &:hover {
+        color: $primary-color-darker;
       }
-  
-      &:hover > .container-img-picker{
-        display: flex;
-      }
-     
     }
-    
-  }
-  
-  .align-item-center{
-    @include styleParagraph(normal,#2D2D2D);
-    align-items: center;
-    gap: 20px;
-    font-size: 12px;
-    line-height: 15px;
-    display: flex;
-    align-items: center;
-    letter-spacing: 0.004em;
-  }
-  .confirm-option{
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 18px;
-    letter-spacing: 0.0025em;
-    color: #0098FF;
-  }
-  .display-none{
-    display: none;
-  }
-  .cursor-pointer{
-    cursor: pointer;
-  }
-  .p-error{
-    @extend %error;
-    @include styleParagraph(normal,#FF1515);
-    font-size: 12px;
-    line-height: 15px;
-    letter-spacing: 0.004em;
-  }
-  .optionsListExpandableFile li p.color-Error{
-    @extend %error;
-  }
-  .paragraph-expandable-file.color-Error{
-    @extend %error;
-  }
-  
-  .padding-left{
-    margin-left: 16px;
-  }
-  .container-img-picker{
-    display: flex;
-    justify-content: flex-end;
-    width: 100%;
-    display: none;
-  }
-  .picker-replace{
-    width: 15px;
-    height: auto;
-    cursor: pointer;
-  }
-  .picker-delete{
-    width: 15px;
-    height: auto;
-  }
-  div ul li p.picker-color-gray{
-     color: #B8B8B8;
-     &:hover{
-      color: #B8B8B8;
-     }
-  }  
-  .margin-top{
-    margin-top: 20px;
-  }
-  .sectionExpandableFilePicker{
-    width: 100%;
-  }
-  
 
-.pickers-display-inline{
+    &:hover > .container-img-picker {
+      display: flex;
+    }
+  }
+}
+
+.align-item-center {
+  @include styleParagraph(normal, $text-color-darker);
+  align-items: center;
+  gap: 20px;
+  font-size: 12px;
+  line-height: 15px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.004em;
+}
+.confirm-option {
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.0025em;
+  color: $primary-color;
+}
+.display-none {
+  display: none;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.p-error {
+  @extend %error;
+  @include styleParagraph(normal, $error-color);
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: 0.004em;
+}
+.optionsListExpandableFile li p.color-error {
+  @extend %error;
+}
+.paragraph-expandable-file.color-error {
+  @extend %error;
+}
+
+.padding-left {
+  margin-left: 16px;
+}
+.container-img-picker {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  display: none;
+}
+
+div ul li p.picker-color-gray {
+  color: #b8b8b8;
+  cursor: default;
+  &:hover {
+    color: #b8b8b8;
+  }
+}
+.margin-top {
+  margin-top: 20px;
+}
+.sectionExpandableFilePicker {
+  width: 100%;
+}
+
+.pickers-display-inline {
   display: inline-block;
 }
