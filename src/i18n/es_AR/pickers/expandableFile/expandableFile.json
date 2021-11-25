@@ -5,7 +5,7 @@
   "label.card.ErrorServer": "   Ocurrió un error de conexión con el servidor. Intentalonuevamente",
   "label.card.file": "Archivo",
   "label.card.replaceFile": "¿Querés reemplazar el archivo?",
-  "label.card.deleteFile": "¿Querés reemplazar el archivo?",
+  "label.card.deleteFile": "¿Querés eliminar el archivo?",
   "label.card.yes": "Si",
   "label.card.no": "No"
 }

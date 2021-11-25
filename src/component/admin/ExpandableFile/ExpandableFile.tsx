@@ -29,7 +29,7 @@ import { toBase64 } from "utils/toBase64";
 import { detailPickerSelector } from "reducers/detailPicker";
 import { pickersSelector } from "reducers/pickers";
 import { PickerWrongFilePayloadType } from "reducers/types/detailPicker";
-import Confirm from "./Confirm";
+import Confirm from "../Confirm/Confirm";
 import classNames from "classnames";
 
 const tagInitialState: TagsErrorType = {
@@ -69,14 +69,47 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
   setWrongFile,
   serverError,
   actualPage,
+  tagError,
+  deleteFile
 }) => {
-  console.log(files);
-
+ 
   const [viewConfirm, setViewConfirm] = useState(tagConfirmInitialState);
   const [open, setOpen] = useState(false);
-  // const [openDelete, setOpenDelete] = useState(false);
-  const [viewReplace, setviewReplace] = useState(tagInitialState);
   const [error, setError] = useState<typeof initialState>(initialState);
+
+const optionYes = (tag:any,viewConfirm:any) => {
+  if (viewConfirm[tag]?.delete) {
+    deleteFile({ id: pickerId, tag: tag });
+    setViewConfirm({
+      ...viewConfirm,
+      [tag]: {
+        delete: !viewConfirm[tag].delete,
+        replace: viewConfirm[tag]?.replace,
+      },
+    });
+  } else {
+    uploadFile(false, tag);
+    setViewConfirm({
+      ...viewConfirm,
+      [tag]: {
+        delete: viewConfirm[tag]?.delete,
+        replace: !viewConfirm[tag]?.replace,
+      },
+    });
+    setError(initialState)
+  }
+}
+const optionNo = (tag:any,viewConfirm:any) => {
+  setViewConfirm({
+    ...viewConfirm,
+    [tag]: {
+      delete: false,
+      replace: false,
+    },
+  });
+}
+
+
 
   const resetTag = (element: keyof DetailPickerTagFileType) => {
     if (setWrongFile) setWrongFile({ type: element, value: false });
@@ -126,11 +159,6 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
     const file: File = (target.files as FileList)[0];
     if (!file) return;
 
-    setviewReplace({
-      ...viewReplace,
-      [element]: false,
-    });
-
     // si el valor del value es el mismo no hace el onchange
     const inputFile = document.getElementById(
       `file-${element}`
@@ -162,19 +190,13 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
   };
 
   const uploadFile = (
-    //e: React.MouseEvent<HTMLParagraphElement, MouseEvent>,
     isUpload: boolean,
     tag: keyof DetailPickerTagFileType
   ) => {
-    // e.preventDefault();
     const inputFile = document.getElementById(`file-${tag}`);
     if (!isUpload && inputFile) {
       inputFile.click();
     } else {
-      setviewReplace({
-        ...viewReplace,
-        [tag]: true,
-      });
       setViewConfirm({
         ...viewConfirm,
         [tag]: { delete: false, replace: !viewConfirm[tag].replace },
@@ -268,7 +290,6 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
                             src={FileDelete}
                             alt=""
                             onClick={() => {
-                              // setOpenDelete(true);
                               setViewConfirm({
                                 ...viewConfirm,
                                 [element.tag]: {
@@ -284,17 +305,35 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
                   </ul>
                 </div>
               </div>
-              {viewConfirm && (
+              <div className={open ? "container-detailPicker-col-sm-12" : "display-none"}>
+              {viewConfirm[element.tag]?.delete || viewConfirm[element.tag]?.replace ? (
                 <Confirm
-                  open={open}
-                  uploadFile={uploadFile}
-                  Error={Error}
                   tag={element.tag}
-                  pickerId={pickerId}
                   viewConfirm={viewConfirm}
-                  setViewConfirm={setViewConfirm}
+                  optionYes={optionYes}
+                  optionNo={optionNo}
                 ></Confirm>
-              )}
+              ):(error["formatTag"][element.tag] ? (
+                <p className="p-error margin-top">
+                  {i18next.t("expandableFile:label.card.ErrorFormat")}
+                </p>
+              ) : error["sizeTag"][element.tag] ? (
+                <p className="p-error margin-top">
+                  {i18next.t("expandableFile:label.card.ErrorSize")}
+                </p>
+              ) : error["loadTag"][element.tag] ? (
+                <p className="p-error margin-top">
+                  {i18next.t("expandableFile:label.card.ErrorLoad")}
+                </p>
+              ) : (
+                serverError &&
+                tagError === element.tag && (
+                  <p className="p-error margin-top">
+                    {i18next.t("expandableFile:label.card.ErrorServer")}
+                  </p>
+                )
+              ))}
+              </div>
             </Fragment>
           ))}
         </div>
