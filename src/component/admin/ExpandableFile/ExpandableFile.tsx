@@ -12,9 +12,11 @@ import { actions as detailPickerActions } from "../../../reducers/detailPicker";
 import "./ExpandableFile.scss";
 import { AppDispatch, RootState } from "store";
 import {
+  DeleteFileType,
   ExpandableFilePropsType,
   ExpandableFileSaveParamsType,
   ExpandableFileStateType,
+  TagConfimationType,
   TagsErrorType,
 } from "./types";
 import { DataContentType, DetailPickerTagFileType } from "pages/pickers/types";
@@ -22,6 +24,7 @@ import { toBase64 } from "utils/toBase64";
 import { detailPickerSelector } from "reducers/detailPicker";
 import { pickersSelector } from "reducers/pickers";
 import { PickerWrongFilePayloadType } from "reducers/types/detailPicker";
+import Confirm from "../Confirm/Confirm";
 import classNames from "classnames";
 
 const tagInitialState: TagsErrorType = {
@@ -35,6 +38,22 @@ const tagInitialState: TagsErrorType = {
   "vehicle-identification-front": false,
   "driver-insurance-card": false,
 };
+const tagConfirmInitialState: TagConfimationType = {
+  "dni-front": { delete: false, replace: false },
+  "dni-back": { delete: false, replace: false },
+  "user-face": { delete: false, replace: false },
+  "cbu-certificate": { delete: false, replace: false },
+  "cuit-certificate": { delete: false, replace: false },
+  "driver-license": { delete: false, replace: false },
+  "vehicle-identification-back": { delete: false, replace: false },
+  "vehicle-identification-front": { delete: false, replace: false },
+  "driver-insurance-card": { delete: false, replace: false },
+};
+
+const labelsConfirm = [
+  "expandableFile:label.card.deleteFile",
+  "expandableFile:label.card.replaceFile",
+];
 
 const initialState: ExpandableFileStateType = {
   loadTag: tagInitialState,
@@ -49,13 +68,45 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
   saveFile,
   setWrongFile,
   serverError,
-  tagError,
   actualPage,
-  ...props
+  tagError,
+  deleteFile,
 }) => {
+  const [viewConfirm, setViewConfirm] = useState(tagConfirmInitialState);
   const [open, setOpen] = useState(false);
-  const [viewReplace, setviewReplace] = useState(tagInitialState);
   const [error, setError] = useState<typeof initialState>(initialState);
+
+  const optionYes = (tag: any, viewConfirm: any) => {
+    if (viewConfirm[tag]?.delete) {
+      deleteFile({ id: pickerId, tag: tag });
+      setViewConfirm({
+        ...viewConfirm,
+        [tag]: {
+          delete: !viewConfirm[tag].delete,
+          replace: viewConfirm[tag]?.replace,
+        },
+      });
+    } else {
+      uploadFile(false, tag);
+      setViewConfirm({
+        ...viewConfirm,
+        [tag]: {
+          delete: viewConfirm[tag]?.delete,
+          replace: !viewConfirm[tag]?.replace,
+        },
+      });
+      setError(initialState);
+    }
+  };
+  const optionNo = (tag: any, viewConfirm: any) => {
+    setViewConfirm({
+      ...viewConfirm,
+      [tag]: {
+        delete: false,
+        replace: false,
+      },
+    });
+  };
 
   const resetTag = (element: keyof DetailPickerTagFileType) => {
     if (setWrongFile) setWrongFile({ type: element, value: false });
@@ -105,16 +156,11 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
     const file: File = (target.files as FileList)[0];
     if (!file) return;
 
-    setviewReplace({
-      ...viewReplace,
-      [element]: false,
-    });
-
     // si el valor del value es el mismo no hace el onchange
     const inputFile = document.getElementById(
       `file-${element}`
     ) as HTMLInputElement;
-    if (inputFile) inputFile.value = ""; // si el valor del value es el mismo no hace el onchange
+    if (inputFile) inputFile.value = "";
 
     if (!PICKERS_FILE_EXT.includes(file.type)) {
       setErrorTag("formatTag", element);
@@ -141,18 +187,16 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
   };
 
   const uploadFile = (
-    e: React.MouseEvent<HTMLParagraphElement, MouseEvent>,
     isUpload: boolean,
     tag: keyof DetailPickerTagFileType
   ) => {
-    e.preventDefault();
     const inputFile = document.getElementById(`file-${tag}`);
     if (!isUpload && inputFile) {
       inputFile.click();
     } else {
-      setviewReplace({
-        ...viewReplace,
-        [tag]: true,
+      setViewConfirm({
+        ...viewConfirm,
+        [tag]: { delete: false, replace: !viewConfirm[tag].replace },
       });
     }
   };
@@ -235,7 +279,7 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
                                 : "load-icon-svg"
                             }
                             onClick={(e) =>
-                              uploadFile(e, element.isUpload, element.tag)
+                              uploadFile(element.isUpload, element.tag)
                             }
                           />
                           <input
@@ -269,35 +313,22 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
                   </ul>
                 </div>
               </div>
-
               <div
                 className={
                   open ? "container-detailPicker-col-sm-12" : "display-none"
                 }
               >
-                {viewReplace[element.tag] ? (
-                  <div className="display-flex align-item-center">
-                    <p className="">
-                      {i18next.t("expandableFile:label.card.replaceFile")}
-                    </p>
-                    <p
-                      className="confirm-option"
-                      onClick={(e) => uploadFile(e, false, element.tag)}
-                    >
-                      {i18next.t("expandableFile:label.card.yes")}
-                    </p>
-                    <p
-                      className="confirm-option"
-                      onClick={(e) =>
-                        setviewReplace({
-                          ...viewReplace,
-                          [element.tag]: false,
-                        })
-                      }
-                    >
-                      {i18next.t("expandableFile:label.card.no")}
-                    </p>
-                  </div>
+                {viewConfirm[element.tag]?.delete ||
+                viewConfirm[element.tag]?.replace ? (
+                  <Confirm
+                    question={
+                      viewConfirm[element.tag]?.delete
+                        ? i18next.t(labelsConfirm[0])
+                        : i18next.t(labelsConfirm[1])
+                    }
+                    optionYes={() => optionYes(element.tag, viewConfirm)}
+                    optionNo={() => optionNo(element.tag, viewConfirm)}
+                  />
                 ) : error["formatTag"][element.tag] ? (
                   <p className="p-error margin-top">
                     {i18next.t("expandableFile:label.card.ErrorFormat")}
@@ -337,6 +368,9 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   },
   saveFile: (params: ExpandableFileSaveParamsType) => {
     dispatch(detailPickerActions.getPickerFileSaveRequest(params));
+  },
+  deleteFile: (params: DeleteFileType) => {
+    dispatch(detailPickerActions.getPickerFileDeleteRequest(params));
   },
   setWrongFile: (wrongFile: PickerWrongFilePayloadType) => {
     dispatch(detailPickerActions.setWrongFile(wrongFile));

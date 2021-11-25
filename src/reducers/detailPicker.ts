@@ -196,6 +196,18 @@ export const detailPickerSlice = createSlice({
       state.serverError = action.payload.serverError;
       state.tagError = action.payload.tag;
     },
+    getPickerFileDeleteRequest: (
+      state: DetailPickerStateType, //estado actual del  state
+      action: any // params Payload<tipo>
+    ) => {},
+    getPickerFileDeleteSuccess: () => {},
+    getPickerFileDeleteError: (
+      state: DetailPickerStateType,
+      action: PayloadAction<ActionErrorPickersType>
+    ) => {
+      state.serverError = action.payload.serverError;
+      state.tagError = action.payload.tag;
+    },
   },
   extraReducers: (builder) =>
     builder

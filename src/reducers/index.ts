@@ -6,6 +6,7 @@ import pickers from "./pickers";
 import detailPicker from "reducers/detailPicker";
 import login from "./login";
 import notification from "reducers/notification";
+import preliquidations from "reducers/preliquidation";
 import { connectRouter } from "connected-react-router";
 
 import { RouteComponentProps } from "react-router-dom";
@@ -20,6 +21,7 @@ const rootReducer = (history: RouteComponentProps["history"]) =>
     login,
     notification,
     detailTransaction,
+    preliquidations,
   });
 
 export default rootReducer;

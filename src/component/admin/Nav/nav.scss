@@ -1,49 +1,53 @@
-.navAdmin{
-    border-right: 1px solid #145A99;
-    border-top: 1px solid #145A99;
-    border-radius: 0px 20px 0px 0px;
-    padding-top: 42px;
-    padding-left: 4vh;
-    padding-right: 2vh;
-    height: 86.3vh;
-    width:247px;
-    background-color: #FFFFFF;
-    position: fixed;
-    margin-top: 7.291666666666667vh
-   
+$main-color: #145a99;
+$font-family: "Mulish";
+
+.nav-admin {
+  border-right: 1px solid $main-color;
+  border-top: 1px solid $main-color;
+  border-radius: 0px 30px 0px 0px;
+  padding: 42px 12px 24px 42px;
+  height: 100%;
+  width: 247px;
+  background-color: #ffffff;
+  position: fixed;
+  margin-top: 7.291666666666667vh;
 }
-.tamScroll{
-    height: 79vh;
-}
-.navAdmin ul{
-    padding-right: 2vh;
-}
-.unclickable{
-    pointer-events: none;
+.nav-admin .scroll {
+  height: 100%;
 }
 
-.navAdmin ul li{
-        margin-bottom: 1vh;
-        margin-left: 1rem;
-       
+.unclickable {
+  pointer-events: none;
 }
-.navAdmin ul li a{
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 200%;
-    color: #101820;
-    text-decoration: none;
-    
+
+.nav-admin .nav-section {
+  margin-bottom: 32px;
 }
-.navAdmin ul h3{
-        font-family: 'Mulish';
-        font-style: normal;
-        font-weight: bold;
-        font-size: 16px;
-        line-height: 20px;
-        color: #2D2D2D;
+
+.nav-section ul li {
+  margin-bottom: 8px;
+  margin-left: -3.5px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 28px;
+  gap: 8px;
+}
+.nav-section ul li a {
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 28px;
+  color: #101820;
+  text-decoration: none;
+}
+.nav-section h3 {
+  font-family: $font-family;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #2d2d2d;
+  margin-bottom: 12px;
 }
 /*
 .scroll{
@@ -81,30 +85,14 @@
     border-radius: 4px;
 }
 */
-.circle{
-    height: 7px;
-    width: 7px;
-    left: 2.5vw;
-    margin-top: 1.6vh; 
-    border-radius: 3px;
-    background-color: #145A99;
-    position: absolute;
+.circle {
+  height: 7px;
+  width: 7px;
+  border-radius: 3px;
+  background-color: $main-color;
+  visibility: hidden;
 }
 
-
-@media (min-width:1800px){
-    .navAdmin{
-        height: 90vh;
-    }
-    .circle{
-        left: 1.94vw;
-        margin-top: 1vh; 
-    }
+.visible {
+  visibility: visible;
 }
-@media (max-width:1300px){
-
-    .circle{
-        left: 2vw;
-    }
-}
-
