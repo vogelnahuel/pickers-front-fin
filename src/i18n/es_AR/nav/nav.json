@@ -2,5 +2,7 @@
   "title.menu.report": "Reportes",
   "label.menu.dashboard": "Dashboard",
   "label.menu.pickers": "Flota",
-  "label.menu.transactions": "Transacciones"
+  "label.menu.transactions": "Transacciones",
+  "title.menu.administration": "Administración",
+  "label.menu.preLiquidation": "Preliquidación"
 }
