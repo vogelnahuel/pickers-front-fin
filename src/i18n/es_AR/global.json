@@ -48,5 +48,6 @@
 
 
   "label.label.yes":"Si",
-  "label.label.no":"No"
+  "label.label.no":"No",
+  "error.input.patentFormat": "La patente ingresada es inválida"
 }

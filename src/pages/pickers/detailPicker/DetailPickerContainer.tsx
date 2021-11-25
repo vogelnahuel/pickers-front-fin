@@ -35,7 +35,9 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
 ): JSX.Element => {
   const params: any = useParams();
   const historial: any = useHistory();
-
+  let Close = () => {
+    historial.goBack();
+  };
   useEffect(() => {
     props.getPendingUserPicker(params.id);
     props.resetWrongFiles();
@@ -54,6 +56,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
       ? moment(date).format(DATE_FORMATS.shortDate)
       : date;
   };
+
 
   const validationSchema: yup.SchemaOf<DetailPickerValidationSchema> =
     yup.object({
@@ -100,7 +103,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
                 .min(6, i18next.t("global:error.input.patentLong"))
                 .matches(
                   VALIDATION_REGEX.regPatent,
-                  i18next.t("global:error.input.specialCharacters")
+                  i18next.t("global:error.input.patentFormat")
                 ),
               expirationDatePolicyVehicle: yup
                 .string()
@@ -188,6 +191,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
       aproveSubmit={aproveSubmit}
       active={active}
       formatDate={formatDate}
+      Close={Close}
     />
   );
 };
