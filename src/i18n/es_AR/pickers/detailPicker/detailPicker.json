@@ -22,12 +22,12 @@
   "label.account.bankName": "Nombre del banco",
   "placeholder.account.bankName": "Ingresá el nombre del banco",
 
-  "label.subtitle.insurance": "Seguros",
+  "label.subtitle.insurance": "Datos del vehículo",
   "label.insurance.patent": "Patente del vehículo *",
   "placeholder.insurance.patent": "Ingresá los dígitos de la patente",
-  "label.insurance.licenseExpiration": "Vencimiento de la licencia *",
-  "label.insurance.identifierExpiration": "Vencimiento de la cédula *",
-  "label.insurance.carInsuranceExpiration": "Vencimiento del seguro de automotor *",
+  "label.insurance.licenseExpiration": "Licencia de conducir *",
+  "label.insurance.identifierExpiration": "Cédula de conducir *",
+  "label.insurance.carInsuranceExpiration": "Seguro de automotor *",
   "label.insurance.personalAccidentInsuranceExpiration": "Vencimiento del seguro de accidentes personales * ",
 
   "title.modal.approved": "Aprobación exitosa",
@@ -39,5 +39,15 @@
   "label.button.approve": "Aprobar",
   "label.button.revise": "Revisar datos",
   "title.modal.approvePicker": "Aprobar picker",
-  "label.modal.approvePicker": "Al aprobar la solicitud, ya va a poder hacer envíos"
+  "label.modal.approvePicker": "Al aprobar la solicitud, ya va a poder hacer envíos",
+
+  "label.card.dniFront":"DNI frente",
+  "label.card.dniBack":"DNI dorso",
+  "label.card.userFace":"Rostro",
+  "label.card.cbuCertificate":"Comprobante de CBU",
+  "label.card.cuitCertificate":"Constancia de CUIT",
+  "label.card.driverLicense":"Licencia de conducir",
+  "label.card.vehicleIdentificationBack":"Cédula frente",
+  "label.card.vehicleIdentificationFront":"Cédula dorso",
+  "label.card.driverInsuranceCard":"Seguro de automotor"
 }

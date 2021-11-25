@@ -7,7 +7,7 @@ export type ChangePageTypes = {
 };
 
 export type PickersParamsType = {
-  pickerStatusId?: Array<Number>;
+  pickerStatusId?: Array<number>;
   name?: string;
   email?: string;
   identificationNumber?: number;
@@ -27,7 +27,7 @@ export type ParamsMiddlewareType = {
 
 export type StatusType = {
   description: string;
-  id: Number;
+  id: number;
 };
 
 export type PhoneValidationSchemaType = {
@@ -83,13 +83,13 @@ export type AcountDataType = {
   fiscalNumber: string;
 };
 export type DataContentType = {
-  tag: string;
+  tag: keyof DetailPickerTagFileType;
   isUpload: boolean;
 };
 
 export type DataFilesType = {
   status: string;
-  contents: DataContentType[];
+  content: DataContentType[];
 };
 
 export type FilesType = {
@@ -119,7 +119,7 @@ export type PickerContainerTypes = {
   pag: string;
   actualPage: string;
   reset: Function;
-  getPendingUser: Function;
+  getPendingUser: (params: ParamsMiddlewareType) => void;
   setPendingUserFilters: Function;
   setPendingUserExtraFilters: Function;
   setActualPage: Function;
@@ -163,12 +163,30 @@ export type PickersAxiosContent = {
 };
 
 export type PickersResponse = {
-  hasMore: Boolean;
+  hasMore: boolean;
   limit: number;
   offset: number;
   items: PickerType[];
 };
 
 export type EditPickerResponseType = {
-  result: Number;
+  result: number;
+};
+
+export type PickerFileResponseType = {
+  result: {
+    url: string;
+  };
+};
+
+export type DetailPickerTagFileType = {
+  "dni-front": string;
+  "dni-back": string;
+  "user-face": string;
+  "cbu-certificate": string;
+  "cuit-certificate": string;
+  "driver-license": string;
+  "vehicle-identification-back": string;
+  "vehicle-identification-front": string;
+  "driver-insurance-card": string;
 };

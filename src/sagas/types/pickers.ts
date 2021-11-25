@@ -1,23 +1,20 @@
-import {
-  PickerType,
-  ParamsMiddlewareType,
-} from "../../pages/pickers/types";
+import { PickerType, ParamsMiddlewareType } from "../../pages/pickers/types";
 
 export type PickerResponseType = {
-  status: Number;
+  status: number;
   data: {
     result: PickerType;
-    limit: Number;
-    offset: Number;
+    limit: number;
+    offset: number;
     hasMore: boolean;
   };
 };
 export type PickersResponseType = {
-  status?: Number;
+  status?: number;
   data: {
     result: { items: PickerType[] };
-    limit: Number;
-    offset: Number;
+    limit: number;
+    offset: number;
     hasMore: boolean;
   };
 };
@@ -30,7 +27,7 @@ export type getPickersType = {
 
 export type getDetailPickersType = {
   type: string;
-  params: Number;
+  params: number;
 };
 
 export type PickerExportType = {
@@ -40,20 +37,20 @@ export type PickerExportType = {
   goBack?: Function;
 };
 
-export type ParamGetPendingUser = {
-  type: string;
-  params: Number;
-};
-
 export type PostEditPickerType = {
-  type:string
+  type: string;
   params: PickerType;
   goBack: Function;
   element: HTMLElement;
 };
 
-export type PickerExportParamType={
-  email:string | undefined;
-}
+export type PickerExportParamType = {
+  email: string | undefined;
+};
 
 export type CsvResponseType = { data: string; status: number };
+
+export type ExpandableFileLoadParamType ={
+    tag: string,      
+    content: string   
+}

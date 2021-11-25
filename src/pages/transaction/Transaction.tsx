@@ -29,7 +29,7 @@ export const Transaction: React.FC<TransactionType> = ({
     <div className="background-Grey">
       <Header />
       <div className="mainContainerFlex">
-        <Nav isDirty={""} />
+        <Nav isDirty={null} />
 
         <div className="transaction-container">
           <div className="mainContainerFlex-transaction">

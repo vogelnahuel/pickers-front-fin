@@ -2,7 +2,7 @@ import React from "react";
 import moment from "moment";
 import { connect } from "react-redux";
 import { actions as detailTransaction } from "reducers/detailTransaction";
-import { selectors as transactionSelectors } from "reducers/transactions";
+import { transactionsSelector } from "reducers/transactions";
 import { TransactionResponseTypeResult } from "sagas/types/transactions";
 import { AppDispatch, RootState } from "store";
 import TreePoints from "../../../assets/transaction/TreePoints.svg";
@@ -31,6 +31,7 @@ export const TableTransaction = ({
             transactions.map((data: TransactionResponseTypeResult) => (
               <tr
                 id={`${data.transaction.id}`}
+                key={`${data.transaction.id}`}
                 onClick={() => getDetailTransaction(data.transaction.id)}
               >
                 <td>
@@ -63,7 +64,7 @@ export const TableTransaction = ({
 };
 
 const mapStateToProps = (state: RootState) => ({
-  transactions: transactionSelectors.getTransactions(state),
+  transactions: transactionsSelector(state).transactions,
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({

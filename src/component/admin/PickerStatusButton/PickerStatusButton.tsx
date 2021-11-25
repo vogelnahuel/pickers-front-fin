@@ -6,37 +6,39 @@ import trabajadorOscuro from "assets/admin/PendingUser/trabajadorOscuro.svg";
 import trabajadorAzul from "assets/admin/PendingUser/trabajadorAzul.svg";
 import "component/admin/PickerStatusButton/pending.scss";
 import { useHistory } from "react-router-dom";
-import { selectors as pendingUserAdminPickerSelectors } from "reducers/detailPicker";
+import {
+  detailPickerSelector as pendingUserAdminPickerSelectors,
+  hasPickerWrongFilesSelector,
+} from "reducers/detailPicker";
 import { connect } from "react-redux";
 import { actions as notificationActions } from "reducers/notification";
 import { AppDispatch, RootState } from "store";
 import { PickerStatusButtonType } from "./types";
 import {
   actions as pendingUserActions,
-  selectors as pendingUserSelectors,
+  pickersSelector as pendingUserSelectors,
 } from "reducers/pickers";
 import i18next from "i18next";
+import { NotificationStateType } from "reducers/types/notification";
 export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
   showNotification,
   setActualPage,
   actualPage,
   isDirty,
+  wrongFiles,
   isDetail,
 }) => {
-  const Historial = useHistory();
-  const changePage = (page: String, isDirty: Boolean) => {
+  const history = useHistory();
+
+  const changePage = (page: string, isDirty: boolean) => {
     if (isDetail || actualPage !== page) {
       let onClose = () => {
         setActualPage(page);
 
-        if (
-          window.location.pathname !== "/pickers" &&
-          window.history.length > 1
-        ) {
-          Historial.goBack();
-          //se abre en nueva pestaña desde transacciones
-        } else if (window.history.length <= 1) {
-          Historial.replace("/pickers");
+        if (history.location.pathname !== "/pickers" && history.length > 1)
+          history.goBack();
+        else if (history.length <= 1) {
+          history.replace("/pickers");
         }
       };
       if (isDirty) {
@@ -46,6 +48,21 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
           body: i18next.t("pickers:label.modal.saveChanges"),
           onClickLabel: "pickers:button.modal.goToSave",
           onCloseLabel: "pickers:button.modal.notSave",
+          onClose: onClose,
+          onClick: () =>
+            window.scroll({
+              top: window.innerHeight,
+              left: 0,
+              behavior: "smooth",
+            }),
+        });
+      } else if (wrongFiles) {
+        showNotification({
+          level: "warning",
+          title: i18next.t("global:title.modal.withoutSaving"),
+          body:  i18next.t("global:label.modal.withoutSaving"),
+          onClickLabel: i18next.t("global:label.button.checkErrors"),
+          onCloseLabel: i18next.t("global:label.button.continue"),
           onClose: onClose,
           onClick: () =>
             window.scroll({
@@ -64,9 +81,10 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
   const handleHistory = (e: React.MouseEvent) => {
     const eventTarget = e.target as HTMLElement;
     let onClose = () => {
-      Historial.goBack();
+      history.goBack();
     };
 
+    eventTarget.blur();
     if (isDirty) {
       showNotification({
         level: "warning",
@@ -81,9 +99,24 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
             left: 0,
             behavior: "smooth",
           }),
-        element: eventTarget.parentElement,
       });
-    } else {
+    } else if (wrongFiles) {
+      showNotification({
+        level: "warning",
+        title: i18next.t("global:title.modal.withoutSaving"),
+        body:  i18next.t("global:label.modal.withoutSaving"),
+        onClickLabel: i18next.t("global:label.button.checkErrors"),
+        onCloseLabel: i18next.t("global:label.button.continue"),
+        onClose: onClose,
+        onClick: () =>
+          window.scroll({
+            top: window.innerHeight,
+            left: 0,
+            behavior: "smooth",
+          }),
+      });
+    }
+      else {
       onClose();
     }
   };
@@ -159,16 +192,16 @@ export const PickerStatusButton: React.FC<PickerStatusButtonType> = ({
 };
 
 const mapStateToProps = (state: RootState) => ({
-  isDirty: pendingUserAdminPickerSelectors.isDirty(state),
-  actualPage: pendingUserSelectors.getActualPage(state),
+  isDirty: pendingUserAdminPickerSelectors(state).dirty,
+  actualPage: pendingUserSelectors(state).actualPage,
+  wrongFiles: hasPickerWrongFilesSelector(state),
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
-  showNotification: (content: any) => {
-    //falta tipar show notification
+  showNotification: (content: NotificationStateType) => {
     dispatch(notificationActions.showNotification(content));
   },
-  setActualPage: (page: String) => {
+  setActualPage: (page: string) => {
     dispatch(pendingUserActions.setActualPage(page));
   },
 });
