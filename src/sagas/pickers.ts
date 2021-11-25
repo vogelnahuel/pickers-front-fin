@@ -59,6 +59,7 @@ const sagas = [
   takeLatest(detailPickerActions.getEditPickerRequest.type, postEditPicker),
   takeLatest(detailPickerActions.getPickerFileRequest.type, getPickerFile),
   takeLatest(detailPickerActions.getPickerFileSaveRequest.type, putFileUpload),
+  takeLatest(detailPickerActions.getPickerFileDeleteRequest.type, fileDelete),
 ];
 
 export default sagas;
@@ -350,6 +351,26 @@ function* getPickerFile({
     yield put(detailPickerActions.getPickerFileSuccess());
   }
 }
+
+
+function* fileDelete({
+  payload: { id,tag },
+}: PayloadAction<any>): Generator<
+| PutEffect<{ type: string }>
+|CallEffect<AxiosResponse<any>>
+|Promise<AxiosResponse<any>>
+| void,
+  void,
+  { status: number; data: {} }
+> {
+  const response = yield call(pickersMiddleware.deleteFile, id,tag);
+  if (response.status !== 200) {
+    yield put(detailPickerActions.getPickerFileDeleteError({serverError:true, tag:tag}));
+  } else {
+    yield put(detailPickerActions.getPendingUserPickerRequest(id));
+  }
+}
+
 
 function* putFileUpload({
   payload: { id,content,tag },
