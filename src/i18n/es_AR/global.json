@@ -27,7 +27,15 @@
 
   "title.modal.changesSaved": "Datos guardados",
   "label.modal.changesSaved": "Ya quedaron registrados los cambios",
+
+  "title.modal.withoutSaving": "No se van a guardar tus archivos",
+  "label.modal.withoutSaving": "Hay errores en la carga. Si te vas sin resolverlos, no se van a guardar los cambios.",
+
+
   "label.button.understood": "Entendido",
+
+  "label.button.continue": "Continuar",
+  "label.button.checkErrors": "Revisar errores",
 
   "error.input.required": "Este campo es requerido",
   "error.input.specialCharacters": "No se admiten caracteres especiales",
@@ -36,5 +44,10 @@
   "error.input.invalidFormat": "Ingresá el formato correcto",
   "error.input.invalidEmailFormat": "El correo ingresado es inválido",
   "error.input.patentLong": "La patente debe tener entre 6 y 7 caracteres",
-  "error.input.dniLength": "El DNI debe tener entre 7 y 8 caracteres numéricos"
+  "error.input.dniLength": "El DNI debe tener entre 7 y 8 caracteres numéricos",
+
+
+  "label.label.yes":"Si",
+  "label.label.no":"No",
+  "error.input.patentFormat": "La patente ingresada es inválida"
 }

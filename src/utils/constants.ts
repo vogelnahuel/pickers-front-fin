@@ -1,7 +1,7 @@
 import { DetailPickerTagFileType } from "pages/pickers/types";
 import { TransactionActionTagType } from "pages/transaction/types";
 
-export const titlesAdminPending:string[] = [
+export const titlesAdminPending: string[] = [
   "tablePickers:label.table.name",
   "tablePickers:label.table.identifier",
   "tablePickers:label.table.email",
@@ -10,7 +10,7 @@ export const titlesAdminPending:string[] = [
   "tablePickers:label.table.edit",
 ];
 
-export const titlesAdminActive:string[] = [
+export const titlesAdminActive: string[] = [
   "tablePickers:label.table.name",
   "tablePickers:label.table.identifier",
   "tablePickers:label.table.email",
@@ -19,7 +19,7 @@ export const titlesAdminActive:string[] = [
   "tablePickers:label.table.edit",
 ];
 
-export const transactionTableTitles:string[] = [
+export const transactionTableTitles: string[] = [
   "transactionTable:label.table.transaction",
   "transactionTable:label.table.idPicker",
   "transactionTable:label.table.slaExpiration",
@@ -29,7 +29,8 @@ export const transactionTableTitles:string[] = [
 export const DATE_FORMATS = {
   regex:
     /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/,
-  regexshortDate:/^(?:(?:31(\/|\/|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|\/|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|\/|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|\/|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/,
+  regexshortDate:
+    /^(?:(?:31(\/|\/|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|\/|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|\/|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|\/|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/,
 
   regexValidCharacter: /^[0-9]/,
   fullDate: "DD/MM/YYYY H:mm:ss",
@@ -50,7 +51,7 @@ export const VALIDATION_REGEX = {
   expIdentificationNumber: /^[\d]{0,3}\.?[\d]{0,3}\.?[\d]{0,3}$/,
   regArea: /^([0-9]){2,5}$/,
   regTelefono: /^([0-9]){7,10}$/,
-  regPatent: /^([a-zA-Z0-9])*$/,
+  regPatent: /^([A-Z]{1}[0-9]{3}[A-Z]{3}|[0-9]{3}[A-Z]{3})*$/,
   regTransactionCode: /^[a-fA-F0-9]*$/,
   regPickerId: /^[0-9]*$/,
   regEmail:
@@ -107,7 +108,7 @@ export const FILTER_TRANSACTION_OPTIONS = [
   },
 ];
 
-export const FILTER_PICKERS_OPTIONS= [
+export const FILTER_PICKERS_OPTIONS = [
   {
     label: "filterPickers:label.select.all",
     value: "",
@@ -153,37 +154,42 @@ export const TRANSACTION_STATE_TAG_LABEL = {
 };
 
 export const TRANSACTION_ACTIONS_TAG_LABEL: TransactionActionTagType = {
-  "assigned_picker": "filterTransaction:label.select.assigned",
-  "un_assigning": "filterTransaction:label.select.pendingAssignment",
-  "state_pending_assigment": "filterTransaction:label.select.pendingAssignment",
-  "state_assigned": "filterTransaction:label.select.assigned",
-  "state_in_pickup": "filterTransaction:label.select.inPickup",
-  "state_in_pickup_point": "filterTransaction:label.select.inPickupPoint",
-  "state_in_picked_up": "filterTransaction:label.select.retired",
-  "state_in_delivery": "filterTransaction:label.select.inDelivery",
-  "state_in_delivery_point": "filterTransaction:label.select.inDeliveryPoint",
-  "state_in_devolution": "filterTransaction:label.select.inReturnToSender",
-  "state_pickup_cancelled_temporally": "filterTransaction:label.select.cancel",
-  "state_pickup_cancelled_permanently": "filterTransaction:label.select.cancel",
-  "state_delivered": "filterTransaction:label.select.delivered",
-  "state_returned": "filterTransaction:label.select.returnedToSender",
-  "state_lost": "filterTransaction:label.select.lost",
-  "state_initial": "filterTransaction:label.select.created"
+  assigned_picker: "filterTransaction:label.select.assigned",
+  un_assigning: "filterTransaction:label.select.pendingAssignment",
+  state_pending_assigment: "filterTransaction:label.select.pendingAssignment",
+  state_assigned: "filterTransaction:label.select.assigned",
+  state_in_pickup: "filterTransaction:label.select.inPickup",
+  state_in_pickup_point: "filterTransaction:label.select.inPickupPoint",
+  state_in_picked_up: "filterTransaction:label.select.retired",
+  state_in_delivery: "filterTransaction:label.select.inDelivery",
+  state_in_delivery_point: "filterTransaction:label.select.inDeliveryPoint",
+  state_in_devolution: "filterTransaction:label.select.inReturnToSender",
+  state_pickup_cancelled_temporally: "filterTransaction:label.select.cancel",
+  state_pickup_cancelled_permanently: "filterTransaction:label.select.cancel",
+  state_delivered: "filterTransaction:label.select.delivered",
+  state_returned: "filterTransaction:label.select.returnedToSender",
+  state_lost: "filterTransaction:label.select.lost",
+  state_initial: "filterTransaction:label.select.created",
 };
 
-
-export const DETAIL_PICKER_TAG:DetailPickerTagFileType = {
+export const DETAIL_PICKER_TAG: DetailPickerTagFileType = {
   "dni-front": "detailPicker:label.card.dniFront",
   "dni-back": "detailPicker:label.card.dniBack",
   "user-face": "detailPicker:label.card.userFace",
   "cbu-certificate": "detailPicker:label.card.cbuCertificate",
   "cuit-certificate": "detailPicker:label.card.cuitCertificate",
   "driver-license": "detailPicker:label.card.driverLicense",
-  "vehicle-identification-back": "detailPicker:label.card.vehicleIdentificationBack",
-  "vehicle-identification-front": "detailPicker:label.card.vehicleIdentificationFront",
-  "driver-insurance-card": "detailPicker:label.card.driverInsuranceCard"
+  "vehicle-identification-back":
+    "detailPicker:label.card.vehicleIdentificationBack",
+  "vehicle-identification-front":
+    "detailPicker:label.card.vehicleIdentificationFront",
+  "driver-insurance-card": "detailPicker:label.card.driverInsuranceCard",
 };
 
-
-
-
+export const PICKERS_MAX_FILE_SIZE = 5000000;
+export const PICKERS_FILE_EXT = [
+  "application/pdf",
+  "image/png",
+  "image/jpg",
+  "image/jpeg",
+];

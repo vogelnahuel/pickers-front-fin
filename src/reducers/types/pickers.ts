@@ -3,6 +3,7 @@ import {
   ParamsMiddlewareType,
   PickersParamsType,
   PickersResponse,
+  DetailPickerTagFileType,
 } from "pages/pickers/types";
 
 export type PickersTypes = {
@@ -84,4 +85,9 @@ export type ActionType = {
   filters: PickersParamsType;
   page: string;
   extraFilters: PickersParamsType;
+};
+
+export type ActionErrorPickersType = {
+  serverError: boolean;
+  tag: keyof DetailPickerTagFileType;
 };

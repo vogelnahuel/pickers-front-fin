@@ -49,3 +49,8 @@ export type PickerExportParamType = {
 };
 
 export type CsvResponseType = { data: string; status: number };
+
+export type ExpandableFileLoadParamType ={
+    tag: string,      
+    content: string   
+}
