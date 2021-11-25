@@ -14,9 +14,7 @@ export type ExpandableFilePropsType = {
   serverError: boolean;
   tagError?: keyof DetailPickerTagFileType;
   actualPage: string;
-  input?: any;
-  meta?: any;
-  deleteFile: any
+  deleteFile: (params:DeleteFileType)=>void
 };
 
 export type DeleteFileType = {

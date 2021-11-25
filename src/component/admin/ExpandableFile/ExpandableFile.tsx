@@ -55,6 +55,8 @@ const tagConfirmInitialState: TagConfimationType = {
   "driver-insurance-card": { delete: false, replace: false },
 };
 
+const labelsConfirm = ["expandableFile:label.card.deleteFile","expandableFile:label.card.replaceFile"]
+
 const initialState: ExpandableFileStateType = {
   loadTag: tagInitialState,
   sizeTag: tagInitialState,
@@ -312,6 +314,7 @@ const optionNo = (tag:any,viewConfirm:any) => {
                   viewConfirm={viewConfirm}
                   optionYes={optionYes}
                   optionNo={optionNo}
+                  labels={labelsConfirm}
                 ></Confirm>
               ):(error["formatTag"][element.tag] ? (
                 <p className="p-error margin-top">
