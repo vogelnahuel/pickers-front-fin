@@ -49,7 +49,7 @@ export const VALIDATION_REGEX = {
   expName:
     /^[a-zA-ZàáäãâåèéêëìíîïòóôöõøùúüÿýñçšžÀÁÄÃÅÈÉÊËÌÍÎÏÒÓÔÖÕØÙÚÜŸÝŽÑŠßÇðŒÆ ,.'-]+$/u,
   expIdentificationNumber: /^[\d]{0,3}\.?[\d]{0,3}\.?[\d]{0,3}$/,
-  regArea: /^([0-9]){2,5}$/,
+  regArea: /^([0-9]){1,5}$/,
   regTelefono: /^([0-9]){7,10}$/,
   regPatent: /^([A-Z]{1}[0-9]{3}[A-Z]{3}|[0-9]{3}[A-Z]{3})*$/,
   regTransactionCode: /^[a-fA-F0-9]*$/,
