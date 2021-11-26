@@ -3,6 +3,7 @@ import { Header } from "component/admin/Header/Header";
 import { Nav } from "component/admin/Nav/Nav";
 import "pages/preliquidation/preliquidation.scss";
 import NotificationModal from "component/modal/NotificationModal";
+import PreliquidationFilter from "./filter/PreliquidationFilterContainer";
 
 export const Preliquidation: React.FC<any> = ({ isFetching }): JSX.Element => {
   return (
@@ -16,6 +17,7 @@ export const Preliquidation: React.FC<any> = ({ isFetching }): JSX.Element => {
               <p className="subtitle-pendingUser-h2">Preliquidaciones</p>
             </h2>
           </div>
+          <PreliquidationFilter/>
         </div>
         <NotificationModal />
       </div>
