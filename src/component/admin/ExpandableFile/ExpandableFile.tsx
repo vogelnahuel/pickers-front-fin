@@ -1,7 +1,11 @@
 import React, { Fragment, useState } from "react";
 import i18next from "i18next";
 import { connect } from "react-redux";
-import { Tooltip, ToolTipPosition } from "@pickit/pickit-components";
+import {
+  Tooltip,
+  ToolTipPosition,
+  Collapsible,
+} from "@pickit/pickit-components";
 import {
   DETAIL_PICKER_TAG,
   PICKERS_MAX_FILE_SIZE,
@@ -201,6 +205,23 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
     }
   };
 
+  // return (
+  //   <Collapsible>
+  //     <div>
+  //       <p>Header</p>
+  //     </div>
+  //     <div>
+  //       <p>Hola mundo 7 veces</p>
+  //       <p>Hola mundo 7 veces</p>
+  //       <p>Hola mundo 7 veces</p>
+  //       <p>Hola mundo 7 veces</p>
+  //       <p>Hola mundo 7 veces</p>
+  //       <p>Hola mundo 7 veces</p>
+  //       <p>Hola mundo 7 veces</p>
+  //     </div>
+  //   </Collapsible>
+  // );
+
   return (
     <>
       <hr className="border-row" />
@@ -209,150 +230,154 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
           "background-error": !open && hasCardError(),
         })}
       >
-        <div className="container-detailPicker-row ">
-          <div
-            className="container-detailPicker-col-18 header display-flex cursor-pointer"
-            onClick={() => setOpen(!open)}
-          >
+        <Collapsible>
+          <div className="container-detailPicker-row ">
             <div
-              className={`folder-icon${
-                (files?.status === "EMPTY" || files?.status === "PENDING") &&
-                !hasCardError()
-                  ? "-add"
-                  : files?.status === "COMPLETED" && !hasCardError()
-                  ? ""
-                  : "-error"
-              }`}
-            />
-            <p
-              className={
-                !hasCardError()
-                  ? "paragraph-expandable-file"
-                  : "color-error paragraph-expandable-file"
-              }
+              className="container-detailPicker-col-18 header display-flex cursor-pointer"
+              onClick={() => setOpen(!open)}
             >
-              {i18next.t("expandableFile:label.card.file")}
-            </p>
+              <div
+                className={`folder-icon${
+                  (files?.status === "EMPTY" || files?.status === "PENDING") &&
+                  !hasCardError()
+                    ? "-add"
+                    : files?.status === "COMPLETED" && !hasCardError()
+                    ? "-complete"
+                    : "-error"
+                }`}
+              />
+              <p
+                className={
+                  !hasCardError()
+                    ? "paragraph-expandable-file"
+                    : "color-error paragraph-expandable-file"
+                }
+              >
+                {i18next.t("expandableFile:label.card.file")}
+              </p>
+            </div>
           </div>
-          {files?.content.map((element: DataContentType) => (
-            <Fragment key={element.tag}>
-              <div className="container-detailPicker-col-sm-6">
-                <div>
-                  <ul
-                    className={
-                      open ? "optionsListExpandableFile" : "display-none"
-                    }
-                  >
-                    <li className="display-flex" key={element.tag}>
-                      <p
-                        className={
-                          element.isUpload && !hasError(element.tag)
-                            ? ""
-                            : !hasError(element.tag)
-                            ? "picker-color-gray"
-                            : "color-error"
-                        }
-                        onClick={() =>
-                          element.isUpload &&
-                          openFile &&
-                          openFile({ pickerId, tag: element.tag })
-                        }
-                      >
-                        {i18next.t(DETAIL_PICKER_TAG[element.tag])}
-                      </p>
-                      <div className="container-img-picker">
-                        <>
-                          <Tooltip
-                            position={ToolTipPosition.bottom}
-                            target={`picker-replace-icon-${element.tag}`}
-                            message={i18next.t(
-                              `expandableFile:label.tooltip.${
-                                element.isUpload ? "replace" : "load"
-                              }`
-                            )}
-                          />
-                          <div
-                            id={`picker-replace-icon-${element.tag}`}
-                            className={
-                              element.isUpload
-                                ? "replace-icon-svg"
-                                : "load-icon-svg"
-                            }
-                            onClick={(e) =>
-                              uploadFile(element.isUpload, element.tag)
-                            }
-                          />
-                          <input
-                            id={`file-${element.tag}`}
-                            className="display-none"
-                            type="file"
-                            accept=".png,.jpg,.pdf"
-                            onChange={(
-                              event: React.FormEvent<HTMLInputElement>
-                            ) => verifyError(event, element.tag)}
-                          />
-                        </>
-                        {element.isUpload && actualPage === "PENDING" && (
+          <div className="container-detailPicker-row ">
+            {files?.content.map((element: DataContentType) => (
+              <Fragment key={element.tag}>
+                <div className="container-detailPicker-col-sm-6">
+                  <div>
+                    <ul
+                      // className={
+                      //   open ? "options-list-expandable-file" : "display-none"
+                      // }
+                      className="options-list-expandable-file"
+                    >
+                      <li className="display-flex" key={element.tag}>
+                        <p
+                          className={
+                            element.isUpload && !hasError(element.tag)
+                              ? ""
+                              : !hasError(element.tag)
+                              ? "picker-color-gray"
+                              : "color-error"
+                          }
+                          onClick={() =>
+                            element.isUpload &&
+                            openFile &&
+                            openFile({ pickerId, tag: element.tag })
+                          }
+                        >
+                          {i18next.t(DETAIL_PICKER_TAG[element.tag])}
+                        </p>
+                        <div className="container-img-picker">
                           <>
                             <Tooltip
                               position={ToolTipPosition.bottom}
-                              target={`"picker-delete-icon-${element.tag}"`}
+                              target={`picker-replace-icon-${element.tag}`}
                               message={i18next.t(
-                                "expandableFile:label.tooltip.delete"
+                                `expandableFile:label.tooltip.${
+                                  element.isUpload ? "replace" : "load"
+                                }`
                               )}
                             />
-
                             <div
-                              id={`"picker-delete-icon-${element.tag}"`}
-                              className="delete-icon-svg padding-left"
+                              id={`picker-replace-icon-${element.tag}`}
+                              className={
+                                element.isUpload
+                                  ? "replace-icon-svg"
+                                  : "load-icon-svg"
+                              }
+                              onClick={(e) =>
+                                uploadFile(element.isUpload, element.tag)
+                              }
+                            />
+                            <input
+                              id={`file-${element.tag}`}
+                              className="display-none"
+                              type="file"
+                              accept=".png,.jpg,.pdf"
+                              onChange={(
+                                event: React.FormEvent<HTMLInputElement>
+                              ) => verifyError(event, element.tag)}
                             />
                           </>
-                        )}
-                      </div>
-                    </li>
-                  </ul>
+                          {element.isUpload && actualPage === "PENDING" && (
+                            <>
+                              <Tooltip
+                                position={ToolTipPosition.bottom}
+                                target={`"picker-delete-icon-${element.tag}"`}
+                                message={i18next.t(
+                                  "expandableFile:label.tooltip.delete"
+                                )}
+                              />
+                              <div
+                                id={`"picker-delete-icon-${element.tag}"`}
+                                className="delete-icon-svg padding-left"
+                              />
+                            </>
+                          )}
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-              </div>
-              <div
-                className={
-                  open ? "container-detailPicker-col-sm-12" : "display-none"
-                }
-              >
-                {viewConfirm[element.tag]?.delete ||
-                viewConfirm[element.tag]?.replace ? (
-                  <Confirm
-                    question={
-                      viewConfirm[element.tag]?.delete
-                        ? i18next.t(labelsConfirm[0])
-                        : i18next.t(labelsConfirm[1])
-                    }
-                    optionYes={() => optionYes(element.tag, viewConfirm)}
-                    optionNo={() => optionNo(element.tag, viewConfirm)}
-                  />
-                ) : error["formatTag"][element.tag] ? (
-                  <p className="p-error margin-top">
-                    {i18next.t("expandableFile:label.card.ErrorFormat")}
-                  </p>
-                ) : error["sizeTag"][element.tag] ? (
-                  <p className="p-error margin-top">
-                    {i18next.t("expandableFile:label.card.ErrorSize")}
-                  </p>
-                ) : error["loadTag"][element.tag] ? (
-                  <p className="p-error margin-top">
-                    {i18next.t("expandableFile:label.card.ErrorLoad")}
-                  </p>
-                ) : (
-                  serverError &&
-                  tagError === element.tag && (
+                <div
+                  className={
+                    open ? "container-detailPicker-col-sm-12" : "display-none"
+                  }
+                >
+                  {viewConfirm[element.tag]?.delete ||
+                  viewConfirm[element.tag]?.replace ? (
+                    <Confirm
+                      question={
+                        viewConfirm[element.tag]?.delete
+                          ? i18next.t(labelsConfirm[0])
+                          : i18next.t(labelsConfirm[1])
+                      }
+                      optionYes={() => optionYes(element.tag, viewConfirm)}
+                      optionNo={() => optionNo(element.tag, viewConfirm)}
+                    />
+                  ) : error["formatTag"][element.tag] ? (
                     <p className="p-error margin-top">
-                      {i18next.t("expandableFile:label.card.ErrorServer")}
+                      {i18next.t("expandableFile:label.card.ErrorFormat")}
                     </p>
-                  )
-                )}
-              </div>
-            </Fragment>
-          ))}
-        </div>
+                  ) : error["sizeTag"][element.tag] ? (
+                    <p className="p-error margin-top">
+                      {i18next.t("expandableFile:label.card.ErrorSize")}
+                    </p>
+                  ) : error["loadTag"][element.tag] ? (
+                    <p className="p-error margin-top">
+                      {i18next.t("expandableFile:label.card.ErrorLoad")}
+                    </p>
+                  ) : (
+                    serverError &&
+                    tagError === element.tag && (
+                      <p className="p-error margin-top">
+                        {i18next.t("expandableFile:label.card.ErrorServer")}
+                      </p>
+                    )
+                  )}
+                </div>
+              </Fragment>
+            ))}
+          </div>
+        </Collapsible>
       </div>
     </>
   );

@@ -36,64 +36,47 @@ $primary-color-darker: #007acc;
   color: $color;
 }
 
-.delete-icon-svg {
-  -webkit-mask: url("../../../assets/admin/fileDelete.svg") no-repeat center;
-  mask: url("../../../assets/admin/fileDelete.svg") no-repeat center;
-  @extend %icon;
+$icons: delete, load, replace;
+
+@each $icon in $icons {
+  .#{$icon}-icon-svg {
+    @extend %icon;
+    -webkit-mask: url("../../../assets/admin/file-" + quote($icon) + ".svg")
+      no-repeat
+      center;
+    mask: url("../../../assets/admin/file-" + quote($icon) + ".svg")
+      no-repeat
+      center;
+  }
 }
 
-.load-icon-svg {
-  -webkit-mask: url("../../../assets/admin/fileLoad.svg") no-repeat center;
-  mask: url("../../../assets/admin/fileLoad.svg") no-repeat center;
-  @extend %icon;
-}
+$folders: complete $text-color $text-color-darker,
+  add $primary-color $primary-color-darker,
+  error $error-color $error-color-darker;
 
-.replace-icon-svg {
-  -webkit-mask: url("../../../assets/admin/fileReplace.svg") no-repeat center;
-  mask: url("../../../assets/admin/fileReplace.svg") no-repeat center;
-  @extend %icon;
-}
+@each $folder, $color, $hover-color in $folders {
+  .folder-icon-#{$folder} {
+    @extend %folder;
+    background-color: $color;
+    -webkit-mask: url("../../../assets/admin/folder-" + quote($folder) + ".svg")
+      no-repeat
+      center;
+    mask: url("../../../assets/admin/folder-" + quote($folder) + ".svg")
+      no-repeat
+      center;
 
-.folder-icon {
-  -webkit-mask: url("../../../assets/admin/folder.svg") no-repeat center;
-  mask: url("../../../assets/admin/folder.svg") no-repeat center;
-  @extend %folder;
-  background-color: $text-color;
-}
-
-.folder-icon-add {
-  -webkit-mask: url("../../../assets/admin/folderAdd.svg") no-repeat center;
-  mask: url("../../../assets/admin/folderAdd.svg") no-repeat center;
-  @extend %folder;
-  background-color: $primary-color;
-}
-
-.folder-icon-error {
-  -webkit-mask: url("../../../assets/admin/folderError.svg") no-repeat center;
-  mask: url("../../../assets/admin/folderError.svg") no-repeat center;
-  @extend %folder;
-  background-color: $error-color;
+    .header:hover & {
+      background-color: $hover-color;
+    }
+  }
 }
 
 .header:hover {
   .paragraph-expandable-file {
     color: $text-color-darker;
   }
-
   .paragraph-expandable-file.color-error {
     color: $error-color-darker;
-  }
-
-  .folder-icon {
-    background-color: $text-color-darker;
-  }
-
-  .folder-icon-add {
-    background-color: $primary-color-darker;
-  }
-
-  .folder-icon-error {
-    background-color: $error-color-darker;
   }
 }
 
@@ -126,7 +109,7 @@ $primary-color-darker: #007acc;
   background-color: #fff3f3;
 }
 
-.optionsListExpandableFile {
+.options-list-expandable-file {
   li {
     margin-top: 20px;
     p {
@@ -172,7 +155,7 @@ $primary-color-darker: #007acc;
   line-height: 15px;
   letter-spacing: 0.004em;
 }
-.optionsListExpandableFile li p.color-error {
+.options-list-expandable-file li p.color-error {
   @extend %error;
 }
 .paragraph-expandable-file.color-error {
