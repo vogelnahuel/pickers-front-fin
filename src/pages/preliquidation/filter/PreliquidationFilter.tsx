@@ -5,14 +5,14 @@ import or from "assets/admin/PendingUser/or.svg";
 import search from "assets/admin/PendingUser/search.svg";
 import { Field, Form } from "react-final-form";
 import { Input } from "component/inputs/Input";
-import { FILTER_PICKERS_OPTIONS, FILTER_PRELIQUIDATION_OPTIONS } from "utils/constants";
-import Select from "component/inputs/Select";
+import { FILTER_PRELIQUIDATION_OPTIONS } from "utils/constants";
 import { DatePicker } from "@pickit/pickit-components";
 import MultipleSelect from "component/inputs/MultipleSelect";
 import useValidationSchema from "hooks/useValidationSchema";
 import i18next from "i18next";
+import { PreliquidationFilterPropsType } from "./type";
 
-export const PreliquidationFilter: React.FC<{onSubmit:Function;filters:{preliquidationNumber?:string; taxIdentifier?:string; date?: string; state?:Array<number>};validationSchema:object}> = ({
+export const PreliquidationFilter: React.FC<PreliquidationFilterPropsType> = ({
   onSubmit,
   filters,
   validationSchema,
@@ -49,43 +49,49 @@ export const PreliquidationFilter: React.FC<{onSubmit:Function;filters:{preliqui
                   className="form-filter-transaction"
                   onSubmit={handleSubmit}
                 >
-                    <div className="container-col-sm-1 container-col-xl">
-                      <Field
-                        type="text"
-                        name="preliquidationNumber"
-                        label={i18next.t("preli:label.filter.preliquidationNumber")}
-                        component={Input}
-                        className="Admin-Pickers-input test"
-                        placeholder={i18next.t("preli:placeholder.filter.number")}
-                        maxLength={50}
-                      />
-                    </div>
-                    <div className="container-col-sm-1 container-col-xl">
-                      <Field
-                        type="text"
-                        name="taxIdentifier"
-                        label={i18next.t("preli:label.filter.taxIdentifier")}
-                        component={Input}
-                        className="Admin-Pickers-input"
-                        placeholder={i18next.t("preli:placeholder.filter.number")}                        maxLength={8}
-                      />
-                    </div>
-                    <div className="container-transaction-col-sm-1 container-transaction-col-xl">
+                  <div className="container-col-sm-1 container-col-xl">
+                    <Field
+                      type="text"
+                      name="preliquidationNumber"
+                      label={i18next.t(
+                        "preli:label.filter.preliquidationNumber"
+                      )}
+                      component={Input}
+                      className="Admin-Pickers-input test"
+                      placeholder={i18next.t("preli:placeholder.filter.number")}
+                      maxLength={50}
+                    />
+                  </div>
+                  <div className="container-col-sm-1 container-col-xl">
+                    <Field
+                      type="text"
+                      name="taxIdentifier"
+                      label={i18next.t("preli:label.filter.taxIdentifier")}
+                      component={Input}
+                      className="Admin-Pickers-input"
+                      placeholder={i18next.t("preli:placeholder.filter.number")}
+                      maxLength={8}
+                    />
+                  </div>
+                  <div className="container-transaction-col-sm-1 container-transaction-col-xl">
                     <div
                       className="datePicker-filter-transaction"
                       id="datePicker-filter-transaction"
                     >
                       <label className="label-Admin-Pickers">
-                      {i18next.t("preli:label.filter.generationDate")}
+                        {i18next.t("preli:label.filter.generationDate")}
                       </label>
                       <Field
                         type="text"
                         className="Admin-Pickers-input-select"
                         name="date"
-                        placeholder={i18next.t("preli:placeholder.filter.date")}                        maxLength={8}
+                        placeholder={i18next.t("preli:placeholder.filter.date")}
+                        maxLength={8}
                         language="es"
                       >
-                        {(props: any) => <DatePicker singleSelection={true} {...props} />}
+                        {(props: any) => (
+                          <DatePicker singleSelection={true} {...props} />
+                        )}
                       </Field>
                     </div>
                   </div>
@@ -107,20 +113,19 @@ export const PreliquidationFilter: React.FC<{onSubmit:Function;filters:{preliqui
                       {(props: any) => <MultipleSelect {...props} />}
                     </Field>
                   </div>
-                    <div className="container-col-sm-offset-1 container-col-sm-1 container-col-xl-auto end">
-                      <button
-                        className="search-button-transaction"
-                        name="search"
-                        type="submit"
-                      >
-                        <img src={search} alt="export" />
-                        <img className="or-filter" src={or} alt="or" />
-                        <p className="display-inline-block p-export">
-                          {i18next.t("global:label.button.search")}
-                        </p>
-                      </button>
-                    </div>
-
+                  <div className="container-col-sm-offset-1 container-col-sm-1 container-col-xl-auto end">
+                    <button
+                      className="search-button-transaction"
+                      name="search"
+                      type="submit"
+                    >
+                      <img src={search} alt="export" />
+                      <img className="or-filter" src={or} alt="or" />
+                      <p className="display-inline-block p-export">
+                        {i18next.t("global:label.button.search")}
+                      </p>
+                    </button>
+                  </div>
                 </form>
               )}
             </Form>
