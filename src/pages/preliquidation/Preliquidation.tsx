@@ -24,6 +24,7 @@ export const Preliquidation: React.FC<any> = ({ isFetching }): JSX.Element => {
             </h2>
           </div>
           <PreliquidationFilter />
+          <br />
           <TablePreliquidation items={items} />
           {items && items.length !== 0 ? (
             <SeeMoreButton disabled={true} />

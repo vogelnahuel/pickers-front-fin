@@ -1,8 +1,5 @@
-import { createSlice, PayloadAction, Action } from "@reduxjs/toolkit";
-import {
-  PreliquidationsApiResponse,
-  PreliquidationsContentResponseType,
-} from "sagas/types/preliquidation";
+import { Action, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { PreliquidationsContentResponseType } from "sagas/types/preliquidation";
 import { RootState } from "store";
 import { endsWithAny } from "utils/endsWithAny";
 import { PreliquitadionStateType } from "./types/preliquidation";
@@ -50,7 +47,7 @@ export const preliquidationSlice = createSlice({
       action: PayloadAction<PreliquidationsContentResponseType>
     ) => {
       const { payload } = action;
-      state.users = payload.result.items;
+      state.preliquidations = payload.result.items;
       state.seeMore = payload.hasMore;
       state.filtersExtraSeeMore.offset = payload.offset + payload.limit;
     },

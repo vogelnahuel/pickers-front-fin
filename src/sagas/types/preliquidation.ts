@@ -28,3 +28,12 @@ export type PreliquidationStatus = {
   name: string;
   tag: string;
 };
+
+export type PreliquidationParamsMiddlewareType = {
+  presettlmentId?: number;
+  status?: string;
+  generetedAt?: string;
+  fiscalNumber?: string;
+  limit?: number;
+  offset?: number;
+};

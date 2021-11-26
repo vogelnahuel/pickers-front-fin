@@ -13,5 +13,11 @@
   "label.select.inAccounting": "En contabilidad",
   "label.select.generatedPayment": "Pago generado",
 
-  "label.filter.preliquidationNumber": "Número de preliquidación"
+  "label.filter.preliquidationNumber": "Número de preliquidación",
+
+  "label.table.preliNumber": "Nro de preliquidación",
+  "label.table.if": "IF",
+  "label.table.generationDate": "F. Generación",
+  "label.table.status": "Estado",
+  "label.table.total": "Total"
 }
