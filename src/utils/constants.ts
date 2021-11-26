@@ -108,6 +108,42 @@ export const FILTER_TRANSACTION_OPTIONS = [
   },
 ];
 
+export const FILTER_PRELIQUIDATION_OPTIONS = [
+  {
+    label: "preli:label.select.initial",
+    id: "INITIAL ",
+  },
+  {
+    label: "preli:label.select.pending",
+    id: "PENDING",
+  },
+  {
+    label: "preli:label.select.inAprovement",
+    id: "IN_APROVEMENT",
+  },
+  {
+    label: "preli:label.select.aproved",
+    id: "APPROVED",
+  },
+   {
+    label: "preli:label.select.rejectedInvoice",
+    id: "REJECTED_INVOICE",
+  },
+  {
+    label: "preli:label.select.pendingAccounting",
+    id: "PENDING_ACCOUNTING",
+  },
+  {
+    label: "preli:label.select.inAccounting",
+    id: "IN_ACCOUNTING",
+  },
+  {
+    label: "preli:label.select.generatedPayment",
+    id: "GENERATED_PAYMENT",
+  },
+
+];
+
 export const FILTER_PICKERS_OPTIONS = [
   {
     label: "filterPickers:label.select.all",

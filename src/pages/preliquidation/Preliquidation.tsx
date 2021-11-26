@@ -4,6 +4,8 @@ import { Nav } from "component/admin/Nav/Nav";
 import "pages/preliquidation/preliquidation.scss";
 import NotificationModal from "component/modal/NotificationModal";
 import TablePreliquidation from "./tablePreliquidation/TablePreliquidation";
+
+import PreliquidationFilter from "./filter/PreliquidationFilterContainer";
 import SeeMoreButton from "component/seeMoreButton/SeeMoreButton";
 import i18next from "i18next";
 
@@ -21,7 +23,7 @@ export const Preliquidation: React.FC<any> = ({ isFetching }): JSX.Element => {
               <p className="subtitle-pendingUser-h2">Preliquidaciones</p>
             </h2>
           </div>
-          <br />
+          <PreliquidationFilter />
           <TablePreliquidation items={items} />
           {items && items.length !== 0 ? (
             <SeeMoreButton disabled={true} />

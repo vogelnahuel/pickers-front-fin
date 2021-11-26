@@ -10,6 +10,9 @@ import { PreliquitadionStateType } from "./types/preliquidation";
 export const initialState: PreliquitadionStateType = {
   fetching: false,
   preliquidations: [],
+  filters: {},
+  filtersExtra: {},
+  filtersExtraSeeMore: {},
   seeMore: true,
 };
 
@@ -55,6 +58,12 @@ export const preliquidationSlice = createSlice({
       state: PreliquitadionStateType,
       action: PayloadAction<any>
     ) => {},
+    setPreliquidationFilters: (
+      state: PreliquitadionStateType,
+      action: PayloadAction<any>
+    ) => {
+      state.filters = action.payload;
+    },
     getPreliquidationsError: () => {},
   },
   extraReducers: (builder) =>
