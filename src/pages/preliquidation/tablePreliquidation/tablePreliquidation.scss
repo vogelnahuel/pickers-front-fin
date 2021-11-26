@@ -1,0 +1,5 @@
+@import "@pickit/pickit-grid-system";
+
+.container-table {
+  @include container(25, 0);
+}

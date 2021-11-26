@@ -11,6 +11,20 @@ export type PreliquidationsContentResponseType = {
   error?: string;
   message?: string;
   result: {
-    items: any[];
+    items: PreliquidationItem[];
   };
+};
+
+export type PreliquidationItem = {
+  id: number;
+  fiscalNumber: string;
+  total: number;
+  generated_at: string;
+  status: PreliquidationStatus;
+};
+
+export type PreliquidationStatus = {
+  id: number;
+  name: string;
+  tag: string;
 };

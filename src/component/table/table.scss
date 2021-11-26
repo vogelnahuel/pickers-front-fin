@@ -1,0 +1,78 @@
+@import "@pickit/pickit-grid-system";
+
+$background-color: #f2f2f2;
+$border-color: #ccc;
+$text-color: #4d4d4d;
+
+@mixin get-typography($weight, $size, $line-height) {
+  font: {
+    family: "Mulish";
+    style: normal;
+    weight: $weight;
+    size: $size;
+  }
+  line-height: $line-height;
+}
+
+%cell {
+  border-bottom: 1px solid $border-color;
+  color: $text-color;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: 8px;
+
+  span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.table-pickers {
+  border-collapse: separate;
+  border-spacing: 0px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  width: 100%;
+  background-color: $background-color;
+  border: 1px solid $border-color;
+  display: block;
+}
+
+.table-pickers thead,
+.table-pickers tbody {
+  display: block;
+  width: 100%;
+}
+
+.table-pickers thead tr {
+  @include get-typography(bold, 18px, 23px);
+  //border: 1px solid #cccccc;
+  height: 86px;
+
+  td {
+    @extend %cell;
+  }
+}
+
+.table-pickers tbody tr {
+  @include get-typography(normal, 18px, 23px);
+  background: white;
+  height: 100px;
+
+  td {
+    @extend %cell;
+  }
+
+  &:last-child td {
+    border: none;
+  }
+}
+
+.table-hover tbody tr:hover {
+  background-color: $background-color;
+  mix-blend-mode: multiply;
+  cursor: pointer;
+}

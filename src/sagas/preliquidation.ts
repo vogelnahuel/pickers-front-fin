@@ -25,7 +25,8 @@ export default sagas;
 function* getPreliquidations({
   payload,
 }: PayloadAction<any>): Generator<
-  CallEffect<AxiosResponse<any>> | PutEffect<{ type: string }>,
+  | CallEffect<AxiosResponse<PreliquidationsApiResponse>>
+  | PutEffect<{ type: string }>,
   void,
   PreliquidationsApiResponse
 > {
@@ -36,12 +37,6 @@ function* getPreliquidations({
   if (response.status !== 200) {
     yield put(preliquidationActions.getPreliquidationsError());
   } else {
-    const {
-      result: { items },
-      ...rest
-    } = response.data;
-    yield put(
-      preliquidationActions.getPreliquidationsSuccess({ items, ...rest })
-    );
+    yield put(preliquidationActions.getPreliquidationsSuccess(response.data));
   }
 }
