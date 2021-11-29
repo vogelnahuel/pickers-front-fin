@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "pages/pickers/filter/filter.scss";
 import dropdown from "assets/admin/PendingUser/desplegable.svg";
 import or from "assets/admin/PendingUser/or.svg";
@@ -11,12 +11,21 @@ import MultipleSelect from "component/inputs/MultipleSelect";
 import useValidationSchema from "hooks/useValidationSchema";
 import i18next from "i18next";
 import { PreliquidationFilterPropsType } from "./type";
+import axios from "axios";
+import * as preliquidationsMiddleware from "./../../../middleware/preliquidations";
 
 export const PreliquidationFilter: React.FC<PreliquidationFilterPropsType> = ({
   onSubmit,
   filters,
   validationSchema,
 }): JSX.Element => {
+    
+        const response = preliquidationsMiddleware.getPreliquidations()
+        console.log(response)
+        
+ 
+    
+    
   return (
     <div className="container-fluid display-filter-transaction">
       <div className="container-row">
