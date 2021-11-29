@@ -1,0 +1,45 @@
+@import 'src/colors';
+
+.tooltip-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.tooltip-content {
+  position: absolute;
+  white-space: nowrap;
+  @include theme-selector('background-color', 'color-title', true);
+  border-radius: 4px;
+  @include theme-selector('color', 'color-white', true);
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  transition: all 150ms;
+}
+
+.tooltip {
+  @include theme-selector('background-color', 'color-title', true);
+  border-radius: 4px;
+  @include theme-selector('color', 'color-white', true);
+  font-size: .8rem;
+  font-weight: 200;
+  left: 0;
+  opacity: 0;
+  padding: 10px 40px;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  transform: translateX(-15px);
+  transform-origin: 0 50%;
+  transition: all 200ms ease-in-out;
+  visibility: hidden;
+  will-change: transform;
+  z-index: 4;
+}
+
+.show {
+  opacity: 1;
+  transform: translateX(0);
+  visibility: visible;
+}

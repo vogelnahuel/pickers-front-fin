@@ -1,0 +1,87 @@
+@import 'src/colors';
+
+.tooltip-container {
+  position: relative;
+  display: flex;
+  z-index: 999;
+  align-items: center;
+  overflow: visible;
+}
+
+.tooltip-content {
+  position: absolute;
+  white-space: nowrap;
+  //@include theme-selector('background-color', 'color-title', true);
+  border-radius: 4px;
+  //@include theme-selector('color', 'color-white', true);
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  transition: opacity 200ms;
+  background-color: #4d4d4d;
+  color: white;
+  z-index: 999;
+  opacity: 0;
+  font-size: 14px;
+
+  &.right {
+    left: 100%;
+    margin-left: 16px;
+  }
+
+  &.left {
+    right: 100%;
+    margin-right: 16px;
+  }
+
+  &.top, &.bottom {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &.top {
+    bottom: 100%;
+    margin-bottom: 12px;
+  }
+
+  &.bottom {
+    top: 100%;
+    margin-top: 12px;
+  }
+}
+
+
+.tooltip-arrow {
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  border-radius: 1px;
+  background-color: #4d4d4d;
+  transform: rotate(45deg);
+
+  &.left{
+    right: -5px;
+  }
+
+  &.right{
+    left: -5px;
+  }
+
+  &.top,
+  &.bottom {
+    left: 50%;
+    transform: rotate(45deg) translateX(-50%);
+  }
+
+  &.bottom {
+    top: 0px;
+  }
+  
+  &.top {
+    bottom: -8px;
+  }
+
+}
+
+
+

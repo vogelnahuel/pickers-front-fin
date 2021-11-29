@@ -11,8 +11,13 @@ import DashboardContainer from "../pages/dashboard/DashboardAdminContainer";
 import Transaction from "../pages/transaction/TransactionContainer";
 import PreliquidationContainer from "pages/preliquidation/PreliquidationContainer";
 import { history, store } from "../store";
+import { useTheming } from "config/theme";
+
 
 const Routes = (): JSX.Element => {
+
+  useTheming();
+
   return (
     <Provider store={store}>
       <ConnectedRouter history={history}>
