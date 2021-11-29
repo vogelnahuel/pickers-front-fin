@@ -52,6 +52,7 @@
     "build:prod": " env-cmd -f ./environments/.env.production react-scripts build",
     "build:test": " env-cmd -f ./environments/.env.test react-scripts build",
     "test": "react-scripts test",
+    "server": "json-server --watch db.json -p 8080",
     "eject": "react-scripts eject"
   },
   "compilerOptions": {

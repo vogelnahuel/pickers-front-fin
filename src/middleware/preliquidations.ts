@@ -7,23 +7,23 @@ import { PreliquidationsApiResponse } from "sagas/types/preliquidation";
 // ): Promise<AxiosResponse<PreliquidationsApiResponse>> =>
 //   API.get("/ms-admin-rest/api/v1.0/presettlments", params);
 
-export const getPreliquidations = (): Promise<AxiosResponse<PreliquidationsApiResponse>> =>
-axios.get("http://localhost:3000/presettlments")
+// export const getPreliquidations = (): Promise<AxiosResponse<PreliquidationsApiResponse>> =>
+// axios.get("http://localhost:8080/presettlments")
 
-export const postPreliquidations = (params:any): Promise<AxiosResponse<PreliquidationsApiResponse>> =>
-axios.get("http://localhost:3000/presettlments",params)
+export const getPreliquidations = (params:any): Promise<AxiosResponse<PreliquidationsApiResponse>> =>
+axios.get("http://localhost:8080/presettlments",params)
 
 
 
 
 export const getInvoiceType = (): Promise<AxiosResponse<PreliquidationsApiResponse>> =>
-axios.get("http://localhost:3000/invoiceType")
+axios.get("http://localhost:8080/invoiceType")
 
 export const saveDetailInvoice = (id:any,params:any): Promise<AxiosResponse<PreliquidationsApiResponse>> =>
-axios.patch(`http://localhost:3000/invoiceType/${id}`,params)
+axios.patch(`http://localhost:8080/invoiceType/${id}`,params)
 
 export const aproveDetailInvoice = (id:any,params:any): Promise<AxiosResponse<PreliquidationsApiResponse>> =>
-axios.patch(`http://localhost:3000/invoiceType/${id}`,params)
+axios.patch(`http://localhost:8080/invoiceType/${id}`,params)
 
 export const deleteDetailInvoice = (id:any): Promise<AxiosResponse<PreliquidationsApiResponse>> =>
-axios.patch(`http://localhost:3000/invoiceType/${id}`)
+axios.patch(`http://localhost:8080/invoiceType/${id}`)

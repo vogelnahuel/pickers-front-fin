@@ -61,6 +61,12 @@ export const preliquidationSlice = createSlice({
     ) => {
       state.filters = action.payload;
     },
+    setPreliquidationExtraFilters: (
+      state: PreliquitadionStateType,
+      action: PayloadAction<any>
+    ) => {
+      state.filtersExtra = { ...state.filtersExtra, ...action.payload };
+    },
     getPreliquidationsError: () => {},
   },
   extraReducers: (builder) =>

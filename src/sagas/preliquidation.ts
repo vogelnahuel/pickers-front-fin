@@ -30,6 +30,7 @@ function* getPreliquidations({
   void,
   PreliquidationsApiResponse
 > {
+  console.log("INGRESA AL SAGAS")
   const response = yield call(
     preliquidationsMiddleware.getPreliquidations,
     payload
