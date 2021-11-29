@@ -29,19 +29,19 @@ function* getPreliquidations({
   void,
   PreliquidationsApiResponse
 > {
-  const response = yield call(
-    preliquidationsMiddleware.getPreliquidations,
-    payload
-  );
-  if (response.status !== 200) {
-    yield put(preliquidationActions.getPreliquidationsError());
-  } else {
-    const {
-      result: { items },
-      ...rest
-    } = response.data;
-    yield put(
-      preliquidationActions.getPreliquidationsSuccess({ items, ...rest })
-    );
-  }
+  // const response = yield call(
+  //   preliquidationsMiddleware.getPreliquidations,
+  //   payload
+  // );
+  // if (response.status !== 200) {
+  //   yield put(preliquidationActions.getPreliquidationsError());
+  // } else {
+  //   const {
+  //     result: { items },
+  //     ...rest
+  //   } = response.data;
+  //   yield put(
+  //     preliquidationActions.getPreliquidationsSuccess({ items, ...rest })
+  //   );
+  // }
 }

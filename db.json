@@ -1,0 +1,135 @@
+{
+  "presettlments": [
+    {
+      "result": {
+        "items": [
+          {
+            "id": 1,
+            "fiscalNumber": 123123,
+            "status": {
+              "id": 1,
+              "name": "pepe",
+              "tag": "APPROVED"
+            },
+            "total": 123.123,
+            "genereted_at": "string"
+          }
+        ]
+      },
+      "limit": 20,
+      "offset": 0,
+      "hasMore": false
+    },
+    {
+      "result": {
+        "items": [
+          {
+            "id": 1,
+            "fiscalNumber": 123123,
+            "status": {
+              "id": 1,
+              "name": "pepe",
+              "tag": "APPROVED"
+            },
+            "total": 123.123,
+            "genereted_at": "string"
+          }
+        ]
+      },
+      "limit": 20,
+      "offset": 0,
+      "hasMore": false
+    },
+    {
+      "result": {
+        "items": [
+          {
+            "id": 1,
+            "fiscalNumber": 123123,
+            "status": {
+              "id": 1,
+              "name": "pepe",
+              "tag": "APPROVED"
+            },
+            "total": 123.123,
+            "genereted_at": "string"
+          }
+        ]
+      },
+      "limit": 20,
+      "offset": 0,
+      "hasMore": false
+    },
+    {
+      "result": {
+        "items": [
+          {
+            "id": 1,
+            "fiscalNumber": 123123,
+            "status": {
+              "id": 1,
+              "name": "pepe",
+              "tag": "APPROVED"
+            },
+            "total": 123.123,
+            "genereted_at": "string"
+          }
+        ]
+      },
+      "limit": 20,
+      "offset": 0,
+      "hasMore": false
+    },
+    {
+      "result": {
+        "items": [
+          {
+            "id": 1,
+            "fiscalNumber": 123123,
+            "status": {
+              "id": 1,
+              "name": "pepe",
+              "tag": "APPROVED"
+            },
+            "total": 123.123,
+            "genereted_at": "string"
+          }
+        ]
+      },
+      "limit": 20,
+      "offset": 0,
+      "hasMore": false
+    }
+  ],
+  "invoiceType":  [
+    {
+       "name": "A",
+       "tag": "string"
+    },
+    {
+       "name": "C",
+       "tag": "string"
+    }
+],
+"invoice":{
+   
+        "id": 1, 
+        "emisionDate": "string",
+        "invoiceNumber": "string",
+        "salePoint": "string",
+        "invoiceType": "string",
+        "caeNumber": "string",
+        "fiscalData": {
+            "fiscalNumber": "string",
+            "companyName": "string", 
+            "taxPayerType": "string",
+            "total": 123.123
+        },
+        "invoiceFile": {
+            "upload": true,
+            "url":  null
+        
+    }
+}
+}
+
