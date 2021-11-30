@@ -17,6 +17,7 @@ export type DetailPickerContainerTypeProps = {
   setActualPage: Function;
   wrongFiles: boolean;
   loadedFiles: boolean;
+ 
 
 };
 
@@ -39,6 +40,7 @@ export type DetailPickerTypeProps = {
   showNotification: (notification: NotificationStateType) => void;
   loadedFiles: boolean;
   Close:Function;
+  changePage:Function
 };
 
 export type PickerFileRequestType = {

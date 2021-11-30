@@ -1,10 +1,10 @@
 import { NotificationStateType } from "reducers/types/notification";
 
-export type PickerStatusButtonType = {
-  isDirty: boolean;
-  actualPage: string;
+export type TabControlerType = {
+  isDirty?: boolean;
+  actualPage?: string;
   showNotification: (notification: NotificationStateType) => void;
-  setActualPage: Function;
   wrongFiles?: boolean;
-  isDetail?: boolean;
+  changePage: Function;
+  tabs?:any,
 };

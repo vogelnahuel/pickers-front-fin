@@ -11,6 +11,7 @@ import DashboardContainer from "../pages/dashboard/DashboardAdminContainer";
 import Transaction from "../pages/transaction/TransactionContainer";
 import PreliquidationContainer from "pages/preliquidation/PreliquidationContainer";
 import { history, store } from "../store";
+import { DetailPreliquidationContainer } from "pages/preliquidation/DetailPreliquidation/DetailPreliquidationContainer";
 
 const Routes = (): JSX.Element => {
   return (
@@ -28,6 +29,11 @@ const Routes = (): JSX.Element => {
             path="/preliquidation"
             exact
             component={PreliquidationContainer}
+          />
+          <Route
+            path="/preliquidation/:id"
+            exact
+            component={DetailPreliquidationContainer}
           />
         </Switch>
       </ConnectedRouter>

@@ -9,8 +9,16 @@ import {
 } from "./types";
 import { AppDispatch, RootState } from "store";
 import { actions, pickersSelector } from "reducers/pickers";
+import { useHistory } from "react-router-dom";
+import { NotificationStateType } from "reducers/types/notification";
+import { actions as notificationActions } from "reducers/notification";
+import {
+  detailPickerSelector as pendingUserAdminPickerSelectors,
+  hasPickerWrongFilesSelector,
+} from "reducers/detailPicker";
+import i18next from "i18next";
 
-const PendingUserAdminContainer: React.FC<PickerContainerTypes> = (
+const PendingUserAdminContainer: React.FC<any> = (//PickerContainerTypes
   props
 ): JSX.Element => {
   useEffect(() => {
@@ -25,9 +33,23 @@ const PendingUserAdminContainer: React.FC<PickerContainerTypes> = (
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.actualPage]);
 
+  const history = useHistory();
+  const changePage = (page: string, isDirty: boolean) => {
+    if (props.isDetail || props.actualPage !== page) {
+      let onClose = () => {
+        props.setActualPage(page);
+      };
+      onClose();
+    } 
+    else {
+   
+    }
+  };
+
   return (
     <Pickers
       {...props}
+      changePage={changePage}
       tableTitles={
         props.actualPage === "PENDING" ? titlesAdminPending : titlesAdminActive
       }
@@ -43,6 +65,8 @@ const mapStateToProps = (state: RootState) => ({
   filtersExtraSeeMore: pickersSelector(state).filtersExtraSeeMore,
   seeMore: pickersSelector(state).seeMore,
   actualPage: pickersSelector(state).actualPage,
+  isDirty: pendingUserAdminPickerSelectors(state).dirty,
+  wrongFiles: hasPickerWrongFilesSelector(state),
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
@@ -70,6 +94,9 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   },
   getMorePendingUser: (params: ParamsMiddlewareType) => {
     dispatch(actions.getMorePendingUserRequest(params));
+  },
+  showNotification: (content: NotificationStateType) => {
+    dispatch(notificationActions.showNotification(content));
   },
 });
 export default connect(
