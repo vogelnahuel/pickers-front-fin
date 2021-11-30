@@ -8,10 +8,17 @@ import TablePreliquidation from "./tablePreliquidation/TablePreliquidation";
 import PreliquidationFilter from "./filter/PreliquidationFilterContainer";
 import SeeMoreButton from "component/seeMoreButton/SeeMoreButton";
 import i18next from "i18next";
+import Button from "component/button/Button";
 
-const items = [1, 2, 4];
-
-export const Preliquidation: React.FC<any> = ({ isFetching }): JSX.Element => {
+export const Preliquidation: React.FC<any> = ({
+  isFetching,
+  filters,
+  seeMore,
+  filtersExtraSeeMore,
+  preliquidations,
+  getMorePreliquidations,
+  anyPreliquidationSelected,
+}): JSX.Element => {
   return (
     <div className="background-Grey">
       <Header />
@@ -24,10 +31,20 @@ export const Preliquidation: React.FC<any> = ({ isFetching }): JSX.Element => {
             </h2>
           </div>
           <PreliquidationFilter />
-          <br />
-          <TablePreliquidation items={items} />
-          {items && items.length !== 0 ? (
-            <SeeMoreButton disabled={true} />
+          <div className="button-container">
+            <Button text="Enviar a contabilidad" disabled={!anyPreliquidationSelected} onClick={console.log}/>
+          </div>
+          <TablePreliquidation items={preliquidations} />
+          {preliquidations && preliquidations.length !== 0 ? (
+            <SeeMoreButton
+              disabled={!seeMore}
+              onClick={() =>
+                getMorePreliquidations({
+                  ...filters,
+                  ...filtersExtraSeeMore,
+                })
+              }
+            />
           ) : (
             <div className="paginator-button-transaction-noResult">
               {i18next.t("global:label.title.noResults")}

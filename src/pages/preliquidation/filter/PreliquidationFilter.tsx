@@ -20,12 +20,6 @@ export const PreliquidationFilter: React.FC<PreliquidationFilterPropsType> = ({
   validationSchema,
 }): JSX.Element => {
     
-        // const response = preliquidationsMiddleware.getPreliquidations()
-        // console.log(response)
-        
- 
-    
-    
   return (
     <div className="container-fluid display-filter-transaction">
       <div className="container-row">

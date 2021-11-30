@@ -19,7 +19,7 @@ export type PreliquidationItem = {
   id: number;
   fiscalNumber: string;
   total: number;
-  generated_at: string;
+  genereted_at: string;
   status: PreliquidationStatus;
 };
 

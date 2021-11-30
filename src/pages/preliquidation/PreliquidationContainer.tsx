@@ -7,12 +7,9 @@ import { actions as preliActions, preliquidationSelector } from "../../reducers/
 
 const PreliquidationContainer = (props: any): JSX.Element => {
   useEffect(() => {
-    console.log("-INGRESA AL USEEFFECT")
-    // const filtersExtra = { limit: 3 };
-    // props.setPreliquidationExtraFilters(filtersExtra);
-    // props.getPreliquidations({ ...filtersExtra });
-    //props.setPendingUserFilters(filters);
-    //props.getPendingUser({ ...filtersExtra, ...filters });
+    const filtersExtra = { limit: 3 };
+    props.setPreliquidationExtraFilters(filtersExtra);
+    props.getPreliquidations({ ...filtersExtra });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -25,17 +22,20 @@ const mapStateToProps = (state: RootState) => ({
   filters: preliquidationSelector(state).filters,
   filtersExtra: preliquidationSelector(state).filtersExtra,
   filtersExtraSeeMore: preliquidationSelector(state).filtersExtraSeeMore,
-  seeMore: preliquidationSelector(state).seeMore
+  seeMore: preliquidationSelector(state).seeMore,
+  anyPreliquidationSelected: preliquidationSelector(state).preliquidationsSelected.length > 0
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
   getPreliquidations: (params: PreliquidationParamsMiddlewareType) => {
-    console.log("Ingresa al dispatch")
     dispatch(preliActions.getPreliquidationsRequest(params));
   },
   setPreliquidationExtraFilters: (params: any) => {
     dispatch(preliActions.setPreliquidationExtraFilters(params))
-  }
+  },
+  getMorePreliquidations: (params: PreliquidationParamsMiddlewareType) => {
+    dispatch(preliActions.getMorePreliquidationsRequest(params));
+  },
 });
 export default connect(
   mapStateToProps,

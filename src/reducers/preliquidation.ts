@@ -1,5 +1,13 @@
-import { Action, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { PreliquidationsContentResponseType } from "sagas/types/preliquidation";
+import {
+  Action,
+  createSlice,
+  PayloadAction,
+  createSelector,
+} from "@reduxjs/toolkit";
+import {
+  PreliquidationItem,
+  PreliquidationsContentResponseType,
+} from "sagas/types/preliquidation";
 import { RootState } from "store";
 import { endsWithAny } from "utils/endsWithAny";
 import { PreliquitadionStateType } from "./types/preliquidation";
@@ -7,6 +15,7 @@ import { PreliquitadionStateType } from "./types/preliquidation";
 export const initialState: PreliquitadionStateType = {
   fetching: false,
   preliquidations: [],
+  preliquidationsSelected: [],
   filters: {},
   filtersExtra: {},
   filtersExtraSeeMore: {},
@@ -38,7 +47,7 @@ export const preliquidationSlice = createSlice({
       state: PreliquitadionStateType,
       action: PayloadAction<any>
     ) => {},
-    getMoreTransactionsPreliquidationsRequest: (
+    getMorePreliquidationsRequest: (
       state: PreliquitadionStateType,
       action: PayloadAction<any>
     ) => {},
@@ -68,6 +77,25 @@ export const preliquidationSlice = createSlice({
       state.filtersExtra = { ...state.filtersExtra, ...action.payload };
     },
     getPreliquidationsError: () => {},
+    toggleItem: (
+      state: PreliquitadionStateType,
+      action: PayloadAction<PreliquidationItem>
+    ) => {
+      const item = action.payload;
+      const idx = state.preliquidationsSelected.findIndex(p => p.id === item.id);
+      
+      if (idx >= 0) state.preliquidationsSelected.splice(idx, 1);
+      else state.preliquidationsSelected.push(item);
+    },
+    toggleAll: (state: PreliquitadionStateType) => {
+      const approvedItems = state.preliquidations.filter(
+        (p) => p.status.tag === "APPROVED"
+      );
+      // Estan todas las preli seleccionadas
+      if (approvedItems.length === state.preliquidationsSelected.length)
+        state.preliquidationsSelected = [];
+      else state.preliquidationsSelected = approvedItems;
+    },
   },
   extraReducers: (builder) =>
     builder
@@ -83,5 +111,12 @@ export const preliquidationSelector = (state: RootState) =>
   state.preliquidations;
 
 export const actions = preliquidationSlice.actions;
+
+export const allPreliquidationsSelected = createSelector(
+  (state: RootState) => state.preliquidations,
+  (preli) =>
+    preli.preliquidations.filter((p) => p.status.tag === "APPROVED").length ===
+    preli.preliquidationsSelected.length
+);
 
 export default preliquidationSlice.reducer;

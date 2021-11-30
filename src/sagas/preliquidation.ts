@@ -18,6 +18,8 @@ const sagas = [
     preliquidationActions.getPreliquidationsRequest.type,
     getPreliquidations
   ),
+  takeLatest(preliquidationActions.getMorePreliquidationsRequest.type,
+    getMorePreliquidations)
 ];
 
 export default sagas;
@@ -30,7 +32,6 @@ function* getPreliquidations({
   void,
   PreliquidationsApiResponse
 > {
-  console.log("INGRESA AL SAGAS")
   const response = yield call(
     preliquidationsMiddleware.getPreliquidations,
     payload
@@ -39,5 +40,25 @@ function* getPreliquidations({
     yield put(preliquidationActions.getPreliquidationsError());
   } else {
     yield put(preliquidationActions.getPreliquidationsSuccess(response.data));
+  }
+}
+
+function* getMorePreliquidations({
+  payload,
+}: PayloadAction<ParamsMiddlewareType>): Generator<
+  | CallEffect<AxiosResponse<PickersAxiosResponseType>>
+  | PutEffect<{ type: string }>,
+  void,
+  PickersResponseType
+> {
+  const response = yield call(pickersMiddleware.getPickers, payload);
+  if (response.status !== 200) {
+    yield put(actions.getPendingUserError());
+  } else {
+    const {
+      result: { items },
+      ...rest
+    } = response.data;
+    yield put(actions.getMorePendingUserSuccess({ items, ...rest }));
   }
 }

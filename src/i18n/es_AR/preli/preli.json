@@ -17,7 +17,7 @@
 
   "label.table.preliNumber": "Nro de preliquidación",
   "label.table.if": "IF",
-  "label.table.generationDate": "F. Generación",
+  "label.table.dateOfIssue": "Emisión",
   "label.table.status": "Estado",
   "label.table.total": "Total"
 }

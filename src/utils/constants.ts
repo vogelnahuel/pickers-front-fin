@@ -29,7 +29,7 @@ export const transactionTableTitles: string[] = [
 export const preliquidationTableTitles: string[] = [
   "preli:label.table.preliNumber",
   "preli:label.table.if",
-  "preli:label.table.generationDate",
+  "preli:label.table.dateOfIssue",
   "preli:label.table.status",
   "preli:label.table.total",
 ];
