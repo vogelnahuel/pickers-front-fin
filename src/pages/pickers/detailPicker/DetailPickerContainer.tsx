@@ -56,7 +56,58 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
       ? moment(date).format(DATE_FORMATS.shortDate)
       : date;
   };
+  const history = useHistory();
+  const changePage = (page: string, isDirty?: boolean) => {
+    if (props.actualPage !== page) {
+      let onClose = () => {
+        props.setActualPage(page);
 
+        if (history.location.pathname !== "/pickers" && history.length > 1)
+          history.goBack();
+        else if (history.length <= 1) {
+          history.replace("/pickers");
+        }
+      };
+      if (isDirty) {
+        props.showNotification({
+          level: "warning",
+          title: i18next.t("pickers:title.modal.saveChanges"),
+          body: i18next.t("pickers:label.modal.saveChanges"),
+          onClickLabel: "pickers:button.modal.goToSave",
+          onCloseLabel: "pickers:button.modal.notSave",
+          onClose: onClose,
+          onClick: () =>
+            window.scroll({
+              top: window.innerHeight,
+              left: 0,
+              behavior: "smooth",
+            }),
+        });
+      } 
+      else if (props.wrongFiles) {
+        props.showNotification({
+          level: "warning",
+          title: i18next.t("global:title.modal.withoutSaving"),
+          body:  i18next.t("global:label.modal.withoutSaving"),
+          onClickLabel: i18next.t("global:label.button.checkErrors"),
+          onCloseLabel: i18next.t("global:label.button.continue"),
+          onClose: onClose,
+          onClick: () =>
+            window.scroll({
+              top: window.innerHeight,
+              left: 0,
+              behavior: "smooth",
+            }),
+        });
+      } 
+      else {
+        onClose();
+      }
+    } 
+    else {
+   
+    }
+  };
 
   const validationSchema: yup.SchemaOf<DetailPickerValidationSchema> =
     yup.object({
@@ -185,7 +236,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
     <DetailPicker
       {...props}
       validationSchema={validationSchema}
-      //changePage={changePage}
+      changePage={changePage}
       cancel={cancel}
       goBack={() => historial.goBack()}
       aproveSubmit={aproveSubmit}
