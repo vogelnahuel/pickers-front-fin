@@ -38,7 +38,6 @@ $text-color: #4d4d4d;
 
 .table-pickers thead tr {
   @include get-typography(bold, 18px, 23px);
-  //border: 1px solid #cccccc;
   height: 86px;
 
   td {
