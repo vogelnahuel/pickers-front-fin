@@ -27,7 +27,18 @@ export const Pickers: React.FC<PickerTypes> = ({
   getPendingUsersExportRequest,
   changePage,
 }): JSX.Element => {
-  const tabs = [{tittle:"pickers:label.title.pending",id:"PENDING",icons:{active:relojAzul,disable:relojOscuro}},{tittle:"pickers:label.title.pickers",id:"ACTIVE",icons:{active:trabajadorAzul,disable:trabajadorOscuro}}]
+  const tabs = [
+    {
+      title: "pickers:label.title.pending",
+      id: "PENDING",
+      icons: { active: relojAzul, disable: relojOscuro },
+    },
+    {
+      title: "pickers:label.title.pickers",
+      id: "ACTIVE",
+      icons: { active: trabajadorAzul, disable: trabajadorOscuro },
+    },
+  ];
 
   return (
     <div className="background-Grey">
@@ -35,7 +46,7 @@ export const Pickers: React.FC<PickerTypes> = ({
       <div className="mainContainerFlex">
         <Nav isDirty={null} showNotification={null} />
         <div className="pending-container">
-          <TabControler tabs={tabs} changePage={changePage}/>
+          <TabControler tabs={tabs} changePage={changePage} />
 
           <div className="mainContainerFlex">
             <h2 className="subTitle-pending">
@@ -115,7 +126,14 @@ export const Pickers: React.FC<PickerTypes> = ({
     </div>
   );
 };
-function showNotification(arg0: { level: string; title: string; body: string; onClickLabel: string; onCloseLabel: string; onClose: () => void; onClick: () => void; }) {
+function showNotification(arg0: {
+  level: string;
+  title: string;
+  body: string;
+  onClickLabel: string;
+  onCloseLabel: string;
+  onClose: () => void;
+  onClick: () => void;
+}) {
   throw new Error("Function not implemented.");
 }
-

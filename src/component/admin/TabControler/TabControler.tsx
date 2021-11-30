@@ -1,10 +1,5 @@
 import React from "react";
-import volver from "assets/admin/PendingUser/volver.svg";
-import relojAzul from "assets/admin/PendingUser/relojAzul.svg";
-import relojOscuro from "assets/admin/PendingUser/relojOscuro.svg";
-import trabajadorOscuro from "assets/admin/PendingUser/trabajadorOscuro.svg";
-import trabajadorAzul from "assets/admin/PendingUser/trabajadorAzul.svg";
-import "component/admin/TabControler/pending.scss";
+import "component/admin/TabControler/TabControler";
 import { useHistory } from "react-router-dom";
 import {
   detailPickerSelector as pendingUserAdminPickerSelectors,
@@ -19,6 +14,7 @@ import {
   pickersSelector as pendingUserSelectors,
 } from "reducers/pickers";
 import i18next from "i18next";
+import "./TabControler.scss"
 import { NotificationStateType } from "reducers/types/notification";
 export const TabControler: React.FC<TabControlerType> = ({
   showNotification,
@@ -26,11 +22,10 @@ export const TabControler: React.FC<TabControlerType> = ({
   isDirty,
   wrongFiles,
   changePage,
-  tabs
+  tabs,
 }) => {
   const history = useHistory();
 
-  
   const handleHistory = (e: React.MouseEvent) => {
     const eventTarget = e.target as HTMLElement;
     let onClose = () => {
@@ -73,22 +68,20 @@ export const TabControler: React.FC<TabControlerType> = ({
     }
   };
   return (
-    <div className="FlexPending">
-      <div className="FlexPending backGround-pending">
+    <div className="flex-tab">
+      <div className="flex-tab backGround-tab">
         <div
           onClick={() => {
             changePage(tabs && tabs[0].id, isDirty);
           }}
-          className="container-pending pending-blue-border-izq"
+          className="container-tag tag-blue-border-izq"
         >
           <p
             className={
-              actualPage === tabs[0].id
-                ? "Pending-paragraph"
-                : "Pending-paragraph2"
+              actualPage === tabs[0].id ? "table-title-active" : "table-title"
             }
           >
-            {i18next.t(tabs ? tabs[0].tittle : "")}
+            {i18next.t(tabs ? tabs[0].title : "")}
           </p>
           {tabs && (
             <img
@@ -107,22 +100,20 @@ export const TabControler: React.FC<TabControlerType> = ({
           onClick={() => {
             changePage(tabs && tabs[1].id, isDirty);
           }}
-          className="container-pending border-pending pending-blue-border-der"
+          className="container-tag border-tag tag-blue-border-der"
         >
           <p
             className={
-              actualPage === tabs[1].id
-                ? "Pending-paragraph"
-                : "Pending-paragraph2"
+              actualPage === tabs[1].id ? "table-title-active" : "table-title"
             }
           >
-            {i18next.t(tabs ? tabs[0].tittle : "")}
+            {i18next.t(tabs ? tabs[0].title : "")}
           </p>
           {tabs && (
             <img
               className="img"
               src={
-                tabs[1].icons  && actualPage === tabs[1].id
+                tabs[1].icons && actualPage === tabs[1].id
                   ? tabs[1].icons.active
                   : tabs[1].icons.disable
               }

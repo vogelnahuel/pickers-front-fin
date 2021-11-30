@@ -18,7 +18,7 @@ import {
 } from "reducers/detailPicker";
 import i18next from "i18next";
 
-const PendingUserAdminContainer: React.FC<any> = (//PickerContainerTypes
+const PendingUserAdminContainer: React.FC<PickerContainerTypes> = (//
   props
 ): JSX.Element => {
   useEffect(() => {
@@ -34,16 +34,13 @@ const PendingUserAdminContainer: React.FC<any> = (//PickerContainerTypes
   }, [props.actualPage]);
 
   const history = useHistory();
-  const changePage = (page: string, isDirty: boolean) => {
+  const changePage = (page: string, isDirty?: boolean) => {
     if (props.isDetail || props.actualPage !== page) {
       let onClose = () => {
         props.setActualPage(page);
       };
       onClose();
     } 
-    else {
-   
-    }
   };
 
   return (

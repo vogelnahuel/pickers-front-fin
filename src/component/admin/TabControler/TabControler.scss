@@ -1,13 +1,13 @@
-.FlexPending{
+.flex-tab{
     display: flex;
     border-radius: 10px;
 
 }
-.backGround-pending{
+.backGround-tab{
     background-color: white;
     
 }
-.Pending-paragraph{
+.table-title-active{
     color: #0098FF;
     font-family: 'Mulish';
     font-style: normal;
@@ -21,7 +21,7 @@
     padding-left: 2.196vw    ;
 }
 
-.Pending-paragraph2{
+.table-title{
     font-family: 'Mulish';
     font-style: normal;
     font-weight: bold;
@@ -46,22 +46,22 @@
     margin-top: -0.65104166666667vh;
     margin-left: 0.5rem;
 }
-.container-pending{
+.container-tag{
     height: 12.5vh;
     width: 26.2vw;
     border: 0.823136px solid #E5E5E5;
     cursor: pointer;
 }
-.pending-blue-border-izq{
+.tag-blue-border-izq{
     border-bottom-left-radius: 6px;
     border-top-left-radius: 6px;
 }
-.pending-blue-border-der{
+.tag-blue-border-der{
     border-bottom-right-radius: 6px;
     border-top-right-radius: 6px;
 }
 
-.border-pending{
+.border-tag{
     border-left: 0.823136px solid #E5E5E5;
 }
 .img{
@@ -101,7 +101,7 @@
 
 
 @media (max-width:1300px){
-    .container-pending{
+    .container-tag{
         width: 25.2vw;
     }
     .img{
@@ -117,7 +117,7 @@
 }
 
 @media (max-width:1250px){
-    .container-pending{
+    .container-tag{
         width: 25.2vw;
     }
     .img{
@@ -133,15 +133,15 @@
 }
 
 @media(min-width:1800px){
-    .container-pending{
+    .container-tag{
         width: 537px;
         height: 95px;
     }
-    .Pending-paragraph{
+    .table-title-active{
         padding-top: 3.5vh;
         font-size: 16.4627px;
     }
-    .Pending-paragraph2{
+    .table-title{
         padding-top: 3.65vh;
         font-size: 16.4627px;
     }

@@ -40,7 +40,7 @@ export type DetailPickerTypeProps = {
   showNotification: (notification: NotificationStateType) => void;
   loadedFiles: boolean;
   Close:Function;
-  changePage:Function
+  changePage: (page:string, isDirty?:boolean) => void;
 };
 
 export type PickerFileRequestType = {

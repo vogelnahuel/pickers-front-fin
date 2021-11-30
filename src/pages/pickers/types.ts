@@ -125,6 +125,7 @@ export type PickerContainerTypes = {
   setActualPage: Function;
   getPendingUsersExportRequest: Function;
   getMorePendingUser: Function;
+  isDetail:boolean;
 };
 
 export type PickerTypes = {
@@ -143,7 +144,7 @@ export type PickerTypes = {
   setActualPage: Function;
   getPendingUsersExportRequest: Function;
   getMorePendingUser: Function;
-  changePage: Function;
+  changePage: (page:string, isDirty?:boolean) => void;
 };
 
 export type PickersAxiosResponseType = {

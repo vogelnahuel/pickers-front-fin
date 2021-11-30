@@ -41,17 +41,27 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
   showNotification,
   loadedFiles,
   changePage,
-  Close
+  Close,
 }) => {
-const tabs = [{tittle:"pickers:label.title.pending",id:"PENDING",icons:{active:relojAzul,disable:relojOscuro}},{tittle:"pickers:label.title.pickers",id:"ACTIVE",icons:{active:trabajadorAzul,disable:trabajadorOscuro}}]
+  const tabs = [
+    {
+      title: "pickers:label.title.pending",
+      id: "PENDING",
+      icons: { active: relojAzul, disable: relojOscuro },
+    },
+    {
+      title: "pickers:label.title.pickers",
+      id: "ACTIVE",
+      icons: { active: trabajadorAzul, disable: trabajadorOscuro },
+    },
+  ];
   return (
     <div className="background-Grey">
       <Header />
       <div className="mainContainerFlex">
         <Nav />
         <div className="pending-container">
-          
-          <TabControler tabs={tabs} changePage={changePage}  />
+          <TabControler tabs={tabs} changePage={changePage} />
           <div className="mainContainerFlex-picker">
             <div className="picker-id">
               {pendingUserAdminPicker?.id &&
@@ -450,13 +460,20 @@ const tabs = [{tittle:"pickers:label.title.pending",id:"PENDING",icons:{active:r
                         type="button"
                         onClick={() =>
                           wrongFiles
-                            ?  
-                              showNotification({
+                            ? showNotification({
                                 level: "warning",
-                                title: i18next.t("global:title.modal.withoutSaving"),
-                                body:  i18next.t("global:label.modal.withoutSaving"),
-                                onClickLabel: i18next.t("global:label.button.checkErrors"),
-                                onCloseLabel: i18next.t("global:label.button.continue"),
+                                title: i18next.t(
+                                  "global:title.modal.withoutSaving"
+                                ),
+                                body: i18next.t(
+                                  "global:label.modal.withoutSaving"
+                                ),
+                                onClickLabel: i18next.t(
+                                  "global:label.button.checkErrors"
+                                ),
+                                onCloseLabel: i18next.t(
+                                  "global:label.button.continue"
+                                ),
                                 onClose: Close,
                                 onClick: () =>
                                   window.scroll({
@@ -473,7 +490,7 @@ const tabs = [{tittle:"pickers:label.title.pending",id:"PENDING",icons:{active:r
                       </button>
                       <button
                         type="submit"
-                        disabled={ (invalid || wrongFiles) || !loadedFiles} 
+                        disabled={invalid || wrongFiles || !loadedFiles}
                         className="button-submit-active"
                       >
                         {i18next.t("detailPicker:label.button.approvePicker")}
