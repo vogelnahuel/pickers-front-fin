@@ -1,0 +1,76 @@
+{
+  "presettlments": 
+    {
+      "result": {
+        "items": [
+          {
+            "id": 1,
+            "fiscalNumber": 123123,
+            "status": {
+              "id": 1,
+              "name": "Aprobado",
+              "tag": "APPROVED"
+            },
+            "total": 123.123,
+            "genereted_at": "17/12/2021"
+          },
+          {
+            "id": 2,
+            "fiscalNumber": 123123,
+            "status": {
+              "id": 1,
+              "name": "Aprobado",
+              "tag": "APPROVED"
+            },
+            "total": 123.123,
+            "genereted_at": "17/12/2021"
+          },
+          {
+            "id": 3,
+            "fiscalNumber": 123123,
+            "status": {
+              "id": 1,
+              "name": "Pendiente",
+              "tag": "PENDING"
+            },
+            "total": 123.123,
+            "genereted_at": "17/12/2021"
+          }
+        ]
+      },
+      "limit": 20,
+      "offset": 0,
+      "hasMore": true
+    },
+  "invoiceType":  [
+    {
+       "name": "A",
+       "tag": "string"
+    },
+    {
+       "name": "C",
+       "tag": "string"
+    }
+],
+"invoice":{
+   
+        "id": 1, 
+        "emisionDate": "string",
+        "invoiceNumber": "string",
+        "salePoint": "string",
+        "invoiceType": "string",
+        "caeNumber": "string",
+        "fiscalData": {
+            "fiscalNumber": "string",
+            "companyName": "string", 
+            "taxPayerType": "string",
+            "total": 123.123
+        },
+        "invoiceFile": {
+            "upload": true,
+            "url":  null
+        
+    }
+}
+}
+

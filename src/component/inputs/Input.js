@@ -53,6 +53,7 @@ export const Input= (props) => {
                 onFocus={() => {animated ?  (function() { setFocus(true); input.onFocus() })() : input.onFocus() } }
                 onBlur={()=>{animated ?  (function() { setFocus(false); input.onBlur() })() : input.onBlur() } }
                 maxLength={maxLength}
+                autoComplete="off"
             />
             {
                 meta.error && meta.touched &&

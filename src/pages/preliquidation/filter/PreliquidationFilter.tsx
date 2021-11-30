@@ -1,15 +1,15 @@
-import React from "react";
-import "pages/pickers/filter/filter.scss";
+import { DatePicker } from "@pickit/pickit-components";
 import dropdown from "assets/admin/PendingUser/desplegable.svg";
 import or from "assets/admin/PendingUser/or.svg";
 import search from "assets/admin/PendingUser/search.svg";
-import { Field, Form } from "react-final-form";
 import { Input } from "component/inputs/Input";
-import { FILTER_PRELIQUIDATION_OPTIONS } from "utils/constants";
-import { DatePicker } from "@pickit/pickit-components";
 import MultipleSelect from "component/inputs/MultipleSelect";
 import useValidationSchema from "hooks/useValidationSchema";
 import i18next from "i18next";
+import "pages/pickers/filter/filter.scss";
+import React from "react";
+import { Field, Form } from "react-final-form";
+import { FILTER_PRELIQUIDATION_OPTIONS } from "utils/constants";
 import { PreliquidationFilterPropsType } from "./type";
 
 export const PreliquidationFilter: React.FC<PreliquidationFilterPropsType> = ({
@@ -17,6 +17,7 @@ export const PreliquidationFilter: React.FC<PreliquidationFilterPropsType> = ({
   filters,
   validationSchema,
 }): JSX.Element => {
+    
   return (
     <div className="container-fluid display-filter-transaction">
       <div className="container-row">
