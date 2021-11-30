@@ -33,8 +33,8 @@ import { NotificationStateType } from "reducers/types/notification";
 const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
   props
 ): JSX.Element => {
-  const params: any = useParams();
-  const historial: any = useHistory();
+  const params: { id?: string } = useParams();
+  const historial = useHistory();
   let Close = () => {
     historial.goBack();
   };

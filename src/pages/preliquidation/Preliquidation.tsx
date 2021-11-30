@@ -9,8 +9,9 @@ import PreliquidationFilter from "./filter/PreliquidationFilterContainer";
 import SeeMoreButton from "component/seeMoreButton/SeeMoreButton";
 import i18next from "i18next";
 import Button from "component/button/Button";
+import { PreliquidationContainerProps } from "./types";
 
-export const Preliquidation: React.FC<any> = ({
+export const Preliquidation: React.FC<PreliquidationContainerProps> = ({
   isFetching,
   filters,
   seeMore,
@@ -25,11 +26,9 @@ export const Preliquidation: React.FC<any> = ({
       <div className="mainContainerFlex">
         <Nav isDirty={null} showNotification={null} />
         <div className="pending-container">
-          <div className="mainContainerFlex">
             <h2 className="subTitle-pending">
               <p className="subtitle-pendingUser-h2">Preliquidaciones</p>
             </h2>
-          </div>
           <PreliquidationFilter />
           <div className="button-container">
             <Button text="Enviar a contabilidad" disabled={!anyPreliquidationSelected} onClick={console.log}/>

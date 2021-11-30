@@ -11,7 +11,7 @@ import {
 import * as preliquidationsMiddleware from "../middleware/preliquidations";
 
 import { actions as preliquidationActions } from "../reducers/preliquidation";
-import { PreliquidationsApiResponse } from "./types/preliquidation";
+import { PreliquidationParamsMiddlewareType, PreliquidationsApiResponse } from "./types/preliquidation";
 
 const sagas = [
   takeLatest(
@@ -26,7 +26,7 @@ export default sagas;
 
 function* getPreliquidations({
   payload,
-}: PayloadAction<any>): Generator<
+}: PayloadAction<PreliquidationParamsMiddlewareType>): Generator<
   | CallEffect<AxiosResponse<PreliquidationsApiResponse>>
   | PutEffect<{ type: string }>,
   void,
@@ -45,20 +45,20 @@ function* getPreliquidations({
 
 function* getMorePreliquidations({
   payload,
-}: PayloadAction<ParamsMiddlewareType>): Generator<
-  | CallEffect<AxiosResponse<PickersAxiosResponseType>>
+}: PayloadAction<PreliquidationParamsMiddlewareType>): Generator<
+  | CallEffect<AxiosResponse<PreliquidationsApiResponse>>
   | PutEffect<{ type: string }>,
   void,
-  PickersResponseType
+  PreliquidationsApiResponse
 > {
-  const response = yield call(pickersMiddleware.getPickers, payload);
+  const response = yield call(preliquidationsMiddleware.getPreliquidations, payload);
   if (response.status !== 200) {
-    yield put(actions.getPendingUserError());
+    yield put(preliquidationActions.getMorePreliquidationsError());
   } else {
     const {
       result: { items },
       ...rest
     } = response.data;
-    yield put(actions.getMorePendingUserSuccess({ items, ...rest }));
+    yield put(preliquidationActions.getMorePreliquidationsSuccess({ items, ...rest }));
   }
 }

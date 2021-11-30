@@ -17,8 +17,14 @@ export const initialState: PreliquitadionStateType = {
   preliquidations: [],
   preliquidationsSelected: [],
   filters: {},
-  filtersExtra: {},
-  filtersExtraSeeMore: {},
+  filtersExtra: {
+    limit: 0,
+    offset: 0
+  },
+  filtersExtraSeeMore: {
+    limit: 0,
+    offset: 0
+  },
   seeMore: true,
 };
 
@@ -64,6 +70,8 @@ export const preliquidationSlice = createSlice({
       state: PreliquitadionStateType,
       action: PayloadAction<any>
     ) => {},
+    getPreliquidationsError: () => {},
+    getMorePreliquidationsError: () => {},
     setPreliquidationFilters: (
       state: PreliquitadionStateType,
       action: PayloadAction<any>
@@ -76,7 +84,6 @@ export const preliquidationSlice = createSlice({
     ) => {
       state.filtersExtra = { ...state.filtersExtra, ...action.payload };
     },
-    getPreliquidationsError: () => {},
     toggleItem: (
       state: PreliquitadionStateType,
       action: PayloadAction<PreliquidationItem>

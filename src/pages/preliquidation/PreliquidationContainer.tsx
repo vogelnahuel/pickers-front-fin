@@ -4,10 +4,12 @@ import { PreliquidationParamsMiddlewareType } from "sagas/types/preliquidation";
 import { AppDispatch, RootState } from "store";
 import { Preliquidation } from "./Preliquidation";
 import { actions as preliActions, preliquidationSelector } from "../../reducers/preliquidation";
+import { PreliquidationFilterExtraType } from "reducers/types/preliquidation";
+import { PreliquidationContainerProps } from "./types";
 
-const PreliquidationContainer = (props: any): JSX.Element => {
+const PreliquidationContainer = (props: PreliquidationContainerProps): JSX.Element => {
   useEffect(() => {
-    const filtersExtra = { limit: 3 };
+    const filtersExtra = { limit: 3, offset: 0 };
     props.setPreliquidationExtraFilters(filtersExtra);
     props.getPreliquidations({ ...filtersExtra });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -30,7 +32,7 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   getPreliquidations: (params: PreliquidationParamsMiddlewareType) => {
     dispatch(preliActions.getPreliquidationsRequest(params));
   },
-  setPreliquidationExtraFilters: (params: any) => {
+  setPreliquidationExtraFilters: (params: PreliquidationFilterExtraType) => {
     dispatch(preliActions.setPreliquidationExtraFilters(params))
   },
   getMorePreliquidations: (params: PreliquidationParamsMiddlewareType) => {
