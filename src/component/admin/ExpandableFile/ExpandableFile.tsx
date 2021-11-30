@@ -289,7 +289,6 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
                       />
                     </>
                     {element.isUpload && actualPage === "PENDING" && (
-                      <>
                         <ToolTip
                           position={ToolTipPosition.bottom}
                           message={i18next.t(
@@ -301,7 +300,7 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
                             className="delete-icon-svg"
                           />
                         </ToolTip>
-                      </>
+                      
                     )}
                   </div>
                 </div>

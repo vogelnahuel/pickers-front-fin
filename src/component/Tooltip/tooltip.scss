@@ -1,38 +1,28 @@
 @import 'src/colors';
 
 .tooltip-container {
-  position: relative;
   display: flex;
-  z-index: 999;
   align-items: center;
   overflow: visible;
+  z-index: 999;
 }
 
 .tooltip-content {
-  position: absolute;
+  position: fixed;
   white-space: nowrap;
-  //@include theme-selector('background-color', 'color-title', true);
+  @include theme-selector('background-color', 'color-gray-4d', true);
   border-radius: 4px;
-  //@include theme-selector('color', 'color-white', true);
-  padding: 8px 16px;
+  @include theme-selector('color', 'color-white', true);
+  padding: 0px 16px;
   display: flex;
   align-items: center;
   transition: opacity 200ms;
-  background-color: #4d4d4d;
-  color: white;
-  z-index: 999;
+  z-index: 9999;
   opacity: 0;
   font-size: 14px;
-
-  &.right {
-    left: 100%;
-    margin-left: 16px;
-  }
-
-  &.left {
-    right: 100%;
-    margin-right: 16px;
-  }
+  line-height: 18px;
+  height: 34px;
+  
 
   &.top, &.bottom {
     left: 50%;
@@ -41,12 +31,10 @@
 
   &.top {
     bottom: 100%;
-    margin-bottom: 12px;
   }
 
   &.bottom {
     top: 100%;
-    margin-top: 12px;
   }
 }
 
@@ -55,7 +43,7 @@
   position: absolute;
   height: 10px;
   width: 10px;
-  border-radius: 1px;
+  border-radius: 2px;
   background-color: #4d4d4d;
   transform: rotate(45deg);
 
