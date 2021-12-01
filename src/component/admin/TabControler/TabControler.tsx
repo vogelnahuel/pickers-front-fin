@@ -1,6 +1,6 @@
 import React from "react";
 import "component/admin/TabControler/TabControler";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import {
   detailPickerSelector as pendingUserAdminPickerSelectors,
   hasPickerWrongFilesSelector,
@@ -17,56 +17,56 @@ import i18next from "i18next";
 import "./TabControler.scss"
 import { NotificationStateType } from "reducers/types/notification";
 export const TabControler: React.FC<TabControlerType> = ({
-  showNotification,
+//  showNotification,
   actualPage,
   isDirty,
-  wrongFiles,
+//  wrongFiles,
   changePage,
   tabs,
 }) => {
-  const history = useHistory();
+  // const history = useHistory();
 
-  const handleHistory = (e: React.MouseEvent) => {
-    const eventTarget = e.target as HTMLElement;
-    let onClose = () => {
-      history.goBack();
-    };
+  // const handleHistory = (e: React.MouseEvent) => {
+  //   const eventTarget = e.target as HTMLElement;
+  //   let onClose = () => {
+  //     history.goBack();
+  //   };
 
-    eventTarget.blur();
-    if (isDirty) {
-      showNotification({
-        level: "warning",
-        title: i18next.t("pickers:title.modal.saveChanges"),
-        body: i18next.t("pickers:label.modal.saveChanges"),
-        onClickLabel: "pickers:button.modal.goToSave",
-        onCloseLabel: "pickers:button.modal.notSave",
-        onClose: onClose,
-        onClick: () =>
-          window.scroll({
-            top: window.innerHeight,
-            left: 0,
-            behavior: "smooth",
-          }),
-      });
-    } else if (wrongFiles) {
-      showNotification({
-        level: "warning",
-        title: i18next.t("global:title.modal.withoutSaving"),
-        body: i18next.t("global:label.modal.withoutSaving"),
-        onClickLabel: i18next.t("global:label.button.checkErrors"),
-        onCloseLabel: i18next.t("global:label.button.continue"),
-        onClose: onClose,
-        onClick: () =>
-          window.scroll({
-            top: window.innerHeight,
-            left: 0,
-            behavior: "smooth",
-          }),
-      });
-    } else {
-      onClose();
-    }
-  };
+  //   eventTarget.blur();
+  //   if (isDirty) {
+  //     showNotification({
+  //       level: "warning",
+  //       title: i18next.t("pickers:title.modal.saveChanges"),
+  //       body: i18next.t("pickers:label.modal.saveChanges"),
+  //       onClickLabel: "pickers:button.modal.goToSave",
+  //       onCloseLabel: "pickers:button.modal.notSave",
+  //       onClose: onClose,
+  //       onClick: () =>
+  //         window.scroll({
+  //           top: window.innerHeight,
+  //           left: 0,
+  //           behavior: "smooth",
+  //         }),
+  //     });
+  //   } else if (wrongFiles) {
+  //     showNotification({
+  //       level: "warning",
+  //       title: i18next.t("global:title.modal.withoutSaving"),
+  //       body: i18next.t("global:label.modal.withoutSaving"),
+  //       onClickLabel: i18next.t("global:label.button.checkErrors"),
+  //       onCloseLabel: i18next.t("global:label.button.continue"),
+  //       onClose: onClose,
+  //       onClick: () =>
+  //         window.scroll({
+  //           top: window.innerHeight,
+  //           left: 0,
+  //           behavior: "smooth",
+  //         }),
+  //     });
+  //   } else {
+  //     onClose();
+  //   }
+  // };
   return (
     <div className="flex-tab">
       <div className="flex-tab backGround-tab">

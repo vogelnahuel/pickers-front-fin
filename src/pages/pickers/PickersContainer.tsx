@@ -9,14 +9,12 @@ import {
 } from "./types";
 import { AppDispatch, RootState } from "store";
 import { actions, pickersSelector } from "reducers/pickers";
-import { useHistory } from "react-router-dom";
 import { NotificationStateType } from "reducers/types/notification";
 import { actions as notificationActions } from "reducers/notification";
 import {
   detailPickerSelector as pendingUserAdminPickerSelectors,
   hasPickerWrongFilesSelector,
 } from "reducers/detailPicker";
-import i18next from "i18next";
 
 const PendingUserAdminContainer: React.FC<PickerContainerTypes> = (//
   props
@@ -33,7 +31,6 @@ const PendingUserAdminContainer: React.FC<PickerContainerTypes> = (//
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.actualPage]);
 
-  const history = useHistory();
   const changePage = (page: string, isDirty?: boolean) => {
     if (props.isDetail || props.actualPage !== page) {
       let onClose = () => {
