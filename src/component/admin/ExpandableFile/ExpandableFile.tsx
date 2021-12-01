@@ -30,7 +30,7 @@ import { pickersSelector } from "reducers/pickers";
 import { PickerWrongFilePayloadType } from "reducers/types/detailPicker";
 import Confirm from "../Confirm/Confirm";
 import classNames from "classnames";
-import ToolTip, { ToolTipPosition } from "component/Tooltip/Tooltip";
+import { Tooltip, ToolTipPosition } from "@pickit/pickit-components";
 
 const tagInitialState: TagsErrorType = {
   "dni-front": false,
@@ -257,7 +257,7 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
                   </p>
                   <div className="container-img-picker">
                     <>
-                      <ToolTip
+                      <Tooltip
                         position={ToolTipPosition.bottom}
                         message={i18next.t(
                           `expandableFile:label.tooltip.${
@@ -276,7 +276,7 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
                             uploadFile(element.isUpload, element.tag)
                           }
                         />
-                      </ToolTip>
+                      </Tooltip>
 
                       <input
                         id={`file-${element.tag}`}
@@ -289,7 +289,7 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
                       />
                     </>
                     {element.isUpload && actualPage === "PENDING" && (
-                        <ToolTip
+                        <Tooltip
                           position={ToolTipPosition.bottom}
                           message={i18next.t(
                             "expandableFile:label.tooltip.delete"
@@ -299,7 +299,7 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
                             id={`"picker-delete-icon-${element.tag}"`}
                             className="delete-icon-svg"
                           />
-                        </ToolTip>
+                        </Tooltip>
                       
                     )}
                   </div>

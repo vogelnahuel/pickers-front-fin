@@ -10,9 +10,9 @@
 .tooltip-content {
   position: fixed;
   white-space: nowrap;
-  @include theme-selector('background-color', 'color-gray-4d', true);
+  @include theme-selector('background-color', 'color-gray-4d', false);
   border-radius: 4px;
-  @include theme-selector('color', 'color-white', true);
+  @include theme-selector('color', 'color-white', false);
   padding: 0px 16px;
   display: flex;
   align-items: center;
