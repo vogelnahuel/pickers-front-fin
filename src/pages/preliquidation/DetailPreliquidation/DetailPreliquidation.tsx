@@ -6,6 +6,7 @@ import calckBlack from "./../../../assets/preli/calcBlack.svg";
 import invoiceBlue from "./../../../assets/preli/invoiceBlue.svg";
 import calckBlue from "./../../../assets/preli/calcBlue.svg";
 import invoiceBlack from "./../../../assets/preli/invoiceBlack.svg";
+import Invoice from "component/invoice/Invoice";
 export const DetailPreliquidation: React.FC<any> = ({
   isFetching,
 }): JSX.Element => {
@@ -39,6 +40,7 @@ export const DetailPreliquidation: React.FC<any> = ({
               />
             </h2>
           </div>
+          <Invoice />
         </div>
       </div>
       {isFetching === true ? <div className="modalLoading"></div> : <></>}

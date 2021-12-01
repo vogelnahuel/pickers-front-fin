@@ -31,7 +31,9 @@ export const Preliquidation: React.FC<PreliquidationContainerProps> = ({
             </h2>
           <PreliquidationFilter />
           <div className="button-container">
-            <Button text="Enviar a contabilidad" disabled={!anyPreliquidationSelected} onClick={console.log}/>
+            <Button disabled={!anyPreliquidationSelected} onClick={console.log}>
+              Enviar a contabilidad
+            </Button>
           </div>
           <TablePreliquidation items={preliquidations} />
           {preliquidations && preliquidations.length !== 0 ? (

@@ -1,5 +1,5 @@
 export type ButtonProps = {
-  text: string;
+  children: string | JSX.Element | JSX.Element[];
   onClick: () => void;
   disabled?: boolean;
   className?: string;

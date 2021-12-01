@@ -12,6 +12,8 @@
   color: #FFFFFF;
   padding: 0 24px;
   cursor: pointer;
+  outline: none;
+  border: none;
 
   &:disabled{
     background: #BDBDBD;
