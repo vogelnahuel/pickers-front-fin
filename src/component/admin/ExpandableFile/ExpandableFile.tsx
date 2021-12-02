@@ -2,8 +2,8 @@ import React, { Fragment, useState } from "react";
 import i18next from "i18next";
 import { connect } from "react-redux";
 import {
-  //Tooltip,
-  //ToolTipPosition,
+  Tooltip,
+  ToolTipPosition,
   Collapsible,
 } from "@pickit/pickit-components";
 import {
@@ -30,7 +30,6 @@ import { pickersSelector } from "reducers/pickers";
 import { PickerWrongFilePayloadType } from "reducers/types/detailPicker";
 import Confirm from "../Confirm/Confirm";
 import classNames from "classnames";
-import { Tooltip, ToolTipPosition } from "@pickit/pickit-components";
 
 const tagInitialState: TagsErrorType = {
   "dni-front": false,
@@ -289,18 +288,17 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
                       />
                     </>
                     {element.isUpload && actualPage === "PENDING" && (
-                        <Tooltip
-                          position={ToolTipPosition.bottom}
-                          message={i18next.t(
-                            "expandableFile:label.tooltip.delete"
-                          )}
-                        >
-                          <div
-                            id={`"picker-delete-icon-${element.tag}"`}
-                            className="delete-icon-svg"
-                          />
-                        </Tooltip>
-                      
+                      <Tooltip
+                        position={ToolTipPosition.bottom}
+                        message={i18next.t(
+                          "expandableFile:label.tooltip.delete"
+                        )}
+                      >
+                        <div
+                          id={`"picker-delete-icon-${element.tag}"`}
+                          className="delete-icon-svg"
+                        />
+                      </Tooltip>
                     )}
                   </div>
                 </div>
