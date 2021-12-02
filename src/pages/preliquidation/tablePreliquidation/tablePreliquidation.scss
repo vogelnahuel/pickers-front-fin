@@ -1,0 +1,37 @@
+.preliquidation-table {
+  thead tr td:nth-child(1),
+  tbody tr td:nth-child(1) {
+    width: 8%;
+    text-align: center;
+  }
+
+  thead tr td:nth-child(2),
+  tbody tr td:nth-child(2) {
+    width: 22.6%;
+  }
+
+  thead tr td:nth-child(3),
+  tbody tr td:nth-child(3) {
+    width: 14.3%;
+  }
+
+  thead tr td:nth-child(4),
+  tbody tr td:nth-child(4) {
+    width: 14.3%;
+  }
+
+  thead tr td:nth-child(5),
+  tbody tr td:nth-child(5) {
+    width: 18.5%;
+  }
+
+  thead tr td:nth-child(6),
+  tbody tr td:nth-child(6) {
+    width: 14.3%;
+  }
+
+  thead tr td:nth-child(7),
+  tbody tr td:nth-child(7) {
+    width: 8%;
+  }
+}

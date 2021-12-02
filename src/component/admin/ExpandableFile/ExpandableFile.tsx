@@ -80,7 +80,7 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
   const [open, setOpen] = useState(false);
   const [error, setError] = useState<typeof initialState>(initialState);
 
-  const optionYes = (tag: any, viewConfirm: any) => {
+  const optionYes = (tag: keyof DetailPickerTagFileType) => {
     if (viewConfirm[tag]?.delete) {
       deleteFile({ id: pickerId, tag: tag });
       setViewConfirm({
@@ -102,7 +102,7 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
       setError(initialState);
     }
   };
-  const optionNo = (tag: any, viewConfirm: any) => {
+  const optionNo = (tag:  keyof DetailPickerTagFileType) => {
     setViewConfirm({
       ...viewConfirm,
       [tag]: {
@@ -311,8 +311,8 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
                           ? i18next.t(labelsConfirm[0])
                           : i18next.t(labelsConfirm[1])
                       }
-                      optionYes={() => optionYes(element.tag, viewConfirm)}
-                      optionNo={() => optionNo(element.tag, viewConfirm)}
+                      optionYes={() => optionYes(element.tag)}
+                      optionNo={() => optionNo(element.tag)}
                     />
                   ) : error["formatTag"][element.tag] ? (
                     <p className="p-error">

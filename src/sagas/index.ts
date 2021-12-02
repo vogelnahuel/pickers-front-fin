@@ -4,6 +4,7 @@ import pickers from "./pickers";
 import dashboard from "./dashboard";
 import login from "./login";
 import detailTransaction from "./detailTransaction";
+import preliquidation from "./preliquidation";
 import { actions } from "../reducers/login";
 import { Effect, ITypeError } from "./types/types";
 
@@ -13,6 +14,7 @@ const sagas = [
   ...dashboard,
   ...login,
   ...detailTransaction,
+  ...preliquidation
 ];
 
 export default function* rootSaga() {

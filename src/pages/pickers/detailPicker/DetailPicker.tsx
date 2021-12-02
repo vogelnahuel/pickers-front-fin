@@ -3,7 +3,7 @@ import { Header } from "component/admin/Header/Header";
 import Nav from "component/admin/Nav/Nav";
 import "pages/pickers/Pickers.scss";
 import "pages/pickers/detailPicker/DetailPicker.scss";
-import PickerStatusButton from "component/admin/PickerStatusButton/PickerStatusButton";
+import TabControler from "component/admin/TabControler/TabControler";
 import { Input } from "component/inputs/Input";
 import { Switch } from "component/inputs/switch";
 import motorcycle from "assets/admin/PendingUserAdminPicker/motorcycle.svg";
@@ -18,6 +18,10 @@ import { DetailPickerTypeProps } from "./types";
 import { DATE_FORMATS } from "utils/constants";
 import i18next from "i18next";
 import ExpandableFile from "component/admin/ExpandableFile/ExpandableFile";
+import relojAzul from "assets/admin/PendingUser/relojAzul.svg";
+import relojOscuro from "assets/admin/PendingUser/relojOscuro.svg";
+import trabajadorOscuro from "assets/admin/PendingUser/trabajadorOscuro.svg";
+import trabajadorAzul from "assets/admin/PendingUser/trabajadorAzul.svg";
 
 export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
   isFetching,
@@ -36,16 +40,28 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
   wrongFiles,
   showNotification,
   loadedFiles,
-  Close
+  changePage,
+  Close,
 }) => {
-
+  const tabs = [
+    {
+      title: "pickers:label.title.pending",
+      id: "PENDING",
+      icons: { active: relojAzul, disable: relojOscuro },
+    },
+    {
+      title: "pickers:label.title.pickers",
+      id: "ACTIVE",
+      icons: { active: trabajadorAzul, disable: trabajadorOscuro },
+    },
+  ];
   return (
     <div className="background-Grey">
       <Header />
       <div className="mainContainerFlex">
         <Nav />
         <div className="pending-container">
-          <PickerStatusButton isDetail={true} />
+          <TabControler tabs={tabs} changePage={changePage} />
           <div className="mainContainerFlex-picker">
             <div className="picker-id">
               {pendingUserAdminPicker?.id &&
@@ -444,13 +460,20 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                         type="button"
                         onClick={() =>
                           wrongFiles
-                            ?  
-                              showNotification({
+                            ? showNotification({
                                 level: "warning",
-                                title: i18next.t("global:title.modal.withoutSaving"),
-                                body:  i18next.t("global:label.modal.withoutSaving"),
-                                onClickLabel: i18next.t("global:label.button.checkErrors"),
-                                onCloseLabel: i18next.t("global:label.button.continue"),
+                                title: i18next.t(
+                                  "global:title.modal.withoutSaving"
+                                ),
+                                body: i18next.t(
+                                  "global:label.modal.withoutSaving"
+                                ),
+                                onClickLabel: i18next.t(
+                                  "global:label.button.checkErrors"
+                                ),
+                                onCloseLabel: i18next.t(
+                                  "global:label.button.continue"
+                                ),
                                 onClose: Close,
                                 onClick: () =>
                                   window.scroll({
@@ -467,7 +490,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                       </button>
                       <button
                         type="submit"
-                        disabled={ (invalid || wrongFiles) || !loadedFiles} 
+                        disabled={invalid || wrongFiles || !loadedFiles}
                         className="button-submit-active"
                       >
                         {i18next.t("detailPicker:label.button.approvePicker")}

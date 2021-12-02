@@ -8,11 +8,11 @@ import PickersContainer from "pages/pickers/PickersContainer";
 import { Provider } from "react-redux";
 import { Route, Switch } from "react-router"; // react-router v4/v5
 import DashboardContainer from "../pages/dashboard/DashboardAdminContainer";
+import { DetailPreliquidationContainer } from "pages/preliquidation/DetailPreliquidation/DetailPreliquidationContainer";
 import Transaction from "../pages/transaction/TransactionContainer";
 import PreliquidationContainer from "pages/preliquidation/PreliquidationContainer";
 import { history, store } from "../store";
 import { useTheming } from "config/theme";
-
 
 const Routes = (): JSX.Element => {
 
@@ -33,6 +33,11 @@ const Routes = (): JSX.Element => {
             path="/preliquidation"
             exact
             component={PreliquidationContainer}
+          />
+          <Route
+            path="/preliquidation/:id"
+            exact
+            component={DetailPreliquidationContainer}
           />
         </Switch>
       </ConnectedRouter>

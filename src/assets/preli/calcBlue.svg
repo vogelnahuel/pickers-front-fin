@@ -1,0 +1,16 @@
+<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M49 49.4118C49 50.8832 47.816 52 46.3571 52H14.6429C13.184 52 12 50.6554 12 49.184V10.5882C12 9.11682 13.184 8 14.6429 8H46.3571C47.816 8 49 9.11682 49 10.5882V49.4118Z" stroke="#0098FF" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M19 12V17H42V12" stroke="#0098FF" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M42 43.0013V45.668C42 46.404 41.4251 47 40.7198 47H20.2776C19.5724 47 19 46.4027 19 45.6667V24.3333C19 23.5973 19.5724 23 20.2776 23H40.7198C41.4251 23 42 23.5987 42 24.3347V35.0013" stroke="#0098FF" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M27 23V47" stroke="#0098FF" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M34 23V47" stroke="#0098FF" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M34 31H42" stroke="#0098FF" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M19 31H34" stroke="#0098FF" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M19 39H34" stroke="#0098FF" stroke-width="2" stroke-miterlimit="10"/>
+<path d="M6 29V26" stroke="#0098FF" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M6 21V14" stroke="#0098FF" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M55 20V32" stroke="#0098FF" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M6 39V50" stroke="#0098FF" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M55 36V39" stroke="#0098FF" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="42" cy="39" r="1" fill="#0098FF"/>
+</svg>
