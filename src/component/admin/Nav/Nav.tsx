@@ -91,7 +91,7 @@ export const Nav = ({ isDirty, showNotification, wrongFiles }: NavType) => {
             </li>
           </ul>
         </div>
-        <div className="nav-section">
+        {/* <div className="nav-section">
           <h3>{i18next.t("nav:title.menu.administration")}</h3>
           <ul>
             <li>
@@ -105,7 +105,7 @@ export const Nav = ({ isDirty, showNotification, wrongFiles }: NavType) => {
               </Link>
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
     </nav>
   );

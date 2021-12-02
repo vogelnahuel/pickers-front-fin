@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Routes from './routes/Routes.tsx';
 import * as Sentry from "@sentry/react";
 import { Integrations } from "@sentry/tracing";
-import "./index.css"
+import "./index.scss"
 import "./i18n/i18n"
 
 import { createBrowserHistory } from 'history'
