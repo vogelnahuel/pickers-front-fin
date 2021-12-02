@@ -6,6 +6,9 @@ import calckBlack from "./../../../assets/preli/calcBlack.svg";
 import invoiceBlue from "./../../../assets/preli/invoiceBlue.svg";
 import calckBlue from "./../../../assets/preli/calcBlue.svg";
 import invoiceBlack from "./../../../assets/preli/invoiceBlack.svg";
+import { PdfViewer } from "component/pdf-viewer/PdfViewer";
+import "./DetailPreliquidation.scss"
+
 export const DetailPreliquidation: React.FC<any> = ({
   isFetching,
 }): JSX.Element => {
@@ -38,7 +41,9 @@ export const DetailPreliquidation: React.FC<any> = ({
                 }}
               />
             </h2>
-          </div>
+          </div >
+         <PdfViewer></PdfViewer>
+               
         </div>
       </div>
       {isFetching === true ? <div className="modalLoading"></div> : <></>}
