@@ -1,10 +1,10 @@
-import { EventHandler, useRef } from "react";
+import { useRef } from "react";
 import Button from "component/button/Button";
 import uploadCloud from "../../assets/upload_cloud.svg"
 import uploadArrow from "../../assets/upload_arrow.svg"
-import "./invoice.scss";
+import "./pdfController.scss";
 
-const Invoice = () => {
+const PdfController = () => {
   const fileRef = useRef<HTMLInputElement>(null);
 
   const openFileReader = () => {
@@ -22,8 +22,8 @@ const Invoice = () => {
     console.log("File: ", file);
   }
   return (
-    <div className="invoice-container">
-      <div className="upload-icon-container">
+    <div className="root-container">
+      <div className="upload-icon-container animation">
         <img className="upload-cloud" src={uploadCloud} alt="upload-icon"></img>
         <img className="upload-arrow" src={uploadArrow} alt="upload-icon"></img>
       </div>
@@ -35,4 +35,4 @@ const Invoice = () => {
   )
 }
 
-export default Invoice;
+export default PdfController;
