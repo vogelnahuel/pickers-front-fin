@@ -107,7 +107,7 @@ export const TabControler: React.FC<TabControlerType> = ({
               actualPage === tabs[1].id ? "table-title-active" : "table-title"
             }
           >
-            {i18next.t(tabs ? tabs[0].title : "")}
+            {i18next.t(tabs ? tabs[1].title : "")}
           </p>
           {tabs && (
             <img
