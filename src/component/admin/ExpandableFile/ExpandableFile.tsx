@@ -297,6 +297,15 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
                         <div
                           id={`"picker-delete-icon-${element.tag}"`}
                           className="delete-icon-svg"
+                          onClick={() => {
+                            setViewConfirm({
+                              ...viewConfirm,
+                              [element.tag]: {
+                                delete: !viewConfirm[element.tag].delete,
+                                replace: false,
+                              },
+                            });
+                          }}
                         />
                       </Tooltip>
                     )}
