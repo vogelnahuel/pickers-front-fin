@@ -16,57 +16,15 @@ import {
 import i18next from "i18next";
 import "./TabControler.scss"
 import { NotificationStateType } from "reducers/types/notification";
+
 export const TabControler: React.FC<TabControlerType> = ({
-//  showNotification,
   actualPage,
   isDirty,
-//  wrongFiles,
   changePage,
   tabs,
 }) => {
-  // const history = useHistory();
 
-  // const handleHistory = (e: React.MouseEvent) => {
-  //   const eventTarget = e.target as HTMLElement;
-  //   let onClose = () => {
-  //     history.goBack();
-  //   };
 
-  //   eventTarget.blur();
-  //   if (isDirty) {
-  //     showNotification({
-  //       level: "warning",
-  //       title: i18next.t("pickers:title.modal.saveChanges"),
-  //       body: i18next.t("pickers:label.modal.saveChanges"),
-  //       onClickLabel: "pickers:button.modal.goToSave",
-  //       onCloseLabel: "pickers:button.modal.notSave",
-  //       onClose: onClose,
-  //       onClick: () =>
-  //         window.scroll({
-  //           top: window.innerHeight,
-  //           left: 0,
-  //           behavior: "smooth",
-  //         }),
-  //     });
-  //   } else if (wrongFiles) {
-  //     showNotification({
-  //       level: "warning",
-  //       title: i18next.t("global:title.modal.withoutSaving"),
-  //       body: i18next.t("global:label.modal.withoutSaving"),
-  //       onClickLabel: i18next.t("global:label.button.checkErrors"),
-  //       onCloseLabel: i18next.t("global:label.button.continue"),
-  //       onClose: onClose,
-  //       onClick: () =>
-  //         window.scroll({
-  //           top: window.innerHeight,
-  //           left: 0,
-  //           behavior: "smooth",
-  //         }),
-  //     });
-  //   } else {
-  //     onClose();
-  //   }
-  // };
   return (
     <div className="flex-tab">
       <div className="flex-tab backGround-tab">
@@ -107,11 +65,11 @@ export const TabControler: React.FC<TabControlerType> = ({
               actualPage === tabs[1].id ? "table-title-active" : "table-title"
             }
           >
-            {i18next.t(tabs ? tabs[0].title : "")}
+            {i18next.t(tabs ? tabs[1].title : "")}
           </p>
           {tabs && (
             <img
-              className="img"
+              className="img2"
               src={
                 tabs[1].icons && actualPage === tabs[1].id
                   ? tabs[1].icons.active
@@ -119,8 +77,10 @@ export const TabControler: React.FC<TabControlerType> = ({
               }
               alt=""
             />
-          )}{" "}
+          )}
         </div>
+
+     
       </div>
     </div>
   );

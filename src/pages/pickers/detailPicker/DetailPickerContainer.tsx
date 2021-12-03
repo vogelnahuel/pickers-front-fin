@@ -57,6 +57,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
       : date;
   };
   const history = useHistory();
+  
   const changePage = (page: string, isDirty?: boolean) => {
     if (props.actualPage !== page) {
       let onClose = () => {

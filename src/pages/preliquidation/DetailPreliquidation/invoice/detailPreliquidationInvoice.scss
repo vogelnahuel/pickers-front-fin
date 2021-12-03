@@ -1,0 +1,70 @@
+@import "@pickit/pickit-grid-system";
+
+.container-detail-preliquidation {
+  @include container(3, 20px);
+}
+.form-detail-preliquidation{
+    width: 100%;
+}
+.container-detail-preliquidation-row{
+  padding-left:20px;
+}
+.container-detail-preliquidation-col-sm-1{
+  padding-right:35px;
+  padding-left:35px;
+  padding-bottom:25px;
+}
+.detail-preliquidation-ajustar{
+  flex: 0 0 64.6%;
+  margin-left: 2%;
+}
+.detail-preliquidation-fondo{
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.detail-preliquidation-buttons{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-top: 60px;
+  margin-bottom: 40px;
+}
+.detail-preliquidation-fondo{
+  display: flex;
+  justify-content: flex-end;
+}
+.detail-preliquidation-invoice-p{
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 23px;
+  text-align: center;
+  color: #CCCCCC;
+  margin-right: 40px;
+  padding-bottom: 13px;
+}
+.form-part-1-admin-pickers.detail-preliquidation-margin-top{
+  margin-top: 20px;
+}
+.detail-preliquidation-margin-top{
+  margin-top: 40px;
+}
+._28B9K2Lp5eIqcQvEtU2fqv input{
+  color: #2D2D2D;
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 17px;
+  line-height: 21px;
+  letter-spacing: 0.005em;
+  border-bottom: 1px solid #828282;
+}
+._28B9K2Lp5eIqcQvEtU2fqv input{
+  position: relative;
+  z-index: 1;
+}
+._28B9K2Lp5eIqcQvEtU2fqv ._3KXsglJ0piyBdHcEOmWbj-{
+  z-index: 2;
+}
