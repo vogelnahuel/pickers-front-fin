@@ -1,137 +1,197 @@
-%error{
-  color: #FF1515;
+$text-color: #4d4d4d;
+$text-color-darker: #2d2d2d;
+$error-color: #ff1515;
+$error-color-darker: #e00000;
+$icon-color: #808080;
+$icon-color-hover: #4d4d4d;
+$primary-color: #0098ff;
+$primary-color-darker: #007acc;
+
+%error {
+  color: $error-color;
 }
 
+%icon {
+  background-color: $icon-color;
+  height: 15px;
+  width: 17px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin: 0 8px;
 
-@mixin styleParagraph($font-weight,$color) {
+  &:hover {
+    background-color: $icon-color-hover;
+  }
+}
+
+%folder {
+  width: 20px;
+  height: auto;
+  transition: all 0.2s;
+}
+
+@mixin styleParagraph($font-weight, $color) {
   font-family: "Mulish";
   font-style: normal;
   font-weight: $font-weight;
   color: $color;
 }
 
+$icons: delete, load, replace;
 
+@each $icon in $icons {
+  .#{$icon}-icon-svg {
+    @extend %icon;
+    mask-size: contain;
+    background-size: contain;
+    -webkit-mask: url("../../../assets/admin/file-" + quote($icon) + ".svg")
+      no-repeat
+      center;
+    mask: url("../../../assets/admin/file-" + quote($icon) + ".svg")
+      no-repeat
+      center;
+  }
+}
 
-.display-flex{
-    display: flex;
-    margin-top: 20px;
-    cursor: pointer;  
-  }
-  .paragraph-expandable-file{
+.delete-icon-svg{
+  height: 17px;
+  width: 15px;
+}
 
-    @include styleParagraph(bold,#4D4D4D);
-  
-    font-size: 16px;
-    line-height: 20px;
-    text-align: center;
-    letter-spacing: 0.0125em;
-   
-    margin-left: 8px;
-    margin-top: 2px;
-  }
-  .border-row{
-    border-top: 1px solid #e5e5e5;
-    width: 100%;
-    margin-top: 20px;
-  }
-  .container-detailPicker-row{
-    padding-right: 35px;
-    padding-left: 35px;
-    padding-bottom: 25px;
-  }
-  .background-error{
-    background-color: #FFF3F3;
-  }
-  
-  .optionsListExpandableFile{
-  
-    li {
-      margin-top: 20px;
-      cursor: pointer;
-      p{
-        @include styleParagraph(bold,#0098FF);
-        font-size: 14px;
-        line-height: 18px;
-        letter-spacing: 0.0025em;
-        color: #0098FF;
-        width: 100%;
-        &:hover{
-          color: #007ACC;
-          cursor: pointer;
-        }
-      }
-  
-      &:hover > .container-img-picker{
-        display: flex;
-      }
-     
+$folders: complete $text-color $text-color-darker,
+  add $primary-color $primary-color-darker,
+  error $error-color $error-color-darker;
+
+@each $folder, $color, $hover-color in $folders {
+  .folder-icon-#{$folder} {
+    @extend %folder;
+    background-color: $color;
+    -webkit-mask: url("../../../assets/admin/folder-" + quote($folder) + ".svg")
+      no-repeat
+      center;
+    mask: url("../../../assets/admin/folder-" + quote($folder) + ".svg")
+      no-repeat
+      center;
+
+    .header:hover & {
+      background-color: $hover-color;
     }
-    
   }
-  
-  .align-item-center{
-    @include styleParagraph(normal,#2D2D2D);
-    align-items: center;
-    gap: 20px;
-    font-size: 12px;
-    line-height: 15px;
-    display: flex;
-    align-items: center;
-    letter-spacing: 0.004em;
+}
+
+.header {
+  padding: 20px 40px;
+  cursor: pointer;
+  display: flex;
+
+  &:hover {
+    .paragraph-expandable-file {
+      color: $text-color-darker;
+    }
+    .paragraph-expandable-file.color-error {
+      color: $error-color-darker;
+    }
+  }
+}
+
+.display-flex {
+  display: flex;
+  align-items: center;
+}
+
+.paragraph-expandable-file {
+  @include styleParagraph(700, $text-color);
+
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: 0.0125em;
+
+  margin-left: 8px;
+  margin-top: 2px;
+}
+
+.border-row {
+  border-top: 1px solid #e5e5e5;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.align-item-center {
+  @include styleParagraph(normal, $text-color-darker);
+  align-items: center;
+  gap: 20px;
+  font-size: 12px;
+  line-height: 15px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.004em;
+}
+
+.container-detailPicker-row {
+  padding-left: 25px;
+  padding-bottom: 25px;
+}
+
+.background-error {
+  background-color: #fff3f3;
+  transition: background-color 0.4s;
+}
+
+.container-img-picker {
+  display: flex;
+  justify-content: flex-end;
+  height: 100%;
+  display: none;
+}
+
+.file-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0 10px 44px;
+
+  p {
+    @include styleParagraph(700, $primary-color);
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.0025em;
+    color: $primary-color;
+    width: 100%;
+    cursor: pointer;
+    &:hover {
+      color: $primary-color-darker;
+    }
   }
 
-  .display-none{
-    display: none;
-  }
-  .cursor-pointer{
-    cursor: pointer;
-  }
-  .p-error{
-    @extend %error;
-    @include styleParagraph(normal,#FF1515);
-    font-size: 12px;
-    line-height: 15px;
-    letter-spacing: 0.004em;
-  }
-  .optionsListExpandableFile li p.color-Error{
-    @extend %error;
-  }
-  .paragraph-expandable-file.color-Error{
-    @extend %error;
+  p.picker-color-gray {
+    color: #b8b8b8;
+    cursor: default;
+    &:hover {
+      color: #b8b8b8;
+    }
   }
   
-  .padding-left{
-    margin-left: 16px;
+  p.color-error {
+    @extend %error;
   }
-  .container-img-picker{
-    display: flex;
-    justify-content: flex-end;
-    width: 100%;
-    display: none;
-  }
-  .picker-replace{
-    width: 15px;
-    height: auto;
-    cursor: pointer;
-  }
-  .picker-delete{
-    width: 15px;
-    height: auto;
-  }
-  div ul li p.picker-color-gray{
-     color: #B8B8B8;
-     &:hover{
-      color: #B8B8B8;
-     }
-  }  
-  .margin-top{
-    margin-top: 20px;
-  }
-  .sectionExpandableFilePicker{
-    width: 100%;
-  }
-  
 
-.pickers-display-inline{
-  display: inline-block;
+  &:hover > .container-img-picker {
+    display: flex;
+  }
+}
+
+.display-none {
+  display: none;
+}
+
+.p-error {
+  @extend %error;
+  @include styleParagraph(normal, $error-color);
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: 0.004em;
+}
+.paragraph-expandable-file.color-error {
+  @extend %error;
 }
