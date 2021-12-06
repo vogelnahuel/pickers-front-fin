@@ -41,7 +41,7 @@ export const DetailPreliquidation: React.FC<DetailPreliquidationPropsType> = ({
           <div className="preliquidation-display-flex">
             <TabControler tabs={tabs} changePage={() => {}} />
             <div  className="detail-preliquidation-inline" onClick={()=>handleClickBack()}>
-              <img className="img-goBack" src={tabs[2].icons.active} alt="" />
+              <img className="img-goBack" src={back} alt="" />
               <p className="preliquidation-paragraph-goBack">{i18next.t('detailPreliquidation:label.button.goBack')}</p>
             </div>
           </div>
