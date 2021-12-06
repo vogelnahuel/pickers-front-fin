@@ -32,7 +32,9 @@ export const DetailPreliquidation: React.FC<DetailPreliquidationPropsType> = ({
     }
   ];
 
+
   return (
+
     <div className="background-Grey">
       <Header />
       <div className="mainContainerFlex">

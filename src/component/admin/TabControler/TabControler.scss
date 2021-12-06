@@ -73,12 +73,7 @@
     vertical-align: middle;
 }
 
-.img-goBack{
-    margin-left: 18.107vw  ;
-    display: inline-block;
-    margin-top: -0.65104166666667vh;
-    cursor: pointer;
-}
+
 .pending-black{
     color: #2D2D2D;
 }
@@ -99,9 +94,6 @@
         width: 25.2vw;
     }
 
-    .img-goBack{
-        margin-left: 19.707vw  ;
-    }
 
 }
 
@@ -110,9 +102,6 @@
         width: 25.2vw;
     }
 
-    .img-goBack{
-        margin-left: 17.707vw  ;
-    }
 
 }
 
@@ -134,9 +123,7 @@
         height: 60px;
 
     }
-    .img-goBack{
-        margin-left: 23.707vw;
-    }
+
 }
 @media(min-width:2000px){
 
@@ -145,7 +132,5 @@
         height: 60px;
         margin-left: 10.8vw;
     }
-    .img-goBack{
-        margin-left: 28.707vw;
-    }
+
 }
