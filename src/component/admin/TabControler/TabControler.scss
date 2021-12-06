@@ -1,5 +1,5 @@
 .flex-tab{
-    display: flex;
+    display: inline-flex;
     border-radius: 10px;
 
 }
@@ -17,8 +17,6 @@
     margin-top: auto;
     margin-bottom: auto;
     display: inline-block;
-    padding-top: 4.595724003887269vh;
-    padding-left: 2.196vw    ;
 }
 
 .table-title{
@@ -31,10 +29,9 @@
     margin-top: auto;
     margin-bottom: auto;
     display: inline-block;
-    padding-top: 4.595724003887269vh;
-    padding-left: 2.196vw    ;
+
 }
-.Pending-paragraph3{
+.preliquidation-paragraph-goBack{
     font-family: 'Mulish';
     font-style: normal;
     font-weight: 800;
@@ -45,12 +42,18 @@
     display: inline-block;
     margin-top: -0.65104166666667vh;
     margin-left: 0.5rem;
+    cursor: pointer;
 }
 .container-tag{
     height: 12.5vh;
     width: 26.2vw;
     border: 0.823136px solid #E5E5E5;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 2.196vw    ;
+    padding-right: 2.196vw    ;
 }
 .tag-blue-border-izq{
     border-bottom-left-radius: 6px;
@@ -64,27 +67,13 @@
 .border-tag{
     border-left: 0.823136px solid #E5E5E5;
 }
-.img{
-    // position: absolute;
-    margin-left: 6.229vw;
-    // margin-top: 1.943634596695821vh;
+.img-buttons{
     width: 4.392vw;
     height: 7.8125vh;
     vertical-align: middle;
 }
-.img2{
-    // position: absolute;
-    margin-left: 14.229vw ;
-    // margin-top: 1.943634596695821vh;
-    width: 4.394vw;
-    height: 7.8125vh;
-    vertical-align: middle;
-}
-.img3{
-    margin-left: 18.107vw  ;
-    display: inline-block;
-    margin-top: -0.65104166666667vh;
-}
+
+
 .pending-black{
     color: #2D2D2D;
 }
@@ -104,15 +93,7 @@
     .container-tag{
         width: 25.2vw;
     }
-    .img{
-        margin-left: 4.829vw;
-    }
-    .img2{
-        margin-left: 12.429vw ;
-    }
-    .img3{
-        margin-left: 19.707vw  ;
-    }
+
 
 }
 
@@ -120,15 +101,7 @@
     .container-tag{
         width: 25.2vw;
     }
-    .img{
-        margin-left: 4.829vw;
-    }
-    .img2{
-        margin-left: 12.429vw ;
-    }
-    .img3{
-        margin-left: 17.707vw  ;
-    }
+
 
 }
 
@@ -145,33 +118,19 @@
         padding-top: 3.65vh;
         font-size: 16.4627px;
     }
-    .img{
+    .img-buttons{
         width: 60px;
         height: 60px;
-        margin-left: 12.2vw;
+
     }
-    .img2{
-        width: 61px;
-        height: 60px;
-        margin-left: 18vw;
-    }
-    .img3{
-        margin-left: 23.707vw;
-    }
+
 }
 @media(min-width:2000px){
 
-    .img{
+    .img-buttons{
         width: 60px;
         height: 60px;
         margin-left: 10.8vw;
     }
-    .img2{
-        width: 61px;
-        height: 60px;
-        margin-left: 16.5vw;
-    }
-    .img3{
-        margin-left: 28.707vw;
-    }
+
 }

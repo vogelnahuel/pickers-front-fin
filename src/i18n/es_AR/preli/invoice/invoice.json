@@ -1,0 +1,22 @@
+{
+  "label.invoice.subTitleInvoice": "Datos de la factura",
+  "label.label.dateOfIssue": "Fecha de emisión *",
+  "placeholder.form.broadcastDate": "Seleccioná la fecha",
+  "placeholder.form.voucherType": "Ingresá el comprobante",
+  "label.form.pointOfSale": "Punto de venta *",
+  "label.form.voucherNumber": "Número de comprobante *",
+  "label.form.numberCAE": "Número de CAE *",
+  "placeholder.form.enterNumber": "Ingresá el número",
+  "label.form.subTitleGeneralInformation": "Datos generales",
+  "label.form.fiscalNumber": "Identificador fiscal",
+  "placeholder.form.fiscalNumber": "27385645188",
+  "label.form.businessName": "Razón social",
+  "placeholder.form.businessName": "Cypress IF 20213814452296",
+  "label.form.typeOfTaxpayer": "Tipo de contribuyente",
+  "placeholder.form.typeOfTaxpayer": "Monotributista",
+  "label.form.totalToPay": "Total a pagar",
+  "placeholder.form.totalToPay": "$22000",
+  "label.buttons.save": "Guardar",
+  "label.buttons.refuse": "Rechazar Factura",
+  "label.buttons.approve": "Aprobar"
+}

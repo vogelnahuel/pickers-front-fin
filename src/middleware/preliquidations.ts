@@ -13,6 +13,11 @@ import { PreliquidationsApiResponse } from "sagas/types/preliquidation";
 export const getPreliquidations = (params:any): Promise<AxiosResponse<PreliquidationsApiResponse>> =>
 axios.get("http://localhost:8080/presettlments",params)
 
+export const getDetailInvoice = (id:any): Promise<AxiosResponse<PreliquidationsApiResponse>> =>
+axios.get(`http://localhost:8080/detailInvoice/${id}`)
+
+
+
 
 
 
