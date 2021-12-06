@@ -43,7 +43,7 @@ export const TabControler: React.FC<TabControlerType> = ({
           </p>
           {tabs && (
             <img
-              className="img"
+              className="img-buttons"
               src={
                 tabs[0].icons && actualPage === tabs[0].id
                   ? tabs[0].icons.active
@@ -69,7 +69,7 @@ export const TabControler: React.FC<TabControlerType> = ({
           </p>
           {tabs && (
             <img
-              className="img2"
+              className="img-buttons"
               src={
                 tabs[1].icons && actualPage === tabs[1].id
                   ? tabs[1].icons.active

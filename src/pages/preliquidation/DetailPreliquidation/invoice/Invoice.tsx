@@ -83,7 +83,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({isFetch
                       />
                     </div>
 
-                    <div className="container-detail-preliquidation-col-sm-2  form-part-1-admin-pickers detail-preliquidation-ajustar">
+                    <div className="container-detail-preliquidation-col-sm-2  form-part-1-admin-pickers detail-preliquidation-adjust">
                       Factura
                     </div>
                   </div>
@@ -150,7 +150,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({isFetch
                       disabled={true}
                       className="button-submit-active"
                     >
-                      {i18next.t('invoice:label.buttons.Approve')}
+                      {i18next.t('invoice:label.buttons.approve')}
                     </button>
                   </div>
                 </div>

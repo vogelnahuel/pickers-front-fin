@@ -29,12 +29,7 @@ export const DetailPreliquidation: React.FC<DetailPreliquidationPropsType> = ({
       title: "Factura",
       id: "INVOICE",
       icons: { active: invoiceBlue, disable: invoiceBlack },
-    },
-    {
-      title: "volver",
-      id: "VOLVER",
-      icons: { active: back, disable: back },
-    },
+    }
   ];
 
   return (
@@ -46,12 +41,12 @@ export const DetailPreliquidation: React.FC<DetailPreliquidationPropsType> = ({
           <div className="preliquidation-display-flex">
             <TabControler tabs={tabs} changePage={() => {}} />
             <div  className="detail-preliquidation-inline" onClick={()=>handleClickBack()}>
-              <img className="img3" src={tabs[2].icons.active} alt="" />
-              <p className="Pending-paragraph3">{i18next.t('detailPreliquidation:label.button.goBack')}</p>
+              <img className="img-goBack" src={tabs[2].icons.active} alt="" />
+              <p className="preliquidation-paragraph-goBack">{i18next.t('detailPreliquidation:label.button.goBack')}</p>
             </div>
           </div>
           <div className="mainContainerFlex">
-            <h2 className="detail-preliquidation-h2">{i18next.t('detailPreliquidation:label.h2.subTitle-number')}</h2>
+            <h2 className="detail-preliquidation-h2">{i18next.t('detailPreliquidation:label.subtitle.preliquidationNumber')}</h2>
             <p className="detail-preliquidation-number">{2201100002}</p>
           </div>
           {actualPage ? <InvoiceContainer /> : <></>}

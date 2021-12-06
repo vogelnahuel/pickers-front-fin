@@ -31,7 +31,7 @@
     display: inline-block;
 
 }
-.Pending-paragraph3{
+.preliquidation-paragraph-goBack{
     font-family: 'Mulish';
     font-style: normal;
     font-weight: 800;
@@ -67,23 +67,13 @@
 .border-tag{
     border-left: 0.823136px solid #E5E5E5;
 }
-.img{
-
-
-    // margin-top: 1.943634596695821vh;
+.img-buttons{
     width: 4.392vw;
     height: 7.8125vh;
     vertical-align: middle;
 }
-.img2{
-    // position: absolute;
 
-    // margin-top: 1.943634596695821vh;
-    width: 4.394vw;
-    height: 7.8125vh;
-    vertical-align: middle;
-}
-.img3{
+.img-goBack{
     margin-left: 18.107vw  ;
     display: inline-block;
     margin-top: -0.65104166666667vh;
@@ -109,7 +99,7 @@
         width: 25.2vw;
     }
 
-    .img3{
+    .img-goBack{
         margin-left: 19.707vw  ;
     }
 
@@ -120,7 +110,7 @@
         width: 25.2vw;
     }
 
-    .img3{
+    .img-goBack{
         margin-left: 17.707vw  ;
     }
 
@@ -139,33 +129,23 @@
         padding-top: 3.65vh;
         font-size: 16.4627px;
     }
-    .img{
+    .img-buttons{
         width: 60px;
         height: 60px;
 
     }
-    .img2{
-        width: 61px;
-        height: 60px;
-
-    }
-    .img3{
+    .img-goBack{
         margin-left: 23.707vw;
     }
 }
 @media(min-width:2000px){
 
-    .img{
+    .img-buttons{
         width: 60px;
         height: 60px;
         margin-left: 10.8vw;
     }
-    .img2{
-        width: 61px;
-        height: 60px;
-        margin-left: 16.5vw;
-    }
-    .img3{
+    .img-goBack{
         margin-left: 28.707vw;
     }
 }
