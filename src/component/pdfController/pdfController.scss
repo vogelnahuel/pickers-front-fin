@@ -4,9 +4,14 @@
 
 .root-container {
   @extend %font;
+  max-width: 800px;
+  width: 100%;
+  
+}
+
+.container {
   position: relative;
   width: 100%;
-  max-width: 800px;
   min-height: 400px;
   display: flex;
   flex-direction: column;
@@ -20,24 +25,42 @@
   &-loading {
     background-color: #f0f0f0;
   }
+
+  &-error {
+    transition: border-color 0.3s;
+    border-color: #FF1515;
+  }
 }
 
-.upload-icon-container {
+.icon-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation: moveUp 0.6s;
+  
+  .container-dragging & {
+    animation: moveDown 1.1s;
+    animation-fill-mode: forwards;
+  }
+
+  .container-loading & {
+    animation: fadeOut 0.4s, moveUp 0.5s;
+    animation-fill-mode: forwards;
+  }
+}
+
+.upload-error-icon {
+  width: 46px;
+  height: 48px;
+  margin-bottom: 16px;
+}
+
+.upload-icon {
   position: relative;
   width: 50px;
   height: 40px;
   margin-bottom: 16px;
-  animation: scaleDownAndMoveUp 0.6s;
-  
-  .root-container-dragging & {
-    animation: scaleUpAndMoveDown 1.1s;
-    animation-fill-mode: forwards;
-  }
-
-  .root-container-loading & {
-    animation: fadeOut 0.4s, scaleDownAndMoveUp 0.5s;
-    animation-fill-mode: forwards;
-  }
 }
 
 .upload-cloud{
@@ -53,7 +76,7 @@
   width: 15px;
   transform: translateX(-50%);
 
-  .root-container-dragging & {
+  .container-dragging & {
     animation: arrowUpDown 1.1s infinite;
     animation-timing-function: ease;
   }
@@ -67,12 +90,12 @@
   color: #4d4d4d;
   animation: fadeIn 0.5s, moveUp 0.6s;
 
-  .root-container-dragging & {
+  .container-dragging & {
     animation: fadeOut 0.8s, moveDown 1s;
     animation-fill-mode: forwards;
   }
 
-  .root-container-loading & {
+  .container-loading & {
     animation: fadeOut 0.2s;
     animation-fill-mode: forwards;
   }
@@ -113,6 +136,15 @@
   background-color: #bdbdbd;
   animation: loadingAnim 10s ease;
   animation-fill-mode: forwards;
+}
+
+.error-message {
+  color: #FF1515;
+  font-size: 14px;
+  width: 100%;
+  text-align: center;
+  margin-top: 16px;
+  animation: fadeIn 0.4s;
 }
 
 @keyframes arrowUpDown {
