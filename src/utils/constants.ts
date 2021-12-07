@@ -172,10 +172,6 @@ export const FILTER_PRELIQUIDATION_SELECT_OPTIONS = [
     value: "A",
   },
   {
-    label: "B",
-    value: "B",
-  },
-  {
     label: "C",
     value: "C",
   },

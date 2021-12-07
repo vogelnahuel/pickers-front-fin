@@ -43,6 +43,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
   changePage,
   Close,
 }) => {
+
   const tabs = [
     {
       title: "pickers:label.title.pending",

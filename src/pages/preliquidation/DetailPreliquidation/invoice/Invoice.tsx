@@ -7,19 +7,26 @@ import { FILTER_PRELIQUIDATION_SELECT_OPTIONS } from 'utils/constants';
 import Select from 'component/inputs/Select';
 import { detailPreliquidationInvoicePropsType } from './invoice';
 import i18next from "i18next";
+import useValidationSchema from 'hooks/useValidationSchema';
 
-export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({isFetching}) =>{
-    return (
+
+
+export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({isFetching,detailPreliquidations,validationSchema}) =>{
+let castear : any = detailPreliquidations;
+castear = { ...castear, emisionDate: {from: "03/12/2021"} }
+
+  return (
         <div>
               <h3 className="subTitle-pending-data detail-preliquidation-margin-top">{i18next.t('invoice:label.invoice.subTitleInvoice')}</h3>
           <Form
             onSubmit={(value) => value}
+            initialValues={castear}
             mutators={{
               setValue: ([field, value], state, { changeValue }) => {
                 changeValue(state, field, () => value);
               },
             }}
-
+            validate={useValidationSchema(validationSchema)}
           >
             {({ handleSubmit, form }) => (
               <form className="form-filter-transaction" onSubmit={handleSubmit}>
@@ -33,39 +40,43 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({isFetch
                          </label>
                       <Field
                         type="text"
-                        name="broadcastDate"
+                        name="emisionDate"
                         className="Admin-Pickers-input"
                         placeholder= {i18next.t('invoice:placeholder.form.broadcastDate')}
                         language="es"
                       >
-                             {(props: any) => <DatePicker  singleSelection {...props} />}
+                             {(props: any) =>{console.log(props) ;return <DatePicker  singleSelection {...props} />}}
                       </Field>
                     </div>
-                   
+                     <div>
+                          <label className="label-Admin-Pickers">
+                            Tipo de comprobante *
+                         </label>
+                        <Field
+                          type="text"
+                          placeholder={i18next.t('invoice:placeholder.form.voucherType')}
+                          name="invoiceType"
+                          onChange={form.mutators.setValue}
+                          options={FILTER_PRELIQUIDATION_SELECT_OPTIONS.map((o) => ({
+                            ...o,
+                            label:o.label,
+                          }))}
+                        >
+                          {(props: any) => <Select {...props} />}
+                      </Field> 
+                    </div> 
                       <Field
                         type="text"
-                        placeholder={i18next.t('invoice:placeholder.form.voucherType')}
-                        name="voucherType"
-                        onChange={form.mutators.setValue}
-                        options={FILTER_PRELIQUIDATION_SELECT_OPTIONS.map((o) => ({
-                          ...o,
-                          label:o.label,
-                        }))}
-                      >
-                         {(props: any) => <Select {...props} />}
-                    </Field> 
-                      <Field
-                        type="text"
-                        name="pointOfSale"
+                        name="salePoint"
                         label={i18next.t('invoice:label.form.pointOfSale')}
                         component={Input}
                         className="Admin-Pickers-input"
                         placeholder={i18next.t('invoice:placeholder.form.enterNumber')}
-                        maxLength={8}
+                        maxLength={5}
                       />
                       <Field
                         type="text"
-                        name="voucherNumber"
+                        name="invoiceNumber"
                         label={i18next.t('invoice:label.form.voucherNumber')}
                         component={Input}
                         className="Admin-Pickers-input"
@@ -74,12 +85,12 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({isFetch
                       />
                       <Field
                         type="text"
-                        name="numberCae"
+                        name="caeNumber"
                         label={i18next.t('invoice:label.form.numberCAE')}
                         component={Input}
                         className="Admin-Pickers-input"
                         placeholder={i18next.t('invoice:placeholder.form.enterNumber')}
-                        maxLength={8}
+                        maxLength={14}
                       />
                     </div>
 
@@ -94,8 +105,9 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({isFetch
                       <div className="container-detail-preliquidation-col-sm-1">
                         <Field
                           type="text"
-                          name="voucherNumber"
+                          name="fiscalData.fiscalNumber"
                           label={i18next.t('invoice:label.form.fiscalNumber')}
+                          disabled={true}
                           component={Input}
                           className="Admin-Pickers-input"
                           placeholder={i18next.t('invoice:placeholder.form.fiscalNumber')}
@@ -105,34 +117,37 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({isFetch
                       <div className="container-detail-preliquidation-col-sm-1">
                         <Field
                           type="text"
-                          name="businessName"
+                          name="fiscalData.companyName"
                           label={i18next.t('invoice:label.form.businessName')}
                           component={Input}
                           className="Admin-Pickers-input"
                           placeholder={i18next.t('invoice:placeholder.form.businessName')}
                           maxLength={8}
+                          disabled={true}
                         />
                       </div>
                       <div className="container-detail-preliquidation-col-sm-1">
                         <Field
                           type="text"
-                          name="typeOfTaxpayer"
+                          name="fiscalData.taxPayerType"
                           label={i18next.t('invoice:label.form.typeOfTaxpayer')}
                           component={Input}
                           className="Admin-Pickers-input"
                           placeholder={i18next.t('invoice:placeholder.form.typeOfTaxpayer')}
                           maxLength={8}
+                          disabled={true}
                         />
                       </div>
                       <div className="container-detail-preliquidation-col-sm-1 ">
                         <Field
                           type="text"
-                          name="totalToPay"
+                          name="fiscalData.total"
                           label={i18next.t('invoice:label.form.totalToPay')}
                           component={Input}
                           className="Admin-Pickers-input"
                           placeholder={i18next.t('invoice:placeholder.form.totalToPay')}
                           maxLength={8}
+                          disabled={true}
                         />
                       </div>
                     </div>

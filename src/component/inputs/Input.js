@@ -17,7 +17,7 @@ export const Input= (props) => {
         animated
     } = props;
 
-   
+
 
     const [focus, setFocus] = useState(false);
 

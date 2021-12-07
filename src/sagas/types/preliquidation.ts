@@ -37,3 +37,30 @@ export type PreliquidationParamsMiddlewareType = {
   limit?: number;
   offset?: number;
 };
+
+export type DetailPreliquidationsApiResponseType = {
+  data: {
+    result : DetailPreliquidationsContentResponseType
+  };
+  status: number;
+};
+export type DetailPreliquidationsContentResponseType = {
+
+    id: number;
+    emisionDate: string;
+    invoiceNumber: string;
+    salePoint: string;
+    invoiceType: string;
+    caeNumber: string;
+    fiscalData: {
+      fiscalNumber: string;
+      companyName: string;
+      taxPayerType: string;
+      total: number;
+    };
+    invoiceFile: {
+      upload: true | false;
+      url: string | null;
+    };
+
+};

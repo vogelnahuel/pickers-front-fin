@@ -2,14 +2,14 @@
   "detailInvoice": [
     {
       "id": 1,
-      "result":{
-        "invoice": {
+      "result": {
+
           "id": 1,
-          "emisionDate": "string",
-          "invoiceNumber": "string",
-          "salePoint": "string",
-          "invoiceType": "string",
-          "caeNumber": "string",
+          "emisionDate": "3/10/2021",
+          "invoiceNumber": "12345678",
+          "salePoint": "8765",
+          "invoiceType": "A",
+          "caeNumber": "12345678901234",
           "fiscalData": {
             "fiscalNumber": "string",
             "companyName": "string",
@@ -20,20 +20,18 @@
             "upload": true,
             "url": null
           }
-        }
+        
       }
-     
-      
     },
     {
       "id": 2,
-      "result":{
-        "invoice": {
+      "result": {
+       
           "id": 2,
           "emisionDate": "string",
           "invoiceNumber": "string",
           "salePoint": "string",
-          "invoiceType": "string",
+          "invoiceType": "C",
           "caeNumber": "string",
           "fiscalData": {
             "fiscalNumber": "string",
@@ -45,19 +43,18 @@
             "upload": true,
             "url": null
           }
-        }
+        
       }
-      
     },
     {
       "id": 3,
-      "result":{
-        "invoice": {
+      "result": {
+
           "id": 3,
           "emisionDate": "string",
           "invoiceNumber": "string",
           "salePoint": "string",
-          "invoiceType": "string",
+          "invoiceType": "A",
           "caeNumber": "string",
           "fiscalData": {
             "fiscalNumber": "string",
@@ -69,12 +66,10 @@
             "upload": true,
             "url": null
           }
-        }
+        
       }
-      
     }
   ],
-
   "presettlments": {
     "result": {
       "items": [

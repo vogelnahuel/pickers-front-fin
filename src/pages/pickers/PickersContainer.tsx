@@ -28,6 +28,7 @@ const PendingUserAdminContainer: React.FC<PickerContainerTypes> = (//
     props.setPendingUserExtraFilters(filtersExtra);
     props.setPendingUserFilters(filters);
     props.getPendingUser({ ...filtersExtra, ...filters });
+    props.setActualPage("PENDING");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.actualPage]);
 

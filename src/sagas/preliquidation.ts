@@ -11,7 +11,7 @@ import {
 import * as preliquidationsMiddleware from "../middleware/preliquidations";
 
 import { actions as preliquidationActions } from "../reducers/preliquidation";
-import { PreliquidationParamsMiddlewareType, PreliquidationsApiResponse } from "./types/preliquidation";
+import { DetailPreliquidationsApiResponseType, DetailPreliquidationsContentResponseType, PreliquidationParamsMiddlewareType, PreliquidationsApiResponse } from "./types/preliquidation";
 
 const sagas = [
   takeLatest(
@@ -20,6 +20,9 @@ const sagas = [
   ),
   takeLatest(preliquidationActions.getMorePreliquidationsRequest.type,
     getMorePreliquidations)
+    ,
+  takeLatest(preliquidationActions.getDetailPreliquidationsRequest.type,
+    getDetailPreliquidations)
 ];
 
 export default sagas;
@@ -60,5 +63,23 @@ function* getMorePreliquidations({
       ...rest
     } = response.data;
     yield put(preliquidationActions.getMorePreliquidationsSuccess({ items, ...rest }));
+  }
+}
+
+function* getDetailPreliquidations({
+  payload,
+}: PayloadAction<PreliquidationParamsMiddlewareType>): Generator<
+  | PutEffect<{ payload: DetailPreliquidationsContentResponseType; type: string; }>
+  | PutEffect<{ payload: undefined; type: string; }>
+  | CallEffect<AxiosResponse<DetailPreliquidationsContentResponseType>>,
+  void,
+  DetailPreliquidationsApiResponseType
+> {
+  const response = yield call(preliquidationsMiddleware.getDetailInvoice, payload);
+  if (response.status !== 200) {
+    yield put(preliquidationActions.getDetailPreliquidationsError());
+  } else {
+    const { result } = response.data;
+    yield put(preliquidationActions.getDetailPreliquidationsSuccess(result));
   }
 }
