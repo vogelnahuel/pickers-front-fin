@@ -8,7 +8,7 @@ import {
   actions as preliActions,
   preliquidationSelector,
 } from "reducers/preliquidation";
-import { detailPreliquidationInvoiceContainerPropsType } from "./invoice";
+import { detailPreliquidationInvoiceContainerPropsType } from "./types";
 import { useParams } from "react-router-dom";
 import { PreliquidationParamsMiddlewareType } from "sagas/types/preliquidation";
 import * as yup from "yup";
@@ -29,23 +29,20 @@ const InvoiceContainer = (
 
   const validarFechas = (value: any) => {
 
-    const fechaCreacionPreli = "12/8/2021";
-    const hoy = moment().format("DD/MM/YYYY");
-   
-    const range = moment(value.from).isBetween(fechaCreacionPreli, hoy);
+    const startDate = moment().subtract(7,'d').format("DD/MM/YYYY");
+    const today = moment().format("DD/MM/YYYY");
+    const range = moment(value.from).isBetween(startDate, today);
     console.log("ingresado:",value);
     console.log("range:",range)
-    console.log("hoy:",hoy)
-    console.log("fechaCreacionPreli:",fechaCreacionPreli)
-    return   false//new yup.ValidationError("error");
+    console.log("hoy:",today)
+    console.log("fechaCreacionPreli:",startDate)
+    return range;
   };
 
   const validationSchema:any = yup.object({
     emisionDate: yup
       .object()
-      .test("asdasdasd", "asdasdasdasd", (value) => validarFechas(value) )
-
-      ,
+      .test("asdasdasd", "asdasdasdasd", (value) => validarFechas(value) ),
     salePoint: yup
       .string()
       .min(4, i18next.t("Ingresá un número de 4 o 5 dígitos")),

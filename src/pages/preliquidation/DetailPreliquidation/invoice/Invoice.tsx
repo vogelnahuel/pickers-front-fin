@@ -5,7 +5,7 @@ import { Field, Form } from 'react-final-form'
 import { DatePicker } from '@pickit/pickit-components';
 import { FILTER_PRELIQUIDATION_SELECT_OPTIONS } from 'utils/constants';
 import Select from 'component/inputs/Select';
-import { detailPreliquidationInvoicePropsType } from './invoice';
+import { detailPreliquidationInvoicePropsType } from './types';
 import i18next from "i18next";
 import useValidationSchema from 'hooks/useValidationSchema';
 
@@ -45,7 +45,7 @@ castear = { ...castear, emisionDate: {from: "03/12/2021"} }
                         placeholder= {i18next.t('invoice:placeholder.form.broadcastDate')}
                         language="es"
                       >
-                             {(props: any) =>{console.log(props) ;return <DatePicker  singleSelection {...props} />}}
+                             {(props: any) =>{console.log("DATEPICKER PROPS: ", props) ;return <DatePicker  singleSelection {...props} t={i18next.t} />}}
                       </Field>
                     </div>
                      <div>
