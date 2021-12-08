@@ -9,7 +9,7 @@ import invoiceBlack from "./../../../assets/preli/invoiceBlack.svg";
 import back from "./../../../assets/admin/PendingUser/volver.svg";
 import InvoiceContainer from "./invoice/InvoiceContainer";
 import "pages/preliquidation/DetailPreliquidation/detailPreliquidation.scss";
-import { DetailPreliquidationPropsType } from "./detailPreliquidation";
+import { DetailPreliquidationPropsType } from "./types";
 
 import i18next from "i18next";
 

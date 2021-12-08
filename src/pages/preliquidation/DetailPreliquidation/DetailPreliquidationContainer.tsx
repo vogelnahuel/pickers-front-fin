@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { AppDispatch, RootState } from "store";
 import { DetailPreliquidation } from "./DetailPreliquidation";
 import { useHistory } from "react-router-dom";
-import { DetailPreliquidationContainerPropsType } from "./detailPreliquidation";
+import { DetailPreliquidationContainerPropsType } from "./types";
 import { preliquidationSelector } from "reducers/preliquidation";
 
 export const DetailPreliquidationContainer = (props: DetailPreliquidationContainerPropsType): JSX.Element => {
