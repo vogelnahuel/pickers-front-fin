@@ -8,6 +8,10 @@ import calckBlue from "./../../../assets/preli/calcBlue.svg";
 import invoiceBlack from "./../../../assets/preli/invoiceBlack.svg";
 import { PdfViewer } from "component/pdf-viewer/PdfViewer";
 import "./DetailPreliquidation.scss"
+import pdfFile from "../../../component/pdf-viewer/pdftest.pdf";
+import download from "../../../assets/preli/download.svg";
+import replace from "../../../assets/preli/replace.svg";
+import deletePDF from "../../../assets/preli/deletePDF.svg"
 
 export const DetailPreliquidation: React.FC<any> = ({
   isFetching,
@@ -42,7 +46,11 @@ export const DetailPreliquidation: React.FC<any> = ({
               />
             </h2>
           </div >
-         <PdfViewer></PdfViewer>
+         {/* <PdfViewer src={pdfFile}>
+           <img src={deletePDF} alt="" onClick={()=>{console.log("soy el boton de eliminar")}} className="download-PDF"/>
+           <img src={replace} alt="" onClick={()=>{console.log("soy el boton de reemplazar")}} className="download-PDF"/>
+           <img src={download} alt="" onClick={()=>{console.log("soy el boton de descarga")}} className="download-PDF"/>
+         </PdfViewer> */}
                
         </div>
       </div>

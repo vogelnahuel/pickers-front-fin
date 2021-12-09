@@ -1,25 +1,64 @@
-.pdf-container{
-    // width: 400px;
-    // height: 400px;
-
+.pdf-container {
+  width: 800px;
+  height: 800px;
 }
 
-.rpv-default-layout__toolbar{
-    // display: none;
+.rpv-default-layout__toolbar {
+  //display: none;
 }
 
-.rpv-default-layout__sidebar--ltr{
-    
-        // display: none;
-    
-} 
-
-iframe{
-    height: 800px;
-    width: 800px;
-
-    
+.rpv-core__minimal-button {
 }
-#toolbar{
-    color: red !important;
+
+.zoom-button {
+  cursor: pointer;
+  height: 25px;
+  width: 25px;
+}
+.page-navigator {
+  //  backgroundColor: props.isDisabled ? "#96ccff" : "#357edd",
+  //  border: "none",
+  //  borderRadius: "4px",
+  //  color: "#ffffff",
+  cursor: pointer;
+  padding: 8px;
+}
+.page-navigator-container {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+.current-page-label {
+  margin-top: 7px;
+}
+.page-navigator-button-container {
+  padding: 0px 2px;
+  margin-left: auto;
+}
+.toolbar-container {
+  display: flex;
+  align-items: center;
+  height: 0px;
+  position: relative;
+  z-index: 10;
+  top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.rpv-default-layout__toolbar {
+  position: absolute;
+  bottom: -40px;
+  width: calc(100% + 2px);
+  left: -1px;
+  height: 40px;
+  background-color: white;
+  z-index: 10;
+  padding:3px;
+  border: 1px solid rgba(0,0,0,0.3);
+    border-top: none;
+}
+
+.rpv-default-layout__sidebar--ltr {
+  display: none;
 }
