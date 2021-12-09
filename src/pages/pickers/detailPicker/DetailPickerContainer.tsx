@@ -35,9 +35,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
 ): JSX.Element => {
   const params: { id?: string } = useParams();
   const historial = useHistory();
-  let Close = () => {
-    historial.goBack();
-  };
+
   useEffect(() => {
     props.getPendingUserPicker(params.id);
     props.resetWrongFiles();
@@ -243,7 +241,6 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
       aproveSubmit={aproveSubmit}
       active={active}
       formatDate={formatDate}
-      Close={Close}
     />
   );
 };

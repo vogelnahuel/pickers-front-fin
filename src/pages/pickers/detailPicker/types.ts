@@ -31,7 +31,6 @@ export type DetailPickerTypeProps = {
   cancel: Function;
   aproveSubmit: Function;
   nameDisplay: string;
-  goBack: Function;
   postPendingUserDocumentsEdit: Function;
   postEditPickerRequest: Function;
   validationSchema: Object;
@@ -39,8 +38,8 @@ export type DetailPickerTypeProps = {
   wrongFiles: boolean;
   showNotification: (notification: NotificationStateType) => void;
   loadedFiles: boolean;
-  Close:Function;
   changePage: (page:string, isDirty?:boolean) => void;
+  goBack: () => void;
 };
 
 export type PickerFileRequestType = {

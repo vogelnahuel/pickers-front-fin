@@ -22,6 +22,7 @@ import relojAzul from "assets/admin/PendingUser/relojAzul.svg";
 import relojOscuro from "assets/admin/PendingUser/relojOscuro.svg";
 import trabajadorOscuro from "assets/admin/PendingUser/trabajadorOscuro.svg";
 import trabajadorAzul from "assets/admin/PendingUser/trabajadorAzul.svg";
+import Back from "component/back/Back";
 
 export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
   isFetching,
@@ -61,7 +62,11 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
       <div className="mainContainerFlex">
         <Nav />
         <div className="pending-container">
+          <div className="header-container">
           <TabControler tabs={tabs} changePage={changePage} />
+          <Back onClick={console.log}/>
+          </div>
+
           <div className="mainContainerFlex-picker">
             <div className="picker-id">
               {pendingUserAdminPicker?.id &&

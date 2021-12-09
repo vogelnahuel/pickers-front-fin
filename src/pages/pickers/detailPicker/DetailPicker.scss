@@ -9,6 +9,13 @@
   /* margin-top: 1vh; */
   padding-left: 20px;
 }
+
+.header-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
 .form-Admin-Pickers {
   display: flex;
   background: #aca5a5;

@@ -26,13 +26,12 @@ export const TabControler: React.FC<TabControlerType> = ({
 
 
   return (
-    <div className="flex-tab">
-      <div className="flex-tab backGround-tab">
+      <div className="flex-tab background-tab">
         <div
           onClick={() => {
             changePage(tabs && tabs[0].id, isDirty);
           }}
-          className="container-tag tag-blue-border-izq"
+          className="container-tag"
         >
           <p
             className={
@@ -58,7 +57,7 @@ export const TabControler: React.FC<TabControlerType> = ({
           onClick={() => {
             changePage(tabs && tabs[1].id, isDirty);
           }}
-          className="container-tag border-tag tag-blue-border-der"
+          className="container-tag border-tag"
         >
           <p
             className={
@@ -82,7 +81,6 @@ export const TabControler: React.FC<TabControlerType> = ({
 
      
       </div>
-    </div>
   );
 };
 

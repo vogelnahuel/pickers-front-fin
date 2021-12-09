@@ -5,7 +5,7 @@ import { AppDispatch, RootState } from "store";
 import  Invoice  from "./Invoice";
 import { actions } from "reducers/pickers";
 import { preliquidationSelector } from "reducers/preliquidation";
-import { detailPreliquidationInvoiceContainerPropsType } from "./invoice";
+import { detailPreliquidationInvoiceContainerPropsType } from "./types";
 
 
 const InvoiceContainer = (props: detailPreliquidationInvoiceContainerPropsType): JSX.Element => {

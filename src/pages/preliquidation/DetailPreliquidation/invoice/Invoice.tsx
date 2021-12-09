@@ -5,7 +5,7 @@ import { Field, Form } from 'react-final-form'
 import { DatePicker } from '@pickit/pickit-components';
 import { FILTER_PRELIQUIDATION_SELECT_OPTIONS } from 'utils/constants';
 import Select from 'component/inputs/Select';
-import { detailPreliquidationInvoicePropsType } from './invoice';
+import { detailPreliquidationInvoicePropsType } from './types';
 import i18next from "i18next";
 
 export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({isFetching}) =>{
