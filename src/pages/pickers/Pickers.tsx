@@ -46,7 +46,7 @@ export const Pickers: React.FC<PickerTypes> = ({
       <div className="mainContainerFlex">
         <Nav isDirty={null} showNotification={null} />
         <div className="pending-container">
-          <TabControler tabs={tabs} changePage={changePage} />
+          <TabControler tabs={tabs} changePage={changePage} actualPage={actualPage}/>
 
           <div className="mainContainerFlex">
             <h2 className="subTitle-pending">

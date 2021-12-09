@@ -16,9 +16,14 @@ import {
   hasPickerWrongFilesSelector,
 } from "reducers/detailPicker";
 
-const PendingUserAdminContainer: React.FC<PickerContainerTypes> = (//
+const PendingUserAdminContainer: React.FC<PickerContainerTypes> = (
   props
 ): JSX.Element => {
+
+  const changePage = (page: string) => {
+    if (props.isDetail || props.actualPage !== page) props.setActualPage(page);
+  };
+
   useEffect(() => {
     const filters =
       props.actualPage === "PENDING"
@@ -30,15 +35,6 @@ const PendingUserAdminContainer: React.FC<PickerContainerTypes> = (//
     props.getPendingUser({ ...filtersExtra, ...filters });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.actualPage]);
-
-  const changePage = (page: string, isDirty?: boolean) => {
-    if (props.isDetail || props.actualPage !== page) {
-      let onClose = () => {
-        props.setActualPage(page);
-      };
-      onClose();
-    } 
-  };
 
   return (
     <Pickers
@@ -59,7 +55,6 @@ const mapStateToProps = (state: RootState) => ({
   filtersExtraSeeMore: pickersSelector(state).filtersExtraSeeMore,
   seeMore: pickersSelector(state).seeMore,
   actualPage: pickersSelector(state).actualPage,
-  isDirty: pendingUserAdminPickerSelectors(state).dirty,
   wrongFiles: hasPickerWrongFilesSelector(state),
 });
 

@@ -25,6 +25,7 @@ import trabajadorAzul from "assets/admin/PendingUser/trabajadorAzul.svg";
 import Back from "component/back/Back";
 
 export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
+  actualPage,
   isFetching,
   pendingUserAdminPicker,
   getPendingUserPickerExport,
@@ -41,8 +42,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
   wrongFiles,
   showNotification,
   loadedFiles,
-  changePage,
-  Close,
+  changePage
 }) => {
   const tabs = [
     {
@@ -63,8 +63,8 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
         <Nav />
         <div className="pending-container">
           <div className="header-container">
-          <TabControler tabs={tabs} changePage={changePage} />
-          <Back onClick={console.log}/>
+          <TabControler tabs={tabs} changePage={changePage} actualPage={actualPage}/>
+          <Back onClick={() => goBack(true)}/>
           </div>
 
           <div className="mainContainerFlex-picker">
@@ -479,7 +479,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                                 onCloseLabel: i18next.t(
                                   "global:label.button.continue"
                                 ),
-                                onClose: Close,
+                                onClose: goBack,
                                 onClick: () =>
                                   window.scroll({
                                     top: window.innerHeight,

@@ -56,56 +56,22 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
   };
   const history = useHistory();
   
-  const changePage = (page: string, isDirty?: boolean) => {
-    if (props.actualPage !== page) {
-      let onClose = () => {
-        props.setActualPage(page);
-
-        if (history.location.pathname !== "/pickers" && history.length > 1)
-          history.goBack();
-        else if (history.length <= 1) {
-          history.replace("/pickers");
-        }
-      };
-      if (isDirty) {
-        props.showNotification({
-          level: "warning",
-          title: i18next.t("pickers:title.modal.saveChanges"),
-          body: i18next.t("pickers:label.modal.saveChanges"),
-          onClickLabel: "pickers:button.modal.goToSave",
-          onCloseLabel: "pickers:button.modal.notSave",
-          onClose: onClose,
-          onClick: () =>
-            window.scroll({
-              top: window.innerHeight,
-              left: 0,
-              behavior: "smooth",
-            }),
-        });
-      } 
-      else if (props.wrongFiles) {
-        props.showNotification({
-          level: "warning",
-          title: i18next.t("global:title.modal.withoutSaving"),
-          body:  i18next.t("global:label.modal.withoutSaving"),
-          onClickLabel: i18next.t("global:label.button.checkErrors"),
-          onCloseLabel: i18next.t("global:label.button.continue"),
-          onClose: onClose,
-          onClick: () =>
-            window.scroll({
-              top: window.innerHeight,
-              left: 0,
-              behavior: "smooth",
-            }),
-        });
-      } 
-      else {
-        onClose();
-      }
-    } 
-    else {
+  const changePage = (page: string) => {
    
-    }
+    let onClose = () => {
+      props.setActualPage(page);
+
+      if (history.location.pathname !== "/pickers" && history.length > 1)
+        history.goBack();
+      else if (history.length <= 1) {
+        history.replace("/pickers");
+      }
+    };
+    if (props.isDirty) showDirtyNotification(onClose);
+    else if (props.wrongFiles) showWrongFilesNotification(onClose);
+    else onClose();
+  
+  
   };
 
   const validationSchema: yup.SchemaOf<DetailPickerValidationSchema> =
@@ -196,28 +162,48 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
     });
 
   const cancel = (isDirty: boolean, restart: Function) => {
-    let onClose = () => {
-      restart();
-    };
-    if (isDirty) {
-      props.showNotification({
-        level: "warning",
-        title: i18next.t("pickers:title.modal.saveChanges"),
-        body: i18next.t("pickers:label.modal.saveChanges"),
-        onClickLabel: "pickers:button.modal.goToSave",
-        onCloseLabel: "pickers:button.modal.notSave",
-        onClose: onClose,
-        onClick: () =>
-          window.scroll({
-            top: window.innerHeight,
-            left: 0,
-            behavior: "smooth",
-          }),
-      });
-    } else {
-      onClose();
-    }
+    if (isDirty) showDirtyNotification(restart); 
+    else restart();
   };
+
+  const goBack = (validate?: boolean) => {
+    if(validate){
+      if (props.isDirty) showDirtyNotification(historial.goBack);
+      else if (props.wrongFiles) showWrongFilesNotification(historial.goBack);
+      else historial.goBack();
+    }
+    else historial.goBack()
+  }
+
+  const showDirtyNotification = (onClose: Function) => props.showNotification({
+    level: "warning",
+    title: i18next.t("pickers:title.modal.saveChanges"),
+    body: i18next.t("pickers:label.modal.saveChanges"),
+    onClickLabel: "pickers:button.modal.goToSave",
+    onCloseLabel: "pickers:button.modal.notSave",
+    onClose: onClose,
+    onClick: () =>
+      window.scroll({
+        top: window.innerHeight,
+        left: 0,
+        behavior: "smooth",
+      }),
+  });
+
+  const showWrongFilesNotification = (onClose: Function) =>  props.showNotification({
+    level: "warning",
+    title: i18next.t("global:title.modal.withoutSaving"),
+    body:  i18next.t("global:label.modal.withoutSaving"),
+    onClickLabel: i18next.t("global:label.button.checkErrors"),
+    onCloseLabel: i18next.t("global:label.button.continue"),
+    onClose: onClose,
+    onClick: () =>
+      window.scroll({
+        top: window.innerHeight,
+        left: 0,
+        behavior: "smooth",
+      }),
+  });
 
   const aproveSubmit = (params: PickerType, goBack: Function) => {
     props.showNotification({
@@ -237,7 +223,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
       validationSchema={validationSchema}
       changePage={changePage}
       cancel={cancel}
-      goBack={() => historial.goBack()}
+      goBack={goBack}
       aproveSubmit={aproveSubmit}
       active={active}
       formatDate={formatDate}
@@ -250,6 +236,7 @@ const mapStateToProps = (state: RootState) => ({
   isFetching: detailPickerSelector(state).fetching,
   actualPage: pickersSelector(state).actualPage,
   nameDisplay: detailPickerSelector(state).nameDisplay,
+  isDirty: detailPickerSelector(state).dirty,
   wrongFiles: hasPickerWrongFilesSelector(state),
   loadedFiles: hasPickerAllFilesLoadedSelector(state)
 });

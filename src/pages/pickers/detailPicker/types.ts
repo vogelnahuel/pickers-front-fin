@@ -16,9 +16,8 @@ export type DetailPickerContainerTypeProps = {
   postEditPickerRequest: Function;
   setActualPage: Function;
   wrongFiles: boolean;
+  isDirty: boolean;
   loadedFiles: boolean;
- 
-
 };
 
 export type DetailPickerTypeProps = {
@@ -38,8 +37,8 @@ export type DetailPickerTypeProps = {
   wrongFiles: boolean;
   showNotification: (notification: NotificationStateType) => void;
   loadedFiles: boolean;
-  changePage: (page:string, isDirty?:boolean) => void;
-  goBack: () => void;
+  changePage: (page:string) => void;
+  goBack: (validate: boolean) => void;
 };
 
 export type PickerFileRequestType = {
