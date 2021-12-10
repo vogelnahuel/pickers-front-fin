@@ -133,6 +133,8 @@ export const detailPickerSlice = createSlice({
     },
     resetWrongFiles: (state: DetailPickerStateType) => {
       state.wrongFiles = wrongFilesInitialValue;
+      state.serverError = false;
+      state.tagError = undefined;
     },
     getPendingUserPickerExportRequest: (
       state: DetailPickerStateType,
@@ -228,7 +230,7 @@ export const detailPickerSelector = (state: RootState) => state.detailPicker;
 // Has picker wrong files?
 export const hasPickerWrongFilesSelector = createSelector(
   (state: RootState) => state.detailPicker,
-  (picker) => Object.values(picker.wrongFiles).some((v) => v)
+  (picker) => Object.values(picker.wrongFiles).some((v) => v) || picker.serverError
 );
 export const hasPickerAllFilesLoadedSelector = createSelector(
   (state: RootState) => state.detailPicker,

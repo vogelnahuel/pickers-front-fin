@@ -142,7 +142,7 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
       error["sizeTag"][element] ||
       error["loadTag"][element] ||
       error["formatTag"][element] ||
-      serverError
+      (serverError && tagError === element)
     );
   };
 
@@ -150,7 +150,8 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
     const sizeTag = Object.values(error.sizeTag).some((v) => v);
     const loadTag = Object.values(error.loadTag).some((v) => v);
     const formatTag = Object.values(error.formatTag).some((v) => v);
-    return sizeTag || loadTag || formatTag;
+    const serverTag = serverError && files.content.find(c => c.tag === tagError); 
+    return sizeTag || loadTag || formatTag || serverTag;
   };
 
   const verifyError = async (
