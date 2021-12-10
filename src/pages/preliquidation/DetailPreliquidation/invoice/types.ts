@@ -3,23 +3,22 @@ import { ObjectShape, TypeOfShape } from "yup/lib/object";
 
 export type detailPreliquidationInvoiceContainerPropsType = {
   setActualPage: Function;
-  getDetailpreliquidations: Function;
   isFetching: boolean;
-  detailPreliquidations: DetailPreliquidationsContentResponseType;
   setDirty: Function;
+  detailPreliquidations: DetailPreliquidationsContentResponseType;
+  getDetailpreliquidations: Function;
 };
 export type detailPreliquidationInvoicePropsType = {
   isFetching: boolean;
   detailPreliquidations: DetailPreliquidationsContentResponseType;
-  validationSchema: Object;
+  validationSchema: object;
   setDirty: Function;
   castDatePicker: Function;
 };
+
 export type detailPreliquidationDatePicker = {
   id: number;
-  emisionDate: {
-    from: string;
-  };
+  emisionDate: { from: string };
   invoiceNumber: string;
   salePoint: string;
   invoiceType: string;
@@ -37,9 +36,11 @@ export type detailPreliquidationDatePicker = {
 };
 
 export type invoiceValidationSchema = {
-  emisionDate: any;
+  emisionDate: DatePickerType | TypeOfShape<{}>;
   salePoint: string | undefined;
   invoiceNumber: string | undefined;
   caeNumber: string | undefined;
 };
-
+export type DatePickerType = {
+    from:string
+}
