@@ -5,8 +5,8 @@
       "result": {
 
           "id": 1,
-          "emisionDate": "3/10/2021",
-          "invoiceNumber": "12345678",
+          "emisionDate": "06/12/2021",
+          "invoiceNumber": "",
           "salePoint": "8765",
           "invoiceType": "A",
           "caeNumber": "12345678901234",

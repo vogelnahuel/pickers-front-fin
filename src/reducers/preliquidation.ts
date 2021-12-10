@@ -16,6 +16,7 @@ import { PreliquitadionStateType } from "./types/preliquidation";
 export const initialState: PreliquitadionStateType = {
   fetching: false,
   preliquidations: [],
+  dirty: false,
   preliquidationsSelected: [],
   filters: {},
   filtersExtra: {
@@ -115,6 +116,12 @@ export const preliquidationSlice = createSlice({
     ) => {
       const { payload } = action;
       state.detailPreliquidations = payload;
+    },
+    setDirty: (
+      state: PreliquitadionStateType,
+      action: PayloadAction<boolean>
+    ) => {
+      state.dirty = action.payload;
     },
 
     toggleItem: (

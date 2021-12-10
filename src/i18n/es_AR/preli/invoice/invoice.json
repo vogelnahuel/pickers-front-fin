@@ -2,6 +2,7 @@
   "label.invoice.subTitleInvoice": "Datos de la factura",
   "label.label.dateOfIssue": "Fecha de emisión *",
   "placeholder.form.broadcastDate": "Seleccioná la fecha",
+  "label.form.voucherType": "Tipo de comprobante *",
   "placeholder.form.voucherType": "Ingresá el comprobante",
   "label.form.pointOfSale": "Punto de venta *",
   "label.form.voucherNumber": "Número de comprobante *",

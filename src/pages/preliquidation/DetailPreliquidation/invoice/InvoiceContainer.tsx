@@ -8,12 +8,14 @@ import {
   actions as preliActions,
   preliquidationSelector,
 } from "reducers/preliquidation";
-import { detailPreliquidationInvoiceContainerPropsType } from "./types";
+import {  detailPreliquidationDatePicker, detailPreliquidationInvoiceContainerPropsType, invoiceValidationSchema } from "./types";
 import { useParams } from "react-router-dom";
-import { PreliquidationParamsMiddlewareType } from "sagas/types/preliquidation";
+import { DetailPreliquidationsContentResponseType, PreliquidationParamsMiddlewareType } from "sagas/types/preliquidation";
 import * as yup from "yup";
 import i18next from "i18next";
 import moment from "moment";
+import { VALIDATION_REGEX } from "utils/constants";
+import { ObjectShape, TypeOfShape } from "yup/lib/object";
 
 const InvoiceContainer = (
   props: detailPreliquidationInvoiceContainerPropsType
@@ -27,34 +29,48 @@ const InvoiceContainer = (
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const validarFechas = (value: any) => {
-
+  const validarFechas = (value: TypeOfShape<ObjectShape> ) => {
     const startDate = moment().subtract(7,'d').format("DD/MM/YYYY");
     const today = moment().format("DD/MM/YYYY");
     const range = moment(value.from).isBetween(startDate, today);
-    console.log("ingresado:",value);
-    console.log("range:",range)
-    console.log("hoy:",today)
-    console.log("fechaCreacionPreli:",startDate)
     return range;
   };
+  
+  const castDatePicker = (detailPreliquidations:DetailPreliquidationsContentResponseType) => {
+    let castear : (detailPreliquidationDatePicker | DetailPreliquidationsContentResponseType)  = detailPreliquidations;
+    castear = { ...castear, emisionDate: {from: detailPreliquidations.emisionDate} }
+    return castear;
+  }
 
-  const validationSchema:any = yup.object({
+
+  const validationSchema:yup.SchemaOf<invoiceValidationSchema> = yup.object({
     emisionDate: yup
       .object()
-      .test("asdasdasd", "asdasdasdasd", (value) => validarFechas(value) ),
+      .test("errorDatePicker", i18next.t("global:error.input.emisionDate"), (value) => validarFechas(value) ),
     salePoint: yup
       .string()
-      .min(4, i18next.t("Ingresá un número de 4 o 5 dígitos")),
+      .matches(
+        VALIDATION_REGEX.regNumber,
+        i18next.t("global:error.input.salePoint")
+      )
+      .min(4, i18next.t("global:error.input.salePoint")),
     invoiceNumber: yup
       .string()
-      .min(8, i18next.t("Ingresá un número de 8 dígitos")),
+      .matches(
+        VALIDATION_REGEX.regNumber,
+        i18next.t("global:error.input.invoiceNumber")
+      )
+      .min(8, i18next.t("global:error.input.invoiceNumber")),
     caeNumber: yup
       .string()
-      .min(14, i18next.t("Ingresá un número de 14 dígitos")),
+      .matches(
+        VALIDATION_REGEX.regNumber,
+        i18next.t("global:error.input.caeNumber")
+      )
+      .min(14, i18next.t("global:error.input.caeNumber")),
   });
 
-  return <Invoice {...props} validationSchema={validationSchema} />;
+  return <Invoice {...props} validationSchema={validationSchema} castDatePicker={castDatePicker} />;
 };
 
 const mapStateToProps = (state: RootState) => ({
@@ -68,6 +84,9 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   },
   getDetailpreliquidations: (params: PreliquidationParamsMiddlewareType) => {
     dispatch(preliActions.getDetailPreliquidationsRequest(params));
+  },
+  setDirty: (dirty: boolean) => {
+    dispatch(preliActions.setDirty(dirty));
   },
 });
 export default connect(mapStateToProps, mapDispatchToProps)(InvoiceContainer);

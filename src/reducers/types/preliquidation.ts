@@ -1,12 +1,12 @@
-import { DetailPreliquidationsContentResponseType, PreliquidationItem } from "sagas/types/preliquidation";
-
-
-
+import {
+  DetailPreliquidationsContentResponseType,
+  PreliquidationItem,
+} from "sagas/types/preliquidation";
 
 export type PreliquidationFilterExtraType = {
   limit: number;
-    offset: number;
-}
+  offset: number;
+};
 
 export type PreliquitadionStateType = {
   fetching: boolean;
@@ -16,5 +16,6 @@ export type PreliquitadionStateType = {
   filters: any;
   filtersExtra: PreliquidationFilterExtraType;
   filtersExtraSeeMore: PreliquidationFilterExtraType;
-  detailPreliquidations:DetailPreliquidationsContentResponseType
+  detailPreliquidations: DetailPreliquidationsContentResponseType;
+  dirty: boolean;
 };
