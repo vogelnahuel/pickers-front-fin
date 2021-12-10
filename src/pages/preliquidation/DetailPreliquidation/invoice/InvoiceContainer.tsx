@@ -3,12 +3,15 @@ import { connect } from "react-redux";
 
 import { AppDispatch, RootState } from "store";
 import Invoice from "./Invoice";
-import { actions } from "reducers/pickers";
 import {
   actions as preliActions,
   preliquidationSelector,
 } from "reducers/preliquidation";
-import {  detailPreliquidationDatePicker, detailPreliquidationInvoiceContainerPropsType, invoiceValidationSchema } from "./types";
+import {
+  detailPreliquidationDatePicker,
+  detailPreliquidationInvoiceContainerPropsType,
+  invoiceValidationSchema,
+} from "./types";
 import { useParams } from "react-router-dom";
 import { DetailPreliquidationsContentResponseType } from "sagas/types/preliquidation";
 import * as yup from "yup";
@@ -29,24 +32,37 @@ const InvoiceContainer = (
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const validarFechas = (value: TypeOfShape<ObjectShape> ) => {
-    const startDate = moment().subtract(7,'d').format("DD/MM/YYYY");
+  const validarFechas = (value: TypeOfShape<ObjectShape>) => {
+    if (!value) return true;
+    const startDate = moment().subtract(7, "d").format("DD/MM/YYYY");
     const today = moment().format("DD/MM/YYYY");
     const range = moment(value.from).isBetween(startDate, today);
     return range;
   };
-  
-  const castDatePicker = (detailPreliquidations:DetailPreliquidationsContentResponseType) => {
-    let castear : (detailPreliquidationDatePicker | DetailPreliquidationsContentResponseType)  = detailPreliquidations;
-    castear = { ...castear, emisionDate: {from: detailPreliquidations.emisionDate} }
+
+  const castDatePicker = (
+    detailPreliquidations: DetailPreliquidationsContentResponseType
+  ) => {
+    let castear:
+      | detailPreliquidationDatePicker
+      | DetailPreliquidationsContentResponseType = detailPreliquidations;
+    castear = {
+      ...castear,
+      emisionDate: { from: detailPreliquidations.emisionDate },
+    };
     return castear;
-  }
+  };
 
-
-  const validationSchema:yup.SchemaOf<invoiceValidationSchema> = yup.object({
+  const validationSchema: yup.SchemaOf<invoiceValidationSchema> = yup.object({
     emisionDate: yup
       .object()
-      .test("errorDatePicker", i18next.t("global:error.input.emisionDate"), (value) => validarFechas(value) ),
+      .required("")
+      .test(
+        "errorDatePicker",
+        i18next.t("global:error.input.emisionDate"),
+        (value) => validarFechas(value)
+      ),
+    invoiceType: yup.object().required("Este campo es requerido"),
     salePoint: yup
       .string()
       .matches(
@@ -70,7 +86,13 @@ const InvoiceContainer = (
       .min(14, i18next.t("global:error.input.caeNumber")),
   });
 
-  return <Invoice {...props} validationSchema={validationSchema} castDatePicker={castDatePicker} />;
+  return (
+    <Invoice
+      {...props}
+      validationSchema={validationSchema}
+      castDatePicker={castDatePicker}
+    />
+  );
 };
 
 const mapStateToProps = (state: RootState) => ({
@@ -80,7 +102,7 @@ const mapStateToProps = (state: RootState) => ({
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
   setActualPage: (page: string) => {
-    dispatch(actions.setActualPage(page));
+    dispatch(preliActions.setActualPage(page));
   },
   getInvoiceDetail: (params: string | undefined) => {
     dispatch(preliActions.getInvoiceDetailRequest(params));

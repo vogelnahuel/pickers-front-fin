@@ -21,7 +21,7 @@ const Select = ({ input, label, options = [], placeholder, onChange }) => {
       <div className="multiple-selectbox">
         <div  onClick={handleClick} className="multiple-contenido-select">
           <label className="label-Admin-Pickers">{label}</label>
-          <input placeholder={placeholder} value={input.value.label && input.value.label!=="" ? input.value.label: input.value!=="" ?  input.value : ""} disabled className="Admin-Pickers-input-select" type="text"/>
+          <input name={input.name} placeholder={placeholder} value={input.value.label && input.value.label!=="" ? input.value.label: input.value!=="" ?  input.value : ""} disabled className="Admin-Pickers-input-select" type="text"/>
           <img className="multiple-flotarImg" src={Arrow} alt="arrow"/>
         </div>
         { open &&

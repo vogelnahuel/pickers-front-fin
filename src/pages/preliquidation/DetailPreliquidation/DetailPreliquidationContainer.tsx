@@ -10,14 +10,16 @@ export const DetailPreliquidationContainer = (props: DetailPreliquidationContain
 
   const history = useHistory();
   const handleClickBack = () => history.goBack();
-    return <DetailPreliquidation {...props} handleClickBack={handleClickBack} />;
+    return <DetailPreliquidation {...props} handleClickBack={handleClickBack}  actualPage={props.actualPage}/>;
   };
 
 const mapStateToProps = (state: RootState) => ({
   isFetching: preliquidationSelector(state).fetching,
+  actualPage: preliquidationSelector(state).actualPage,
 });
   
   const mapDispatchToProps = (dispatch: AppDispatch) => ({
+    
   });
   export default connect(
     mapStateToProps,

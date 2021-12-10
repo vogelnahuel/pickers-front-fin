@@ -15,10 +15,11 @@ import i18next from "i18next";
 
 export const DetailPreliquidation: React.FC<DetailPreliquidationPropsType> = ({
   isFetching,
-  handleClickBack
+  handleClickBack,
+  actualPage
 }): JSX.Element => {
-  const actualPage = true;
  
+ const  containerInvoice = true;
   const tabs = [
     {
       title: "Preliquidacion",
@@ -31,7 +32,7 @@ export const DetailPreliquidation: React.FC<DetailPreliquidationPropsType> = ({
       icons: { active: invoiceBlue, disable: invoiceBlack },
     }
   ];
-
+  
 
   return (
 
@@ -51,7 +52,7 @@ export const DetailPreliquidation: React.FC<DetailPreliquidationPropsType> = ({
             <h2 className="detail-preliquidation-h2">{i18next.t('detailPreliquidation:label.subtitle.preliquidationNumber')}</h2>
             <p className="detail-preliquidation-number">{2201100002}</p>
           </div>
-          {actualPage ? <InvoiceContainer /> : <></>}
+          {containerInvoice ? <InvoiceContainer /> : <></>}
         </div>
         {isFetching === true ? <div className="modalLoading"></div> : <></>}
       </div>

@@ -18,4 +18,5 @@ export type PreliquitadionStateType = {
   filtersExtraSeeMore: PreliquidationFilterExtraType;
   detailPreliquidations: DetailPreliquidationsContentResponseType;
   dirty: boolean;
+  actualPage: string;
 };
