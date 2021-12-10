@@ -11,15 +11,11 @@ import { AppDispatch, RootState } from "store";
 import { actions, pickersSelector } from "reducers/pickers";
 import { NotificationStateType } from "reducers/types/notification";
 import { actions as notificationActions } from "reducers/notification";
-import {
-  detailPickerSelector as pendingUserAdminPickerSelectors,
-  hasPickerWrongFilesSelector,
-} from "reducers/detailPicker";
+import { hasPickerWrongFilesSelector } from "reducers/detailPicker";
 
 const PendingUserAdminContainer: React.FC<PickerContainerTypes> = (
   props
 ): JSX.Element => {
-
   const changePage = (page: string) => {
     if (props.isDetail || props.actualPage !== page) props.setActualPage(page);
   };

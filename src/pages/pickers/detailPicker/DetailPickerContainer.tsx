@@ -11,7 +11,7 @@ import {
   actions as pendingUserAdminPickerActions,
   detailPickerSelector,
   hasPickerWrongFilesSelector,
-  hasPickerAllFilesLoadedSelector
+  hasPickerAllFilesLoadedSelector,
 } from "reducers/detailPicker";
 import {
   pickersSelector,
@@ -34,7 +34,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
   props
 ): JSX.Element => {
   const params: { id?: string } = useParams();
-  const historial = useHistory();
+  const history = useHistory();
 
   useEffect(() => {
     props.getPendingUserPicker(params.id);
@@ -54,10 +54,8 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
       ? moment(date).format(DATE_FORMATS.shortDate)
       : date;
   };
-  const history = useHistory();
-  
-  const changePage = (page: string) => {
-   
+
+  const changePage = (page: string, isDirty: boolean) => {
     let onClose = () => {
       props.setActualPage(page);
 
@@ -67,11 +65,66 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
         history.replace("/pickers");
       }
     };
-    if (props.isDirty) showDirtyNotification(onClose);
+    if (isDirty) showDirtyNotification(onClose);
     else if (props.wrongFiles) showWrongFilesNotification(onClose);
     else onClose();
-  
-  
+  };
+
+  const cancel = (isDirty: boolean, restart: Function) => {
+    if (isDirty) showDirtyNotification(restart);
+    else restart();
+  };
+
+  const goBack = (validate?: boolean, isDirty?: boolean) => {
+    if (validate) {
+      if (isDirty) showDirtyNotification(history.goBack);
+      else if (props.wrongFiles) showWrongFilesNotification(history.goBack);
+      else history.goBack();
+    } else history.goBack();
+  };
+
+  const showDirtyNotification = (onClose: Function) =>
+    props.showNotification({
+      level: "warning",
+      title: i18next.t("pickers:title.modal.saveChanges"),
+      body: i18next.t("pickers:label.modal.saveChanges"),
+      onClickLabel: "pickers:button.modal.goToSave",
+      onCloseLabel: "pickers:button.modal.notSave",
+      onClose: onClose,
+      onClick: () =>
+        window.scroll({
+          top: window.innerHeight,
+          left: 0,
+          behavior: "smooth",
+        }),
+    });
+
+  const showWrongFilesNotification = (onClose: Function) =>
+    props.showNotification({
+      level: "warning",
+      title: i18next.t("global:title.modal.withoutSaving"),
+      body: i18next.t("global:label.modal.withoutSaving"),
+      onClickLabel: i18next.t("global:label.button.checkErrors"),
+      onCloseLabel: i18next.t("global:label.button.continue"),
+      onClose: onClose,
+      onClick: () =>
+        window.scroll({
+          top: window.innerHeight,
+          left: 0,
+          behavior: "smooth",
+        }),
+    });
+
+  const aproveSubmit = (params: PickerType, goBack: Function) => {
+    props.showNotification({
+      level: "info",
+      title: i18next.t("detailPicker:title.modal.approvePicker"),
+      body: i18next.t("detailPicker:label.modal.approvePicker"),
+      onClickLabel: "detailPicker:label.button.approve",
+      onCloseLabel: "detailPicker:label.button.revise",
+      onClick: () => props.postAprovePickerRequest(params, goBack),
+      onClose: undefined,
+    });
   };
 
   const validationSchema: yup.SchemaOf<DetailPickerValidationSchema> =
@@ -161,62 +214,6 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
           : yup.object({}),
     });
 
-  const cancel = (isDirty: boolean, restart: Function) => {
-    if (isDirty) showDirtyNotification(restart); 
-    else restart();
-  };
-
-  const goBack = (validate?: boolean) => {
-    if(validate){
-      if (props.isDirty) showDirtyNotification(historial.goBack);
-      else if (props.wrongFiles) showWrongFilesNotification(historial.goBack);
-      else historial.goBack();
-    }
-    else historial.goBack()
-  }
-
-  const showDirtyNotification = (onClose: Function) => props.showNotification({
-    level: "warning",
-    title: i18next.t("pickers:title.modal.saveChanges"),
-    body: i18next.t("pickers:label.modal.saveChanges"),
-    onClickLabel: "pickers:button.modal.goToSave",
-    onCloseLabel: "pickers:button.modal.notSave",
-    onClose: onClose,
-    onClick: () =>
-      window.scroll({
-        top: window.innerHeight,
-        left: 0,
-        behavior: "smooth",
-      }),
-  });
-
-  const showWrongFilesNotification = (onClose: Function) =>  props.showNotification({
-    level: "warning",
-    title: i18next.t("global:title.modal.withoutSaving"),
-    body:  i18next.t("global:label.modal.withoutSaving"),
-    onClickLabel: i18next.t("global:label.button.checkErrors"),
-    onCloseLabel: i18next.t("global:label.button.continue"),
-    onClose: onClose,
-    onClick: () =>
-      window.scroll({
-        top: window.innerHeight,
-        left: 0,
-        behavior: "smooth",
-      }),
-  });
-
-  const aproveSubmit = (params: PickerType, goBack: Function) => {
-    props.showNotification({
-      level: "info",
-      title: i18next.t("detailPicker:title.modal.approvePicker"),
-      body: i18next.t("detailPicker:label.modal.approvePicker"),
-      onClickLabel: "detailPicker:label.button.approve",
-      onCloseLabel: "detailPicker:label.button.revise",
-      onClick: () => props.postAprovePickerRequest(params, goBack),
-      onClose: undefined,
-    });
-  };
-
   return (
     <DetailPicker
       {...props}
@@ -236,9 +233,8 @@ const mapStateToProps = (state: RootState) => ({
   isFetching: detailPickerSelector(state).fetching,
   actualPage: pickersSelector(state).actualPage,
   nameDisplay: detailPickerSelector(state).nameDisplay,
-  isDirty: detailPickerSelector(state).dirty,
   wrongFiles: hasPickerWrongFilesSelector(state),
-  loadedFiles: hasPickerAllFilesLoadedSelector(state)
+  loadedFiles: hasPickerAllFilesLoadedSelector(state),
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
@@ -276,8 +272,8 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   setActualPage: (page: string) => {
     dispatch(pendingUserActions.setActualPage(page));
   },
-  resetWrongFiles: () =>{
-    dispatch( pendingUserAdminPickerActions.resetWrongFiles() )
+  resetWrongFiles: () => {
+    dispatch(pendingUserAdminPickerActions.resetWrongFiles());
   },
 });
 
