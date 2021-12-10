@@ -6,7 +6,7 @@ import React from "react";
 import deletePDF from "../../../assets/preli/deletePDF.svg";
 import download from "../../../assets/preli/download.svg";
 import replace from "../../../assets/preli/replace.svg";
-import pdfFile from "../../../component/pdf-viewer/pdftest.pdf";
+import pdfFile from "../../../component/pdf-viewer/factura.pdf";
 import calckBlack from "./../../../assets/preli/calcBlack.svg";
 import calckBlue from "./../../../assets/preli/calcBlue.svg";
 import invoiceBlack from "./../../../assets/preli/invoiceBlack.svg";
