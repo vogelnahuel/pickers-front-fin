@@ -36,32 +36,53 @@ export type PreliquidationParamsMiddlewareType = {
   fiscalNumber?: string;
   limit?: number;
   offset?: number;
-  id?:string| number;
+  id?: string | number;
 };
 
 export type DetailPreliquidationsApiResponseType = {
   data: {
-    result : DetailPreliquidationsContentResponseType
+    result: DetailPreliquidationsContentResponseType;
   };
   status: number;
 };
 export type DetailPreliquidationsContentResponseType = {
+  id: number;
+  emisionDate: string;
+  invoiceNumber: string;
+  salePoint: string;
+  invoiceType: string;
+  caeNumber: string;
+  fiscalData: {
+    fiscalNumber: string;
+    companyName: string;
+    taxPayerType: string;
+    total: number;
+  };
+  invoiceFile: {
+    upload: true | false;
+    url: string | null;
+  };
+};
 
-    id: number;
+export type DetailPreliquidationBodyParamsType = {
+  result: {
     emisionDate: string;
-    invoiceNumber: string;
-    salePoint: string;
     invoiceType: string;
+    invoiceNumber: number;
+    salePoint: number;
     caeNumber: string;
-    fiscalData: {
-      fiscalNumber: string;
-      companyName: string;
-      taxPayerType: string;
-      total: number;
-    };
-    invoiceFile: {
-      upload: true | false;
-      url: string | null;
-    };
+  };
+};
 
+export type DetailPreliquidationsApiResponse = {
+  data: PreliquidationsContentResponseType;
+  status: number;
+};
+export type DetailPreliquidationsInvoiceContentResponseType = {
+  statusCode?: number;
+  error?: string;
+  message?: string;
+  result: {
+    id: number;
+  };
 };
