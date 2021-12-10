@@ -105,12 +105,12 @@ export const preliquidationSlice = createSlice({
       state.filtersExtra = { ...state.filtersExtra, ...action.payload };
     },
     
-    getDetailPreliquidationsRequest: (
+    getInvoiceDetailRequest: (
       state: PreliquitadionStateType,
       action: PayloadAction<any>
     ) => {},
-    getDetailPreliquidationsError: () => {},
-    getDetailPreliquidationsSuccess: (
+    getInvoiceDetailError: () => {},
+    getInvoiceDetailSuccess: (
       state: PreliquitadionStateType,
       action: PayloadAction<DetailPreliquidationsContentResponseType>
     ) => {

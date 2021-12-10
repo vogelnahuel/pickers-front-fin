@@ -21,8 +21,8 @@ const sagas = [
   takeLatest(preliquidationActions.getMorePreliquidationsRequest.type,
     getMorePreliquidations)
     ,
-  takeLatest(preliquidationActions.getDetailPreliquidationsRequest.type,
-    getDetailPreliquidations)
+  takeLatest(preliquidationActions.getInvoiceDetailRequest.type,
+    getInvoiceDetail)
 ];
 
 export default sagas;
@@ -66,7 +66,7 @@ function* getMorePreliquidations({
   }
 }
 
-function* getDetailPreliquidations({
+function* getInvoiceDetail({
   payload,
 }: PayloadAction<PreliquidationParamsMiddlewareType>): Generator<
   | PutEffect<{ payload: DetailPreliquidationsContentResponseType; type: string; }>
@@ -77,9 +77,9 @@ function* getDetailPreliquidations({
 > {
   const response = yield call(preliquidationsMiddleware.getDetailInvoice, payload);
   if (response.status !== 200) {
-    yield put(preliquidationActions.getDetailPreliquidationsError());
+    yield put(preliquidationActions.getInvoiceDetailError());
   } else {
     const { result } = response.data;
-    yield put(preliquidationActions.getDetailPreliquidationsSuccess(result));
+    yield put(preliquidationActions.getInvoiceDetailSuccess(result));
   }
 }

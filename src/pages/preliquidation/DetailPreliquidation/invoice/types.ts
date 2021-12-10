@@ -1,19 +1,19 @@
 import { DetailPreliquidationsContentResponseType } from "sagas/types/preliquidation";
-import { ObjectShape, TypeOfShape } from "yup/lib/object";
+import { TypeOfShape } from "yup/lib/object";
 
 export type detailPreliquidationInvoiceContainerPropsType = {
-  setActualPage: Function;
+  setActualPage: (page: string) => void;
   isFetching: boolean;
-  setDirty: Function;
+  setDirty: (dirty: boolean) => void;
   detailPreliquidations: DetailPreliquidationsContentResponseType;
-  getDetailpreliquidations: Function;
+  getInvoiceDetail: (id: string | undefined) => void;
 };
 export type detailPreliquidationInvoicePropsType = {
   isFetching: boolean;
   detailPreliquidations: DetailPreliquidationsContentResponseType;
   validationSchema: object;
-  setDirty: Function;
-  castDatePicker: Function;
+  setDirty: (dirty: boolean) => void;
+  castDatePicker: (detailPreliquidations:DetailPreliquidationsContentResponseType) => detailPreliquidationDatePicker;
 };
 
 export type detailPreliquidationDatePicker = {

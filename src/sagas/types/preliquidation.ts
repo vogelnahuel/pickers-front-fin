@@ -36,6 +36,7 @@ export type PreliquidationParamsMiddlewareType = {
   fiscalNumber?: string;
   limit?: number;
   offset?: number;
+  id?:string| number;
 };
 
 export type DetailPreliquidationsApiResponseType = {

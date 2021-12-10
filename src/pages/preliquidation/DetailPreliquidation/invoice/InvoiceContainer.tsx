@@ -10,7 +10,7 @@ import {
 } from "reducers/preliquidation";
 import {  detailPreliquidationDatePicker, detailPreliquidationInvoiceContainerPropsType, invoiceValidationSchema } from "./types";
 import { useParams } from "react-router-dom";
-import { DetailPreliquidationsContentResponseType, PreliquidationParamsMiddlewareType } from "sagas/types/preliquidation";
+import { DetailPreliquidationsContentResponseType } from "sagas/types/preliquidation";
 import * as yup from "yup";
 import i18next from "i18next";
 import moment from "moment";
@@ -23,7 +23,7 @@ const InvoiceContainer = (
   const params: { id?: string } = useParams();
 
   useEffect(() => {
-    props.getDetailpreliquidations(params.id);
+    props.getInvoiceDetail(params.id);
     props.setActualPage("INVOICE");
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -82,8 +82,8 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   setActualPage: (page: string) => {
     dispatch(actions.setActualPage(page));
   },
-  getDetailpreliquidations: (params: PreliquidationParamsMiddlewareType) => {
-    dispatch(preliActions.getDetailPreliquidationsRequest(params));
+  getInvoiceDetail: (params: string | undefined) => {
+    dispatch(preliActions.getInvoiceDetailRequest(params));
   },
   setDirty: (dirty: boolean) => {
     dispatch(preliActions.setDirty(dirty));
