@@ -83,6 +83,7 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
   const optionYes = (tag: keyof DetailPickerTagFileType) => {
     if (viewConfirm[tag]?.delete) {
       deleteFile({ id: pickerId, tag: tag });
+      resetTag(tag);
       setViewConfirm({
         ...viewConfirm,
         [tag]: {
