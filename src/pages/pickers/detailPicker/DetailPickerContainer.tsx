@@ -37,9 +37,9 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
   const history = useHistory();
 
   useEffect(() => {
-    props.getPendingUserPicker(params.id);
     props.resetWrongFiles();
-
+    props.getPendingUserPicker(params.id);
+    
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
