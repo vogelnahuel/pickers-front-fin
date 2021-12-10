@@ -1,3 +1,5 @@
 {
-  "label.title.admin": "ADMIN"
+  "label.title.admin": "ADMIN",
+  "label.pdfController.dragging": "Soltá acá tu archivo",
+  "label.pdfController.instruction": "O arrastrá y soltá el archivo"
 }

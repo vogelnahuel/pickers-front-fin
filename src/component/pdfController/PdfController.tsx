@@ -1,37 +1,38 @@
 import { useRef, useState, useEffect } from "react";
+import i18next from "i18next";
 import Button from "component/button/Button";
 import uploadCloud from "../../assets/upload_cloud.svg";
 import uploadArrow from "../../assets/upload_arrow.svg";
 import uploadError from "../../assets/upload_error.svg";
 import "./pdfController.scss";
-import { MAX_FILE_SIZE } from "utils/constants";
+import { PdfControllerProps } from "./types";
 
-const PdfController = () => {
+const PdfController = ({
+  children,
+  fileLoaded,
+  showError,
+  errorMessage,
+  title,
+  buttonText,
+  fileHandler,
+}: PdfControllerProps) => {
   const dropRef = useRef<HTMLDivElement>(null);
   const fileRef = useRef<HTMLInputElement>(null);
   const [dragging, setDragging] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  //const [error, setError] = useState<string | null>(null);
   const [, setDragCounter] = useState(0);
 
   const openFileReader = () => {
     if (fileRef.current) fileRef.current.click();
   };
 
-  const handleFile = (file: File) => {
+  const handleFile = async (file: File) => {
     console.log("File: ", file);
     setLoading(true);
-    setError(null);
-
-    if (file.size > MAX_FILE_SIZE || file.type !== "application/pdf") {
-      setError(
-        "El formato del archivo debe ser PDF y no puede superar los 5MB"
-      );
-      setLoading(false);
-      return;
-    }
-
-    setTimeout(() => setLoading(false), 6000);
+    await fileHandler(file);
+    setLoading(false);
+    // TODO: Convertirlo a base 64 y actualizar la url desde afuera
   };
 
   const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -84,6 +85,8 @@ const PdfController = () => {
     }
   };
 
+  const hasError = () => showError && !dragging && !loading;
+
   useEffect(() => {
     const div = dropRef.current;
 
@@ -108,55 +111,61 @@ const PdfController = () => {
     "container",
     dragging && "container-dragging",
     loading && "container-loading",
-    error && !dragging && "container-error",
+    hasError() && "container-error",
   ].join(" ");
 
   return (
     <div className="root-container">
-      <div ref={dropRef} className={containerClasses}>
-        <div className="icon-container">
-          {error && !dragging ? (
-            <img
-              className="upload-error-icon"
-              src={uploadError}
-              alt="upload-error-icon"
-            />
-          ) : (
-            <div className="upload-icon">
-              <img
-                className="upload-cloud"
-                src={uploadCloud}
-                alt="upload-icon"
-              />
-              <img
-                className="upload-arrow"
-                src={uploadArrow}
-                alt="upload-icon"
-              />
+      {fileLoaded ? (
+        children
+      ) : (
+        <>
+          <div ref={dropRef} className={containerClasses}>
+            <div className="icon-container">
+              {hasError() ? (
+                <img
+                  className="upload-error-icon"
+                  src={uploadError}
+                  alt="upload-error-icon"
+                />
+              ) : (
+                <div className="upload-icon">
+                  <img
+                    className="upload-cloud"
+                    src={uploadCloud}
+                    alt="upload-icon"
+                  />
+                  <img
+                    className="upload-arrow"
+                    src={uploadArrow}
+                    alt="upload-icon"
+                  />
+                </div>
+              )}
+              <p className="title">
+                {dragging ? i18next.t("component:label.pdfController.dragging") : title}
+              </p>
             </div>
-          )}
-          <p className="title">
-            {dragging ? "Soltá acá tu archivo" : "Factura"}
-          </p>
-        </div>
-        <div className="content">
-          <Button onClick={openFileReader}>Cargar factura</Button>
-          <input
-            type="file"
-            ref={fileRef}
-            className="hidden"
-            accept=".pdf"
-            onChange={onFileChange}
-          />
-          <p className="message">O arrastrá y soltá el archivo</p>
-        </div>
-        {loading && (
-          <div className="loading-container">
-            <div className="loading-bar"></div>
+            <div className="content">
+              <Button onClick={openFileReader}>{buttonText}</Button>
+              <input
+                type="file"
+                ref={fileRef}
+                className="hidden"
+                accept=".pdf"
+                onChange={onFileChange}
+              />
+              <p className="message">{i18next.t("component:label.pdfController.instruction")}</p>
+            </div>
+            {loading && (
+              <div className="loading-container">
+                <div className="loading-bar"></div>
+              </div>
+            )}
           </div>
-        )}
-      </div>
-      {!dragging && <p className="error-message">{error}</p>}
+          {hasError() && <p className="error-message">{errorMessage}</p>}
+        </>
+      )}
     </div>
   );
 };

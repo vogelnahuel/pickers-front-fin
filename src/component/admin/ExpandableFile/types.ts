@@ -1,9 +1,6 @@
-import { SetState } from "@reduxjs/toolkit/node_modules/immer/dist/internal";
 import { PickerFileRequestType } from "pages/pickers/detailPicker/types";
 import { DataFilesType, DetailPickerTagFileType } from "pages/pickers/types";
-import React, { SetStateAction } from "react";
 import { PickerWrongFilePayloadType } from "reducers/types/detailPicker";
-import { NumberLiteralType } from "typescript";
 
 export type ExpandableFilePropsType = {
   pickerId: number;
