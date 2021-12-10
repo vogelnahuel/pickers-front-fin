@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 //import * as API from "middleware/api";
-import { PreliquidationsApiResponse } from "sagas/types/preliquidation";
+import { DetailPreliquidationsContentResponseType, PreliquidationsApiResponse } from "sagas/types/preliquidation";
 
 // export const getPreliquidations = (
 //   params: any
@@ -13,7 +13,7 @@ import { PreliquidationsApiResponse } from "sagas/types/preliquidation";
 export const getPreliquidations = (params:any): Promise<AxiosResponse<PreliquidationsApiResponse>> =>
 axios.get("http://localhost:8080/presettlments",params)
 
-export const getDetailInvoice = (id:any): Promise<AxiosResponse<PreliquidationsApiResponse>> =>
+export const getDetailInvoice = (id:any): Promise<AxiosResponse<DetailPreliquidationsContentResponseType>> =>
 axios.get(`http://localhost:8080/detailInvoice/${id}`)
 
 
@@ -24,8 +24,8 @@ axios.get(`http://localhost:8080/detailInvoice/${id}`)
 export const getInvoiceType = (): Promise<AxiosResponse<PreliquidationsApiResponse>> =>
 axios.get("http://localhost:8080/invoiceType")
 
-export const saveDetailInvoice = (id:any,params:any): Promise<AxiosResponse<PreliquidationsApiResponse>> =>
-axios.patch(`http://localhost:8080/invoiceType/${id}`,params)
+export const saveDetailInvoice = (id:any): Promise<AxiosResponse<PreliquidationsApiResponse>> =>
+axios.patch(`http://localhost:8080/invoiceType/${id}`)
 
 export const aproveDetailInvoice = (id:any,params:any): Promise<AxiosResponse<PreliquidationsApiResponse>> =>
 axios.patch(`http://localhost:8080/invoiceType/${id}`,params)

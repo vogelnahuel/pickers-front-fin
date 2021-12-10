@@ -44,6 +44,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
   loadedFiles,
   changePage,
 }) => {
+
   const tabs = [
     {
       title: "pickers:label.title.pending",
