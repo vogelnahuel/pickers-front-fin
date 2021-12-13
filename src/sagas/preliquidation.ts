@@ -129,7 +129,7 @@ function* putSaveDetailInvoice({
   void,
   DetailPreliquidationsInvoiceApiResponseType
 > {
-  
+
 const result:DetailPreliquidationBodyParamsType  = {
   result :{
     emisionDate: payload.emisionDate.from,
@@ -139,7 +139,7 @@ const result:DetailPreliquidationBodyParamsType  = {
     caeNumber: payload.caeNumber
   }
 }
-console.log(result)
+
   const response = yield call(
     preliquidationsMiddleware.putSaveDetailInvoice,
     payload.id,

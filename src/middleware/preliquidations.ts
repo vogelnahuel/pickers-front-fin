@@ -23,7 +23,7 @@ export const patchApproveDetailInvoice = (id:number,params:DetailPreliquidationB
 axios.patch(`http://localhost:8080/detailInvoiceResult/${id}`,params)
 
 export const putDeleteDetailInvoice = (id:number) : Promise<AxiosResponse<DetailPreliquidationsInvoiceApiResponseType>> =>
-axios.put(`http://localhost:8080/detailInvoiceResult/${id}/rejected`)
+axios.put(`http://localhost:8080/detailInvoiceResult/${id}`)
 
 
 
