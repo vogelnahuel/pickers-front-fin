@@ -56,7 +56,7 @@ export const DetailPreliquidation: React.FC<DetailPreliquidationPropsType> = ({
             </div>
           </div>
           <div className="mainContainerFlex">
-            <h2 className="subTitle-pending"></h2>
+            {/* <h2 className="subTitle-pending"></h2> */}
           </div>
           
           <h2 className="detail-preliquidation-h2">
