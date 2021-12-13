@@ -73,7 +73,6 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
   setWrongFile,
   serverError,
   actualPage,
-  tagError,
   deleteFile,
 }) => {
   const [viewConfirm, setViewConfirm] = useState(tagConfirmInitialState);
@@ -87,8 +86,8 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
       setViewConfirm({
         ...viewConfirm,
         [tag]: {
-          delete: !viewConfirm[tag].delete,
-          replace: viewConfirm[tag]?.replace,
+          ...viewConfirm[tag],
+          delete: !viewConfirm[tag].delete
         },
       });
     } else {
@@ -96,11 +95,10 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
       setViewConfirm({
         ...viewConfirm,
         [tag]: {
-          delete: viewConfirm[tag]?.delete,
+          ...viewConfirm[tag],
           replace: !viewConfirm[tag]?.replace,
         },
       });
-      setError(initialState);
     }
   };
   const optionNo = (tag:  keyof DetailPickerTagFileType) => {
@@ -142,7 +140,7 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
       error["sizeTag"][element] ||
       error["loadTag"][element] ||
       error["formatTag"][element] ||
-      (serverError && tagError === element)
+      serverError.includes(element)
     );
   };
 
@@ -150,7 +148,7 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
     const sizeTag = Object.values(error.sizeTag).some((v) => v);
     const loadTag = Object.values(error.loadTag).some((v) => v);
     const formatTag = Object.values(error.formatTag).some((v) => v);
-    const serverTag = serverError && files.content.find(c => c.tag === tagError); 
+    const serverTag = files.content.find(c => serverError.includes(c.tag)); 
     return sizeTag || loadTag || formatTag || serverTag;
   };
 
@@ -338,8 +336,7 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
                       {i18next.t("expandableFile:label.card.ErrorLoad")}
                     </p>
                   ) : (
-                    serverError &&
-                    tagError === element.tag && (
+                    serverError.includes(element.tag) && (
                       <p className="p-error ">
                         {i18next.t("expandableFile:label.card.ErrorServer")}
                       </p>
@@ -356,7 +353,6 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
 };
 const mapStateToProps = (state: RootState) => ({
   serverError: detailPickerSelector(state).serverError,
-  tagError: detailPickerSelector(state).tagError,
   actualPage: pickersSelector(state).actualPage,
 });
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
