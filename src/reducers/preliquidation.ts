@@ -29,23 +29,24 @@ export const initialState: PreliquitadionStateType = {
   },
   seeMore: true,
   detailPreliquidations: {
-      id: 0,
-      emisionDate: "",
-      invoiceNumber: "",
-      salePoint: "",
-      invoiceType: "",
-      caeNumber: "",
-      fiscalData: {
-        fiscalNumber: "",
-        companyName: "",
-        taxPayerType: "",
-        total: 0
-      },
-      invoiceFile: {
-        upload: false,
-        url: null
-      }
-  }
+    id: 0,
+    emisionDate: "",
+    invoiceNumber: "",
+    salePoint: "",
+    invoiceType: "",
+    caeNumber: "",
+    fiscalData: {
+      fiscalNumber: "",
+      companyName: "",
+      taxPayerType: "",
+      total: 0
+    },
+    invoiceFile: {
+      upload: false,
+      url: null
+    }
+  },
+  actualPage: ""
 };
 
 const SLICE_NAME = "preliquidation";
@@ -141,6 +142,9 @@ export const preliquidationSlice = createSlice({
       action: PayloadAction<boolean>
     ) => {
       state.dirty = action.payload;
+    },
+    setActualPage: (state: PreliquitadionStateType, action: PayloadAction<string>) => {
+      state.actualPage = action.payload;
     },
 
     toggleItem: (

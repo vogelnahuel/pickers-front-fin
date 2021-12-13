@@ -134,11 +134,12 @@ const result:DetailPreliquidationBodyParamsType  = {
   result :{
     emisionDate: payload.emisionDate.from,
     invoiceType: payload.invoiceType,
-    invoiceNumber: parseInt(payload.invoiceNumber),
-    salePoint: parseInt(payload.salePoint),
+    invoiceNumber: payload.invoiceNumber,
+    salePoint: payload.salePoint,
     caeNumber: payload.caeNumber
   }
 }
+console.log(result)
   const response = yield call(
     preliquidationsMiddleware.putSaveDetailInvoice,
     payload.id,
@@ -166,8 +167,8 @@ function* patchApproveDetailInvoice({
     result :{
       emisionDate: payload.emisionDate.from,
       invoiceType: payload.invoiceType,
-      invoiceNumber: parseInt(payload.invoiceNumber),
-      salePoint: parseInt(payload.salePoint),
+      invoiceNumber: payload.invoiceNumber,
+      salePoint: payload.salePoint,
       caeNumber: payload.caeNumber
     }
   }

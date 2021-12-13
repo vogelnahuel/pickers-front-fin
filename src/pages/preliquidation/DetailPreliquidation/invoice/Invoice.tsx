@@ -60,7 +60,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                     {(props: any) => {
                       return (
                         <div>
-                        
+                       
                           <label className={props.meta.error ? "label-Admin-Pickers color-red" : "label-Admin-Pickers"}>
                             {i18next.t("invoice:label.label.dateOfIssue")}
                           </label>

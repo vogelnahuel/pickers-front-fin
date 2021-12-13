@@ -107,12 +107,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
       onClickLabel: i18next.t("global:label.button.checkErrors"),
       onCloseLabel: i18next.t("global:label.button.continue"),
       onClose: onClose,
-      onClick: () =>
-        window.scroll({
-          top: window.innerHeight,
-          left: 0,
-          behavior: "smooth",
-        }),
+      onClick: undefined,
     });
 
   const aproveSubmit = (params: PickerType, goBack: Function) => {

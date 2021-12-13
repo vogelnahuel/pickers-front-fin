@@ -7,18 +7,18 @@ export type detailPreliquidationInvoiceContainerPropsType = {
   setDirty: (dirty: boolean) => void;
   detailPreliquidations: DetailPreliquidationsContentResponseType;
   getInvoiceDetail: (id: string | undefined) => void;
-  getInvoiceDetailSave: Function;
-  getInvoiceDetailApprove: Function;
-  getInvoiceDetailDelete: Function;
+  getInvoiceDetailSave: (params:detailPreliquidationDatePicker) => void;
+  getInvoiceDetailApprove: (params:detailPreliquidationDatePicker) => void;
+  getInvoiceDetailDelete: (params:detailPreliquidationDatePicker) => void;
 };
 export type detailPreliquidationInvoicePropsType = {
   isFetching: boolean;
   detailPreliquidations: DetailPreliquidationsContentResponseType;
   validationSchema: object;
   setDirty: (dirty: boolean) => void;
-  getInvoiceDetailSave: Function;
-  getInvoiceDetailApprove: Function;
-  getInvoiceDetailDelete: Function;
+  getInvoiceDetailSave: (params:detailPreliquidationDatePicker) => void;
+  getInvoiceDetailApprove: (params:detailPreliquidationDatePicker) => void;
+  getInvoiceDetailDelete: (params:detailPreliquidationDatePicker) => void;
   castDatePicker: (
     detailPreliquidations: DetailPreliquidationsContentResponseType
   ) => detailPreliquidationDatePicker;
@@ -46,6 +46,7 @@ export type detailPreliquidationDatePicker = {
 export type invoiceValidationSchema = {
   emisionDate: DatePickerType | TypeOfShape<{}>;
   salePoint: string | undefined;
+  invoiceType :TypeOfShape<{}>| string;
   invoiceNumber: string | undefined;
   caeNumber: string | undefined;
 };

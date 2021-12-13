@@ -68,8 +68,8 @@ export type DetailPreliquidationBodyParamsType = {
   result: {
     emisionDate: string;
     invoiceType: string;
-    invoiceNumber: number;
-    salePoint: number;
+    invoiceNumber: string;
+    salePoint: string;
     caeNumber: string;
   };
 };
