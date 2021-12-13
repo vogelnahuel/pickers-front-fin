@@ -118,6 +118,25 @@ export const preliquidationSlice = createSlice({
       const { payload } = action;
       state.detailPreliquidations = payload;
     },
+    getInvoiceDetailSaveRequest: (
+      state: PreliquitadionStateType,
+      action: PayloadAction<any>
+    ) => {},
+    getInvoiceDetailSaveError: () => {},
+    getInvoiceDetailSaveSuccess: ()=>{},
+    getInvoiceDetailApproveRequest: (
+      state: PreliquitadionStateType,
+      action: PayloadAction<any>
+    ) => {},
+    getInvoiceDetailApproveError: () => {},
+    getInvoiceDetailApproveSuccess: () => {},
+    getInvoiceDetailDeleteRequest: (
+      state: PreliquitadionStateType,
+      action: PayloadAction<any>
+    ) => {},
+    getInvoiceDetailDeleteError: () => {},
+    getInvoiceDetailDeleteSuccess: () => {},
+
     setDirty: (
       state: PreliquitadionStateType,
       action: PayloadAction<boolean>

@@ -34,9 +34,14 @@ const InvoiceContainer = (
 
   const validarFechas = (value: TypeOfShape<ObjectShape>) => {
     if (!value) return true;
-    const startDate = moment().subtract(7, "d").format("DD/MM/YYYY");
-    const today = moment().format("DD/MM/YYYY");
-    const range = moment(value.from).isBetween(startDate, today);
+
+
+    const valueProps = moment(value.from,"DD/MM/YYYY");
+    const today     = moment();
+    const startDate = moment().subtract(7, "d")
+  
+    const range = valueProps.isBetween(startDate, today);
+
     return range;
   };
 
@@ -62,28 +67,34 @@ const InvoiceContainer = (
         i18next.t("global:error.input.emisionDate"),
         (value) => validarFechas(value)
       ),
-    invoiceType: yup.object().required("global:error.input.required"),
+    invoiceType: yup.mixed().required("global:error.input.required"),
     salePoint: yup
       .string()
+      .min(4, i18next.t("global:error.input.salePoint"))
+      .required("")
       .matches(
         VALIDATION_REGEX.regNumber,
         i18next.t("global:error.input.salePoint")
-      )
-      .min(4, i18next.t("global:error.input.salePoint")),
+      ),
+     
     invoiceNumber: yup
       .string()
+      .min(8, i18next.t("global:error.input.invoiceNumber"))
+      .required("")
       .matches(
         VALIDATION_REGEX.regNumber,
         i18next.t("global:error.input.invoiceNumber")
-      )
-      .min(8, i18next.t("global:error.input.invoiceNumber")),
+      ),
+    
     caeNumber: yup
       .string()
+      .min(14, i18next.t("global:error.input.caeNumber"))
+      .required("")
       .matches(
         VALIDATION_REGEX.regNumber,
         i18next.t("global:error.input.caeNumber")
       )
-      .min(14, i18next.t("global:error.input.caeNumber")),
+     
   });
 
   return (
@@ -106,6 +117,15 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   },
   getInvoiceDetail: (params: string | undefined) => {
     dispatch(preliActions.getInvoiceDetailRequest(params));
+  },
+  getInvoiceDetailSave: (params: detailPreliquidationDatePicker) => {
+    dispatch(preliActions.getInvoiceDetailSaveRequest(params));
+  },
+  getInvoiceDetailApprove: (params: detailPreliquidationDatePicker) => {
+    dispatch(preliActions.getInvoiceDetailApproveRequest(params));
+  },
+  getInvoiceDetailDelete: (params: detailPreliquidationDatePicker) => {
+    dispatch(preliActions.getInvoiceDetailDeleteRequest(params));
   },
   setDirty: (dirty: boolean) => {
     dispatch(preliActions.setDirty(dirty));

@@ -5,7 +5,7 @@ import { Field, Form, FormSpy } from "react-final-form";
 import { DatePicker } from "@pickit/pickit-components";
 import { FILTER_PRELIQUIDATION_SELECT_OPTIONS } from "utils/constants";
 import Select from "component/inputs/Select";
-import { detailPreliquidationInvoicePropsType } from "./types";
+import { detailPreliquidationDatePicker, detailPreliquidationInvoicePropsType } from "./types";
 import i18next from "i18next";
 import useValidationSchema from "hooks/useValidationSchema";
 
@@ -15,6 +15,9 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
   validationSchema,
   setDirty,
   castDatePicker,
+  getInvoiceDetailSave,
+  getInvoiceDetailApprove,
+  getInvoiceDetailDelete,
 }) => {
   return (
     <div>
@@ -31,7 +34,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
         }}
         validate={useValidationSchema(validationSchema)}
       >
-        {({ invalid, handleSubmit, form }) => (
+        {({ invalid, handleSubmit, form, values }) => (
           <form className="form-filter-transaction" onSubmit={handleSubmit}>
             <FormSpy
               subscription={{
@@ -56,8 +59,13 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                     {(props: any) => {
                       return (
                         <div>
-                        
-                          <label className={props.meta.error ? "label-Admin-Pickers color-red" : "label-Admin-Pickers"}>
+                          <label
+                            className={
+                              props.meta.error
+                                ? "label-Admin-Pickers color-red"
+                                : "label-Admin-Pickers"
+                            }
+                          >
                             {i18next.t("invoice:label.label.dateOfIssue")}
                           </label>
                           <DatePicker
@@ -200,7 +208,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
               <button
                 type="button"
                 className="button-submit-subtype"
-                onClick={() => {}}
+                onClick={() => getInvoiceDetailSave(values as detailPreliquidationDatePicker)}
               >
                 {i18next.t("invoice:label.buttons.save")}
               </button>
@@ -208,7 +216,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                 <button
                   disabled={invalid}
                   className="detail-preliquidation-invoice-p"
-                  onClick={() => console.log("llamar servicio")}
+                  onClick={() => getInvoiceDetailDelete(values as detailPreliquidationDatePicker)}
                 >
                   <p>{i18next.t("invoice:label.buttons.refuse")}</p>
                 </button>
@@ -217,6 +225,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                   type="submit"
                   disabled={invalid}
                   className="button-submit-active"
+                  onClick={() => getInvoiceDetailApprove(values as detailPreliquidationDatePicker)}
                 >
                   {i18next.t("invoice:label.buttons.approve")}
                 </button>

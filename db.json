@@ -1,72 +1,90 @@
 {
-  "detailInvoice": [
+  "detailInvoiceResult": [
     {
-      "id": 1,
       "result": {
-
-          "id": 1,
-          "emisionDate": "06/12/2021",
-          "invoiceNumber": "",
-          "salePoint": "8765",
-          "invoiceType": "",
-          "caeNumber": "12345678901234",
-          "fiscalData": {
-            "fiscalNumber": "string",
-            "companyName": "string",
-            "taxPayerType": "string",
-            "total": 123.123
-          },
-          "invoiceFile": {
-            "upload": true,
-            "url": null
-          }
-        
-      }
+        "emisionDate": "13/12/2021",
+        "invoiceType": "A",
+        "invoiceNumber": "",
+        "salePoint": "8765",
+        "caeNumber": "12345678901234"
+      },
+      "id": 1
     },
     {
       "id": 2,
       "result": {
-       
-          "id": 2,
-          "emisionDate": "string",
-          "invoiceNumber": "string",
-          "salePoint": "string",
-          "invoiceType": "C",
-          "caeNumber": "string",
-          "fiscalData": {
-            "fiscalNumber": "string",
-            "companyName": "string",
-            "taxPayerType": "string",
-            "total": 123.123
-          },
-          "invoiceFile": {
-            "upload": true,
-            "url": null
-          }
-        
+        "id": 2
       }
     },
     {
       "id": 3,
       "result": {
-
-          "id": 3,
-          "emisionDate": "string",
-          "invoiceNumber": "string",
-          "salePoint": "string",
-          "invoiceType": "A",
-          "caeNumber": "string",
-          "fiscalData": {
-            "fiscalNumber": "string",
-            "companyName": "string",
-            "taxPayerType": "string",
-            "total": 123.123
-          },
-          "invoiceFile": {
-            "upload": true,
-            "url": null
-          }
-        
+        "id": 3
+      }
+    }
+  ],
+  "detailInvoice": [
+    {
+      "id": 1,
+      "result": {
+        "id": 1,
+        "emisionDate": "13/12/2021",
+        "invoiceNumber": "",
+        "salePoint": "8765",
+        "invoiceType": "A",
+        "caeNumber": "12345678901234",
+        "fiscalData": {
+          "fiscalNumber": "string",
+          "companyName": "string",
+          "taxPayerType": "string",
+          "total": 123.123
+        },
+        "invoiceFile": {
+          "upload": true,
+          "url": null
+        }
+      }
+    },
+    {
+      "id": 2,
+      "result": {
+        "id": 2,
+        "emisionDate": "string",
+        "invoiceNumber": "string",
+        "salePoint": "string",
+        "invoiceType": "C",
+        "caeNumber": "string",
+        "fiscalData": {
+          "fiscalNumber": "string",
+          "companyName": "string",
+          "taxPayerType": "string",
+          "total": 123.123
+        },
+        "invoiceFile": {
+          "upload": true,
+          "url": null
+        }
+      }
+    },
+    {
+      "id": 3,
+      "result": {
+        "id": 3,
+        "emisionDate": "string",
+        "invoiceNumber": "string",
+        "salePoint": "string",
+        "invoiceType": "A",
+        "caeNumber": "string",
+        "fiscalData": {
+          "fiscalNumber": "string",
+          "companyName": "string",
+          "taxPayerType": "string",
+          "total": 123.123
+        },
+        "invoiceFile": {
+          "upload": true,
+          "url": null
+        }
       }
     }
   ],
