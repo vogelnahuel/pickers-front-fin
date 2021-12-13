@@ -29,23 +29,24 @@ export const initialState: PreliquitadionStateType = {
   },
   seeMore: true,
   detailPreliquidations: {
-      id: 0,
-      emisionDate: "",
-      invoiceNumber: "",
-      salePoint: "",
-      invoiceType: "",
-      caeNumber: "",
-      fiscalData: {
-        fiscalNumber: "",
-        companyName: "",
-        taxPayerType: "",
-        total: 0
-      },
-      invoiceFile: {
-        upload: false,
-        url: null
-      }
-  }
+    id: 0,
+    emisionDate: "",
+    invoiceNumber: "",
+    salePoint: "",
+    invoiceType: "",
+    caeNumber: "",
+    fiscalData: {
+      fiscalNumber: "",
+      companyName: "",
+      taxPayerType: "",
+      total: 0
+    },
+    invoiceFile: {
+      upload: false,
+      url: null
+    }
+  },
+  actualPage: ""
 };
 
 const SLICE_NAME = "preliquidation";
@@ -117,11 +118,33 @@ export const preliquidationSlice = createSlice({
       const { payload } = action;
       state.detailPreliquidations = payload;
     },
+    getInvoiceDetailSaveRequest: (
+      state: PreliquitadionStateType,
+      action: PayloadAction<any>
+    ) => {},
+    getInvoiceDetailSaveError: () => {},
+    getInvoiceDetailSaveSuccess: ()=>{},
+    getInvoiceDetailApproveRequest: (
+      state: PreliquitadionStateType,
+      action: PayloadAction<any>
+    ) => {},
+    getInvoiceDetailApproveError: () => {},
+    getInvoiceDetailApproveSuccess: () => {},
+    getInvoiceDetailDeleteRequest: (
+      state: PreliquitadionStateType,
+      action: PayloadAction<any>
+    ) => {},
+    getInvoiceDetailDeleteError: () => {},
+    getInvoiceDetailDeleteSuccess: () => {},
+
     setDirty: (
       state: PreliquitadionStateType,
       action: PayloadAction<boolean>
     ) => {
       state.dirty = action.payload;
+    },
+    setActualPage: (state: PreliquitadionStateType, action: PayloadAction<string>) => {
+      state.actualPage = action.payload;
     },
 
     toggleItem: (

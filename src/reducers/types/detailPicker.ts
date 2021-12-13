@@ -41,8 +41,7 @@ export type DetailPickerStateType = {
   wrongFiles: TagsErrorType;
   nameDisplay: string;
   pendingUserAdminPicker: PickerType;
-  serverError: boolean;
-  tagError?: keyof DetailPickerTagFileType;
+  serverError: (keyof DetailPickerTagFileType)[];
 };
 
 export type PickerWrongFilePayloadType = {

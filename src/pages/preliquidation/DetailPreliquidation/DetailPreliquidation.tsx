@@ -17,9 +17,10 @@ import i18next from "i18next";
 export const DetailPreliquidation: React.FC<DetailPreliquidationPropsType> = ({
   isFetching,
   handleClickBack,
+  actualPage
 }): JSX.Element => {
-  const actualPage = true;
-
+ 
+ const  containerInvoice = true;
   const tabs = [
     {
       title: "Preliquidacion",
@@ -65,7 +66,7 @@ export const DetailPreliquidation: React.FC<DetailPreliquidationPropsType> = ({
             )}
           </h2>
           <p className="detail-preliquidation-number">{2201100002}</p>
-          {actualPage ? <InvoiceContainer /> : <></>}
+          {containerInvoice ? <InvoiceContainer /> : <></>}
         </div>
         
       </div>

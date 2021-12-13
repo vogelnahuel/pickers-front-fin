@@ -13,9 +13,7 @@ import {
 import { RootState } from "store";
 import { endsWithAny } from "utils/endsWithAny";
 import { PickerFileRequestType } from "pages/pickers/detailPicker/types";
-import {
-  ExpandableFileSaveParamsType,
-} from "component/admin/ExpandableFile/types";
+import { ExpandableFileSaveParamsType } from "component/admin/ExpandableFile/types";
 import { ActionErrorPickersType } from "./types/pickers";
 
 const wrongFilesInitialValue = {
@@ -32,8 +30,7 @@ const wrongFilesInitialValue = {
 
 export const initialState: DetailPickerStateType = {
   fetching: false,
-  tagError: undefined,
-  serverError: false,
+  serverError: [],
   dirty: false,
   wrongFiles: wrongFilesInitialValue,
   nameDisplay: "",
@@ -133,8 +130,7 @@ export const detailPickerSlice = createSlice({
     },
     resetWrongFiles: (state: DetailPickerStateType) => {
       state.wrongFiles = wrongFilesInitialValue;
-      state.serverError = false;
-      state.tagError = undefined;
+      state.serverError = [];
     },
     getPendingUserPickerExportRequest: (
       state: DetailPickerStateType,
@@ -187,28 +183,44 @@ export const detailPickerSlice = createSlice({
     getPickerFileError: () => {},
 
     getPickerFileSaveRequest: (
-      state: DetailPickerStateType, 
-      action: PayloadAction<ExpandableFileSaveParamsType> 
+      state: DetailPickerStateType,
+      action: PayloadAction<ExpandableFileSaveParamsType>
     ) => {},
-    getPickerFileSaveSuccess: () => {},
+    getPickerFileSaveSuccess: (
+      state: DetailPickerStateType,
+      action: PayloadAction<ActionErrorPickersType>
+    ) => {
+      const {
+        payload: { tag },
+      } = action;
+      state.serverError = state.serverError.filter((t) => t !== tag);
+    },
     getPickerFileSaveError: (
       state: DetailPickerStateType,
       action: PayloadAction<ActionErrorPickersType>
     ) => {
-      state.serverError = action.payload.serverError;
-      state.tagError = action.payload.tag;
+      if (!state.serverError?.includes(action.payload.tag))
+        state.serverError?.push(action.payload.tag);
     },
     getPickerFileDeleteRequest: (
       state: DetailPickerStateType, //estado actual del  state
       action: any // params Payload<tipo>
     ) => {},
-    getPickerFileDeleteSuccess: () => {},
+    getPickerFileDeleteSuccess: (
+      state: DetailPickerStateType,
+      action: PayloadAction<ActionErrorPickersType>
+    ) => {
+      const {
+        payload: { tag },
+      } = action;
+      state.serverError = state.serverError.filter((t) => t !== tag);
+    },
     getPickerFileDeleteError: (
       state: DetailPickerStateType,
       action: PayloadAction<ActionErrorPickersType>
     ) => {
-      state.serverError = action.payload.serverError;
-      state.tagError = action.payload.tag;
+      if (!state.serverError?.includes(action.payload.tag))
+        state.serverError?.push(action.payload.tag);
     },
   },
   extraReducers: (builder) =>
@@ -230,7 +242,9 @@ export const detailPickerSelector = (state: RootState) => state.detailPicker;
 // Has picker wrong files?
 export const hasPickerWrongFilesSelector = createSelector(
   (state: RootState) => state.detailPicker,
-  (picker) => Object.values(picker.wrongFiles).some((v) => v) || picker.serverError
+  (picker) =>
+    Object.values(picker.wrongFiles).some((v) => v) ||
+    picker.serverError?.length > 0
 );
 export const hasPickerAllFilesLoadedSelector = createSelector(
   (state: RootState) => state.detailPicker,
@@ -238,12 +252,19 @@ export const hasPickerAllFilesLoadedSelector = createSelector(
     const personalData = picker.pendingUserAdminPicker.files.personalData;
     const accountingData = picker.pendingUserAdminPicker.files.accountingData;
     const vehicle = picker.pendingUserAdminPicker.files.vehicle;
-    const type  = picker.pendingUserAdminPicker.vehicle.type;
+    const type = picker.pendingUserAdminPicker.vehicle.type;
 
-    if(type==="motorcycle"){
-      return personalData.status==="COMPLETED" && accountingData.status==="COMPLETED" && vehicle.status==="COMPLETED"
+    if (type === "motorcycle") {
+      return (
+        personalData.status === "COMPLETED" &&
+        accountingData.status === "COMPLETED" &&
+        vehicle.status === "COMPLETED"
+      );
     }
-    return  personalData.status==="COMPLETED" && accountingData.status==="COMPLETED"
+    return (
+      personalData.status === "COMPLETED" &&
+      accountingData.status === "COMPLETED"
+    );
   }
 );
 
