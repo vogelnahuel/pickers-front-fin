@@ -62,7 +62,7 @@ const InvoiceContainer = (
         i18next.t("global:error.input.emisionDate"),
         (value) => validarFechas(value)
       ),
-    invoiceType: yup.object().required("Este campo es requerido"),
+    invoiceType: yup.object().required("global:error.input.required"),
     salePoint: yup
       .string()
       .matches(
