@@ -1,0 +1,44 @@
+$themes: (
+  default: (
+    color-background: #f5f5f5,
+    color-table-back: rgba(196, 196, 196, 0.3),
+    color-button: purple,
+    color-links: #2d2d2d,
+    color-legal: #808080,
+    color-black: #000000,
+    color-orange: #ff6c0e,
+    color-orange-light: #fff0e7,
+    color-orange-dark: #db5e0e,
+    color-white: #ffffff,
+    color-grey: #e5e5e5,
+    color-gray: #cccccc,
+    color-gray-dark: #b8b8b8,
+    color-gray-4d: #4d4d4d,
+    color-scroll: #f0f0f0,
+    color-yellow: #ffa825,
+    color-red: #ff1515,
+    color-ligth-yellow: #fff6e9,
+    color-ligth-red: #fff3f3,
+    color-tab-gray: #4d4d4d,
+    color-title: red,
+    color-global-loader: rgba(255, 255, 255, 0.65),
+  ),
+  dark: (
+    color-background: rgb(84, 134, 80),
+    color-button: yellow,
+  ),
+);
+
+@mixin theme-selector($key, $color, $isModule) {
+  @each $theme-name, $theme-color in $themes {
+    @if $isModule {
+      #{':global'}(.theme-#{$theme-name}) & {
+        #{$key}: map-get(map-get($themes, $theme-name), $color);
+      }
+    } @else {
+      .theme-#{$theme-name} & {
+        #{$key}: map-get(map-get($themes, $theme-name), $color);
+      }
+    }
+  }
+}

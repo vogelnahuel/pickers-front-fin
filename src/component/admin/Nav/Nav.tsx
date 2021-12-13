@@ -43,12 +43,7 @@ export const Nav = ({ isDirty, showNotification, wrongFiles }: NavType) => {
         onClickLabel: i18next.t("global:label.button.checkErrors"),
         onCloseLabel: i18next.t("global:label.button.continue"),
         onClose: onClose,
-        onClick: () =>
-          window.scroll({
-            top: window.innerHeight,
-            left: 0,
-            behavior: "smooth",
-          }),
+        onClick: undefined
       });
     } else {
       onClose();
@@ -91,7 +86,7 @@ export const Nav = ({ isDirty, showNotification, wrongFiles }: NavType) => {
             </li>
           </ul>
         </div>
-        <div className="nav-section">
+        {/* <div className="nav-section">
           <h3>{i18next.t("nav:title.menu.administration")}</h3>
           <ul>
             <li>
@@ -105,7 +100,7 @@ export const Nav = ({ isDirty, showNotification, wrongFiles }: NavType) => {
               </Link>
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
     </nav>
   );

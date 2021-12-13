@@ -13,6 +13,7 @@ import {
 } from "reducers/preliquidation";
 import { PreliquidationItem } from "sagas/types/preliquidation";
 import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 const TablePreliquidation = ({
   items,
@@ -21,6 +22,9 @@ const TablePreliquidation = ({
   isAllSelected,
   toggleAll,
 }: TablePreliquidationProps) => {
+  const history = useHistory();
+  const redirect = (id: number) => history.push(`/preliquidation/${id}`);
+
   const isSelected = (itemId: number) =>
     preliquidationsSelected?.map((p) => p.id).includes(itemId);
 
@@ -30,16 +34,23 @@ const TablePreliquidation = ({
         <tr>
           <td></td>
           {preliquidationTableTitles.map((title) => (
-            <td>{i18next.t(title)}</td>
+            <td key={title}>{i18next.t(title)}</td>
           ))}
           <td>
-            <Checkbox value={isAllSelected} onChange={() => toggleAll && toggleAll()} />
+            <Checkbox
+              value={isAllSelected}
+              onChange={() => toggleAll && toggleAll()}
+            />
           </td>
         </tr>
       </thead>
       <tbody>
         {items?.map((item) => (
-          <tr key={item.id}>
+          <tr
+            className="preliquidation-table-tr"
+            key={item.id}
+            onClick={() => redirect(item.id)}
+          >
             <td>
               <img
                 className="img-transaction"
@@ -54,7 +65,10 @@ const TablePreliquidation = ({
             <td>${item.total}</td>
             <td>
               {item.status?.tag === "APPROVED" && (
-                <Checkbox value={isSelected(item.id)} onChange={() => toggleItem && toggleItem(item)} />
+                <Checkbox
+                  value={isSelected(item.id)}
+                  onChange={() => toggleItem && toggleItem(item)}
+                />
               )}
             </td>
           </tr>
@@ -67,7 +81,7 @@ const TablePreliquidation = ({
 const mapStateToProps = (state: RootState) => ({
   preliquidationsSelected:
     preliquidationSelector(state).preliquidationsSelected,
-  isAllSelected: allPreliquidationsSelected(state)
+  isAllSelected: allPreliquidationsSelected(state),
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({

@@ -5,6 +5,7 @@ import {
   createSelector,
 } from "@reduxjs/toolkit";
 import {
+  DetailPreliquidationsContentResponseType,
   PreliquidationItem,
   PreliquidationsContentResponseType,
 } from "sagas/types/preliquidation";
@@ -15,6 +16,7 @@ import { PreliquitadionStateType } from "./types/preliquidation";
 export const initialState: PreliquitadionStateType = {
   fetching: false,
   preliquidations: [],
+  dirty: false,
   preliquidationsSelected: [],
   filters: {},
   filtersExtra: {
@@ -26,6 +28,24 @@ export const initialState: PreliquitadionStateType = {
     offset: 0
   },
   seeMore: true,
+  detailPreliquidations: {
+      id: 0,
+      emisionDate: "",
+      invoiceNumber: "",
+      salePoint: "",
+      invoiceType: "",
+      caeNumber: "",
+      fiscalData: {
+        fiscalNumber: "",
+        companyName: "",
+        taxPayerType: "",
+        total: 0
+      },
+      invoiceFile: {
+        upload: false,
+        url: null
+      }
+  }
 };
 
 const SLICE_NAME = "preliquidation";
@@ -84,6 +104,26 @@ export const preliquidationSlice = createSlice({
     ) => {
       state.filtersExtra = { ...state.filtersExtra, ...action.payload };
     },
+    
+    getInvoiceDetailRequest: (
+      state: PreliquitadionStateType,
+      action: PayloadAction<any>
+    ) => {},
+    getInvoiceDetailError: () => {},
+    getInvoiceDetailSuccess: (
+      state: PreliquitadionStateType,
+      action: PayloadAction<DetailPreliquidationsContentResponseType>
+    ) => {
+      const { payload } = action;
+      state.detailPreliquidations = payload;
+    },
+    setDirty: (
+      state: PreliquitadionStateType,
+      action: PayloadAction<boolean>
+    ) => {
+      state.dirty = action.payload;
+    },
+
     toggleItem: (
       state: PreliquitadionStateType,
       action: PayloadAction<PreliquidationItem>
