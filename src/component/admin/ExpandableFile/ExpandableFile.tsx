@@ -262,8 +262,11 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
                       <Tooltip
                         position={ToolTipPosition.bottom}
                         message={i18next.t(
-                          `expandableFile:label.tooltip.${element.isUpload ? "replace" : "load"}`
-                        )} target={""}                      >
+                          `expandableFile:label.tooltip.${
+                            element.isUpload ? "replace" : "load"
+                          }`
+                        )}
+                      >
                         <div
                           id={`picker-replace-icon-${element.tag}`}
                           className={
@@ -292,7 +295,8 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
                         position={ToolTipPosition.bottom}
                         message={i18next.t(
                           "expandableFile:label.tooltip.delete"
-                        )} target={""}                      >
+                        )}
+                      >
                         <div
                           id={`"picker-delete-icon-${element.tag}"`}
                           className="delete-icon-svg"
