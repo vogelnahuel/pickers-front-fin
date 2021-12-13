@@ -5,7 +5,7 @@
   "placeholder.user.surname": "Ingresá el apellido",
   "label.user.identifier": "DNI",
   "placeholder.user.identifier": "Ingresá el DNI",
-  "label.user.email": "Email",
+  "label.user.email": "E-mail",
   "placeholder.user.email": "Ingresá el email",
   "label.user.birthdate": "Fecha de nacimiento",
   "placeholder.user.birthdate": "Ingresá la fecha de nac.",

@@ -1,21 +1,27 @@
-import { useState } from "react";
 import { Header } from "component/admin/Header/Header";
 import Nav from "component/admin/Nav/Nav";
-import TabControler from "component/admin/TabControler/TabControler";
+import { TabControler } from "component/admin/TabControler/TabControler";
+
 import React from "react";
 import calckBlack from "./../../../assets/preli/calcBlack.svg";
-import invoiceBlue from "./../../../assets/preli/invoiceBlue.svg";
 import calckBlue from "./../../../assets/preli/calcBlue.svg";
 import invoiceBlack from "./../../../assets/preli/invoiceBlack.svg";
-import PdfController from "component/pdfController/PdfController";
-import { MAX_FILE_SIZE } from "utils/constants";
+import invoiceBlue from "./../../../assets/preli/invoiceBlue.svg";
+import back from "./../../../assets/admin/PendingUser/volver.svg";
+import InvoiceContainer from "./invoice/InvoiceContainer";
+import "pages/preliquidation/DetailPreliquidation/detailPreliquidation.scss";
+import { DetailPreliquidationPropsType } from "./types";
 
-export const DetailPreliquidation: React.FC<any> = ({
+import i18next from "i18next";
+
+export const DetailPreliquidation: React.FC<DetailPreliquidationPropsType> = ({
   isFetching,
+  handleClickBack,
+  actualPage
 }): JSX.Element => {
-  const [fileUrl, setFileUrl] = useState("");
-  const [fileError, setFileError] = useState("");
-  //TODO: pasar a i18next
+  
+ 
+ const  containerInvoice = true;
   const tabs = [
     {
       title: "Preliquidacion",
@@ -29,20 +35,7 @@ export const DetailPreliquidation: React.FC<any> = ({
     },
   ];
 
-  const fileHandler = async (file: File) => {
-    console.log("FILE: ", file);
-    await new Promise((resolve) => setTimeout(resolve, 5000));
 
-    if (file.size > MAX_FILE_SIZE || file.type !== "application/pdf") {
-      setFileError(
-        "El formato del archivo debe ser PDF y no puede superar los 5MB"
-      );
-      return;
-    } else {
-      setFileError("");
-      setFileUrl("....");
-    }
-  };
 
   return (
     <div className="background-Grey">
@@ -50,27 +43,36 @@ export const DetailPreliquidation: React.FC<any> = ({
       <div className="mainContainerFlex">
         <Nav />
         <div className="pending-container">
-          <div className="mainContainerFlex">
-            <h2 className="subTitle-pending">
-              <TabControler
-                tabs={tabs}
-                changePage={() => {
-                  console.log("pepe");
-                }}
-              />
-            </h2>
+          <div className="preliquidation-display-flex">
+            <TabControler
+              tabs={tabs}
+              changePage={() => {}}
+              actualPage={"INVOICE"}
+            />
+            <div
+              className="detail-preliquidation-inline"
+              onClick={() => handleClickBack()}
+            >
+              <img className="img-goBack" src={back} alt="" />
+              <p className="preliquidation-paragraph-goBack">
+                {i18next.t("detailPreliquidation:label.button.goBack")}
+              </p>
+            </div>
           </div>
-          <PdfController
-          title="Factura"
-          buttonText="Cargar factura"
-            fileHandler={fileHandler}
-            fileLoaded={!!fileUrl}
-            showError={!!fileError}
-            errorMessage={fileError}
-          >
-            <div>File loaded</div>
-          </PdfController>
+          <div className="mainContainerFlex">
+            {/* <h2 className="subTitle-pending"></h2> */}
+          </div>
+          
+          
+          <h2 className="detail-preliquidation-h2">
+            {i18next.t(
+              "detailPreliquidation:label.subtitle.preliquidationNumber"
+            )}
+          </h2>
+          <p className="detail-preliquidation-number">{2201100002}</p>
+          {containerInvoice ? <InvoiceContainer /> : <></>}
         </div>
+        
       </div>
       {isFetching === true ? <div className="modalLoading"></div> : <></>}
     </div>

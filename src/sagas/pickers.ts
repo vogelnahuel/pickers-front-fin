@@ -365,8 +365,9 @@ function* fileDelete({
 > {
   const response = yield call(pickersMiddleware.deleteFile, id,tag);
   if (response.status !== 200) {
-    yield put(detailPickerActions.getPickerFileDeleteError({serverError:true, tag:tag}));
+    yield put(detailPickerActions.getPickerFileDeleteError({tag}));
   } else {
+    yield put(detailPickerActions.getPickerFileDeleteSuccess({ tag }));
     yield put(detailPickerActions.getPendingUserPickerRequest(id));
   }
 }
@@ -383,8 +384,9 @@ function* putFileUpload({
 > {
   const response = yield call(pickersMiddleware.fileUpload, id,{content:content,tag:tag} );
   if (response.status !== 200) {
-    yield put(detailPickerActions.getPickerFileSaveError({serverError:true, tag:tag}));
+    yield put(detailPickerActions.getPickerFileSaveError({ tag }));
   } else {
+    yield put(detailPickerActions.getPickerFileSaveSuccess({ tag }));
     yield put(detailPickerActions.getPendingUserPickerRequest(id));
   }
 }

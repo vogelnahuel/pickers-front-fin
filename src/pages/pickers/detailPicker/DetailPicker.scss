@@ -4,11 +4,22 @@
   @include container(18, 25px);
 }
 
+.container-detailPicker-row {
+  padding: 0 25px 25px 25px
+}
+
 .vehiculo-pending-picker {
   display: inline-block;
   /* margin-top: 1vh; */
   padding-left: 20px;
 }
+
+.header-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
 .form-Admin-Pickers {
   display: flex;
   background: #aca5a5;

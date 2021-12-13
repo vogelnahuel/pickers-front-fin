@@ -8,8 +8,7 @@ export type ExpandableFilePropsType = {
   openFile?: (params: PickerFileRequestType) => void;
   saveFile: (params: ExpandableFileSaveParamsType) => void;
   setWrongFile?: (wrongFile: PickerWrongFilePayloadType) => void;
-  serverError: boolean;
-  tagError?: keyof DetailPickerTagFileType;
+  serverError: (keyof DetailPickerTagFileType)[];
   actualPage: string;
   deleteFile: (params:DeleteFileType)=>void
 };

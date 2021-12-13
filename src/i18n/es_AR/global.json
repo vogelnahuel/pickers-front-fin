@@ -45,6 +45,10 @@
   "error.input.invalidEmailFormat": "El correo ingresado es inválido",
   "error.input.patentLong": "La patente debe tener entre 6 y 7 caracteres",
   "error.input.dniLength": "El DNI debe tener entre 7 y 8 caracteres numéricos",
+  "error.input.emisionDate": "Ingresá una fecha correspondiente al período",
+  "error.input.salePoint": "Ingresá un número de 4 o 5 dígitos",
+  "error.input.invoiceNumber": "Ingresá un número de 8 dígitos",
+  "error.input.caeNumber": "Ingresá un número de 14 dígitos",
 
 
   "label.label.yes":"Si",

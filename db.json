@@ -1,76 +1,143 @@
 {
-  "presettlments": 
+  "detailInvoiceResult": [
     {
       "result": {
-        "items": [
-          {
-            "id": 1,
-            "fiscalNumber": 123123,
-            "status": {
-              "id": 1,
-              "name": "Aprobado",
-              "tag": "APPROVED"
-            },
-            "total": 123.123,
-            "genereted_at": "17/12/2021"
-          },
-          {
-            "id": 2,
-            "fiscalNumber": 123123,
-            "status": {
-              "id": 1,
-              "name": "Aprobado",
-              "tag": "APPROVED"
-            },
-            "total": 123.123,
-            "genereted_at": "17/12/2021"
-          },
-          {
-            "id": 3,
-            "fiscalNumber": 123123,
-            "status": {
-              "id": 1,
-              "name": "Pendiente",
-              "tag": "PENDING"
-            },
-            "total": 123.123,
-            "genereted_at": "17/12/2021"
-          }
-        ]
+        "emisionDate": "13/12/2021",
+        "invoiceType": "A",
+        "invoiceNumber": "",
+        "salePoint": "8765",
+        "caeNumber": "12345678901234"
       },
-      "limit": 20,
-      "offset": 0,
-      "hasMore": true
-    },
-  "invoiceType":  [
-    {
-       "name": "A",
-       "tag": "string"
+      "id": 1
     },
     {
-       "name": "C",
-       "tag": "string"
+      "id": 2,
+      "result": {
+        "id": 2
+      }
+    },
+    {
+      "id": 3,
+      "result": {
+        "id": 3
+      }
     }
-],
-"invoice":{
-   
-        "id": 1, 
+  ],
+  "detailInvoice": [
+    {
+      "id": 1,
+      "result": {
+        "id": 1,
+        "emisionDate": "13/12/2021",
+        "invoiceNumber": "",
+        "salePoint": "8765",
+        "invoiceType": "A",
+        "caeNumber": "12345678901234",
+        "fiscalData": {
+          "fiscalNumber": "string",
+          "companyName": "string",
+          "taxPayerType": "string",
+          "total": 123.123
+        },
+        "invoiceFile": {
+          "upload": true,
+          "url": null
+        }
+      }
+    },
+    {
+      "id": 2,
+      "result": {
+        "id": 2,
         "emisionDate": "string",
         "invoiceNumber": "string",
         "salePoint": "string",
-        "invoiceType": "string",
+        "invoiceType": "C",
         "caeNumber": "string",
         "fiscalData": {
-            "fiscalNumber": "string",
-            "companyName": "string", 
-            "taxPayerType": "string",
-            "total": 123.123
+          "fiscalNumber": "string",
+          "companyName": "string",
+          "taxPayerType": "string",
+          "total": 123.123
         },
         "invoiceFile": {
-            "upload": true,
-            "url":  null
-        
+          "upload": true,
+          "url": null
+        }
+      }
+    },
+    {
+      "id": 3,
+      "result": {
+        "id": 3,
+        "emisionDate": "string",
+        "invoiceNumber": "string",
+        "salePoint": "string",
+        "invoiceType": "A",
+        "caeNumber": "string",
+        "fiscalData": {
+          "fiscalNumber": "string",
+          "companyName": "string",
+          "taxPayerType": "string",
+          "total": 123.123
+        },
+        "invoiceFile": {
+          "upload": true,
+          "url": null
+        }
+      }
     }
+  ],
+  "presettlments": {
+    "result": {
+      "items": [
+        {
+          "id": 1,
+          "fiscalNumber": 123123,
+          "status": {
+            "id": 1,
+            "name": "Aprobado",
+            "tag": "APPROVED"
+          },
+          "total": 123.123,
+          "genereted_at": "17/12/2021"
+        },
+        {
+          "id": 2,
+          "fiscalNumber": 123123,
+          "status": {
+            "id": 1,
+            "name": "Aprobado",
+            "tag": "APPROVED"
+          },
+          "total": 123.123,
+          "genereted_at": "17/12/2021"
+        },
+        {
+          "id": 3,
+          "fiscalNumber": 123123,
+          "status": {
+            "id": 1,
+            "name": "Pendiente",
+            "tag": "PENDING"
+          },
+          "total": 123.123,
+          "genereted_at": "17/12/2021"
+        }
+      ]
+    },
+    "limit": 20,
+    "offset": 0,
+    "hasMore": true
+  },
+  "invoiceType": [
+    {
+      "name": "A",
+      "tag": "string"
+    },
+    {
+      "name": "C",
+      "tag": "string"
+    }
+  ]
 }
-}
-
