@@ -15,7 +15,11 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
   validationSchema,
   setDirty,
   castDatePicker,
+  getInvoiceDetailSave,
+  getInvoiceDetailApprove,
+  getInvoiceDetailDelete
 }) => {
+  
   return (
     <div>
       <h3 className="subTitle-pending-data detail-preliquidation-margin-top">
@@ -31,7 +35,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
         }}
         validate={useValidationSchema(validationSchema)}
       >
-        {({ invalid, handleSubmit, form }) => (
+        {({ invalid, handleSubmit, form , values}) => (
           <form className="form-filter-transaction" onSubmit={handleSubmit}>
             <FormSpy
               subscription={{
@@ -200,7 +204,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
               <button
                 type="button"
                 className="button-submit-subtype"
-                onClick={() => {}}
+                onClick={() => getInvoiceDetailSave(values)}
               >
                 {i18next.t("invoice:label.buttons.save")}
               </button>
@@ -208,7 +212,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                 <button
                   disabled={invalid}
                   className="detail-preliquidation-invoice-p"
-                  onClick={() => console.log("llamar servicio")}
+                  onClick={() => getInvoiceDetailDelete(values)}
                 >
                   <p>{i18next.t("invoice:label.buttons.refuse")}</p>
                 </button>
@@ -217,6 +221,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                   type="submit"
                   disabled={invalid}
                   className="button-submit-active"
+                  onClick={() => getInvoiceDetailApprove(values)}
                 >
                   {i18next.t("invoice:label.buttons.approve")}
                 </button>

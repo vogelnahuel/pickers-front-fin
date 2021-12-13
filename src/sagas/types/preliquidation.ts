@@ -86,3 +86,15 @@ export type DetailPreliquidationsInvoiceContentResponseType = {
     id: number;
   };
 };
+
+export type DetailPreliquidationsInvoiceApiResponseType = {
+  data :DetailPreliquidationsInvoiceApiResponseContentType
+  status: number;
+};
+export type DetailPreliquidationsInvoiceApiResponseContentType ={
+    result:{
+      id:number
+    }
+
+}
+

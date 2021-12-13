@@ -1,5 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import { AxiosResponse } from "axios";
+import { detailPreliquidationDatePicker } from "pages/preliquidation/DetailPreliquidation/invoice/types";
 
 import {
   call,
@@ -12,8 +13,10 @@ import * as preliquidationsMiddleware from "../middleware/preliquidations";
 
 import { actions as preliquidationActions } from "../reducers/preliquidation";
 import {
+  DetailPreliquidationBodyParamsType,
   DetailPreliquidationsApiResponseType,
   DetailPreliquidationsContentResponseType,
+  DetailPreliquidationsInvoiceApiResponseType,
   PreliquidationParamsMiddlewareType,
   PreliquidationsApiResponse,
 } from "./types/preliquidation";
@@ -116,20 +119,30 @@ function* getInvoiceDetail({
   }
 }
 
+
 function* putSaveDetailInvoice({
   payload,
-}: PayloadAction<any>): Generator<
-  | PutEffect<{ payload: any; type: string }>
+}: PayloadAction<detailPreliquidationDatePicker>): Generator<
+  | PutEffect<{ payload: detailPreliquidationDatePicker; type: string }>
   | PutEffect<{ payload: undefined; type: string }>
-  | CallEffect<AxiosResponse<any>>,
+  | CallEffect<AxiosResponse<DetailPreliquidationsInvoiceApiResponseType>>,
   void,
-  any
+  DetailPreliquidationsInvoiceApiResponseType
 > {
-  const id =0;
+  
+const result:DetailPreliquidationBodyParamsType  = {
+  result :{
+    emisionDate: payload.emisionDate.from,
+    invoiceType: payload.invoiceType,
+    invoiceNumber: parseInt(payload.invoiceNumber),
+    salePoint: parseInt(payload.salePoint),
+    caeNumber: payload.caeNumber
+  }
+}
   const response = yield call(
     preliquidationsMiddleware.putSaveDetailInvoice,
-    id,
-    payload
+    payload.id,
+    result
   );
   if (response.status !== 200) {
     yield put(preliquidationActions.getInvoiceDetailSaveError());
@@ -141,18 +154,29 @@ function* putSaveDetailInvoice({
 
 function* patchApproveDetailInvoice({
   payload,
-}: PayloadAction<any>): Generator<
-  | PutEffect<{ payload: any; type: string }>
+}: PayloadAction<detailPreliquidationDatePicker>): Generator<
+  | PutEffect<{ payload: detailPreliquidationDatePicker; type: string }>
   | PutEffect<{ payload: undefined; type: string }>
-  | CallEffect<AxiosResponse<any>>,
+  | CallEffect<AxiosResponse<DetailPreliquidationsInvoiceApiResponseType>>,
   void,
-  any
+  DetailPreliquidationsInvoiceApiResponseType
 > {
-  const id =0;
+
+  const result:DetailPreliquidationBodyParamsType  = {
+    result :{
+      emisionDate: payload.emisionDate.from,
+      invoiceType: payload.invoiceType,
+      invoiceNumber: parseInt(payload.invoiceNumber),
+      salePoint: parseInt(payload.salePoint),
+      caeNumber: payload.caeNumber
+    }
+  }
+
+  
   const response = yield call(
     preliquidationsMiddleware.patchApproveDetailInvoice,
-    id,
-    payload
+    payload.id,
+    result
   );
   if (response.status !== 200) {
     yield put(preliquidationActions.getInvoiceDetailApproveError());
@@ -162,18 +186,21 @@ function* patchApproveDetailInvoice({
   }
 }
 
+
+
 function* putDeleteDetailInvoice({
   payload,
-}: PayloadAction<any>): Generator<
-  | PutEffect<{ payload: any; type: string }>
+}: PayloadAction<detailPreliquidationDatePicker>): Generator<
+  | PutEffect<{ payload: detailPreliquidationDatePicker; type: string }>
   | PutEffect<{ payload: undefined; type: string }>
-  | CallEffect<AxiosResponse<any>>,
+  | CallEffect<AxiosResponse<DetailPreliquidationsInvoiceApiResponseType>>,
   void,
-  any
+  DetailPreliquidationsInvoiceApiResponseType
 > {
+ 
   const response = yield call(
     preliquidationsMiddleware.putDeleteDetailInvoice,
-    payload
+    payload.id
   );
   if (response.status !== 200) {
     yield put(preliquidationActions.getInvoiceDetailDeleteError());

@@ -85,6 +85,15 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   getInvoiceDetail: (params: string | undefined) => {
     dispatch(preliActions.getInvoiceDetailRequest(params));
   },
+  getInvoiceDetailSave: (params: detailPreliquidationDatePicker) => {
+    dispatch(preliActions.getInvoiceDetailSaveRequest(params));
+  },
+  getInvoiceDetailApprove: (params: detailPreliquidationDatePicker) => {
+    dispatch(preliActions.getInvoiceDetailApproveRequest(params));
+  },
+  getInvoiceDetailDelete: (params: detailPreliquidationDatePicker) => {
+    dispatch(preliActions.getInvoiceDetailDeleteRequest(params));
+  },
   setDirty: (dirty: boolean) => {
     dispatch(preliActions.setDirty(dirty));
   },

@@ -7,13 +7,21 @@ export type detailPreliquidationInvoiceContainerPropsType = {
   setDirty: (dirty: boolean) => void;
   detailPreliquidations: DetailPreliquidationsContentResponseType;
   getInvoiceDetail: (id: string | undefined) => void;
+  getInvoiceDetailSave: Function;
+  getInvoiceDetailApprove: Function;
+  getInvoiceDetailDelete: Function;
 };
 export type detailPreliquidationInvoicePropsType = {
   isFetching: boolean;
   detailPreliquidations: DetailPreliquidationsContentResponseType;
   validationSchema: object;
   setDirty: (dirty: boolean) => void;
-  castDatePicker: (detailPreliquidations:DetailPreliquidationsContentResponseType) => detailPreliquidationDatePicker;
+  getInvoiceDetailSave: Function;
+  getInvoiceDetailApprove: Function;
+  getInvoiceDetailDelete: Function;
+  castDatePicker: (
+    detailPreliquidations: DetailPreliquidationsContentResponseType
+  ) => detailPreliquidationDatePicker;
 };
 
 export type detailPreliquidationDatePicker = {
@@ -42,5 +50,5 @@ export type invoiceValidationSchema = {
   caeNumber: string | undefined;
 };
 export type DatePickerType = {
-    from:string
-}
+  from: string;
+};
