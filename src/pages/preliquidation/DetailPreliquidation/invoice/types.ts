@@ -38,6 +38,7 @@ export type detailPreliquidationDatePicker = {
 export type invoiceValidationSchema = {
   emisionDate: DatePickerType | TypeOfShape<{}>;
   salePoint: string | undefined;
+  invoiceType :TypeOfShape<{}>| string;
   invoiceNumber: string | undefined;
   caeNumber: string | undefined;
 };

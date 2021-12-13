@@ -8,7 +8,7 @@
           "emisionDate": "06/12/2021",
           "invoiceNumber": "",
           "salePoint": "8765",
-          "invoiceType": "A",
+          "invoiceType": "",
           "caeNumber": "12345678901234",
           "fiscalData": {
             "fiscalNumber": "string",
