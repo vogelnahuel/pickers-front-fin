@@ -1,9 +1,7 @@
 
 import { PickerFileRequestType } from "pages/pickers/detailPicker/types";
 import { DataFilesType, DetailPickerTagFileType } from "pages/pickers/types";
-import React, { SetStateAction } from "react";
 import { PickerWrongFilePayloadType } from "reducers/types/detailPicker";
-import { NumberLiteralType } from "typescript";
 
 export type ExpandableFilePropsType = {
   pickerId: number;
@@ -11,8 +9,7 @@ export type ExpandableFilePropsType = {
   openFile?: (params: PickerFileRequestType) => void;
   saveFile: (params: ExpandableFileSaveParamsType) => void;
   setWrongFile?: (wrongFile: PickerWrongFilePayloadType) => void;
-  serverError: boolean;
-  tagError?: keyof DetailPickerTagFileType;
+  serverError: (keyof DetailPickerTagFileType)[];
   actualPage: string;
   deleteFile: (params:DeleteFileType)=>void
 };

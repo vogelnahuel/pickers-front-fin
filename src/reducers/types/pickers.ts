@@ -88,6 +88,5 @@ export type ActionType = {
 };
 
 export type ActionErrorPickersType = {
-  serverError: boolean;
   tag: keyof DetailPickerTagFileType;
 };
