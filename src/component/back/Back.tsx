@@ -4,9 +4,9 @@ import { GoBackProps } from "./types";
 import "./back.scss";
 
 const Back = ({ onClick }: GoBackProps) => (
-  <div className="container" onClick={onClick}>
-    <img className="icon" src={backIcon} alt="back-icon" />
-    <p className="text">
+  <div className="back-container" onClick={onClick}>
+    <img className="back-icon" src={backIcon} alt="back-icon" />
+    <p className="back-text">
       {i18next.t("component:label.button.goBack")}
     </p>
   </div>

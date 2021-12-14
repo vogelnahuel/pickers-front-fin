@@ -21,12 +21,17 @@ export type detailPreliquidationInvoicePropsType = {
   detailPreliquidations: DetailPreliquidationsContentResponseType;
   validationSchema: object;
   setDirty: (dirty: boolean) => void;
-  getInvoiceDetailSave: (params: detailPreliquidationDatePicker) => void;
-  getInvoiceDetailApprove: (params: detailPreliquidationDatePicker) => void;
-  getInvoiceDetailDelete: (params: detailPreliquidationDatePicker) => void;
+  getInvoiceDetailSave: (params:detailPreliquidationDatePicker) => void;
+  getInvoiceDetailApprove: (params:detailPreliquidationDatePicker) => void;
+  getInvoiceDetailDelete: (params:detailPreliquidationDatePicker) => void;
+  deleteFile: () => void;
+  downloadFile: () => void;
   castDatePicker: (
     detailPreliquidations: DetailPreliquidationsContentResponseType
   ) => detailPreliquidationDatePicker;
+  fileHandler: (file: File) => void;
+  fileError: string;
+  fileUrl: string;
   invoiceTypes: InvoiceTypes[];
 };
 

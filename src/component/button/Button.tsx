@@ -1,7 +1,7 @@
 import { ButtonProps } from "./types";
 import "./button.scss";
 
-const Button = ({ text, onClick, disabled, icon, className = "" }: ButtonProps) => {
+const Button = ({ children, onClick, disabled, icon, className = "" }: ButtonProps) => {
   
   const classes = ["default-button", className].join(" ");
   
@@ -11,7 +11,7 @@ const Button = ({ text, onClick, disabled, icon, className = "" }: ButtonProps) 
       onClick={onClick}
       className={classes}
     >
-      {text}
+      {children}
     </button>
   );
 };

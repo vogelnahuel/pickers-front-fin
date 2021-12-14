@@ -2,7 +2,7 @@
   "label.card.ErrorFormat": "El formato es incorrecto. Subí un archivo JPG, PNG o PDF de hasta 5mb",
   "label.card.ErrorSize": "El archivo es muy pesado, subí un archivo JPG, PNG o PDF de hasta 5mb",
   "label.card.ErrorLoad": "Hubo un error del navegador. Inténtalo nuevamente",
-  "label.card.ErrorServer": "Ocurrió un error de conexión con el servidor. Intentalo nuevamente",
+  "label.card.ErrorServer": "Hubo un error de conexión con el servidor. El nuevo archivo no se subió correctamente.",
   "label.card.file": "Archivos",
   "label.card.replaceFile": "¿Querés reemplazar el archivo?",
   "label.card.deleteFile": "¿Querés eliminar el archivo?",

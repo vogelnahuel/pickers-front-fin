@@ -4,7 +4,7 @@ import { NotificationStateType } from "reducers/types/notification";
 export type TabControlerType = {
   actualPage: string;
   tabs: Array<TabType>;
-  showNotification: (notification: NotificationStateType) => void;
+  showNotification?: (notification: NotificationStateType) => void;
   changePage: (page: string) => void;
 };
 

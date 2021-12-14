@@ -230,7 +230,8 @@ export const DETAIL_PICKER_TAG: DetailPickerTagFileType = {
   "driver-insurance-card": "detailPicker:label.card.driverInsuranceCard",
 };
 
-export const PICKERS_MAX_FILE_SIZE = 5000000;
+export const MAX_FILE_SIZE = 5000000
+export const PICKERS_MAX_FILE_SIZE = MAX_FILE_SIZE;
 export const PICKERS_FILE_EXT = [
   "application/pdf",
   "image/png",

@@ -1,4 +1,4 @@
-.container {
+.back-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -6,12 +6,12 @@
   cursor: pointer;
 }
 
-.icon {
+.back-icon {
   height: 15px;
   width: 23px;
 }
 
-.text {
+.back-text {
   font-family: 'Mulish';
   font-style: normal;
   font-weight: 800;

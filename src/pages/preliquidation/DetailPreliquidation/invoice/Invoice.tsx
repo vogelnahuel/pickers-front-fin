@@ -1,14 +1,23 @@
 import { Input } from "component/inputs/Input";
-import React from "react";
+import React, { useRef } from "react";
 import "pages/preliquidation/DetailPreliquidation/invoice/detailPreliquidationInvoice.scss";
 import { Field, Form, FormSpy } from "react-final-form";
+
+import { PdfViewer } from "component/pdf-viewer/PdfViewer";
+import deletePDF from "../../../../assets/preli/deletePDF.svg";
+import download from "../../../../assets/preli/download.svg";
+import replace from "../../../../assets/preli/replace.svg";
 import { DatePicker } from "@pickit/pickit-components";
 
 import Select from "component/inputs/Select";
-import { detailPreliquidationDatePicker, detailPreliquidationInvoicePropsType } from "./types";
+import {
+  detailPreliquidationDatePicker,
+  detailPreliquidationInvoicePropsType,
+} from "./types";
 import i18next from "i18next";
 import useValidationSchema from "hooks/useValidationSchema";
 import { InvoiceTypes } from "sagas/types/preliquidation";
+import PdfController from "component/pdfController/PdfController";
 
 export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
   isFetching,
@@ -19,9 +28,14 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
   getInvoiceDetailSave,
   getInvoiceDetailApprove,
   getInvoiceDetailDelete,
+  fileHandler,
+  deleteFile,
+  downloadFile,
+  fileError,
+  fileUrl,
   invoiceTypes
 }) => {
-
+  const pdfControllerRef = useRef<any>();
   return (
     <div>
       <h3 className="subTitle-pending-data detail-preliquidation-margin-top">
@@ -137,8 +151,37 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                   />
                 </div>
 
-                <div className="container-detail-preliquidation-col-sm-2  form-part-1-admin-pickers detail-preliquidation-adjust">
-                  Factura
+                <div className="container-detail-preliquidation-col-sm-2 detail-preliquidation-adjust">
+                  <PdfController
+                    title="Factura"
+                    buttonText="Cargar factura"
+                    fileHandler={fileHandler}
+                    fileLoaded={!!fileUrl}
+                    showError={!!fileError}
+                    errorMessage={fileError}
+                    ref={pdfControllerRef}
+                  >
+                    <PdfViewer src={fileUrl}>
+                      <img
+                        src={deletePDF}
+                        alt=""
+                        onClick={deleteFile}
+                        className="download-PDF"
+                      />
+                      <img
+                        src={replace}
+                        alt=""
+                        onClick={() => pdfControllerRef?.current?.triggerOnChange()}
+                        className="download-PDF"
+                      />
+                      <img
+                        src={download}
+                        alt=""
+                        onClick={downloadFile}
+                        className="download-PDF"
+                      />
+                    </PdfViewer>
+                  </PdfController>
                 </div>
               </div>
 
@@ -211,7 +254,9 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
               <button
                 type="button"
                 className="button-submit-subtype"
-                onClick={() => getInvoiceDetailSave(values as detailPreliquidationDatePicker)}
+                onClick={() =>
+                  getInvoiceDetailSave(values as detailPreliquidationDatePicker)
+                }
               >
                 {i18next.t("invoice:label.buttons.save")}
               </button>
@@ -219,7 +264,11 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                 <button
                   disabled={invalid}
                   className="detail-preliquidation-invoice-p"
-                  onClick={() => getInvoiceDetailDelete(values as detailPreliquidationDatePicker)}
+                  onClick={() =>
+                    getInvoiceDetailDelete(
+                      values as detailPreliquidationDatePicker
+                    )
+                  }
                 >
                   <p>{i18next.t("invoice:label.buttons.refuse")}</p>
                 </button>
@@ -228,7 +277,11 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                   type="submit"
                   disabled={invalid}
                   className="button-submit-active"
-                  onClick={() => getInvoiceDetailApprove(values as detailPreliquidationDatePicker)}
+                  onClick={() =>
+                    getInvoiceDetailApprove(
+                      values as detailPreliquidationDatePicker
+                    )
+                  }
                 >
                   {i18next.t("invoice:label.buttons.approve")}
                 </button>
