@@ -101,7 +101,7 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
       });
     }
   };
-  const optionNo = (tag:  keyof DetailPickerTagFileType) => {
+  const optionNo = (tag: keyof DetailPickerTagFileType) => {
     setViewConfirm({
       ...viewConfirm,
       [tag]: {

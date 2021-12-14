@@ -1,0 +1,94 @@
+.pdf-container {
+  width: 100%;
+  max-width: 100%;
+  height: calc(100% - 68px);
+  max-height: calc(100% - 68px);
+  border: none;
+  ::-webkit-scrollbar {
+    background-color: #5c5c5c00;
+    border-radius: 10px;
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #e0e0e0;
+    width: 10px;
+  }
+}
+
+.pdf-container ::-webkit-scrollbar-corner {
+  display: none;
+}
+
+
+.zoom-button {
+  cursor: pointer;
+  height: 25px;
+  width: 25px;
+  margin-right: 17px;
+}
+.zoom-container {
+  //margin-left: 18.5px;
+  display: flex;
+}
+
+.child-button {
+  margin-right: 16px;
+}
+.child-button:last-child {
+  margin-right: 0;
+}
+
+.page-navigator {
+  cursor: pointer;
+  padding: 8px;
+}
+.page-navigator-container {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  font-family: "Mulish";
+}
+.current-page-label {
+  margin-top: 4.5px;
+}
+.page-navigator-button-container {
+  padding: 0px 2px;
+  margin-left: auto;
+}
+.toolbar-container {
+  display: flex;
+  align-items: center;
+  height: 0px;
+  position: relative;
+  z-index: 10;
+  top: 20px;
+  padding-left: 18.5px;
+  padding-right: 16px;
+  padding-top: 15px;
+}
+
+.rpv-default-layout__toolbar {
+  position: absolute;
+  bottom: -68px;
+  width: calc(100% + 2px);
+  left: -1px;
+  height: 68px;
+  background-color: white;
+  z-index: 10;
+  padding: 3px;
+  //border: 1px solid rgba(0, 0, 0, 0.3);
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+}
+
+.rpv-default-layout__sidebar--ltr {
+  display: none;
+}
+.rpv-default-layout__toolbar {
+  border: none;
+}
+
+.rpv-default-layout__container {
+  border: none;
+}
