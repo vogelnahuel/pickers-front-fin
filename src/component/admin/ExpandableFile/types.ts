@@ -1,4 +1,3 @@
-
 import { PickerFileRequestType } from "pages/pickers/detailPicker/types";
 import { DataFilesType, DetailPickerTagFileType } from "pages/pickers/types";
 import { PickerWrongFilePayloadType } from "reducers/types/detailPicker";
