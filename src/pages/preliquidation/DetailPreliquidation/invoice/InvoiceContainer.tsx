@@ -56,6 +56,17 @@ const InvoiceContainer = (
 
   const deleteFile = () => setFileUrl("");
 
+  const downloadFile = () => {
+    if(!fileUrl) return;
+
+    //const linkSource = `data:application/pdf;base64,${pdf}`;
+    const downloadLink = document.createElement("a");
+    const fileName = "factura.pdf";
+    downloadLink.href = fileUrl;
+    downloadLink.download = fileName;
+    downloadLink.click();
+  }
+
   const validarFechas = (value: TypeOfShape<ObjectShape>) => {
     if (!value) return true;
 
@@ -126,6 +137,7 @@ const InvoiceContainer = (
       fileError={fileError}
       fileHandler={fileHandler}
       deleteFile={deleteFile}
+      downloadFile={downloadFile}
       validationSchema={validationSchema}
       castDatePicker={castDatePicker}
     />

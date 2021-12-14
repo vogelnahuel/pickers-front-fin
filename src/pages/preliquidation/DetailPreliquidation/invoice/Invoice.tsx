@@ -29,6 +29,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
   getInvoiceDetailDelete,
   fileHandler,
   deleteFile,
+  downloadFile,
   fileError,
   fileUrl,
 }) => {
@@ -162,7 +163,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                       <img
                         src={deletePDF}
                         alt=""
-                        onClick={() => deleteFile()}
+                        onClick={deleteFile}
                         className="download-PDF"
                       />
                       <img
@@ -174,9 +175,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                       <img
                         src={download}
                         alt=""
-                        onClick={() => {
-                          console.log("soy el boton de descarga");
-                        }}
+                        onClick={downloadFile}
                         className="download-PDF"
                       />
                     </PdfViewer>
