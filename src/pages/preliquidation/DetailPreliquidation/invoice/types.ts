@@ -19,9 +19,13 @@ export type detailPreliquidationInvoicePropsType = {
   getInvoiceDetailSave: (params:detailPreliquidationDatePicker) => void;
   getInvoiceDetailApprove: (params:detailPreliquidationDatePicker) => void;
   getInvoiceDetailDelete: (params:detailPreliquidationDatePicker) => void;
+  deleteFile: () => void;
   castDatePicker: (
     detailPreliquidations: DetailPreliquidationsContentResponseType
   ) => detailPreliquidationDatePicker;
+  fileHandler: (file: File) => void;
+  fileError: string;
+  fileUrl: string;
 };
 
 export type detailPreliquidationDatePicker = {

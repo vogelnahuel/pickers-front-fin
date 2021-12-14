@@ -1,5 +1,5 @@
 import { Input } from "component/inputs/Input";
-import React from "react";
+import React, { useRef } from "react";
 import "pages/preliquidation/DetailPreliquidation/invoice/detailPreliquidationInvoice.scss";
 import { Field, Form, FormSpy } from "react-final-form";
 
@@ -7,7 +7,6 @@ import { PdfViewer } from "component/pdf-viewer/PdfViewer";
 import deletePDF from "../../../../assets/preli/deletePDF.svg";
 import download from "../../../../assets/preli/download.svg";
 import replace from "../../../../assets/preli/replace.svg";
-import pdfFile from "component/pdf-viewer/pdftest.pdf";
 import { DatePicker } from "@pickit/pickit-components";
 import { FILTER_PRELIQUIDATION_SELECT_OPTIONS } from "utils/constants";
 import Select from "component/inputs/Select";
@@ -17,6 +16,7 @@ import {
 } from "./types";
 import i18next from "i18next";
 import useValidationSchema from "hooks/useValidationSchema";
+import PdfController from "component/pdfController/PdfController";
 
 export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
   isFetching,
@@ -27,7 +27,12 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
   getInvoiceDetailSave,
   getInvoiceDetailApprove,
   getInvoiceDetailDelete,
+  fileHandler,
+  deleteFile,
+  fileError,
+  fileUrl,
 }) => {
+  const pdfControllerRef = useRef<any>();
   return (
     <div>
       <h3 className="subTitle-pending-data detail-preliquidation-margin-top">
@@ -143,33 +148,39 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                   />
                 </div>
 
-                <div className="container-detail-preliquidation-col-sm-2  form-part-1-admin-pickers detail-preliquidation-adjust">
-                  <PdfViewer src={pdfFile}>
-                    <img
-                      src={deletePDF}
-                      alt=""
-                      onClick={() => {
-                        console.log("soy el boton de eliminar");
-                      }}
-                      className="download-PDF"
-                    />
-                    <img
-                      src={replace}
-                      alt=""
-                      onClick={() => {
-                        console.log("soy el boton de reemplazar");
-                      }}
-                      className="download-PDF"
-                    />
-                    <img
-                      src={download}
-                      alt=""
-                      onClick={() => {
-                        console.log("soy el boton de descarga");
-                      }}
-                      className="download-PDF"
-                    />
-                  </PdfViewer>
+                <div className="container-detail-preliquidation-col-sm-2 detail-preliquidation-adjust">
+                  <PdfController
+                    title="Factura"
+                    buttonText="Cargar factura"
+                    fileHandler={fileHandler}
+                    fileLoaded={!!fileUrl}
+                    showError={!!fileError}
+                    errorMessage={fileError}
+                    ref={pdfControllerRef}
+                  >
+                    <PdfViewer src={fileUrl}>
+                      <img
+                        src={deletePDF}
+                        alt=""
+                        onClick={() => deleteFile()}
+                        className="download-PDF"
+                      />
+                      <img
+                        src={replace}
+                        alt=""
+                        onClick={() => pdfControllerRef?.current?.triggerOnChange()}
+                        className="download-PDF"
+                      />
+                      <img
+                        src={download}
+                        alt=""
+                        onClick={() => {
+                          console.log("soy el boton de descarga");
+                        }}
+                        className="download-PDF"
+                      />
+                    </PdfViewer>
+                  </PdfController>
                 </div>
               </div>
 
