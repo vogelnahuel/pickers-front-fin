@@ -92,3 +92,37 @@
 .color-red{
   color: #ff1515;
 }
+
+%icon {
+  background-color: $icon-color;
+  height: 15px;
+  width: 17px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin: 0 8px;
+
+  &:hover {
+    background-color: $icon-color-hover;
+  }
+}
+
+$icons: delete, download, replace;
+
+@each $icon in $icons {
+  .#{$icon}-icon-svg {
+    @extend %icon;
+    mask-size: contain;
+    background-size: contain;
+    -webkit-mask: url("../../../assets/admin/file-" + quote($icon) + ".svg")
+      no-repeat
+      center;
+    mask: url("../../../assets/admin/file-" + quote($icon) + ".svg")
+      no-repeat
+      center;
+  }
+}
+
+.delete-icon-svg{
+  height: 17px;
+  width: 15px;
+}
