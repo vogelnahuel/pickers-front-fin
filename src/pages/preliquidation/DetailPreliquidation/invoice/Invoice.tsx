@@ -3,11 +3,12 @@ import React from "react";
 import "pages/preliquidation/DetailPreliquidation/invoice/detailPreliquidationInvoice.scss";
 import { Field, Form, FormSpy } from "react-final-form";
 import { DatePicker } from "@pickit/pickit-components";
-import { FILTER_PRELIQUIDATION_SELECT_OPTIONS } from "utils/constants";
+
 import Select from "component/inputs/Select";
 import { detailPreliquidationDatePicker, detailPreliquidationInvoicePropsType } from "./types";
 import i18next from "i18next";
 import useValidationSchema from "hooks/useValidationSchema";
+import { InvoiceTypes } from "sagas/types/preliquidation";
 
 export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
   isFetching,
@@ -18,7 +19,9 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
   getInvoiceDetailSave,
   getInvoiceDetailApprove,
   getInvoiceDetailDelete,
+  invoiceTypes
 }) => {
+
   return (
     <div>
       <h3 className="subTitle-pending-data detail-preliquidation-margin-top">
@@ -29,7 +32,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
         initialValues={castDatePicker(detailPreliquidations)}
         mutators={{
           setValue: ([field, value], state, { changeValue }) => {
-            changeValue(state, field, () => value);
+            changeValue(state, field, () => value.name);
           },
         }}
         validate={useValidationSchema(validationSchema)}
@@ -89,10 +92,10 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                       )}
                       name="invoiceType"
                       onChange={form.mutators.setValue}
-                      options={FILTER_PRELIQUIDATION_SELECT_OPTIONS.map(
-                        (o) => ({
+                      options={invoiceTypes.map(
+                        (o:InvoiceTypes) => ({
                           ...o,
-                          label: o.label,
+                          label: o.name,
                         })
                       )}
                     >

@@ -1,10 +1,22 @@
 {
+  "fiscalData": {
+    "result": [
+      {
+        "name": "A",
+        "tag": "string"
+      },
+      {
+        "name": "C",
+        "tag": "string"
+      }
+    ]
+  },
   "detailInvoiceResult": [
     {
       "result": {
         "emisionDate": "13/12/2021",
         "invoiceType": "A",
-        "invoiceNumber": "",
+        "invoiceNumber": "12341234",
         "salePoint": "8765",
         "caeNumber": "12345678901234"
       },

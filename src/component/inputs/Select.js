@@ -17,7 +17,7 @@ const Select = ({ input, label, options = [], placeholder, onChange }) => {
     setOpen(!open);
   };
 
-
+console.log(input.value)
 
   return (
     <div className="multiple-selectbox">

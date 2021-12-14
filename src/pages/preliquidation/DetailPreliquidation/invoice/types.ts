@@ -1,4 +1,7 @@
-import { DetailPreliquidationsContentResponseType } from "sagas/types/preliquidation";
+import {
+  DetailPreliquidationsContentResponseType,
+  InvoiceTypes,
+} from "sagas/types/preliquidation";
 import { TypeOfShape } from "yup/lib/object";
 
 export type detailPreliquidationInvoiceContainerPropsType = {
@@ -7,21 +10,24 @@ export type detailPreliquidationInvoiceContainerPropsType = {
   setDirty: (dirty: boolean) => void;
   detailPreliquidations: DetailPreliquidationsContentResponseType;
   getInvoiceDetail: (id: string | undefined) => void;
-  getInvoiceDetailSave: (params:detailPreliquidationDatePicker) => void;
-  getInvoiceDetailApprove: (params:detailPreliquidationDatePicker) => void;
-  getInvoiceDetailDelete: (params:detailPreliquidationDatePicker) => void;
+  getInvoiceDetailSave: (params: detailPreliquidationDatePicker) => void;
+  getInvoiceDetailApprove: (params: detailPreliquidationDatePicker) => void;
+  getInvoiceDetailDelete: (params: detailPreliquidationDatePicker) => void;
+  getInvoiceDetailTypes: () => void;
+  invoiceTypes: InvoiceTypes[];
 };
 export type detailPreliquidationInvoicePropsType = {
   isFetching: boolean;
   detailPreliquidations: DetailPreliquidationsContentResponseType;
   validationSchema: object;
   setDirty: (dirty: boolean) => void;
-  getInvoiceDetailSave: (params:detailPreliquidationDatePicker) => void;
-  getInvoiceDetailApprove: (params:detailPreliquidationDatePicker) => void;
-  getInvoiceDetailDelete: (params:detailPreliquidationDatePicker) => void;
+  getInvoiceDetailSave: (params: detailPreliquidationDatePicker) => void;
+  getInvoiceDetailApprove: (params: detailPreliquidationDatePicker) => void;
+  getInvoiceDetailDelete: (params: detailPreliquidationDatePicker) => void;
   castDatePicker: (
     detailPreliquidations: DetailPreliquidationsContentResponseType
   ) => detailPreliquidationDatePicker;
+  invoiceTypes: InvoiceTypes[];
 };
 
 export type detailPreliquidationDatePicker = {
@@ -46,7 +52,7 @@ export type detailPreliquidationDatePicker = {
 export type invoiceValidationSchema = {
   emisionDate: DatePickerType | TypeOfShape<{}>;
   salePoint: string | undefined;
-  invoiceType :TypeOfShape<{}>| string;
+  invoiceType: TypeOfShape<{}> | string;
   invoiceNumber: string | undefined;
   caeNumber: string | undefined;
 };

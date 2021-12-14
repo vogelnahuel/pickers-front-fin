@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 //import * as API from "middleware/api";
-import { DetailPreliquidationBodyParamsType, DetailPreliquidationsContentResponseType, DetailPreliquidationsInvoiceApiResponseType, PreliquidationsApiResponse } from "sagas/types/preliquidation";
+import { DetailPreliquidationBodyParamsType, DetailPreliquidationsContentResponseType, DetailPreliquidationsInvoiceApiResponseType, DetailPreliquidationsInvoiceTypesApiResponseType, PreliquidationsApiResponse } from "sagas/types/preliquidation";
 
 // export const getPreliquidations = (
 //   params: any
@@ -24,6 +24,9 @@ axios.patch(`http://localhost:8080/detailInvoiceResult/${id}`,params)
 
 export const putDeleteDetailInvoice = (id:number) : Promise<AxiosResponse<DetailPreliquidationsInvoiceApiResponseType>> =>
 axios.put(`http://localhost:8080/detailInvoiceResult/${id}`)
+
+export const getDetailInvoiceTypes = () : Promise<AxiosResponse<DetailPreliquidationsInvoiceTypesApiResponseType>> =>
+axios.get(`http://localhost:8080/fiscalData`)
 
 
 

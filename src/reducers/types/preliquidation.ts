@@ -1,5 +1,6 @@
 import {
   DetailPreliquidationsContentResponseType,
+  InvoiceTypes,
   PreliquidationItem,
 } from "sagas/types/preliquidation";
 
@@ -19,4 +20,5 @@ export type PreliquitadionStateType = {
   detailPreliquidations: DetailPreliquidationsContentResponseType;
   dirty: boolean;
   actualPage: string;
+  invoiceTypes:InvoiceTypes[]
 };
