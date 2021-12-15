@@ -13,14 +13,17 @@
   },
   "detailInvoiceResult": [
     {
+      "id": 1,
       "result": {
         "emisionDate": "13/12/2021",
-        "invoiceType": "A",
-        "invoiceNumber": "12312312",
-        "salePoint": "8765",
+        "invoiceType": {
+          "name": "A",
+          "tag": "string"
+        },
+        "invoiceNumber": "22222222",
+        "salePoint": "22222",
         "caeNumber": "12345678901234"
-      },
-      "id": 1
+      }
     },
     {
       "id": 2,
@@ -43,7 +46,10 @@
         "emisionDate": "13/12/2021",
         "invoiceNumber": "",
         "salePoint": "8765",
-        "invoiceType": "A",
+        "invoiceType": {
+          "name": "",
+          "tag": "string"
+        },
         "caeNumber": "12345678901234",
         "fiscalData": {
           "fiscalNumber": "string",
@@ -54,6 +60,14 @@
         "invoiceFile": {
           "upload": true,
           "url": null
+        },
+        "presettlement": {
+          "status": {
+            "id": 1,
+            "name": "Aprobado",
+            "tag": "approved"
+          },
+          "genereted_at": "13/12/2021"
         }
       }
     },
@@ -64,7 +78,10 @@
         "emisionDate": "string",
         "invoiceNumber": "string",
         "salePoint": "string",
-        "invoiceType": "C",
+        "invoiceType": {
+          "name": "C",
+          "tag": "string"
+        },
         "caeNumber": "string",
         "fiscalData": {
           "fiscalNumber": "string",
@@ -75,6 +92,14 @@
         "invoiceFile": {
           "upload": true,
           "url": null
+        },
+        "presettlement": {
+          "status": {
+            "id": 1,
+            "name": "Pendiente de contabilidad",
+            "tag": "pending_accounting"
+          },
+          "genereted_at": "13/12/2021"
         }
       }
     },
@@ -85,7 +110,10 @@
         "emisionDate": "string",
         "invoiceNumber": "string",
         "salePoint": "string",
-        "invoiceType": "A",
+        "invoiceType": {
+          "name": "A",
+          "tag": "string"
+        },
         "caeNumber": "string",
         "fiscalData": {
           "fiscalNumber": "string",
@@ -96,6 +124,14 @@
         "invoiceFile": {
           "upload": true,
           "url": null
+        },
+        "presettlement": {
+          "status": {
+            "id": 1,
+            "name": "pago generado",
+            "tag": "generated_payment"
+          },
+          "genereted_at": "13/12/2021"
         }
       }
     }

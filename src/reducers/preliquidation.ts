@@ -29,12 +29,18 @@ export const initialState: PreliquitadionStateType = {
     offset: 0
   },
   seeMore: true,
+
+  actualPage: "",
+  invoiceTypes: [],
   detailPreliquidations: {
     id: 0,
     emisionDate: "",
     invoiceNumber: "",
     salePoint: "",
-    invoiceType: "",
+    invoiceType: {
+      name: "",
+      tag: ""
+    },
     caeNumber: "",
     fiscalData: {
       fiscalNumber: "",
@@ -45,10 +51,16 @@ export const initialState: PreliquitadionStateType = {
     invoiceFile: {
       upload: false,
       url: null
+    },
+    presettlement: {
+      status: {
+        id: 0,
+        name: "",
+        tag: ""
+      },
+      genereted_at: ""
     }
-  },
-  actualPage: "",
-  invoiceTypes: []
+  }
 };
 
 const SLICE_NAME = "preliquidation";

@@ -46,7 +46,8 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
         initialValues={castDatePicker(detailPreliquidations)}
         mutators={{
           setValue: ([field, value], state, { changeValue }) => {
-            changeValue(state, field, () => value.name);
+            delete value.label
+            changeValue(state, field, () => value);
           },
         }}
         validate={useValidationSchema(validationSchema)}

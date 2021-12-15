@@ -1,6 +1,7 @@
 import {
   DetailPreliquidationsContentResponseType,
   InvoiceTypes,
+  PreliquidationStatus,
 } from "sagas/types/preliquidation";
 import { TypeOfShape } from "yup/lib/object";
 
@@ -40,7 +41,7 @@ export type detailPreliquidationDatePicker = {
   emisionDate: { from: string };
   invoiceNumber: string;
   salePoint: string;
-  invoiceType: string;
+  invoiceType: InvoiceTypes;
   caeNumber: string;
   fiscalData: {
     fiscalNumber: string;
@@ -52,12 +53,16 @@ export type detailPreliquidationDatePicker = {
     upload: true | false;
     url: string | null;
   };
+  presettlement: {
+   status :PreliquidationStatus,
+   genereted_at :  string
+  }
 };
 
 export type invoiceValidationSchema = {
   emisionDate: DatePickerType | TypeOfShape<{}>;
   salePoint: string | undefined;
-  invoiceType: TypeOfShape<{}> | string;
+  invoiceType: TypeOfShape<{}> | InvoiceTypes;
   invoiceNumber: string | undefined;
   caeNumber: string | undefined;
 };
