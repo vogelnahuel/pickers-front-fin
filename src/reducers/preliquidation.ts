@@ -33,7 +33,10 @@ export const initialState: PreliquitadionStateType = {
     emisionDate: "",
     invoiceNumber: "",
     salePoint: "",
-    invoiceType: "",
+    invoiceType: {
+      name:"",
+      tag:""
+    },
     caeNumber: "",
     fiscalData: {
       fiscalNumber: "",

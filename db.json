@@ -1,12 +1,8 @@
 {
   "detailInvoiceResult": [
     {
-      "result": {
-        "emisionDate": "13/12/2021",
-        "invoiceType": "A",
-        "invoiceNumber": "",
-        "salePoint": "8765",
-        "caeNumber": "12345678901234"
+      "result":  {
+        "id": 1
       },
       "id": 1
     },
@@ -31,7 +27,10 @@
         "emisionDate": "13/12/2021",
         "invoiceNumber": "",
         "salePoint": "8765",
-        "invoiceType": "A",
+        "invoiceType": {
+          "name": "A",
+          "tag": "string"
+       },
         "caeNumber": "12345678901234",
         "fiscalData": {
           "fiscalNumber": "string",
@@ -42,6 +41,14 @@
         "invoiceFile": {
           "upload": true,
           "url": null
+        },
+        "presettlement": {
+          "status": {
+            "id": 1,
+            "name": "Aprobado",
+            "tag": "approved"
+          },
+          "genereted_at": "13/12/2021"
         }
       }
     },
@@ -52,7 +59,10 @@
         "emisionDate": "string",
         "invoiceNumber": "string",
         "salePoint": "string",
-        "invoiceType": "C",
+        "invoiceType": {
+          "name": "C",
+          "tag": "string"
+       },
         "caeNumber": "string",
         "fiscalData": {
           "fiscalNumber": "string",
@@ -63,6 +73,14 @@
         "invoiceFile": {
           "upload": true,
           "url": null
+        },
+        "presettlement": {
+          "status": {
+            "id": 1,
+            "name": "Pendiente de contabilidad",
+            "tag": "pending_accounting"
+          },
+          "genereted_at": "13/12/2021"
         }
       }
     },
@@ -73,7 +91,10 @@
         "emisionDate": "string",
         "invoiceNumber": "string",
         "salePoint": "string",
-        "invoiceType": "A",
+        "invoiceType": {
+          "name": "A",
+          "tag": "string"
+       },
         "caeNumber": "string",
         "fiscalData": {
           "fiscalNumber": "string",
@@ -84,6 +105,14 @@
         "invoiceFile": {
           "upload": true,
           "url": null
+        },
+        "presettlement": {
+          "status": {
+            "id": 1,
+            "name": "pago generado",
+            "tag": "generated_payment"
+          },
+          "genereted_at": "13/12/2021"
         }
       }
     }

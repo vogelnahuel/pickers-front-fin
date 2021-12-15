@@ -101,7 +101,7 @@ const InvoiceContainer = (
         i18next.t("global:error.input.emisionDate"),
         (value) => validarFechas(value)
       ),
-    invoiceType: yup.mixed().required("global:error.input.required"),
+    invoiceType: yup.object().required("global:error.input.required"),
     salePoint: yup
       .string()
       .min(4, i18next.t("global:error.input.salePoint"))

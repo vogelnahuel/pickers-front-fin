@@ -50,7 +50,7 @@ export type DetailPreliquidationsContentResponseType = {
   emisionDate: string;
   invoiceNumber: string;
   salePoint: string;
-  invoiceType: string;
+  invoiceType: DetailInvoiceType;
   caeNumber: string;
   fiscalData: {
     fiscalNumber: string;
@@ -67,11 +67,15 @@ export type DetailPreliquidationsContentResponseType = {
 export type DetailPreliquidationBodyParamsType = {
   result: {
     emisionDate: string;
-    invoiceType: string;
+    invoiceType: DetailInvoiceType;
     invoiceNumber: string;
     salePoint: string;
     caeNumber: string;
   };
+};
+export type DetailInvoiceType = {
+  name: string;
+  tag: string;
 };
 
 export type DetailPreliquidationsApiResponse = {
@@ -88,13 +92,11 @@ export type DetailPreliquidationsInvoiceContentResponseType = {
 };
 
 export type DetailPreliquidationsInvoiceApiResponseType = {
-  data :DetailPreliquidationsInvoiceApiResponseContentType
+  data: DetailPreliquidationsInvoiceApiResponseContentType;
   status: number;
 };
-export type DetailPreliquidationsInvoiceApiResponseContentType ={
-    result:{
-      id:number
-    }
-
-}
-
+export type DetailPreliquidationsInvoiceApiResponseContentType = {
+  result: {
+    id: number;
+  };
+};
