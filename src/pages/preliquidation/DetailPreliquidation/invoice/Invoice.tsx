@@ -160,24 +160,41 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                     ref={pdfControllerRef}
                   >
                     <PdfViewer src={fileUrl}>
-                      <img
-                        src={deletePDF}
-                        alt=""
-                        onClick={deleteFile}
-                        className="download-PDF"
-                      />
-                      <img
-                        src={replace}
-                        alt=""
-                        onClick={() => pdfControllerRef?.current?.triggerOnChange()}
-                        className="download-PDF"
-                      />
-                      <img
-                        src={download}
-                        alt=""
-                        onClick={downloadFile}
-                        className="download-PDF"
-                      />
+                      <Tooltip
+                        message={i18next.t("component:label.tooltip.delete")}
+                        position={ToolTipPosition.top}
+                      >
+                        <button
+                          className="icon-container-primary"
+                          onClick={deleteFile}
+                        >
+                          <DeleteIcon />
+                        </button>
+                      </Tooltip>
+                      <Tooltip
+                        message={i18next.t("component:label.tooltip.replace")}
+                        position={ToolTipPosition.top}
+                      >
+                        <button
+                          className="icon-container-primary"
+                          onClick={() =>
+                            pdfControllerRef?.current?.triggerOnChange()
+                          }
+                        >
+                          <ReplaceIcon />
+                        </button>
+                      </Tooltip>
+                      <Tooltip
+                        message={i18next.t("component:label.tooltip.download")}
+                        position={ToolTipPosition.top}
+                      >
+                        <button
+                          className="icon-container-secondary"
+                          onClick={downloadFile}
+                        >
+                          <DownloadIcon />
+                        </button>
+                      </Tooltip>
                     </PdfViewer>
                   </PdfController>
                 </div>

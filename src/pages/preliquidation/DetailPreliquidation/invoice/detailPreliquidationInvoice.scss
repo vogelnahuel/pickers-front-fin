@@ -99,36 +99,64 @@
   color: #ff1515;
 }
 
-%icon {
-  background-color: $icon-color;
-  height: 15px;
-  width: 17px;
+%icon-container {
+  width: 36px;
+  height: 36px;
+  border-radius: 100%;
+  border: 1px solid #0098FF;
+  outline: none;
   cursor: pointer;
-  transition: all 0.2s;
-  margin: 0 8px;
+  transition: background-color 0.3s, border-color 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-container-primary {
+  @extend %icon-container;
+  background-color: #fff;
+
+  & > svg > path {
+    transition: stroke 0.3s;
+    stroke: #2D2D2D;
+  }
 
   &:hover {
-    background-color: $icon-color-hover;
+    background-color: #E6F5FF;
+    border-color: #007ACC;
+
+    & > svg > path {
+      stroke: #007ACC;
+    }
+  }
+
+  &:active {
+    background-color: #E6F5FF;
+    border-color: #005B99;
+
+    & > svg > path {
+      stroke: #005B99;
+    }
   }
 }
 
-$icons: delete, download, replace;
+.icon-container-secondary {
+  @extend %icon-container;
+  background-color: #0098FF;
+  border-color: #0098FF;
 
-@each $icon in $icons {
-  .#{$icon}-icon-svg {
-    @extend %icon;
-    mask-size: contain;
-    background-size: contain;
-    -webkit-mask: url("../../../assets/admin/file-" + quote($icon) + ".svg")
-      no-repeat
-      center;
-    mask: url("../../../assets/admin/file-" + quote($icon) + ".svg")
-      no-repeat
-      center;
+  & > svg > path {
+    transition: stroke 0.3s;
+    stroke: #fff;
   }
-}
 
-.delete-icon-svg{
-  height: 17px;
-  width: 15px;
+  &:hover {
+    background-color: #007ACC;
+    border-color: #007ACC;
+  }
+
+  &:active {
+    background-color: #005B99;
+    border-color: #005B99;
+  }
 }
