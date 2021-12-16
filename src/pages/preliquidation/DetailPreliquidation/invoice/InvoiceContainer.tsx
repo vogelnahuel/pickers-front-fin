@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import { AppDispatch, RootState } from "store";
@@ -13,19 +13,18 @@ import {
   invoiceValidationSchema,
 } from "./types";
 import { useParams } from "react-router-dom";
-import { DetailPreliquidationsContentResponseType } from "sagas/types/preliquidation";
+import { DetailPreliquidationsContentResponseType, UploadInvoiceFileMiddlewareType } from "sagas/types/preliquidation";
 import * as yup from "yup";
 import i18next from "i18next";
 import moment from "moment";
 import { MAX_FILE_SIZE, VALIDATION_REGEX } from "utils/constants";
 import { ObjectShape, TypeOfShape } from "yup/lib/object";
 import { toBase64 } from "utils/toBase64";
+import { InvoiceFileStatus } from "reducers/types/preliquidation";
 
 const InvoiceContainer = (
   props: detailPreliquidationInvoiceContainerPropsType
 ): JSX.Element => {
-  const [fileUrl, setFileUrl] = useState("");
-  const [fileError, setFileError] = useState("");
   const params: { id?: string } = useParams();
 
   useEffect(() => {
@@ -36,33 +35,35 @@ const InvoiceContainer = (
   }, []);
 
   const fileHandler = async (file: File) => {
-    await new Promise((resolve) => setTimeout(resolve, 5000));
+    props.setInvoiceFileStatus({ loading: true });
+    await new Promise((resolve) => setTimeout(resolve, 2000));
 
     if (file.size > MAX_FILE_SIZE || file.type !== "application/pdf") {
-      setFileError(
-        "El formato del archivo debe ser PDF y no puede superar los 5MB"
-      );
+      props.setInvoiceFileStatus({
+        error: true,
+        loading: false,
+        message: 'component:label.pdfController.invalidFile'
+      });
       return;
     } else {
-      setFileError("");
       try {
-        const base64 = await toBase64(file);
-        setFileUrl(base64 as  string);
+        const base64 = await toBase64(file) as string;
+        props.uploadInvoiceFile({ id: props.detailPreliquidations.id, content: base64 });
       } catch(err){
         console.log("Base64 error: ", err);
       }
     }
   };
 
-  const deleteFile = () => setFileUrl("");
+  const deleteFile = () =>  props.deleteInvoiceFile(props.detailPreliquidations.id);
 
   const downloadFile = () => {
-    if(!fileUrl) return;
+    if(!props.invoiceDetail?.invoiceFile?.url) return;
 
     //const linkSource = `data:application/pdf;base64,${pdf}`;
     const downloadLink = document.createElement("a");
     const fileName = "factura.pdf";
-    downloadLink.href = fileUrl;
+    downloadLink.href = props.invoiceDetail?.invoiceFile?.url;
     downloadLink.download = fileName;
     downloadLink.click();
   }
@@ -133,8 +134,6 @@ const InvoiceContainer = (
   return (
     <Invoice
       {...props}
-      fileUrl={fileUrl}
-      fileError={fileError}
       fileHandler={fileHandler}
       deleteFile={deleteFile}
       downloadFile={downloadFile}
@@ -147,6 +146,8 @@ const InvoiceContainer = (
 const mapStateToProps = (state: RootState) => ({
   isFetching: preliquidationSelector(state).fetching,
   detailPreliquidations: preliquidationSelector(state).detailPreliquidations,
+  invoiceDetail: preliquidationSelector(state).invoiceDetail,
+  invoiceFileStatus: preliquidationSelector(state).invoiceFileStatus
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
@@ -165,8 +166,17 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   getInvoiceDetailDelete: (params: detailPreliquidationDatePicker) => {
     dispatch(preliActions.getInvoiceDetailDeleteRequest(params));
   },
+  uploadInvoiceFile: (params: UploadInvoiceFileMiddlewareType) => {
+    dispatch(preliActions.uploadInvoiceFile(params));
+  },
+  deleteInvoiceFile: (id: number) => {
+    dispatch(preliActions.deleteInvoiceFileRequest({ id }));
+  },
   setDirty: (dirty: boolean) => {
     dispatch(preliActions.setDirty(dirty));
   },
+  setInvoiceFileStatus: (params: InvoiceFileStatus) => {
+    dispatch(preliActions.setInvoiceFileStatus(params));
+  }
 });
 export default connect(mapStateToProps, mapDispatchToProps)(InvoiceContainer);

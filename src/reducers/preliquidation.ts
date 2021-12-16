@@ -11,21 +11,29 @@ import {
 } from "sagas/types/preliquidation";
 import { RootState } from "store";
 import { endsWithAny } from "utils/endsWithAny";
-import { PreliquitadionStateType } from "./types/preliquidation";
+import {
+  InvoiceFileStatus,
+  PreliquitadionStateType,
+} from "./types/preliquidation";
 
 export const initialState: PreliquitadionStateType = {
   fetching: false,
+  invoiceFileStatus: {
+    error: false,
+    loading: false,
+    message: "",
+  },
   preliquidations: [],
   dirty: false,
   preliquidationsSelected: [],
   filters: {},
   filtersExtra: {
     limit: 0,
-    offset: 0
+    offset: 0,
   },
   filtersExtraSeeMore: {
     limit: 0,
-    offset: 0
+    offset: 0,
   },
   seeMore: true,
   detailPreliquidations: {
@@ -39,14 +47,20 @@ export const initialState: PreliquitadionStateType = {
       fiscalNumber: "",
       companyName: "",
       taxPayerType: "",
-      total: 0
+      total: 0,
     },
     invoiceFile: {
       upload: false,
-      url: null
-    }
+      url: null,
+    },
   },
-  actualPage: ""
+  invoiceDetail: {
+    invoiceFile: {
+      upload: false,
+      url: "",
+    },
+  },
+  actualPage: "",
 };
 
 const SLICE_NAME = "preliquidation";
@@ -105,7 +119,7 @@ export const preliquidationSlice = createSlice({
     ) => {
       state.filtersExtra = { ...state.filtersExtra, ...action.payload };
     },
-    
+
     getInvoiceDetailRequest: (
       state: PreliquitadionStateType,
       action: PayloadAction<any>
@@ -123,7 +137,7 @@ export const preliquidationSlice = createSlice({
       action: PayloadAction<any>
     ) => {},
     getInvoiceDetailSaveError: () => {},
-    getInvoiceDetailSaveSuccess: ()=>{},
+    getInvoiceDetailSaveSuccess: () => {},
     getInvoiceDetailApproveRequest: (
       state: PreliquitadionStateType,
       action: PayloadAction<any>
@@ -136,14 +150,73 @@ export const preliquidationSlice = createSlice({
     ) => {},
     getInvoiceDetailDeleteError: () => {},
     getInvoiceDetailDeleteSuccess: () => {},
-
+    uploadInvoiceFile: (
+      state: PreliquitadionStateType,
+      action: PayloadAction<{ id: number; content: string }>
+    ) => {},
+    uploadInvoiceFileError: (state: PreliquitadionStateType) => {
+      state.invoiceFileStatus = {
+        loading: false,
+        error: true,
+        message: "component:label.pdfController.serverError",
+      };
+    },
+    uploadInvoiceFileSuccess: (
+      state: PreliquitadionStateType,
+      action: PayloadAction<string>
+    ) => {
+      state.invoiceFileStatus = {
+        loading: false,
+        error: false,
+        message: "",
+      };
+      state.invoiceDetail.invoiceFile = {
+        upload: true,
+        url: action.payload,
+      };
+    },
+    deleteInvoiceFileRequest: (
+      state: PreliquitadionStateType,
+      action: PayloadAction<{ id: number }>
+    ) => {},
+    deleteInvoiceFileError: (state: PreliquitadionStateType) => {
+      state.invoiceFileStatus = {
+        loading: false,
+        error: true,
+        message:
+          "Hubo un error de conexión con el servidor. El nuevo archivo no se subió correctamente.",
+      };
+    },
+    deleteInvoiceFileSuccess: (state: PreliquitadionStateType) => {
+      state.invoiceFileStatus = {
+        loading: false,
+        error: false,
+        message: "",
+      };
+      state.invoiceDetail.invoiceFile = {
+        upload: false,
+        url: null,
+      };
+    },
     setDirty: (
       state: PreliquitadionStateType,
       action: PayloadAction<boolean>
     ) => {
       state.dirty = action.payload;
     },
-    setActualPage: (state: PreliquitadionStateType, action: PayloadAction<string>) => {
+    setInvoiceFileStatus: (
+      state: PreliquitadionStateType,
+      action: PayloadAction<InvoiceFileStatus>
+    ) => {
+      state.invoiceFileStatus = {
+        ...state.invoiceFileStatus,
+        ...action.payload,
+      };
+    },
+    setActualPage: (
+      state: PreliquitadionStateType,
+      action: PayloadAction<string>
+    ) => {
       state.actualPage = action.payload;
     },
 
@@ -152,8 +225,10 @@ export const preliquidationSlice = createSlice({
       action: PayloadAction<PreliquidationItem>
     ) => {
       const item = action.payload;
-      const idx = state.preliquidationsSelected.findIndex(p => p.id === item.id);
-      
+      const idx = state.preliquidationsSelected.findIndex(
+        (p) => p.id === item.id
+      );
+
       if (idx >= 0) state.preliquidationsSelected.splice(idx, 1);
       else state.preliquidationsSelected.push(item);
     },

@@ -1,5 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import { AxiosResponse } from "axios";
+import { ApiResponse } from "middleware/api";
 import { detailPreliquidationDatePicker } from "pages/preliquidation/DetailPreliquidation/invoice/types";
 
 import {
@@ -19,6 +20,7 @@ import {
   DetailPreliquidationsInvoiceApiResponseType,
   PreliquidationParamsMiddlewareType,
   PreliquidationsApiResponse,
+  UploadInvoiceFileMiddlewareType,
 } from "./types/preliquidation";
 
 const sagas = [
@@ -34,7 +36,6 @@ const sagas = [
     preliquidationActions.getInvoiceDetailRequest.type,
     getInvoiceDetail
   ),
-
   takeLatest(
     preliquidationActions.getInvoiceDetailSaveRequest.type,
     putSaveDetailInvoice
@@ -46,6 +47,14 @@ const sagas = [
   takeLatest(
     preliquidationActions.getInvoiceDetailDeleteRequest.type,
     putDeleteDetailInvoice
+  ),
+  takeLatest(
+    preliquidationActions.uploadInvoiceFile.type,
+    uploadInvoiceFile
+  ),
+  takeLatest(
+    preliquidationActions.deleteInvoiceFileRequest.type,
+    deleteInvoiceFile
   ),
 ];
 
@@ -209,3 +218,41 @@ function* putDeleteDetailInvoice({
     yield put(preliquidationActions.getInvoiceDetailDeleteSuccess());
   }
 }
+
+function* uploadInvoiceFile({
+  payload,
+}: PayloadAction<UploadInvoiceFileMiddlewareType>): Generator<
+  | PutEffect<{ payload: string; type: string }>
+  | PutEffect<{ payload: undefined; type: string }>
+  | CallEffect<AxiosResponse<ApiResponse<void>>>,
+  void,
+  ApiResponse<void>
+> {
+ 
+  const response = yield call(
+    preliquidationsMiddleware.uploadInvoiceFile, payload);
+  if (response.status !== 200) {
+    yield put(preliquidationActions.uploadInvoiceFileError());
+  } else {
+    yield put(preliquidationActions.uploadInvoiceFileSuccess(payload.content));
+  }
+}
+
+function* deleteInvoiceFile({
+  payload,
+}: PayloadAction<number>): Generator<
+  | PutEffect<{ payload: undefined; type: string }>
+  | CallEffect<AxiosResponse<ApiResponse<void>>>,
+  void,
+  ApiResponse<void>
+> {
+ 
+  const response = yield call(
+    preliquidationsMiddleware.deleteInvoiceFile, payload);
+  if (response.status !== 200) {
+    yield put(preliquidationActions.deleteInvoiceFileError());
+  } else {
+    yield put(preliquidationActions.deleteInvoiceFileSuccess());
+  }
+}
+

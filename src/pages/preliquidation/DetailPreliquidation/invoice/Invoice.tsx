@@ -2,11 +2,11 @@ import { Input } from "component/inputs/Input";
 import React, { useRef } from "react";
 import "pages/preliquidation/DetailPreliquidation/invoice/detailPreliquidationInvoice.scss";
 import { Field, Form, FormSpy } from "react-final-form";
-
+import { Tooltip, ToolTipPosition } from "@pickit/pickit-components";
 import { PdfViewer } from "component/pdf-viewer/PdfViewer";
-import deletePDF from "../../../../assets/preli/deletePDF.svg";
-import download from "../../../../assets/preli/download.svg";
-import replace from "../../../../assets/preli/replace.svg";
+import { ReactComponent as DeleteIcon } from "../../../../assets/admin/file-delete.svg";
+import { ReactComponent as DownloadIcon } from "../../../../assets/admin/file-download.svg";
+import { ReactComponent as ReplaceIcon } from "../../../../assets/admin/file-replace.svg";
 import { DatePicker } from "@pickit/pickit-components";
 import { FILTER_PRELIQUIDATION_SELECT_OPTIONS } from "utils/constants";
 import Select from "component/inputs/Select";
@@ -20,6 +20,8 @@ import PdfController from "component/pdfController/PdfController";
 
 export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
   isFetching,
+  invoiceFileStatus,
+  invoiceDetail,
   detailPreliquidations,
   validationSchema,
   setDirty,
@@ -29,9 +31,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
   getInvoiceDetailDelete,
   fileHandler,
   deleteFile,
-  downloadFile,
-  fileError,
-  fileUrl,
+  downloadFile
 }) => {
   const pdfControllerRef = useRef<any>();
   return (
@@ -154,12 +154,13 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                     title="Factura"
                     buttonText="Cargar factura"
                     fileHandler={fileHandler}
-                    fileLoaded={!!fileUrl}
-                    showError={!!fileError}
-                    errorMessage={fileError}
+                    fileUploaded={invoiceDetail.invoiceFile?.upload}
+                    showError={invoiceFileStatus.error}
+                    errorMessage={i18next.t(invoiceFileStatus.message || "")}
+                    loading={invoiceFileStatus.loading}
                     ref={pdfControllerRef}
                   >
-                    <PdfViewer src={fileUrl}>
+                    <PdfViewer src={invoiceDetail.invoiceFile?.url || ""}>
                       <Tooltip
                         message={i18next.t("component:label.tooltip.delete")}
                         position={ToolTipPosition.top}
@@ -305,6 +306,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
           </form>
         )}
       </Form>
+      {isFetching && <div className="modalLoading"></div>}
     </div>
   );
 };

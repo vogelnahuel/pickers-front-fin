@@ -51,6 +51,11 @@ api.interceptors.response.use(
   }
 );
 
+export type ApiResponse<T> = {
+  status: number;
+  data: T
+}
+
 export const remove = (path: any, body?: object) => {
   return api.delete(path, { params: body });
 };
