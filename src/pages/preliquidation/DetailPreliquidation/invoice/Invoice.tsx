@@ -18,6 +18,7 @@ import i18next from "i18next";
 import useValidationSchema from "hooks/useValidationSchema";
 import { InvoiceTypes } from "sagas/types/preliquidation";
 import PdfController from "component/pdfController/PdfController";
+import { statusList } from "utils/constants";
 
 export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
   isFetching,
@@ -33,20 +34,24 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
   downloadFile,
   fileError,
   fileUrl,
-  invoiceTypes
+  invoiceTypes,
+  invoiceDetail,
 }) => {
+  const verifyStateType = () =>statusList.includes(detailPreliquidations.status.tag);
+
   const pdfControllerRef = useRef<any>();
   return (
     <div>
       <h3 className="subTitle-pending-data detail-preliquidation-margin-top">
         {i18next.t("invoice:label.invoice.subTitleInvoice")}
       </h3>
+
       <Form
         onSubmit={(value) => value}
-        initialValues={castDatePicker(detailPreliquidations)}
+        initialValues={castDatePicker(invoiceDetail)}
         mutators={{
           setValue: ([field, value], state, { changeValue }) => {
-            delete value.label
+            delete value.label;
             changeValue(state, field, () => value);
           },
         }}
@@ -65,6 +70,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
             <div className="container-detail-preliquidation form-detail-preliquidation">
               <div className="container-detail-preliquidation-row">
                 <div className="container-detail-preliquidation-col-sm-1 form-part-1-admin-pickers">
+                  
                   <Field
                     type="text"
                     name="emisionDate"
@@ -73,13 +79,17 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                       "invoice:placeholder.form.broadcastDate"
                     )}
                     language="es"
+                    disabled={verifyStateType()}
                   >
                     {(props: any) => {
                       return (
                         <div>
+                       
                           <label
                             className={
-                              props.meta.error
+                                props.disabled
+                                ? "label-Admin-Pickers readonly"
+                                : props.meta.error
                                 ? "label-Admin-Pickers color-red"
                                 : "label-Admin-Pickers"
                             }
@@ -97,27 +107,25 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                   </Field>
 
                   <div>
-                    <label className="label-Admin-Pickers">
-                      {i18next.t("invoice:label.form.voucherType")}
-                    </label>
                     <Field
+                      label={i18next.t("invoice:label.form.voucherType")}
+                      disabled={verifyStateType()}
                       type="text"
                       placeholder={i18next.t(
                         "invoice:placeholder.form.voucherType"
                       )}
                       name="invoiceType"
                       onChange={form.mutators.setValue}
-                      options={invoiceTypes.map(
-                        (o:InvoiceTypes) => ({
-                          ...o,
-                          label: o.name,
-                        })
-                      )}
+                      options={invoiceTypes.map((o: InvoiceTypes) => ({
+                        ...o,
+                        label: o.name,
+                      }))}
                     >
                       {(props: any) => <Select {...props} />}
                     </Field>
                   </div>
                   <Field
+                    disabled={verifyStateType()}
                     type="text"
                     name="salePoint"
                     label={i18next.t("invoice:label.form.pointOfSale")}
@@ -129,6 +137,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                     maxLength={5}
                   />
                   <Field
+                    disabled={verifyStateType()}
                     type="text"
                     name="invoiceNumber"
                     label={i18next.t("invoice:label.form.voucherNumber")}
@@ -140,6 +149,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                     maxLength={8}
                   />
                   <Field
+                    disabled={verifyStateType()}
                     type="text"
                     name="caeNumber"
                     label={i18next.t("invoice:label.form.numberCAE")}
@@ -151,7 +161,8 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                     maxLength={14}
                   />
                 </div>
-
+               
+                    
                 <div className="container-detail-preliquidation-col-sm-2 detail-preliquidation-adjust">
                   <PdfController
                     title="Factura"
@@ -172,7 +183,9 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                       <img
                         src={replace}
                         alt=""
-                        onClick={() => pdfControllerRef?.current?.triggerOnChange()}
+                        onClick={() =>
+                          pdfControllerRef?.current?.triggerOnChange()
+                        }
                         className="download-PDF"
                       />
                       <img

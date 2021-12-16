@@ -175,6 +175,11 @@
     letter-spacing: 0.005em;
     color: #000000;
  }
+ .Admin-Pickers-input-select.readonly{
+    color: #828282;
+    background-color: transparent;
+    cursor: default;
+ }
 
  @media (min-width:1800px){
     //.transaction-container-button-width{

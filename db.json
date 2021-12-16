@@ -13,23 +13,30 @@
   },
   "detailInvoiceResult": [
     {
-      "id": 1,
       "result": {
         "emisionDate": "13/12/2021",
         "invoiceType": {
           "name": "A",
           "tag": "string"
         },
-        "invoiceNumber": "22222222",
-        "salePoint": "22222",
+        "invoiceNumber": "12312312",
+        "salePoint": "8765",
         "caeNumber": "12345678901234"
-      }
+      },
+      "id": 1
     },
     {
-      "id": 2,
       "result": {
-        "id": 2
-      }
+        "emisionDate": "13/12/2021",
+        "invoiceType": {
+          "name": "C",
+          "tag": "string"
+        },
+        "invoiceNumber": "12341234",
+        "salePoint": "8765",
+        "caeNumber": "12345678901234"
+      },
+      "id": 2
     },
     {
       "id": 3,
@@ -67,7 +74,7 @@
             "name": "Aprobado",
             "tag": "approved"
           },
-          "genereted_at": "13/12/2021"
+          "genereted_at": "01/12/2021"
         }
       }
     },
@@ -75,14 +82,14 @@
       "id": 2,
       "result": {
         "id": 2,
-        "emisionDate": "string",
-        "invoiceNumber": "string",
-        "salePoint": "string",
+        "emisionDate": "13/12/2021",
+        "invoiceNumber": "12341234",
+        "salePoint": "8765",
         "invoiceType": {
           "name": "C",
           "tag": "string"
         },
-        "caeNumber": "string",
+        "caeNumber": "12345678901234",
         "fiscalData": {
           "fiscalNumber": "string",
           "companyName": "string",
@@ -99,7 +106,7 @@
             "name": "Pendiente de contabilidad",
             "tag": "pending_accounting"
           },
-          "genereted_at": "13/12/2021"
+          "genereted_at": "03/12/2021"
         }
       }
     },
@@ -131,7 +138,7 @@
             "name": "pago generado",
             "tag": "generated_payment"
           },
-          "genereted_at": "13/12/2021"
+          "genereted_at": "03/12/2021"
         }
       }
     }
@@ -170,7 +177,7 @@
             "tag": "PENDING"
           },
           "total": 123.123,
-          "genereted_at": "17/12/2021"
+          "genereted_at": "07/12/2021"
         }
       ]
     },
