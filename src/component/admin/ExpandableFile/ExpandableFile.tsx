@@ -30,6 +30,14 @@ import { pickersSelector } from "reducers/pickers";
 import { PickerWrongFilePayloadType } from "reducers/types/detailPicker";
 import Confirm from "../Confirm/Confirm";
 import classNames from "classnames";
+import { ReactComponent as ErrorIcon } from "../../../assets/admin/folder-error.svg";
+import { ReactComponent as CompleteIcon } from "../../../assets/admin/folder-complete.svg";
+import { ReactComponent as AddIcon } from "../../../assets/admin/folder-add.svg";
+
+import { ReactComponent as DeleteIcon } from "../../../assets/admin/file-delete.svg";
+import { ReactComponent as ReplaceIcon } from "../../../assets/admin/file-replace.svg";
+import { ReactComponent as LoadIcon } from "../../../assets/admin/file-load.svg";
+
 
 const tagInitialState: TagsErrorType = {
   "dni-front": false,
@@ -224,6 +232,9 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
                   : "-complete"
               }`}
             />
+              <ErrorIcon />
+              <CompleteIcon />
+              <AddIcon />
             <p
               className={
                 !hasCardError()

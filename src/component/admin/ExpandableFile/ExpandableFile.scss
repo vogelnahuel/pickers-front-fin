@@ -58,26 +58,26 @@ $icons: delete, load, replace;
   width: 15px;
 }
 
-$folders: complete $text-color $text-color-darker,
-  add $primary-color $primary-color-darker,
-  error $error-color $error-color-darker;
+// $folders: complete $text-color $text-color-darker,
+//   add $primary-color $primary-color-darker,
+//   error $error-color $error-color-darker;
 
-@each $folder, $color, $hover-color in $folders {
-  .folder-icon-#{$folder} {
-    @extend %folder;
-    background-color: $color;
-    -webkit-mask: url("../../../assets/admin/folder-" + quote($folder) + ".svg")
-      no-repeat
-      center;
-    mask: url("../../../assets/admin/folder-" + quote($folder) + ".svg")
-      no-repeat
-      center;
+// @each $folder, $color, $hover-color in $folders {
+//   .folder-icon-#{$folder} {
+//     @extend %folder;
+//     background-color: $color;
+//     -webkit-mask: url("../../../assets/admin/folder-" + quote($folder) + ".svg")
+//       no-repeat
+//       center;
+//     mask: url("../../../assets/admin/folder-" + quote($folder) + ".svg")
+//       no-repeat
+//       center;
 
-    .header:hover & {
-      background-color: $hover-color;
-    }
-  }
-}
+//     .header:hover & {
+//       background-color: $hover-color;
+//     }
+//   }
+// }
 
 .header {
   padding: 20px 40px;
