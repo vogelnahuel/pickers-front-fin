@@ -18,6 +18,7 @@ import {
   DetailPreliquidationsApiResponseType,
   DetailPreliquidationsContentResponseType,
   DetailPreliquidationsInvoiceApiResponseType,
+  DetailPreliquidationsInvoiceTypesApiResponseType,
   PreliquidationParamsMiddlewareType,
   PreliquidationsApiResponse,
   UploadInvoiceFileMiddlewareType,
@@ -55,6 +56,10 @@ const sagas = [
   takeLatest(
     preliquidationActions.deleteInvoiceFileRequest.type,
     deleteInvoiceFile
+  ),
+  takeLatest(
+    preliquidationActions.getInvoiceDetailTypesRequest.type,
+    getDetailInvoiceTypes
   ),
 ];
 
@@ -141,7 +146,7 @@ function* putSaveDetailInvoice({
 
 const result:DetailPreliquidationBodyParamsType  = {
   result :{
-    emisionDate: payload.emisionDate.from,
+    emisionDate: payload.emisionDate?.from,
     invoiceType: payload.invoiceType,
     invoiceNumber: payload.invoiceNumber,
     salePoint: payload.salePoint,
@@ -174,7 +179,7 @@ function* patchApproveDetailInvoice({
 
   const result:DetailPreliquidationBodyParamsType  = {
     result :{
-      emisionDate: payload.emisionDate.from,
+      emisionDate: payload.emisionDate?.from,
       invoiceType: payload.invoiceType,
       invoiceNumber: payload.invoiceNumber,
       salePoint: payload.salePoint,
@@ -256,3 +261,20 @@ function* deleteInvoiceFile({
   }
 }
 
+function* getDetailInvoiceTypes(): Generator<
+  | PutEffect<{  type: string }>
+  | CallEffect<AxiosResponse<DetailPreliquidationsInvoiceTypesApiResponseType>>,
+  void,
+  DetailPreliquidationsInvoiceTypesApiResponseType
+> {
+ 
+  const response = yield call(
+    preliquidationsMiddleware.getDetailInvoiceTypes,
+  );
+  if (response.status !== 200) {
+    yield put(preliquidationActions.getInvoiceDetailTypesError());
+  } else {
+    const { result } = response.data;
+    yield put(preliquidationActions.getInvoiceDetailTypesSuccess(result));
+  }
+}

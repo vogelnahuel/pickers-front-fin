@@ -32,7 +32,9 @@ const PdfController = forwardRef(
     const [dragging, setDragging] = useState(false);
     const dragCounter = useRef<number>(0);
 
-    const openFileReader = () => {
+    const openFileReader = (e?:  React.MouseEvent<HTMLButtonElement>| undefined):void => {
+      e?.preventDefault();
+      e?.stopPropagation();
       if (fileRef.current) fileRef.current.click();
     };
 

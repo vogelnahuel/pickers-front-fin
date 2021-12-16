@@ -1,12 +1,16 @@
-import { InvoiceFileStatus } from "reducers/types/preliquidation";
-import { DetailPreliquidationsContentResponseType, UploadInvoiceFileMiddlewareType } from "sagas/types/preliquidation";
+import { UploadInvoiceFileMiddlewareType } from "sagas/types/preliquidation";
+import { DetailInvoiceType, DetailPreliquidationsType, InvoiceFileStatus } from "reducers/types/preliquidation";
+import {
+  InvoiceTypes,
+} from "sagas/types/preliquidation";
 import { TypeOfShape } from "yup/lib/object";
 
 export type detailPreliquidationInvoiceContainerPropsType = {
   isFetching: boolean;
-  invoiceDetail: any;
-  detailPreliquidations: DetailPreliquidationsContentResponseType;
+  invoiceDetail: DetailInvoiceType;
+  detailPreliquidations: DetailPreliquidationsType;
   invoiceFileStatus: InvoiceFileStatus;
+  invoiceTypes: InvoiceTypes[];
   setActualPage: (page: string) => void;
   setDirty: (dirty: boolean) => void;
   getInvoiceDetail: (id: string | undefined) => void;
@@ -16,12 +20,15 @@ export type detailPreliquidationInvoiceContainerPropsType = {
   uploadInvoiceFile: (params: UploadInvoiceFileMiddlewareType) => void;
   deleteInvoiceFile: (id: number) => void;
   setInvoiceFileStatus: (params: InvoiceFileStatus) => void;
+  getInvoiceDetailTypes: () => void;
 };
+
 export type detailPreliquidationInvoicePropsType = {
   isFetching: boolean;
-  invoiceDetail: any;
-  detailPreliquidations: DetailPreliquidationsContentResponseType;
+  invoiceDetail: DetailInvoiceType;
+  detailPreliquidations: DetailPreliquidationsType;
   validationSchema: object;
+  invoiceTypes: InvoiceTypes[];
   invoiceFileStatus: InvoiceFileStatus;
   setDirty: (dirty: boolean) => void;
   getInvoiceDetailSave: (params:detailPreliquidationDatePicker) => void;
@@ -30,7 +37,7 @@ export type detailPreliquidationInvoicePropsType = {
   deleteFile: () => void;
   downloadFile: () => void;
   castDatePicker: (
-    detailPreliquidations: DetailPreliquidationsContentResponseType
+    detailInvoice: DetailInvoiceType
   ) => detailPreliquidationDatePicker;
   fileHandler: (file: File) => void;
 };
@@ -40,7 +47,7 @@ export type detailPreliquidationDatePicker = {
   emisionDate: { from: string };
   invoiceNumber: string;
   salePoint: string;
-  invoiceType: string;
+  invoiceType: InvoiceTypes;
   caeNumber: string;
   fiscalData: {
     fiscalNumber: string;
@@ -52,12 +59,13 @@ export type detailPreliquidationDatePicker = {
     upload: true | false;
     url: string | null;
   };
+
 };
 
 export type invoiceValidationSchema = {
   emisionDate: DatePickerType | TypeOfShape<{}>;
   salePoint: string | undefined;
-  invoiceType :TypeOfShape<{}>| string;
+  invoiceType: TypeOfShape<{}> | InvoiceTypes;
   invoiceNumber: string | undefined;
   caeNumber: string | undefined;
 };

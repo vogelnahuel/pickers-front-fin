@@ -6,6 +6,7 @@ import {
   DetailPreliquidationsInvoiceApiResponseType,
   PreliquidationsApiResponse,
   UploadInvoiceFileMiddlewareType,
+  DetailPreliquidationsInvoiceTypesApiResponseType
 } from "sagas/types/preliquidation";
 import { ApiResponse } from "./api";
 
@@ -64,3 +65,13 @@ export const uploadInvoiceFile = (
 
 export const deleteInvoiceFile = (id: number): Promise<AxiosResponse<ApiResponse<void>>> =>
   axios.get("http://localhost:8080/invoiceType");
+
+
+export const getDetailInvoiceTypes = () : Promise<AxiosResponse<DetailPreliquidationsInvoiceTypesApiResponseType>> =>
+axios.get(`http://localhost:8080/fiscalData`)
+
+
+
+
+
+

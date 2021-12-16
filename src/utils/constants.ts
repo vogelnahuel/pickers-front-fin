@@ -34,6 +34,8 @@ export const preliquidationTableTitles: string[] = [
   "preli:label.table.total",
 ];
 
+export const statusList: string[] = [ "pending_accounting", "generated_payment", "in_accounting" ];
+
 export const DATE_FORMATS = {
   regex:
     /^(?:(?:31(\/|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/,
@@ -167,16 +169,6 @@ export const FILTER_PICKERS_OPTIONS = [
   },
 ];
 
-export const FILTER_PRELIQUIDATION_SELECT_OPTIONS = [
-  {
-    label: "A",
-    value: "A",
-  },
-  {
-    label: "C",
-    value: "C",
-  },
-];
 export const TRANSACTION_STATE_ID_LABEL: any = {
   1: "filterTransaction:label.select.notAssigned",
   2: "filterTransaction:label.select.assigned",

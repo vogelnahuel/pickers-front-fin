@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { connect } from "react-redux";
 
 import { AppDispatch, RootState } from "store";
@@ -13,23 +13,25 @@ import {
   invoiceValidationSchema,
 } from "./types";
 import { useParams } from "react-router-dom";
-import { DetailPreliquidationsContentResponseType, UploadInvoiceFileMiddlewareType } from "sagas/types/preliquidation";
+import { UploadInvoiceFileMiddlewareType } from "sagas/types/preliquidation";
 import * as yup from "yup";
 import i18next from "i18next";
 import moment from "moment";
 import { MAX_FILE_SIZE, VALIDATION_REGEX } from "utils/constants";
 import { ObjectShape, TypeOfShape } from "yup/lib/object";
 import { toBase64 } from "utils/toBase64";
-import { InvoiceFileStatus } from "reducers/types/preliquidation";
+import { InvoiceFileStatus, DetailInvoiceType } from "reducers/types/preliquidation";
 
 const InvoiceContainer = (
   props: detailPreliquidationInvoiceContainerPropsType
 ): JSX.Element => {
   const params: { id?: string } = useParams();
 
+
   useEffect(() => {
     props.getInvoiceDetail(params.id);
     props.setActualPage("INVOICE");
+    props.getInvoiceDetailTypes();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -69,11 +71,12 @@ const InvoiceContainer = (
   }
 
   const validarFechas = (value: TypeOfShape<ObjectShape>) => {
+  
     if (!value) return true;
 
     const valueProps = moment(value.from, "DD/MM/YYYY");
     const today = moment();
-    const startDate = moment().subtract(7, "d");
+    const startDate = moment(props.detailPreliquidations?.genereted_at,"DD/MM/YYYY");
 
     const range = valueProps.isBetween(startDate, today);
 
@@ -81,11 +84,11 @@ const InvoiceContainer = (
   };
 
   const castDatePicker = (
-    detailPreliquidations: DetailPreliquidationsContentResponseType
+    detailPreliquidations: DetailInvoiceType
   ) => {
     let castear:
       | detailPreliquidationDatePicker
-      | DetailPreliquidationsContentResponseType = detailPreliquidations;
+      | DetailInvoiceType = detailPreliquidations;
     castear = {
       ...castear,
       emisionDate: { from: detailPreliquidations.emisionDate },
@@ -102,7 +105,9 @@ const InvoiceContainer = (
         i18next.t("global:error.input.emisionDate"),
         (value) => validarFechas(value)
       ),
-    invoiceType: yup.mixed().required("global:error.input.required"),
+    invoiceType: yup.object({
+      name:yup.string().required("global:error.input.required"),
+    }),
     salePoint: yup
       .string()
       .min(4, i18next.t("global:error.input.salePoint"))
@@ -139,15 +144,17 @@ const InvoiceContainer = (
       downloadFile={downloadFile}
       validationSchema={validationSchema}
       castDatePicker={castDatePicker}
+
     />
   );
 };
 
 const mapStateToProps = (state: RootState) => ({
   isFetching: preliquidationSelector(state).fetching,
-  detailPreliquidations: preliquidationSelector(state).detailPreliquidations,
   invoiceDetail: preliquidationSelector(state).invoiceDetail,
-  invoiceFileStatus: preliquidationSelector(state).invoiceFileStatus
+  detailPreliquidations: preliquidationSelector(state).detailPreliquidations,
+  invoiceFileStatus: preliquidationSelector(state).invoiceFileStatus,
+  invoiceTypes: preliquidationSelector(state).invoiceTypes,
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
@@ -171,6 +178,9 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   },
   deleteInvoiceFile: (id: number) => {
     dispatch(preliActions.deleteInvoiceFileRequest({ id }));
+  },
+  getInvoiceDetailTypes: () => {
+    dispatch(preliActions.getInvoiceDetailTypesRequest());
   },
   setDirty: (dirty: boolean) => {
     dispatch(preliActions.setDirty(dirty));
