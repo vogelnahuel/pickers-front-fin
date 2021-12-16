@@ -37,47 +37,73 @@ $primary-color-darker: #007acc;
   color: $color;
 }
 
-$icons: delete, load, replace;
+.container-icon svg {
+  height: 15px;
+  width: 17px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin: 0 8px;
+}
 
-@each $icon in $icons {
-  .#{$icon}-icon-svg {
-    @extend %icon;
-    mask-size: contain;
-    background-size: contain;
-    -webkit-mask: url("../../../assets/admin/file-" + quote($icon) + ".svg")
-      no-repeat
-      center;
-    mask: url("../../../assets/admin/file-" + quote($icon) + ".svg")
-      no-repeat
-      center;
+.container-icon {
+  display: inline-flex;
+}
+
+.container-icon svg {
+  width: 18px;
+  height: auto;
+  path {
+    stroke: $icon-color;
+  }
+
+  &:hover {
+    path {
+      stroke: $icon-color-hover;
+    }
   }
 }
 
-.delete-icon-svg{
+.errorIcon svg {
+  path {
+    stroke: $error-color;
+  }
+
+  &:hover {
+    path {
+      stroke: $error-color-darker;
+    }
+  }
+}
+
+.addIcon svg {
+  path {
+    stroke: $primary-color;
+  }
+
+  &:hover {
+    path {
+      stroke: $primary-color-darker;
+    }
+  }
+}
+
+.completeIcon svg {
+  path {
+    stroke: $text-color;
+  }
+
+  &:hover {
+    path {
+      stroke: $text-color-darker;
+    }
+  }
+}
+
+
+.delete-icon-svg {
   height: 17px;
   width: 15px;
 }
-
-// $folders: complete $text-color $text-color-darker,
-//   add $primary-color $primary-color-darker,
-//   error $error-color $error-color-darker;
-
-// @each $folder, $color, $hover-color in $folders {
-//   .folder-icon-#{$folder} {
-//     @extend %folder;
-//     background-color: $color;
-//     -webkit-mask: url("../../../assets/admin/folder-" + quote($folder) + ".svg")
-//       no-repeat
-//       center;
-//     mask: url("../../../assets/admin/folder-" + quote($folder) + ".svg")
-//       no-repeat
-//       center;
-
-//     .header:hover & {
-//       background-color: $hover-color;
-//     }
-//   }
-// }
 
 .header {
   padding: 20px 40px;
@@ -166,11 +192,11 @@ $icons: delete, load, replace;
       color: #b8b8b8;
     }
   }
-  
+
   p.color-error {
     @extend %error;
 
-    &:hover{
+    &:hover {
       color: $error-color-darker;
     }
   }
