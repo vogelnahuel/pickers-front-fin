@@ -13,13 +13,13 @@ import {
   invoiceValidationSchema,
 } from "./types";
 import { useParams } from "react-router-dom";
-import { DetailPreliquidationsContentResponseType } from "sagas/types/preliquidation";
 import * as yup from "yup";
 import i18next from "i18next";
 import moment from "moment";
 import { MAX_FILE_SIZE, VALIDATION_REGEX } from "utils/constants";
 import { ObjectShape, TypeOfShape } from "yup/lib/object";
 import { toBase64 } from "utils/toBase64";
+import { DetailInvoiceType } from "reducers/types/preliquidation";
 
 const InvoiceContainer = (
   props: detailPreliquidationInvoiceContainerPropsType
@@ -70,11 +70,12 @@ const InvoiceContainer = (
   }
 
   const validarFechas = (value: TypeOfShape<ObjectShape>) => {
+  
     if (!value) return true;
 
     const valueProps = moment(value.from, "DD/MM/YYYY");
     const today = moment();
-    const startDate = moment().subtract(7, "d");
+    const startDate = moment(props.detailPreliquidations?.genereted_at,"DD/MM/YYYY");
 
     const range = valueProps.isBetween(startDate, today);
 
@@ -82,11 +83,11 @@ const InvoiceContainer = (
   };
 
   const castDatePicker = (
-    detailPreliquidations: DetailPreliquidationsContentResponseType
+    detailPreliquidations: DetailInvoiceType
   ) => {
     let castear:
       | detailPreliquidationDatePicker
-      | DetailPreliquidationsContentResponseType = detailPreliquidations;
+      | DetailInvoiceType = detailPreliquidations;
     castear = {
       ...castear,
       emisionDate: { from: detailPreliquidations.emisionDate },
@@ -151,6 +152,7 @@ const InvoiceContainer = (
 
 const mapStateToProps = (state: RootState) => ({
   isFetching: preliquidationSelector(state).fetching,
+  invoiceDetail: preliquidationSelector(state).invoiceDetail,
   detailPreliquidations: preliquidationSelector(state).detailPreliquidations,
   invoiceTypes: preliquidationSelector(state).invoiceTypes,
 });

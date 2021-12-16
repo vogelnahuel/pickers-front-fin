@@ -137,7 +137,7 @@ function* putSaveDetailInvoice({
 
 const result:DetailPreliquidationBodyParamsType  = {
   result :{
-    emisionDate: payload.emisionDate.from,
+    emisionDate: payload.emisionDate?.from,
     invoiceType: payload.invoiceType,
     invoiceNumber: payload.invoiceNumber,
     salePoint: payload.salePoint,
@@ -170,7 +170,7 @@ function* patchApproveDetailInvoice({
 
   const result:DetailPreliquidationBodyParamsType  = {
     result :{
-      emisionDate: payload.emisionDate.from,
+      emisionDate: payload.emisionDate?.from,
       invoiceType: payload.invoiceType,
       invoiceNumber: payload.invoiceNumber,
       salePoint: payload.salePoint,

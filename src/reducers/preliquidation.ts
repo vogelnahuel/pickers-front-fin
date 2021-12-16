@@ -32,7 +32,17 @@ export const initialState: PreliquitadionStateType = {
 
   actualPage: "",
   invoiceTypes: [],
+
+
   detailPreliquidations: {
+    status: {
+      id: 0,
+      name: "",
+      tag: ""
+    },
+    genereted_at: ""
+  },
+  invoiceDetail: {
     id: 0,
     emisionDate: "",
     invoiceNumber: "",
@@ -51,14 +61,6 @@ export const initialState: PreliquitadionStateType = {
     invoiceFile: {
       upload: false,
       url: null
-    },
-    presettlement: {
-      status: {
-        id: 0,
-        name: "",
-        tag: ""
-      },
-      genereted_at: ""
     }
   }
 };
@@ -130,7 +132,9 @@ export const preliquidationSlice = createSlice({
       action: PayloadAction<DetailPreliquidationsContentResponseType>
     ) => {
       const { payload } = action;
-      state.detailPreliquidations = payload;
+      const { presettlement, ...invoice } = payload;
+      state.invoiceDetail = invoice;
+      state.detailPreliquidations = presettlement;
     },
     getInvoiceDetailSaveRequest: (
       state: PreliquitadionStateType,
