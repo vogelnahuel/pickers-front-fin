@@ -68,6 +68,7 @@ export type DetailPreliquidationsContentResponseType = {
     url: string | null;
   };
   presettlement: {
+   id?: number;
    status :PreliquidationStatus,
    genereted_at :  string
   }

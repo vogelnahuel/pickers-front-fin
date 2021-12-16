@@ -40,9 +40,8 @@ export const initialState: PreliquitadionStateType = {
 
   actualPage: "",
   invoiceTypes: [],
-
-
   detailPreliquidations: {
+    id: 0,
     status: {
       id: 0,
       name: "",
@@ -142,7 +141,7 @@ export const preliquidationSlice = createSlice({
       const { payload } = action;
       const { presettlement, ...invoice } = payload;
       state.invoiceDetail = invoice;
-      state.detailPreliquidations = presettlement;
+      state.detailPreliquidations = { ...state.detailPreliquidations, ...presettlement};
     },
     getInvoiceDetailSaveRequest: (
       state: PreliquitadionStateType,

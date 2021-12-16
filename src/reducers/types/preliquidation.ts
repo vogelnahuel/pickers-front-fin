@@ -31,8 +31,9 @@ export type InvoiceFileStatus = {
   message?: string;
 }
 export type DetailPreliquidationsType = {
-    status: PreliquidationStatus;
-    genereted_at: string;
+  id: number;
+  status: PreliquidationStatus;
+  genereted_at: string;
 };
 export type DetailInvoiceType= {
   id: number;
