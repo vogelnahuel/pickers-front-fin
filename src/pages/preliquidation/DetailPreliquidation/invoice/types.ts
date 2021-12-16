@@ -1,7 +1,6 @@
+import { DetailInvoiceType, DetailPreliquidationsType } from "reducers/types/preliquidation";
 import {
-  DetailPreliquidationsContentResponseType,
   InvoiceTypes,
-  PreliquidationStatus,
 } from "sagas/types/preliquidation";
 import { TypeOfShape } from "yup/lib/object";
 
@@ -9,7 +8,8 @@ export type detailPreliquidationInvoiceContainerPropsType = {
   setActualPage: (page: string) => void;
   isFetching: boolean;
   setDirty: (dirty: boolean) => void;
-  detailPreliquidations: DetailPreliquidationsContentResponseType;
+  invoiceDetail: DetailInvoiceType;
+  detailPreliquidations: DetailPreliquidationsType;
   getInvoiceDetail: (id: string | undefined) => void;
   getInvoiceDetailSave: (params: detailPreliquidationDatePicker) => void;
   getInvoiceDetailApprove: (params: detailPreliquidationDatePicker) => void;
@@ -19,7 +19,8 @@ export type detailPreliquidationInvoiceContainerPropsType = {
 };
 export type detailPreliquidationInvoicePropsType = {
   isFetching: boolean;
-  detailPreliquidations: DetailPreliquidationsContentResponseType;
+  invoiceDetail: DetailInvoiceType;
+  detailPreliquidations: DetailPreliquidationsType;
   validationSchema: object;
   setDirty: (dirty: boolean) => void;
   getInvoiceDetailSave: (params:detailPreliquidationDatePicker) => void;
@@ -28,7 +29,7 @@ export type detailPreliquidationInvoicePropsType = {
   deleteFile: () => void;
   downloadFile: () => void;
   castDatePicker: (
-    detailPreliquidations: DetailPreliquidationsContentResponseType
+    detailInvoice: DetailInvoiceType
   ) => detailPreliquidationDatePicker;
   fileHandler: (file: File) => void;
   fileError: string;
@@ -53,10 +54,7 @@ export type detailPreliquidationDatePicker = {
     upload: true | false;
     url: string | null;
   };
-  presettlement: {
-   status :PreliquidationStatus,
-   genereted_at :  string
-  }
+
 };
 
 export type invoiceValidationSchema = {
