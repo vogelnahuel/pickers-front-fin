@@ -17,6 +17,7 @@ import {
   DetailPreliquidationsApiResponseType,
   DetailPreliquidationsContentResponseType,
   DetailPreliquidationsInvoiceApiResponseType,
+  DetailPreliquidationsInvoiceTypesApiResponseType,
   PreliquidationParamsMiddlewareType,
   PreliquidationsApiResponse,
 } from "./types/preliquidation";
@@ -46,6 +47,10 @@ const sagas = [
   takeLatest(
     preliquidationActions.getInvoiceDetailDeleteRequest.type,
     putDeleteDetailInvoice
+  ),
+  takeLatest(
+    preliquidationActions.getInvoiceDetailTypesRequest.type,
+    getDetailInvoiceTypes
   ),
 ];
 
@@ -209,3 +214,23 @@ function* putDeleteDetailInvoice({
     yield put(preliquidationActions.getInvoiceDetailDeleteSuccess());
   }
 }
+
+
+function* getDetailInvoiceTypes(): Generator<
+  | PutEffect<{  type: string }>
+  | CallEffect<AxiosResponse<DetailPreliquidationsInvoiceTypesApiResponseType>>,
+  void,
+  DetailPreliquidationsInvoiceTypesApiResponseType
+> {
+ 
+  const response = yield call(
+    preliquidationsMiddleware.getDetailInvoiceTypes,
+  );
+  if (response.status !== 200) {
+    yield put(preliquidationActions.getInvoiceDetailTypesError());
+  } else {
+    const { result } = response.data;
+    yield put(preliquidationActions.getInvoiceDetailTypesSuccess(result));
+  }
+}
+

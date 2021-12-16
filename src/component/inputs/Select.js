@@ -17,8 +17,6 @@ const Select = ({ input, label, options = [], placeholder, onChange }) => {
     setOpen(!open);
   };
 
-
-
   return (
     <div className="multiple-selectbox">
       <div onClick={handleClick} className="multiple-contenido-select">
@@ -29,8 +27,8 @@ const Select = ({ input, label, options = [], placeholder, onChange }) => {
           value={
             input.value.label && input.value.label !== ""
               ? input.value.label
-              : input.value !== ""
-              ? input.value
+              : input.value.name !== ""
+              ? input.value.name
               : ""
           }
           disabled

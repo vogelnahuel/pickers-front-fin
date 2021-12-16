@@ -8,7 +8,7 @@ import deletePDF from "../../../../assets/preli/deletePDF.svg";
 import download from "../../../../assets/preli/download.svg";
 import replace from "../../../../assets/preli/replace.svg";
 import { DatePicker } from "@pickit/pickit-components";
-import { FILTER_PRELIQUIDATION_SELECT_OPTIONS } from "utils/constants";
+
 import Select from "component/inputs/Select";
 import {
   detailPreliquidationDatePicker,
@@ -16,6 +16,7 @@ import {
 } from "./types";
 import i18next from "i18next";
 import useValidationSchema from "hooks/useValidationSchema";
+import { InvoiceTypes } from "sagas/types/preliquidation";
 import PdfController from "component/pdfController/PdfController";
 
 export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
@@ -32,6 +33,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
   downloadFile,
   fileError,
   fileUrl,
+  invoiceTypes
 }) => {
   const pdfControllerRef = useRef<any>();
   return (
@@ -44,6 +46,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
         initialValues={castDatePicker(detailPreliquidations)}
         mutators={{
           setValue: ([field, value], state, { changeValue }) => {
+            delete value.label
             changeValue(state, field, () => value);
           },
         }}
@@ -104,10 +107,10 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                       )}
                       name="invoiceType"
                       onChange={form.mutators.setValue}
-                      options={FILTER_PRELIQUIDATION_SELECT_OPTIONS.map(
-                        (o) => ({
+                      options={invoiceTypes.map(
+                        (o:InvoiceTypes) => ({
                           ...o,
-                          label: o.label,
+                          label: o.name,
                         })
                       )}
                     >

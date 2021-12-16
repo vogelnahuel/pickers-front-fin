@@ -28,9 +28,11 @@ const InvoiceContainer = (
   const [fileError, setFileError] = useState("");
   const params: { id?: string } = useParams();
 
+
   useEffect(() => {
     props.getInvoiceDetail(params.id);
     props.setActualPage("INVOICE");
+    props.getInvoiceDetailTypes();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -101,7 +103,9 @@ const InvoiceContainer = (
         i18next.t("global:error.input.emisionDate"),
         (value) => validarFechas(value)
       ),
-    invoiceType: yup.mixed().required("global:error.input.required"),
+    invoiceType: yup.object({
+      name:yup.string().required("global:error.input.required"),
+    }),
     salePoint: yup
       .string()
       .min(4, i18next.t("global:error.input.salePoint"))
@@ -140,6 +144,7 @@ const InvoiceContainer = (
       downloadFile={downloadFile}
       validationSchema={validationSchema}
       castDatePicker={castDatePicker}
+
     />
   );
 };
@@ -147,6 +152,7 @@ const InvoiceContainer = (
 const mapStateToProps = (state: RootState) => ({
   isFetching: preliquidationSelector(state).fetching,
   detailPreliquidations: preliquidationSelector(state).detailPreliquidations,
+  invoiceTypes: preliquidationSelector(state).invoiceTypes,
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
@@ -164,6 +170,9 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   },
   getInvoiceDetailDelete: (params: detailPreliquidationDatePicker) => {
     dispatch(preliActions.getInvoiceDetailDeleteRequest(params));
+  },
+  getInvoiceDetailTypes: () => {
+    dispatch(preliActions.getInvoiceDetailTypesRequest());
   },
   setDirty: (dirty: boolean) => {
     dispatch(preliActions.setDirty(dirty));

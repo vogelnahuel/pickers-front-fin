@@ -6,6 +6,7 @@ import {
 } from "@reduxjs/toolkit";
 import {
   DetailPreliquidationsContentResponseType,
+  InvoiceTypes,
   PreliquidationItem,
   PreliquidationsContentResponseType,
 } from "sagas/types/preliquidation";
@@ -28,12 +29,18 @@ export const initialState: PreliquitadionStateType = {
     offset: 0
   },
   seeMore: true,
+
+  actualPage: "",
+  invoiceTypes: [],
   detailPreliquidations: {
     id: 0,
     emisionDate: "",
     invoiceNumber: "",
     salePoint: "",
-    invoiceType: "",
+    invoiceType: {
+      name: "",
+      tag: ""
+    },
     caeNumber: "",
     fiscalData: {
       fiscalNumber: "",
@@ -44,9 +51,16 @@ export const initialState: PreliquitadionStateType = {
     invoiceFile: {
       upload: false,
       url: null
+    },
+    presettlement: {
+      status: {
+        id: 0,
+        name: "",
+        tag: ""
+      },
+      genereted_at: ""
     }
-  },
-  actualPage: ""
+  }
 };
 
 const SLICE_NAME = "preliquidation";
@@ -136,6 +150,16 @@ export const preliquidationSlice = createSlice({
     ) => {},
     getInvoiceDetailDeleteError: () => {},
     getInvoiceDetailDeleteSuccess: () => {},
+    
+    getInvoiceDetailTypesRequest: () => {},
+    getInvoiceDetailTypesError: () => {},
+    getInvoiceDetailTypesSuccess: (
+      state: PreliquitadionStateType,
+      action: PayloadAction<InvoiceTypes[]>
+    ) => {
+      const { payload } = action;
+      state.invoiceTypes = payload;
+    },
 
     setDirty: (
       state: PreliquitadionStateType,

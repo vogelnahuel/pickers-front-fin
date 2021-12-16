@@ -1,4 +1,8 @@
-import { DetailPreliquidationsContentResponseType } from "sagas/types/preliquidation";
+import {
+  DetailPreliquidationsContentResponseType,
+  InvoiceTypes,
+  PreliquidationStatus,
+} from "sagas/types/preliquidation";
 import { TypeOfShape } from "yup/lib/object";
 
 export type detailPreliquidationInvoiceContainerPropsType = {
@@ -7,9 +11,11 @@ export type detailPreliquidationInvoiceContainerPropsType = {
   setDirty: (dirty: boolean) => void;
   detailPreliquidations: DetailPreliquidationsContentResponseType;
   getInvoiceDetail: (id: string | undefined) => void;
-  getInvoiceDetailSave: (params:detailPreliquidationDatePicker) => void;
-  getInvoiceDetailApprove: (params:detailPreliquidationDatePicker) => void;
-  getInvoiceDetailDelete: (params:detailPreliquidationDatePicker) => void;
+  getInvoiceDetailSave: (params: detailPreliquidationDatePicker) => void;
+  getInvoiceDetailApprove: (params: detailPreliquidationDatePicker) => void;
+  getInvoiceDetailDelete: (params: detailPreliquidationDatePicker) => void;
+  getInvoiceDetailTypes: () => void;
+  invoiceTypes: InvoiceTypes[];
 };
 export type detailPreliquidationInvoicePropsType = {
   isFetching: boolean;
@@ -27,6 +33,7 @@ export type detailPreliquidationInvoicePropsType = {
   fileHandler: (file: File) => void;
   fileError: string;
   fileUrl: string;
+  invoiceTypes: InvoiceTypes[];
 };
 
 export type detailPreliquidationDatePicker = {
@@ -34,7 +41,7 @@ export type detailPreliquidationDatePicker = {
   emisionDate: { from: string };
   invoiceNumber: string;
   salePoint: string;
-  invoiceType: string;
+  invoiceType: InvoiceTypes;
   caeNumber: string;
   fiscalData: {
     fiscalNumber: string;
@@ -46,12 +53,16 @@ export type detailPreliquidationDatePicker = {
     upload: true | false;
     url: string | null;
   };
+  presettlement: {
+   status :PreliquidationStatus,
+   genereted_at :  string
+  }
 };
 
 export type invoiceValidationSchema = {
   emisionDate: DatePickerType | TypeOfShape<{}>;
   salePoint: string | undefined;
-  invoiceType :TypeOfShape<{}>| string;
+  invoiceType: TypeOfShape<{}> | InvoiceTypes;
   invoiceNumber: string | undefined;
   caeNumber: string | undefined;
 };
