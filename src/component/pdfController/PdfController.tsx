@@ -33,7 +33,9 @@ const PdfController = forwardRef(
     //const [error, setError] = useState<string | null>(null);
     const [, setDragCounter] = useState(0);
 
-    const openFileReader = () => {
+    const openFileReader = (e?: any) => {
+      e.preventDefault();
+      e.stopPropagation();
       if (fileRef.current) fileRef.current.click();
     };
 
