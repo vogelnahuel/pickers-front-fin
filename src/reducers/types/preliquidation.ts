@@ -45,4 +45,3 @@ export type DetailInvoiceType= {
     url: string | null;
   };
 }
-//detailPreliquidations: DetailPreliquidationsContentResponseType;

@@ -1,6 +1,6 @@
 export type ButtonProps = {
   children: string | JSX.Element | JSX.Element[];
-  onClick: () => void;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
   className?: string;
   icon?: any;
