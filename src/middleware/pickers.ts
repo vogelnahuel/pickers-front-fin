@@ -15,17 +15,25 @@ export const getPickers = (
   params: ParamsMiddlewareType
 ): Promise<AxiosResponse<PickersAxiosResponseType>> =>
   API.get("/ms-admin-rest/api/v1.0/pickers", params);
+  
 //TODO: unificar los export del csv
 export const getPickersExport = (
-  params?: ParamsMiddlewareType
-): Promise<AxiosResponse<PickersExportResponseType>> =>
-  API.get("/ms-admin-rest/api/v1.0/pickers.csv", params);
+  params: ParamsMiddlewareType
+): Promise<AxiosResponse<PickersExportResponseType>> => {
+  const { limit, offset, ...body } = params;
+  return API.get("/ms-admin-rest/api/v1.0/pickers.csv", body);
+};
+
 export const getPicker = (params: number): Promise<AxiosResponse<PickerType>> =>
   API.get(`/ms-admin-rest/api/v1.0/pickers/${params}`);
+
 export const getPickerExport = (
   params: ParamsMiddlewareType
-): Promise<AxiosResponse<PickersExportResponseType>> =>
-  API.get(`/ms-admin-rest/api/v1.0/pickers.csv`, params);
+): Promise<AxiosResponse<PickersExportResponseType>> => {
+  const { limit, offset, ...body } = params;
+  return API.get(`/ms-admin-rest/api/v1.0/pickers.csv`, body);
+};
+
 export const postPickerDocumentsEdit = (
   params: PickerType
 ): Promise<AxiosResponse<EditPickerResponseType>> =>
@@ -33,15 +41,16 @@ export const postPickerDocumentsEdit = (
     `/ms-admin-rest/api/v1.0/pickers/${params.id}/invalid-documentation`,
     params
   );
+
 export const postEditPicker = (
   params: PickerType
 ): Promise<AxiosResponse<EditPickerResponseType>> =>
   API.post(`/ms-admin-rest/api/v1.0/pickers/${params.id}`, params);
+
 export const postAprovePicker = (
   params: PickerType
 ): Promise<AxiosResponse<EditPickerResponseType>> =>
   API.post(`/ms-admin-rest/api/v1.0/pickers/${params.id}/approve`, params);
-
 
 export const fileUpload = (
   id: number,
