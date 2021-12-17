@@ -97,11 +97,7 @@ export const PdfViewer = (props: { src: string; children: any }) => {
                 </GoToNextPage>
               </div>
             </div>
-            <div
-              style={{
-                display: "flex",
-              }}
-            >
+            <div className="child-container">
               {props.children.map((child: ReactElement, index: number) => {
                 return (
                   <div key={index} className="child-button">

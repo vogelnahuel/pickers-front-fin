@@ -20,6 +20,10 @@
   display: none;
 }
 
+.child-container {
+  display: flex;
+  align-items: center;
+}
 
 .zoom-button {
   cursor: pointer;
