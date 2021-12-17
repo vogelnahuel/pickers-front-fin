@@ -223,15 +223,15 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
         <Collapsible>
           <div className="header" onClick={() => setOpen(!open)}>
             {hasCardError() ? (
-              <div className="errorIcon">
+              <div className="error-icon display-flex ">
                 <ErrorIcon />
               </div >
             ) : files?.status === "EMPTY" || files?.status === "PENDING" ? (
-              <div className="addIcon">
+              <div className="add-icon display-flex ">
                 <AddIcon />
               </div>
             ) : (
-              <div className="completeIcon">
+              <div className="complete-icon display-flex ">
                 <CompleteIcon />
               </div>
             )}
@@ -240,7 +240,7 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
               className={
                 !hasCardError()
                   ? "paragraph-expandable-file"
-                  : "color-error paragraph-expandable-file"
+                  : "paragraph-expandable-file color-error"
               }
             >
               {i18next.t("expandableFile:label.card.file")}

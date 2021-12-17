@@ -11,24 +11,7 @@ $primary-color-darker: #007acc;
   color: $error-color;
 }
 
-%icon {
-  background-color: $icon-color;
-  height: 15px;
-  width: 17px;
-  cursor: pointer;
-  transition: all 0.2s;
-  margin: 0 8px;
 
-  &:hover {
-    background-color: $icon-color-hover;
-  }
-}
-
-%folder {
-  width: 20px;
-  height: auto;
-  transition: all 0.2s;
-}
 
 @mixin styleParagraph($font-weight, $color) {
   font-family: "Mulish";
@@ -50,8 +33,7 @@ $primary-color-darker: #007acc;
 }
 
 .container-icon svg {
-  width: 18px;
-  height: auto;
+
   path {
     stroke: $icon-color;
   }
@@ -63,7 +45,9 @@ $primary-color-darker: #007acc;
   }
 }
 
-.errorIcon svg {
+.error-icon svg {
+  
+  
   path {
     stroke: $error-color;
   }
@@ -75,7 +59,7 @@ $primary-color-darker: #007acc;
   }
 }
 
-.addIcon svg {
+.add-icon svg {
   path {
     stroke: $primary-color;
   }
@@ -87,7 +71,7 @@ $primary-color-darker: #007acc;
   }
 }
 
-.completeIcon svg {
+.complete-icon svg {
   path {
     stroke: $text-color;
   }
@@ -109,15 +93,33 @@ $primary-color-darker: #007acc;
   padding: 20px 40px;
   cursor: pointer;
   display: flex;
-
-  &:hover {
-    .paragraph-expandable-file {
-      color: $text-color-darker;
+  align-items: center;
+  
+  .errorIcon{
+    display: flex;
+    align-items: center;
+  }
+  .addIcon{
+    display: flex;
+    align-items: center;
+  }
+  .completeIcon{
+    display: flex;
+    align-items: center;
+  }
+  p{
+    &:hover{
+        color: $text-color-darker; 
     }
-    .paragraph-expandable-file.color-error {
+    
+  }
+  .paragraph-expandable-file[class*="color-error"] {
+    &:hover{
       color: $error-color-darker;
     }
+   
   }
+
 }
 
 .display-flex {
