@@ -97,7 +97,7 @@
           "total": 123.123
         },
         "invoiceFile": {
-          "upload": true,
+          "upload": false,
           "url": null
         },
         "presettlement": {

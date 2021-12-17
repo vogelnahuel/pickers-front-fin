@@ -8,6 +8,7 @@ import calckBlue from "./../../../assets/preli/calcBlue.svg";
 import invoiceBlack from "./../../../assets/preli/invoiceBlack.svg";
 import invoiceBlue from "./../../../assets/preli/invoiceBlue.svg";
 import InvoiceContainer from "./invoice/InvoiceContainer";
+import NotificationModal from "component/modal/NotificationModal";
 import "pages/preliquidation/DetailPreliquidation/detailPreliquidation.scss";
 import { DetailPreliquidationPropsType } from "./types";
 
@@ -60,10 +61,10 @@ export const DetailPreliquidation: React.FC<DetailPreliquidationPropsType> = ({
             <p className="detail-preliquidation-number">{2201100002}</p>
           </div>
           
-          
+          <NotificationModal />
           {containerInvoice ? <InvoiceContainer /> : <></>}
         </div>
-        
+      
       </div>
       {isFetching === true ? <div className="modalLoading"></div> : <></>}
     </div>

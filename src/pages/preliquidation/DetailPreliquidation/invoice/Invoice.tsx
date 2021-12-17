@@ -35,7 +35,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
   fileHandler,
   deleteFile,
   downloadFile
-}) => {
+}): JSX.Element => {
   const verifyStateType = () =>statusList.includes(detailPreliquidations.status.tag);
 
   const pdfControllerRef = useRef<any>();

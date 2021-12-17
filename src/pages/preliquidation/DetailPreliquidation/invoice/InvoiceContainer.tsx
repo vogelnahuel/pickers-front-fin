@@ -7,6 +7,7 @@ import {
   actions as preliActions,
   preliquidationSelector,
 } from "reducers/preliquidation";
+import { actions as notificationActions } from "reducers/notification";
 import {
   detailPreliquidationDatePicker,
   detailPreliquidationInvoiceContainerPropsType,
@@ -21,6 +22,8 @@ import { MAX_FILE_SIZE, VALIDATION_REGEX } from "utils/constants";
 import { ObjectShape, TypeOfShape } from "yup/lib/object";
 import { toBase64 } from "utils/toBase64";
 import { InvoiceFileStatus, DetailInvoiceType } from "reducers/types/preliquidation";
+import { NotificationStateType } from "reducers/types/notification";
+
 
 const InvoiceContainer = (
   props: detailPreliquidationInvoiceContainerPropsType
@@ -57,8 +60,18 @@ const InvoiceContainer = (
     }
   };
 
-  const deleteFile = () =>  props.deleteInvoiceFile(props.detailPreliquidations.id);
-
+  const deleteFile = () =>  {
+    props.showNotification({
+      level: "warning",
+      title: i18next.t("pickers:title.modal.saveChanges"),
+      body: i18next.t("pickers:label.modal.saveChanges"),
+      onClickLabel: "pickers:button.modal.goToSave",
+      onCloseLabel: "pickers:button.modal.notSave",
+      onClose: undefined,
+      onClick: () => props.deleteInvoiceFile(props.detailPreliquidations.id)
+    });
+  }
+  
   const downloadFile = () => {
     if(!props.invoiceDetail?.invoiceFile?.url) return;
 
@@ -184,6 +197,9 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   },
   setDirty: (dirty: boolean) => {
     dispatch(preliActions.setDirty(dirty));
+  },
+  showNotification: (content: NotificationStateType) => {
+    dispatch(notificationActions.showNotification(content));
   },
   setInvoiceFileStatus: (params: InvoiceFileStatus) => {
     dispatch(preliActions.setInvoiceFileStatus(params));
