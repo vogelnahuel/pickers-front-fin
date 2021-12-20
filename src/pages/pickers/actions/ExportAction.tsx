@@ -14,10 +14,10 @@ const ExportAction = ({
   isDirty,
   showNotification,
 }: ExportActionPropsType) => {
-  const html = document.documentElement;
-  const height = Math.max(html.clientHeight, html.scrollHeight);
-  
   const handleClick = () => {
+    const html = document.documentElement;
+    const height = Math.max(html.clientHeight, html.scrollHeight);
+  
     if (isDirty && showNotification) {
       showNotification({
         level: "warning",
