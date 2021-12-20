@@ -98,11 +98,9 @@ const InvoiceContainer = (
   const changePage = (page: string, isDirty: boolean) => {
     const onClose = () => {
       props.setActualPage(page);
-      if (history.location.pathname !== "/preliquidation" && history.length > 1)
-        history.goBack();
-      else if (history.length <= 1) {
+      
         history.replace("/preliquidation");
-      }
+      
     }
     if (props.invoiceFileStatus.error) { showWrongFilesNotification(onClose) }
     else onClose();
