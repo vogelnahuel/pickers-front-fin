@@ -188,7 +188,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                       setDirty(pro.dirty);
                     }}
                   />
-                  <div className="container-detailPicker-fluid form-part-1-admin-pickers">
+                  <div id="personal-data-card" className="container-detailPicker-fluid form-part-1-admin-pickers">
                     <div className="container-detailPicker-row">
                       <div className="container-detailPicker-col-sm-6  ">
                         <Field
@@ -304,7 +304,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                   <h3 className="subTitle-pending-data">
                     {i18next.t("detailPicker:label.subtitle.account")}
                   </h3>
-                  <div className="form-part-1-admin-pickers">
+                  <div id="accounting-data-card" className="form-part-1-admin-pickers">
                     <div className="container-detailPicker-row">
                       <div className="container-detailPicker-col-sm-6  ">
                         <Field
@@ -363,7 +363,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                       <h3 className="subTitle-pending-data">
                         {i18next.t("detailPicker:label.subtitle.insurance")}
                       </h3>
-                      <div className="form-part-1-admin-pickers">
+                      <div id="vehicle-data-card" className="form-part-1-admin-pickers">
                         <div className="container-detailPicker-row">
                           {initialValues.vehicle &&
                             initialValues.vehicle.type === "motorcycle" && (
