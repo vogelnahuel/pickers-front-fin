@@ -1,6 +1,12 @@
 import { TagsErrorType } from "component/admin/ExpandableFile/types";
 import { DetailPickerTagFileType, PickerType } from "pages/pickers/types";
 
+export enum FileStatusEnum {
+  EMPTY = "EMPTY",
+  PENDING = "PENDING",
+  COMPLETED = "COMPLETED"
+}
+
 export type DetailPickerTypes = {
   PENDING_USER_ADMIN_PICKER_GET_REQUEST: string;
   PENDING_USER_ADMIN_PICKER_GET_SUCCESS: string;
