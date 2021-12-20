@@ -1,7 +1,7 @@
 $text-color: #4d4d4d;
 $text-color-darker: #2d2d2d;
 $error-color: #ff1515;
-$error-color-darker:  #E00000;
+$error-color-darker: #e00000;
 
 $icon-color: #808080;
 $icon-color-hover: #4d4d4d;
@@ -11,8 +11,6 @@ $primary-color-darker: #007acc;
 %error {
   color: $error-color;
 }
-
-
 
 @mixin styleParagraph($font-weight, $color) {
   font-family: "Mulish";
@@ -34,29 +32,22 @@ $primary-color-darker: #007acc;
 }
 
 .container-icon svg {
-
   path {
     stroke: $icon-color;
   }
 
-  &:hover {
-    path {
-      stroke: $icon-color-hover;
-    }
+  &:hover path {
+    stroke: $icon-color-hover;
   }
 }
 
 .error-icon svg {
-  
-  
   path {
     stroke: $error-color;
   }
 
-  .header:hover & {
-    path {
-      stroke: $error-color-darker;
-    }
+  .header:hover & > path {
+    stroke: $error-color-darker;
   }
 }
 
@@ -65,10 +56,8 @@ $primary-color-darker: #007acc;
     stroke: $primary-color;
   }
 
-  .header:hover & {
-    path {
-      stroke: $primary-color-darker;
-    }
+  .header:hover & > path {
+    stroke: $primary-color-darker;
   }
 }
 
@@ -77,13 +66,10 @@ $primary-color-darker: #007acc;
     stroke: $text-color;
   }
 
-  .header:hover &{
-    path {
-      stroke: $text-color-darker;
-    }
+  .header:hover & > path {
+    stroke: $text-color-darker;
   }
 }
-
 
 .delete-icon-svg {
   height: 17px;
@@ -96,25 +82,15 @@ $primary-color-darker: #007acc;
   cursor: pointer;
   display: flex;
   align-items: center;
-  
- 
-  
-    &:hover{
-      p {
-        color: $text-color-darker; 
-      }
-      .paragraph-expandable-file[class*="color-error"] {
-       
-          color: $error-color-darker;
-        
-       
-      }
-      
+
+  &:hover {
+    p {
+      color: $text-color-darker;
     }
-    
-  
-
-
+    .paragraph-expandable-file[class*="color-error"] {
+      color: $error-color-darker;
+    }
+  }
 }
 
 .display-flex {

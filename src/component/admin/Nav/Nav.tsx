@@ -20,6 +20,9 @@ export const Nav = ({ isDirty, showNotification, wrongFiles }: NavType) => {
     e.preventDefault();
     const onClose = () => history.push(e.target.pathname);
 
+    const html = document.documentElement;
+    const height = Math.max(html.clientHeight, html.scrollHeight);
+
     if (isDirty && showNotification) {
       showNotification({
         level: "warning",
@@ -30,7 +33,7 @@ export const Nav = ({ isDirty, showNotification, wrongFiles }: NavType) => {
         onClose: onClose,
         onClick: () =>
           window.scroll({
-            top: window.innerHeight,
+            top: height,
             left: 0,
             behavior: "smooth",
           }),
