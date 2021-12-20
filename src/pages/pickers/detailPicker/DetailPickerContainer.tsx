@@ -146,7 +146,8 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
   const showDirtyNotification = (onClose: Function) => {
     const html = document.documentElement;
     const height = Math.max(html.clientHeight, html.scrollHeight);
-    props.showNotification({
+
+    return props.showNotification({
       level: "warning",
       title: i18next.t("pickers:title.modal.saveChanges"),
       body: i18next.t("pickers:label.modal.saveChanges"),
@@ -160,7 +161,6 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
           behavior: "smooth",
         }),
     });
-
   }
 
   const showWrongFilesNotification = (onClose: Function) =>
