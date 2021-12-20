@@ -221,31 +221,34 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
         })}
       >
         <Collapsible>
-          <div className="header" onClick={() => setOpen(!open)}>
-            {hasCardError() ? (
-              <div className="error-icon display-flex ">
-                <ErrorIcon />
-              </div>
-            ) : files?.status === "EMPTY" || files?.status === "PENDING" ? (
-              <div className="add-icon display-flex ">
-                <AddIcon />
-              </div>
-            ) : (
-              <div className="complete-icon display-flex ">
-                <CompleteIcon />
-              </div>
-            )}
+          <div onClick={() => setOpen((prev) => !prev)}>
+            <div className="header">
+              {hasCardError() ? (
+                <div className="error-icon display-flex ">
+                  <ErrorIcon />
+                </div>
+              ) : files?.status === "EMPTY" || files?.status === "PENDING" ? (
+                <div className="add-icon display-flex ">
+                  <AddIcon />
+                </div>
+              ) : (
+                <div className="complete-icon display-flex ">
+                  <CompleteIcon />
+                </div>
+              )}
 
-            <p
-              className={
-                !hasCardError()
-                  ? "paragraph-expandable-file"
-                  : "paragraph-expandable-file color-error"
-              }
-            >
-              {i18next.t("expandableFile:label.card.file")}
-            </p>
+              <p
+                className={
+                  !hasCardError()
+                    ? "paragraph-expandable-file"
+                    : "paragraph-expandable-file color-error"
+                }
+              >
+                {i18next.t("expandableFile:label.card.file")}
+              </p>
+            </div>
           </div>
+
           <div className="container-detailPicker-row ">
             {files?.content.map((element: DataContentType) => (
               <Fragment key={element.tag}>
