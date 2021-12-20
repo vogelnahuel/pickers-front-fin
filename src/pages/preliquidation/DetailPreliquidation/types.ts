@@ -1,9 +1,9 @@
 export type DetailPreliquidationContainerPropsType = {
   isFetching: boolean;
   actualPage:string;
+  showNotification:any
 };
 export type DetailPreliquidationPropsType = {
   isFetching: boolean;
-  handleClickBack: Function;
   actualPage:string;
 };

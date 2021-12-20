@@ -4,17 +4,19 @@ import { DetailPreliquidation } from "./DetailPreliquidation";
 import { useHistory } from "react-router-dom";
 import { DetailPreliquidationContainerPropsType } from "./types";
 import { preliquidationSelector } from "reducers/preliquidation";
+import { NotificationStateType } from "reducers/types/notification";
+import { actions as notificationActions } from "reducers/notification";
+import i18next from "i18next";
 
 export const DetailPreliquidationContainer = (
   props: DetailPreliquidationContainerPropsType
 ): JSX.Element => {
-  const history = useHistory();
-  const handleClickBack = () => history.goBack();
+
 
   return (
     <DetailPreliquidation
       {...props}
-      handleClickBack={handleClickBack}
+
       actualPage={props.actualPage}
     />
   );
@@ -23,9 +25,14 @@ export const DetailPreliquidationContainer = (
 const mapStateToProps = (state: RootState) => ({
   isFetching: preliquidationSelector(state).fetching,
   actualPage: preliquidationSelector(state).actualPage,
+
 });
 
-const mapDispatchToProps = (dispatch: AppDispatch) => ({});
+const mapDispatchToProps = (dispatch: AppDispatch) => ({
+  showNotification: (content: NotificationStateType) => {
+    dispatch(notificationActions.showNotification(content));
+  },
+});
 export default connect(
   mapStateToProps,
   mapDispatchToProps
