@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { connect } from "react-redux";
 import i18next from "i18next";
 import moment from "moment";
@@ -39,7 +39,6 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
   useEffect(() => {
     props.resetWrongFiles();
     props.getPendingUserPicker(params.id);
-    
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -54,6 +53,67 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
       ? moment(date).format(DATE_FORMATS.shortDate)
       : date;
   };
+
+  const initialValues = useMemo(() => {
+    return props.pendingUserAdminPicker.id
+    ? {
+        ...props.pendingUserAdminPicker,
+        personalData: {
+          ...props.pendingUserAdminPicker?.personalData,
+          dateOfBirth:
+            props.pendingUserAdminPicker?.personalData?.dateOfBirth &&
+            props.pendingUserAdminPicker?.personalData?.dateOfBirth.includes(
+              "-"
+            )
+              ? moment(
+                  props.pendingUserAdminPicker?.personalData?.dateOfBirth,
+                  DATE_FORMATS.shortISODate
+                ).format(DATE_FORMATS.shortDate)
+              : props.pendingUserAdminPicker?.personalData?.dateOfBirth,
+        },
+        accountingData: {
+          ...props.pendingUserAdminPicker?.accountingData,
+          fiscalNumber:
+            props.pendingUserAdminPicker?.accountingData?.fiscalNumber?.includes(
+              "-"
+            )
+              ? props.pendingUserAdminPicker?.accountingData?.fiscalNumber
+              : props.pendingUserAdminPicker?.accountingData?.fiscalNumber?.slice(
+                  0,
+                  2
+                ) +
+                " - " +
+                props.pendingUserAdminPicker?.accountingData?.fiscalNumber?.slice(
+                  2,
+                  10
+                ) +
+                " - " +
+                props.pendingUserAdminPicker?.accountingData?.fiscalNumber?.slice(
+                  10,
+                  11
+                ),
+        },
+        vehicle: {
+          ...props.pendingUserAdminPicker.vehicle,
+
+          expirationDatePolicyVehicle: formatDate(
+            props.pendingUserAdminPicker?.vehicle
+              ?.expirationDatePolicyVehicle
+          ),
+          expirationDateIdentificationVehicle: formatDate(
+            props.pendingUserAdminPicker?.vehicle
+              ?.expirationDateIdentificationVehicle
+          ),
+          expirationDateDriverLicense: formatDate(
+            props.pendingUserAdminPicker?.vehicle
+              ?.expirationDateDriverLicense
+          ),
+        },
+      }
+    : props.pendingUserAdminPicker
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.pendingUserAdminPicker.id])
 
   const changePage = (page: string, isDirty: boolean) => {
     let onClose = () => {
@@ -216,6 +276,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
   return (
     <DetailPicker
       {...props}
+      initialValues={initialValues}
       validationSchema={validationSchema}
       changePage={changePage}
       cancel={cancel}

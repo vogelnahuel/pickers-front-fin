@@ -1,6 +1,7 @@
 import createCSV from ".,/../../src/utils/createCSV";
 import { PayloadAction } from "@reduxjs/toolkit";
 import { AxiosResponse } from "axios";
+import { DeleteFileType } from "component/admin/ExpandableFile/types";
 import { goBack } from "connected-react-router";
 import i18next from "i18next";
 import moment from "moment";
@@ -355,7 +356,7 @@ function* getPickerFile({
 
 function* fileDelete({
   payload: { id,tag },
-}: PayloadAction<any>): Generator<
+}: PayloadAction<DeleteFileType>): Generator<
 | PutEffect<{ type: string }>
 |CallEffect<AxiosResponse<any>>
 |Promise<AxiosResponse<any>>
