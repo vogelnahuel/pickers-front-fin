@@ -55,7 +55,6 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
   };
 
   const initialValues = useMemo(() => {
-    console.log("USE MEMO");
     return props.pendingUserAdminPicker.id
     ? {
         ...props.pendingUserAdminPicker,
