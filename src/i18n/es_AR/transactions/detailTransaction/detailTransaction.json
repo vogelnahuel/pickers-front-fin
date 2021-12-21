@@ -27,5 +27,7 @@
   "label.undeliveredModal.reason": "Seleccioná el motivo de imposible de entrega",
   "label.undeliveredModal.finish": "Finalizarla",
   "error.input.dniInvalid": "El DNI es inválido",
-  "error.input.dniLong":"El DNI debe tener entre 7 y 8 caracteres numéricos"
+  "error.input.dniLong":"El DNI debe tener entre 7 y 8 caracteres numéricos",
+  "label.historyTransaction.areaCode": "Código de área ",
+  "label.historyTransaction.phone": "Teléfono "
 }
