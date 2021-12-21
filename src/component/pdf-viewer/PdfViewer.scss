@@ -38,6 +38,9 @@
 .child-button:last-child {
   margin-right: 0;
 }
+.child-button:first-child {
+  margin-left: auto;
+}
 
 .page-navigator {
   cursor: pointer;

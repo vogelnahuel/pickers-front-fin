@@ -34,31 +34,36 @@ export const PdfViewer = (props: { src: string; children: any }) => {
         } = slots;
         return (
           <div className="toolbar-container">
-            <div>
-              {/* <div className="zoom-container"> */}
-              <ZoomOut>
-                {(props) => (
-                  <img
-                    src={zoomOut}
-                    className="zoom-button"
-                    onClick={props.onClick}
-                    alt=""
-                  ></img>
-                )}
-              </ZoomOut>
-            </div>
-            <div>
-              <ZoomIn>
-                {(props) => (
-                  <img
-                    src={zoomIn}
-                    className="zoom-button"
-                    onClick={props.onClick}
-                    alt=""
-                  ></img>
-                )}
-              </ZoomIn>
-              {/* </div> */}
+            <div style={{
+              display: "flex",
+              width: "40%",
+              overflow: "hidden"
+            }} >
+              <div>
+                <ZoomOut>
+                  {(props) => (
+                    <img
+                      src={zoomOut}
+                      className="zoom-button"
+                      onClick={props.onClick}
+                      alt=""
+                    ></img>
+                  )}
+                </ZoomOut>
+              </div>
+              <div>
+                <ZoomIn>
+                  {(props) => (
+                    <img
+                      src={zoomIn}
+                      className="zoom-button"
+                      onClick={props.onClick}
+                      alt=""
+                    ></img>
+                  )}
+                </ZoomIn>
+
+              </div>
             </div>
             <div className="page-navigator-container">
               <div className="page-navigator-button-container">
@@ -77,13 +82,15 @@ export const PdfViewer = (props: { src: string; children: any }) => {
               <div className="current-page-label">
                 <CurrentPageLabel>
                   {(props: RenderCurrentPageLabelProps) => (
-                    <span>{`${props.currentPage + 1} / ${
-                      props.numberOfPages
-                    }`}</span>
+                    <span>{`${props.currentPage + 1} / ${props.numberOfPages
+                      }`}</span>
                   )}
                 </CurrentPageLabel>
               </div>
-              <div>
+              <div  style={{
+                display: "flex",
+                width: "20%",
+              }}> 
                 <GoToNextPage>
                   {(props) => (
                     <img
@@ -100,6 +107,8 @@ export const PdfViewer = (props: { src: string; children: any }) => {
             <div
               style={{
                 display: "flex",
+                width: "40%",
+                overflow:"hidden"
               }}
             >
               {props.children.map((child: ReactElement, index: number) => {
