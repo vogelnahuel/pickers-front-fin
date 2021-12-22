@@ -111,12 +111,19 @@ const InvoiceContainer = (
   const deleteFile = () => {
     props.showNotification({
       level: "warning",
-      title: i18next.t("pickers:title.modal.saveChanges"),
-      body: i18next.t("pickers:label.modal.saveChanges"),
-      onClickLabel: "pickers:button.modal.goToSave",
-      onCloseLabel: "pickers:button.modal.notSave",
+      title: i18next.t("invoice:title.modal.deleteInvoice"),
+      body: i18next.t("invoice:label.modal.deleteInvoice"),
+      onClickLabel: "invoice:button.modal.delete",
+      onCloseLabel: "invoice:button.modal.cancel",
       onClose: undefined,
       onClick: () => props.deleteInvoiceFile(props.detailPreliquidations.id)
+    });
+  }
+
+  const goToPreviousFile = () => {
+    props.setInvoiceFileStatus({
+      error: false,
+      loading: false,
     });
   }
 
@@ -208,7 +215,7 @@ const InvoiceContainer = (
       castDatePicker={castDatePicker}
       handleClickBack={handleClickBack}
       changePage={changePage}
-
+      goToPreviousFile={goToPreviousFile}
     />
   );
 };

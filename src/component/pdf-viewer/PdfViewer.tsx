@@ -56,11 +56,10 @@ export const PdfViewer = (props: { src: string; children: any }) => {
               </div>
             </div>
             <div className="page-navigator-container">
-              <div className="page-navigator-button-container">
+              <div className="page-navigator">
                 <GoToPreviousPage>
                   {(props) => (
                     <img
-                      className="page-navigator"
                       // disabled={props.isDisabled}
                       onClick={props.onClick}
                       src={prePage}
@@ -69,7 +68,7 @@ export const PdfViewer = (props: { src: string; children: any }) => {
                   )}
                 </GoToPreviousPage>
               </div>
-              <div className="current-page-label">
+              <div className="page-number">
                 <CurrentPageLabel>
                   {(props: RenderCurrentPageLabelProps) => (
                     <span>{`${props.currentPage + 1} / ${props.numberOfPages
@@ -77,11 +76,10 @@ export const PdfViewer = (props: { src: string; children: any }) => {
                   )}
                 </CurrentPageLabel>
               </div>
-              <div>
+              <div className="page-navigator">
                 <GoToNextPage>
                   {(props) => (
                     <img
-                      className="page-navigator"
                       // disabled={props.isDisabled}
                       onClick={props.onClick}
                       src={nextPage}

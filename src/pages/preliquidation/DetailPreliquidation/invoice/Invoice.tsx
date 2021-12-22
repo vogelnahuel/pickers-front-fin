@@ -40,10 +40,12 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
   fileHandler,
   deleteFile,
   downloadFile,
+  goToPreviousFile,
   handleClickBack,
   changePage,
 }): JSX.Element => {
-  const verifyStateType = () => statusList.includes(detailPreliquidations.status.tag);
+  const verifyStateType = () =>
+    statusList.includes(detailPreliquidations.status.tag);
   const tabs = [
     {
       title: "Preliquidacion",
@@ -66,7 +68,6 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
 
       <Form
         onSubmit={(value) => value}
-
         initialValues={castDatePicker(invoiceDetail)}
         mutators={{
           setValue: ([field, value], state, { changeValue }) => {
@@ -80,13 +81,13 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
           <form className="form-filter-transaction" onSubmit={handleSubmit}>
             <TabControler
               tabs={tabs}
-              changePage={() => { changePage("PRELI", dirty) }}
+              changePage={() => {
+                changePage("PRELI", dirty);
+              }}
               actualPage={"INVOICE"}
             />
             <div className="header-container">
-
               <Back onClick={() => handleClickBack(dirty)} />
-
             </div>
             <div className="mainContainerFlex">
               <h2 className="detail-preliquidation-h2">
@@ -107,7 +108,6 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
             <div className="container-detail-preliquidation form-detail-preliquidation">
               <div className="container-detail-preliquidation-row">
                 <div className="container-detail-preliquidation-col-sm-1 form-part-1-admin-pickers">
-
                   <Field
                     type="text"
                     name="emisionDate"
@@ -121,14 +121,13 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                     {(props: any) => {
                       return (
                         <div>
-
                           <label
                             className={
                               props.disabled
                                 ? "label-Admin-Pickers readonly"
                                 : props.meta.error
-                                  ? "label-Admin-Pickers color-red"
-                                  : "label-Admin-Pickers"
+                                ? "label-Admin-Pickers color-red"
+                                : "label-Admin-Pickers"
                             }
                           >
                             {i18next.t("invoice:label.label.dateOfIssue")}
@@ -199,38 +198,47 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                   />
                 </div>
 
-
                 <div className="container-detail-preliquidation-col-sm-2 detail-preliquidation-adjust">
                   <PdfController
-                    title="Factura"
-                    buttonText="Cargar factura"
-                    fileHandler={fileHandler}
+                    ref={pdfControllerRef}
+                    title={i18next.t("invoice:label.title.invoice")}
+                    buttonText={
+                      invoiceDetail.invoiceFile?.upload &&
+                      invoiceFileStatus.error
+                        ? i18next.t("global:label.button.retry")
+                        : i18next.t("invoice:label.button.uploadInvoice")
+                    }
                     fileUploaded={invoiceDetail.invoiceFile?.upload}
                     showError={invoiceFileStatus.error}
                     errorMessage={i18next.t(invoiceFileStatus.message || "")}
                     loading={invoiceFileStatus.loading}
-                    ref={pdfControllerRef}
+                    fileHandler={fileHandler}
+                    goToPreviousFile={goToPreviousFile}
                   >
                     <PdfViewer src={invoiceDetail.invoiceFile?.url || ""}>
                       <Tooltip
+                        disabled={verifyStateType()}
                         message={i18next.t("component:label.tooltip.delete")}
                         position={ToolTipPosition.top}
                       >
                         <button
                           className="icon-container-primary"
                           type="button"
+                          disabled={verifyStateType()}
                           onClick={deleteFile}
                         >
                           <DeleteIcon />
                         </button>
                       </Tooltip>
                       <Tooltip
+                        disabled={verifyStateType()}
                         message={i18next.t("component:label.tooltip.replace")}
                         position={ToolTipPosition.top}
                       >
                         <button
                           className="icon-container-primary"
                           type="button"
+                          disabled={verifyStateType()}
                           onClick={() =>
                             pdfControllerRef?.current?.triggerOnChange()
                           }
@@ -239,10 +247,12 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                         </button>
                       </Tooltip>
                       <Tooltip
+                        disabled={verifyStateType()}
                         message={i18next.t("component:label.tooltip.download")}
                         position={ToolTipPosition.top}
                       >
                         <button
+                          disabled={verifyStateType()}
                           type="button"
                           className="icon-container-secondary"
                           onClick={downloadFile}

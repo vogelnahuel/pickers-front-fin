@@ -3,6 +3,7 @@
   "filter.button.search": "Buscar",
   "label.button.cancel": "Cancelar",
   "label.button.save": "Guardar",
+  "label.button.retry": "Reintentar",
   "label.button.finish": "Finalizar",
   "filter.label.inAlert": "En alerta",
   "label.input.email": "Email",

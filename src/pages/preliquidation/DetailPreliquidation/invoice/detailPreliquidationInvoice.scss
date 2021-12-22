@@ -138,6 +138,16 @@
       stroke: #005B99;
     }
   }
+
+  &:disabled {
+    background-color: #fff;
+    border-color: #CCCCCC;
+    cursor: default;
+
+    & > svg > path {
+      stroke: #CCCCCC;
+    }
+  }
 }
 
 .icon-container-secondary {
@@ -158,5 +168,11 @@
   &:active {
     background-color: #005B99;
     border-color: #005B99;
+  }
+
+  &:disabled {
+    background-color: #CCCCCC;
+    border-color: #CCCCCC;
+    cursor: default;
   }
 }

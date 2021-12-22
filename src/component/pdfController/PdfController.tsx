@@ -23,6 +23,7 @@ const PdfController = forwardRef(
       title,
       buttonText,
       loading,
+      goToPreviousFile,
       fileHandler,
     }: PdfControllerProps,
     ref
@@ -32,7 +33,9 @@ const PdfController = forwardRef(
     const [dragging, setDragging] = useState(false);
     const dragCounter = useRef<number>(0);
 
-    const openFileReader = (e?:  React.MouseEvent<HTMLButtonElement> | undefined):void => {
+    const openFileReader = (
+      e?: React.MouseEvent<HTMLButtonElement> | undefined
+    ): void => {
       e?.preventDefault();
       e?.stopPropagation();
       if (fileRef.current) fileRef.current.click();
@@ -69,7 +72,7 @@ const PdfController = forwardRef(
     const handleDragOut = (e: DragEvent) => {
       e.preventDefault();
       e.stopPropagation();
-      
+
       dragCounter.current = dragCounter.current - 1;
 
       // Solo se suelta el draggging cuando se sale del ultimo elemento
@@ -90,7 +93,7 @@ const PdfController = forwardRef(
     };
 
     const hasError = () => showError && !dragging && !loading;
-    const showFile = () => fileUploaded && !dragging && !loading;
+    const showFile = () => fileUploaded && !dragging && !loading && !showError;
 
     useImperativeHandle(ref, () => ({
       triggerOnChange: () => openFileReader(),
@@ -118,7 +121,7 @@ const PdfController = forwardRef(
 
     const rootContainerClasses = [
       "pdf-root-container",
-      showFile() && "pdf-root-container-border"
+      showFile() && "pdf-root-container-border",
     ].join(" ");
 
     const containerClasses = [
@@ -126,15 +129,12 @@ const PdfController = forwardRef(
       dragging && "pdf-container-dragging",
       loading && "pdf-container-loading",
       hasError() && "pdf-container-error",
+      showFile() && "pdf-container-hidden",
     ].join(" ");
 
     return (
       <div className={rootContainerClasses}>
-        {showFile() && (
-          <div className="pdf-children-container">
-            { children }
-          </div>
-        )}
+        {showFile() && <div className="pdf-children-container">{children}</div>}
         <div ref={dropRef} className={containerClasses}>
           <div className="pdf-icon-container">
             {hasError() ? (
@@ -164,10 +164,21 @@ const PdfController = forwardRef(
             </p>
           </div>
           <div className="pdf-content">
-            <Button onClick={openFileReader}>{buttonText}</Button>
-            <p className="pdf-message">
-              {i18next.t("component:label.pdfController.instruction")}
-            </p>
+            <Button className="pdf-button" onClick={openFileReader}>
+              {buttonText}
+            </Button>
+            {fileUploaded && showError ? (
+              <button
+                className="pdf-go-back"
+                onClick={() => goToPreviousFile && goToPreviousFile()}
+              >
+                {i18next.t("component:label.pdfController.goBack")}
+              </button>
+            ) : (
+              <p className="pdf-message">
+                {i18next.t("component:label.pdfController.instruction")}
+              </p>
+            )}
           </div>
           {loading && (
             <div className="pdf-loading-container">

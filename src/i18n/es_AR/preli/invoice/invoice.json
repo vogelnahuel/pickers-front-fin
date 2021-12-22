@@ -1,4 +1,5 @@
 {
+  "label.title.invoice": "Factura",
   "label.invoice.subTitleInvoice": "Datos de la factura",
   "label.label.dateOfIssue": "Fecha de emisión *",
   "placeholder.form.broadcastDate": "Seleccioná la fecha",
@@ -19,5 +20,10 @@
   "placeholder.form.totalToPay": "$22000",
   "label.buttons.save": "Guardar",
   "label.buttons.refuse": "Rechazar Factura",
-  "label.buttons.approve": "Aprobar"
+  "label.buttons.approve": "Aprobar",
+  "label.button.uploadInvoice": "Cargar factura",
+  "title.modal.deleteInvoice": "Estás por eliminar la factura",
+  "label.modal.deleteInvoice": "¿Realmente querés eliminarla?",
+  "button.modal.cancel": "Cancelar",
+  "button.modal.delete": "Sí, eliminar"
 }
