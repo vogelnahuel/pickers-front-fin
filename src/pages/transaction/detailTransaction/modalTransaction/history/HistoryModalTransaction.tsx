@@ -206,7 +206,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                         <Field
                           type="text"
                           name="reveiverPhone"
-                          label={i18next.t("detailPicker:label.user.phone")}
+                          label={i18next.t("detailTransaction:label.historyTransaction.phone")}
                           component={Input}
                           className="Admin-Pickers-input"
                           disabled

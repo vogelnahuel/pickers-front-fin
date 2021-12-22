@@ -13,10 +13,13 @@ export const TabControler: React.FC<TabControlerType> = ({
   changePage,
   tabs,
 }) => (
-  <div className="flex-tab background-tab">
+  <div 
+  className="flex-tab background-tab">
     <div
       onClick={() => changePage(tabs && tabs[0].id)}
-      className="container-tag"
+      className={
+        actualPage === tabs[0].id ? "container-tag" : "container-tag-active"
+      }
     >
       <p
         className={
@@ -40,7 +43,9 @@ export const TabControler: React.FC<TabControlerType> = ({
 
     <div
       onClick={() => changePage(tabs && tabs[1].id)}
-      className="container-tag border-tag"
+      className={
+        actualPage === tabs[1].id ? "container-tag border-tag" : "container-tag-active border-tag"
+      }
     >
       <p
         className={
