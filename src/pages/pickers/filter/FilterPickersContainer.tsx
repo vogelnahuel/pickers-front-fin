@@ -47,7 +47,7 @@ const FilterPickersContainer: React.FC<FilterContainerTypes> = (props) => {
         ),
       identificationNumber: yup
         .string()
-        .min(8,i18next.t("global:error.input.dniLength"))
+        .min(7,i18next.t("global:error.input.dniLength"))
         .matches(
           VALIDATION_REGEX.expIdentificationNumber,
           i18next.t("global:error.input.lettersOrSpecialCharacters")

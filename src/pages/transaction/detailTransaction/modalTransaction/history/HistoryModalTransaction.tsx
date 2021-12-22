@@ -93,7 +93,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                         <Field
                           type="text"
                           name="areaCode"
-                          label={i18next.t("detailPicker:label.user.areaCode")}
+                          label={i18next.t("detailTransaction:label.historyTransaction.areaCode")}
                           component={Input}
                           className="Admin-Pickers-input"
                           disabled
@@ -103,7 +103,20 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                         <Field
                           type="text"
                           name="phone"
-                          label={i18next.t("detailPicker:label.user.phone")}
+                          label={i18next.t("detailTransaction:label.historyTransaction.phone")}
+                          component={Input}
+                          className="Admin-Pickers-input"
+                          disabled
+                        />
+                      </div>
+                      
+                      <div className="container-history-col-4">
+                        <Field
+                          type="text"
+                          name="pickupAddress"
+                          label={i18next.t(
+                            "detailTransaction:label.detailTransaction.pickupAddress"
+                          )}
                           component={Input}
                           className="Admin-Pickers-input"
                           disabled
@@ -115,18 +128,6 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                           name="deliveryAddress"
                           label={i18next.t(
                             "detailTransaction:label.detailTransaction.deliveryAddress"
-                          )}
-                          component={Input}
-                          className="Admin-Pickers-input"
-                          disabled
-                        />
-                      </div>
-                      <div className="container-history-col-4">
-                        <Field
-                          type="text"
-                          name="pickupAddress"
-                          label={i18next.t(
-                            "detailTransaction:label.detailTransaction.pickupAddress"
                           )}
                           component={Input}
                           className="Admin-Pickers-input"

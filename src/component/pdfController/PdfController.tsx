@@ -33,7 +33,7 @@ const PdfController = forwardRef(
     //const [error, setError] = useState<string | null>(null);
     const [, setDragCounter] = useState(0);
 
-    const openFileReader = (e?:  React.MouseEvent<HTMLButtonElement>| undefined):void => {
+    const openFileReader = (e?:  React.MouseEvent<HTMLButtonElement> | undefined):void => {
       e?.preventDefault();
       e?.stopPropagation();
       if (fileRef.current) fileRef.current.click();
@@ -125,15 +125,15 @@ const PdfController = forwardRef(
     }, []);
 
     const rootContainerClasses = [
-      "root-container",
-      showFile() && "root-container-border"
+      "pdf-root-container",
+      showFile() && "pdf-root-container-border"
     ].join(" ");
 
     const containerClasses = [
-      "container",
-      dragging && "container-dragging",
-      loading && "container-loading",
-      hasError() && "container-error",
+      "pdf-container",
+      dragging && "pdf-container-dragging",
+      loading && "pdf-container-loading",
+      hasError() && "pdf-container-error",
     ].join(" ");
 
     return (
@@ -143,52 +143,52 @@ const PdfController = forwardRef(
         ) : (
           <>
             <div ref={dropRef} className={containerClasses}>
-              <div className="icon-container">
+              <div className="pdf-icon-container">
                 {hasError() ? (
                   <img
-                    className="upload-error-icon"
+                    className="pdf-upload-error-icon"
                     src={uploadError}
                     alt="upload-error-icon"
                   />
                 ) : (
-                  <div className="upload-icon">
+                  <div className="pdf-upload-icon">
                     <img
-                      className="upload-cloud"
+                      className="pdf-upload-cloud"
                       src={uploadCloud}
                       alt="upload-icon"
                     />
                     <img
-                      className="upload-arrow"
+                      className="pdf-upload-arrow"
                       src={uploadArrow}
                       alt="upload-icon"
                     />
                   </div>
                 )}
-                <p className="title">
+                <p className="pdf-title">
                   {dragging
                     ? i18next.t("component:label.pdfController.dragging")
                     : title}
                 </p>
               </div>
-              <div className="content">
+              <div className="pdf-content">
                 <Button onClick={openFileReader}>{buttonText}</Button>
-                <p className="message">
+                <p className="pdf-message">
                   {i18next.t("component:label.pdfController.instruction")}
                 </p>
               </div>
               {loading && (
-                <div className="loading-container">
-                  <div className="loading-bar"></div>
+                <div className="pdf-loading-container">
+                  <div className="pdf-loading-bar"></div>
                 </div>
               )}
             </div>
-            {hasError() && <p className="error-message">{errorMessage}</p>}
+            {hasError() && <p className="pdf-error-message">{errorMessage}</p>}
           </>
         )}
         <input
           type="file"
           ref={fileRef}
-          className="hidden"
+          className="pdf-hidden"
           accept=".pdf"
           onChange={onFileChange}
         />

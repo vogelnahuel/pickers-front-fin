@@ -11,11 +11,9 @@ import bici from "assets/admin/PendingUserAdminPicker/bici.svg";
 import { Field, Form } from "react-final-form";
 import useValidationSchema from "hooks/useValidationSchema";
 import { FormSpy } from "react-final-form";
-import moment from "moment";
 import NotificationModal from "component/modal/NotificationModal";
 import ExportAction from "../actions/ExportAction";
 import { DetailPickerTypeProps } from "./types";
-import { DATE_FORMATS } from "utils/constants";
 import i18next from "i18next";
 import ExpandableFile from "component/admin/ExpandableFile/ExpandableFile";
 import relojAzul from "assets/admin/PendingUser/relojAzul.svg";
@@ -28,6 +26,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
   actualPage,
   isFetching,
   pendingUserAdminPicker,
+  initialValues,
   getPendingUserPickerExport,
   setDirty,
   active,
@@ -38,7 +37,6 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
   postPendingUserDocumentsEdit,
   postEditPickerRequest,
   validationSchema,
-  formatDate,
   wrongFiles,
   showNotification,
   loadedFiles,
@@ -65,68 +63,29 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
         <div className="pending-container">
           <Form
             onSubmit={(values) =>
-              active
-                ? postEditPickerRequest(values, goBack)
-                : aproveSubmit(values, goBack)
+              !active
+                ? aproveSubmit(values, goBack)
+                : wrongFiles 
+                ? showNotification({
+                    level: "warning",
+                    title: i18next.t(
+                      "global:title.modal.withoutSaving"
+                    ),
+                    body: i18next.t(
+                      "global:label.modal.withoutSaving"
+                    ),
+                    onClickLabel: i18next.t(
+                      "global:label.button.checkErrors"
+                    ),
+                    onCloseLabel: i18next.t(
+                      "global:label.button.continue"
+                    ),
+                    onClose: () =>  postEditPickerRequest(values, goBack),
+                    onClick: undefined
+                  })
+                : postEditPickerRequest(values, goBack)
             }
-            initialValues={
-              pendingUserAdminPicker.id
-                ? {
-                    ...pendingUserAdminPicker,
-                    personalData: {
-                      ...pendingUserAdminPicker?.personalData,
-                      dateOfBirth:
-                        pendingUserAdminPicker?.personalData?.dateOfBirth &&
-                        pendingUserAdminPicker?.personalData?.dateOfBirth.includes(
-                          "-"
-                        )
-                          ? moment(
-                              pendingUserAdminPicker?.personalData?.dateOfBirth,
-                              DATE_FORMATS.shortISODate
-                            ).format(DATE_FORMATS.shortDate)
-                          : pendingUserAdminPicker?.personalData?.dateOfBirth,
-                    },
-                    accountingData: {
-                      ...pendingUserAdminPicker?.accountingData,
-                      fiscalNumber:
-                        pendingUserAdminPicker?.accountingData?.fiscalNumber?.includes(
-                          "-"
-                        )
-                          ? pendingUserAdminPicker?.accountingData?.fiscalNumber
-                          : pendingUserAdminPicker?.accountingData?.fiscalNumber?.slice(
-                              0,
-                              2
-                            ) +
-                            " - " +
-                            pendingUserAdminPicker?.accountingData?.fiscalNumber?.slice(
-                              2,
-                              10
-                            ) +
-                            " - " +
-                            pendingUserAdminPicker?.accountingData?.fiscalNumber?.slice(
-                              10,
-                              11
-                            ),
-                    },
-                    vehicle: {
-                      ...pendingUserAdminPicker.vehicle,
-
-                      expirationDatePolicyVehicle: formatDate(
-                        pendingUserAdminPicker?.vehicle
-                          ?.expirationDatePolicyVehicle
-                      ),
-                      expirationDateIdentificationVehicle: formatDate(
-                        pendingUserAdminPicker?.vehicle
-                          ?.expirationDateIdentificationVehicle
-                      ),
-                      expirationDateDriverLicense: formatDate(
-                        pendingUserAdminPicker?.vehicle
-                          ?.expirationDateDriverLicense
-                      ),
-                    },
-                  }
-                : pendingUserAdminPicker
-            }
+            initialValues={initialValues}
             validate={useValidationSchema(validationSchema)}
           >
             {({
@@ -188,7 +147,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                       setDirty(pro.dirty);
                     }}
                   />
-                  <div className="container-detailPicker-fluid form-part-1-admin-pickers">
+                  <div id="personal-data-card" className="container-detailPicker-fluid form-part-1-admin-pickers">
                     <div className="container-detailPicker-row">
                       <div className="container-detailPicker-col-sm-6  ">
                         <Field
@@ -304,7 +263,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                   <h3 className="subTitle-pending-data">
                     {i18next.t("detailPicker:label.subtitle.account")}
                   </h3>
-                  <div className="form-part-1-admin-pickers">
+                  <div id="accounting-data-card" className="form-part-1-admin-pickers">
                     <div className="container-detailPicker-row">
                       <div className="container-detailPicker-col-sm-6  ">
                         <Field
@@ -363,7 +322,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                       <h3 className="subTitle-pending-data">
                         {i18next.t("detailPicker:label.subtitle.insurance")}
                       </h3>
-                      <div className="form-part-1-admin-pickers">
+                      <div id="vehicle-data-card" className="form-part-1-admin-pickers">
                         <div className="container-detailPicker-row">
                           {initialValues.vehicle &&
                             initialValues.vehicle.type === "motorcycle" && (
@@ -493,13 +452,8 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                                   onCloseLabel: i18next.t(
                                     "global:label.button.continue"
                                   ),
-                                  onClose: goBack,
-                                  onClick: () =>
-                                    window.scroll({
-                                      top: window.innerHeight,
-                                      left: 0,
-                                      behavior: "smooth",
-                                    }),
+                                  onClose: () => postPendingUserDocumentsEdit(values),
+                                  onClick: undefined
                                 })
                               : postPendingUserDocumentsEdit(values)
                           }

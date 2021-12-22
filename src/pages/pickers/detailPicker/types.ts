@@ -21,6 +21,7 @@ export type DetailPickerContainerTypeProps = {
 
 export type DetailPickerTypeProps = {
   isFetching: boolean;
+  initialValues: PickerType;
   pendingUserAdminPicker: PickerType;
   getPendingUserPickerExport: Function;
   actualPage: string;
