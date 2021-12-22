@@ -66,7 +66,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
 
       <Form
         onSubmit={(value) => value}
-        
+
         initialValues={castDatePicker(invoiceDetail)}
         mutators={{
           setValue: ([field, value], state, { changeValue }) => {
@@ -76,16 +76,16 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
         }}
         validate={useValidationSchema(validationSchema)}
       >
-        {({ invalid, handleSubmit, form, values,dirty }) => (
+        {({ invalid, handleSubmit, form, values, dirty }) => (
           <form className="form-filter-transaction" onSubmit={handleSubmit}>
             <TabControler
               tabs={tabs}
-              changePage={() => { changePage("PRELI",dirty)}}
+              changePage={() => { changePage("PRELI", dirty) }}
               actualPage={"INVOICE"}
             />
             <div className="header-container">
 
-            <Back onClick={() =>handleClickBack(dirty)} />
+              <Back onClick={() => handleClickBack(dirty)} />
 
             </div>
             <div className="mainContainerFlex">
@@ -212,41 +212,34 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                     ref={pdfControllerRef}
                   >
                     <PdfViewer src={invoiceDetail.invoiceFile?.url || ""}>
-                      <Tooltip
+                      {/* <Tooltip
                         message={i18next.t("component:label.tooltip.delete")}
                         position={ToolTipPosition.top}
-                      >
+                      > */}
                         <button
                           className="icon-container-primary"
+                          type="button"
                           onClick={deleteFile}
                         >
                           <DeleteIcon />
                         </button>
-                      </Tooltip>
-                      <Tooltip
-                        message={i18next.t("component:label.tooltip.replace")}
-                        position={ToolTipPosition.top}
-                      >
+                      {/* </Tooltip> */}
                         <button
                           className="icon-container-primary"
+                          type="button"
                           onClick={() =>
                             pdfControllerRef?.current?.triggerOnChange()
                           }
                         >
                           <ReplaceIcon />
                         </button>
-                      </Tooltip>
-                      <Tooltip
-                        message={i18next.t("component:label.tooltip.download")}
-                        position={ToolTipPosition.top}
-                      >
                         <button
+                          type="button"
                           className="icon-container-secondary"
                           onClick={downloadFile}
                         >
                           <DownloadIcon />
                         </button>
-                      </Tooltip>
                     </PdfViewer>
                   </PdfController>
                 </div>

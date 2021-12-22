@@ -121,6 +121,7 @@ const InvoiceContainer = (
   }
 
   const downloadFile = () => {
+
     if (!props.invoiceDetail?.invoiceFile?.url) return;
 
     //const linkSource = `data:application/pdf;base64,${pdf}`;
