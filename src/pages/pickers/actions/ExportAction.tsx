@@ -15,6 +15,9 @@ const ExportAction = ({
   showNotification,
 }: ExportActionPropsType) => {
   const handleClick = () => {
+    const html = document.documentElement;
+    const height = Math.max(html.clientHeight, html.scrollHeight);
+  
     if (isDirty && showNotification) {
       showNotification({
         level: "warning",
@@ -25,7 +28,7 @@ const ExportAction = ({
         onClose: () => getPendingUserPickerExport(),
         onClick: () =>
           window.scroll({
-            top: window.innerHeight,
+            top: height,
             left: 0,
             behavior: "smooth",
           }),

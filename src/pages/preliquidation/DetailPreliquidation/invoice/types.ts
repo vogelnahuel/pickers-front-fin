@@ -4,6 +4,7 @@ import {
   InvoiceTypes,
 } from "sagas/types/preliquidation";
 import { TypeOfShape } from "yup/lib/object";
+import { NotificationStateType } from "reducers/types/notification";
 
 export type detailPreliquidationInvoiceContainerPropsType = {
   isFetching: boolean;
@@ -21,6 +22,7 @@ export type detailPreliquidationInvoiceContainerPropsType = {
   deleteInvoiceFile: (id: number) => void;
   setInvoiceFileStatus: (params: InvoiceFileStatus) => void;
   getInvoiceDetailTypes: () => void;
+  showNotification: (notification: NotificationStateType) => void;
 };
 
 export type detailPreliquidationInvoicePropsType = {
@@ -40,6 +42,8 @@ export type detailPreliquidationInvoicePropsType = {
     detailInvoice: DetailInvoiceType
   ) => detailPreliquidationDatePicker;
   fileHandler: (file: File) => void;
+  handleClickBack:any;
+  changePage:any;
 };
 
 export type detailPreliquidationDatePicker = {

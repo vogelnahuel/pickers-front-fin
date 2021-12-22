@@ -7,12 +7,13 @@ import {
   actions as preliActions,
   preliquidationSelector,
 } from "reducers/preliquidation";
+import { actions as notificationActions } from "reducers/notification";
 import {
   detailPreliquidationDatePicker,
   detailPreliquidationInvoiceContainerPropsType,
   invoiceValidationSchema,
 } from "./types";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { UploadInvoiceFileMiddlewareType } from "sagas/types/preliquidation";
 import * as yup from "yup";
 import i18next from "i18next";
@@ -21,6 +22,8 @@ import { MAX_FILE_SIZE, VALIDATION_REGEX } from "utils/constants";
 import { ObjectShape, TypeOfShape } from "yup/lib/object";
 import { toBase64 } from "utils/toBase64";
 import { InvoiceFileStatus, DetailInvoiceType } from "reducers/types/preliquidation";
+import { NotificationStateType } from "reducers/types/notification";
+
 
 const InvoiceContainer = (
   props: detailPreliquidationInvoiceContainerPropsType
@@ -51,16 +54,75 @@ const InvoiceContainer = (
       try {
         const base64 = await toBase64(file) as string;
         props.uploadInvoiceFile({ id: props.detailPreliquidations.id, content: base64 });
-      } catch(err){
+      } catch (err) {
         console.log("Base64 error: ", err);
       }
     }
   };
+  const history = useHistory();
+  //aahistory.goBack()
+  const handleClickBack = (dirty: boolean) => {
+    const onClose = () => history.goBack()
+    if (!dirty) { onClose() }
+    else { showDirtyNotification(onClose) }
+  };
 
-  const deleteFile = () =>  props.deleteInvoiceFile(props.detailPreliquidations.id);
+  const showDirtyNotification = (onClose: Function) =>
+    props.showNotification({
+      level: "warning",
+      title: i18next.t("pickers:title.modal.saveChanges"),
+      body: i18next.t("pickers:label.modal.saveChanges"),
+      onClickLabel: "pickers:button.modal.goToSave",
+      onCloseLabel: "pickers:button.modal.notSave",
+      onClose: onClose,
+      onClick: () =>
+        window.scroll({
+          top: window.innerHeight,
+          left: 0,
+          behavior: "smooth",
+        }),
+    });
+
+
+  const showWrongFilesNotification = (onClose: Function) =>
+    props.showNotification({
+      level: "warning",
+      title: i18next.t("global:title.modal.withoutSaving"),
+      body: i18next.t("global:label.modal.withoutSaving"),
+      onClickLabel: i18next.t("global:label.button.checkErrors"),
+      onCloseLabel: i18next.t("global:label.button.continue"),
+      onClose: onClose,
+      onClick: undefined,
+    });
+
+  const changePage = (page: string, isDirty: boolean) => {
+    const onClose = () => {
+      props.setActualPage(page);
+      
+        history.replace("/preliquidation");
+      
+    }
+    if (props.invoiceFileStatus.error) { showWrongFilesNotification(onClose) }
+    else onClose();
+    if (isDirty) showDirtyNotification(onClose);
+    else onClose();
+  };
+
+  const deleteFile = () => {
+    props.showNotification({
+      level: "warning",
+      title: i18next.t("pickers:title.modal.saveChanges"),
+      body: i18next.t("pickers:label.modal.saveChanges"),
+      onClickLabel: "pickers:button.modal.goToSave",
+      onCloseLabel: "pickers:button.modal.notSave",
+      onClose: undefined,
+      onClick: () => props.deleteInvoiceFile(props.detailPreliquidations.id)
+    });
+  }
 
   const downloadFile = () => {
-    if(!props.invoiceDetail?.invoiceFile?.url) return;
+
+    if (!props.invoiceDetail?.invoiceFile?.url) return;
 
     //const linkSource = `data:application/pdf;base64,${pdf}`;
     const downloadLink = document.createElement("a");
@@ -71,12 +133,12 @@ const InvoiceContainer = (
   }
 
   const validarFechas = (value: TypeOfShape<ObjectShape>) => {
-  
+
     if (!value) return true;
 
     const valueProps = moment(value.from, "DD/MM/YYYY");
     const today = moment();
-    const startDate = moment(props.detailPreliquidations?.genereted_at,"DD/MM/YYYY");
+    const startDate = moment(props.detailPreliquidations?.genereted_at, "DD/MM/YYYY");
 
     const range = valueProps.isBetween(startDate, today);
 
@@ -106,7 +168,7 @@ const InvoiceContainer = (
         (value) => validarFechas(value)
       ),
     invoiceType: yup.object({
-      name:yup.string().required("global:error.input.required"),
+      name: yup.string().required("global:error.input.required"),
     }),
     salePoint: yup
       .string()
@@ -144,6 +206,8 @@ const InvoiceContainer = (
       downloadFile={downloadFile}
       validationSchema={validationSchema}
       castDatePicker={castDatePicker}
+      handleClickBack={handleClickBack}
+      changePage={changePage}
 
     />
   );
@@ -184,6 +248,9 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   },
   setDirty: (dirty: boolean) => {
     dispatch(preliActions.setDirty(dirty));
+  },
+  showNotification: (content: NotificationStateType) => {
+    dispatch(notificationActions.showNotification(content));
   },
   setInvoiceFileStatus: (params: InvoiceFileStatus) => {
     dispatch(preliActions.setInvoiceFileStatus(params));

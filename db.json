@@ -14,12 +14,11 @@
   "detailInvoiceResult": [
     {
       "result": {
-        "emisionDate": "13/12/2021",
         "invoiceType": {
-          "name": "A",
+          "name": "",
           "tag": "string"
         },
-        "invoiceNumber": "12312312",
+        "invoiceNumber": "",
         "salePoint": "8765",
         "caeNumber": "12345678901234"
       },
@@ -97,7 +96,7 @@
           "total": 123.123
         },
         "invoiceFile": {
-          "upload": true,
+          "upload": false,
           "url": null
         },
         "presettlement": {

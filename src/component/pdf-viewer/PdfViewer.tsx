@@ -1,13 +1,10 @@
-// Import the main component
-import { Viewer, Worker } from "@react-pdf-viewer/core"; // install this library
-// Import the styles
+import { Viewer, Worker } from "@react-pdf-viewer/core";
 import "@react-pdf-viewer/core/lib/styles/index.css";
-// Plugins
 import {
   defaultLayoutPlugin,
   ToolbarProps,
   ToolbarSlot,
-} from "@react-pdf-viewer/default-layout"; // install this library
+} from "@react-pdf-viewer/default-layout";
 import "@react-pdf-viewer/default-layout/lib/styles/index.css";
 import { RenderCurrentPageLabelProps } from "@react-pdf-viewer/page-navigation";
 import { toolbarPlugin } from "@react-pdf-viewer/toolbar";
@@ -16,10 +13,7 @@ import nextPage from "../../assets/preli/nextPage.svg";
 import prePage from "../../assets/preli/prePage.svg";
 import zoomIn from "../../assets/preli/zoomIn.svg";
 import zoomOut from "../../assets/preli/zoomOut.svg";
-// import pdfFile from "./pdftest.pdf";
 import "./PdfViewer.scss";
-
-// Import styles
 
 export const PdfViewer = (props: { src: string; children: any }) => {
   const renderToolbar = (Toolbar: (props: ToolbarProps) => ReactElement) => (
@@ -34,31 +28,32 @@ export const PdfViewer = (props: { src: string; children: any }) => {
         } = slots;
         return (
           <div className="toolbar-container">
-            <div>
-              {/* <div className="zoom-container"> */}
-              <ZoomOut>
-                {(props) => (
-                  <img
-                    src={zoomOut}
-                    className="zoom-button"
-                    onClick={props.onClick}
-                    alt=""
-                  ></img>
-                )}
-              </ZoomOut>
-            </div>
-            <div>
-              <ZoomIn>
-                {(props) => (
-                  <img
-                    src={zoomIn}
-                    className="zoom-button"
-                    onClick={props.onClick}
-                    alt=""
-                  ></img>
-                )}
-              </ZoomIn>
-              {/* </div> */}
+            <div className="zoom-container" >
+              <div>
+                <ZoomOut>
+                  {(props) => (
+                    <img
+                      src={zoomOut}
+                      className="zoom-button"
+                      onClick={props.onClick}
+                      alt=""
+                    ></img>
+                  )}
+                </ZoomOut>
+              </div>
+              <div>
+                <ZoomIn>
+                  {(props) => (
+                    <img
+                      src={zoomIn}
+                      className="zoom-button"
+                      onClick={props.onClick}
+                      alt=""
+                    ></img>
+                  )}
+                </ZoomIn>
+
+              </div>
             </div>
             <div className="page-navigator-container">
               <div className="page-navigator-button-container">
@@ -77,9 +72,8 @@ export const PdfViewer = (props: { src: string; children: any }) => {
               <div className="current-page-label">
                 <CurrentPageLabel>
                   {(props: RenderCurrentPageLabelProps) => (
-                    <span>{`${props.currentPage + 1} / ${
-                      props.numberOfPages
-                    }`}</span>
+                    <span>{`${props.currentPage + 1} / ${props.numberOfPages
+                      }`}</span>
                   )}
                 </CurrentPageLabel>
               </div>
@@ -97,7 +91,8 @@ export const PdfViewer = (props: { src: string; children: any }) => {
                 </GoToNextPage>
               </div>
             </div>
-            <div className="child-container">
+            <div className="buttons-container"
+            >
               {props.children.map((child: ReactElement, index: number) => {
                 return (
                   <div key={index} className="child-button">

@@ -19,7 +19,12 @@ import useValidationSchema from "hooks/useValidationSchema";
 import { InvoiceTypes } from "sagas/types/preliquidation";
 import PdfController from "component/pdfController/PdfController";
 import { statusList } from "utils/constants";
-
+import TabControler from "component/admin/TabControler/TabControler";
+import calckBlack from "./../../../../assets/preli/calcBlack.svg";
+import calckBlue from "./../../../../assets/preli/calcBlue.svg";
+import invoiceBlack from "./../../../../assets/preli/invoiceBlack.svg";
+import invoiceBlue from "./../../../../assets/preli/invoiceBlue.svg";
+import Back from "component/back/Back";
 export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
   isFetching,
   invoiceFileStatus,
@@ -34,9 +39,23 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
   getInvoiceDetailDelete,
   fileHandler,
   deleteFile,
-  downloadFile
-}) => {
-  const verifyStateType = () =>statusList.includes(detailPreliquidations.status.tag);
+  downloadFile,
+  handleClickBack,
+  changePage,
+}): JSX.Element => {
+  const verifyStateType = () => statusList.includes(detailPreliquidations.status.tag);
+  const tabs = [
+    {
+      title: "Preliquidacion",
+      id: "PRELI",
+      icons: { active: calckBlue, disable: calckBlack },
+    },
+    {
+      title: "Factura",
+      id: "INVOICE",
+      icons: { active: invoiceBlue, disable: invoiceBlack },
+    },
+  ];
 
   const pdfControllerRef = useRef<any>();
   return (
@@ -47,6 +66,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
 
       <Form
         onSubmit={(value) => value}
+
         initialValues={castDatePicker(invoiceDetail)}
         mutators={{
           setValue: ([field, value], state, { changeValue }) => {
@@ -56,8 +76,26 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
         }}
         validate={useValidationSchema(validationSchema)}
       >
-        {({ invalid, handleSubmit, form, values }) => (
+        {({ invalid, handleSubmit, form, values, dirty }) => (
           <form className="form-filter-transaction" onSubmit={handleSubmit}>
+            <TabControler
+              tabs={tabs}
+              changePage={() => { changePage("PRELI", dirty) }}
+              actualPage={"INVOICE"}
+            />
+            <div className="header-container">
+
+              <Back onClick={() => handleClickBack(dirty)} />
+
+            </div>
+            <div className="mainContainerFlex">
+              <h2 className="detail-preliquidation-h2">
+                {i18next.t(
+                  "detailPreliquidation:label.subtitle.preliquidationNumber"
+                )}
+              </h2>
+              <p className="detail-preliquidation-number">{2201100002}</p>
+            </div>
             <FormSpy
               subscription={{
                 dirty: true,
@@ -69,7 +107,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
             <div className="container-detail-preliquidation form-detail-preliquidation">
               <div className="container-detail-preliquidation-row">
                 <div className="container-detail-preliquidation-col-sm-1 form-part-1-admin-pickers">
-                  
+
                   <Field
                     type="text"
                     name="emisionDate"
@@ -83,14 +121,14 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                     {(props: any) => {
                       return (
                         <div>
-                       
+
                           <label
                             className={
-                                props.disabled
+                              props.disabled
                                 ? "label-Admin-Pickers readonly"
                                 : props.meta.error
-                                ? "label-Admin-Pickers color-red"
-                                : "label-Admin-Pickers"
+                                  ? "label-Admin-Pickers color-red"
+                                  : "label-Admin-Pickers"
                             }
                           >
                             {i18next.t("invoice:label.label.dateOfIssue")}
@@ -160,8 +198,8 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                     maxLength={14}
                   />
                 </div>
-               
-                    
+
+
                 <div className="container-detail-preliquidation-col-sm-2 detail-preliquidation-adjust">
                   <PdfController
                     title="Factura"
@@ -180,6 +218,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                       >
                         <button
                           className="icon-container-primary"
+                          type="button"
                           onClick={deleteFile}
                         >
                           <DeleteIcon />
@@ -191,6 +230,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                       >
                         <button
                           className="icon-container-primary"
+                          type="button"
                           onClick={() =>
                             pdfControllerRef?.current?.triggerOnChange()
                           }
@@ -203,6 +243,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                         position={ToolTipPosition.top}
                       >
                         <button
+                          type="button"
                           className="icon-container-secondary"
                           onClick={downloadFile}
                         >
