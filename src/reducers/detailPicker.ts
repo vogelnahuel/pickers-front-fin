@@ -13,7 +13,7 @@ import {
 import { RootState } from "store";
 import { endsWithAny } from "utils/endsWithAny";
 import { PickerFileRequestType } from "pages/pickers/detailPicker/types";
-import { ExpandableFileSaveParamsType } from "component/admin/ExpandableFile/types";
+import { DeleteFileType, ExpandableFileSaveParamsType } from "component/admin/ExpandableFile/types";
 import { ActionErrorPickersType } from "./types/pickers";
 
 const wrongFilesInitialValue = {
@@ -193,7 +193,7 @@ export const detailPickerSlice = createSlice({
       const {
         payload: { tag },
       } = action;
-      state.serverError = state.serverError.filter((t) => t !== tag);
+      state.serverError = state.serverError.filter((t) => t !== tag);      
     },
     getPickerFileSaveError: (
       state: DetailPickerStateType,
@@ -204,7 +204,7 @@ export const detailPickerSlice = createSlice({
     },
     getPickerFileDeleteRequest: (
       state: DetailPickerStateType, //estado actual del  state
-      action: any // params Payload<tipo>
+      action: PayloadAction<DeleteFileType> // params Payload<tipo>
     ) => {},
     getPickerFileDeleteSuccess: (
       state: DetailPickerStateType,

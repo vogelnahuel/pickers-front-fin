@@ -30,6 +30,13 @@ import { pickersSelector } from "reducers/pickers";
 import { PickerWrongFilePayloadType } from "reducers/types/detailPicker";
 import Confirm from "../Confirm/Confirm";
 import classNames from "classnames";
+import { ReactComponent as ErrorIcon } from "../../../assets/admin/folder-error.svg";
+import { ReactComponent as CompleteIcon } from "../../../assets/admin/folder-complete.svg";
+import { ReactComponent as AddIcon } from "../../../assets/admin/folder-add.svg";
+
+import { ReactComponent as DeleteIcon } from "../../../assets/admin/file-delete.svg";
+import { ReactComponent as ReplaceIcon } from "../../../assets/admin/file-replace.svg";
+import { ReactComponent as LoadIcon } from "../../../assets/admin/file-load.svg";
 
 const tagInitialState: TagsErrorType = {
   "dni-front": false,
@@ -87,7 +94,7 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
         ...viewConfirm,
         [tag]: {
           ...viewConfirm[tag],
-          delete: !viewConfirm[tag].delete
+          delete: !viewConfirm[tag].delete,
         },
       });
     } else {
@@ -148,7 +155,7 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
     const sizeTag = Object.values(error.sizeTag).some((v) => v);
     const loadTag = Object.values(error.loadTag).some((v) => v);
     const formatTag = Object.values(error.formatTag).some((v) => v);
-    const serverTag = files.content.find(c => serverError.includes(c.tag)); 
+    const serverTag = files.content.find((c) => serverError.includes(c.tag));
     return sizeTag || loadTag || formatTag || serverTag;
   };
 
@@ -214,26 +221,34 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
         })}
       >
         <Collapsible>
-          <div className="header" onClick={() => setOpen(!open)}>
-            <div
-              className={`folder-icon${
-                hasCardError()
-                  ? "-error"
-                  : files?.status === "EMPTY" || files?.status === "PENDING"
-                  ? "-add"
-                  : "-complete"
-              }`}
-            />
-            <p
-              className={
-                !hasCardError()
-                  ? "paragraph-expandable-file"
-                  : "color-error paragraph-expandable-file"
-              }
-            >
-              {i18next.t("expandableFile:label.card.file")}
-            </p>
+          <div onClick={() => setOpen((prev) => !prev)}>
+            <div className="header">
+              {hasCardError() ? (
+                <div className="error-icon display-flex ">
+                  <ErrorIcon />
+                </div>
+              ) : files?.status === "EMPTY" || files?.status === "PENDING" ? (
+                <div className="add-icon display-flex ">
+                  <AddIcon />
+                </div>
+              ) : (
+                <div className="complete-icon display-flex ">
+                  <CompleteIcon />
+                </div>
+              )}
+
+              <p
+                className={
+                  !hasCardError()
+                    ? "paragraph-expandable-file"
+                    : "paragraph-expandable-file color-error"
+                }
+              >
+                {i18next.t("expandableFile:label.card.file")}
+              </p>
+            </div>
           </div>
+
           <div className="container-detailPicker-row ">
             {files?.content.map((element: DataContentType) => (
               <Fragment key={element.tag}>
@@ -256,26 +271,66 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
                   </p>
                   <div className="container-img-picker">
                     <>
-                      <Tooltip
-                        position={ToolTipPosition.bottom}
-                        message={i18next.t(
-                          `expandableFile:label.tooltip.${
-                            element.isUpload ? "replace" : "load"
-                          }`
-                        )}
-                      >
-                        <div
-                          id={`picker-replace-icon-${element.tag}`}
-                          className={
-                            element.isUpload
-                              ? "replace-icon-svg"
-                              : "load-icon-svg"
-                          }
-                          onClick={(e) =>
-                            uploadFile(element.isUpload, element.tag)
-                          }
-                        />
-                      </Tooltip>
+                      {element.isUpload ? (
+                        <>
+                          <Tooltip
+                            position={ToolTipPosition.bottom}
+                            message={i18next.t(
+                              "expandableFile:label.tooltip.replace"
+                            )}
+                          >
+                            <div
+                              className="container-icon replace"
+                              onClick={(e) =>
+                                uploadFile(element.isUpload, element.tag)
+                              }
+                            >
+                              <ReplaceIcon />
+                            </div>
+                          </Tooltip>
+                          {actualPage === "PENDING" && (
+                            <Tooltip
+                              position={ToolTipPosition.bottom}
+                              message={i18next.t(
+                                "expandableFile:label.tooltip.delete"
+                              )}
+                            >
+                              <div
+                                className="container-icon delete"
+                                onClick={() => {
+                                  setViewConfirm({
+                                    ...viewConfirm,
+                                    [element.tag]: {
+                                      delete: !viewConfirm[element.tag].delete,
+                                      replace: false,
+                                    },
+                                  });
+                                }}
+                              >
+                                <DeleteIcon />
+                              </div>
+                            </Tooltip>
+                          )}
+                        </>
+                      ) : actualPage === "PENDING" ? (
+                        <Tooltip
+                          position={ToolTipPosition.bottom}
+                          message={i18next.t(
+                            "expandableFile:label.tooltip.load"
+                          )}
+                        >
+                          <div
+                            className="container-icon load"
+                            onClick={() =>
+                              uploadFile(element.isUpload, element.tag)
+                            }
+                          >
+                            <LoadIcon />
+                          </div>
+                        </Tooltip>
+                      ) : (
+                        <></>
+                      )}
 
                       <input
                         id={`file-${element.tag}`}
@@ -287,28 +342,6 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
                         }
                       />
                     </>
-                    {element.isUpload && actualPage === "PENDING" && (
-                      <Tooltip
-                        position={ToolTipPosition.bottom}
-                        message={i18next.t(
-                          "expandableFile:label.tooltip.delete"
-                        )}
-                      >
-                        <div
-                          id={`"picker-delete-icon-${element.tag}"`}
-                          className="delete-icon-svg"
-                          onClick={() => {
-                            setViewConfirm({
-                              ...viewConfirm,
-                              [element.tag]: {
-                                delete: !viewConfirm[element.tag].delete,
-                                replace: false,
-                              },
-                            });
-                          }}
-                        />
-                      </Tooltip>
-                    )}
                   </div>
                 </div>
                 <div className="container-detailPicker-col-sm-12 display-flex">

@@ -20,7 +20,6 @@
   display: none;
 }
 
-
 .zoom-button {
   cursor: pointer;
   height: 25px;
@@ -28,10 +27,16 @@
   margin-right: 17px;
 }
 .zoom-container {
-  //margin-left: 18.5px;
   display: flex;
+  width: 40%;
+  overflow: hidden;
 }
 
+.buttons-container{
+  display: flex;
+  width: 40%;
+  overflow:hidden;
+}
 .child-button {
   margin-right: 16px;
 }

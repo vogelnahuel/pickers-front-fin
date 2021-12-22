@@ -212,10 +212,10 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                     ref={pdfControllerRef}
                   >
                     <PdfViewer src={invoiceDetail.invoiceFile?.url || ""}>
-                      {/* <Tooltip
+                      <Tooltip
                         message={i18next.t("component:label.tooltip.delete")}
                         position={ToolTipPosition.top}
-                      > */}
+                      >
                         <button
                           className="icon-container-primary"
                           type="button"
@@ -223,7 +223,11 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                         >
                           <DeleteIcon />
                         </button>
-                      {/* </Tooltip> */}
+                      </Tooltip>
+                      <Tooltip
+                        message={i18next.t("component:label.tooltip.replace")}
+                        position={ToolTipPosition.top}
+                      >
                         <button
                           className="icon-container-primary"
                           type="button"
@@ -233,6 +237,11 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                         >
                           <ReplaceIcon />
                         </button>
+                      </Tooltip>
+                      <Tooltip
+                        message={i18next.t("component:label.tooltip.download")}
+                        position={ToolTipPosition.top}
+                      >
                         <button
                           type="button"
                           className="icon-container-secondary"
@@ -240,6 +249,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                         >
                           <DownloadIcon />
                         </button>
+                      </Tooltip>
                     </PdfViewer>
                   </PdfController>
                 </div>

@@ -24,6 +24,8 @@ export const Nav = ({ isDirty, pickerWrongFiles, isInvoiceDirty, invoiceFileErro
     const dirty = isDirty || isInvoiceDirty;
     const error = pickerWrongFiles || invoiceFileError;
     if (dirty && showNotification) {
+      const html = document.documentElement;
+      const height = Math.max(html.clientHeight, html.scrollHeight);
       showNotification({
         level: "warning",
         title: i18next.t("pickers:title.modal.saveChanges"),
@@ -33,7 +35,7 @@ export const Nav = ({ isDirty, pickerWrongFiles, isInvoiceDirty, invoiceFileErro
         onClose: onClose,
         onClick: () =>
           window.scroll({
-            top: window.innerHeight,
+            top: height,
             left: 0,
             behavior: "smooth",
           }),

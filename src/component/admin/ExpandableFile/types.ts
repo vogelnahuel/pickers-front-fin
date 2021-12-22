@@ -14,8 +14,8 @@ export type ExpandableFilePropsType = {
 };
 
 export type DeleteFileType = {
-  id:number;
-  tag:string
+  id: number;
+  tag: keyof DetailPickerTagFileType
 }
 
 export type TagConfimationType = {
