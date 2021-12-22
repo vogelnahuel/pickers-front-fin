@@ -35,6 +35,7 @@ export type detailPreliquidationInvoicePropsType = {
   fileError: string;
   fileUrl: string;
   invoiceTypes: InvoiceTypes[];
+  presettementId:string | undefined
 };
 
 export type detailPreliquidationDatePicker = {
@@ -54,7 +55,7 @@ export type detailPreliquidationDatePicker = {
     upload: true | false;
     url: string | null;
   };
-
+  presettementId:string | undefined
 };
 
 export type invoiceValidationSchema = {

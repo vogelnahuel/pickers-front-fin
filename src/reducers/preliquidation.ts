@@ -40,7 +40,7 @@ export const initialState: PreliquitadionStateType = {
       name: "",
       tag: ""
     },
-    genereted_at: ""
+    generatedAt: ""
   },
   invoiceDetail: {
     id: 0,
@@ -61,8 +61,10 @@ export const initialState: PreliquitadionStateType = {
     invoiceFile: {
       upload: false,
       url: null
-    }
+    },
+    presettementId: undefined
   }
+
 };
 
 const SLICE_NAME = "preliquidation";

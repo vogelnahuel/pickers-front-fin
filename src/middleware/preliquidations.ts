@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from "axios";
+import * as API from "middleware/api";
 //import * as API from "middleware/api";
 import { DetailPreliquidationBodyParamsType, DetailPreliquidationsContentResponseType, DetailPreliquidationsInvoiceApiResponseType, DetailPreliquidationsInvoiceTypesApiResponseType, PreliquidationsApiResponse } from "sagas/types/preliquidation";
 
@@ -11,22 +12,22 @@ import { DetailPreliquidationBodyParamsType, DetailPreliquidationsContentRespons
 // axios.get("http://localhost:8080/presettlments")
 
 export const getPreliquidations = (params:any): Promise<AxiosResponse<PreliquidationsApiResponse>> =>
-axios.get("http://localhost:8080/presettlments",params)
+API.get("/ms-admin-rest/api/v1.0/presettlements",params)
 
 export const getDetailInvoice = (id:any): Promise<AxiosResponse<DetailPreliquidationsContentResponseType>> =>
-axios.get(`http://localhost:8080/detailInvoice/${id}`)
+API.get(`/ms-admin-rest/api/v1.0/presettlements/${id}/invoice`)
 
-export const putSaveDetailInvoice = (id:number,params:DetailPreliquidationBodyParamsType) : Promise<AxiosResponse<DetailPreliquidationsInvoiceApiResponseType>> =>
-axios.put(`http://localhost:8080/detailInvoiceResult/${id}`,params)
+export const putSaveDetailInvoice = (presettementId:string | undefined,params:DetailPreliquidationBodyParamsType) : Promise<AxiosResponse<DetailPreliquidationsInvoiceApiResponseType>> =>
+API.put(`/ms-admin-rest/api/v1.0/presettlements/${presettementId}/invoice`,params)
 
-export const patchApproveDetailInvoice = (id:number,params:DetailPreliquidationBodyParamsType) : Promise<AxiosResponse<DetailPreliquidationsInvoiceApiResponseType>> =>
-axios.patch(`http://localhost:8080/detailInvoiceResult/${id}`,params)
+export const patchApproveDetailInvoice = (presettementId:string | undefined,params:DetailPreliquidationBodyParamsType) : Promise<AxiosResponse<DetailPreliquidationsInvoiceApiResponseType>> =>
+API.patch(`/ms-admin-rest/api/v1.0/presettlements/${presettementId}/invoice`,params)
 
-export const putDeleteDetailInvoice = (id:number) : Promise<AxiosResponse<DetailPreliquidationsInvoiceApiResponseType>> =>
-axios.put(`http://localhost:8080/detailInvoiceResult/${id}`)
+export const putDeleteDetailInvoice = (presettementId:string | undefined) : Promise<AxiosResponse<DetailPreliquidationsInvoiceApiResponseType>> =>
+API.put(`/ms-admin-rest/api/v1.0/presettlements/${presettementId}/rejected-invoice`)
 
 export const getDetailInvoiceTypes = () : Promise<AxiosResponse<DetailPreliquidationsInvoiceTypesApiResponseType>> =>
-axios.get(`http://localhost:8080/fiscalData`)
+API.get(`/ms-admin-rest/api/v1.0/fiscal-data/invoice-type`)
 
 
 

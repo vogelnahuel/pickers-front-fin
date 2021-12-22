@@ -25,7 +25,7 @@ export type PreliquitadionStateType = {
 };
 export type DetailPreliquidationsType = {
     status: PreliquidationStatus;
-    genereted_at: string;
+    generatedAt: string;
 };
 export type DetailInvoiceType= {
   id: number;
@@ -44,4 +44,5 @@ export type DetailInvoiceType= {
     upload: true | false;
     url: string | null;
   };
+  presettementId:string|undefined
 }

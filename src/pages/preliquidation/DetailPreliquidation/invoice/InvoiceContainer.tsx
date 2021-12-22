@@ -16,7 +16,7 @@ import { useParams } from "react-router-dom";
 import * as yup from "yup";
 import i18next from "i18next";
 import moment from "moment";
-import { MAX_FILE_SIZE, VALIDATION_REGEX } from "utils/constants";
+import { DATE_FORMATS, MAX_FILE_SIZE, VALIDATION_REGEX } from "utils/constants";
 import { ObjectShape, TypeOfShape } from "yup/lib/object";
 import { toBase64 } from "utils/toBase64";
 import { DetailInvoiceType } from "reducers/types/preliquidation";
@@ -27,7 +27,7 @@ const InvoiceContainer = (
   const [fileUrl, setFileUrl] = useState("");
   const [fileError, setFileError] = useState("");
   const params: { id?: string } = useParams();
-
+ 
 
   useEffect(() => {
     props.getInvoiceDetail(params.id);
@@ -69,13 +69,14 @@ const InvoiceContainer = (
     downloadLink.click();
   }
 
+
   const validarFechas = (value: TypeOfShape<ObjectShape>) => {
   
-    if (!value) return true;
+    if (!value ) return true;
 
     const valueProps = moment(value.from, "DD/MM/YYYY");
     const today = moment();
-    const startDate = moment(props.detailPreliquidations?.genereted_at,"DD/MM/YYYY");
+    const startDate = moment(props.detailPreliquidations?.generatedAt);
 
     const range = valueProps.isBetween(startDate, today);
 
@@ -88,9 +89,10 @@ const InvoiceContainer = (
     let castear:
       | detailPreliquidationDatePicker
       | DetailInvoiceType = detailPreliquidations;
+      
     castear = {
       ...castear,
-      emisionDate: { from: detailPreliquidations.emisionDate },
+      emisionDate: { from: detailPreliquidations.emisionDate  ? moment(detailPreliquidations.emisionDate).format(DATE_FORMATS.shortDate) : ""},
     };
     return castear;
   };
@@ -145,6 +147,7 @@ const InvoiceContainer = (
       downloadFile={downloadFile}
       validationSchema={validationSchema}
       castDatePicker={castDatePicker}
+      presettementId={params.id}
 
     />
   );

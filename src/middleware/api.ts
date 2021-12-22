@@ -63,8 +63,11 @@ export const post = (path: any, body: object) => {
   return api.post(path, body);
 };
 
-export const put = (path: any, body: object, query?: object) => {
+export const put = (path: any, body?: object, query?: object) => {
   return api.put(path, body, query);
 };
 
+export const patch = (path: any, body?: object, query?: object) => {
+  return api.patch(path, body, query);
+};
 export default api;

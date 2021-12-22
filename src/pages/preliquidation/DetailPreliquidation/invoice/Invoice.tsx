@@ -36,6 +36,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
   fileUrl,
   invoiceTypes,
   invoiceDetail,
+  presettementId
 }) => {
   const verifyStateType = () =>statusList.includes(detailPreliquidations.status.tag);
 
@@ -84,12 +85,12 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                     {(props: any) => {
                       return (
                         <div>
-                       
+
                           <label
                             className={
                                 props.disabled
                                 ? "label-Admin-Pickers readonly"
-                                : props.meta.error
+                                : props.meta.error && props.meta.touched
                                 ? "label-Admin-Pickers color-red"
                                 : "label-Admin-Pickers"
                             }
@@ -269,7 +270,9 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                 type="button"
                 className="button-submit-subtype"
                 onClick={() =>
-                  getInvoiceDetailSave(values as detailPreliquidationDatePicker)
+                  getInvoiceDetailSave({...values as detailPreliquidationDatePicker,
+                    presettementId
+                  })
                 }
               >
                 {i18next.t("invoice:label.buttons.save")}
@@ -280,7 +283,9 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                   className="detail-preliquidation-invoice-p"
                   onClick={() =>
                     getInvoiceDetailDelete(
-                      values as detailPreliquidationDatePicker
+                      {...values as detailPreliquidationDatePicker,
+                        presettementId
+                      }
                     )
                   }
                 >
@@ -293,7 +298,9 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                   className="button-submit-active"
                   onClick={() =>
                     getInvoiceDetailApprove(
-                      values as detailPreliquidationDatePicker
+                      {...values as detailPreliquidationDatePicker,
+                        presettementId
+                      }
                     )
                   }
                 >
