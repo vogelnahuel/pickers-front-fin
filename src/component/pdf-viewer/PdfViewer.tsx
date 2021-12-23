@@ -14,8 +14,9 @@ import prePage from "../../assets/preli/prePage.svg";
 import zoomIn from "../../assets/preli/zoomIn.svg";
 import zoomOut from "../../assets/preli/zoomOut.svg";
 import "./PdfViewer.scss";
+import { PdfViewerPropsTypes } from "./types";
 
-export const PdfViewer = (props: { src: string; children: any }) => {
+export const PdfViewer = (props: PdfViewerPropsTypes) => {
   const renderToolbar = (Toolbar: (props: ToolbarProps) => ReactElement) => (
     <Toolbar>
       {(slots: ToolbarSlot) => {
@@ -36,7 +37,7 @@ export const PdfViewer = (props: { src: string; children: any }) => {
                       src={zoomOut}
                       className="zoom-button"
                       onClick={props.onClick}
-                      alt=""
+                      alt="zoom out button"
                     ></img>
                   )}
                 </ZoomOut>
@@ -48,7 +49,7 @@ export const PdfViewer = (props: { src: string; children: any }) => {
                       src={zoomIn}
                       className="zoom-button"
                       onClick={props.onClick}
-                      alt=""
+                      alt="zoom in button"
                     ></img>
                   )}
                 </ZoomIn>
@@ -64,7 +65,7 @@ export const PdfViewer = (props: { src: string; children: any }) => {
                       // disabled={props.isDisabled}
                       onClick={props.onClick}
                       src={prePage}
-                      alt=""
+                      alt="previus page button"
                     ></img>
                   )}
                 </GoToPreviousPage>
@@ -85,7 +86,7 @@ export const PdfViewer = (props: { src: string; children: any }) => {
                       // disabled={props.isDisabled}
                       onClick={props.onClick}
                       src={nextPage}
-                      alt=""
+                      alt="next page button"
                     ></img>
                   )}
                 </GoToNextPage>

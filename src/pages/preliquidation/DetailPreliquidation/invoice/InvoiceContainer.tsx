@@ -60,14 +60,15 @@ const InvoiceContainer = (
     }
   };
   const history = useHistory();
-  //aahistory.goBack()
   const handleClickBack = (dirty: boolean) => {
     const onClose = () => history.goBack()
     if (!dirty) { onClose() }
     else { showDirtyNotification(onClose) }
   };
 
-  const showDirtyNotification = (onClose: Function) =>
+  const showDirtyNotification = (onClose: Function) => {
+    const html = document.documentElement;
+    const height = Math.max(html.clientHeight, html.scrollHeight);
     props.showNotification({
       level: "warning",
       title: i18next.t("pickers:title.modal.saveChanges"),
@@ -77,11 +78,12 @@ const InvoiceContainer = (
       onClose: onClose,
       onClick: () =>
         window.scroll({
-          top: window.innerHeight,
+          top: height,
           left: 0,
           behavior: "smooth",
         }),
     });
+  }
 
 
   const showWrongFilesNotification = (onClose: Function) =>
@@ -98,13 +100,12 @@ const InvoiceContainer = (
   const changePage = (page: string, isDirty: boolean) => {
     const onClose = () => {
       props.setActualPage(page);
-      
-        history.replace("/preliquidation");
-      
+
+      history.replace("/preliquidation");
+
     }
-    if (props.invoiceFileStatus.error) { showWrongFilesNotification(onClose) }
-    else onClose();
     if (isDirty) showDirtyNotification(onClose);
+    else if (props.invoiceFileStatus.error) { showWrongFilesNotification(onClose) }
     else onClose();
   };
 
@@ -124,7 +125,6 @@ const InvoiceContainer = (
 
     if (!props.invoiceDetail?.invoiceFile?.url) return;
 
-    //const linkSource = `data:application/pdf;base64,${pdf}`;
     const downloadLink = document.createElement("a");
     const fileName = "factura.pdf";
     downloadLink.href = props.invoiceDetail?.invoiceFile?.url;
