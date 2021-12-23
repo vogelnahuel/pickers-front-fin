@@ -214,6 +214,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                     errorMessage={i18next.t(invoiceFileStatus.message || "")}
                     loading={invoiceFileStatus.loading}
                     fileHandler={fileHandler}
+                    disabled={detailPreliquidations.status.tag === "initial"}
                     goToPreviousFile={goToPreviousFile}
                   >
                     <PdfViewer src={invoiceDetail.invoiceFile?.url || ""}>

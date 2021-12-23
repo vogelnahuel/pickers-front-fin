@@ -32,10 +32,11 @@ const InvoiceContainer = (
  
 
   useEffect(() => {
-    props.getInvoiceDetail(params.id);
+    props.setInvoiceFileStatus({ loading: false, error: false });
     props.setActualPage("INVOICE");
     props.getInvoiceDetailTypes();
-
+    props.getInvoiceDetail(params.id);
+    
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

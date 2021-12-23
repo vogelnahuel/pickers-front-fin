@@ -1,4 +1,3 @@
-import { Checkbox } from "@pickit/pickit-components";
 import Table from "component/table/Table";
 import i18next from "i18next";
 import { preliquidationTableTitles } from "utils/constants";
@@ -14,6 +13,8 @@ import {
 import { PreliquidationItem } from "sagas/types/preliquidation";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
+import Checkbox from "component/checkbox/Checkbox";
+import React from "react";
 
 const TablePreliquidation = ({
   items,
@@ -23,10 +24,21 @@ const TablePreliquidation = ({
   toggleAll,
 }: TablePreliquidationProps) => {
   const history = useHistory();
-  const redirect = (id: number) => history.push(`/preliquidation/${id}`);
-
+  
   const isSelected = (itemId: number) =>
     preliquidationsSelected?.map((p) => p.id).includes(itemId);
+
+  const redirect = (id: number) => {
+    console.log("Redirect");
+    history.push(`/preliquidation/${id}`);
+  }
+
+  const onChangeItem = (e: React.ChangeEvent<HTMLInputElement>, item: PreliquidationItem) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log("Change");
+    toggleItem && toggleItem(item)
+  }
 
   return (
     <Table className="preliquidation-table">
@@ -38,7 +50,7 @@ const TablePreliquidation = ({
           ))}
           <td>
             <Checkbox
-              value={isAllSelected}
+              checked={isAllSelected || false}
               onChange={() => toggleAll && toggleAll()}
             />
           </td>
@@ -64,10 +76,10 @@ const TablePreliquidation = ({
             <td>{item.status?.name}</td>
             <td>${item.total}</td>
             <td>
-              {item.status?.tag === "APPROVED" && (
+              {item.status?.tag === "approved" && (
                 <Checkbox
-                  value={isSelected(item.id)}
-                  onChange={() => toggleItem && toggleItem(item)}
+                  checked={!!isSelected(item.id)}
+                  onChange={(e) => onChangeItem(e, item)}
                 />
               )}
             </td>

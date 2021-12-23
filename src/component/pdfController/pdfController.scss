@@ -153,6 +153,10 @@
 .pdf-button {
   min-width: 210px;
   font-size: 17px;
+
+  &:disabled {
+    background: #ccc;
+  }
 }
 
 .pdf-hidden {

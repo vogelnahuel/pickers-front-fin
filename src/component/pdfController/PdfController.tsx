@@ -22,6 +22,7 @@ const PdfController = forwardRef(
       errorMessage,
       title,
       buttonText,
+      disabled,
       loading,
       goToPreviousFile,
       fileHandler,
@@ -102,7 +103,7 @@ const PdfController = forwardRef(
     useEffect(() => {
       const div = dropRef.current;
 
-      if (!div) return;
+      if (!div || disabled) return;
 
       div.addEventListener("dragenter", handleDragIn);
       div.addEventListener("dragleave", handleDragOut);
@@ -117,7 +118,7 @@ const PdfController = forwardRef(
       };
 
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [disabled]);
 
     const rootContainerClasses = [
       "pdf-root-container",
@@ -164,7 +165,7 @@ const PdfController = forwardRef(
             </p>
           </div>
           <div className="pdf-content">
-            <Button className="pdf-button" onClick={openFileReader}>
+            <Button className="pdf-button" disabled={disabled} onClick={openFileReader}>
               {buttonText}
             </Button>
             {fileUploaded && showError ? (

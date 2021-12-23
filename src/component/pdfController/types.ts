@@ -8,6 +8,7 @@ export type PdfControllerProps = {
   buttonText: string;
   errorMessage?: string;
   loading?: boolean;
+  disabled?: boolean;
   fileHandler: (file: File) => void;
   goToPreviousFile?: () => void;
 }
