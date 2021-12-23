@@ -1,15 +1,15 @@
 import axios, { AxiosResponse } from "axios";
 import * as API from "middleware/api";
-//import * as API from "middleware/api";
-import { DetailPreliquidationBodyParamsType, DetailPreliquidationsContentResponseType, DetailPreliquidationsInvoiceApiResponseType, DetailPreliquidationsInvoiceTypesApiResponseType, PreliquidationsApiResponse } from "sagas/types/preliquidation";
+import {
+  DetailPreliquidationBodyParamsType,
+  DetailPreliquidationsContentResponseType,
+  DetailPreliquidationsInvoiceApiResponseType,
+  PreliquidationsApiResponse,
+  UploadInvoiceFileMiddlewareType,
+  DetailPreliquidationsInvoiceTypesApiResponseType
+} from "sagas/types/preliquidation";
+import { ApiResponse } from "./api";
 
-// export const getPreliquidations = (
-//   params: any
-// ): Promise<AxiosResponse<PreliquidationsApiResponse>> =>
-//   API.get("/ms-admin-rest/api/v1.0/presettlments", params);
-
-// export const getPreliquidations = (): Promise<AxiosResponse<PreliquidationsApiResponse>> =>
-// axios.get("http://localhost:8080/presettlments")
 
 export const getPreliquidations = (params:any): Promise<AxiosResponse<PreliquidationsApiResponse>> =>
 API.get("/ms-admin-rest/api/v1.0/presettlements",params)
@@ -30,10 +30,15 @@ export const getDetailInvoiceTypes = () : Promise<AxiosResponse<DetailPreliquida
 API.get(`/ms-admin-rest/api/v1.0/fiscal-data/invoice-type`)
 
 
+export const uploadInvoiceFile = (
+  params: UploadInvoiceFileMiddlewareType
+): Promise<AxiosResponse<ApiResponse<void>>> =>
+  axios.get("http://localhost:8080/invoiceType");
+
+export const deleteInvoiceFile = (id: number): Promise<AxiosResponse<ApiResponse<void>>> =>
+  axios.get("http://localhost:8080/invoiceType");
 
 
-export const getInvoiceType = (): Promise<AxiosResponse<PreliquidationsApiResponse>> =>
-axios.get("http://localhost:8080/invoiceType")
 
 
 

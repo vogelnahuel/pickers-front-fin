@@ -4,9 +4,21 @@
 
 .pdf-root-container {
   @extend %font;
+  position: relative;
   width: 100%;
   height: 100%;
 }
+
+.pdf-children-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9;
+}
+
 
 .pdf-root-container-border {
   border: 1px solid #e5e5e5;
@@ -14,11 +26,11 @@
   overflow: hidden;
 }
 
-.pdf-container {
+.pdf-container-idle {
   position: relative;
   width: 100%;
   height: 100%;
-  min-height: 400px;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -34,7 +46,8 @@
 
   &-error {
     transition: border-color 0.3s;
-    border-color: #ff1515;
+    border-color: #FF1515;
+    height: max-content;
   }
 }
 
@@ -43,6 +56,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  pointer-events: none;
   animation: moveUp 0.6s;
 
   .pdf-container-dragging & {
@@ -50,7 +64,9 @@
     animation-fill-mode: forwards;
   }
 
-  .pdf-container-loading & {
+
+    .pdf-container-loading & {
+    display: none;
     animation: fadeOut 0.4s, moveUp 0.5s;
     animation-fill-mode: forwards;
   }
@@ -99,9 +115,13 @@
   .pdf-container-dragging & {
     animation: fadeOut 0.8s, moveDown 1s;
     animation-fill-mode: forwards;
+    pointer-events: none;
   }
 
+
   .pdf-container-loading & {
+    display: none;
+    pointer-events: none;
     animation: fadeOut 0.2s;
     animation-fill-mode: forwards;
   }

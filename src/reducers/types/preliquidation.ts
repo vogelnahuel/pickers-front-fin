@@ -11,6 +11,7 @@ export type PreliquidationFilterExtraType = {
 
 export type PreliquitadionStateType = {
   fetching: boolean;
+  invoiceFileStatus: InvoiceFileStatus;
   seeMore: boolean;
   preliquidations: PreliquidationItem[];
   preliquidationsSelected: PreliquidationItem[];
@@ -23,9 +24,16 @@ export type PreliquitadionStateType = {
   actualPage: string;
   invoiceTypes: InvoiceTypes[];
 };
+
+export type InvoiceFileStatus = {
+  error?: boolean;
+  loading?: boolean;
+  message?: string;
+}
 export type DetailPreliquidationsType = {
     status: PreliquidationStatus;
     generatedAt: string;
+    id: number;
 };
 export type DetailInvoiceType= {
   id: number;
