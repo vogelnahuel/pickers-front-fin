@@ -23,7 +23,7 @@ const TablePreliquidation = ({
   isAllSelected,
   toggleAll,
 }: TablePreliquidationProps) => {
-  console.log(items)
+ 
   const history = useHistory();
   const redirect = (id: number) => history.push(`/preliquidation/${id}`);
 

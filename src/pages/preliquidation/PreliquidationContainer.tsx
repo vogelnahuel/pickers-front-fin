@@ -9,7 +9,7 @@ import { PreliquidationContainerProps } from "./types";
 
 const PreliquidationContainer = (props: PreliquidationContainerProps): JSX.Element => {
   useEffect(() => {
-    const filtersExtra = { limit: 3, offset: 0 };
+    const filtersExtra = { limit: 2, offset: 0 };
     props.setPreliquidationExtraFilters(filtersExtra);
     props.getPreliquidations({ ...filtersExtra });
     // eslint-disable-next-line react-hooks/exhaustive-deps

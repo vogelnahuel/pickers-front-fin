@@ -8,6 +8,7 @@ import {
   DetailPreliquidationsContentResponseType,
   InvoiceTypes,
   PreliquidationItem,
+  PreliquidationParamsMiddlewareType,
   PreliquidationsContentResponseType,
 } from "sagas/types/preliquidation";
 import { RootState } from "store";
@@ -21,11 +22,11 @@ export const initialState: PreliquitadionStateType = {
   preliquidationsSelected: [],
   filters: {},
   filtersExtra: {
-    limit: 0,
+    limit: 2,
     offset: 0
   },
   filtersExtraSeeMore: {
-    limit: 0,
+    limit: 2,
     offset: 0
   },
   seeMore: true,
@@ -90,25 +91,33 @@ export const preliquidationSlice = createSlice({
     },
     getPreliquidationsRequest: (
       state: PreliquitadionStateType,
-      action: PayloadAction<any>
+      action: PayloadAction<PreliquidationParamsMiddlewareType>
     ) => {},
     getMorePreliquidationsRequest: (
       state: PreliquitadionStateType,
-      action: PayloadAction<any>
+      action: PayloadAction<PreliquidationParamsMiddlewareType>
     ) => {},
     getPreliquidationsSuccess: (
       state: PreliquitadionStateType,
       action: PayloadAction<PreliquidationsContentResponseType>
     ) => {
       const { payload } = action;
+      
       state.preliquidations = payload.result.items;
       state.seeMore = payload.hasMore;
       state.filtersExtraSeeMore.offset = payload.offset + payload.limit;
+
     },
     getMorePreliquidationsSuccess: (
       state: PreliquitadionStateType,
       action: PayloadAction<any>
-    ) => {},
+    ) => {
+      const { payload } = action;
+      state.preliquidations = [...state.preliquidations, ...payload.items];
+      state.seeMore = payload.hasMore;
+      state.filtersExtraSeeMore.offset = payload.offset + payload.limit;
+
+    },
     getPreliquidationsError: () => {},
     getMorePreliquidationsError: () => {},
     setPreliquidationFilters: (

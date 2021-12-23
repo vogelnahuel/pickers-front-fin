@@ -32,9 +32,7 @@ export type PreliquidationStatus = {
 export type PreliquidationParamsMiddlewareType = {
   presettlmentId?: number;
   status?: string;
-  generetedAt?:{
-    from:string
-  };
+  generetedAt?:any
   fiscalNumber?: string;
   limit?: number;
   offset?: number;

@@ -1,15 +1,14 @@
 import i18next from "i18next";
 import { ButtonProps } from "./types";
-import classnames from "classnames";
+
 import "./seeMoreButton.scss";
 
 const SeeMoreButton = ({ onClick, disabled }: ButtonProps) => {
   return (
     <button
+      disabled={disabled}
       onClick={onClick}
-      className={classnames("see-more-button", {
-        disabled: disabled,
-      })}
+      className="see-more-button"
     >
       {i18next.t("global:label.button.seeMore")}
     </button>

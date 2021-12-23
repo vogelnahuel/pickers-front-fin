@@ -21,7 +21,6 @@ import {
   DetailPreliquidationsInvoiceApiResponseType,
   DetailPreliquidationsInvoiceTypesApiResponseType,
   PreliquidationParamsMiddlewareType,
-  PreliquidationParamsMiddlewareTypeCast,
   PreliquidationsApiResponse,
 } from "./types/preliquidation";
 
@@ -59,15 +58,14 @@ const sagas = [
 
 export default sagas;
 
-const process = (body:DetailPreliquidationBodyParamsType)=>{
-
-  return{
+const process = (body: DetailPreliquidationBodyParamsType) => {
+  return {
     ...body,
-    emisionDate: moment(body?.emisionDate,DATE_FORMATS.shortDate).format(DATE_FORMATS.shortISODate),
-  }
-}
-
-
+    emisionDate: moment(body?.emisionDate, DATE_FORMATS.shortDate).format(
+      DATE_FORMATS.shortISODate
+    ),
+  };
+};
 
 function* getPreliquidations({
   payload,
@@ -77,16 +75,23 @@ function* getPreliquidations({
   void,
   PreliquidationsApiResponse
 > {
-
-  const cast  = moment(payload.generetedAt?.from,DATE_FORMATS.shortDate).format(DATE_FORMATS.shortISODate);
-  const temp:PreliquidationParamsMiddlewareTypeCast = {
-    ...payload,
-    generetedAt : cast
+  if(payload?.status===""){
+    delete payload['status']
+  }
+  if (payload.generetedAt) {
+    const cast = moment(
+      payload.generetedAt?.from,
+      DATE_FORMATS.shortDate
+    ).format(DATE_FORMATS.shortISODate);
+    payload = {
+      ...payload,
+      generetedAt: cast,
+    };
   }
 
   const response = yield call(
     preliquidationsMiddleware.getPreliquidations,
-    temp
+    payload
   );
   if (response.status !== 200) {
     yield put(preliquidationActions.getPreliquidationsError());
@@ -103,6 +108,7 @@ function* getMorePreliquidations({
   void,
   PreliquidationsApiResponse
 > {
+
   const response = yield call(
     preliquidationsMiddleware.getPreliquidations,
     payload
@@ -160,7 +166,7 @@ function* putSaveDetailInvoice({
     salePoint: payload.salePoint,
     caeNumber: payload.caeNumber,
   };
-  result = process(result)
+  result = process(result);
 
   const response = yield call(
     preliquidationsMiddleware.putSaveDetailInvoice,
@@ -190,7 +196,7 @@ function* patchApproveDetailInvoice({
     salePoint: payload.salePoint,
     caeNumber: payload.caeNumber,
   };
-  result = process(result)
+  result = process(result);
 
   const response = yield call(
     preliquidationsMiddleware.patchApproveDetailInvoice,
