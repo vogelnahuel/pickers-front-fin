@@ -18,7 +18,7 @@ import { UploadInvoiceFileMiddlewareType } from "sagas/types/preliquidation";
 import * as yup from "yup";
 import i18next from "i18next";
 import moment from "moment";
-import { MAX_FILE_SIZE, VALIDATION_REGEX } from "utils/constants";
+import { DATE_FORMATS, MAX_FILE_SIZE, VALIDATION_REGEX } from "utils/constants";
 import { ObjectShape, TypeOfShape } from "yup/lib/object";
 import { toBase64 } from "utils/toBase64";
 import { InvoiceFileStatus, DetailInvoiceType } from "reducers/types/preliquidation";
@@ -29,7 +29,7 @@ const InvoiceContainer = (
   props: detailPreliquidationInvoiceContainerPropsType
 ): JSX.Element => {
   const params: { id?: string } = useParams();
-
+ 
 
   useEffect(() => {
     props.getInvoiceDetail(params.id);
@@ -53,21 +53,22 @@ const InvoiceContainer = (
     } else {
       try {
         const base64 = await toBase64(file) as string;
-        props.uploadInvoiceFile({ id: props.detailPreliquidations.id, content: base64 });
+        props.uploadInvoiceFile({ id: parseInt(params.id || '0'), content: base64 });
       } catch (err) {
         console.log("Base64 error: ", err);
       }
     }
   };
   const history = useHistory();
-  //aahistory.goBack()
   const handleClickBack = (dirty: boolean) => {
     const onClose = () => history.goBack()
     if (!dirty) { onClose() }
     else { showDirtyNotification(onClose) }
   };
 
-  const showDirtyNotification = (onClose: Function) =>
+  const showDirtyNotification = (onClose: Function) => {
+    const html = document.documentElement;
+    const height = Math.max(html.clientHeight, html.scrollHeight);
     props.showNotification({
       level: "warning",
       title: i18next.t("pickers:title.modal.saveChanges"),
@@ -77,11 +78,12 @@ const InvoiceContainer = (
       onClose: onClose,
       onClick: () =>
         window.scroll({
-          top: window.innerHeight,
+          top: height,
           left: 0,
           behavior: "smooth",
         }),
     });
+  }
 
 
   const showWrongFilesNotification = (onClose: Function) =>
@@ -98,13 +100,12 @@ const InvoiceContainer = (
   const changePage = (page: string, isDirty: boolean) => {
     const onClose = () => {
       props.setActualPage(page);
-      
-        history.replace("/preliquidation");
-      
+
+      history.replace("/preliquidation");
+
     }
-    if (props.invoiceFileStatus.error) { showWrongFilesNotification(onClose) }
-    else onClose();
     if (isDirty) showDirtyNotification(onClose);
+    else if (props.invoiceFileStatus.error) { showWrongFilesNotification(onClose) }
     else onClose();
   };
 
@@ -116,7 +117,7 @@ const InvoiceContainer = (
       onClickLabel: "invoice:button.modal.delete",
       onCloseLabel: "invoice:button.modal.cancel",
       onClose: undefined,
-      onClick: () => props.deleteInvoiceFile(props.detailPreliquidations.id)
+      onClick: () => props.deleteInvoiceFile(parseInt(params.id||'0'))
     });
   }
 
@@ -131,7 +132,6 @@ const InvoiceContainer = (
 
     if (!props.invoiceDetail?.invoiceFile?.url) return;
 
-    //const linkSource = `data:application/pdf;base64,${pdf}`;
     const downloadLink = document.createElement("a");
     const fileName = "factura.pdf";
     downloadLink.href = props.invoiceDetail?.invoiceFile?.url;
@@ -139,13 +139,14 @@ const InvoiceContainer = (
     downloadLink.click();
   }
 
-  const validarFechas = (value: TypeOfShape<ObjectShape>) => {
 
-    if (!value) return true;
+  const validarFechas = (value: TypeOfShape<ObjectShape>) => {
+  
+    if (!value ) return true;
 
     const valueProps = moment(value.from, "DD/MM/YYYY");
     const today = moment();
-    const startDate = moment(props.detailPreliquidations?.genereted_at, "DD/MM/YYYY");
+    const startDate = moment(props.detailPreliquidations?.generatedAt);
 
     const range = valueProps.isBetween(startDate, today);
 
@@ -158,9 +159,10 @@ const InvoiceContainer = (
     let castear:
       | detailPreliquidationDatePicker
       | DetailInvoiceType = detailPreliquidations;
+      
     castear = {
       ...castear,
-      emisionDate: { from: detailPreliquidations.emisionDate },
+      emisionDate: { from: detailPreliquidations.emisionDate  ? moment(detailPreliquidations.emisionDate).format(DATE_FORMATS.shortDate) : ""},
     };
     return castear;
   };
@@ -213,6 +215,7 @@ const InvoiceContainer = (
       downloadFile={downloadFile}
       validationSchema={validationSchema}
       castDatePicker={castDatePicker}
+      presettementId={params.id}
       handleClickBack={handleClickBack}
       changePage={changePage}
       goToPreviousFile={goToPreviousFile}

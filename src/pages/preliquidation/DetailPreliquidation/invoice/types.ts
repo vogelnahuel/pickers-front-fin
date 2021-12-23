@@ -32,6 +32,7 @@ export type detailPreliquidationInvoicePropsType = {
   validationSchema: object;
   invoiceTypes: InvoiceTypes[];
   invoiceFileStatus: InvoiceFileStatus;
+  presettementId:string | undefined;
   setDirty: (dirty: boolean) => void;
   getInvoiceDetailSave: (params:detailPreliquidationDatePicker) => void;
   getInvoiceDetailApprove: (params:detailPreliquidationDatePicker) => void;
@@ -43,8 +44,8 @@ export type detailPreliquidationInvoicePropsType = {
   ) => detailPreliquidationDatePicker;
   fileHandler: (file: File) => void;
   goToPreviousFile: () => void;
-  handleClickBack:any;
-  changePage:any;
+  handleClickBack:(dirty:boolean)=>void;
+  changePage:(page: string, isDirty: boolean)=>void;
 };
 
 export type detailPreliquidationDatePicker = {
@@ -64,7 +65,7 @@ export type detailPreliquidationDatePicker = {
     upload: true | false;
     url: string | null;
   };
-
+  presettementId:string | undefined
 };
 
 export type invoiceValidationSchema = {

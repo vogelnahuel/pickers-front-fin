@@ -1,5 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import { AxiosResponse } from "axios";
+import moment from "moment";
 import { ApiResponse } from "middleware/api";
 import { detailPreliquidationDatePicker } from "pages/preliquidation/DetailPreliquidation/invoice/types";
 
@@ -10,6 +11,7 @@ import {
   PutEffect,
   takeLatest,
 } from "redux-saga/effects";
+import { DATE_FORMATS } from "utils/constants";
 import * as preliquidationsMiddleware from "../middleware/preliquidations";
 
 import { actions as preliquidationActions } from "../reducers/preliquidation";
@@ -65,6 +67,14 @@ const sagas = [
 
 export default sagas;
 
+const process = (body:DetailPreliquidationBodyParamsType)=>{
+
+  return{
+    ...body,
+    emisionDate: moment(body.emisionDate,DATE_FORMATS.shortDate).format(DATE_FORMATS.shortISODate),
+  }
+}
+
 function* getPreliquidations({
   payload,
 }: PayloadAction<PreliquidationParamsMiddlewareType>): Generator<
@@ -111,7 +121,7 @@ function* getMorePreliquidations({
 
 function* getInvoiceDetail({
   payload,
-}: PayloadAction<PreliquidationParamsMiddlewareType>): Generator<
+}: PayloadAction<string | undefined>): Generator<
   | PutEffect<{
       payload: DetailPreliquidationsContentResponseType;
       type: string;
@@ -133,7 +143,6 @@ function* getInvoiceDetail({
   }
 }
 
-
 function* putSaveDetailInvoice({
   payload,
 }: PayloadAction<detailPreliquidationDatePicker>): Generator<
@@ -143,26 +152,23 @@ function* putSaveDetailInvoice({
   void,
   DetailPreliquidationsInvoiceApiResponseType
 > {
-
-const result:DetailPreliquidationBodyParamsType  = {
-  result :{
+  let result: DetailPreliquidationBodyParamsType = {
     emisionDate: payload.emisionDate?.from,
     invoiceType: payload.invoiceType,
     invoiceNumber: payload.invoiceNumber,
     salePoint: payload.salePoint,
-    caeNumber: payload.caeNumber
-  }
-}
+    caeNumber: payload.caeNumber,
+  };
+  result = process(result)
 
   const response = yield call(
     preliquidationsMiddleware.putSaveDetailInvoice,
-    payload.id,
+    payload.presettementId,
     result
   );
   if (response.status !== 200) {
     yield put(preliquidationActions.getInvoiceDetailSaveError());
   } else {
-
     yield put(preliquidationActions.getInvoiceDetailSaveSuccess());
   }
 }
@@ -176,32 +182,26 @@ function* patchApproveDetailInvoice({
   void,
   DetailPreliquidationsInvoiceApiResponseType
 > {
+  let result: DetailPreliquidationBodyParamsType = {
+    emisionDate: payload.emisionDate?.from,
+    invoiceType: payload.invoiceType,
+    invoiceNumber: payload.invoiceNumber,
+    salePoint: payload.salePoint,
+    caeNumber: payload.caeNumber,
+  };
+  result = process(result)
 
-  const result:DetailPreliquidationBodyParamsType  = {
-    result :{
-      emisionDate: payload.emisionDate?.from,
-      invoiceType: payload.invoiceType,
-      invoiceNumber: payload.invoiceNumber,
-      salePoint: payload.salePoint,
-      caeNumber: payload.caeNumber
-    }
-  }
-
-  
   const response = yield call(
     preliquidationsMiddleware.patchApproveDetailInvoice,
-    payload.id,
+    payload.presettementId,
     result
   );
   if (response.status !== 200) {
     yield put(preliquidationActions.getInvoiceDetailApproveError());
   } else {
-
     yield put(preliquidationActions.getInvoiceDetailApproveSuccess());
   }
 }
-
-
 
 function* putDeleteDetailInvoice({
   payload,
@@ -212,10 +212,9 @@ function* putDeleteDetailInvoice({
   void,
   DetailPreliquidationsInvoiceApiResponseType
 > {
- 
   const response = yield call(
     preliquidationsMiddleware.putDeleteDetailInvoice,
-    payload.id
+    payload.presettementId
   );
   if (response.status !== 200) {
     yield put(preliquidationActions.getInvoiceDetailDeleteError());
@@ -262,15 +261,12 @@ function* deleteInvoiceFile({
 }
 
 function* getDetailInvoiceTypes(): Generator<
-  | PutEffect<{  type: string }>
+  | PutEffect<{ type: string }>
   | CallEffect<AxiosResponse<DetailPreliquidationsInvoiceTypesApiResponseType>>,
   void,
   DetailPreliquidationsInvoiceTypesApiResponseType
 > {
- 
-  const response = yield call(
-    preliquidationsMiddleware.getDetailInvoiceTypes,
-  );
+  const response = yield call(preliquidationsMiddleware.getDetailInvoiceTypes);
   if (response.status !== 200) {
     yield put(preliquidationActions.getInvoiceDetailTypesError());
   } else {
