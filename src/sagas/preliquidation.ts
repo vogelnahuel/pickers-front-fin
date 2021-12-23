@@ -121,7 +121,7 @@ function* getMorePreliquidations({
 
 function* getInvoiceDetail({
   payload,
-}: PayloadAction<PreliquidationParamsMiddlewareType>): Generator<
+}: PayloadAction<string | undefined>): Generator<
   | PutEffect<{
       payload: DetailPreliquidationsContentResponseType;
       type: string;
