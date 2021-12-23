@@ -215,28 +215,6 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                     </div>
                   </div>
                   <div className="container-history-col-auto visibility-hidden">
-                    <Link
-                      className="modal-transaction-button-irApicker-a"
-                      target={detailTransaction.picker.id ? "_blank" : ""}
-                      rel="noopener noreferrer"
-                      to={
-                        detailTransaction.picker.id
-                          ? `pickers/${detailTransaction.picker.id}`
-                          : "#"
-                      }
-                    >
-                      <button
-                        type="button"
-                        disabled
-                        className={
-                          detailTransaction.picker.id
-                            ? "modal-transaction-button-irApicker"
-                            : "modal-transaction-button-irApicker-disabled"
-                        }
-                      >
-                        Ir a picker
-                      </button>
-                    </Link>
                   </div>
                 </div>
               </div>
