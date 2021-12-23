@@ -37,7 +37,7 @@ export const initialState: PreliquitadionStateType = {
   detailPreliquidations: {
     status: {
       id: 0,
-      name: "",
+      description: "",
       tag: ""
     },
     generatedAt: ""

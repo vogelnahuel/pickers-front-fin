@@ -14,6 +14,7 @@ import {
 import { PreliquidationItem } from "sagas/types/preliquidation";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { ISO8601toDDMMYYYHHMM } from "utils/iso8601toDDMMYYHHMM";
 
 const TablePreliquidation = ({
   items,
@@ -22,6 +23,7 @@ const TablePreliquidation = ({
   isAllSelected,
   toggleAll,
 }: TablePreliquidationProps) => {
+  console.log(items)
   const history = useHistory();
   const redirect = (id: number) => history.push(`/preliquidation/${id}`);
 
@@ -60,8 +62,8 @@ const TablePreliquidation = ({
             </td>
             <td>{item.id}</td>
             <td>{item.fiscalNumber}</td>
-            <td>{item.generatedAt}</td>
-            <td>{item.status?.name}</td>
+            <td>{ISO8601toDDMMYYYHHMM(item.generatedAt).substring(0,11)}</td>
+            <td>{item.status?.description}</td>
             <td>${item.total}</td>
             <td>
               {item.status?.tag === "APPROVED" && (

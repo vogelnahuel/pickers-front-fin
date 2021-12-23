@@ -25,14 +25,25 @@ export type PreliquidationItem = {
 
 export type PreliquidationStatus = {
   id: number;
-  name: string;
+  description: string;
   tag: string;
 };
 
 export type PreliquidationParamsMiddlewareType = {
   presettlmentId?: number;
   status?: string;
-  generetedAt?: string;
+  generetedAt?:{
+    from:string
+  };
+  fiscalNumber?: string;
+  limit?: number;
+  offset?: number;
+  id?: string | number;
+};
+export type PreliquidationParamsMiddlewareTypeCast = {
+  presettlmentId?: number;
+  status?: string;
+  generetedAt?:string
   fiscalNumber?: string;
   limit?: number;
   offset?: number;

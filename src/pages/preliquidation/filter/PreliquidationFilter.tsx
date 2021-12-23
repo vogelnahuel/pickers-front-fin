@@ -17,7 +17,6 @@ export const PreliquidationFilter: React.FC<PreliquidationFilterPropsType> = ({
   filters,
   validationSchema,
 }): JSX.Element => {
-    
   return (
     <div className="container-fluid display-filter-transaction">
       <div className="container-row">
@@ -36,7 +35,7 @@ export const PreliquidationFilter: React.FC<PreliquidationFilterPropsType> = ({
         <div className="container-col">
           <div className="container-row">
             <Form
-              onSubmit={(value) => onSubmit(value)}
+              onSubmit={(value: any) => onSubmit(value)}
               initialValues={filters}
               mutators={{
                 setValue: ([field, value], state, { changeValue }) => {
@@ -53,25 +52,25 @@ export const PreliquidationFilter: React.FC<PreliquidationFilterPropsType> = ({
                   <div className="container-col-sm-1 container-col-xl">
                     <Field
                       type="text"
-                      name="preliquidationNumber"
+                      name="presettlmentId"
                       label={i18next.t(
                         "preli:label.filter.preliquidationNumber"
                       )}
                       component={Input}
                       className="Admin-Pickers-input test"
                       placeholder={i18next.t("preli:placeholder.filter.number")}
-                      maxLength={50}
+                      maxLength={9}
                     />
                   </div>
                   <div className="container-col-sm-1 container-col-xl">
                     <Field
                       type="text"
-                      name="taxIdentifier"
+                      name="fiscalNumber"
                       label={i18next.t("preli:label.filter.taxIdentifier")}
                       component={Input}
                       className="Admin-Pickers-input"
                       placeholder={i18next.t("preli:placeholder.filter.number")}
-                      maxLength={8}
+                      maxLength={11}
                     />
                   </div>
                   <div className="container-transaction-col-sm-1 container-transaction-col-xl">
@@ -85,7 +84,7 @@ export const PreliquidationFilter: React.FC<PreliquidationFilterPropsType> = ({
                       <Field
                         type="text"
                         className="Admin-Pickers-input-select"
-                        name="date"
+                        name="generetedAt"
                         placeholder={i18next.t("preli:placeholder.filter.date")}
                         maxLength={8}
                         language="es"
@@ -101,7 +100,7 @@ export const PreliquidationFilter: React.FC<PreliquidationFilterPropsType> = ({
                       {i18next.t("filterTransaction:label.filter.state")}
                     </label>
                     <Field
-                      name="state"
+                      name="status"
                       placeholder={i18next.t(
                         "filterTransaction:placeholder.filter.selectState"
                       )}

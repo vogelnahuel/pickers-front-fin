@@ -10,3 +10,4 @@ export type PreliquidationFiltersType = {
     date?: string;
     state?: Array<number>;
   };
+

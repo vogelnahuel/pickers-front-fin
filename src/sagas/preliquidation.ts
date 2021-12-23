@@ -21,6 +21,7 @@ import {
   DetailPreliquidationsInvoiceApiResponseType,
   DetailPreliquidationsInvoiceTypesApiResponseType,
   PreliquidationParamsMiddlewareType,
+  PreliquidationParamsMiddlewareTypeCast,
   PreliquidationsApiResponse,
 } from "./types/preliquidation";
 
@@ -62,9 +63,11 @@ const process = (body:DetailPreliquidationBodyParamsType)=>{
 
   return{
     ...body,
-    emisionDate: moment(body.emisionDate,DATE_FORMATS.shortDate).format(DATE_FORMATS.shortISODate),
+    emisionDate: moment(body?.emisionDate,DATE_FORMATS.shortDate).format(DATE_FORMATS.shortISODate),
   }
 }
+
+
 
 function* getPreliquidations({
   payload,
@@ -74,9 +77,16 @@ function* getPreliquidations({
   void,
   PreliquidationsApiResponse
 > {
+
+  const cast  = moment(payload.generetedAt?.from,DATE_FORMATS.shortDate).format(DATE_FORMATS.shortISODate);
+  const temp:PreliquidationParamsMiddlewareTypeCast = {
+    ...payload,
+    generetedAt : cast
+  }
+
   const response = yield call(
     preliquidationsMiddleware.getPreliquidations,
-    payload
+    temp
   );
   if (response.status !== 200) {
     yield put(preliquidationActions.getPreliquidationsError());
