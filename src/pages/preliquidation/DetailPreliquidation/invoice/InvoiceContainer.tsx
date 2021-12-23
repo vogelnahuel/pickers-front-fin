@@ -18,7 +18,7 @@ import { UploadInvoiceFileMiddlewareType } from "sagas/types/preliquidation";
 import * as yup from "yup";
 import i18next from "i18next";
 import moment from "moment";
-import { MAX_FILE_SIZE, VALIDATION_REGEX } from "utils/constants";
+import { DATE_FORMATS, MAX_FILE_SIZE, VALIDATION_REGEX } from "utils/constants";
 import { ObjectShape, TypeOfShape } from "yup/lib/object";
 import { toBase64 } from "utils/toBase64";
 import { InvoiceFileStatus, DetailInvoiceType } from "reducers/types/preliquidation";
@@ -29,7 +29,7 @@ const InvoiceContainer = (
   props: detailPreliquidationInvoiceContainerPropsType
 ): JSX.Element => {
   const params: { id?: string } = useParams();
-
+ 
 
   useEffect(() => {
     props.getInvoiceDetail(params.id);
@@ -53,7 +53,7 @@ const InvoiceContainer = (
     } else {
       try {
         const base64 = await toBase64(file) as string;
-        props.uploadInvoiceFile({ id: props.detailPreliquidations.id, content: base64 });
+        props.uploadInvoiceFile({ id: parseInt(params.id || '0'), content: base64 });
       } catch (err) {
         console.log("Base64 error: ", err);
       }
@@ -117,7 +117,7 @@ const InvoiceContainer = (
       onClickLabel: "pickers:button.modal.goToSave",
       onCloseLabel: "pickers:button.modal.notSave",
       onClose: undefined,
-      onClick: () => props.deleteInvoiceFile(props.detailPreliquidations.id)
+      onClick: () => props.deleteInvoiceFile(parseInt(params.id||'0'))
     });
   }
 
@@ -132,13 +132,14 @@ const InvoiceContainer = (
     downloadLink.click();
   }
 
-  const validarFechas = (value: TypeOfShape<ObjectShape>) => {
 
-    if (!value) return true;
+  const validarFechas = (value: TypeOfShape<ObjectShape>) => {
+  
+    if (!value ) return true;
 
     const valueProps = moment(value.from, "DD/MM/YYYY");
     const today = moment();
-    const startDate = moment(props.detailPreliquidations?.genereted_at, "DD/MM/YYYY");
+    const startDate = moment(props.detailPreliquidations?.generatedAt);
 
     const range = valueProps.isBetween(startDate, today);
 
@@ -151,9 +152,10 @@ const InvoiceContainer = (
     let castear:
       | detailPreliquidationDatePicker
       | DetailInvoiceType = detailPreliquidations;
+      
     castear = {
       ...castear,
-      emisionDate: { from: detailPreliquidations.emisionDate },
+      emisionDate: { from: detailPreliquidations.emisionDate  ? moment(detailPreliquidations.emisionDate).format(DATE_FORMATS.shortDate) : ""},
     };
     return castear;
   };
@@ -206,6 +208,7 @@ const InvoiceContainer = (
       downloadFile={downloadFile}
       validationSchema={validationSchema}
       castDatePicker={castDatePicker}
+      presettementId={params.id}
       handleClickBack={handleClickBack}
       changePage={changePage}
 

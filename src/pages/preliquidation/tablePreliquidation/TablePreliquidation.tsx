@@ -60,7 +60,7 @@ const TablePreliquidation = ({
             </td>
             <td>{item.id}</td>
             <td>{item.fiscalNumber}</td>
-            <td>{item.genereted_at}</td>
+            <td>{item.generatedAt}</td>
             <td>{item.status?.name}</td>
             <td>${item.total}</td>
             <td>

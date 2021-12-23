@@ -28,6 +28,7 @@ import Back from "component/back/Back";
 export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
   isFetching,
   invoiceFileStatus,
+  presettementId,
   invoiceDetail,
   detailPreliquidations,
   validationSchema,
@@ -43,7 +44,8 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
   handleClickBack,
   changePage,
 }): JSX.Element => {
-  const verifyStateType = () => statusList.includes(detailPreliquidations.status.tag);
+  const verifyStateType = () =>
+    statusList.includes(detailPreliquidations.status.tag);
   const tabs = [
     {
       title: "Preliquidacion",
@@ -60,13 +62,8 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
   const pdfControllerRef = useRef<any>();
   return (
     <div>
-      <h3 className="subTitle-pending-data detail-preliquidation-margin-top">
-        {i18next.t("invoice:label.invoice.subTitleInvoice")}
-      </h3>
-
       <Form
         onSubmit={(value) => value}
-
         initialValues={castDatePicker(invoiceDetail)}
         mutators={{
           setValue: ([field, value], state, { changeValue }) => {
@@ -78,15 +75,15 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
       >
         {({ invalid, handleSubmit, form, values, dirty }) => (
           <form className="form-filter-transaction" onSubmit={handleSubmit}>
-            <TabControler
-              tabs={tabs}
-              changePage={() => { changePage("PRELI", dirty) }}
-              actualPage={"INVOICE"}
-            />
             <div className="header-container">
-
+              <TabControler
+                tabs={tabs}
+                changePage={() => {
+                  changePage("PRELI", dirty);
+                }}
+                actualPage={"INVOICE"}
+              />
               <Back onClick={() => handleClickBack(dirty)} />
-
             </div>
             <div className="mainContainerFlex">
               <h2 className="detail-preliquidation-h2">
@@ -96,6 +93,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
               </h2>
               <p className="detail-preliquidation-number">{2201100002}</p>
             </div>
+
             <FormSpy
               subscription={{
                 dirty: true,
@@ -105,9 +103,12 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
               }}
             />
             <div className="container-detail-preliquidation form-detail-preliquidation">
+            <h3 className="subTitle-pending-data detail-preliquidation-margin-top">
+                    {i18next.t("invoice:label.invoice.subTitleInvoice")}
+                  </h3>
               <div className="container-detail-preliquidation-row">
                 <div className="container-detail-preliquidation-col-sm-1 form-part-1-admin-pickers">
-
+                 
                   <Field
                     type="text"
                     name="emisionDate"
@@ -121,14 +122,13 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                     {(props: any) => {
                       return (
                         <div>
-
                           <label
                             className={
                               props.disabled
                                 ? "label-Admin-Pickers readonly"
-                                : props.meta.error
-                                  ? "label-Admin-Pickers color-red"
-                                  : "label-Admin-Pickers"
+                                : props.meta.error && props.meta.touched
+                                ? "label-Admin-Pickers color-red"
+                                : "label-Admin-Pickers"
                             }
                           >
                             {i18next.t("invoice:label.label.dateOfIssue")}
@@ -198,7 +198,6 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                     maxLength={14}
                   />
                 </div>
-
 
                 <div className="container-detail-preliquidation-col-sm-2 detail-preliquidation-adjust">
                   <PdfController
@@ -325,7 +324,10 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                 type="button"
                 className="button-submit-subtype"
                 onClick={() =>
-                  getInvoiceDetailSave(values as detailPreliquidationDatePicker)
+                  getInvoiceDetailSave({
+                    ...(values as detailPreliquidationDatePicker),
+                    presettementId,
+                  })
                 }
               >
                 {i18next.t("invoice:label.buttons.save")}
@@ -335,9 +337,10 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                   disabled={invalid}
                   className="detail-preliquidation-invoice-p"
                   onClick={() =>
-                    getInvoiceDetailDelete(
-                      values as detailPreliquidationDatePicker
-                    )
+                    getInvoiceDetailDelete({
+                      ...(values as detailPreliquidationDatePicker),
+                      presettementId,
+                    })
                   }
                 >
                   <p>{i18next.t("invoice:label.buttons.refuse")}</p>
@@ -348,9 +351,10 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                   disabled={invalid}
                   className="button-submit-active"
                   onClick={() =>
-                    getInvoiceDetailApprove(
-                      values as detailPreliquidationDatePicker
-                    )
+                    getInvoiceDetailApprove({
+                      ...(values as detailPreliquidationDatePicker),
+                      presettementId,
+                    })
                   }
                 >
                   {i18next.t("invoice:label.buttons.approve")}
