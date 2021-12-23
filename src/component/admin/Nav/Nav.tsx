@@ -19,7 +19,7 @@ export const Nav = ({ isDirty, showNotification, wrongFiles }: NavType) => {
   const handleClick = (e: any) => {
     e.preventDefault();
     const onClose = () => history.push(e.target.pathname);
-    
+
     const html = document.documentElement;
     const height = Math.max(html.clientHeight, html.scrollHeight);
 

@@ -2,19 +2,19 @@
   font-family: "Mulish";
 }
 
-.root-container {
+.pdf-root-container {
   @extend %font;
   width: 100%;
   height: 100%;
 }
 
-.root-container-border {
-  border: 1px solid #E5E5E5;
+.pdf-root-container-border {
+  border: 1px solid #e5e5e5;
   border-radius: 10px;
   overflow: hidden;
 }
 
-.container {
+.pdf-container {
   position: relative;
   width: 100%;
   height: 100%;
@@ -24,7 +24,7 @@
   justify-content: center;
   align-items: center;
   background-color: #fff;
-  border: 1px solid #E5E5E5;
+  border: 1px solid #e5e5e5;
   border-radius: 10px;
   transition: background-color 0.4s;
 
@@ -34,61 +34,61 @@
 
   &-error {
     transition: border-color 0.3s;
-    border-color: #FF1515;
+    border-color: #ff1515;
   }
 }
 
-.icon-container {
+.pdf-icon-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   animation: moveUp 0.6s;
-  
-  .container-dragging & {
+
+  .pdf-container-dragging & {
     animation: moveDown 1.1s;
     animation-fill-mode: forwards;
   }
 
-  .container-loading & {
+  .pdf-container-loading & {
     animation: fadeOut 0.4s, moveUp 0.5s;
     animation-fill-mode: forwards;
   }
 }
 
-.upload-error-icon {
+.pdf-upload-error-icon {
   width: 46px;
   height: 48px;
   margin-bottom: 16px;
 }
 
-.upload-icon {
+.pdf-upload-icon {
   position: relative;
   width: 50px;
   height: 40px;
   margin-bottom: 16px;
 }
 
-.upload-cloud{
+.pdf-upload-cloud {
   position: absolute;
   top: 0;
   left: 0;
 }
 
-.upload-arrow{
+.pdf-upload-arrow {
   position: absolute;
   bottom: -5px;
   left: 50%;
   width: 15px;
   transform: translateX(-50%);
 
-  .container-dragging & {
+  .pdf-container-dragging & {
     animation: arrowUpDown 1.1s infinite;
     animation-timing-function: ease;
   }
 }
 
-.content {
+.pdf-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -96,36 +96,36 @@
   color: #4d4d4d;
   animation: fadeIn 0.5s, moveUp 0.6s;
 
-  .container-dragging & {
+  .pdf-container-dragging & {
     animation: fadeOut 0.8s, moveDown 1s;
     animation-fill-mode: forwards;
   }
 
-  .container-loading & {
+  .pdf-container-loading & {
     animation: fadeOut 0.2s;
     animation-fill-mode: forwards;
   }
 }
 
-.title {
+.pdf-title {
   font-size: 18px;
   font-weight: 800;
   text-align: center;
   margin-bottom: 40px;
 }
 
-.message {
+.pdf-message {
   font-size: 14px;
   font-weight: 400;
   text-align: center;
   margin-top: 14px;
 }
 
-.hidden {
+.pdf-hidden {
   display: none;
 }
 
-.loading-container {
+.pdf-loading-container {
   position: absolute;
   width: 45%;
   height: 5px;
@@ -137,15 +137,15 @@
   overflow: hidden;
 }
 
-.loading-bar {
+.pdf-loading-bar {
   height: 5px;
   background-color: #bdbdbd;
   animation: loadingAnim 10s ease;
   animation-fill-mode: forwards;
 }
 
-.error-message {
-  color: #FF1515;
+.pdf-error-message {
+  color: #ff1515;
   font-size: 14px;
   width: 100%;
   text-align: center;
@@ -185,7 +185,6 @@
     display: flex;
     opacity: 1;
   }
-  
 }
 
 @keyframes moveDown {
@@ -227,7 +226,7 @@
 @keyframes scaleDownAndMoveUp {
   0% {
     transform: translateY(80px) scale(1.4);
-  } 
+  }
   100% {
     transform: translateY(0) scale(1);
   }

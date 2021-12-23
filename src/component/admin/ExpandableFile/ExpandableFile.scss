@@ -2,6 +2,7 @@ $text-color: #4d4d4d;
 $text-color-darker: #2d2d2d;
 $error-color: #ff1515;
 $error-color-darker: #e00000;
+
 $icon-color: #808080;
 $icon-color-hover: #4d4d4d;
 $primary-color: #0098ff;
@@ -11,25 +12,6 @@ $primary-color-darker: #007acc;
   color: $error-color;
 }
 
-%icon {
-  background-color: $icon-color;
-  height: 15px;
-  width: 17px;
-  cursor: pointer;
-  transition: all 0.2s;
-  margin: 0 8px;
-
-  &:hover {
-    background-color: $icon-color-hover;
-  }
-}
-
-%folder {
-  width: 20px;
-  height: auto;
-  transition: all 0.2s;
-}
-
 @mixin styleParagraph($font-weight, $color) {
   font-family: "Mulish";
   font-style: normal;
@@ -37,58 +19,75 @@ $primary-color-darker: #007acc;
   color: $color;
 }
 
-$icons: delete, load, replace;
+.container-icon svg {
+  height: 15px;
+  width: 17px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin: 0 8px;
+}
 
-@each $icon in $icons {
-  .#{$icon}-icon-svg {
-    @extend %icon;
-    mask-size: contain;
-    background-size: contain;
-    -webkit-mask: url("../../../assets/admin/file-" + quote($icon) + ".svg")
-      no-repeat
-      center;
-    mask: url("../../../assets/admin/file-" + quote($icon) + ".svg")
-      no-repeat
-      center;
+.container-icon {
+  display: inline-flex;
+}
+
+.container-icon svg {
+  path {
+    stroke: $icon-color;
+  }
+
+  &:hover path {
+    stroke: $icon-color-hover;
   }
 }
 
-.delete-icon-svg{
+.error-icon svg {
+  path {
+    stroke: $error-color;
+  }
+
+  .header:hover & > path {
+    stroke: $error-color-darker;
+  }
+}
+
+.add-icon svg {
+  path {
+    stroke: $primary-color;
+  }
+
+  .header:hover & > path {
+    stroke: $primary-color-darker;
+  }
+}
+
+.complete-icon svg {
+  path {
+    stroke: $text-color;
+  }
+
+  .header:hover & > path {
+    stroke: $text-color-darker;
+  }
+}
+
+.delete-icon-svg {
   height: 17px;
   width: 15px;
 }
 
-$folders: complete $text-color $text-color-darker,
-  add $primary-color $primary-color-darker,
-  error $error-color $error-color-darker;
-
-@each $folder, $color, $hover-color in $folders {
-  .folder-icon-#{$folder} {
-    @extend %folder;
-    background-color: $color;
-    -webkit-mask: url("../../../assets/admin/folder-" + quote($folder) + ".svg")
-      no-repeat
-      center;
-    mask: url("../../../assets/admin/folder-" + quote($folder) + ".svg")
-      no-repeat
-      center;
-
-    .header:hover & {
-      background-color: $hover-color;
-    }
-  }
-}
-
 .header {
+  width: fit-content;
   padding: 20px 40px;
   cursor: pointer;
   display: flex;
+  align-items: center;
 
   &:hover {
-    .paragraph-expandable-file {
+    p {
       color: $text-color-darker;
     }
-    .paragraph-expandable-file.color-error {
+    .paragraph-expandable-file[class*="color-error"] {
       color: $error-color-darker;
     }
   }
@@ -144,12 +143,12 @@ $folders: complete $text-color $text-color-darker,
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0 10px 44px;
+  padding: 8px 0 8px 44px;
 
   p {
     @include styleParagraph(700, $primary-color);
     font-size: 14px;
-    line-height: 18px;
+    line-height: 21px;
     letter-spacing: 0.0025em;
     color: $primary-color;
     width: 100%;
@@ -166,11 +165,11 @@ $folders: complete $text-color $text-color-darker,
       color: #b8b8b8;
     }
   }
-  
+
   p.color-error {
     @extend %error;
 
-    &:hover{
+    &:hover {
       color: $error-color-darker;
     }
   }
