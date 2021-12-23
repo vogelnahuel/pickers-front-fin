@@ -7,6 +7,7 @@ import { TabControlerType } from "./types";
 import i18next from "i18next";
 import "./TabControler.scss";
 import { NotificationStateType } from "reducers/types/notification";
+import classNames from "classnames";
 
 export const TabControler: React.FC<TabControlerType> = ({
   actualPage,
@@ -17,9 +18,7 @@ export const TabControler: React.FC<TabControlerType> = ({
   className="flex-tab background-tab">
     <div
       onClick={() => changePage(tabs && tabs[0].id)}
-      className={
-        actualPage === tabs[0].id ? "container-tag" : "container-tag-active"
-      }
+      className = { classNames({' container-tag':actualPage === tabs[0].id , 'container-tag-active':actualPage !== tabs[0].id})}
     >
       <p
         className={
@@ -43,9 +42,7 @@ export const TabControler: React.FC<TabControlerType> = ({
 
     <div
       onClick={() => changePage(tabs && tabs[1].id)}
-      className={
-        actualPage === tabs[1].id ? "container-tag border-tag" : "container-tag-active border-tag"
-      }
+      className = { classNames({' container-tag':actualPage === tabs[1].id , 'container-tag-active':actualPage !== tabs[1].id})}
     >
       <p
         className={
