@@ -42,7 +42,7 @@ export type detailPreliquidationInvoicePropsType = {
     detailInvoice: DetailInvoiceType
   ) => detailPreliquidationDatePicker;
   fileHandler: (file: File) => void;
-  handleClickBack:any;
+  handleClickBack:(dirty:boolean)=>void;
   changePage:any;
 };
 
