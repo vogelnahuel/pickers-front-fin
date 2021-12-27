@@ -21,6 +21,7 @@ import {
   DetailPreliquidationsContentResponseType,
   DetailPreliquidationsInvoiceApiResponseType,
   DetailPreliquidationsInvoiceTypesApiResponseType,
+  PreliquidationCastParamsMiddlewareType,
   PreliquidationParamsMiddlewareType,
   PreliquidationsApiResponse,
   UploadInvoiceFileMiddlewareType,
@@ -87,14 +88,14 @@ function* getPreliquidations({
   if (payload?.status === "") {
     delete payload["status"];
   }
-  let casteado;
+  let payloadCast:PreliquidationCastParamsMiddlewareType  = payload as PreliquidationCastParamsMiddlewareType;
   if (payload.generetedAt) {
     const castDatePicker = moment(
       payload.generetedAt?.from,
       DATE_FORMATS.shortDate
     ).format(DATE_FORMATS.shortISODate);
 
-    casteado = {
+    payloadCast = {
       ...payload,
       generetedAt: castDatePicker,
     };
@@ -102,7 +103,7 @@ function* getPreliquidations({
 
   const response = yield call(
     preliquidationsMiddleware.getPreliquidations,
-    payload.generetedAt ? casteado : payload
+    payloadCast
   );
   if (response.status !== 200) {
     yield put(preliquidationActions.getPreliquidationsError());
@@ -119,9 +120,21 @@ function* getMorePreliquidations({
   void,
   PreliquidationsApiResponse
 > {
+  let payloadCast:PreliquidationCastParamsMiddlewareType  = payload as PreliquidationCastParamsMiddlewareType;
+  if (payload.generetedAt) {
+    const castDatePicker = moment(
+      payload.generetedAt?.from,
+      DATE_FORMATS.shortDate
+    ).format(DATE_FORMATS.shortISODate);
+
+    payloadCast = {
+      ...payload,
+      generetedAt: castDatePicker,
+    };
+  }
   const response = yield call(
     preliquidationsMiddleware.getPreliquidations,
-    payload
+    payloadCast
   );
   if (response.status !== 200) {
     yield put(preliquidationActions.getMorePreliquidationsError());

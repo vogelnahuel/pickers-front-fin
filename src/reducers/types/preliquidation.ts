@@ -53,3 +53,13 @@ export type DetailInvoiceType= {
   presettementId:string|undefined
   
 }
+
+export type PreliquidationsSuccessMoreResponseType ={
+  hasMore: boolean;
+    limit: number;
+    offset: number;
+    statusCode?: number | undefined;
+    error?: string | undefined;
+    message?: string | undefined;
+    items: PreliquidationItem[];
+}

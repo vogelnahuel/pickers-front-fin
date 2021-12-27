@@ -4,6 +4,7 @@ import {
   PayloadAction,
   createSelector,
 } from "@reduxjs/toolkit";
+import { PreliquidationFilterExtraType, PreliquidationFiltersType } from "pages/preliquidation/filter/types";
 import {
   DetailPreliquidationsContentResponseType,
   InvoiceTypes,
@@ -15,6 +16,7 @@ import { RootState } from "store";
 import { endsWithAny } from "utils/endsWithAny";
 import {
   InvoiceFileStatus,
+  PreliquidationsSuccessMoreResponseType,
   PreliquitadionStateType,
 } from "./types/preliquidation";
 
@@ -100,6 +102,7 @@ export const preliquidationSlice = createSlice({
       state: PreliquitadionStateType,
       action: PayloadAction<PreliquidationParamsMiddlewareType>
     ) => {
+
     },
     getMorePreliquidationsRequest: (
       state: PreliquitadionStateType,
@@ -118,7 +121,7 @@ export const preliquidationSlice = createSlice({
     },
     getMorePreliquidationsSuccess: (
       state: PreliquitadionStateType,
-      action: PayloadAction<any>
+      action: PayloadAction<PreliquidationsSuccessMoreResponseType>
     ) => {
       const { payload } = action;
       state.preliquidations = [...state.preliquidations, ...payload.items];
@@ -130,14 +133,15 @@ export const preliquidationSlice = createSlice({
     getMorePreliquidationsError: () => {},
     setPreliquidationFilters: (
       state: PreliquitadionStateType,
-      action: PayloadAction<any>
+      action: PayloadAction<PreliquidationFiltersType>
     ) => {
       state.filters = action.payload;
     },
     setPreliquidationExtraFilters: (
       state: PreliquitadionStateType,
-      action: PayloadAction<any>
+      action: PayloadAction<PreliquidationFilterExtraType>
     ) => {
+
       state.filtersExtra = { ...state.filtersExtra, ...action.payload };
     },
 
@@ -157,19 +161,19 @@ export const preliquidationSlice = createSlice({
     },
     getInvoiceDetailSaveRequest: (
       state: PreliquitadionStateType,
-      action: PayloadAction<any>
+      action: PayloadAction<{}>
     ) => {},
     getInvoiceDetailSaveError: () => {},
     getInvoiceDetailSaveSuccess: () => {},
     getInvoiceDetailApproveRequest: (
       state: PreliquitadionStateType,
-      action: PayloadAction<any>
+      action: PayloadAction<{}>
     ) => {},
     getInvoiceDetailApproveError: () => {},
     getInvoiceDetailApproveSuccess: () => {},
     getInvoiceDetailDeleteRequest: (
       state: PreliquitadionStateType,
-      action: PayloadAction<any>
+      action: PayloadAction<{}>
     ) => {},
     getInvoiceDetailDeleteError: () => {},
     getInvoiceDetailDeleteSuccess: () => {},
