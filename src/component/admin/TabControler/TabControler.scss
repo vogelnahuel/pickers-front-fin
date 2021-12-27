@@ -8,6 +8,9 @@
     border-radius: 6px;    
 }
 
+
+
+
 .preliquidation-paragraph-goBack{
     font-family: 'Mulish';
     font-style: normal;
@@ -22,7 +25,7 @@
     cursor: pointer;
 }
 
-.container-tag{
+%container-tag{
     height: 95px;
     width: 26.2vw;
     max-width: 535px;
@@ -31,6 +34,13 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 30px;
+}
+.container-tag{
+  @extend %container-tag;
+}
+.container-tag-active{
+    @extend %container-tag;
+    cursor: default;
 }
 
 %title {
@@ -50,6 +60,7 @@
 .table-title-active{
     @extend %title;
     color: #0098FF;
+    cursor: default;
 }
 
 .border-tag{

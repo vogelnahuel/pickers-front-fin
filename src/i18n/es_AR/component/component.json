@@ -2,5 +2,10 @@
   "label.title.admin": "ADMIN",
   "label.pdfController.dragging": "Soltá acá tu archivo",
   "label.pdfController.instruction": "O arrastrá y soltá el archivo",
-  "label.button.goBack": "Volver"
+  "label.pdfController.invalidFile": "El formato del archivo debe ser PDF y no puede superar los 5MB",
+  "label.pdfController.serverError": "Hubo un error de conexión con el servidor. El nuevo archivo no se subió correctamente.",
+  "label.button.goBack": "Volver",
+  "label.tooltip.delete": "Eliminar",
+  "label.tooltip.replace": "Reemplazar",
+  "label.tooltip.download": "Descargar"
 }

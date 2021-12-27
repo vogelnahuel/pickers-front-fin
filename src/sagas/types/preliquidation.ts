@@ -19,7 +19,7 @@ export type PreliquidationItem = {
   id: number;
   fiscalNumber: string;
   total: number;
-  genereted_at: string;
+  generatedAt: string;
   status: PreliquidationStatus;
 };
 
@@ -38,6 +38,11 @@ export type PreliquidationParamsMiddlewareType = {
   offset?: number;
   id?: string | number;
 };
+
+export type UploadInvoiceFileMiddlewareType = {
+  id: number;
+  content: string;
+}
 
 export type DetailPreliquidationsApiResponseType = {
   data: {
@@ -63,19 +68,21 @@ export type DetailPreliquidationsContentResponseType = {
     url: string | null;
   };
   presettlement: {
+   id?: number;
    status :PreliquidationStatus,
-   genereted_at :  string
+   generatedAt :  string
   }
+  presettementId:string | undefined
 };
 
 export type DetailPreliquidationBodyParamsType = {
-  result: {
+ 
     emisionDate: string;
     invoiceType: InvoiceTypes;
     invoiceNumber: string;
     salePoint: string;
     caeNumber: string;
-  };
+  
 };
 
 export type DetailPreliquidationsApiResponse = {
