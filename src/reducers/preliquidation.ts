@@ -32,11 +32,11 @@ export const initialState: PreliquitadionStateType = {
   preliquidationsSelected: [],
   filters: {},
   filtersExtra: {
-    limit: 2,
+    limit: 3,
     offset: 0
   },
   filtersExtraSeeMore: {
-    limit: 2,
+    limit: 3,
     offset: 0
   },
   seeMore: true,
