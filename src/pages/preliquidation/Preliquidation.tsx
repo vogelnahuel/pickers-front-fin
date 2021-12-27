@@ -9,9 +9,9 @@ import PreliquidationFilter from "./filter/PreliquidationFilterContainer";
 import SeeMoreButton from "component/seeMoreButton/SeeMoreButton";
 import i18next from "i18next";
 import Button from "component/button/Button";
-import { PreliquidationContainerProps } from "./types";
+import { PreliquidationsProps } from "./types";
 
-export const Preliquidation: React.FC<PreliquidationContainerProps> = ({
+export const Preliquidation: React.FC<PreliquidationsProps> = ({
   isFetching,
   filters,
   seeMore,
@@ -19,6 +19,7 @@ export const Preliquidation: React.FC<PreliquidationContainerProps> = ({
   preliquidations,
   getMorePreliquidations,
   anyPreliquidationSelected,
+  sendToAccounting,
 }): JSX.Element => {
   return (
     <div className="background-Grey">
@@ -27,12 +28,12 @@ export const Preliquidation: React.FC<PreliquidationContainerProps> = ({
         <Nav isDirty={null} showNotification={null} />
         <div className="pending-container">
             <h2 className="subTitle-pending">
-              <p className="subtitle-pendingUser-h2">Preliquidaciones</p>
+              <p className="subtitle-pendingUser-h2">{i18next.t("preli:label.title.preliquidations")}</p>
             </h2>
           <PreliquidationFilter />
           <div className="button-container">
-            <Button disabled={!anyPreliquidationSelected} onClick={console.log}>
-              Enviar a contabilidad
+            <Button disabled={!anyPreliquidationSelected} onClick={sendToAccounting}>
+              { i18next.t("preli:label.button.sendToAccounting")}
             </Button>
           </div>
           <TablePreliquidation items={preliquidations} />
