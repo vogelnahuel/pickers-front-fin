@@ -8,7 +8,7 @@ import calckBlue from "./../../../assets/preli/calcBlue.svg";
 import invoiceBlack from "./../../../assets/preli/invoiceBlack.svg";
 import invoiceBlue from "./../../../assets/preli/invoiceBlue.svg";
 import InvoiceContainer from "./invoice/InvoiceContainer";
-import "pages/preliquidation/DetailPreliquidation/DetailPreliquidation.scss";
+import "pages/preliquidation/DetailPreliquidation/detailPreliquidations.scss";
 import { DetailPreliquidationPropsType } from "./types";
 
 import i18next from "i18next";

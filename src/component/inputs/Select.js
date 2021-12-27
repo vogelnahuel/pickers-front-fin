@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import "component/inputs/multipleSelect.scss";
 import "pages/pickers/detailPicker/DetailPicker.scss";
 import Arrow from "assets/admin/flechaAbajo.svg";
@@ -20,7 +20,9 @@ const Select = ({ input, label, options = [], placeholder, onChange ,disabled}) 
     }
  
   };
-
+useEffect(() => {
+ console.log("render")
+}, [input.value])
   return (
     <div className="multiple-selectbox">
       <div onClick={handleClick} className="multiple-contenido-select">
@@ -31,7 +33,7 @@ const Select = ({ input, label, options = [], placeholder, onChange ,disabled}) 
           value={
             input.value.label && input.value.label !== ""
               ? input.value.label
-              : input.value.name !== ""
+              : input.value.name && input.value.name !== ""
               ? input.value.name
               : ""
           }
