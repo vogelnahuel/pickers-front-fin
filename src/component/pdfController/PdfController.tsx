@@ -188,6 +188,8 @@ const PdfController = forwardRef(
           )}
         </div>
         {hasError() && <p className="pdf-error-message">{errorMessage}</p>}
+
+
         <input
           type="file"
           ref={fileRef}
