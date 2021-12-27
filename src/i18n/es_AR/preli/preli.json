@@ -1,4 +1,6 @@
 {
+  "label.title.preliquidations": "Preliquidaciones",
+
   "label.filter.generationDate": "Fecha de generación",
   "placeholder.filter.number": "Ingresá el número",
   "placeholder.filter.date": "Seleccioná la fecha",
@@ -19,5 +21,13 @@
   "label.table.if": "IF",
   "label.table.dateOfIssue": "Emisión",
   "label.table.status": "Estado",
-  "label.table.total": "Total"
+  "label.table.total": "Total",
+
+  "label.modal.preliquidation": "preliquidación",
+  "label.modal.preliquidations": "preliquidaciones",
+
+  "title.modal.sendToAccounting": "Enviá las preliquidaciones a contabilidad",
+  "label.modal.sendToAccounting": "¿Deseás enviar {{ quantity }} {{ text }} a contabilidad?",
+  "label.button.send": "Sí, enviar",
+  "label.button.sendToAccounting": "Enviar a contabilidad"
 }

@@ -41,6 +41,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
   fileHandler,
   deleteFile,
   downloadFile,
+  goToPreviousFile,
   handleClickBack,
   changePage,
 }): JSX.Element => {
@@ -91,7 +92,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                   "detailPreliquidation:label.subtitle.preliquidationNumber"
                 )}
               </h2>
-              <p className="detail-preliquidation-number">{2201100002}</p>
+              <p className="detail-preliquidation-number">{presettementId}</p>
             </div>
 
             <FormSpy
@@ -108,7 +109,6 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                   </h3>
               <div className="container-detail-preliquidation-row">
                 <div className="container-detail-preliquidation-col-sm-1 form-part-1-admin-pickers">
-                 
                   <Field
                     type="text"
                     name="emisionDate"
@@ -201,35 +201,46 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
 
                 <div className="container-detail-preliquidation-col-sm-2 detail-preliquidation-adjust">
                   <PdfController
-                    title="Factura"
-                    buttonText="Cargar factura"
-                    fileHandler={fileHandler}
+                    ref={pdfControllerRef}
+                    title={i18next.t("invoice:label.title.invoice")}
+                    buttonText={
+                      invoiceDetail.invoiceFile?.upload &&
+                      invoiceFileStatus.error
+                        ? i18next.t("global:label.button.retry")
+                        : i18next.t("invoice:label.button.uploadInvoice")
+                    }
                     fileUploaded={invoiceDetail.invoiceFile?.upload}
                     showError={invoiceFileStatus.error}
                     errorMessage={i18next.t(invoiceFileStatus.message || "")}
                     loading={invoiceFileStatus.loading}
-                    ref={pdfControllerRef}
+                    fileHandler={fileHandler}
+                    disabled={detailPreliquidations.status.tag === "initial"}
+                    goToPreviousFile={goToPreviousFile}
                   >
                     <PdfViewer src={invoiceDetail.invoiceFile?.url || ""}>
                       <Tooltip
+                        disabled={verifyStateType()}
                         message={i18next.t("component:label.tooltip.delete")}
                         position={ToolTipPosition.top}
                       >
                         <button
                           className="icon-container-primary"
                           type="button"
+                          disabled={verifyStateType()}
                           onClick={deleteFile}
                         >
                           <DeleteIcon />
                         </button>
                       </Tooltip>
                       <Tooltip
+                        disabled={verifyStateType()}
                         message={i18next.t("component:label.tooltip.replace")}
                         position={ToolTipPosition.top}
                       >
                         <button
                           className="icon-container-primary"
                           type="button"
+                          disabled={verifyStateType()}
                           onClick={() =>
                             pdfControllerRef?.current?.triggerOnChange()
                           }
@@ -238,10 +249,12 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                         </button>
                       </Tooltip>
                       <Tooltip
+                        disabled={verifyStateType()}
                         message={i18next.t("component:label.tooltip.download")}
                         position={ToolTipPosition.top}
                       >
                         <button
+                          disabled={verifyStateType()}
                           type="button"
                           className="icon-container-secondary"
                           onClick={downloadFile}
