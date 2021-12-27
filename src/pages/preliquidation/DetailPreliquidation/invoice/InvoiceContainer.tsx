@@ -20,7 +20,7 @@ import i18next from "i18next";
 import moment from "moment";
 import { DATE_FORMATS, MAX_FILE_SIZE, VALIDATION_REGEX } from "utils/constants";
 import { ObjectShape, TypeOfShape } from "yup/lib/object";
-import { toBase64 } from "utils/toBase64";
+import { getBase64FromUrl, isBase64, toBase64 } from "utils/toBase64";
 import { InvoiceFileStatus, DetailInvoiceType } from "reducers/types/preliquidation";
 import { NotificationStateType } from "reducers/types/notification";
 
@@ -42,8 +42,7 @@ const InvoiceContainer = (
 
   const fileHandler = async (file: File) => {
     props.setInvoiceFileStatus({ loading: true });
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-
+    
     if (file.size > MAX_FILE_SIZE || file.type !== "application/pdf") {
       props.setInvoiceFileStatus({
         error: true,
@@ -129,13 +128,24 @@ const InvoiceContainer = (
     });
   }
 
-  const downloadFile = () => {
+  const downloadFile = async () => {
 
-    if (!props.invoiceDetail?.invoiceFile?.url) return;
+    const url = props.invoiceDetail?.invoiceFile?.url;
+    if (!url) return;
 
+    const now = new Date();
+    const date = `${now.getDate()}_${now.getMonth() + 1}_${now.getFullYear()}`;
+    const time = `${now.getHours()}_${now.getMinutes()}_${now.getSeconds()}`
     const downloadLink = document.createElement("a");
-    const fileName = "factura.pdf";
-    downloadLink.href = props.invoiceDetail?.invoiceFile?.url;
+    const fileName = `preli-${params.id || ""}-${date}_${time}.pdf`;
+    
+    if(isBase64(url)){
+      downloadLink.href = url;
+    }
+    else{
+      const base64 = await getBase64FromUrl(url) as string;
+      downloadLink.href = base64;
+    }
     downloadLink.download = fileName;
     downloadLink.click();
   }

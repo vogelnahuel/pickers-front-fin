@@ -92,7 +92,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                   "detailPreliquidation:label.subtitle.preliquidationNumber"
                 )}
               </h2>
-              <p className="detail-preliquidation-number">{2201100002}</p>
+              <p className="detail-preliquidation-number">{presettementId}</p>
             </div>
 
             <FormSpy

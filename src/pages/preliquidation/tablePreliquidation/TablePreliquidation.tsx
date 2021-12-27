@@ -24,21 +24,17 @@ const TablePreliquidation = ({
   toggleAll,
 }: TablePreliquidationProps) => {
   const history = useHistory();
-  
+
   const isSelected = (itemId: number) =>
     preliquidationsSelected?.map((p) => p.id).includes(itemId);
 
-  const redirect = (id: number) => {
-    console.log("Redirect");
-    history.push(`/preliquidation/${id}`);
-  }
-
-  const onChangeItem = (e: React.ChangeEvent<HTMLInputElement>, item: PreliquidationItem) => {
-    e.preventDefault();
-    e.stopPropagation();
-    console.log("Change");
-    toggleItem && toggleItem(item)
-  }
+  const redirect = (
+    e: React.MouseEvent<HTMLTableRowElement, MouseEvent>,
+    id: number
+  ) => {
+    const target = e?.target as HTMLElement;
+    if (target?.localName !== "input") history.push(`/preliquidation/${id}`);
+  };
 
   return (
     <Table className="preliquidation-table">
@@ -61,7 +57,7 @@ const TablePreliquidation = ({
           <tr
             className="preliquidation-table-tr"
             key={item.id}
-            onClick={() => redirect(item.id)}
+            onClick={(e) => redirect(e, item.id)}
           >
             <td>
               <img
@@ -79,7 +75,7 @@ const TablePreliquidation = ({
               {item.status?.tag === "approved" && (
                 <Checkbox
                   checked={!!isSelected(item.id)}
-                  onChange={(e) => onChangeItem(e, item)}
+                  onChange={() => toggleItem && toggleItem(item)}
                 />
               )}
             </td>

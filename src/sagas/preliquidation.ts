@@ -244,7 +244,7 @@ function* uploadInvoiceFile({
 
 function* deleteInvoiceFile({
   payload,
-}: PayloadAction<number>): Generator<
+}: PayloadAction<{ id: number}>): Generator<
   | PutEffect<{ payload: undefined; type: string }>
   | CallEffect<AxiosResponse<ApiResponse<void>>>,
   void,
@@ -252,7 +252,7 @@ function* deleteInvoiceFile({
 > {
  
   const response = yield call(
-    preliquidationsMiddleware.deleteInvoiceFile, payload);
+    preliquidationsMiddleware.deleteInvoiceFile, payload.id);
   if (response.status !== 200) {
     yield put(preliquidationActions.deleteInvoiceFileError());
   } else {
