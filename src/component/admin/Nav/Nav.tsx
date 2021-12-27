@@ -11,8 +11,9 @@ import i18next from "i18next";
 import { NotificationStateType } from "reducers/types/notification";
 import { AppDispatch, RootState } from "store";
 import { NavType } from "./types";
+import { preliquidationSelector } from "reducers/preliquidation";
 
-export const Nav = ({ isDirty, showNotification, wrongFiles }: NavType) => {
+export const Nav = ({ isDirty, pickerWrongFiles, isInvoiceDirty, invoiceFileError ,showNotification }: NavType) => {
   const history = useHistory();
   const { pathname } = history.location;
 
@@ -20,10 +21,11 @@ export const Nav = ({ isDirty, showNotification, wrongFiles }: NavType) => {
     e.preventDefault();
     const onClose = () => history.push(e.target.pathname);
 
-    const html = document.documentElement;
-    const height = Math.max(html.clientHeight, html.scrollHeight);
-
-    if (isDirty && showNotification) {
+    const dirty = isDirty || isInvoiceDirty;
+    const error = pickerWrongFiles || invoiceFileError;
+    if (dirty && showNotification) {
+      const html = document.documentElement;
+      const height = Math.max(html.clientHeight, html.scrollHeight);
       showNotification({
         level: "warning",
         title: i18next.t("pickers:title.modal.saveChanges"),
@@ -38,7 +40,7 @@ export const Nav = ({ isDirty, showNotification, wrongFiles }: NavType) => {
             behavior: "smooth",
           }),
       });
-    } else if (wrongFiles && showNotification) {
+    } else if (error && showNotification) {
       showNotification({
         level: "warning",
         title: i18next.t("global:title.modal.withoutSaving"),
@@ -111,7 +113,9 @@ export const Nav = ({ isDirty, showNotification, wrongFiles }: NavType) => {
 
 const mapStateToProps = (state: RootState) => ({
   isDirty: detailPickerSelector(state).dirty,
-  wrongFiles: hasPickerWrongFilesSelector(state),
+  pickerWrongFiles: hasPickerWrongFilesSelector(state),
+  isInvoiceDirty: preliquidationSelector(state).dirty,
+  invoiceFileError: preliquidationSelector(state).invoiceFileStatus.error
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({

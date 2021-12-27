@@ -8,6 +8,7 @@ import {
 
 export type PreliquitadionStateType = {
   fetching: boolean;
+  invoiceFileStatus: InvoiceFileStatus;
   seeMore: boolean;
   preliquidations: PreliquidationItem[];
   preliquidationsSelected: PreliquidationItem[];
@@ -19,11 +20,18 @@ export type PreliquitadionStateType = {
   dirty: boolean;
   actualPage: string;
   invoiceTypes: InvoiceTypes[];
-  invoiceFileStatus:object
+ 
 };
+
+export type InvoiceFileStatus = {
+  error?: boolean;
+  loading?: boolean;
+  message?: string;
+}
 export type DetailPreliquidationsType = {
     status: PreliquidationStatus;
     generatedAt: string;
+    id: number;
 };
 export type DetailInvoiceType= {
   id: number;

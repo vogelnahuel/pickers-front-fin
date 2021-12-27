@@ -50,6 +50,11 @@ export type PreliquidationParamsMiddlewareTypeCast = {
   id?: string | number;
 };
 
+export type UploadInvoiceFileMiddlewareType = {
+  id: number;
+  content: string;
+}
+
 export type DetailPreliquidationsApiResponseType = {
   data: {
     result: DetailPreliquidationsContentResponseType;
@@ -74,6 +79,7 @@ export type DetailPreliquidationsContentResponseType = {
     url: string | null;
   };
   presettlement: {
+   id?: number;
    status :PreliquidationStatus,
    generatedAt :  string
   }
