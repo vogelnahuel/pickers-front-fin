@@ -34,12 +34,11 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 30px;
-    border-left: 1px solid #E5E5E5;
-}
-.container-tag-active{
-  @extend %container-tag;
 }
 .container-tag{
+  @extend %container-tag;
+}
+.container-tag-active{
     @extend %container-tag;
     cursor: default;
 }
