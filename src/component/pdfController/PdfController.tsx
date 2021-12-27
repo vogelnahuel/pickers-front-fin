@@ -32,7 +32,7 @@ const PdfController = forwardRef(
     const [dragging, setDragging] = useState(false);
     const dragCounter = useRef<number>(0);
 
-    const openFileReader = (e?:  React.MouseEvent<HTMLButtonElement> | undefined):void => {
+    const openFileReader = (e?: React.MouseEvent<HTMLButtonElement> | undefined): void => {
       e?.preventDefault();
       e?.stopPropagation();
       if (fileRef.current) fileRef.current.click();
@@ -69,7 +69,7 @@ const PdfController = forwardRef(
     const handleDragOut = (e: DragEvent) => {
       e.preventDefault();
       e.stopPropagation();
-      
+
       dragCounter.current = dragCounter.current - 1;
 
       // Solo se suelta el draggging cuando se sale del ultimo elemento
@@ -131,10 +131,15 @@ const PdfController = forwardRef(
     return (
       <div className={rootContainerClasses}>
         {showFile() && (
+
           <div className="pdf-children-container">
-            { children }
+
+            {children}
+
           </div>
+
         )}
+
         <div ref={dropRef} className={containerClasses}>
           <div className="pdf-icon-container">
             {hasError() ? (
@@ -176,6 +181,8 @@ const PdfController = forwardRef(
           )}
         </div>
         {hasError() && <p className="pdf-error-message">{errorMessage}</p>}
+
+
         <input
           type="file"
           ref={fileRef}
