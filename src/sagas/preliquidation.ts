@@ -52,10 +52,7 @@ const sagas = [
     preliquidationActions.getInvoiceDetailDeleteRequest.type,
     putDeleteDetailInvoice
   ),
-  takeLatest(
-    preliquidationActions.uploadInvoiceFile.type,
-    uploadInvoiceFile
-  ),
+  takeLatest(preliquidationActions.uploadInvoiceFile.type, uploadInvoiceFile),
   takeLatest(
     preliquidationActions.deleteInvoiceFileRequest.type,
     deleteInvoiceFile
@@ -77,18 +74,9 @@ const process = (body: DetailPreliquidationBodyParamsType) => {
   };
 };
 
-function* getPreliquidations({
-  payload,
-}: PayloadAction<PreliquidationParamsMiddlewareType>): Generator<
-  | CallEffect<AxiosResponse<PreliquidationsApiResponse>>
-  | PutEffect<{ type: string }>,
-  void,
-  PreliquidationsApiResponse
-> {
-  if (payload?.status === "") {
-    delete payload["status"];
-  }
-  let payloadCast:PreliquidationCastParamsMiddlewareType  = payload as PreliquidationCastParamsMiddlewareType;
+const processDatePicker = (payload: PreliquidationParamsMiddlewareType):PreliquidationCastParamsMiddlewareType => {
+  let payloadCast: PreliquidationCastParamsMiddlewareType =
+    payload as PreliquidationCastParamsMiddlewareType;
   if (payload.generetedAt) {
     const castDatePicker = moment(
       payload.generetedAt?.from,
@@ -100,6 +88,23 @@ function* getPreliquidations({
       generetedAt: castDatePicker,
     };
   }
+
+  return payloadCast;
+};
+
+function* getPreliquidations({
+  payload,
+}: PayloadAction<PreliquidationParamsMiddlewareType>): Generator<
+  | CallEffect<AxiosResponse<PreliquidationsApiResponse>>
+  | PutEffect<{ type: string }>,
+  void,
+  PreliquidationsApiResponse
+> {
+  if (payload?.status === "") {
+    delete payload["status"];
+  }
+  let payloadCast: PreliquidationCastParamsMiddlewareType =
+    processDatePicker(payload);
 
   const response = yield call(
     preliquidationsMiddleware.getPreliquidations,
@@ -120,18 +125,8 @@ function* getMorePreliquidations({
   void,
   PreliquidationsApiResponse
 > {
-  let payloadCast:PreliquidationCastParamsMiddlewareType  = payload as PreliquidationCastParamsMiddlewareType;
-  if (payload.generetedAt) {
-    const castDatePicker = moment(
-      payload.generetedAt?.from,
-      DATE_FORMATS.shortDate
-    ).format(DATE_FORMATS.shortISODate);
-
-    payloadCast = {
-      ...payload,
-      generetedAt: castDatePicker,
-    };
-  }
+  let payloadCast: PreliquidationCastParamsMiddlewareType =
+    processDatePicker(payload);
   const response = yield call(
     preliquidationsMiddleware.getPreliquidations,
     payloadCast
@@ -262,9 +257,10 @@ function* uploadInvoiceFile({
   void,
   ApiResponse<void>
 > {
- 
   const response = yield call(
-    preliquidationsMiddleware.uploadInvoiceFile, payload);
+    preliquidationsMiddleware.uploadInvoiceFile,
+    payload
+  );
   if (response.status !== 200) {
     yield put(preliquidationActions.uploadInvoiceFileError());
   } else {
@@ -280,9 +276,10 @@ function* deleteInvoiceFile({
   void,
   ApiResponse<void>
 > {
- 
   const response = yield call(
-    preliquidationsMiddleware.deleteInvoiceFile, payload);
+    preliquidationsMiddleware.deleteInvoiceFile,
+    payload
+  );
   if (response.status !== 200) {
     yield put(preliquidationActions.deleteInvoiceFileError());
   } else {
