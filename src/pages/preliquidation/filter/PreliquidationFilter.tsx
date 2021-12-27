@@ -10,7 +10,10 @@ import "pages/pickers/filter/filter.scss";
 import React from "react";
 import { Field, Form } from "react-final-form";
 import { FILTER_PRELIQUIDATION_OPTIONS } from "utils/constants";
-import { PreliquidationFilterPropsType } from "./type";
+import {
+  PreliquidationFilterPropsType,
+  PreliquidationFiltersType,
+} from "./types";
 
 export const PreliquidationFilter: React.FC<PreliquidationFilterPropsType> = ({
   onSubmit,
@@ -35,10 +38,11 @@ export const PreliquidationFilter: React.FC<PreliquidationFilterPropsType> = ({
         <div className="container-col">
           <div className="container-row">
             <Form
-              onSubmit={(value: any) => onSubmit({
-                ...value,
-                  
-              })}
+              onSubmit={(value: PreliquidationFiltersType) =>
+                onSubmit({
+                  ...value,
+                })
+              }
               initialValues={filters}
               mutators={{
                 setValue: ([field, value], state, { changeValue }) => {

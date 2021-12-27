@@ -64,8 +64,12 @@ export const initialState: PreliquitadionStateType = {
       url: null
     },
     presettementId: undefined
+  },
+  invoiceFileStatus: {
+    error: undefined,
+    loading: undefined,
+    message: undefined
   }
-
 };
 
 const SLICE_NAME = "preliquidation";
@@ -92,7 +96,8 @@ export const preliquidationSlice = createSlice({
     getPreliquidationsRequest: (
       state: PreliquitadionStateType,
       action: PayloadAction<PreliquidationParamsMiddlewareType>
-    ) => {},
+    ) => {
+    },
     getMorePreliquidationsRequest: (
       state: PreliquitadionStateType,
       action: PayloadAction<PreliquidationParamsMiddlewareType>

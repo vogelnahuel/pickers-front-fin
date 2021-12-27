@@ -1,5 +1,6 @@
-import { PreliquidationFilterExtraType } from "reducers/types/preliquidation"
+
 import { PreliquidationItem, PreliquidationParamsMiddlewareType } from "sagas/types/preliquidation"
+import { PreliquidationFilterExtraType } from "./filter/types"
 
 export type PreliquidationContainerProps = {
   preliquidations: PreliquidationItem[],

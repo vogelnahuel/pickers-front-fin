@@ -4,8 +4,8 @@ import { PreliquidationParamsMiddlewareType } from "sagas/types/preliquidation";
 import { AppDispatch, RootState } from "store";
 import { Preliquidation } from "./Preliquidation";
 import { actions as preliActions, preliquidationSelector } from "../../reducers/preliquidation";
-import { PreliquidationFilterExtraType } from "reducers/types/preliquidation";
 import { PreliquidationContainerProps } from "./types";
+import { PreliquidationFilterExtraType } from "./filter/types";
 
 const PreliquidationContainer = (props: PreliquidationContainerProps): JSX.Element => {
   useEffect(() => {

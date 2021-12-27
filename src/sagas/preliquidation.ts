@@ -75,23 +75,25 @@ function* getPreliquidations({
   void,
   PreliquidationsApiResponse
 > {
-  if(payload?.status===""){
-    delete payload['status']
+  if (payload?.status === "") {
+    delete payload["status"];
   }
+  let casteado;
   if (payload.generetedAt) {
-    const cast = moment(
+    const castDatePicker = moment(
       payload.generetedAt?.from,
       DATE_FORMATS.shortDate
     ).format(DATE_FORMATS.shortISODate);
-    payload = {
+
+    casteado = {
       ...payload,
-      generetedAt: cast,
+      generetedAt: castDatePicker,
     };
   }
 
   const response = yield call(
     preliquidationsMiddleware.getPreliquidations,
-    payload
+    payload.generetedAt ? casteado : payload
   );
   if (response.status !== 200) {
     yield put(preliquidationActions.getPreliquidationsError());
@@ -108,7 +110,6 @@ function* getMorePreliquidations({
   void,
   PreliquidationsApiResponse
 > {
-
   const response = yield call(
     preliquidationsMiddleware.getPreliquidations,
     payload

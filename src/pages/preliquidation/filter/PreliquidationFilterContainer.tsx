@@ -10,11 +10,14 @@ import {
     preliquidationSelector as preliquidationSelectors,
   } from "reducers/preliquidation";
 import { PreliquidationParamsMiddlewareType } from "sagas/types/preliquidation";
+import { filterPreliquidationValidationSchema, PreliquidationFilterContainerPropsType, PreliquidationFiltersType } from "./types";
 
-const PreliquidationFilterContainer: React.FC<any> = (props) => {
+const PreliquidationFilterContainer: React.FC<PreliquidationFilterContainerPropsType> = (props) => {
 
 
-const search = (values: any) => {
+
+const search = (values: PreliquidationFiltersType) => {
+ 
   props.getPreliquidations({
     ...values,
     ...props.filtersExtra,
@@ -22,7 +25,7 @@ const search = (values: any) => {
     props.setPreliquidationFilters(values);
   };
 
-  const validationSchema: yup.SchemaOf<any> =
+  const validationSchema: yup.SchemaOf<filterPreliquidationValidationSchema> =
     yup.object({
       presettlmentId: yup
         .string()
@@ -60,7 +63,7 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
 getPreliquidations: (params: PreliquidationParamsMiddlewareType) => {
   dispatch(preliquidationActions.getPreliquidationsRequest(params));
 },
-setPreliquidationFilters: (filters: any) => {
+setPreliquidationFilters: (filters: PreliquidationFiltersType) => {
     dispatch(preliquidationActions.setPreliquidationFilters(filters))
 }
 });

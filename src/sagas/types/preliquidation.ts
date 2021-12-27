@@ -1,3 +1,5 @@
+import { generetedAtType } from "pages/preliquidation/filter/types";
+
 export type PreliquidationsApiResponse = {
   data: PreliquidationsContentResponseType;
   status: number;
@@ -32,12 +34,12 @@ export type PreliquidationStatus = {
 export type PreliquidationParamsMiddlewareType = {
   presettlmentId?: number;
   status?: string;
-  generetedAt?:any
+  generetedAt?:generetedAtType 
   fiscalNumber?: string;
   limit?: number;
   offset?: number;
-  id?: string | number;
 };
+
 export type PreliquidationParamsMiddlewareTypeCast = {
   presettlmentId?: number;
   status?: string;
