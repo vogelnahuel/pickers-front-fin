@@ -20,9 +20,11 @@ export const getTransactions = (
   API.get("/ms-admin-rest/api/v1.0/transactions", params);
 export const getTransactionsExport = (
   params: FilterTransactionsType
-): Promise<AxiosResponse<TransactionsExportContentType>> =>
-  API.get("/ms-admin-rest/api/v1.0/transactions.csv", params);
-
+): Promise<AxiosResponse<TransactionsExportContentType>> => {
+  const { date, offset, ...body } = params; 
+  return API.get("/ms-admin-rest/api/v1.0/transactions.csv", body);
+}
+  
 export const getDetailTransaction = (
   id: string
 ): Promise<AxiosResponse<DetailTransactionResponseType>> =>
