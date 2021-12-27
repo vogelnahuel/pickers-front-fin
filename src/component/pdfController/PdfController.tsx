@@ -32,7 +32,7 @@ const PdfController = forwardRef(
     const [dragging, setDragging] = useState(false);
     const dragCounter = useRef<number>(0);
 
-    const openFileReader = (e?:  React.MouseEvent<HTMLButtonElement> | undefined):void => {
+    const openFileReader = (e?: React.MouseEvent<HTMLButtonElement> | undefined): void => {
       e?.preventDefault();
       e?.stopPropagation();
       if (fileRef.current) fileRef.current.click();
@@ -69,7 +69,7 @@ const PdfController = forwardRef(
     const handleDragOut = (e: DragEvent) => {
       e.preventDefault();
       e.stopPropagation();
-      
+
       dragCounter.current = dragCounter.current - 1;
 
       // Solo se suelta el draggging cuando se sale del ultimo elemento
@@ -130,53 +130,59 @@ const PdfController = forwardRef(
 
     return (
       <div className={rootContainerClasses}>
-        {showFile() ? (
-          children
-        ) : (
-          <>
-            <div ref={dropRef} className={containerClasses}>
-              <div className="pdf-icon-container">
-                {hasError() ? (
-                  <img
-                    className="pdf-upload-error-icon"
-                    src={uploadError}
-                    alt="upload-error-icon"
-                  />
-                ) : (
-                  <div className="pdf-upload-icon">
-                    <img
-                      className="pdf-upload-cloud"
-                      src={uploadCloud}
-                      alt="upload-icon"
-                    />
-                    <img
-                      className="pdf-upload-arrow"
-                      src={uploadArrow}
-                      alt="upload-icon"
-                    />
-                  </div>
-                )}
-                <p className="pdf-title">
-                  {dragging
-                    ? i18next.t("component:label.pdfController.dragging")
-                    : title}
-                </p>
-              </div>
-              <div className="pdf-content">
-                <Button onClick={openFileReader}>{buttonText}</Button>
-                <p className="pdf-message">
-                  {i18next.t("component:label.pdfController.instruction")}
-                </p>
-              </div>
-              {loading && (
-                <div className="pdf-loading-container">
-                  <div className="pdf-loading-bar"></div>
-                </div>
-              )}
-            </div>
-            {hasError() && <p className="pdf-error-message">{errorMessage}</p>}
-          </>
+        {showFile() && (
+
+          <div className="pdf-children-container">
+
+            {children}
+
+          </div>
+
         )}
+
+        <div ref={dropRef} className={containerClasses}>
+          <div className="pdf-icon-container">
+            {hasError() ? (
+              <img
+                className="pdf-upload-error-icon"
+                src={uploadError}
+                alt="upload-error-icon"
+              />
+            ) : (
+              <div className="pdf-upload-icon">
+                <img
+                  className="pdf-upload-cloud"
+                  src={uploadCloud}
+                  alt="upload-icon"
+                />
+                <img
+                  className="pdf-upload-arrow"
+                  src={uploadArrow}
+                  alt="upload-icon"
+                />
+              </div>
+            )}
+            <p className="pdf-title">
+              {dragging
+                ? i18next.t("component:label.pdfController.dragging")
+                : title}
+            </p>
+          </div>
+          <div className="pdf-content">
+            <Button onClick={openFileReader}>{buttonText}</Button>
+            <p className="pdf-message">
+              {i18next.t("component:label.pdfController.instruction")}
+            </p>
+          </div>
+          {loading && (
+            <div className="pdf-loading-container">
+              <div className="pdf-loading-bar"></div>
+            </div>
+          )}
+        </div>
+        {hasError() && <p className="pdf-error-message">{errorMessage}</p>}
+
+
         <input
           type="file"
           ref={fileRef}

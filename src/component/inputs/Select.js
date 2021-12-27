@@ -1,9 +1,9 @@
-import { useState,useEffect } from "react";
+import { useState } from "react";
 import "component/inputs/multipleSelect.scss";
 import "pages/pickers/detailPicker/DetailPicker.scss";
 import Arrow from "assets/admin/flechaAbajo.svg";
 
-const Select = ({ input, label, options = [], placeholder, onChange ,disabled}) => {
+const Select = ({ input, label, options = [], placeholder, onChange, disabled }) => {
 
   const [open, setOpen] = useState(false);
   const globalClose = (e) => {
@@ -14,19 +14,16 @@ const Select = ({ input, label, options = [], placeholder, onChange ,disabled}) 
 
   const handleClick = (e) => {
     e.stopPropagation();
-    if(!disabled){
+    if (!disabled) {
       window.addEventListener("click", globalClose);
       setOpen(!open);
     }
- 
+
   };
-useEffect(() => {
- console.log("render")
-}, [input.value])
   return (
     <div className="multiple-selectbox">
       <div onClick={handleClick} className="multiple-contenido-select">
-        <label className={`label-Admin-Pickers ${disabled ? " readonly" :""} `}>{label}</label>
+        <label className={`label-Admin-Pickers ${disabled ? " readonly" : ""} `}>{label}</label>
         <input
           name={input.name}
           placeholder={placeholder}
@@ -34,11 +31,11 @@ useEffect(() => {
             input.value.label && input.value.label !== ""
               ? input.value.label
               : input.value.name && input.value.name !== ""
-              ? input.value.name
-              : ""
+                ? input.value.name
+                : ""
           }
           disabled
-          className={`Admin-Pickers-input-select ${disabled ? " readonly" :""}`}
+          className={`Admin-Pickers-input-select ${disabled ? " readonly" : ""}`}
           type="text"
         />
         <img className="multiple-flotarImg" src={Arrow} alt="arrow" />
