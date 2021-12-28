@@ -20,7 +20,7 @@ import i18next from "i18next";
 import moment from "moment";
 import { DATE_FORMATS, MAX_FILE_SIZE, VALIDATION_REGEX } from "utils/constants";
 import { ObjectShape, TypeOfShape } from "yup/lib/object";
-import { toBase64 } from "utils/toBase64";
+import { getBase64FromUrl, isBase64, toBase64 } from "utils/toBase64";
 import { InvoiceFileStatus, DetailInvoiceType } from "reducers/types/preliquidation";
 import { NotificationStateType } from "reducers/types/notification";
 
@@ -32,17 +32,17 @@ const InvoiceContainer = (
  
 
   useEffect(() => {
-    props.getInvoiceDetail(params.id);
+    props.setInvoiceFileStatus({ loading: false, error: false });
     props.setActualPage("INVOICE");
     props.getInvoiceDetailTypes();
-
+    props.getInvoiceDetail(params.id);
+    
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fileHandler = async (file: File) => {
     props.setInvoiceFileStatus({ loading: true });
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-
+    
     if (file.size > MAX_FILE_SIZE || file.type !== "application/pdf") {
       props.setInvoiceFileStatus({
         error: true,
@@ -112,22 +112,40 @@ const InvoiceContainer = (
   const deleteFile = () => {
     props.showNotification({
       level: "warning",
-      title: i18next.t("pickers:title.modal.saveChanges"),
-      body: i18next.t("pickers:label.modal.saveChanges"),
-      onClickLabel: "pickers:button.modal.goToSave",
-      onCloseLabel: "pickers:button.modal.notSave",
+      title: i18next.t("invoice:title.modal.deleteInvoice"),
+      body: i18next.t("invoice:label.modal.deleteInvoice"),
+      onClickLabel: "invoice:button.modal.delete",
+      onCloseLabel: "invoice:button.modal.cancel",
       onClose: undefined,
       onClick: () => props.deleteInvoiceFile(parseInt(params.id||'0'))
     });
   }
 
-  const downloadFile = () => {
+  const goToPreviousFile = () => {
+    props.setInvoiceFileStatus({
+      error: false,
+      loading: false,
+    });
+  }
 
-    if (!props.invoiceDetail?.invoiceFile?.url) return;
+  const downloadFile = async () => {
 
+    const url = props.invoiceDetail?.invoiceFile?.url;
+    if (!url) return;
+
+    const now = new Date();
+    const date = `${now.getDate()}_${now.getMonth() + 1}_${now.getFullYear()}`;
+    const time = `${now.getHours()}_${now.getMinutes()}_${now.getSeconds()}`
     const downloadLink = document.createElement("a");
-    const fileName = "factura.pdf";
-    downloadLink.href = props.invoiceDetail?.invoiceFile?.url;
+    const fileName = `preli-${params.id || ""}-${date}_${time}.pdf`;
+    
+    if(isBase64(url)){
+      downloadLink.href = url;
+    }
+    else{
+      const base64 = await getBase64FromUrl(url) as string;
+      downloadLink.href = base64;
+    }
     downloadLink.download = fileName;
     downloadLink.click();
   }
@@ -211,7 +229,7 @@ const InvoiceContainer = (
       presettementId={params.id}
       handleClickBack={handleClickBack}
       changePage={changePage}
-
+      goToPreviousFile={goToPreviousFile}
     />
   );
 };

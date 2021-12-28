@@ -13,12 +13,16 @@ export const TabControler: React.FC<TabControlerType> = ({
   actualPage,
   changePage,
   tabs,
+  clickable = true,
 }) => (
-  <div 
-  className="flex-tab background-tab">
+  <div className="flex-tab background-tab">
     <div
       onClick={() => changePage(tabs && tabs[0].id)}
-      className = { classNames({' container-tag-active ':actualPage === tabs[0].id , 'container-tag':actualPage !== tabs[0].id})}
+      className={classNames({
+        "cursor-pointer": clickable,
+        "container-tag-active ": actualPage === tabs[0].id,
+        "container-tag": actualPage !== tabs[0].id,
+      })}
     >
       <p
         className={
@@ -42,7 +46,11 @@ export const TabControler: React.FC<TabControlerType> = ({
 
     <div
       onClick={() => changePage(tabs && tabs[1].id)}
-      className = { classNames("border-tag",{' container-tag-active':actualPage === tabs[1].id , 'container-tag':actualPage !== tabs[1].id})}
+      className={classNames("border-tag", {
+        "cursor-pointer": clickable,
+        "container-tag-active": actualPage === tabs[1].id,
+        "container-tag": actualPage !== tabs[1].id,
+      })}
     >
       <p
         className={

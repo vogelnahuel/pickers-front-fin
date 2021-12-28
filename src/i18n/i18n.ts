@@ -20,6 +20,7 @@ import restorePassword from "./es_AR/login/restorePassword/restorePassword.json"
 import preli from "./es_AR/preli/preli.json"
 import detailPreliquidation from "./es_AR/preli/detailPreli/detailPreliquidation.json"
 import invoice from "./es_AR/preli/invoice/invoice.json"
+import filterPreliquidation from "./es_AR/preli/filter/preliFilter.json"
 
 //{type:what_is}.{where_is}.{name}
 //error.input.name (error== rojo)
@@ -60,5 +61,6 @@ i18n.addResourceBundle("es_AR", "restorePassword", restorePassword);
 i18n.addResourceBundle("es_AR", "preli",preli)
 i18n.addResourceBundle("es_AR", "detailPreliquidation",detailPreliquidation)
 i18n.addResourceBundle("es_AR", "invoice",invoice)
+i18n.addResourceBundle("es_AR", "filterPreliquidation",filterPreliquidation)
 
 i18n.addResourceBundle("es_MX", "dashboard", dashboardi18nMX);

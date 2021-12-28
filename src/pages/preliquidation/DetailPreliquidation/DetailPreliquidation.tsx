@@ -4,6 +4,7 @@ import NotificationModal from "component/modal/NotificationModal";
 import "pages/preliquidation/DetailPreliquidation/detailPreliquidation.scss";
 import React from "react";
 import InvoiceContainer from "./invoice/InvoiceContainer";
+import "pages/preliquidation/DetailPreliquidation/detailPreliquidations.scss";
 import { DetailPreliquidationPropsType } from "./types";
 
 

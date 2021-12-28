@@ -182,60 +182,27 @@
 
 
 /*** date picker**/
-._1bpEiR6zdbhp8U0YrJ6U4i{
-    font-family: "Mulish";
-    font-style: normal;
-    font-weight: bold !important;
-    font-size: 16px;
-    line-height: 20px;
-    text-align: center;
-    color: #FFFFFF !important;
-    background: #0098FF !important;
-    border-radius: 20px;
-    color: white;
-    text-align: center;
-}
-._3K93wLekMhMl4y3GU3bWxo{
-  color: #BDBDBD;
-  background-color: transparent;
-  font-family: "Mulish";
-  font-style: normal;
-  font-weight: normal !important;
-  font-size: 17px !important;
-  line-height: 27px !important;
-  letter-spacing: 0.005em;
-  position: relative;
-}
 
 
-.jmTwmD2atSGINRKpFp1HX{
-    font-family: "Mulish";
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 20px;
-    color: #2D2D2D;
-}
-._1xZFXcDVmGL_Loq5wOIwEe{
-    font-family: "Mulish";
-    font-style: normal;
-    font-weight: bold;
-    font-size: 16px;
-    line-height: 20px;
-    text-align: center;
-    color: #4D4D4D;
-}
+// .jmTwmD2atSGINRKpFp1HX{
+//     font-family: "Mulish";
+//     font-style: normal;
+//     font-weight: normal;
+//     font-size: 16px;
+//     line-height: 20px;
+//     color: #2D2D2D;
+// }
+// ._1xZFXcDVmGL_Loq5wOIwEe{
+//     font-family: "Mulish";
+//     font-style: normal;
+//     font-weight: bold;
+//     font-size: 16px;
+//     line-height: 20px;
+//     text-align: center;
+//     color: #4D4D4D;
+// }
 
 
-._2Vkl-VdhzFTlAFgu4i0gR2 span{
-    font-family: "Mulish";
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 20px;
-    text-align: center;
-    color: #666666;
-}
 
 ._28B9K2Lp5eIqcQvEtU2fqv ._3K93wLekMhMl4y3GU3bWxo{
     z-index: 0;
@@ -252,18 +219,49 @@
 .kfsr3-1wGDb31hi10DLi7{
     background-color: white;
 }
-div .MKjsMK9DPt5gO-irDsCHa {
-    background: #0098FF;
-    border-radius: 20px;
-    color: white;
+
+// placeholder
+.theme-default ._3K93wLekMhMl4y3GU3bWxo{
+    color: #BDBDBD !important;
+    background-color: transparent;
+    font-family: "Mulish";
+    font-style: normal;
+    font-weight: normal !important;
+    font-size: 17px !important;
+    line-height: 27px !important;
+    letter-spacing: 0.005em;
+    //position: relative;
+}
+
+// Day
+.theme-default ._2Vkl-VdhzFTlAFgu4i0gR2 span{
+    font-family: "Mulish";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    color: #666666;
+}
+
+// From
+.theme-default span.MKjsMK9DPt5gO-irDsCHa {
+    background: #0098FF !important; 
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    color: white !important;
+    font-weight: bold !important;
     font-family: 'Mulish';
     font-style: normal;
     font-weight: bold;
+    font-weight: 300;
     font-size: 16px;
     line-height: 20px;
     text-align: center;
 }
-._1E-C-xua7BZJ8JvEl62fYt{
+
+// Range
+.theme-default span._1E-C-xua7BZJ8JvEl62fYt{
     background: #E8F6FD;
     font-family: 'Mulish';
     font-style: normal;
@@ -273,6 +271,22 @@ div .MKjsMK9DPt5gO-irDsCHa {
     text-align: center;
     color: #666666;
 }
+
+// To
+.theme-default span._1bpEiR6zdbhp8U0YrJ6U4i{
+    font-family: "Mulish";
+    font-style: normal;
+    font-weight: bold !important;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    color: #FFFFFF !important;
+    background: #0098FF !important;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    text-align: center;
+}
+
 
 @media (max-width:1310px){
     .display-inline{

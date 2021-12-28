@@ -1,0 +1,38 @@
+.label-container {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 2px 4px;
+	margin: 0;
+}
+
+.checkbox-input {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 18px;
+	width: 18px;
+	background-color: transparent;
+	border: 1.5px solid #808080;
+	border-radius: 2px;
+	-webkit-appearance: none;
+	cursor: pointer;
+	
+	&:checked{
+		border: none;
+		background: url("../../assets/admin/tick_icon.svg") #0098FF;
+		outline: none;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-origin: content-box;
+	}
+	&:disabled {
+		border: 1.5px solid #ccc;
+		background-color: #eee;
+	}
+}
+
+.checkbox-text{
+	color: #4d4d4d;
+	font-size: 14px;
+}

@@ -21,6 +21,7 @@ import {
   DetailPreliquidationsContentResponseType,
   DetailPreliquidationsInvoiceApiResponseType,
   DetailPreliquidationsInvoiceTypesApiResponseType,
+  PreliquidationCastParamsMiddlewareType,
   PreliquidationParamsMiddlewareType,
   PreliquidationsApiResponse,
   UploadInvoiceFileMiddlewareType,
@@ -51,10 +52,7 @@ const sagas = [
     preliquidationActions.getInvoiceDetailDeleteRequest.type,
     putDeleteDetailInvoice
   ),
-  takeLatest(
-    preliquidationActions.uploadInvoiceFile.type,
-    uploadInvoiceFile
-  ),
+  takeLatest(preliquidationActions.uploadInvoiceFile.type, uploadInvoiceFile),
   takeLatest(
     preliquidationActions.deleteInvoiceFileRequest.type,
     deleteInvoiceFile
@@ -67,13 +65,32 @@ const sagas = [
 
 export default sagas;
 
-const process = (body:DetailPreliquidationBodyParamsType)=>{
-
-  return{
+const process = (body: DetailPreliquidationBodyParamsType) => {
+  return {
     ...body,
-    emisionDate: moment(body.emisionDate,DATE_FORMATS.shortDate).format(DATE_FORMATS.shortISODate),
+    emisionDate: moment(body?.emisionDate, DATE_FORMATS.shortDate).format(
+      DATE_FORMATS.shortISODate
+    ),
+  };
+};
+
+const processDatePicker = (payload: PreliquidationParamsMiddlewareType):PreliquidationCastParamsMiddlewareType => {
+  let payloadCast: PreliquidationCastParamsMiddlewareType =
+    payload as PreliquidationCastParamsMiddlewareType;
+  if (payload.generatedAt) {
+    const castDatePicker = moment(
+      payload.generatedAt?.from,
+      DATE_FORMATS.shortDate
+    ).format(DATE_FORMATS.shortISODate);
+
+    payloadCast = {
+      ...payload,
+      generatedAt: castDatePicker,
+    };
   }
-}
+
+  return payloadCast;
+};
 
 function* getPreliquidations({
   payload,
@@ -83,9 +100,15 @@ function* getPreliquidations({
   void,
   PreliquidationsApiResponse
 > {
+  if (payload?.status === "") {
+    delete payload["status"];
+  }
+  let payloadCast: PreliquidationCastParamsMiddlewareType =
+    processDatePicker(payload);
+
   const response = yield call(
     preliquidationsMiddleware.getPreliquidations,
-    payload
+    payloadCast
   );
   if (response.status !== 200) {
     yield put(preliquidationActions.getPreliquidationsError());
@@ -102,9 +125,11 @@ function* getMorePreliquidations({
   void,
   PreliquidationsApiResponse
 > {
+  let payloadCast: PreliquidationCastParamsMiddlewareType =
+    processDatePicker(payload);
   const response = yield call(
     preliquidationsMiddleware.getPreliquidations,
-    payload
+    payloadCast
   );
   if (response.status !== 200) {
     yield put(preliquidationActions.getMorePreliquidationsError());
@@ -159,7 +184,7 @@ function* putSaveDetailInvoice({
     salePoint: payload.salePoint,
     caeNumber: payload.caeNumber,
   };
-  result = process(result)
+  result = process(result);
 
   const response = yield call(
     preliquidationsMiddleware.putSaveDetailInvoice,
@@ -189,7 +214,7 @@ function* patchApproveDetailInvoice({
     salePoint: payload.salePoint,
     caeNumber: payload.caeNumber,
   };
-  result = process(result)
+  result = process(result);
 
   const response = yield call(
     preliquidationsMiddleware.patchApproveDetailInvoice,
@@ -232,9 +257,10 @@ function* uploadInvoiceFile({
   void,
   ApiResponse<void>
 > {
- 
   const response = yield call(
-    preliquidationsMiddleware.uploadInvoiceFile, payload);
+    preliquidationsMiddleware.uploadInvoiceFile,
+    payload
+  );
   if (response.status !== 200) {
     yield put(preliquidationActions.uploadInvoiceFileError());
   } else {
@@ -244,15 +270,14 @@ function* uploadInvoiceFile({
 
 function* deleteInvoiceFile({
   payload,
-}: PayloadAction<number>): Generator<
+}: PayloadAction<{ id: number}>): Generator<
   | PutEffect<{ payload: undefined; type: string }>
   | CallEffect<AxiosResponse<ApiResponse<void>>>,
   void,
   ApiResponse<void>
 > {
- 
   const response = yield call(
-    preliquidationsMiddleware.deleteInvoiceFile, payload);
+    preliquidationsMiddleware.deleteInvoiceFile, payload.id);
   if (response.status !== 200) {
     yield put(preliquidationActions.deleteInvoiceFileError());
   } else {
