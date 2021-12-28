@@ -16,8 +16,8 @@ import { hasPickerWrongFilesSelector } from "reducers/detailPicker";
 const PendingUserAdminContainer: React.FC<PickerContainerTypes> = (
   props
 ): JSX.Element => {
-  const changePage = (page: string, clickable?:boolean) => {
-    if (props.isDetail || props.actualPage !== page || clickable) props.setActualPage(page);
+  const changePage = (page: string) => {
+    if (props.isDetail || props.actualPage !== page) props.setActualPage(page);
   };
 
   useEffect(() => {
