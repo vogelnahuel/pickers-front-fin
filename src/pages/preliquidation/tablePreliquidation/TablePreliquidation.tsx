@@ -1,4 +1,4 @@
-import { Checkbox } from "@pickit/pickit-components";
+import React from "react";
 import Table from "component/table/Table";
 import i18next from "i18next";
 import { preliquidationTableTitles } from "utils/constants";
@@ -15,6 +15,7 @@ import { PreliquidationItem } from "sagas/types/preliquidation";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { ISO8601toDDMMYYYHHMM } from "utils/iso8601toDDMMYYHHMM";
+import Checkbox from "component/checkbox/Checkbox";
 
 const TablePreliquidation = ({
   items,
@@ -23,12 +24,18 @@ const TablePreliquidation = ({
   isAllSelected,
   toggleAll,
 }: TablePreliquidationProps) => {
- 
   const history = useHistory();
-  const redirect = (id: number) => history.push(`/preliquidation/${id}`);
 
   const isSelected = (itemId: number) =>
     preliquidationsSelected?.map((p) => p.id).includes(itemId);
+
+  const redirect = (
+    e: React.MouseEvent<HTMLTableRowElement, MouseEvent>,
+    id: number
+  ) => {
+    const target = e?.target as HTMLElement;
+    if (target?.localName !== "input") history.push(`/preliquidation/${id}`);
+  };
 
   return (
     <Table className="preliquidation-table">
@@ -40,7 +47,7 @@ const TablePreliquidation = ({
           ))}
           <td>
             <Checkbox
-              value={isAllSelected}
+              checked={isAllSelected || false}
               onChange={() => toggleAll && toggleAll()}
             />
           </td>
@@ -51,7 +58,7 @@ const TablePreliquidation = ({
           <tr
             className="preliquidation-table-tr"
             key={item.id}
-            onClick={() => redirect(item.id)}
+            onClick={(e) => redirect(e, item.id)}
           >
             <td>
               <img
@@ -62,13 +69,13 @@ const TablePreliquidation = ({
             </td>
             <td>{item.id}</td>
             <td>{item.fiscalNumber}</td>
-            <td>{ISO8601toDDMMYYYHHMM(item.generatedAt).substring(0,11)}</td>
+            <td>{ISO8601toDDMMYYYHHMM(item.generatedAt).substring(0, 11)}</td>
             <td>{item.status?.description}</td>
             <td>${item.total}</td>
             <td>
-              {item.status?.tag === "APPROVED" && (
+              {item.status?.tag === "approved" && (
                 <Checkbox
-                  value={isSelected(item.id)}
+                  checked={!!isSelected(item.id)}
                   onChange={() => toggleItem && toggleItem(item)}
                 />
               )}

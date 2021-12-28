@@ -77,15 +77,15 @@ const process = (body: DetailPreliquidationBodyParamsType) => {
 const processDatePicker = (payload: PreliquidationParamsMiddlewareType):PreliquidationCastParamsMiddlewareType => {
   let payloadCast: PreliquidationCastParamsMiddlewareType =
     payload as PreliquidationCastParamsMiddlewareType;
-  if (payload.generetedAt) {
+  if (payload.generatedAt) {
     const castDatePicker = moment(
-      payload.generetedAt?.from,
+      payload.generatedAt?.from,
       DATE_FORMATS.shortDate
     ).format(DATE_FORMATS.shortISODate);
 
     payloadCast = {
       ...payload,
-      generetedAt: castDatePicker,
+      generatedAt: castDatePicker,
     };
   }
 
@@ -270,16 +270,14 @@ function* uploadInvoiceFile({
 
 function* deleteInvoiceFile({
   payload,
-}: PayloadAction<number>): Generator<
+}: PayloadAction<{ id: number}>): Generator<
   | PutEffect<{ payload: undefined; type: string }>
   | CallEffect<AxiosResponse<ApiResponse<void>>>,
   void,
   ApiResponse<void>
 > {
   const response = yield call(
-    preliquidationsMiddleware.deleteInvoiceFile,
-    payload
-  );
+    preliquidationsMiddleware.deleteInvoiceFile, payload.id);
   if (response.status !== 200) {
     yield put(preliquidationActions.deleteInvoiceFileError());
   } else {

@@ -91,7 +91,7 @@ export const PreliquidationFilter: React.FC<PreliquidationFilterPropsType> = ({
                       <Field
                         type="text"
                         className="Admin-Pickers-input-select"
-                        name="generetedAt"
+                        name="generatedAt"
                         placeholder={i18next.t("preli:placeholder.filter.date")}
                         maxLength={8}
                         language="es"
