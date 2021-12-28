@@ -12,7 +12,8 @@
   font-weight: 700;
   cursor: pointer;
 
-  &.disabled {
+  &:disabled {
     color: rgba(189, 189, 189, 1);
+    cursor: default;
   }
 }

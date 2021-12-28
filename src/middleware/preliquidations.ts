@@ -7,12 +7,12 @@ import {
   PreliquidationsApiResponse,
   UploadInvoiceFileMiddlewareType,
   DetailPreliquidationsInvoiceTypesApiResponseType,
-  PreliquidationParamsMiddlewareType,
+  PreliquidationCastParamsMiddlewareType,
 } from "sagas/types/preliquidation";
 import { ApiResponse } from "./api";
 
 export const getPreliquidations = (
-  params: PreliquidationParamsMiddlewareType
+  params: PreliquidationCastParamsMiddlewareType
 ): Promise<AxiosResponse<PreliquidationsApiResponse>> =>
   API.get("/ms-admin-rest/api/v1.0/presettlements", params);
 

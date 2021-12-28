@@ -4,16 +4,20 @@ import {
   PayloadAction,
   createSelector,
 } from "@reduxjs/toolkit";
+import { detailPreliquidationDatePicker } from "pages/preliquidation/DetailPreliquidation/invoice/types";
+import { PreliquidationFilterExtraType, PreliquidationFiltersType } from "pages/preliquidation/filter/types";
 import {
   DetailPreliquidationsContentResponseType,
   InvoiceTypes,
   PreliquidationItem,
+  PreliquidationParamsMiddlewareType,
   PreliquidationsContentResponseType,
 } from "sagas/types/preliquidation";
 import { RootState } from "store";
 import { endsWithAny } from "utils/endsWithAny";
 import {
   InvoiceFileStatus,
+  PreliquidationsSuccessMoreResponseType,
   PreliquitadionStateType,
 } from "./types/preliquidation";
 
@@ -29,12 +33,12 @@ export const initialState: PreliquitadionStateType = {
   preliquidationsSelected: [],
   filters: {},
   filtersExtra: {
-    limit: 0,
-    offset: 0,
+    limit: 3,
+    offset: 0
   },
   filtersExtraSeeMore: {
-    limit: 0,
-    offset: 0,
+    limit: 3,
+    offset: 0
   },
   seeMore: true,
 
@@ -44,8 +48,8 @@ export const initialState: PreliquitadionStateType = {
     id: 0,
     status: {
       id: 0,
-      name: "",
-      tag: "",
+      description: "",
+      tag: ""
     },
     generatedAt: "",
   },
@@ -69,8 +73,9 @@ export const initialState: PreliquitadionStateType = {
       upload: false,
       url: null,
     },
-    presettementId: undefined,
+    presettementId: undefined
   },
+
 };
 
 const SLICE_NAME = "preliquidation";
@@ -96,37 +101,48 @@ export const preliquidationSlice = createSlice({
     },
     getPreliquidationsRequest: (
       state: PreliquitadionStateType,
-      action: PayloadAction<any>
-    ) => {},
+      action: PayloadAction<PreliquidationParamsMiddlewareType>
+    ) => {
+
+    },
     getMorePreliquidationsRequest: (
       state: PreliquitadionStateType,
-      action: PayloadAction<any>
+      action: PayloadAction<PreliquidationParamsMiddlewareType>
     ) => {},
     getPreliquidationsSuccess: (
       state: PreliquitadionStateType,
       action: PayloadAction<PreliquidationsContentResponseType>
     ) => {
       const { payload } = action;
+      
       state.preliquidations = payload.result.items;
       state.seeMore = payload.hasMore;
       state.filtersExtraSeeMore.offset = payload.offset + payload.limit;
+
     },
     getMorePreliquidationsSuccess: (
       state: PreliquitadionStateType,
-      action: PayloadAction<any>
-    ) => {},
+      action: PayloadAction<PreliquidationsSuccessMoreResponseType>
+    ) => {
+      const { payload } = action;
+      state.preliquidations = [...state.preliquidations, ...payload.items];
+      state.seeMore = payload.hasMore;
+      state.filtersExtraSeeMore.offset = payload.offset + payload.limit;
+
+    },
     getPreliquidationsError: () => {},
     getMorePreliquidationsError: () => {},
     setPreliquidationFilters: (
       state: PreliquitadionStateType,
-      action: PayloadAction<any>
+      action: PayloadAction<PreliquidationFiltersType>
     ) => {
       state.filters = action.payload;
     },
     setPreliquidationExtraFilters: (
       state: PreliquitadionStateType,
-      action: PayloadAction<any>
+      action: PayloadAction<PreliquidationFilterExtraType>
     ) => {
+
       state.filtersExtra = { ...state.filtersExtra, ...action.payload };
     },
 
@@ -149,19 +165,19 @@ export const preliquidationSlice = createSlice({
     },
     getInvoiceDetailSaveRequest: (
       state: PreliquitadionStateType,
-      action: PayloadAction<any>
+      action: PayloadAction<detailPreliquidationDatePicker>
     ) => {},
     getInvoiceDetailSaveError: () => {},
     getInvoiceDetailSaveSuccess: () => {},
     getInvoiceDetailApproveRequest: (
       state: PreliquitadionStateType,
-      action: PayloadAction<any>
+      action: PayloadAction<detailPreliquidationDatePicker>
     ) => {},
     getInvoiceDetailApproveError: () => {},
     getInvoiceDetailApproveSuccess: () => {},
     getInvoiceDetailDeleteRequest: (
       state: PreliquitadionStateType,
-      action: PayloadAction<any>
+      action: PayloadAction<detailPreliquidationDatePicker>
     ) => {},
     getInvoiceDetailDeleteError: () => {},
     getInvoiceDetailDeleteSuccess: () => {},

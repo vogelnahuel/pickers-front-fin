@@ -7,56 +7,41 @@ import i18next from "i18next";
 import { PreliquidationFilter } from "./PreliquidationFilter";
 import {
     actions as preliquidationActions,
+    preliquidationSelector as preliquidationSelectors,
   } from "reducers/preliquidation";
+import { PreliquidationParamsMiddlewareType } from "sagas/types/preliquidation";
+import { filterPreliquidationValidationSchema, PreliquidationFilterContainerPropsType, PreliquidationFiltersType } from "./types";
 
-const PreliquidationFilterContainer: React.FC<any> = (props) => {
-//   useEffect(() => {
-//     if (props.filters && Object.keys(props.filters).length === 0) {
-//       props.reset();
-//     }
+const PreliquidationFilterContainer: React.FC<PreliquidationFilterContainerPropsType> = (props) => {
 
-//     // eslint-disable-next-line react-hooks/exhaustive-deps
-//   }, [props.filters]);
 
-//   const search = (values: PickersParamsType) => {
-//     props.getPendingUser({
-//       ...values,
-//       ...props.filtersExtra,
-//       vehicleType:
-//         values.vehicleType &&
-//         (values.vehicleType.value === ""
-//           ? undefined
-//           : values.vehicleType.value),
-//     });
-//     props.setPendingUserFilters(values);
-//   };
 
-const search = (values: any) => {
-   
+const search = (values: PreliquidationFiltersType) => {
+ 
+  props.getPreliquidations({
+    ...values,
+    ...props.filtersExtra,
+  });
     props.setPreliquidationFilters(values);
   };
 
-  const validationSchema: yup.SchemaOf<any> =
+  const validationSchema: yup.SchemaOf<filterPreliquidationValidationSchema> =
     yup.object({
-      name: yup
+      presettlmentId: yup
         .string()
+        .min(5,i18next.t("filterPreliquidation:error.input.presettlmentIdLength"))
         .matches(
-          VALIDATION_REGEX.expName,
-          i18next.t("global:error.input.numbersOrSpecialCharacters")
+          VALIDATION_REGEX.regNumber,
+          i18next.t("global:error.input.specialCharacters")
         ),
-      identificationNumber: yup
+        fiscalNumber: yup
         .string()
-        .min(7,i18next.t("global:error.input.dniLength"))
+        .min(11,i18next.t("filterPreliquidation:error.input.fiscalNumberLength"))
         .matches(
-          VALIDATION_REGEX.expIdentificationNumber,
-          i18next.t("global:error.input.lettersOrSpecialCharacters")
+          VALIDATION_REGEX.regNumber,
+          i18next.t("global:error.input.specialCharacters")
         ),
-      email: yup
-        .string()
-        .matches(
-          VALIDATION_REGEX.regEmail,
-          i18next.t("login:error.login.invalidMail")
-        ),
+   
     });
 
   return (
@@ -69,21 +54,16 @@ const search = (values: any) => {
 };
 
 const mapStateToProps = (state: RootState) => ({
-//   filters: pendingUserSelectors(state).filters,
-//   filtersExtra: pendingUserSelectors(state).filtersExtra,
+      filters: preliquidationSelectors(state).filters,
+      filtersExtra: preliquidationSelectors(state).filtersExtra,
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
-//   reset: () => {
-//     dispatch(pendingUserActions.reset());
-//   },
-//   setPendingUserFilters: (filters: PickersParamsType) => {
-//     dispatch(pendingUserActions.setPendingUserFilters(filters));
-//   },
-//   getPendingUser: (params: ParamsMiddlewareType) => {
-//     dispatch(pendingUserActions.getPendingUserRequest(params));
-//   },
-setPreliquidationFilters: (filters: any) => {
+
+getPreliquidations: (params: PreliquidationParamsMiddlewareType) => {
+  dispatch(preliquidationActions.getPreliquidationsRequest(params));
+},
+setPreliquidationFilters: (filters: PreliquidationFiltersType) => {
     dispatch(preliquidationActions.setPreliquidationFilters(filters))
 }
 });

@@ -7,11 +7,11 @@ import {
   actions as preliActions,
   preliquidationSelector,
 } from "../../reducers/preliquidation";
-import { PreliquidationFilterExtraType } from "reducers/types/preliquidation";
 import { actions as notificationActions } from "../../reducers/notification";
 import { PreliquidationContainerProps } from "./types";
 import { NotificationStateType } from "reducers/types/notification";
 import i18next from "i18next";
+import { PreliquidationFilterExtraType } from "./filter/types";
 
 const PreliquidationContainer = (
   props: PreliquidationContainerProps

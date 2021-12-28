@@ -1,3 +1,4 @@
+import React from "react";
 import Table from "component/table/Table";
 import i18next from "i18next";
 import { preliquidationTableTitles } from "utils/constants";
@@ -13,8 +14,8 @@ import {
 import { PreliquidationItem } from "sagas/types/preliquidation";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { ISO8601toDDMMYYYHHMM } from "utils/iso8601toDDMMYYHHMM";
 import Checkbox from "component/checkbox/Checkbox";
-import React from "react";
 
 const TablePreliquidation = ({
   items,
@@ -68,8 +69,8 @@ const TablePreliquidation = ({
             </td>
             <td>{item.id}</td>
             <td>{item.fiscalNumber}</td>
-            <td>{item.generatedAt}</td>
-            <td>{item.status?.name}</td>
+            <td>{ISO8601toDDMMYYYHHMM(item.generatedAt).substring(0, 11)}</td>
+            <td>{item.status?.description}</td>
             <td>${item.total}</td>
             <td>
               {item.status?.tag === "approved" && (

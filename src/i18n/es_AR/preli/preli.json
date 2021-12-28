@@ -4,7 +4,7 @@
   "label.filter.generationDate": "Fecha de generación",
   "placeholder.filter.number": "Ingresá el número",
   "placeholder.filter.date": "Seleccioná la fecha",
-  "label.filter.taxIdentifier": "Identificador fiscal",
+  "label.filter.fiscalNumber": "Identificador fiscal",
 
   "label.select.initial": "Inicial",
   "label.select.pending": "Pendiente",

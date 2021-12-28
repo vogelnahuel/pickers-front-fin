@@ -31,7 +31,7 @@ export const Preliquidation: React.FC<PreliquidationsProps> = ({
               <p className="subtitle-pendingUser-h2">{i18next.t("preli:label.title.preliquidations")}</p>
             </h2>
           <PreliquidationFilter />
-          <div className="button-container">
+          <div className="button-container-preliquidation">
             <Button disabled={!anyPreliquidationSelected} onClick={sendToAccounting}>
               { i18next.t("preli:label.button.sendToAccounting")}
             </Button>

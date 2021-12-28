@@ -1,13 +1,10 @@
+import { PreliquidationFilterExtraType, PreliquidationFiltersType } from "pages/preliquidation/filter/types";
 import {
   InvoiceTypes,
   PreliquidationItem,
   PreliquidationStatus,
 } from "sagas/types/preliquidation";
 
-export type PreliquidationFilterExtraType = {
-  limit: number;
-  offset: number;
-};
 
 export type PreliquitadionStateType = {
   fetching: boolean;
@@ -15,7 +12,7 @@ export type PreliquitadionStateType = {
   seeMore: boolean;
   preliquidations: PreliquidationItem[];
   preliquidationsSelected: PreliquidationItem[];
-  filters: any;
+  filters: PreliquidationFiltersType;
   filtersExtra: PreliquidationFilterExtraType;
   filtersExtraSeeMore: PreliquidationFilterExtraType;
   detailPreliquidations: DetailPreliquidationsType;
@@ -23,6 +20,7 @@ export type PreliquitadionStateType = {
   dirty: boolean;
   actualPage: string;
   invoiceTypes: InvoiceTypes[];
+ 
 };
 
 export type InvoiceFileStatus = {
@@ -53,4 +51,15 @@ export type DetailInvoiceType= {
     url: string | null;
   };
   presettementId:string|undefined
+  
+}
+
+export type PreliquidationsSuccessMoreResponseType ={
+  hasMore: boolean;
+    limit: number;
+    offset: number;
+    statusCode?: number | undefined;
+    error?: string | undefined;
+    message?: string | undefined;
+    items: PreliquidationItem[];
 }
