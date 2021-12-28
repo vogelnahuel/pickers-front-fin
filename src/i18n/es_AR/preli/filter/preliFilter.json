@@ -1,5 +1,6 @@
 {
     "error.input.presettlmentIdLength": "Ingresá un número de 5 a 9 dígitos",
-    "error.input.fiscalNumberLength": "Ingresá un número de  11 dígitos"
+    "error.input.fiscalNumberLength": "Ingresá un número de  11 dígitos",
+    "label.filter.state": "Estados"
   }
   

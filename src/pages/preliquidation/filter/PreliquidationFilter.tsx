@@ -69,7 +69,7 @@ export const PreliquidationFilter: React.FC<PreliquidationFilterPropsType> = ({
                     <Field
                       type="text"
                       name="fiscalNumber"
-                      label={i18next.t("preli:label.filter.taxIdentifier")}
+                      label={i18next.t("preli:label.filter.fiscalNumber")}
                       component={Input}
                       className="Admin-Pickers-input"
                       placeholder={i18next.t("preli:placeholder.filter.number")}
@@ -100,7 +100,7 @@ export const PreliquidationFilter: React.FC<PreliquidationFilterPropsType> = ({
                   </div>
                   <div className="container-transaction-col-sm-1 container-transaction-col-xl">
                     <label className="label-Admin-Pickers">
-                      {i18next.t("filterTransaction:label.filter.state")}
+                      {i18next.t("filterPreliquidation:label.filter.state")}
                     </label>
                     <Field
                       name="status"
