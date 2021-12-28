@@ -6,6 +6,7 @@ export type TabControlerType = {
   tabs: Array<TabType>;
   showNotification?: (notification: NotificationStateType) => void;
   changePage: (page: string) => void;
+  clickable?: boolean;
 };
 
 export type TabType = {
