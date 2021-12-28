@@ -29,17 +29,17 @@ const search = (values: PreliquidationFiltersType) => {
     yup.object({
       presettlmentId: yup
         .string()
-        .min(5,i18next.t("Ingresá un número de 5 o 9 dígitos"))
+        .min(5,i18next.t("filterPreliquidation:error.input.presettlmentId-length"))
         .matches(
           VALIDATION_REGEX.regNumber,
-          i18next.t("No se admiten letras o caracteres especiales")
+          i18next.t("global:error.input.specialCharacters")
         ),
         fiscalNumber: yup
         .string()
-        .min(11,i18next.t("Ingresá un número de  11 dígitos"))
+        .min(11,i18next.t("filterPreliquidation:error.input.fiscalNumber-length"))
         .matches(
           VALIDATION_REGEX.regNumber,
-          i18next.t("No se admiten letras o caracteres especiales")
+          i18next.t("global:error.input.specialCharacters")
         ),
    
     });

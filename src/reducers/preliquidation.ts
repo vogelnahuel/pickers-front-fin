@@ -4,6 +4,7 @@ import {
   PayloadAction,
   createSelector,
 } from "@reduxjs/toolkit";
+import { detailPreliquidationDatePicker } from "pages/preliquidation/DetailPreliquidation/invoice/types";
 import { PreliquidationFilterExtraType, PreliquidationFiltersType } from "pages/preliquidation/filter/types";
 import {
   DetailPreliquidationsContentResponseType,
@@ -164,19 +165,19 @@ export const preliquidationSlice = createSlice({
     },
     getInvoiceDetailSaveRequest: (
       state: PreliquitadionStateType,
-      action: PayloadAction<{}>
+      action: PayloadAction<detailPreliquidationDatePicker>
     ) => {},
     getInvoiceDetailSaveError: () => {},
     getInvoiceDetailSaveSuccess: () => {},
     getInvoiceDetailApproveRequest: (
       state: PreliquitadionStateType,
-      action: PayloadAction<{}>
+      action: PayloadAction<detailPreliquidationDatePicker>
     ) => {},
     getInvoiceDetailApproveError: () => {},
     getInvoiceDetailApproveSuccess: () => {},
     getInvoiceDetailDeleteRequest: (
       state: PreliquitadionStateType,
-      action: PayloadAction<{}>
+      action: PayloadAction<detailPreliquidationDatePicker>
     ) => {},
     getInvoiceDetailDeleteError: () => {},
     getInvoiceDetailDeleteSuccess: () => {},

@@ -25,7 +25,7 @@ export type PreliquidationContainerProps = {
 export type PreliquidationsProps = {
   preliquidations: PreliquidationItem[];
   isFetching: boolean;
-  filters: any;
+  filters: PreliquidationParamsMiddlewareType;
   filtersExtra: PreliquidationFilterExtraType;
   filtersExtraSeeMore: PreliquidationFilterExtraType;
   seeMore: boolean;

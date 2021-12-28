@@ -38,11 +38,7 @@ export const PreliquidationFilter: React.FC<PreliquidationFilterPropsType> = ({
         <div className="container-col">
           <div className="container-row">
             <Form
-              onSubmit={(value: PreliquidationFiltersType) =>
-                onSubmit({
-                  ...value,
-                })
-              }
+              onSubmit={(value: PreliquidationFiltersType) =>onSubmit(value)}
               initialValues={filters}
               mutators={{
                 setValue: ([field, value], state, { changeValue }) => {
