@@ -1,0 +1,195 @@
+$text-color: #4d4d4d;
+$text-color-darker: #2d2d2d;
+$error-color: #ff1515;
+$error-color-darker: #e00000;
+
+$icon-color: #808080;
+$icon-color-hover: #4d4d4d;
+$primary-color: #0098ff;
+$primary-color-darker: #007acc;
+
+%error {
+  color: $error-color;
+}
+
+@mixin styleParagraph($font-weight, $color) {
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: $font-weight;
+  color: $color;
+}
+
+.container-icon svg {
+  height: 15px;
+  width: 17px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin: 0 8px;
+}
+
+.container-icon {
+  display: inline-flex;
+}
+
+.container-icon svg {
+  path {
+    stroke: $icon-color;
+  }
+
+  &:hover path {
+    stroke: $icon-color-hover;
+  }
+}
+
+.error-icon svg {
+  path {
+    stroke: $error-color;
+  }
+
+  .header:hover & > path {
+    stroke: $error-color-darker;
+  }
+}
+
+.add-icon svg {
+  path {
+    stroke: $primary-color;
+  }
+
+  .header:hover & > path {
+    stroke: $primary-color-darker;
+  }
+}
+
+.complete-icon svg {
+  path {
+    stroke: $text-color;
+  }
+
+  .header:hover & > path {
+    stroke: $text-color-darker;
+  }
+}
+
+.delete-icon-svg {
+  height: 17px;
+  width: 15px;
+}
+
+.header {
+  width: fit-content;
+  padding: 20px 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    p {
+      color: $text-color-darker;
+    }
+    .paragraph-expandable-file[class*="color-error"] {
+      color: $error-color-darker;
+    }
+  }
+}
+
+.display-flex {
+  display: flex;
+  align-items: center;
+}
+
+.paragraph-expandable-file {
+  @include styleParagraph(700, $text-color);
+
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: 0.0125em;
+
+  margin-left: 8px;
+  margin-top: 2px;
+}
+
+.border-row {
+  border-top: 1px solid #e5e5e5;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.align-item-center {
+  @include styleParagraph(normal, $text-color-darker);
+  align-items: center;
+  gap: 20px;
+  font-size: 12px;
+  line-height: 15px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.004em;
+}
+
+.background-error {
+  background-color: #fff3f3;
+  transition: background-color 0.4s;
+}
+
+.container-img-picker {
+  display: flex;
+  justify-content: flex-end;
+  height: 100%;
+  display: none;
+}
+
+.file-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0 8px 44px;
+
+  p {
+    @include styleParagraph(700, $primary-color);
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: 0.0025em;
+    color: $primary-color;
+    width: 100%;
+    cursor: pointer;
+    &:hover {
+      color: $primary-color-darker;
+    }
+  }
+
+  p.picker-color-gray {
+    color: #b8b8b8;
+    cursor: default;
+    &:hover {
+      color: #b8b8b8;
+    }
+  }
+
+  p.color-error {
+    @extend %error;
+
+    &:hover {
+      color: $error-color-darker;
+    }
+  }
+
+  &:hover > .container-img-picker {
+    display: flex;
+  }
+}
+
+.display-none {
+  display: none;
+}
+
+.p-error {
+  @extend %error;
+  @include styleParagraph(normal, $error-color);
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: 0.004em;
+}
+.paragraph-expandable-file.color-error {
+  @extend %error;
+}

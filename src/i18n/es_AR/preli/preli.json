@@ -1,0 +1,33 @@
+{
+  "label.title.preliquidations": "Preliquidaciones",
+
+  "label.filter.generationDate": "Fecha de generación",
+  "placeholder.filter.number": "Ingresá el número",
+  "placeholder.filter.date": "Seleccioná la fecha",
+  "label.filter.fiscalNumber": "Identificador fiscal",
+
+  "label.select.initial": "Inicial",
+  "label.select.pending": "Pendiente",
+  "label.select.inAprovement": "En aprobación",
+  "label.select.aproved": "Aprobado",
+  "label.select.rejectedInvoice": "Factura rechazada",
+  "label.select.pendingAccounting": "Pendiente de contabilidad",
+  "label.select.inAccounting": "En contabilidad",
+  "label.select.generatedPayment": "Pago generado",
+
+  "label.filter.preliquidationNumber": "Número de preliquidación",
+
+  "label.table.preliNumber": "Nro de preliquidación",
+  "label.table.if": "IF",
+  "label.table.dateOfIssue": "Emisión",
+  "label.table.status": "Estado",
+  "label.table.total": "Total",
+
+  "label.modal.preliquidation": "preliquidación",
+  "label.modal.preliquidations": "preliquidaciones",
+
+  "title.modal.sendToAccounting": "Enviá las preliquidaciones a contabilidad",
+  "label.modal.sendToAccounting": "¿Deseás enviar {{ quantity }} {{ text }} a contabilidad?",
+  "label.button.send": "Sí, enviar",
+  "label.button.sendToAccounting": "Enviar a contabilidad"
+}

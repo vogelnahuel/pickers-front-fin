@@ -1,58 +1,47 @@
-import { AcountDataType, PickerType, PhoneType, StatusType } from "../types";
+import { DetailPickerTagFileType, PickerType } from "../types";
+import { NotificationStateType } from "reducers/types/notification";
 
 export type DetailPickerContainerTypeProps = {
   pendingUserAdminPicker: PickerType;
-  isFetching: Boolean;
-  actualPage: String;
-  nameDisplay: String;
+  isFetching: boolean;
+  actualPage: string;
+  nameDisplay: string;
   getPendingUserPicker: Function;
   getPendingUserPickerExport: Function;
   setDirty: Function;
   postAprovePickerRequest: Function;
   postPendingUserDocumentsEdit: Function;
-  showNotification: Function;
+  resetWrongFiles: () => void;
+  showNotification: (notification: NotificationStateType) => void;
   postEditPickerRequest: Function;
   setActualPage: Function;
+  wrongFiles: boolean;
+  loadedFiles: boolean;
 };
 
 export type DetailPickerTypeProps = {
-  isFetching:Boolean
-  pendingUserAdminPicker:{accountingData: AcountDataType;
-    dateOfBirth: string;
-    email: string;
-    enable: boolean;
-    expirationDatePolicyPersonal: string;
-    id: number;
-    identificationNumber: string;
-    name: string;
-    phone: PhoneType;
-    registerDate: string;
-    status: StatusType;
-    surname: string;
-    vehicle: any
-    vehicleType: string;};
-  getPendingUserPickerExport:Function
-  actualPage:String
-  setDirty:Function
-  active:Boolean
-  cancel:Function
-  aproveSubmit:Function
-  nameDisplay:String
-  goBack:Function
-  postPendingUserDocumentsEdit:Function
-  postEditPickerRequest:Function
-  validationSchema:Object
+  isFetching: boolean;
+  initialValues: PickerType;
+  pendingUserAdminPicker: PickerType;
+  getPendingUserPickerExport: Function;
+  actualPage: string;
+  setDirty: Function;
+  active: boolean;
+  cancel: Function;
+  aproveSubmit: Function;
+  nameDisplay: string;
+  postPendingUserDocumentsEdit: Function;
+  postEditPickerRequest: Function;
+  validationSchema: Object;
+  formatDate: Function;
+  wrongFiles: boolean;
+  showNotification: (notification: NotificationStateType) => void;
+  loadedFiles: boolean;
+  changePage: (page:string, isDirty: boolean, ) => void;
+  goBack: (validate?: boolean, isDirty?: boolean) => void;
 };
 
-// export type DetailPickerValidationSchema = {
-//   name:string,
-// surname:string,
-// phone:{
-//   areaNumber:string,
-// number:string,
-// }
-// expirationDatePolicyPersonal?:string
-// vehicle?:{
-
-// }
-// }
+export type PickerFileRequestType = {
+  pickerId: number;
+  tag: keyof DetailPickerTagFileType;
+};

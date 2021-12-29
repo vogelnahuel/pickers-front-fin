@@ -1,0 +1,11 @@
+{
+  "label.title.pending": "Solicitudes pendientes",
+  "label.title.pickers": "Pickers",
+
+  "title.modal.saveChanges": "Guardá tus cambios",
+  "label.modal.saveChanges": "Si te vas sin guardar, tus cambios no van a quedar registrados",
+  "button.modal.goToSave": "Ir a guardar",
+  "button.modal.notSave": "No quiero guardarlos",
+  "button.modal.exportWithoutSave": "Exportar sin guardar",
+  "label.modal.exportWithoutSave": "Si te vas sin guardar, tus cambios no van a quedar registrados"
+}

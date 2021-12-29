@@ -2,14 +2,18 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import {
   actions as pendingUserActions,
-  selectors as pendingUserSelectors,
+  pickersSelector as pendingUserSelectors,
 } from "reducers/pickers";
 import { FilterPickers } from "pages/pickers/filter/FilterPickers";
 import { VALIDATION_REGEX } from "utils/constants";
 import * as yup from "yup";
 import { ParamsMiddlewareType, PickersParamsType } from "../types";
-import { FilterContainerTypes, FilterContainerValidationSchemaTypes } from "./types";
+import {
+  FilterContainerTypes,
+  FilterContainerValidationSchemaTypes,
+} from "./types";
 import { AppDispatch, RootState } from "store";
+import i18next from "i18next";
 
 const FilterPickersContainer: React.FC<FilterContainerTypes> = (props) => {
   useEffect(() => {
@@ -33,23 +37,28 @@ const FilterPickersContainer: React.FC<FilterContainerTypes> = (props) => {
     props.setPendingUserFilters(values);
   };
 
-  const validationSchema: yup.SchemaOf<FilterContainerValidationSchemaTypes> = yup.object({
-    name: yup
-      .string()
-      .matches(
-        VALIDATION_REGEX.expName,
-        "No se admiten números o caracteres especiales"
-      ),
-    identificationNumber: yup
-      .string()
-      .matches(
-        VALIDATION_REGEX.expIdentificationNumber,
-        "No se admiten letras o caracteres especiales"
-      ),
-    email: yup
-      .string()
-      .matches(VALIDATION_REGEX.regEmail, "El formato del correo es inválido"),
-  });
+  const validationSchema: yup.SchemaOf<FilterContainerValidationSchemaTypes> =
+    yup.object({
+      name: yup
+        .string()
+        .matches(
+          VALIDATION_REGEX.expName,
+          i18next.t("global:error.input.numbersOrSpecialCharacters")
+        ),
+      identificationNumber: yup
+        .string()
+        .min(7,i18next.t("global:error.input.dniLength"))
+        .matches(
+          VALIDATION_REGEX.expIdentificationNumber,
+          i18next.t("global:error.input.lettersOrSpecialCharacters")
+        ),
+      email: yup
+        .string()
+        .matches(
+          VALIDATION_REGEX.regEmail,
+          i18next.t("login:error.login.invalidMail")
+        ),
+    });
 
   return (
     <FilterPickers
@@ -61,8 +70,8 @@ const FilterPickersContainer: React.FC<FilterContainerTypes> = (props) => {
 };
 
 const mapStateToProps = (state: RootState) => ({
-  filters: pendingUserSelectors.getFilters(state),
-  filtersExtra: pendingUserSelectors.getFiltersExtra(state),
+  filters: pendingUserSelectors(state).filters,
+  filtersExtra: pendingUserSelectors(state).filtersExtra,
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({

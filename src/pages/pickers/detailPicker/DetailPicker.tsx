@@ -3,23 +3,30 @@ import { Header } from "component/admin/Header/Header";
 import Nav from "component/admin/Nav/Nav";
 import "pages/pickers/Pickers.scss";
 import "pages/pickers/detailPicker/DetailPicker.scss";
-import PickerStatusButton from "component/admin/PickerStatusButton/PickerStatusButton";
+import TabControler from "component/admin/TabControler/TabControler";
 import { Input } from "component/inputs/Input";
 import { Switch } from "component/inputs/switch";
 import motorcycle from "assets/admin/PendingUserAdminPicker/motorcycle.svg";
 import bici from "assets/admin/PendingUserAdminPicker/bici.svg";
 import { Field, Form } from "react-final-form";
 import useValidationSchema from "hooks/useValidationSchema";
-import { Col, Container, Row } from "react-bootstrap";
 import { FormSpy } from "react-final-form";
-import moment from "moment";
 import NotificationModal from "component/modal/NotificationModal";
-import Actions from "pages/pickers/actions/Actions";
+import ExportAction from "../actions/ExportAction";
 import { DetailPickerTypeProps } from "./types";
+import i18next from "i18next";
+import ExpandableFile from "component/admin/ExpandableFile/ExpandableFile";
+import relojAzul from "assets/admin/PendingUser/relojAzul.svg";
+import relojOscuro from "assets/admin/PendingUser/relojOscuro.svg";
+import trabajadorOscuro from "assets/admin/PendingUser/trabajadorOscuro.svg";
+import trabajadorAzul from "assets/admin/PendingUser/trabajadorAzul.svg";
+import Back from "component/back/Back";
 
 export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
+  actualPage,
   isFetching,
   pendingUserAdminPicker,
+  initialValues,
   getPendingUserPickerExport,
   setDirty,
   active,
@@ -30,155 +37,55 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
   postPendingUserDocumentsEdit,
   postEditPickerRequest,
   validationSchema,
+  wrongFiles,
+  showNotification,
+  loadedFiles,
+  changePage,
 }) => {
-  
+
+  const tabs = [
+    {
+      title: "pickers:label.title.pending",
+      id: "PENDING",
+      icons: { active: relojAzul, disable: relojOscuro },
+    },
+    {
+      title: "pickers:label.title.pickers",
+      id: "ACTIVE",
+      icons: { active: trabajadorAzul, disable: trabajadorOscuro },
+    },
+  ];
   return (
     <div className="background-Grey">
       <Header />
       <div className="mainContainerFlex">
         <Nav />
         <div className="pending-container">
-          <PickerStatusButton isDetail={true} />
-          <div></div>
-          <div className="mainContainerFlex-picker">
-            <div className="picker-id">
-              {pendingUserAdminPicker.id &&
-                (pendingUserAdminPicker.status.id === 4 ||
-                  pendingUserAdminPicker.status.id === 5) &&
-                `#${pendingUserAdminPicker.id}`}
-              <h2 className="subTitle-pending-picker">
-                {nameDisplay}
-              </h2>
-            </div>
-            {pendingUserAdminPicker.vehicleType === "motorcycle" ? (
-              <img
-                className="vehiculo-pending-picker"
-                src={motorcycle}
-                alt="vehiculo"
-              />
-            ) : (
-              <img
-                className="vehiculo-pending-picker"
-                src={bici}
-                alt="vehiculo"
-              />
-            )}
-            <div className="export-container">
-              <Actions
-                getPendingUserPickerExport={getPendingUserPickerExport}
-                pendingUserAdminPicker={pendingUserAdminPicker}
-              />
-            </div>
-          </div>
           <Form
             onSubmit={(values) =>
-              active
-                ? postEditPickerRequest(values, goBack)
-                : aproveSubmit(values, goBack)
+              !active
+                ? aproveSubmit(values, goBack)
+                : wrongFiles 
+                ? showNotification({
+                    level: "warning",
+                    title: i18next.t(
+                      "global:title.modal.withoutSaving"
+                    ),
+                    body: i18next.t(
+                      "global:label.modal.withoutSaving"
+                    ),
+                    onClickLabel: i18next.t(
+                      "global:label.button.checkErrors"
+                    ),
+                    onCloseLabel: i18next.t(
+                      "global:label.button.continue"
+                    ),
+                    onClose: () =>  postEditPickerRequest(values, goBack),
+                    onClick: undefined
+                  })
+                : postEditPickerRequest(values, goBack)
             }
-            initialValues={
-              pendingUserAdminPicker.id
-                ? {
-                    ...pendingUserAdminPicker,
-                    accountingData: {
-                      ...pendingUserAdminPicker.accountingData,
-                      fiscalNumber:
-                        pendingUserAdminPicker.accountingData.fiscalNumber.includes(
-                          "-"
-                        )
-                          ? pendingUserAdminPicker.accountingData.fiscalNumber
-                          : pendingUserAdminPicker.accountingData.fiscalNumber.slice(
-                              0,
-                              2
-                            ) +
-                            " - " +
-                            pendingUserAdminPicker.accountingData.fiscalNumber.slice(
-                              2,
-                              10
-                            ) +
-                            " - " +
-                            pendingUserAdminPicker.accountingData.fiscalNumber.slice(
-                              10,
-                              11
-                            ),
-                    },
-                    dateOfBirth:
-                      pendingUserAdminPicker.dateOfBirth &&
-                      !pendingUserAdminPicker.dateOfBirth.includes("/")
-                        ? moment(
-                            pendingUserAdminPicker.dateOfBirth,
-                            "YYYY-MM-DD"
-                          ).format("DD/MM/YYYY")
-                        : pendingUserAdminPicker.dateOfBirth,
-                    expirationDatePolicyPersonal:
-                      pendingUserAdminPicker.expirationDatePolicyPersonal &&
-                      !pendingUserAdminPicker.expirationDatePolicyPersonal.includes(
-                        "/"
-                      )
-                        ? moment(
-                            pendingUserAdminPicker.expirationDatePolicyPersonal,
-                            "YYYY-MM-DD"
-                          ).format("DD/MM/YYYY")
-                        : pendingUserAdminPicker.expirationDatePolicyPersonal,
-                    vehicle: {
-                      ...pendingUserAdminPicker.vehicle,
-                      [pendingUserAdminPicker.vehicleType]: {
-                        ...pendingUserAdminPicker.vehicle[
-                          pendingUserAdminPicker.vehicleType
-                        ],
-                        expirationDatePolicyVehicle:
-                          pendingUserAdminPicker.vehicle[
-                            pendingUserAdminPicker.vehicleType
-                          ].expirationDatePolicyVehicle &&
-                          !pendingUserAdminPicker.vehicle[
-                            pendingUserAdminPicker.vehicleType
-                          ].expirationDatePolicyVehicle.includes("/")
-                            ? moment(
-                                pendingUserAdminPicker.vehicle[
-                                  pendingUserAdminPicker.vehicleType
-                                ].expirationDatePolicyVehicle,
-                                "YYYY-MM-DD"
-                              ).format("DD/MM/YYYY")
-                            : pendingUserAdminPicker.vehicle[
-                                pendingUserAdminPicker.vehicleType
-                              ].expirationDatePolicyVehicle,
-                        expirationDateIdentificationVehicle:
-                          pendingUserAdminPicker.vehicle[
-                            pendingUserAdminPicker.vehicleType
-                          ].expirationDateIdentificationVehicle &&
-                          !pendingUserAdminPicker.vehicle[
-                            pendingUserAdminPicker.vehicleType
-                          ].expirationDateIdentificationVehicle.includes("/")
-                            ? moment(
-                                pendingUserAdminPicker.vehicle[
-                                  pendingUserAdminPicker.vehicleType
-                                ].expirationDateIdentificationVehicle,
-                                "YYYY-MM-DD"
-                              ).format("DD/MM/YYYY")
-                            : pendingUserAdminPicker.vehicle[
-                                pendingUserAdminPicker.vehicleType
-                              ].expirationDateIdentificationVehicle,
-                        expirationDateDriverLicense:
-                          pendingUserAdminPicker.vehicle[
-                            pendingUserAdminPicker.vehicleType
-                          ].expirationDateDriverLicense &&
-                          !pendingUserAdminPicker.vehicle[
-                            pendingUserAdminPicker.vehicleType
-                          ].expirationDateDriverLicense.includes("/")
-                            ? moment(
-                                pendingUserAdminPicker.vehicle[
-                                  pendingUserAdminPicker.vehicleType
-                                ].expirationDateDriverLicense,
-                                "YYYY-MM-DD"
-                              ).format("DD/MM/YYYY")
-                            : pendingUserAdminPicker.vehicle[
-                                pendingUserAdminPicker.vehicleType
-                              ].expirationDateDriverLicense,
-                      },
-                    },
-                  }
-                : pendingUserAdminPicker
-            }
+            initialValues={initialValues}
             validate={useValidationSchema(validationSchema)}
           >
             {({
@@ -189,257 +96,383 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
               values,
               form,
             }) => (
-              <form className="Admin-Pickers-inputs" onSubmit={handleSubmit}>
-                <FormSpy
-                  subscription={{ dirty: true }}
-                  onChange={(pro) => {
-                   
+              <>
+                <div className="header-container">
+                  <TabControler
+                    tabs={tabs}
+                    changePage={(page: string) => changePage(page, dirty)}
+                    actualPage={actualPage}
+                  />
+                  <Back onClick={() => goBack(true, dirty)} />
+                </div>
+
+                <div className="mainContainerFlex-picker">
+                  <div className="picker-id">
+                    {pendingUserAdminPicker?.id &&
+                      (pendingUserAdminPicker?.status?.id === 4 ||
+                        pendingUserAdminPicker?.status?.id === 5) &&
+                      `#${pendingUserAdminPicker?.id}`}
+                    <h2 className="subTitle-pending-picker">{nameDisplay}</h2>
+                  </div>
+                  {pendingUserAdminPicker?.vehicle &&
+                  pendingUserAdminPicker?.vehicle?.type === "motorcycle" ? (
+                    <img
+                      className="vehiculo-pending-picker"
+                      src={motorcycle}
+                      alt="vehiculo"
+                    />
+                  ) : (
+                    <img
+                      className="vehiculo-pending-picker"
+                      src={bici}
+                      alt="vehiculo"
+                    />
+                  )}
+                  <div className="export-container">
+                    <ExportAction
+                      getPendingUserPickerExport={() => {
+                        getPendingUserPickerExport(
+                          pendingUserAdminPicker?.personalData
+                        );
+                      }}
+                    />
+                  </div>
+                </div>
+                <form className="Admin-Pickers-inputs" onSubmit={handleSubmit}>
+                  <FormSpy
+                    subscription={{
+                      dirty: true,
+                    }}
+                    onChange={(pro) => {
                       setDirty(pro.dirty);
-                    
-                  }}
-                />
-                <Container fluid className="form-part-1-admin-pickers">
-                  <Row>
-                    <Col>
-                      <Field
-                        type="text"
-                        name="name"
-                        label="Nombre/s *"
-                        component={Input}
-                        className="Admin-Pickers-input"
-                        placeholder="Ingresá el nombre"
-                        maxLength={49}
-                      />
-                    </Col>
-                    <Col>
-                      <Field
-                        type="text"
-                        name="surname"
-                        label="Apellido/s *"
-                        component={Input}
-                        className="Admin-Pickers-input"
-                        placeholder="Ingresá el apellido"
-                        maxLength={49}
-                      />
-                    </Col>
-                    <Col>
-                      <Field
-                        type="text"
-                        name="identificationNumber"
-                        disabled
-                        label="DNI"
-                        component={Input}
-                        className="Admin-Pickers-input readonly"
-                        placeholder="Ingresá el DNI"
-                      />
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col md={4}>
-                      <Field
-                        type="text"
-                        name="email"
-                        label="E-mail"
-                        component={Input}
-                        disabled
-                        className="Admin-Pickers-input readonly"
-                        placeholder="Ingresá el Email"
-                      />
-                    </Col>
-                    <Col md={4}>
-                      <Field
-                        type="text"
-                        name="dateOfBirth"
-                        label="Fecha de nacimiento"
-                        component={Input}
-                        disabled
-                        className="Admin-Pickers-input"
-                        placeholder="Ingresá la fecha nac"
-                      />
-                    </Col>
-                    <Col>
-                      <Field
-                        type="text"
-                        name="phone.areaNumber"
-                        label="Código de área *"
-                        component={Input}
-                        className="Admin-Pickers-input"
-                        placeholder="Ej: 011"
-                        maxLength={5}
-                      />
-                    </Col>
-                    <Col>
-                      <Field
-                        type="text"
-                        name="phone.number"
-                        label="Teléfono *"
-                        component={Input}
-                        className="Admin-Pickers-input"
-                        placeholder="Ej: 12345678"
-                        maxLength={10}
-                      />
-                    </Col>
-                  </Row>
-                </Container>
-                <h3 className="subTitle-pending-data">
-                  Datos contables y bancarios
-                </h3>
-                <Container fluid className="form-part-1-admin-pickers">
-                  <Row>
-                    <Col>
-                      <Field
-                        type="text"
-                        name="accountingData.fiscalNumber"
-                        label="Número de CUIT"
-                        component={Input}
-                        disabled
-                        className="Admin-Pickers-input readonly"
-                        placeholder="20 - 39589475 - 4"
-                      />
-                    </Col>
-                    <Col>
-                      <Field
-                        type="text"
-                        name="accountingData.bankIdentifier"
-                        label="Número de CBU"
-                        component={Input}
-                        disabled
-                        className="Admin-Pickers-input readonly"
-                        placeholder="20 - 39589475 - 4"
-                      />
-                    </Col>
-                    <Col>
-                      <Field
-                        type="text"
-                        name="accountingData.bankName"
-                        label="Nombre del banco"
-                        component={Input}
-                        disabled
-                        className="Admin-Pickers-input readonly"
-                        placeholder="Ingresá el Nombre"
-                      />
-                    </Col>
-                  </Row>
-                </Container>
-                <h3 className="subTitle-pending-data">Seguros</h3>
-                <Container fluid className="form-part-1-admin-pickers">
-                  <Row>
-                    {initialValues.vehicleType === "motorcycle" && (
-                      <>
-                        <Col md={4}>
-                          <Field
-                            type="text"
-                            name={`vehicle.${initialValues.vehicleType}.patent`}
-                            label="Patente del vehículo *"
-                            component={Input}
-                            className="Admin-Pickers-input"
-                            placeholder="Ingresá los dígitos de la patente"
-                            maxLength={7}
-                          />
-                        </Col>
-                        <Col md={4}>
-                          <Field
-                            type="text"
-                            name={`vehicle.${initialValues.vehicleType}.expirationDateDriverLicense`}
-                            label="Vencimiento de la licencia *"
-                            component={Input}
-                            className="Admin-Pickers-input"
-                            placeholder="día / mes / año"
-                            maxLength={10}
-                          />
-                        </Col>
-                        <Col md={4}>
-                          <Field
-                            type="text"
-                            name={`vehicle.${initialValues.vehicleType}.expirationDateIdentificationVehicle`}
-                            label="Vencimiento de la cédula *"
-                            component={Input}
-                            className="Admin-Pickers-input"
-                            placeholder="día / mes / año"
-                            maxLength={10}
-                          />
-                        </Col>
-                        <Col md={4}>
-                          <Field
-                            type="text"
-                            name={`vehicle.${initialValues.vehicleType}.expirationDatePolicyVehicle`}
-                            label="Vencimiento del seguro de automotor *"
-                            component={Input}
-                            className="Admin-Pickers-input"
-                            placeholder="día / mes / año"
-                            maxLength={10}
-                          />
-                        </Col>
-                      </>
-                    )}
-                    <Col md={4}>
-                      <Field
-                        type="text"
-                        name="expirationDatePolicyPersonal"
-                        label="Vencimiento del seguro de accidentes personales *"
-                        lastLabel
-                        component={Input}
-                        className="Admin-Pickers-input"
-                        placeholder="día / mes / año"
-                        maxLength={10}
-                      />
-                    </Col>
-                  </Row>
-                </Container>
-                {active ? (
-                  <>
-                    <Field name="enable" component={Switch} />
-                    <div className="pending-admin-picker-button">
-                      <button
-                        type="button"
-                        onClick={() => cancel(dirty, form.restart)}
-                        disabled={!dirty}
-                        className="button-submit-subtype"
-                      >
-                        Cancelar
-                      </button>
-                      <button
-                        type="submit"
-                        disabled={invalid || !dirty}
-                        className="button-submit-active"
-                      >
-                        Guardar
-                      </button>
+                    }}
+                  />
+                  <div id="personal-data-card" className="container-detailPicker-fluid form-part-1-admin-pickers">
+                    <div className="container-detailPicker-row">
+                      <div className="container-detailPicker-col-sm-6  ">
+                        <Field
+                          type="text"
+                          name="personalData.name"
+                          label={i18next.t("detailPicker:label.user.name")}
+                          component={Input}
+                          className="Admin-Pickers-input"
+                          placeholder={i18next.t(
+                            "detailPicker:placeholder.user.name"
+                          )}
+                          maxLength={49}
+                          onClick={() => {
+                            form.mutators.upper("personalData.name");
+                          }}
+                        />
+                      </div>
+                      <div className="container-detailPicker-col-sm-6  ">
+                        <Field
+                          type="text"
+                          name="personalData.surname"
+                          label={i18next.t("detailPicker:label.user.surname")}
+                          component={Input}
+                          className="Admin-Pickers-input"
+                          placeholder={i18next.t(
+                            "detailPicker:placeholder.user.surname"
+                          )}
+                          maxLength={49}
+                        />
+                      </div>
+                      <div className="container-detailPicker-col-sm-6  ">
+                        <Field
+                          type="text"
+                          name="personalData.identificationNumber"
+                          disabled
+                          label={i18next.t(
+                            "detailPicker:label.user.identifier"
+                          )}
+                          component={Input}
+                          className="Admin-Pickers-input readonly"
+                          placeholder={i18next.t(
+                            "detailPicker:placeholder.user.identifier"
+                          )}
+                        />
+                      </div>
                     </div>
-                  </>
-                ) : (
-                  <>
-                    {/*TODO: hablitar cuando funcionen los checks de enviar carta*/}
-                    {/*:*/}
-                    {/*<div className="pending-admin-picker-container-checkbox">*/}
-                    {/*    <div>*/}
-                    {/*        <input className="pending-admin-picker-input-checkbox" type="checkbox" id="enviar" value="enviado" />*/}
-                    {/*        <label className="pending-admin-picker-div-label" htmlFor="enviar">Envié la carta oferta</label>*/}
-                    {/*    </div>*/}
-                    {/*    <div>*/}
-                    {/*        <input className="pending-admin-picker-input-checkbox" type="checkbox" id="firmar" value="firmado"/>*/}
-                    {/*        <label  className="pending-admin-picker-div-label" htmlFor="firmar">Firmó la carta oferta</label>*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
-                    <div className="pending-admin-picker-button">
-                      <button
-                        type="button"
-                        onClick={() => postPendingUserDocumentsEdit(values)}
-                        className="button-submit-subtype"
-                      >
-                        Guardar cambios
-                      </button>
-                      <button
-                        type="submit"
-                        disabled={invalid}
-                        className="button-submit-active"
-                      >
-                        Aprobar picker
-                      </button>
+                    <div>
+                      <div className="container-detailPicker-row">
+                        <div className="container-detailPicker-col-sm-6  ">
+                          <Field
+                            type="text"
+                            name="personalData.email"
+                            label={i18next.t("detailPicker:label.user.email")}
+                            component={Input}
+                            disabled
+                            className="Admin-Pickers-input readonly"
+                            placeholder={i18next.t(
+                              "detailPicker:placeholder.user.email"
+                            )}
+                          />
+                        </div>
+                        <div className="container-detailPicker-col-sm-6  ">
+                          <Field
+                            type="text"
+                            name="personalData.dateOfBirth"
+                            label={i18next.t(
+                              "detailPicker:label.user.birthdate"
+                            )}
+                            component={Input}
+                            disabled
+                            className="Admin-Pickers-input"
+                            placeholder={i18next.t(
+                              "detailPicker:placeholder.user.birthdate"
+                            )}
+                          />
+                        </div>
+                        <div className="container-detailPicker-col-sm-3  ">
+                          <Field
+                            type="text"
+                            name="personalData.phone.areaNumber"
+                            label={i18next.t(
+                              "detailPicker:label.user.areaCode"
+                            )}
+                            component={Input}
+                            className="Admin-Pickers-input"
+                            placeholder={i18next.t(
+                              "detailPicker:placeholder.user.areaCode"
+                            )}
+                            maxLength={5}
+                          />
+                        </div>
+
+                        <div className="container-detailPicker-col-sm-3  ">
+                          <Field
+                            type="text"
+                            name="personalData.phone.number"
+                            label={i18next.t("detailPicker:label.user.phone")}
+                            component={Input}
+                            className="Admin-Pickers-input"
+                            placeholder={i18next.t(
+                              "detailPicker:placeholder.user.phone"
+                            )}
+                            maxLength={10}
+                          />
+                        </div>
+                      </div>
                     </div>
-                  </>
-                )}
-              </form>
+                    <ExpandableFile
+                      files={pendingUserAdminPicker?.files?.personalData}
+                      pickerId={pendingUserAdminPicker?.id}
+                    />
+                  </div>
+                  <h3 className="subTitle-pending-data">
+                    {i18next.t("detailPicker:label.subtitle.account")}
+                  </h3>
+                  <div id="accounting-data-card" className="form-part-1-admin-pickers">
+                    <div className="container-detailPicker-row">
+                      <div className="container-detailPicker-col-sm-6  ">
+                        <Field
+                          type="text"
+                          name="accountingData.fiscalNumber"
+                          label={i18next.t(
+                            "detailPicker:label.account.fiscalNumber"
+                          )}
+                          component={Input}
+                          disabled
+                          className="Admin-Pickers-input readonly"
+                          placeholder={i18next.t(
+                            "detailPicker:placeholder.account.fiscalNumber"
+                          )}
+                        />
+                      </div>
+                      <div className="container-detailPicker-col-sm-6  ">
+                        <Field
+                          type="text"
+                          name="accountingData.bankIdentifier"
+                          label={i18next.t(
+                            "detailPicker:label.account.bankIdentifier"
+                          )}
+                          component={Input}
+                          disabled
+                          className="Admin-Pickers-input readonly"
+                          placeholder={i18next.t(
+                            "detailPicker:placeholder.account.bankIdentifier"
+                          )}
+                        />
+                      </div>
+                      <div className="container-detailPicker-col-sm-6  ">
+                        <Field
+                          type="text"
+                          name="accountingData.bankName"
+                          label={i18next.t(
+                            "detailPicker:label.account.bankName"
+                          )}
+                          component={Input}
+                          disabled
+                          className="Admin-Pickers-input readonly"
+                          placeholder={i18next.t(
+                            "detailPicker:placeholder.account.bankName"
+                          )}
+                        />
+                      </div>
+                    </div>
+                    <ExpandableFile
+                      files={pendingUserAdminPicker?.files?.accountingData}
+                      pickerId={pendingUserAdminPicker.id}
+                    />
+                  </div>
+
+                  {initialValues?.vehicle?.type === "motorcycle" && (
+                    <>
+                      <h3 className="subTitle-pending-data">
+                        {i18next.t("detailPicker:label.subtitle.insurance")}
+                      </h3>
+                      <div id="vehicle-data-card" className="form-part-1-admin-pickers">
+                        <div className="container-detailPicker-row">
+                          {initialValues.vehicle &&
+                            initialValues.vehicle.type === "motorcycle" && (
+                              <>
+                                <div className="container-detailPicker-col-sm-6  ">
+                                  <Field
+                                    type="text"
+                                    name={`vehicle.patent`}
+                                    label={i18next.t(
+                                      "detailPicker:label.insurance.patent"
+                                    )}
+                                    component={Input}
+                                    className="Admin-Pickers-input"
+                                    placeholder={i18next.t(
+                                      "detailPicker:placeholder.insurance.patent"
+                                    )}
+                                    maxLength={7}
+                                  />
+                                </div>
+                                <div className="container-detailPicker-col-sm-6  ">
+                                  <Field
+                                    type="text"
+                                    name={`vehicle.expirationDateDriverLicense`}
+                                    label={i18next.t(
+                                      "detailPicker:label.insurance.licenseExpiration"
+                                    )}
+                                    component={Input}
+                                    className="Admin-Pickers-input"
+                                    placeholder={i18next.t(
+                                      "global:placeholder.input.date"
+                                    )}
+                                    maxLength={10}
+                                  />
+                                </div>
+                                <div className="container-detailPicker-col-sm-6  ">
+                                  <Field
+                                    type="text"
+                                    name={`vehicle.expirationDateIdentificationVehicle`}
+                                    label={i18next.t(
+                                      "detailPicker:label.insurance.identifierExpiration"
+                                    )}
+                                    component={Input}
+                                    className="Admin-Pickers-input"
+                                    placeholder={i18next.t(
+                                      "global:placeholder.input.date"
+                                    )}
+                                    maxLength={10}
+                                  />
+                                </div>
+                                <div className="container-detailPicker-col-sm-6">
+                                  <Field
+                                    type="text"
+                                    name={`vehicle.expirationDatePolicyVehicle`}
+                                    label={i18next.t(
+                                      "detailPicker:label.insurance.carInsuranceExpiration"
+                                    )}
+                                    component={Input}
+                                    className="Admin-Pickers-input"
+                                    placeholder={i18next.t(
+                                      "global:placeholder.input.date"
+                                    )}
+                                    maxLength={10}
+                                  />
+                                </div>
+                              </>
+                            )}
+                        </div>
+                        <ExpandableFile
+                          files={pendingUserAdminPicker?.files?.vehicle}
+                          pickerId={pendingUserAdminPicker.id}
+                        />
+                      </div>
+                    </>
+                  )}
+
+                  {active ? (
+                    <>
+                      <Field name="enable" component={Switch} />
+                      <div className="pending-admin-picker-button">
+                        <button
+                          type="button"
+                          onClick={() => cancel(dirty, form.restart)}
+                          disabled={!dirty}
+                          className="button-submit-subtype"
+                        >
+                          {i18next.t("global:label.button.cancel")}
+                        </button>
+                        <button
+                          type="submit"
+                          disabled={invalid || !dirty}
+                          className="button-submit-active"
+                        >
+                          {i18next.t("global:label.button.save")}
+                        </button>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      {/*TODO: hablitar cuando funcionen los checks de enviar carta*/}
+                      {/*:*/}
+                      {/*<div className="pending-admin-picker-container-checkbox">*/}
+                      {/*    <div>*/}
+                      {/*        <input className="pending-admin-picker-input-checkbox" type="checkbox" id="enviar" value="enviado" />*/}
+                      {/*        <label className="pending-admin-picker-div-label" htmlFor="enviar">Envié la carta oferta</label>*/}
+                      {/*    </div>*/}
+                      {/*    <div>*/}
+                      {/*        <input className="pending-admin-picker-input-checkbox" type="checkbox" id="firmar" value="firmado"/>*/}
+                      {/*        <label  className="pending-admin-picker-div-label" htmlFor="firmar">Firmó la carta oferta</label>*/}
+                      {/*    </div>*/}
+                      {/*</div>*/}
+                      <div className="pending-admin-picker-button">
+                        <button
+                          type="button"
+                          onClick={() =>
+                            wrongFiles
+                              ? showNotification({
+                                  level: "warning",
+                                  title: i18next.t(
+                                    "global:title.modal.withoutSaving"
+                                  ),
+                                  body: i18next.t(
+                                    "global:label.modal.withoutSaving"
+                                  ),
+                                  onClickLabel: i18next.t(
+                                    "global:label.button.checkErrors"
+                                  ),
+                                  onCloseLabel: i18next.t(
+                                    "global:label.button.continue"
+                                  ),
+                                  onClose: () => postPendingUserDocumentsEdit(values),
+                                  onClick: undefined
+                                })
+                              : postPendingUserDocumentsEdit(values)
+                          }
+                          className="button-submit-subtype"
+                        >
+                          {i18next.t("detailPicker:label.button.save")}
+                        </button>
+                        <button
+                          type="submit"
+                          disabled={invalid || wrongFiles || !loadedFiles}
+                          className="button-submit-active"
+                        >
+                          {i18next.t("detailPicker:label.button.approvePicker")}
+                        </button>
+                      </div>
+                    </>
+                  )}
+                </form>
+              </>
             )}
           </Form>
           <NotificationModal />

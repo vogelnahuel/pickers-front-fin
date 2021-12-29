@@ -1,17 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { connect } from "react-redux";
+import i18next from "i18next";
+import moment from "moment";
+import { useHistory, useParams } from "react-router-dom";
+import * as yup from "yup";
+
+import { AppDispatch, RootState } from "store";
+
 import {
   actions as pendingUserAdminPickerActions,
-  selectors as pendingUserAdminPickerSelectors,
+  detailPickerSelector,
+  hasPickerWrongFilesSelector,
+  hasPickerAllFilesLoadedSelector,
 } from "reducers/detailPicker";
-import { DetailPicker } from "pages/pickers/detailPicker/DetailPicker";
-import { DATE_FORMATS, VALIDATION_REGEX } from "utils/constants";
-import { useHistory, useParams } from "react-router-dom";
 import {
+  pickersSelector,
   actions as pendingUserActions,
-  selectors as pendingUserSelectors,
 } from "reducers/pickers";
-import * as yup from "yup";
 import { actions as notificationActions } from "reducers/notification";
 
 import {
@@ -19,17 +24,20 @@ import {
   ParamsMiddlewareType,
   DetailPickerValidationSchema,
 } from "../types";
-import { ParamGetPendingUser } from "sagas/types/pickers";
-import { AppDispatch, RootState } from "store";
 import { DetailPickerContainerTypeProps } from "./types";
+
+import { DetailPicker } from "pages/pickers/detailPicker/DetailPicker";
+import { DATE_FORMATS, VALIDATION_REGEX } from "utils/constants";
+import { NotificationStateType } from "reducers/types/notification";
 
 const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
   props
 ): JSX.Element => {
-  const params: any = useParams();
-  const historial: any = useHistory();
+  const params: { id?: string } = useParams();
+  const history = useHistory();
 
   useEffect(() => {
+    props.resetWrongFiles();
     props.getPendingUserPicker(params.id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -39,150 +47,263 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
     (props.pendingUserAdminPicker.status.id === 4 ||
       props.pendingUserAdminPicker.status.id === 5);
 
-  const validationSchema: yup.SchemaOf<DetailPickerValidationSchema> =
-    yup.object({
-      name: yup
-        .string()
-        .required("Este campo es requerido.")
-        .matches(
-          VALIDATION_REGEX.expName,
-          "No se admiten números o caracteres especiales"
-        ),
-      surname: yup
-        .string()
-        .required("Este campo es requerido.")
-        .matches(
-          VALIDATION_REGEX.expName,
-          "No se admiten números o caracteres especiales"
-        ),
-      phone: yup.object({
-        areaNumber: yup
-          .string()
-          .required("Este campo es requerido.")
-          .matches(VALIDATION_REGEX.regArea, "Ingresá el formato correcto"),
-        number: yup
-          .string()
-          .required("Este campo es requerido.")
-          .matches(VALIDATION_REGEX.regTelefono, "Ingresá el formato correcto"),
-      }),
-      expirationDatePolicyPersonal: yup
-        .string()
-        .nullable()
-        .required("Este campo es requerido.")
-        .matches(DATE_FORMATS.regex, "Ingresá el formato correcto"),
-      vehicle:
-        props.pendingUserAdminPicker.vehicleType === "motorcycle"
-          ? yup.object({
-              [props.pendingUserAdminPicker.vehicleType]: yup.object({
-                patent: yup
-                  .string()
-                  .nullable()
-                  .required("Este campo es requerido.")
-                  .matches(
-                    VALIDATION_REGEX.regPatent,
-                    "No se admiten caracteres especiales"
-                  ),
-                expirationDatePolicyVehicle: yup
-                  .string()
-                  .nullable()
-                  .required("Este campo es requerido.")
-                  .matches(DATE_FORMATS.regex, "Ingresá el formato correcto")
-                  .matches(
-                    DATE_FORMATS.regexValidCharacter,
-                    "No se admiten letras o caracteres especiales"
-                  ),
-                expirationDateIdentificationVehicle: yup
-                  .string()
-                  .nullable()
-                  .required("Este campo es requerido.")
-                  .matches(DATE_FORMATS.regex, "Ingresá el formato correcto")
-                  .matches(
-                    DATE_FORMATS.regexValidCharacter,
-                    "No se admiten letras o caracteres especiales"
-                  ),
-                expirationDateDriverLicense: yup
-                  .string()
-                  .nullable()
-                  .required("Este campo es requerido.")
-                  .matches(DATE_FORMATS.regex, "Ingresá el formato correcto")
-                  .matches(
-                    DATE_FORMATS.regexValidCharacter,
-                    "No se admiten letras o caracteres especiales"
-                  ),
-              }),
-            })
-          : yup.object({}),
-    });
-
-  const cancel = (isDirty: Boolean, restart: Function) => {
-    let onClose = () => {
-      restart();
-    };
-    if (isDirty) {
-      props.showNotification({
-        level: "warning",
-        title: "Guardá tus cambios",
-        body: "Si te vas sin guardar, tus cambios no van a quedar registrados",
-        onClickLabel: "Ir a guardar",
-        onCloseLabel: "No quiero guardarlos",
-        onClose: onClose,
-        onClick: () =>
-          window.scroll({
-            top: window.innerHeight,
-            left: 0,
-            behavior: "smooth",
-          }),
-      });
-    } else {
-      onClose();
-    }
+  const formatDate = (date: string | undefined = ""): string => {
+    return moment(date, DATE_FORMATS.shortISODate, true).isValid() &&
+      date.length === 10
+      ? moment(date).format(DATE_FORMATS.shortDate)
+      : date;
   };
+
+  const initialValues = useMemo(() => {
+    return props.pendingUserAdminPicker.id
+    ? {
+        ...props.pendingUserAdminPicker,
+        personalData: {
+          ...props.pendingUserAdminPicker?.personalData,
+          dateOfBirth:
+            props.pendingUserAdminPicker?.personalData?.dateOfBirth &&
+            props.pendingUserAdminPicker?.personalData?.dateOfBirth.includes(
+              "-"
+            )
+              ? moment(
+                  props.pendingUserAdminPicker?.personalData?.dateOfBirth,
+                  DATE_FORMATS.shortISODate
+                ).format(DATE_FORMATS.shortDate)
+              : props.pendingUserAdminPicker?.personalData?.dateOfBirth,
+        },
+        accountingData: {
+          ...props.pendingUserAdminPicker?.accountingData,
+          fiscalNumber:
+            props.pendingUserAdminPicker?.accountingData?.fiscalNumber?.includes(
+              "-"
+            )
+              ? props.pendingUserAdminPicker?.accountingData?.fiscalNumber
+              : props.pendingUserAdminPicker?.accountingData?.fiscalNumber?.slice(
+                  0,
+                  2
+                ) +
+                " - " +
+                props.pendingUserAdminPicker?.accountingData?.fiscalNumber?.slice(
+                  2,
+                  10
+                ) +
+                " - " +
+                props.pendingUserAdminPicker?.accountingData?.fiscalNumber?.slice(
+                  10,
+                  11
+                ),
+        },
+        vehicle: {
+          ...props.pendingUserAdminPicker.vehicle,
+
+          expirationDatePolicyVehicle: formatDate(
+            props.pendingUserAdminPicker?.vehicle
+              ?.expirationDatePolicyVehicle
+          ),
+          expirationDateIdentificationVehicle: formatDate(
+            props.pendingUserAdminPicker?.vehicle
+              ?.expirationDateIdentificationVehicle
+          ),
+          expirationDateDriverLicense: formatDate(
+            props.pendingUserAdminPicker?.vehicle
+              ?.expirationDateDriverLicense
+          ),
+        },
+      }
+    : props.pendingUserAdminPicker
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.pendingUserAdminPicker.id])
+
+  const changePage = (page: string, isDirty: boolean) => {
+    let onClose = () => {
+      props.setActualPage(page);
+
+      if (history.location.pathname !== "/pickers" && history.length > 1)
+        history.goBack();
+      else if (history.length <= 1) {
+        history.replace("/pickers");
+      }
+    };
+    if (isDirty) showDirtyNotification(onClose);
+    else if (props.wrongFiles) showWrongFilesNotification(onClose);
+    else onClose();
+  };
+
+  const cancel = (isDirty: boolean, restart: Function) => {
+    if (isDirty) showDirtyNotification(restart);
+    else restart();
+  };
+
+  const goBack = (validate?: boolean, isDirty?: boolean) => {
+    if (validate) {
+      if (isDirty) showDirtyNotification(history.goBack);
+      else if (props.wrongFiles) showWrongFilesNotification(history.goBack);
+      else history.goBack();
+    } else history.goBack();
+  };
+
+  const showDirtyNotification = (onClose: Function) => {
+    const html = document.documentElement;
+    const height = Math.max(html.clientHeight, html.scrollHeight);
+
+    return props.showNotification({
+      level: "warning",
+      title: i18next.t("pickers:title.modal.saveChanges"),
+      body: i18next.t("pickers:label.modal.saveChanges"),
+      onClickLabel: "pickers:button.modal.goToSave",
+      onCloseLabel: "pickers:button.modal.notSave",
+      onClose: onClose,
+      onClick: () =>
+        window.scroll({
+          top: height,
+          left: 0,
+          behavior: "smooth",
+        }),
+    });
+  }
+
+  const showWrongFilesNotification = (onClose: Function) =>
+    props.showNotification({
+      level: "warning",
+      title: i18next.t("global:title.modal.withoutSaving"),
+      body: i18next.t("global:label.modal.withoutSaving"),
+      onClickLabel: i18next.t("global:label.button.checkErrors"),
+      onCloseLabel: i18next.t("global:label.button.continue"),
+      onClose: onClose,
+      onClick: undefined,
+    });
 
   const aproveSubmit = (params: PickerType, goBack: Function) => {
     props.showNotification({
       level: "info",
-      title: "Aprobar picker",
-      body: "Al aprobar la solicitud, ya va a poder hacer envíos",
-      onClickLabel: "Aprobar",
-      onCloseLabel: "Revisar datos",
+      title: i18next.t("detailPicker:title.modal.approvePicker"),
+      body: i18next.t("detailPicker:label.modal.approvePicker"),
+      onClickLabel: "detailPicker:label.button.approve",
+      onCloseLabel: "detailPicker:label.button.revise",
       onClick: () => props.postAprovePickerRequest(params, goBack),
+      onClose: undefined,
     });
   };
+
+  const validationSchema: yup.SchemaOf<DetailPickerValidationSchema> =
+    yup.object({
+      personalData: yup.object({
+        name: yup
+          .string()
+          .required(i18next.t("global:error.input.required"))
+          .matches(
+            VALIDATION_REGEX.expName,
+            i18next.t("global:error.input.numbersOrSpecialCharacters")
+          ),
+        surname: yup
+          .string()
+          .required(i18next.t("global:error.input.required"))
+          .matches(
+            VALIDATION_REGEX.expName,
+            i18next.t("global:error.input.numbersOrSpecialCharacters")
+          ),
+        phone: yup.object({
+          areaNumber: yup
+            .string()
+            .required(i18next.t("global:error.input.required"))
+            .matches(
+              VALIDATION_REGEX.regArea,
+              i18next.t("global:error.input.invalidFormat")
+            ),
+          number: yup
+            .string()
+            .required(i18next.t("global:error.input.required"))
+            .matches(
+              VALIDATION_REGEX.regTelefono,
+              i18next.t("global:error.input.invalidFormat")
+            ),
+        }),
+      }),
+      vehicle:
+        props.pendingUserAdminPicker.vehicle &&
+        props.pendingUserAdminPicker.vehicle.type === "motorcycle"
+          ? yup.object({
+              patent: yup
+                .string()
+                .nullable()
+                .required(i18next.t("global:error.input.required"))
+                .min(6, i18next.t("global:error.input.patentLong"))
+                .matches(
+                  VALIDATION_REGEX.regPatent,
+                  i18next.t("global:error.input.patentFormat")
+                ),
+              expirationDatePolicyVehicle: yup
+                .string()
+                .nullable()
+                .required(i18next.t("global:error.input.required"))
+                .matches(
+                  DATE_FORMATS.regex,
+                  i18next.t("global:error.input.invalidFormat")
+                )
+                .matches(
+                  DATE_FORMATS.regexValidCharacter,
+                  i18next.t("global:error.input.invalidFormat")
+                ),
+              expirationDateIdentificationVehicle: yup
+                .string()
+                .nullable()
+                .required(i18next.t("global:error.input.required"))
+                .matches(
+                  DATE_FORMATS.regex,
+                  i18next.t("global:error.input.invalidFormat")
+                )
+                .matches(
+                  DATE_FORMATS.regexValidCharacter,
+                  i18next.t("global:error.input.invalidFormat")
+                ),
+              expirationDateDriverLicense: yup
+                .string()
+                .nullable()
+                .required(i18next.t("global:error.input.required"))
+                .matches(
+                  DATE_FORMATS.regex,
+                  i18next.t("global:error.input.invalidFormat")
+                )
+                .matches(
+                  DATE_FORMATS.regexValidCharacter,
+                  i18next.t("global:error.input.invalidFormat")
+                ),
+            })
+          : yup.object({}),
+    });
 
   return (
     <DetailPicker
       {...props}
+      initialValues={initialValues}
       validationSchema={validationSchema}
-      //changePage={changePage}
+      changePage={changePage}
       cancel={cancel}
-      goBack={() => historial.goBack()}
+      goBack={goBack}
       aproveSubmit={aproveSubmit}
       active={active}
+      formatDate={formatDate}
     />
   );
 };
 
 const mapStateToProps = (state: RootState) => ({
-  pendingUserAdminPicker:
-    pendingUserAdminPickerSelectors.getPendingUserPicker(state),
-  isFetching: pendingUserAdminPickerSelectors.isFetching(state),
-  actualPage: pendingUserSelectors.getActualPage(state),
-  nameDisplay: pendingUserAdminPickerSelectors.getNameDisplay(state),
+  pendingUserAdminPicker: detailPickerSelector(state).pendingUserAdminPicker,
+  isFetching: detailPickerSelector(state).fetching,
+  actualPage: pickersSelector(state).actualPage,
+  nameDisplay: detailPickerSelector(state).nameDisplay,
+  wrongFiles: hasPickerWrongFilesSelector(state),
+  loadedFiles: hasPickerAllFilesLoadedSelector(state),
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
-  getPendingUserPicker: (params: ParamGetPendingUser) => {
+  getPendingUserPicker: (params: number) => {
     dispatch(pendingUserAdminPickerActions.getPendingUserPickerRequest(params));
   },
-  getPendingUserPickerExport: (
-    params: ParamsMiddlewareType,
-    element: HTMLElement
-  ) => {
+  getPendingUserPickerExport: (params: ParamsMiddlewareType) => {
     dispatch(
-      pendingUserAdminPickerActions.getPendingUserPickerExportRequest(
-        params,
-        element
-      )
+      pendingUserAdminPickerActions.getPendingUserPickerExportRequest(params)
     );
   },
   setDirty: (dirty: boolean) => {
@@ -190,7 +311,7 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   },
   postAprovePickerRequest: (params: PickerType, goBack: Function) => {
     dispatch(
-      pendingUserAdminPickerActions.getAprovePickerRequest(params, goBack)
+      pendingUserAdminPickerActions.getAprovePickerRequest({ params, goBack })
     );
   },
   postPendingUserDocumentsEdit: (params: PickerType) => {
@@ -200,17 +321,19 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
       )
     );
   },
-  showNotification: (content: any) => {
-    //falta tipar shownotification
+  showNotification: (content: NotificationStateType) => {
     dispatch(notificationActions.showNotification(content));
   },
   postEditPickerRequest: (params: PickerType, goBack: Function) => {
     dispatch(
-      pendingUserAdminPickerActions.getEditPickerRequest(params, goBack)
+      pendingUserAdminPickerActions.getEditPickerRequest({ params, goBack })
     );
   },
-  setActualPage: (page: String) => {
+  setActualPage: (page: string) => {
     dispatch(pendingUserActions.setActualPage(page));
+  },
+  resetWrongFiles: () => {
+    dispatch(pendingUserAdminPickerActions.resetWrongFiles());
   },
 });
 

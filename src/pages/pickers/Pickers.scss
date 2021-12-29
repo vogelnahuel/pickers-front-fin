@@ -1,125 +1,112 @@
-.pending-container{
-    margin-left: 20.059vw;
-    width: 78vw;
-    margin-top: 7.291666666666667vh;
+.pending-container {
+  margin-top: 7.291666666666667vh;
+  width: calc(100% - 247px - 27 * 2px);
+  margin-left: calc(247px + 27px);
 }
-.subTitle-pending{
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: bold;
-    font-size: 36px;
-    line-height: 45px;
-    color: #101820;
-    /* margin-top: 5vh; */
-    max-width: 370px;
+.subTitle-pending {
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 45px;
+  color: #101820;
+  /* margin-top: 5vh; */
+  max-width: 370px;
 }
-.display-inline-block{
-    display: inline-block;
+.display-inline-block {
+  display: inline-block;
 }
-.export{
-    box-sizing: border-box;
-    border-radius: 50px;
-    border: 2.5px solid #0098FF;
-    width: 163px;
-    height: 50px;
-    background-color: white;
-    text-align: center;
-    margin-top: auto;
-    margin-left: auto;
-    margin-bottom: auto;
+.export {
+  box-sizing: border-box;
+  border-radius: 50px;
+  border: 2.5px solid #0098ff;
+  width: 163px;
+  height: 50px;
+  background-color: white;
+  text-align: center;
+  margin-top: auto;
+  margin-left: auto;
+  margin-bottom: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
-.p-export{
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: 800;
-    font-size: 18px;
-    line-height: 23px;
-    text-align: center;
-    color: #2D2D2D;
-    padding-left: 0.8rem;
+.p-export {
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 23px;
+  text-align: center;
+  color: #2d2d2d;
+  padding-left: 0.8rem;
 }
-.or-pending{
-    margin-left: 0.5rem;
+.or-pending {
+  margin-left: 0.5rem;
 }
-.option{
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 23px;
-    color: #000000;
-    border-radius: 10px;
-    border-radius: 50px;
-    cursor: pointer;
+.option {
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 23px;
+  color: #000000;
+  border-radius: 10px;
+  border-radius: 50px;
+  cursor: pointer;
 }
-.option2{
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 23px;
-    color: #828282;
-    border-radius: 10px;
-    border-radius: 50px;
-    cursor: pointer;
-}
-
-.optionHover{
-    background-color: #95E1BF;
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 23px;
-    color: #000000;
-    width: 90%;
-}
-.subtitle-pendingUser-h2{
-    width: 40vw;
+.option2 {
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 23px;
+  color: #828282;
+  border-radius: 10px;
+  border-radius: 50px;
+  cursor: pointer;
 }
 
-.paginator-button{
-    position: relative;
-    background: #F2F2F2;
-    border: 1px solid #CCCCCC;
-    width: 100%;
-    color:#0098FF;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    height: 43px;
-    margin-bottom: 20px;
-    font-family: 'Mulish';
-    font-weight: 700;
+.optionHover {
+  background-color: #95e1bf;
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 23px;
+  color: #000000;
+  width: 90%;
+}
+.subtitle-pendingUser-h2 {
+  width: 40vw;
 }
 
-.paginator-button-disabled{
-    position: relative;
-    background: #F2F2F2;
-    border: 1px solid #CCCCCC;
-    width: 100%;
-    color:rgba(189, 189, 189, 1);
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    height: 43px;
-    margin-bottom: 20px;
-    font-family: 'Mulish';
-    font-weight: 700;
+.paginator-button {
+  position: relative;
+  background: #f2f2f2;
+  border: 1px solid #cccccc;
+  width: 100%;
+  color: #0098ff;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  height: 43px;
+  margin-bottom: 20px;
+  font-family: "Mulish";
+  font-weight: 700;
+  cursor: pointer;
 }
 
-
- @media (max-width: 1300px) { 
-  
-    .pending-container{
-        margin-left: 21.059vw;
-        width: 77vw;
-    }
-
+.paginator-button-disabled {
+  position: relative;
+  background: #f2f2f2;
+  border: 1px solid #cccccc;
+  width: 100%;
+  color: rgba(189, 189, 189, 1);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  height: 43px;
+  margin-bottom: 20px;
+  font-family: "Mulish";
+  font-weight: 700;
 }
-@media (min-width:1800px){
-    .pending-container{
-        margin-left: 14.2vw;
-        width: 84.323vw;
-        margin-right: 0vw;
-    }
-}
-

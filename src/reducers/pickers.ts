@@ -1,34 +1,14 @@
-import { CsvResponseType } from "sagas/types/pickers";
-import { RootState } from "store";
+import { Action, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
   ParamsMiddlewareType,
   PickersParamsType,
   PickersResponse,
-} from "../pages/pickers/types";
-import { ActionsType, PickersTypes, SelectorType, PickerStateType, ActionType } from "./types/pickers";
+} from "pages/pickers/types";
+import { RootState } from "store";
+import { endsWithAny } from "utils/endsWithAny";
+import { PickerStateType } from "./types/pickers";
 
-export const PENDING_USER = "pendingUser/PENDING_USER";
-
-export const types: PickersTypes = {
-  PENDING_USER_GET_REQUEST: `${PENDING_USER}_GET_REQUEST`,
-  PENDING_USER_GET_SUCCESS: `${PENDING_USER}_GET_SUCCESS`,
-  PENDING_USER_GET_ERROR: `${PENDING_USER}_GET_ERROR`,
-  PENDING_USER_SET_FILTERS: `${PENDING_USER}_SET_FILTER`,
-  PENDING_USER_SET_EXTRA_FILTERS: `${PENDING_USER}_SET_EXTRA_FILTER`,
-  PENDING_USER_SET_ACTUAL_PAGE: `${PENDING_USER}_SET_ACTUAL_PAGE`,
-
-  PENDING_USER_EXPORT_GET_REQUEST: `${PENDING_USER}_EXPORT_GET_REQUEST`,
-  PENDING_USER_EXPORT_GET_SUCCESS: `${PENDING_USER}_EXPORT_GET_SUCCESS`,
-  PENDING_USER_EXPORT_GET_ERROR: `${PENDING_USER}_EXPORT_GET_ERROR`,
-
-  PENDING_USER_GET_MORE_REQUEST: `${PENDING_USER}_GET_MORE_REQUEST`,
-  PENDING_USER_GET_MORE_SUCCESS: `${PENDING_USER}_GET_MORE_SUCCESS`,
-  PENDING_USER_GET_MORE_ERROR: `${PENDING_USER}_GET_MORE_ERROR`,
-
-  PENDING_USER_RESET: `${PENDING_USER}_RESET`,
-};
-
-export const INITIAL_STATE: PickerStateType = {
+export const initialState: PickerStateType = {
   fetching: false,
   users: [],
   filters: {},
@@ -45,159 +25,100 @@ export const INITIAL_STATE: PickerStateType = {
   actualPage: "PENDING",
 };
 
-export const actions:ActionsType = {
-  reset: () => ({
-    type: types.PENDING_USER_RESET,
-  }),
-  getPendingUserRequest: (params: ParamsMiddlewareType) => ({
-    type: types.PENDING_USER_GET_REQUEST,
-    params,
-  }),
-  getPendingUserSuccess: (pendingUsers: PickersResponse) => ({
-    type: types.PENDING_USER_GET_SUCCESS,
-    pendingUsers,
-  }),
-  getPendingUserError: () => ({
-    type: types.PENDING_USER_GET_ERROR,
-  }),
-  setPendingUserFilters: (filters: PickersParamsType) => ({
-    type: types.PENDING_USER_SET_FILTERS,
-    filters,
-  }),
-  setActualPage: (page: string) => ({
-    type: types.PENDING_USER_SET_ACTUAL_PAGE,
-    page,
-  }),
-  setPendingUserExtraFilters: (extraFilters: PickersParamsType) => ({
-    type: types.PENDING_USER_SET_EXTRA_FILTERS,
-    extraFilters,
-  }),
-  getMorePendingUserRequest: (params: ParamsMiddlewareType) => ({
-    type: types.PENDING_USER_GET_MORE_REQUEST,
-    params,
-  }),
-  getMorePendingUserSuccess: (pendingUsers: PickersResponse) => ({
-    type: types.PENDING_USER_GET_MORE_SUCCESS,
-    pendingUsers,
-  }),
-  getMorePendingUserError: () => ({
-    type: types.PENDING_USER_GET_MORE_ERROR,
-  }),
+const SLICE_NAME = "pickers";
 
-  getPendingUserExportRequest: (
-    params: ParamsMiddlewareType,
-    element: HTMLElement
-  ) => ({
-    type: types.PENDING_USER_EXPORT_GET_REQUEST,
-    params,
-    element,
-  }),
-  getPendingUserExportSuccess: (params: CsvResponseType) => ({
-    type: types.PENDING_USER_EXPORT_GET_SUCCESS,
-    params,
-  }),
-  getPendingUserExportError: (params?: PickersParamsType) => ({
-    type: types.PENDING_USER_EXPORT_GET_ERROR,
-    params,
-  }),
+const isRequestAction = (action: Action<string>) => {
+  const { type } = action;
+  return type.startsWith(SLICE_NAME) && type.endsWith("Request");
 };
 
-export const selectors: SelectorType = {
-  isFetching: ({ pendingUser }: RootState) => pendingUser.fetching,
-  getPendingUser: ({ pendingUser }: RootState) => pendingUser.users,
-  getFilters: ({ pendingUser }: RootState) => pendingUser.filters,
-  getFiltersExtra: ({ pendingUser }: RootState) => pendingUser.filtersExtra,
-  getFiltersExtraSeeMore: ({ pendingUser }: RootState) =>
-    pendingUser.filtersExtraSeeMore,
-  getSeeMore: ({ pendingUser }: RootState) => pendingUser.seeMore,
-  getSizePage: ({ pendingUser }: RootState) => pendingUser.sizePage,
-  getActualPage: ({ pendingUser }: RootState) => pendingUser.actualPage,
+const isResponseAction = (action: Action<string>) => {
+  const { type } = action;
+  return type.startsWith(SLICE_NAME) && endsWithAny(type, ["Error", "Success"]);
 };
 
-const reducer = (state: PickerStateType = INITIAL_STATE, action: ActionType) => {
-  switch (action.type) {
-    case types.PENDING_USER_RESET:
-      return {
-        ...INITIAL_STATE,
+// Una de las ventajas con la que cuenta redux toolkit es la positibilidad de
+// escribir "mutating logic" dentro de los reducers.
+// No realiza la mutación del estado ya que utiliza la libreria Immer, la cual
+// detecta los cambios en un estado "draft" y produce un nuevo estado inmutable.
+export const pickersSlice = createSlice({
+  name: SLICE_NAME,
+  initialState,
+  reducers: {
+    reset: (state: PickerStateType) => {
+      state = {
+        ...initialState,
         actualPage: state.actualPage,
       };
-    case types.PENDING_USER_GET_REQUEST:
-      return {
-        ...state,
-        fetching: true,
-      };
-    case types.PENDING_USER_GET_SUCCESS:
-      return {
-        ...state,
-        users: action.pendingUsers.items,
-        fetching: false,
-        seeMore: action.pendingUsers.hasMore,
-        filtersExtraSeeMore: {
-          ...state.filtersExtraSeeMore,
-          offset: action.pendingUsers.offset + action.pendingUsers.limit,
-        },
-      };
-    case types.PENDING_USER_GET_ERROR:
-      return {
-        ...state,
-        fetching: false,
-      };
-    case types.PENDING_USER_SET_FILTERS:
-      return {
-        ...state,
-        filters: action.filters,
-      };
-    case types.PENDING_USER_SET_ACTUAL_PAGE:
-      return {
-        ...state,
-        users: [],
-        actualPage: action.page,
-      };
-    case types.PENDING_USER_SET_EXTRA_FILTERS:
-      return {
-        ...state,
-        filtersExtra: { ...state.filtersExtra, ...action.extraFilters },
-      };
+    },
+    getPendingUserRequest: (
+      state: PickerStateType,
+      action: PayloadAction<ParamsMiddlewareType>
+    ) => {},
+    getPendingUserSuccess: (
+      state: PickerStateType,
+      action: PayloadAction<PickersResponse>
+    ) => {
+      const { payload } = action;
+      state.users = payload.items;
+      state.seeMore = payload.hasMore;
+      state.filtersExtraSeeMore.offset = payload.offset + payload.limit;
+    },
+    getPendingUserError: () => {},
+    setPendingUserFilters: (
+      state: PickerStateType,
+      action: PayloadAction<PickersParamsType>
+    ) => {
+      state.filters = action.payload;
+    },
+    setActualPage: (state: PickerStateType, action: PayloadAction<string>) => {
+      state.actualPage = action.payload;
+      state.users = [];
+    },
+    setPendingUserExtraFilters: (
+      state: PickerStateType,
+      action: PayloadAction<PickersParamsType>
+    ) => {
+      state.filtersExtra = { ...state.filtersExtra, ...action.payload };
+    },
+    getMorePendingUserRequest: (
+      state: PickerStateType,
+      action: PayloadAction<ParamsMiddlewareType>
+    ) => {},
+    getMorePendingUserSuccess: (
+      state: PickerStateType,
+      action: PayloadAction<PickersResponse>
+    ) => {
+      const { payload } = action;
+      state.users = [...state.users, ...payload.items];
+      state.filtersExtraSeeMore.offset = payload.offset + payload.limit;
+      state.seeMore = payload.hasMore;
+    },
+    getMorePendingUserError: () => {},
+    getPendingUserExportRequest: (
+      state: PickerStateType,
+      action: PayloadAction<ParamsMiddlewareType>
+    ) => {},
+    getPendingUserExportSuccess: () => {},
+    getPendingUserExportError: () => {},
+  },
+  extraReducers: (builder) =>
+    builder
+      .addMatcher(isRequestAction, (state: PickerStateType) => {
+        state.fetching = true;
+      })
+      .addMatcher(isResponseAction, (state: PickerStateType) => {
+        state.fetching = false;
+      }),
 
-    case types.PENDING_USER_GET_MORE_REQUEST:
-      return {
-        ...state,
-        fetching: true,
-      };
-    case types.PENDING_USER_GET_MORE_SUCCESS:
-      return {
-        ...state,
-        users: state.users.concat(action.pendingUsers.items),
-        filtersExtraSeeMore: {
-          ...state.filtersExtraSeeMore,
-          offset: action.pendingUsers.offset + action.pendingUsers.limit,
-        },
-        fetching: false,
-        seeMore: action.pendingUsers.hasMore,
-      };
-    case types.PENDING_USER_GET_MORE_ERROR:
-      return {
-        ...state,
-        fetching: false,
-      };
-    case types.PENDING_USER_EXPORT_GET_REQUEST:
-      return {
-        ...state,
-        fetching: true,
-      };
-    case types.PENDING_USER_EXPORT_GET_SUCCESS:
-      return {
-        ...state,
-        fetching: false,
-      };
-    case types.PENDING_USER_EXPORT_GET_ERROR:
-      return {
-        ...state,
-        fetching: false,
-      };
-    default:
-      return state;
-  }
-};
 
-export default reducer;
+});
+
+// Se exporta el reducer/slice para asociarlo en la creación del store
+export default pickersSlice.reducer;
+
+// Selector del slice "pickers"
+export const pickersSelector = (state: RootState) => state.pickers;
+
+// Se exportan todas las acciones
+export const actions = pickersSlice.actions;

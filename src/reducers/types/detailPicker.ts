@@ -1,4 +1,11 @@
-import { PickerType } from "pages/pickers/types";
+import { TagsErrorType } from "component/admin/ExpandableFile/types";
+import { DetailPickerTagFileType, PickerType } from "pages/pickers/types";
+
+export enum FileStatusEnum {
+  EMPTY = "EMPTY",
+  PENDING = "PENDING",
+  COMPLETED = "COMPLETED"
+}
 
 export type DetailPickerTypes = {
   PENDING_USER_ADMIN_PICKER_GET_REQUEST: string;
@@ -37,8 +44,15 @@ export type SelectorType = {
 export type DetailPickerStateType = {
   fetching: boolean;
   dirty: boolean;
-  nameDisplay: String;
-  pendingUserAdminPicker: PickerType | object;
+  wrongFiles: TagsErrorType;
+  nameDisplay: string;
+  pendingUserAdminPicker: PickerType;
+  serverError: (keyof DetailPickerTagFileType)[];
+};
+
+export type PickerWrongFilePayloadType = {
+  type: keyof TagsErrorType;
+  value: boolean;
 };
 
 export type ActionType = {

@@ -1,3 +1,10 @@
+import { PayloadAction } from "@reduxjs/toolkit";
+import { AxiosResponse } from "axios";
+import { CallHistoryMethodAction, replace } from "connected-react-router";
+import i18next from "i18next";
+import { LoginType } from "pages/login/types";
+import { RestorePasswordActionsTypes } from "reducers/types/login";
+import { NotificationStateType } from "reducers/types/notification";
 import {
   call,
   CallEffect,
@@ -6,34 +13,29 @@ import {
   PutEffect,
   takeLatest,
 } from "redux-saga/effects";
-import { actions, types } from "../reducers/login";
 import * as loginMiddleware from "../middleware/login";
-import { removeItem, saveValue } from "../utils/localStorage";
-import { CallHistoryMethodAction, replace } from "connected-react-router";
+import { actions } from "../reducers/login";
 import { actions as notificationActions } from "../reducers/notification";
+import { removeItem, saveValue } from "../utils/localStorage";
 import {
-  getLoginEmailType,
-  getLoginType,
-  getRestoreType,
+  EmailType,
   ILoginResponse,
   LoginEmailTypeResponse,
   RestoreEmailResponse,
 } from "./types/login";
-import { AxiosResponse } from "axios";
 
 const sagas: ForkEffect<never>[] = [
-  takeLatest(types.LOGIN_GET_REQUEST, getLogin),
-  takeLatest(types.LOGOUT, logout),
-  takeLatest(types.LOGIN_EMAIL_GET_REQUEST, getLoginEmail),
-  takeLatest(types.LOGIN_RESTORE_GET_REQUEST, getLoginRestore),
+  takeLatest(actions.getLoginRequest.type, getLogin),
+  takeLatest(actions.logout.type, logout),
+  takeLatest(actions.getLoginEmailRequest.type, getLoginEmail),
+  takeLatest(actions.getLoginRestoreRequest.type, getLoginRestore),
 ];
 
 export default sagas;
 
 function* getLogin({
-  params,
-  element,
-}: getLoginType): Generator<
+  payload,
+}: PayloadAction<LoginType>): Generator<
   | CallEffect<AxiosResponse<ILoginResponse>>
   | PutEffect<{ type: string; content: any }>
   | PutEffect<{ type: string }>
@@ -41,7 +43,7 @@ function* getLogin({
   void,
   ILoginResponse
 > {
-  const response = yield call(loginMiddleware.getLogin, params);
+  const response = yield call(loginMiddleware.getLogin, payload);
 
   if (response.status !== 200) {
     yield put(actions.getLoginError());
@@ -50,9 +52,8 @@ function* getLogin({
         yield put(
           notificationActions.showNotification({
             level: "error",
-            title: "Error de conexión",
-            body: "Hubo un error de comunicación con el servidor. Por favor, intentalo nuevamente",
-            element,
+            title: i18next.t("global:title.modal.connectionError"),
+            body: i18next.t("global:label.modal.connectionError"),
           })
         );
         break;
@@ -60,9 +61,8 @@ function* getLogin({
         yield put(
           notificationActions.showNotification({
             level: "error",
-            title: "Usuario y/o contraseña inválidos",
-            body: "Tu usuario y/o contraseña ingresados son incorrectos. Por favor, ingresalos nuevamente.",
-            element,
+            title: i18next.t("login:title.modal.invalid"),
+            body: i18next.t("login:label.modal.invalid"),
           })
         );
         break;
@@ -70,9 +70,8 @@ function* getLogin({
         yield put(
           notificationActions.showNotification({
             level: "error",
-            title: "Usuario y/o contraseña inválidos",
-            body: "Tu usuario y/o contraseña ingresados son incorrectos. Por favor, ingresalos nuevamente.",
-            element,
+            title: i18next.t("login:title.modal.invalid"),
+            body: i18next.t("login:label.modal.invalid"),
           })
         );
         break;
@@ -80,9 +79,8 @@ function* getLogin({
         yield put(
           notificationActions.showNotification({
             level: "error",
-            title: "Error en nuestro servidor",
-            body: "Por favor, reintentalo nuevamente.",
-            element,
+            title: i18next.t("global:title.modal.serverError"),
+            body: i18next.t("global:label.modal.serverError"),
           })
         );
         break;
@@ -106,16 +104,16 @@ function* logout(): Generator<
 }
 
 function* getLoginEmail({
-  params,
-  element,
-}: getLoginEmailType): Generator<
+  payload,
+}: PayloadAction<EmailType>): Generator<
+  | PutEffect<{ payload: NotificationStateType; type: string }>
+  | PutEffect<{ payload: undefined; type: string }>
   | CallEffect<AxiosResponse<LoginEmailTypeResponse>>
-  | PutEffect<{ type: string; content: any }>
   | PutEffect<CallHistoryMethodAction<[string, unknown?]>>,
   void,
   ILoginResponse
 > {
-  const response = yield call(loginMiddleware.getLoginEmail, params);
+  const response = yield call(loginMiddleware.getLoginEmail, payload);
 
   if (response.status !== 200) {
     switch (response.data.statusCode) {
@@ -123,9 +121,8 @@ function* getLoginEmail({
         yield put(
           notificationActions.showNotification({
             level: "warning",
-            title: "Enviamos un correo a tu email",
-            body: "Ingresá al mismo para restaurar tu contraseña",
-            element,
+            title: i18next.t("login:title.modal.restore"),
+            body: i18next.t("login:label.modal.restore"),
           })
         );
         break;
@@ -133,9 +130,8 @@ function* getLoginEmail({
         yield put(
           notificationActions.showNotification({
             level: "warning",
-            title: "Enviamos un correo a tu email",
-            body: "Ingresá al mismo para restaurar tu contraseña",
-            element,
+            title: i18next.t("login:title.modal.restore"),
+            body: i18next.t("login:label.modal.restore"),
           })
         );
         break;
@@ -143,9 +139,8 @@ function* getLoginEmail({
         yield put(
           notificationActions.showNotification({
             level: "warning",
-            title: "Enviamos un correo a tu email",
-            body: "Ingresá al mismo para restaurar tu contraseña",
-            element,
+            title: i18next.t("login:title.modal.restore"),
+            body: i18next.t("login:label.modal.restore"),
           })
         );
         break;
@@ -153,9 +148,8 @@ function* getLoginEmail({
         yield put(
           notificationActions.showNotification({
             level: "error",
-            title: "Error en nuestro servidor",
-            body: "Por favor, reintentalo nuevamente.",
-            element,
+            title: i18next.t("global:title.modal.serverError"),
+            body: i18next.t("global:label.modal.serverError"),
           })
         );
         break;
@@ -166,9 +160,8 @@ function* getLoginEmail({
     yield put(
       notificationActions.showNotification({
         level: "warning",
-        title: "Enviamos un correo a tu email",
-        body: "Ingresá al mismo para restaurar tu contraseña",
-        element,
+        title: i18next.t("login:title.modal.restore"),
+        body: i18next.t("login:label.modal.restore"),
       })
     );
     yield put(replace("/"));
@@ -177,16 +170,16 @@ function* getLoginEmail({
 }
 
 function* getLoginRestore({
-  params,
-  element,
-}: getRestoreType): Generator<
+  payload,
+}: PayloadAction<RestorePasswordActionsTypes>): Generator<
+  | PutEffect<{ payload: undefined; type: string }>
+  | PutEffect<{ payload: NotificationStateType; type: string }>
   | CallEffect<AxiosResponse<RestoreEmailResponse>>
-  | PutEffect<{ type: string; content: any }>
   | PutEffect<CallHistoryMethodAction<[string, unknown?]>>,
   void,
   ILoginResponse
 > {
-  const response = yield call(loginMiddleware.getLoginRestore, params);
+  const response = yield call(loginMiddleware.getLoginRestore, payload);
 
   if (response.status !== 200) {
     switch (response.data.statusCode) {
@@ -194,9 +187,8 @@ function* getLoginRestore({
         yield put(
           notificationActions.showNotification({
             level: "error",
-            title: "Código de verificación vencido",
-            body: "Se venció el plazo de recuperación de tu contraseña. Solicitala nuevamente",
-            element,
+            title: i18next.t("login:title.modal.expiredCode"),
+            body: i18next.t("login:label.modal.expiredCode"),
           })
         );
         break;
@@ -204,9 +196,8 @@ function* getLoginRestore({
         yield put(
           notificationActions.showNotification({
             level: "error",
-            title: "Error en nuestro servidor",
-            body: "Por favor, reintentalo nuevamente.",
-            element,
+            title: i18next.t("global:title.modal.serverError"),
+            body: i18next.t("global:label.modal.serverError"),
           })
         );
         break;
@@ -216,9 +207,8 @@ function* getLoginRestore({
     yield put(
       notificationActions.showNotification({
         level: "success",
-        title: "Restauraste tu contraseña exitosamente",
-        body: "Ya podés ingresar con tu nueva contraseña.",
-        element,
+        title: i18next.t("login:title.modal.successfulRestore"),
+        body: i18next.t("login:label.modal.successfulRestore"),
       })
     );
     yield put(replace("/"));

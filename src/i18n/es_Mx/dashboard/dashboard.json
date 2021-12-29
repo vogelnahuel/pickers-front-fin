@@ -1,0 +1,10 @@
+{    
+    "title.dashboard.dashboard":"Dashboard Mx",
+    "subtitle.dashboard.description":"Visualizá la información más importante Mx",
+    "title.card.online":"En línea Mx",
+    "title.card.active":"Activas Mx",
+    "title.card.inAlert":"En alerta Mx",
+    "title.card.pendingAssigment":"Pendientes de asignación Mx",
+    "subtitle.card.transactions":"Transacciones Mx",
+    "subtitle.card.pickers":"Pickers Mx"
+}

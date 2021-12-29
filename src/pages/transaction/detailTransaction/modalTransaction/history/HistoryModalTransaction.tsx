@@ -1,12 +1,11 @@
 import { Input } from "component/inputs/Input";
 import React from "react";
-import { Col, Row } from "react-bootstrap";
 import { Field, Form } from "react-final-form";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import {
   actions as detailTransactionActions,
-  selectors as detailTransactionSelector,
+  detailTransactionSelector,
 } from "reducers/detailTransaction";
 import { AppDispatch, RootState } from "store";
 import Reload from "../../../../../assets/transaction/Reload.svg";
@@ -14,6 +13,7 @@ import "../optionList.css";
 import TransactionStateHistory from "../history/transactionStateHistory/TransactionStateHistory";
 import { HistoryModalTransactionType } from "../types";
 import "./HistoryModalTransaction.scss";
+import i18next from "i18next";
 
 const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
   detailTransaction,
@@ -50,148 +50,174 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
               : "-",
             deliveryAddress: detailTransaction.destination.formattedAddress,
             pickupAddress: detailTransaction.origin.formattedAddress,
-            retailer: detailTransaction.seller && detailTransaction.seller.name!==null  ? detailTransaction.seller.name: "-",
+            retailer:
+              detailTransaction.seller && detailTransaction.seller.name !== null
+                ? detailTransaction.seller.name
+                : "-",
             reveiverName: `${detailTransaction.client.name} ${detailTransaction.client.lastName}`,
             reveiverPhone: detailTransaction.client.phone,
           }}
         >
           {({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
-              <Row>
-                <Col>
-                  <Field
-                    type="text"
-                    name="pickerId"
-                    label="Id de picker"
-                    component={Input}
-                    className="Admin-Pickers-input"
-                    disabled
-                  />
-                </Col>
-                <Col>
-                  <Field
-                    type="text"
-                    name="name"
-                    label="Nombre y apellido"
-                    component={Input}
-                    className="Admin-Pickers-input"
-                    disabled
-                  />
-                </Col>
-                <Col>
-                  <Row>
-                    <Col md={6}>
-                      <Field
-                        type="text"
-                        name="areaCode"
-                        label="Código de área"
-                        component={Input}
-                        className="Admin-Pickers-input"
-                        disabled
-                      />
-                    </Col>
-                    <Col md={6}>
-                      <Field
-                        type="text"
-                        name="phone"
-                        label="Teléfono"
-                        component={Input}
-                        className="Admin-Pickers-input"
-                        disabled
-                      />
-                    </Col>
-                  </Row>
-                </Col>
-                <Col md={2}>
-                  <Link
-                    className="modal-transaction-button-irApicker-a"
-                    target={detailTransaction.picker.id ? "_blank" : ""}
-                    rel="noopener noreferrer"
-                    to={
-                      detailTransaction.picker.id
-                        ? `pickers/${detailTransaction.picker.id}`
-                        : "#"
-                    }
-                  >
-                    <button
-                      type="button"
-                      className={
+              <div className="container-history-fluid">
+                <div className="container-history-row">
+                  <div className="container-history-col">
+                    <div className="container-history-row">
+                      <div className="container-history-col-4">
+                        <Field
+                          type="text"
+                          name="pickerId"
+                          label={i18next.t(
+                            "filterTransaction:label.filter.idPicker"
+                          )}
+                          component={Input}
+                          className="Admin-Pickers-input"
+                          disabled
+                        />
+                      </div>
+                      <div className="container-history-col-4">
+                        <Field
+                          type="text"
+                          name="name"
+                          label={i18next.t(
+                            "filterPickers:label.filter.name"
+                          )}
+                          component={Input}
+                          className="Admin-Pickers-input"
+                          disabled
+                        />
+                      </div>
+
+                      <div className="container-history-col-2">
+                        <Field
+                          type="text"
+                          name="areaCode"
+                          label={i18next.t("detailTransaction:label.historyTransaction.areaCode")}
+                          component={Input}
+                          className="Admin-Pickers-input"
+                          disabled
+                        />
+                      </div>
+                      <div className="container-history-col-2">
+                        <Field
+                          type="text"
+                          name="phone"
+                          label={i18next.t("detailTransaction:label.historyTransaction.phone")}
+                          component={Input}
+                          className="Admin-Pickers-input"
+                          disabled
+                        />
+                      </div>
+                      
+                      <div className="container-history-col-4">
+                        <Field
+                          type="text"
+                          name="pickupAddress"
+                          label={i18next.t(
+                            "detailTransaction:label.detailTransaction.pickupAddress"
+                          )}
+                          component={Input}
+                          className="Admin-Pickers-input"
+                          disabled
+                        />
+                      </div>
+                      <div className="container-history-col-4">
+                        <Field
+                          type="text"
+                          name="deliveryAddress"
+                          label={i18next.t(
+                            "detailTransaction:label.detailTransaction.deliveryAddress"
+                          )}
+                          component={Input}
+                          className="Admin-Pickers-input"
+                          disabled
+                        />
+                      </div>
+                      <div className="container-history-col-4">
+                        <Field
+                          type="text"
+                          name="retailer"
+                          label={i18next.t(
+                            "detailTransaction:label.detailTransaction.retailer"
+                          )}
+                          component={Input}
+                          className="Admin-Pickers-input"
+                          disabled
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="container-history-col-auto">
+                    <Link
+                      className="modal-transaction-button-irApicker-a"
+                      target={detailTransaction.picker.id ? "_blank" : ""}
+                      rel="noopener noreferrer"
+                      to={
                         detailTransaction.picker.id
-                          ? "modal-transaction-button-irApicker"
-                          : "modal-transaction-button-irApicker-disabled"
+                          ? `pickers/${detailTransaction.picker.id}`
+                          : "#"
                       }
                     >
-                      Ir a picker
-                    </button>
-                  </Link>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <Field
-                    type="text"
-                    name="deliveryAddress"
-                    label="Dirección de entrega"
-                    component={Input}
-                    className="Admin-Pickers-input"
-                    disabled
-                  />
-                </Col>
-                <Col>
-                  <Field
-                    type="text"
-                    name="pickupAddress"
-                    label="Dirección de retiro"
-                    component={Input}
-                    className="Admin-Pickers-input"
-                    disabled
-                  />
-                </Col>
-                <Col>
-                  <Field
-                    type="text"
-                    name="retailer"
-                    label="Retailer"
-                    component={Input}
-                    className="Admin-Pickers-input"
-                    disabled
-                  />
-                </Col>
-                <Col md={2}></Col>
-              </Row>
-              <Row>
+                      <button
+                        type="button"
+                        className={
+                          detailTransaction.picker.id
+                            ? "modal-transaction-button-irApicker"
+                            : "modal-transaction-button-irApicker-disabled"
+                        }
+                      >
+                        {i18next.t(
+                          "detailTransaction:button.historyModal.picker"
+                        )}
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+
                 <h3
                   className="modal-transaction-h3"
                   id="modal-transaction-history-Final"
                 >
-                  Consumidor final
+                  {i18next.t(
+                    "detailTransaction:title.historyModal.finalConsumer"
+                  )}
                 </h3>
                 <hr
                   className="modal-transaction-separate"
                   id="modal-transaction-hr-title"
                 />
-
-                <Col md={3}>
-                  <Field
-                    type="text"
-                    name="reveiverName"
-                    label="Nombre y apellido"
-                    component={Input}
-                    className="Admin-Pickers-input"
-                    disabled
-                  />
-                </Col>
-                <Col md={3}>
-                  <Field
-                    type="text"
-                    name="reveiverPhone"
-                    label="Teléfono"
-                    component={Input}
-                    className="Admin-Pickers-input"
-                    disabled
-                  />
-                </Col>
-              </Row>
+                <div className="container-history-row">
+                  <div className="container-history-col">
+                    <div className="container-history-row">
+                      <div className="container-history-col-4">
+                        <Field
+                          type="text"
+                          name="reveiverName"
+                          label={i18next.t(
+                            "filterPickers:label.filter.name"
+                          )}
+                          component={Input}
+                          className="Admin-Pickers-input"
+                          disabled
+                        />
+                      </div>
+                      <div className="container-history-col-4">
+                        <Field
+                          type="text"
+                          name="reveiverPhone"
+                          label={i18next.t("detailTransaction:label.historyTransaction.phone")}
+                          component={Input}
+                          className="Admin-Pickers-input"
+                          disabled
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="container-history-col-auto visibility-hidden">
+                  </div>
+                </div>
+              </div>
             </form>
           )}
         </Form>
@@ -216,7 +242,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
           }}
           className="button-modal-transaction"
         >
-          Cancelar
+          {i18next.t("global:label.button.cancel")}
         </button>
         <button
           disabled={
@@ -229,7 +255,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
           }}
           className="button-modal-transaction"
         >
-          Finalizar
+          {i18next.t("global:label.button.finish")}
         </button>
         <div
           onClick={() => getDetailTransaction(detailTransaction.transaction.id)}
@@ -240,7 +266,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
             src={Reload}
             alt="reload"
           />
-          <p>Actualizar</p>
+          <p>{i18next.t("detailTransaction:button.historyModal.refresh")}</p>
         </div>
       </div>
     </div>
@@ -248,7 +274,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
 };
 
 const mapStateToProps = (state: RootState) => ({
-  detailTransaction: detailTransactionSelector.getDetailTransaction(state),
+  detailTransaction: detailTransactionSelector(state).detailTransaction,
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({

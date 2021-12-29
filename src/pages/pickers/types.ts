@@ -1,4 +1,4 @@
-import { type } from "os";
+import { TypeOfShape } from "yup/lib/object";
 
 export type ChangePageTypes = {
   props: {
@@ -7,7 +7,7 @@ export type ChangePageTypes = {
 };
 
 export type PickersParamsType = {
-  pickerStatusId?: Array<Number>;
+  pickerStatusId?: Array<number>;
   name?: string;
   email?: string;
   identificationNumber?: number;
@@ -25,35 +25,9 @@ export type ParamsMiddlewareType = {
   offset?: number;
 };
 
-export type AcountDataType = {
-  bankIdentifier: string;
-  bankName: string;
-  fiscalNumber: string;
-};
-
-export type PhoneType = {
-  areaNumber: string;
-  countryNumber: string;
-  number: string;
-  registerDate: string;
-};
-
 export type StatusType = {
   description: string;
-  id: Number;
-};
-
-export type VehicleType = {
-  approve: boolean | null;
-  expirationDateDriverLicense: string | null;
-  expirationDateIdentificationVehicle: string | null;
-  expirationDatePolicyVehicle: string | null;
-  patent: string | null;
-};
-
-export type VehicleGroupType = {
-  bicycle?: VehicleType;
-  motorcycle?: VehicleType;
+  id: number;
 };
 
 export type PhoneValidationSchemaType = {
@@ -61,29 +35,78 @@ export type PhoneValidationSchemaType = {
   number: string;
 };
 
-export type DetailPickerValidationSchema = {
+export type PersonalDataValidationType = {
   name: string;
   surname: string;
   phone: PhoneValidationSchemaType;
-  expirationDatePolicyPersonal?: string;
-   vehicle: any;
+};
+export type vehicleValidationType = {
+  patent: string;
+  expirationDatePolicyVehicle: string;
+  expirationDateIdentificationVehicle: string;
+  expirationDateDriverLicense: string;
+};
+
+export type DetailPickerValidationSchema = {
+  personalData: PersonalDataValidationType;
+  vehicle: vehicleValidationType | TypeOfShape<{}>;
+};
+
+export type PhoneType = {
+  areaNumber: string;
+  countryNumber: string;
+  number: string;
+  registerDate?: string;
+};
+
+export type PersonalDataType = {
+  name: string;
+  surname: string;
+  dateOfBirth: string | null;
+  identificationNumber: number | null;
+  email: string;
+  phone: PhoneType;
+};
+
+export type VehicleType = {
+  type: string;
+  active: boolean;
+  approve: boolean;
+  patent: string;
+  expirationDateDriverLicense: string;
+  expirationDateIdentificationVehicle: string;
+  expirationDatePolicyVehicle: string;
+};
+export type AcountDataType = {
+  bankIdentifier: string;
+  bankName: string;
+  fiscalNumber: string;
+};
+export type DataContentType = {
+  tag: keyof DetailPickerTagFileType;
+  isUpload: boolean;
+};
+
+export type DataFilesType = {
+  status: string;
+  content: DataContentType[];
+};
+
+export type FilesType = {
+  personalData: DataFilesType;
+  accountingData: DataFilesType;
+  vehicle: DataFilesType;
 };
 
 export type PickerType = {
-  accountingData: AcountDataType;
-  dateOfBirth: string;
-  email: string;
-  enable: boolean;
-  expirationDatePolicyPersonal: string;
   id: number;
-  identificationNumber: string;
-  name: string;
-  phone: PhoneType;
-  registerDate: string;
+  enable: boolean;
+  registerDatetime: string;
   status: StatusType;
-  surname: string;
-  vehicle: VehicleGroupType;
-  vehicleType: string;
+  personalData: PersonalDataType;
+  accountingData: AcountDataType;
+  vehicle: VehicleType;
+  files: FilesType;
 };
 
 export type PickerContainerTypes = {
@@ -96,12 +119,13 @@ export type PickerContainerTypes = {
   pag: string;
   actualPage: string;
   reset: Function;
-  getPendingUser: Function;
+  getPendingUser: (params: ParamsMiddlewareType) => void;
   setPendingUserFilters: Function;
   setPendingUserExtraFilters: Function;
   setActualPage: Function;
   getPendingUsersExportRequest: Function;
   getMorePendingUser: Function;
+  isDetail:boolean;
 };
 
 export type PickerTypes = {
@@ -120,6 +144,7 @@ export type PickerTypes = {
   setActualPage: Function;
   getPendingUsersExportRequest: Function;
   getMorePendingUser: Function;
+  changePage: (page: string) => void;
 };
 
 export type PickersAxiosResponseType = {
@@ -140,12 +165,30 @@ export type PickersAxiosContent = {
 };
 
 export type PickersResponse = {
-  hasMore: Boolean;
+  hasMore: boolean;
   limit: number;
   offset: number;
   items: PickerType[];
 };
 
 export type EditPickerResponseType = {
-  result: Number;
+  result: number;
+};
+
+export type PickerFileResponseType = {
+  result: {
+    url: string;
+  };
+};
+
+export type DetailPickerTagFileType = {
+  "dni-front": string;
+  "dni-back": string;
+  "user-face": string;
+  "cbu-certificate": string;
+  "cuit-certificate": string;
+  "driver-license": string;
+  "vehicle-identification-back": string;
+  "vehicle-identification-front": string;
+  "driver-insurance-card": string;
 };

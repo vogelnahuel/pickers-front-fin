@@ -1,212 +1,272 @@
-import { PickerType, EditPickerResponseType, ParamsMiddlewareType } from "pages/pickers/types";
-import { ParamGetPendingUser } from "sagas/types/pickers";
+import {
+  createSlice,
+  PayloadAction,
+  Action,
+  createSelector,
+} from "@reduxjs/toolkit";
+import { ParamsMiddlewareType, PickerType } from "pages/pickers/types";
+import {
+  DetailPickerStateType,
+  PickerWrongFilePayloadType,
+} from "./types/detailPicker";
+
 import { RootState } from "store";
-import { ActionType, SelectorType, DetailPickerStateType, DetailPickerTypes, actionType } from "./types/detailPicker";
+import { endsWithAny } from "utils/endsWithAny";
+import { PickerFileRequestType } from "pages/pickers/detailPicker/types";
+import { DeleteFileType, ExpandableFileSaveParamsType } from "component/admin/ExpandableFile/types";
+import { ActionErrorPickersType } from "./types/pickers";
 
-export const types:DetailPickerTypes = {
-    PENDING_USER_ADMIN_PICKER_GET_REQUEST: `PENDING_USER_ADMIN_PICKER_GET_REQUEST`,
-    PENDING_USER_ADMIN_PICKER_GET_SUCCESS: `PENDING_USER_ADMIN_PICKER_GET_SUCCESS`,
-    PENDING_USER_ADMIN_PICKER_GET_ERROR: `PENDING_USER_ADMIN_PICKER_GET_ERROR`,
-
-    PENDING_USER_ADMIN_PICKER_SET_DIRTY: `PENDING_USER_ADMIN_PICKER_SET_DIRTY`,
-
-    PENDING_USER_ADMIN_PICKER_EXPORT_GET_REQUEST: `PENDING_USER_ADMIN_PICKER_EXPORT_GET_REQUEST`,
-    PENDING_USER_ADMIN_PICKER_EXPORT_GET_SUCCESS: `PENDING_USER_ADMIN_PICKER_EXPORT_GET_SUCCESS`,
-    PENDING_USER_ADMIN_PICKER_EXPORT_GET_ERROR: `PENDING_USER_ADMIN_PICKER_EXPORT_GET_ERROR`,
-
-    PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_REQUEST: `PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_REQUEST`,
-    PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_SUCCESS: `PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_SUCCESS`,
-    PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_ERROR: `PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_ERROR`,
-
-    PICKER_EDIT_POST_REQUEST: `PICKER_EDIT_POST_REQUEST`,
-    PICKER_EDIT_POST_SUCCESS: `PICKER_EDIT_POST_SUCCESS`,
-    PICKER_EDIT_POST_ERROR: `PICKER_EDIT_POST_ERROR`,
-
-    PICKER_APROVE_POST_REQUEST: `PICKER_APROVE_POST_REQUEST`,
-    PICKER_APROVE_POST_SUCCESS: `PICKER_APROVE_POST_SUCCESS`,
-    PICKER_APROVE_POST_ERROR: `PICKER_APROVE_POST_ERROR`,
+const wrongFilesInitialValue = {
+  "dni-front": false,
+  "dni-back": false,
+  "user-face": false,
+  "cbu-certificate": false,
+  "driver-insurance-card": false,
+  "cuit-certificate": false,
+  "driver-license": false,
+  "vehicle-identification-back": false,
+  "vehicle-identification-front": false,
 };
 
-export const INITIAL_STATE:DetailPickerStateType = {
-    fetching: false,
-    dirty: false,
-    nameDisplay: "",
-    pendingUserAdminPicker: {},
+export const initialState: DetailPickerStateType = {
+  fetching: false,
+  serverError: [],
+  dirty: false,
+  wrongFiles: wrongFilesInitialValue,
+  nameDisplay: "",
+  pendingUserAdminPicker: {
+    id: 0,
+    enable: false,
+    registerDatetime: "",
+    status: {
+      description: "",
+      id: 0,
+    },
+    personalData: {
+      name: "",
+      surname: "",
+      dateOfBirth: null,
+      identificationNumber: null,
+      email: "",
+      phone: {
+        areaNumber: "",
+        countryNumber: "",
+        number: "",
+        registerDate: undefined,
+      },
+    },
+    accountingData: {
+      bankIdentifier: "",
+      bankName: "",
+      fiscalNumber: "",
+    },
+    vehicle: {
+      type: "",
+      active: false,
+      approve: false,
+      patent: "",
+      expirationDateDriverLicense: "",
+      expirationDateIdentificationVehicle: "",
+      expirationDatePolicyVehicle: "",
+    },
+    files: {
+      personalData: {
+        status: "",
+        content: [],
+      },
+      accountingData: {
+        status: "",
+        content: [],
+      },
+      vehicle: {
+        status: "",
+        content: [],
+      },
+    },
+  },
 };
 
-export const actions:ActionType = {
-    getPendingUserPickerRequest: (params:ParamGetPendingUser) => ({
-        type: types.PENDING_USER_ADMIN_PICKER_GET_REQUEST,
-        params,
-    }),
-    getPendingUserPickerSuccess: (pendingUserAdminPicker:PickerType) => ({
-        type: types.PENDING_USER_ADMIN_PICKER_GET_SUCCESS,
-        pendingUserAdminPicker
-    }),
-    getPendingUserPickerError: () => ({
-        type: types.PENDING_USER_ADMIN_PICKER_GET_ERROR,
-    }),
-    setDirty: (dirty:boolean) => ({
-        type: types.PENDING_USER_ADMIN_PICKER_SET_DIRTY,
-        dirty
-    }),
-    getPendingUserPickerExportRequest: (params:ParamsMiddlewareType,element:HTMLElement) => ({
-        type: types.PENDING_USER_ADMIN_PICKER_EXPORT_GET_REQUEST,
-        params,
-        element
-    }),
-    getPendingUserPickerExportSuccess: () => ({
-        type: types.PENDING_USER_ADMIN_PICKER_EXPORT_GET_SUCCESS,
-    }),
-    getPendingUserPickerExportError: () => ({
-        type: types.PENDING_USER_ADMIN_PICKER_EXPORT_GET_ERROR,
-    }),
-    getPendingUserPickerDocumentsEditRequest: (params:PickerType) => ({
-        type: types.PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_REQUEST,
-        params,
-    }),
-    getPendingUserPickerDocumentsEditSuccess: (body:EditPickerResponseType) => ({
-        type: types.PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_SUCCESS,
-        body
-    }),
-    getPendingUserPickerDocumentsEditError: () => ({
-        type: types.PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_ERROR,
-    }),
+const SLICE_NAME = "detailPicker";
 
-    getAprovePickerRequest: (params:PickerType, goBack:Function) => ({
-        type: types.PICKER_APROVE_POST_REQUEST,
-        params,
-        goBack
-    }),
-    getAprovePickerSuccess: (body:EditPickerResponseType) => ({
-        type: types.PICKER_APROVE_POST_SUCCESS,
-        body
-    }),
-    getAprovePickerError: () => ({
-        type: types.PICKER_APROVE_POST_ERROR,
-    }),
-
-    getEditPickerRequest: (params:PickerType, goBack:Function) => ({
-        type: types.PICKER_EDIT_POST_REQUEST,
-        params,
-        goBack
-    }),
-    getEditPickerSuccess: (body:PickerType) => ({
-        type: types.PICKER_EDIT_POST_SUCCESS,
-        body
-    }),
-    getEditPickerError: () => ({
-        type: types.PICKER_EDIT_POST_ERROR,
-    }),
-
+const isRequestAction = (action: Action<string>) => {
+  const { type } = action;
+  return type.startsWith(SLICE_NAME) && type.endsWith("Request");
 };
 
-export const selectors:SelectorType = {
-    isFetching: ({ pendingUserAdminPicker }:RootState) => pendingUserAdminPicker.fetching,
-    isDirty: ({ pendingUserAdminPicker }:RootState) => pendingUserAdminPicker.dirty,
-    getNameDisplay: ({ pendingUserAdminPicker }:RootState) => pendingUserAdminPicker.nameDisplay,
-    getPendingUserPicker: ({ pendingUserAdminPicker }:RootState) => pendingUserAdminPicker.pendingUserAdminPicker,
+const isResponseAction = (action: Action<string>) => {
+  const { type } = action;
+  return type.startsWith(SLICE_NAME) && endsWithAny(type, ["Error", "Success"]);
 };
 
+export const detailPickerSlice = createSlice({
+  name: SLICE_NAME,
+  initialState,
+  reducers: {
+    getPendingUserPickerRequest: (
+      state: DetailPickerStateType,
+      action: PayloadAction<number>
+    ) => {},
+    getPendingUserPickerSuccess: (
+      state: DetailPickerStateType,
+      action: PayloadAction<PickerType>
+    ) => {
+      const { payload } = action;
+      state.pendingUserAdminPicker = payload;
+      state.nameDisplay = `${payload.personalData.name} ${payload.personalData.surname}`;
+    },
+    getPendingUserPickerError: () => {},
+    setDirty: (
+      state: DetailPickerStateType,
+      action: PayloadAction<boolean>
+    ) => {
+      state.dirty = action.payload;
+    },
+    setWrongFile: (
+      state: DetailPickerStateType,
+      action: PayloadAction<PickerWrongFilePayloadType>
+    ) => {
+      const { type, value } = action.payload;
+      state.wrongFiles[type] = value;
+    },
+    resetWrongFiles: (state: DetailPickerStateType) => {
+      state.wrongFiles = wrongFilesInitialValue;
+      state.serverError = [];
+    },
+    getPendingUserPickerExportRequest: (
+      state: DetailPickerStateType,
+      action: PayloadAction<ParamsMiddlewareType>
+    ) => {},
+    getPendingUserPickerExportSuccess: () => {},
+    getPendingUserPickerExportError: () => {},
+    getPendingUserPickerDocumentsEditRequest: (
+      state: DetailPickerStateType,
+      action: PayloadAction<PickerType>
+    ) => {
+      state.pendingUserAdminPicker = action.payload;
+    },
+    getPendingUserPickerDocumentsEditSuccess: (
+      state: DetailPickerStateType,
+      action: PayloadAction<PickerType>
+    ) => {
+      state.pendingUserAdminPicker = action.payload;
+    },
+    getPendingUserPickerDocumentsEditError: () => {},
+    getAprovePickerRequest: (
+      state: DetailPickerStateType,
+      action: PayloadAction<{ params: PickerType; goBack: Function }>
+    ) => {
+      state.pendingUserAdminPicker = action.payload.params;
+    },
+    getAprovePickerSuccess: (
+      state: DetailPickerStateType,
+      action: PayloadAction<PickerType>
+    ) => {
+      state.pendingUserAdminPicker = action.payload;
+    },
+    getAprovePickerError: () => {},
+    getEditPickerRequest: (
+      state: DetailPickerStateType,
+      action: PayloadAction<{ params: PickerType; goBack: Function }>
+    ) => {},
+    getEditPickerSuccess: (
+      state: DetailPickerStateType,
+      action: PayloadAction<PickerType>
+    ) => {
+      state.pendingUserAdminPicker = action.payload;
+    },
+    getEditPickerError: () => {},
+    getPickerFileRequest: (
+      state: DetailPickerStateType,
+      action: PayloadAction<PickerFileRequestType>
+    ) => {},
+    getPickerFileSuccess: () => {},
+    getPickerFileError: () => {},
 
-const reducer =(state:DetailPickerStateType = INITIAL_STATE, action:actionType) => {
-    switch (action.type) {
-        /************************************************************* */
-        case types.PENDING_USER_ADMIN_PICKER_GET_REQUEST:
-            return {
-                ...state,
-                fetching: true,
-            };
-        case types.PENDING_USER_ADMIN_PICKER_SET_DIRTY:
-            return {
-                ...state,
-                dirty: action.dirty,
-            };
-        case types.PENDING_USER_ADMIN_PICKER_GET_SUCCESS:
-            return {
-                ...state,
-                pendingUserAdminPicker: action.pendingUserAdminPicker,
-                nameDisplay: `${action.pendingUserAdminPicker.name} ${action.pendingUserAdminPicker.surname}`,
-                fetching: false,
-            };
-        case types.PENDING_USER_ADMIN_PICKER_GET_ERROR:
-            return {
-                ...state,
-                fetching: false,
-            };
-        /************************************************************* */
-        case types.PENDING_USER_ADMIN_PICKER_EXPORT_GET_REQUEST:
-            return {
-                ...state,
-                fetching: true,
+    getPickerFileSaveRequest: (
+      state: DetailPickerStateType,
+      action: PayloadAction<ExpandableFileSaveParamsType>
+    ) => {},
+    getPickerFileSaveSuccess: (
+      state: DetailPickerStateType,
+      action: PayloadAction<ActionErrorPickersType>
+    ) => {
+      const {
+        payload: { tag },
+      } = action;
+      state.serverError = state.serverError.filter((t) => t !== tag);      
+    },
+    getPickerFileSaveError: (
+      state: DetailPickerStateType,
+      action: PayloadAction<ActionErrorPickersType>
+    ) => {
+      if (!state.serverError?.includes(action.payload.tag))
+        state.serverError?.push(action.payload.tag);
+    },
+    getPickerFileDeleteRequest: (
+      state: DetailPickerStateType, //estado actual del  state
+      action: PayloadAction<DeleteFileType> // params Payload<tipo>
+    ) => {},
+    getPickerFileDeleteSuccess: (
+      state: DetailPickerStateType,
+      action: PayloadAction<ActionErrorPickersType>
+    ) => {
+      const {
+        payload: { tag },
+      } = action;
+      state.serverError = state.serverError.filter((t) => t !== tag);
+    },
+    getPickerFileDeleteError: (
+      state: DetailPickerStateType,
+      action: PayloadAction<ActionErrorPickersType>
+    ) => {
+      if (!state.serverError?.includes(action.payload.tag))
+        state.serverError?.push(action.payload.tag);
+    },
+  },
+  extraReducers: (builder) =>
+    builder
+      .addMatcher(isRequestAction, (state: DetailPickerStateType) => {
+        state.fetching = true;
+      })
+      .addMatcher(isResponseAction, (state: DetailPickerStateType) => {
+        state.fetching = false;
+      }),
+});
 
-            };
-        case types.PENDING_USER_ADMIN_PICKER_EXPORT_GET_SUCCESS:
-            return {
-                ...state,
-                fetching: false,
-            };
-        case types.PENDING_USER_ADMIN_PICKER_EXPORT_GET_ERROR:
-            return {
-                ...state,
-                fetching: false,
-            };
-        /************************************************************* */
-        case types.PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_REQUEST:
-            return {
-                ...state,
-                fetching: true,
-                pendingUserAdminPicker: action.params
-            };
-        case types.PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_SUCCESS:
-            return {
-                ...state,
-                pendingUserAdminPicker: action.body,
-                fetching: false,
-            };
-        case types.PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_ERROR:
-            return{
-                ...state,
-                fetching:false
-            };
-        /************************************************************* */
-        case types.PICKER_APROVE_POST_REQUEST:
-            return {
-                ...state,
-                pendingUserAdminPicker: action.params,
-                fetching: true,
-            };
-        case types.PICKER_APROVE_POST_SUCCESS:
-            return {
-                ...state,
-                pendingUserAdminPicker: action.body,
-                fetching: false,
-            };
-        case types.PICKER_APROVE_POST_ERROR:
-            return{
-                ...state,
-                fetching:false
-            };
-        /************************************************************* */
-        case types.PICKER_EDIT_POST_REQUEST:
-            return {
-                ...state,
-                fetching: true,
-            };
-        case types.PICKER_EDIT_POST_SUCCESS:
-            return {
-                ...state,
-                pendingUserAdminPicker: action.body,
-                fetching: false,
-            };
-        case types.PICKER_EDIT_POST_ERROR:
-            return{
-                ...state,
-                fetching:false
-            };
-        default:
-            return state;
+// Se exporta el reducer/slice para asociarlo en la creación del store
+export default detailPickerSlice.reducer;
+
+// Selector del slice "detailPicker"
+export const detailPickerSelector = (state: RootState) => state.detailPicker;
+
+// Has picker wrong files?
+export const hasPickerWrongFilesSelector = createSelector(
+  (state: RootState) => state.detailPicker,
+  (picker) =>
+    Object.values(picker.wrongFiles).some((v) => v) ||
+    picker.serverError?.length > 0
+);
+export const hasPickerAllFilesLoadedSelector = createSelector(
+  (state: RootState) => state.detailPicker,
+  (picker) => {
+    const personalData = picker.pendingUserAdminPicker.files.personalData;
+    const accountingData = picker.pendingUserAdminPicker.files.accountingData;
+    const vehicle = picker.pendingUserAdminPicker.files.vehicle;
+    const type = picker.pendingUserAdminPicker.vehicle.type;
+
+    if (type === "motorcycle") {
+      return (
+        personalData.status === "COMPLETED" &&
+        accountingData.status === "COMPLETED" &&
+        vehicle.status === "COMPLETED"
+      );
     }
-};
+    return (
+      personalData.status === "COMPLETED" &&
+      accountingData.status === "COMPLETED"
+    );
+  }
+);
 
-export default reducer;
+// Se exportan todas las acciones
+export const actions = detailPickerSlice.actions;

@@ -1,70 +1,127 @@
-import React from 'react'
-import {Link, useHistory, useParams} from 'react-router-dom'
-import 'component/admin/Nav/nav.scss'
-import {selectors as pendingUserAdminPickerSelectors} from "reducers/detailPicker";
-import {actions as notificationActions} from "reducers/notification";
-import {connect} from "react-redux";
+import React from "react";
+import { Link, useHistory } from "react-router-dom";
+import "component/admin/Nav/nav.scss";
+import {
+  detailPickerSelector,
+  hasPickerWrongFilesSelector,
+} from "reducers/detailPicker";
+import { actions as notificationActions } from "reducers/notification";
+import { connect } from "react-redux";
+import i18next from "i18next";
+import { NotificationStateType } from "reducers/types/notification";
+import { AppDispatch, RootState } from "store";
+import { NavType } from "./types";
+import { preliquidationSelector } from "reducers/preliquidation";
 
-export const Nav = ({ isDirty, showNotification }:any) => {
-    const Historial = useHistory();
-    let Location:any =useParams()
-    Location = Location.id;
+export const Nav = ({ isDirty, pickerWrongFiles, isInvoiceDirty, invoiceFileError ,showNotification }: NavType) => {
+  const history = useHistory();
+  const { pathname } = history.location;
 
-    const handleClick =  (e:any) => {
-        e.preventDefault();
-        let onClose = ()=>{
-            Historial.push(e.target.pathname);
-        };
-        if(isDirty) {
-            showNotification(
-                {
-                    level:"warning",
-                    title: "Guardá tus cambios",
-                    body:"Si te vas sin guardar, tus cambios no van a quedar registrados",
-                    onClickLabel: "Ir a guardar",
-                    onCloseLabel: "No quiero guardarlos",
-                    onClose: onClose,
-                    onClick: ()=>window.scroll({ top: window.innerHeight, left: 0,  behavior: 'smooth' }),
-                    element:e.target
-                }
-            );
-        } else {
-            onClose();
-        }
+  const handleClick = (e: any) => {
+    e.preventDefault();
+    const onClose = () => history.push(e.target.pathname);
+
+    const dirty = isDirty || isInvoiceDirty;
+    const error = pickerWrongFiles || invoiceFileError;
+    if (dirty && showNotification) {
+      const html = document.documentElement;
+      const height = Math.max(html.clientHeight, html.scrollHeight);
+      showNotification({
+        level: "warning",
+        title: i18next.t("pickers:title.modal.saveChanges"),
+        body: i18next.t("pickers:label.modal.saveChanges"),
+        onClickLabel: "pickers:button.modal.goToSave",
+        onCloseLabel: "pickers:button.modal.notSave",
+        onClose: onClose,
+        onClick: () =>
+          window.scroll({
+            top: height,
+            left: 0,
+            behavior: "smooth",
+          }),
+      });
+    } else if (error && showNotification) {
+      showNotification({
+        level: "warning",
+        title: i18next.t("global:title.modal.withoutSaving"),
+        body: i18next.t("global:label.modal.withoutSaving"),
+        onClickLabel: i18next.t("global:label.button.checkErrors"),
+        onCloseLabel: i18next.t("global:label.button.continue"),
+        onClose: onClose,
+        onClick: undefined
+      });
+    } else {
+      onClose();
     }
+  };
 
-    return (
-        <nav className="navAdmin ">
-            <div className="tamScroll scroll">
-                <ul>
-                    <h3>Reportes</h3>
-                    <li>
-                        { window.location.pathname  ==="/dashboard"  ? <div className="circle"></div> : null     }  <Link onClick={handleClick}  to="/dashboard">Dashboard</Link>
-                    </li>
-                    <li>
-                        {   window.location.pathname  === "/pickers"
-                        || window.location.pathname  ===`/pickers/${Location}`
-                            ? <div className="circle"></div> :  null
-                        } <Link onClick={handleClick} to="/pickers">Flota</Link>
-                    </li>
-                    <li>
-                        { window.location.pathname.includes("/transaction") ?<div className="circle"></div> : null    }   <Link  onClick={handleClick} to="/transaction">Transacciones</Link>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    )
+  return (
+    <nav className="nav-admin">
+      <div className="scroll">
+        <div className="nav-section">
+          <h3>{i18next.t("nav:title.menu.report")}</h3>
+          <ul>
+            <li>
+              <div
+                className={`circle ${pathname === "/dashboard" && "visible"}`}
+              />
+              <Link onClick={handleClick} to="/dashboard">
+                {i18next.t("nav:label.menu.dashboard")}
+              </Link>
+            </li>
+            <li>
+              <div
+                className={`circle ${
+                  pathname.includes("/pickers") && "visible"
+                }`}
+              />
+              <Link onClick={handleClick} to="/pickers">
+                {i18next.t("nav:label.menu.pickers")}
+              </Link>
+            </li>
+            <li>
+              <div
+                className={`circle ${
+                  pathname.includes("/transaction") && "visible"
+                }`}
+              />
+              <Link onClick={handleClick} to="/transaction">
+                {i18next.t("nav:label.menu.transactions")}
+              </Link>
+            </li>
+          </ul>
+        </div>
+        {/* <div className="nav-section">
+          <h3>{i18next.t("nav:title.menu.administration")}</h3>
+          <ul>
+            <li>
+              <div
+                className={`circle ${
+                  pathname.includes("/preliquidation") && "visible"
+                }`}
+              />
+              <Link onClick={handleClick} to="/preliquidation">
+                {i18next.t("nav:label.menu.preLiquidation")}
+              </Link>
+            </li>
+          </ul>
+        </div> */}
+      </div>
+    </nav>
+  );
 };
 
-
-const mapStateToProps = (state:any) => ({
-    isDirty: pendingUserAdminPickerSelectors.isDirty(state),
+const mapStateToProps = (state: RootState) => ({
+  isDirty: detailPickerSelector(state).dirty,
+  pickerWrongFiles: hasPickerWrongFilesSelector(state),
+  isInvoiceDirty: preliquidationSelector(state).dirty,
+  invoiceFileError: preliquidationSelector(state).invoiceFileStatus.error
 });
 
-const mapDispatchToProps = (dispatch:any) => ({
-    showNotification: (content:any) => {
-        dispatch(notificationActions.showNotification(content));
-    },
+const mapDispatchToProps = (dispatch: AppDispatch) => ({
+  showNotification: (content: NotificationStateType) => {
+    dispatch(notificationActions.showNotification(content));
+  },
 });
 
-export default connect(mapStateToProps,mapDispatchToProps)(Nav);
+export default connect(mapStateToProps, mapDispatchToProps)(Nav);

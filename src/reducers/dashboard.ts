@@ -1,56 +1,52 @@
+import { createSlice, PayloadAction, Action } from "@reduxjs/toolkit";
 import { DashboardType } from "sagas/types/dashboard";
 import { RootState } from "store";
-import { ActionDashboardType, ActionType, DashboardState, SelectorsDashboardType } from "./types/dashboard";
+import { endsWithAny } from "utils/endsWithAny";
+import { DashboardState } from "./types/dashboard";
 
-export const types = {
-    DASHBOARD_GET_REQUEST: `DASHBOARD_GET_REQUEST`,
-    DASHBOARD_GET_SUCCESS: `DASHBOARD_GET_SUCCESS`,
-    DASHBOARD_GET_ERROR: `DASHBOARD_GET_ERROR`,
+export const initialState: DashboardState = {
+  fetching: false,
+  dashboard: {},
 };
 
-export const INITIAL_STATE: DashboardState = {
-    fetching: false,
-    dashboard: {},
+const SLICE_NAME = "dashboard";
+
+const isRequestAction = (action: Action<string>) => {
+  const { type } = action;
+  return type.startsWith(SLICE_NAME) && type.endsWith("Request");
 };
 
-export const actions: ActionType = {
-    getDashboardRequest: () => ({
-        type: types.DASHBOARD_GET_REQUEST,
-    }),
-    getDashboardSuccess: (dashboard:DashboardType) => ({
-        type: types.DASHBOARD_GET_SUCCESS,
-        dashboard
-    }),
-    getDashboardError: () => ({
-        type: types.DASHBOARD_GET_ERROR,
-    }),
+const isResponseAction = (action: Action<string>) => {
+  const { type } = action;
+  return type.startsWith(SLICE_NAME) && endsWithAny(type, ["Error", "Success"]);
 };
 
-export const selectors: SelectorsDashboardType = {
-    isFetching: ({ dashboard }: RootState) => dashboard.fetching,
-    getDashboard: ({ dashboard }: RootState) => dashboard.dashboard,
-};
+export const dashboardSlice = createSlice({
+  name: SLICE_NAME,
+  initialState,
+  reducers: {
+    getDashboardRequest: () => {},
+    getDashboardSuccess: (
+      state: DashboardState,
+      action: PayloadAction<DashboardType>
+    ) => {
+      const { payload } = action;
+      state.dashboard = payload;
+    },
+    getDashboardError: () => {},
+  },
+  extraReducers: (builder) =>
+    builder
+      .addMatcher(isRequestAction, (state: DashboardState) => {
+        state.fetching = true;
+      })
+      .addMatcher(isResponseAction, (state: DashboardState) => {
+        state.fetching = false;
+      }),
+});
 
-const reducer =(state: DashboardState = INITIAL_STATE, action:ActionDashboardType) => {
-    switch (action.type) {
-        case types.DASHBOARD_GET_REQUEST:
-            return {
-                ...state,
-                fetching: true,
-            };
-        case types.DASHBOARD_GET_SUCCESS:
-            return {
-                ...state,
-                dashboard: action.dashboard,
-                fetching: false,
-            };
-        case types.DASHBOARD_GET_ERROR:
-            return {
-                ...state,
-                fetching: false,
-            };
-        default:
-            return state;
-    }
-};
-export default reducer;
+export const dashboardSelector = (state: RootState) => state.dashboard;
+
+export const actions = dashboardSlice.actions;
+
+export default dashboardSlice.reducer;

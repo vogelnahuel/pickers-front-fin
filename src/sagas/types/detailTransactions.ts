@@ -1,3 +1,4 @@
+import { TransactionActionTagType } from "pages/transaction/types";
 
 
 export type DetailTransactionSagasType={
@@ -8,7 +9,7 @@ export type DetailTransactionSagasType={
 
 
 export type postDevolutionUndeliveredType = {
-  impossibleDeliveryReasonId: string;
+  impossibleDeliveryReasonId: number;
 };
 export type postDevolutionUndeliveredParamsType = {
   type:string
@@ -152,7 +153,7 @@ export type DetailTransactionHistoryType = {
 };
 export type DetailTransactionReasonTagType = {
   id: number;
-  tag: string;
+  tag: keyof TransactionActionTagType;
 };
 export type DetailTransactionMetaDataType = {
   key: number;

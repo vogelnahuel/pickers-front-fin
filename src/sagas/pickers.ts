@@ -1,3 +1,13 @@
+import createCSV from ".,/../../src/utils/createCSV";
+import { PayloadAction } from "@reduxjs/toolkit";
+import { AxiosResponse } from "axios";
+import { DeleteFileType } from "component/admin/ExpandableFile/types";
+import { goBack } from "connected-react-router";
+import i18next from "i18next";
+import moment from "moment";
+import { PickerFileRequestType } from "pages/pickers/detailPicker/types";
+import { actions } from "reducers/pickers";
+import { NotificationStateType } from "reducers/types/notification";
 import {
   call,
   CallEffect,
@@ -5,90 +15,76 @@ import {
   PutEffect,
   takeLatest,
 } from "redux-saga/effects";
-import {
-  actions as pickersActions,
-  types as pickersTypes,
-} from "../reducers/pickers";
-import {
-  actions as detailPickerActions,
-  types as detailPickerTypes,
-} from "../reducers/detailPicker";
-import { actions as notificationActions } from "../reducers/notification";
-import createCSV from ".,/../../src/utils/createCSV";
-import moment from "moment";
+import { DATE_FORMATS } from "utils/constants";
 import * as pickersMiddleware from "../middleware/pickers";
-import { goBack } from "connected-react-router";
-import {
-  getPickersType,
-  PickerResponseType,
-  PickerExportType,
-  ParamGetPendingUser,
-  PostEditPickerType,
-  CsvResponseType,
-  PickersResponseType,
-} from "./types/pickers";
 import {
   AcountDataType,
+  DetailPickerTagFileType,
   EditPickerResponseType,
-  PhoneType,
+  FilesType,
+  ParamsMiddlewareType,
+  PersonalDataType,
+  PickerFileResponseType,
   PickersAxiosResponseType,
   PickersExportResponseType,
-  PickersParamsType,
   PickersResponse,
   PickerType,
   StatusType,
+  VehicleType,
 } from "../pages/pickers/types";
-import { AxiosResponse } from "axios";
+import { actions as detailPickerActions } from "../reducers/detailPicker";
+import { actions as notificationActions } from "../reducers/notification";
+import {
+  CsvResponseType,
+  PickerResponseType,
+  PickersResponseType,
+} from "./types/pickers";
+
 const sagas = [
-  takeLatest(pickersTypes.PENDING_USER_GET_REQUEST, getPickers),
+  takeLatest(actions.getPendingUserRequest.type, getPickers),
+  takeLatest(actions.getPendingUserExportRequest.type, getPendingUserExport),
+  takeLatest(actions.getMorePendingUserRequest.type, getMorePendingUser),
   takeLatest(
-    pickersTypes.PENDING_USER_EXPORT_GET_REQUEST,
-    getPendingUserExport
-  ),
-  takeLatest(pickersTypes.PENDING_USER_GET_MORE_REQUEST, getMorePendingUser),
-  takeLatest(
-    detailPickerTypes.PENDING_USER_ADMIN_PICKER_GET_REQUEST,
+    detailPickerActions.getPendingUserPickerRequest.type,
     getPendingUserPicker
   ),
   takeLatest(
-    detailPickerTypes.PENDING_USER_ADMIN_PICKER_EXPORT_GET_REQUEST,
+    detailPickerActions.getPendingUserPickerExportRequest.type,
     getPendingUserPickerExport
   ),
   takeLatest(
-    detailPickerTypes.PENDING_USER_ADMIN_PICKER_DOCUMENT_EDIT_POST_REQUEST,
+    detailPickerActions.getPendingUserPickerDocumentsEditRequest.type,
     postPendingUserDocumentsEdit
   ),
-  takeLatest(detailPickerTypes.PICKER_APROVE_POST_REQUEST, postAprovePicker),
-  takeLatest(detailPickerTypes.PICKER_EDIT_POST_REQUEST, postEditPicker),
+  takeLatest(detailPickerActions.getAprovePickerRequest.type, postAprovePicker),
+  takeLatest(detailPickerActions.getEditPickerRequest.type, postEditPicker),
+  takeLatest(detailPickerActions.getPickerFileRequest.type, getPickerFile),
+  takeLatest(detailPickerActions.getPickerFileSaveRequest.type, putFileUpload),
+  takeLatest(detailPickerActions.getPickerFileDeleteRequest.type, fileDelete),
 ];
 
 export default sagas;
 
-const process = (body: //TODO: vehiculos any?
-{
-  accountingData: AcountDataType;
-  dateOfBirth: string;
-  email: string;
-  enable: boolean;
-  expirationDatePolicyPersonal: string;
+const process = (body: {
   id: number;
-  identificationNumber: string;
-  name: string;
-  phone: PhoneType;
-  registerDate: string;
+  enable: boolean;
+  registerDatetime: string;
   status: StatusType;
-  surname: string;
-  vehicle: any;
-  vehicleType: string;
+  personalData: PersonalDataType;
+  accountingData: AcountDataType;
+  vehicle: VehicleType;
+  files: FilesType;
 }) => {
   return {
     ...body,
-    dateOfBirth: moment(body.dateOfBirth, "DD/MM/YYYY").format("YYYY-MM-DD"),
-    expirationDatePolicyPersonal:
-      body.expirationDatePolicyPersonal &&
-      moment(body.expirationDatePolicyPersonal, "DD/MM/YYYY").format(
-        "YYYY-MM-DD"
-      ),
+
+    personalData: {
+      ...body.personalData,
+      dateOfBirth: moment(
+        body.personalData.dateOfBirth,
+        DATE_FORMATS.shortDate
+      ).format(DATE_FORMATS.shortISODate),
+    },
     accountingData: {
       ...body.accountingData,
       fiscalNumber:
@@ -98,100 +94,96 @@ const process = (body: //TODO: vehiculos any?
     },
     vehicle: {
       ...body.vehicle,
-      [body.vehicleType]: {
-        ...body.vehicle[body.vehicleType],
-        expirationDatePolicyVehicle:
-          body.vehicle[body.vehicleType].expirationDatePolicyVehicle &&
-          moment(
-            body.vehicle[body.vehicleType].expirationDatePolicyVehicle,
-            "DD/MM/YYYY"
-          ).format("YYYY-MM-DD"),
-        expirationDateIdentificationVehicle:
-          body.vehicle[body.vehicleType].expirationDateIdentificationVehicle &&
-          moment(
-            body.vehicle[body.vehicleType].expirationDateIdentificationVehicle,
-            "DD/MM/YYYY"
-          ).format("YYYY-MM-DD"),
-        expirationDateDriverLicense:
-          body.vehicle[body.vehicleType].expirationDateDriverLicense &&
-          moment(
-            body.vehicle[body.vehicleType].expirationDateDriverLicense,
-            "DD/MM/YYYY"
-          ).format("YYYY-MM-DD"),
-      },
+
+      expirationDatePolicyVehicle:
+        body.vehicle.expirationDatePolicyVehicle &&
+        body.vehicle.expirationDatePolicyVehicle.match(
+          DATE_FORMATS.regexshortDate
+        )
+          ? moment(
+              body.vehicle.expirationDatePolicyVehicle,
+              DATE_FORMATS.shortDate
+            ).format(DATE_FORMATS.shortISODate)
+          : body.vehicle.expirationDatePolicyVehicle,
+      expirationDateIdentificationVehicle:
+        body.vehicle.expirationDateIdentificationVehicle &&
+        body.vehicle.expirationDateIdentificationVehicle.match(
+          DATE_FORMATS.regexshortDate
+        )
+          ? moment(
+              body.vehicle.expirationDateIdentificationVehicle,
+              DATE_FORMATS.shortDate
+            ).format(DATE_FORMATS.shortISODate)
+          : body.vehicle.expirationDateIdentificationVehicle,
+      expirationDateDriverLicense:
+        body.vehicle.expirationDateDriverLicense &&
+        body.vehicle.expirationDateDriverLicense.match(
+          DATE_FORMATS.regexshortDate
+        )
+          ? moment(
+              body.vehicle.expirationDateDriverLicense,
+              DATE_FORMATS.shortDate
+            ).format(DATE_FORMATS.shortISODate)
+          : body.vehicle.expirationDateDriverLicense,
     },
   };
 };
-
 function* getPickers({
-  params,
-}: getPickersType): Generator<
+  payload,
+}: PayloadAction<ParamsMiddlewareType>): Generator<
   | CallEffect<AxiosResponse<PickersAxiosResponseType>>
   | PutEffect<{ type: string; pendingUsers: PickersResponse }>
   | PutEffect<{ type: string }>,
   void,
   PickersResponseType
 > {
-  const response = yield call(pickersMiddleware.getPickers, params);
+  const response = yield call(pickersMiddleware.getPickers, payload);
   if (response.status !== 200) {
-    yield put(pickersActions.getPendingUserError());
+    yield put(actions.getPendingUserError());
   } else {
     const {
       result: { items },
-      limit,
-      offset,
-      hasMore,
+      ...rest
     } = response.data;
-    yield put(
-      pickersActions.getPendingUserSuccess({ items, limit, offset, hasMore })
-    );
+    yield put(actions.getPendingUserSuccess({ items, ...rest }));
   }
 }
 
 function* getMorePendingUser({
-  params,
-}: getPickersType): Generator<
+  payload,
+}: PayloadAction<ParamsMiddlewareType>): Generator<
   | CallEffect<AxiosResponse<PickersAxiosResponseType>>
   | PutEffect<{ type: string }>,
   void,
   PickersResponseType
 > {
-  const response = yield call(pickersMiddleware.getPickers, params);
+  const response = yield call(pickersMiddleware.getPickers, payload);
   if (response.status !== 200) {
-    yield put(pickersActions.getPendingUserError());
+    yield put(actions.getPendingUserError());
   } else {
     const {
       result: { items },
-      limit,
-      offset,
-      hasMore,
+      ...rest
     } = response.data;
-    yield put(
-      pickersActions.getMorePendingUserSuccess({
-        items,
-        limit,
-        offset,
-        hasMore,
-      })
-    );
+    yield put(actions.getMorePendingUserSuccess({ items, ...rest }));
   }
 }
 
 function* getPendingUserPicker({
-  params,
-}: ParamGetPendingUser): Generator<
+  payload,
+}: PayloadAction<number>): Generator<
   CallEffect<AxiosResponse<PickerType>> | PutEffect<{ type: string }>,
   void,
   PickerResponseType
 > {
-  const response = yield call(pickersMiddleware.getPicker, params);
+  const response = yield call(pickersMiddleware.getPicker, payload);
   if (response.status !== 200) {
     yield put(detailPickerActions.getPendingUserPickerError());
   } else {
     const { result } = response.data;
     yield put(detailPickerActions.getPendingUserPickerSuccess(result));
     yield put(
-      pickersActions.setActualPage(
+      actions.setActualPage(
         result.status.id === 4 || result.status.id === 5 ? "ACTIVE" : "PENDING"
       )
     );
@@ -199,54 +191,48 @@ function* getPendingUserPicker({
 }
 
 function* getPendingUserExport({
-  params,
-  element,
-}: getPickersType): Generator<
+  payload,
+}: PayloadAction<ParamsMiddlewareType>): Generator<
   | CallEffect<AxiosResponse<PickersExportResponseType>>
-  | PutEffect<{ type: string; params: PickersParamsType | undefined }>
-  | PutEffect<{ type: string; params: CsvResponseType }>
-  | PutEffect<{ type: string; content: any }>,
+  | PutEffect<{ type: string }>,
   void,
   CsvResponseType
 > {
-  const response = yield call(pickersMiddleware.getPickersExport, params);
+  const response = yield call(pickersMiddleware.getPickersExport, payload);
 
   if (response.status !== 200) {
-    yield put(pickersActions.getPendingUserExportError());
+    yield put(actions.getPendingUserExportError());
   } else {
-    createCSV(response.data);
-    yield put(pickersActions.getPendingUserExportSuccess(response));
+    createCSV(response.data, "pickers");
+    yield put(actions.getPendingUserExportSuccess());
     yield put(
       notificationActions.showNotification({
         level: "success",
-        title: "Exportaste exitosamente",
-        body: "El archivo se descargó correctamente",
-        element,
+        title: i18next.t("global:title.modal.export"),
+        body: i18next.t("global:label.modal.export"),
       })
     );
   }
 }
 
 function* getPendingUserPickerExport({
-  params,
-  element,
-}: PickerExportType): Generator<
+  payload: { email },
+}: PayloadAction<ParamsMiddlewareType>): Generator<
   | CallEffect<AxiosResponse<PickersExportResponseType>>
   | PutEffect<{ type: string }>,
   void,
   CsvResponseType
 > {
-  const response = yield call(pickersMiddleware.getPickerExport, params);
+  const response = yield call(pickersMiddleware.getPickerExport, { email });
   if (response.status !== 200) {
     yield put(detailPickerActions.getPendingUserPickerExportError());
   } else {
-    createCSV(response.data);
+    createCSV(response.data, "pickers");
     yield put(
       notificationActions.showNotification({
         level: "success",
-        title: "Exportaste exitosamente",
-        body: "El archivo se descargó correctamente",
-        element,
+        title: i18next.t("global:title.modal.export"),
+        body: i18next.t("global:label.modal.export"),
       })
     );
     yield put(detailPickerActions.getPendingUserPickerExportSuccess());
@@ -254,24 +240,23 @@ function* getPendingUserPickerExport({
 }
 
 function* postPendingUserDocumentsEdit({
-  params,
-  element,
-}: PostEditPickerType): Generator<
+  payload,
+}: PayloadAction<PickerType>): Generator<
   | CallEffect<AxiosResponse<EditPickerResponseType>>
-  | PutEffect<{ type: string; content: any }>
-  | PutEffect<{ type: String }>,
+  | PutEffect<{ type: string; content: NotificationStateType }>
+  | PutEffect<{ type: string }>,
   void,
   PickerResponseType
 > {
-  let body = process(params);
+  let body = process(payload);
   const response = yield call(pickersMiddleware.postPickerDocumentsEdit, body);
+
   if (response.status !== 200) {
     yield put(
       notificationActions.showNotification({
         level: "error",
-        title: "Error de conexión",
-        body: "Hubo un error de comunicación con el servidor. Por favor, intentalo nuevamente",
-        element,
+        title: i18next.t("global:title.modal.connectionError"),
+        body: i18next.t("global:label.modal.connectionError"),
       })
     );
     yield put(detailPickerActions.getPendingUserPickerDocumentsEditError());
@@ -284,13 +269,11 @@ function* postPendingUserDocumentsEdit({
 }
 
 function* postAprovePicker({
-  params,
-  goBack,
-  element,
-}: PostEditPickerType): Generator<
+  payload: { params, goBack },
+}: PayloadAction<{ params: PickerType; goBack: Function }>): Generator<
   | CallEffect<AxiosResponse<EditPickerResponseType>>
-  | PutEffect<{ type: string; content: any }>
-  | PutEffect<{ type: String }>,
+  | PutEffect<{ type: string; content: NotificationStateType }>
+  | PutEffect<{ type: string }>,
   void,
   PickerResponseType
 > {
@@ -300,9 +283,8 @@ function* postAprovePicker({
     yield put(
       notificationActions.showNotification({
         level: "error",
-        title: "Error de conexión",
-        body: "Hubo un error de comunicación con el servidor. Por favor, intentalo nuevamente",
-        element,
+        title: i18next.t("global:title.modal.connectionError"),
+        body: i18next.t("global:label.modal.connectionError"),
       })
     );
     yield put(detailPickerActions.getAprovePickerError());
@@ -310,10 +292,9 @@ function* postAprovePicker({
     yield put(
       notificationActions.showNotification({
         level: "success",
-        title: "Aprobación exitosa",
-        body: "Ya podés visualizar sus datos en la pestaña pickers",
+        title: i18next.t("detailPicker:title.modal.approved"),
+        body: i18next.t("detailPicker:label.modal.approved"),
         onClick: goBack,
-        element,
       })
     );
     yield put(detailPickerActions.getAprovePickerSuccess(body));
@@ -321,12 +302,10 @@ function* postAprovePicker({
 }
 
 function* postEditPicker({
-  params,
-  goBack,
-  element,
-}: PostEditPickerType): Generator<
+  payload: { params, goBack },
+}: PayloadAction<{ params: PickerType; goBack: Function }>): Generator<
   | CallEffect<AxiosResponse<EditPickerResponseType>>
-  | PutEffect<{ type: string; content: any }>
+  | PutEffect<{ type: string; content: NotificationStateType }>
   | PutEffect<{ type: string }>,
   void,
   PickerResponseType
@@ -337,9 +316,8 @@ function* postEditPicker({
     yield put(
       notificationActions.showNotification({
         level: "error",
-        title: "Error de conexión",
-        body: "Hubo un error de comunicación con el servidor. Por favor, intentalo nuevamente",
-        element,
+        title: i18next.t("global:title.modal.connectionError"),
+        body: i18next.t("global:label.modal.connectionError"),
       })
     );
     yield put(detailPickerActions.getEditPickerError());
@@ -347,12 +325,70 @@ function* postEditPicker({
     yield put(
       notificationActions.showNotification({
         level: "success",
-        title: "Datos guardados",
-        body: "Ya quedaron registrados los cambios",
+        title: i18next.t("global:title.modal.changesSaved"),
+        body: i18next.t("global:label.modal.changesSaved"),
         onClick: goBack,
-        element,
       })
     );
     yield put(detailPickerActions.getEditPickerSuccess(body));
   }
 }
+
+function* getPickerFile({
+  payload,
+}: PayloadAction<PickerFileRequestType>): Generator<
+  | CallEffect<AxiosResponse<PickerFileResponseType>>
+  | PutEffect<{ type: string }>,
+  void,
+  { status: number; data: PickerFileResponseType }
+> {
+  const response = yield call(pickersMiddleware.getFile, payload);
+
+  if (response.status !== 200) {
+    yield put(detailPickerActions.getPickerFileError());
+  } else {
+    const { result } = response.data;
+    if (result.url) window.open(result.url, "_blank");
+    yield put(detailPickerActions.getPickerFileSuccess());
+  }
+}
+
+
+function* fileDelete({
+  payload: { id,tag },
+}: PayloadAction<DeleteFileType>): Generator<
+| PutEffect<{ type: string }>
+|CallEffect<AxiosResponse<any>>
+|Promise<AxiosResponse<any>>
+| void,
+  void,
+  { status: number; data: {} }
+> {
+  const response = yield call(pickersMiddleware.deleteFile, id,tag);
+  if (response.status !== 200) {
+    yield put(detailPickerActions.getPickerFileDeleteError({tag}));
+  } else {
+    yield put(detailPickerActions.getPickerFileDeleteSuccess({ tag }));
+    yield put(detailPickerActions.getPendingUserPickerRequest(id));
+  }
+}
+
+
+function* putFileUpload({
+  payload: { id,content,tag },
+}: PayloadAction<{id:number,content:string,tag:keyof DetailPickerTagFileType}>): Generator<
+| CallEffect<AxiosResponse<{}>>
+| PutEffect<{ type: string }>
+| void,
+  void,
+  { status: number; data: {} }
+> {
+  const response = yield call(pickersMiddleware.fileUpload, id,{content:content,tag:tag} );
+  if (response.status !== 200) {
+    yield put(detailPickerActions.getPickerFileSaveError({ tag }));
+  } else {
+    yield put(detailPickerActions.getPickerFileSaveSuccess({ tag }));
+    yield put(detailPickerActions.getPendingUserPickerRequest(id));
+  }
+}
+

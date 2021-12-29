@@ -1,43 +1,22 @@
+import { createSlice, PayloadAction, Action } from "@reduxjs/toolkit";
 import { FilterTransactionsType } from "sagas/types/transactions";
 import { RootState } from "store";
-import { types as detailTransactionTypes } from "./detailTransaction";
+import { endsWithAny } from "utils/endsWithAny";
+import { actions as detailTransactionAction } from "reducers/detailTransaction";
 import {
-  TransactionActionType,
-  TransactionActionsType,
   GetTransactionsSuccessType,
-  TransactionStateType,
   SetFilterExtraType,
   SetFilterType,
-  TransactionsTypes,
-  SelectorTransactionType,
+  TransactionStateType,
 } from "./types/transaction";
 
-export const TRANSACTIONS = "transactions/TRANSACTIONS";
-
-export const types: TransactionsTypes = {
-  TRANSACTIONS_GET_REQUEST: `${TRANSACTIONS}_GET_REQUEST`,
-  TRANSACTIONS_GET_MORE_REQUEST: `${TRANSACTIONS}_GET_MORE_REQUEST`,
-  TRANSACTIONS_GET_SUCCESS: `${TRANSACTIONS}_GET_SUCCESS`,
-  TRANSACTIONS_GET_MORE_SUCCESS: `${TRANSACTIONS}_GET_MORE_SUCCESS`,
-  TRANSACTIONS_SET_EXTRA_FILTERS: `${TRANSACTIONS}_SET_EXTRA_FILTERS`,
-
-  TRANSACTIONS_GET_ERROR: `${TRANSACTIONS}_GET_ERROR`,
-  TRANSACTIONS_EXPORT_REQUEST: `${TRANSACTIONS}_EXPORT_REQUEST`,
-  TRANSACTIONS_EXPORT_SUCCESS: `${TRANSACTIONS}_EXPORT_SUCCESS`,
-  TRANSACTIONS_EXPORT_ERROR: `${TRANSACTIONS}_EXPORT_ERROR`,
-  TRANSACTIONS_SET_FILTERS: `${TRANSACTIONS}_SET_FILTERS`,
-  TRANSACTIONS_EXPORT_ENABLED: `${TRANSACTIONS}_EXPORT_ENABLED`,
-  TRANSACTIONS_RESET: `${TRANSACTIONS}_RESET`,
-};
-
-export const INITIAL_STATE: TransactionStateType = {
+export const initialState: TransactionStateType = {
   fetching: false,
   detailTransactionModalOpen: false,
   exportDisabled: true,
   transactions: [],
   filters: {
     inAlert: undefined,
-    limit: 0,
     maxMinDeliveryDate: undefined,
     minMinDeliveryDate: undefined,
     offset: undefined,
@@ -56,199 +35,149 @@ export const INITIAL_STATE: TransactionStateType = {
   seeMore: true,
 };
 
-export const actions: TransactionActionsType = {
-  reset: () => ({
-    type: types.TRANSACTIONS_RESET,
-  }),
-  getTransactionsRequest: (params: FilterTransactionsType) => ({
-    type: types.TRANSACTIONS_GET_REQUEST,
-    params,
-  }),
-  getMoreTransactionsRequest: (params: FilterTransactionsType) => ({
-    type: types.TRANSACTIONS_GET_MORE_REQUEST,
-    params,
-  }),
-  getTransactionsSuccess: (transactions: GetTransactionsSuccessType) => ({
-    type: types.TRANSACTIONS_GET_SUCCESS,
-    transactions,
-  }),
-  getMoreTransactionsSuccess: (transactions: GetTransactionsSuccessType) => ({
-    type: types.TRANSACTIONS_GET_MORE_SUCCESS,
-    transactions,
-  }),
-  getTransactionsError: () => ({
-    type: types.TRANSACTIONS_GET_ERROR,
-  }),
-  setTransactionFilters: (filters: SetFilterType) => ({
-    type: types.TRANSACTIONS_SET_FILTERS,
-    filters,
-  }),
-  setTransactionExtraFilters: (filtersExtra: SetFilterExtraType) => ({
-    type: types.TRANSACTIONS_SET_EXTRA_FILTERS,
-    filtersExtra,
-  }),
-  setExportEnabled: (enabled: string | number | undefined) => ({
-    type: types.TRANSACTIONS_EXPORT_ENABLED,
-    enabled,
-  }),
-  getTransactionsExportRequest: (
-    params: FilterTransactionsType,
-    element: HTMLElement
-  ) => ({
-    type: types.TRANSACTIONS_EXPORT_REQUEST,
-    params,
-    element,
-  }),
-  getTransactionsExportSuccess: () => ({
-    type: types.TRANSACTIONS_EXPORT_SUCCESS,
-  }),
-  getTransactionsExportError: () => ({
-    type: types.TRANSACTIONS_EXPORT_ERROR,
-  }),
+const SLICE_NAME = "transaction";
+
+const isRequestAction = (action: Action<string>) => {
+  const { type } = action;
+  return type.startsWith(SLICE_NAME) && type.endsWith("Request");
 };
 
-export const selectors: SelectorTransactionType = {
-  isFetching: ({ transactions }: RootState) => transactions.fetching,
-  isExportDisabled: ({ transactions }: RootState) =>
-    transactions.exportDisabled,
-  getTransactions: ({ transactions }: RootState) => transactions.transactions,
-  getFilters: ({ transactions }: RootState) => transactions.filters,
-  getFiltersExtra: ({ transactions }: RootState) => transactions.filtersExtra,
-  getSeeMore: ({ transactions }: RootState) => transactions.seeMore,
-  getFiltersExtraSeeMore: ({ transactions }: RootState) =>
-    transactions.filtersExtraSeeMore,
-  getDetailTransactionModalOpen: ({ transactions }: RootState) =>
-    transactions.detailTransactionModalOpen,
+const isResponseAction = (action: Action<string>) => {
+  const { type } = action;
+  return type.startsWith(SLICE_NAME) && endsWithAny(type, ["Error", "Success"]);
 };
 
-const reducer = (
-  state: TransactionStateType = INITIAL_STATE,
-  action: TransactionActionType
-) => {
-  switch (action.type) {
-    case types.TRANSACTIONS_RESET:
-      return {
-        ...INITIAL_STATE,
+export const transactionSlice = createSlice({
+  name: SLICE_NAME,
+  initialState,
+  reducers: {
+    reset: (state: TransactionStateType) => {
+      state = {
+        ...initialState,
       };
-    case types.TRANSACTIONS_GET_REQUEST:
-      return {
-        ...state,
-        fetching: true,
-      };
-    case types.TRANSACTIONS_GET_SUCCESS:
-      return {
-        ...state,
-        transactions: action.transactions.items,
-        seeMore: action.transactions.hasMore,
-        filtersExtraSeeMore: {
-          ...state.filtersExtraSeeMore,
-          offset: action.transactions.offset + action.transactions.limit,
-        },
-        fetching: false,
-      };
-    case types.TRANSACTIONS_GET_MORE_SUCCESS:
-      return {
-        ...state,
-        transactions: state.transactions.concat(action.transactions.items),
-        seeMore: action.transactions.hasMore,
-        filtersExtraSeeMore: {
-          ...state.filtersExtraSeeMore,
-          offset: action.transactions.offset + action.transactions.limit,
-        },
-        fetching: false,
-      };
-    case types.TRANSACTIONS_GET_ERROR:
-      return {
-        ...state,
-        fetching: false,
-      };
-    case types.TRANSACTIONS_SET_FILTERS:
-      return {
-        ...state,
-        filters: action.filters,
-      };
-    case types.TRANSACTIONS_SET_EXTRA_FILTERS:
-      return {
-        ...state,
-        filtersExtra: { ...state.filtersExtra, ...action.filtersExtra },
-      };
-    case types.TRANSACTIONS_EXPORT_ENABLED:
-      return {
-        ...state,
-        exportDisabled: action.enabled === undefined,
-      };
-    case types.TRANSACTIONS_EXPORT_REQUEST:
-      return {
-        ...state,
-        fetching: true,
-      };
-    case types.TRANSACTIONS_EXPORT_SUCCESS:
-      return {
-        ...state,
-        fetching: false,
-      };
-    case types.TRANSACTIONS_EXPORT_ERROR:
-      return {
-        ...state,
-        fetching: false,
-      };
+    },
+    getTransactionsRequest: (
+      state: TransactionStateType,
+      action: PayloadAction<FilterTransactionsType>
+    ) => {},
+    getMoreTransactionsRequest: (
+      state: TransactionStateType,
+      action: PayloadAction<FilterTransactionsType>
+    ) => {},
+    getTransactionsSuccess: (
+      state: TransactionStateType,
+      action: PayloadAction<GetTransactionsSuccessType>
+    ) => {
+      state.transactions = action.payload.items;
+      state.seeMore = action.payload.hasMore;
+      state.filtersExtraSeeMore.offset =
+        action.payload.offset + action.payload.limit;
+      state.fetching = false;
+    },
+    getMoreTransactionsSuccess: (
+      state: TransactionStateType,
+      action: PayloadAction<GetTransactionsSuccessType>
+    ) => {
+      state.transactions = state.transactions.concat(action.payload.items);
+      state.seeMore = action.payload.hasMore;
+      state.filtersExtraSeeMore.offset =
+        action.payload.offset + action.payload.limit;
+      state.fetching = false;
+    },
+    getTransactionsError: () => {},
+    setTransactionFilters: (
+      state: TransactionStateType,
+      action: PayloadAction<SetFilterType>
+    ) => {
+      state.filters = action.payload;
+    },
+    setTransactionExtraFilters: (
+      state: TransactionStateType,
+      action: PayloadAction<SetFilterExtraType>
+    ) => {
+      state.filtersExtra = { ...state.filtersExtra, ...action.payload };
+    },
+    setExportEnabled: (
+      state: TransactionStateType,
+      action: PayloadAction<string | number | undefined>
+    ) => {
+      state.exportDisabled = action.payload === undefined;
+    },
+    getTransactionsExportRequest: (
+      state: TransactionStateType,
+      action: PayloadAction<FilterTransactionsType>
+    ) => {},
+    getTransactionsExportSuccess: () => {},
+    getTransactionsExportError: () => {},
 
-    case detailTransactionTypes.DETAIL_TRANSACTIONS_ID_REQUEST:
-      return {
-        ...state,
-        fetching: true,
-      };
-    case detailTransactionTypes.DETAIL_TRANSACTIONS_ID_SUCCESS:
-      return {
-        ...state,
-        fetching: false,
-        detailTransactionModalOpen: true,
-      };
-    case detailTransactionTypes.DETAIL_TRANSACTIONS_ID_ERROR:
-      return {
-        ...state,
-        fetching: false,
-        detailTransactionModalOpen: false,
-      };
-    case detailTransactionTypes.CLOSE_MODAL_DETAIL_TRANSACTIONS:
-      return {
-        ...state,
-        detailTransactionModalOpen: false,
-      };
+    getDetailTransactionDevolutionUndeliveredSuccess: (
+      state: TransactionStateType
+    ) => {
+      state.detailTransactionModalOpen = false;
+    },
+    getDetailTransactionReasonsCanceledSuccess: (
+      state: TransactionStateType
+    ) => {
+      state.detailTransactionModalOpen = false;
+    },
+    getDetailTransactionFinishReturnedSuccess: (
+      state: TransactionStateType
+    ) => {
+      state.detailTransactionModalOpen = false;
+    },
+    getDetailTransactionFinishLostSuccess: (state: TransactionStateType) => {
+      state.detailTransactionModalOpen = false;
+    },
+    getDetailTransactionDniDeliveredSuccess: (state: TransactionStateType) => {
+      state.detailTransactionModalOpen = false;
+    },
+    getCloseModalDetailTransaction: (state: TransactionStateType) => {
+      state.detailTransactionModalOpen = false;
+    },
+  },
+  extraReducers: (builder) =>
+    builder
+      .addCase(
+        detailTransactionAction.getDetailTransactionSuccess.type,
+        (state: TransactionStateType) => {
+          state.detailTransactionModalOpen = true;
+          state.fetching = false;
+        }
+      )
+      .addCase(
+        detailTransactionAction.getDetailTransactionRequest.type,
+        (state: TransactionStateType) => {
+          state.fetching = true;
+        }
+      )
+      .addCase(
+        detailTransactionAction.getDetailTransactionMenssagesRequest.type,
+        (state: TransactionStateType) => {
+          state.fetching = true;
+        }
+      )
+      .addCase(
+        detailTransactionAction.getDetailTransactionMenssagesSuccess.type,
+        (state: TransactionStateType) => {
+          state.fetching = false;
+        }
+      )
+      .addCase(
+        detailTransactionAction.getDetailTransactionError.type,
+        (state: TransactionStateType) => {
+          state.fetching = false;
+        }
+      )
+      .addMatcher(isRequestAction, (state: TransactionStateType) => {
+        state.fetching = true;
+      })
+      .addMatcher(isResponseAction, (state: TransactionStateType) => {
+        state.fetching = false;
+      }),
+});
 
-    case detailTransactionTypes.DETAIL_TRANSACTIONS_MENSSAGES_REQUEST:
-    case detailTransactionTypes.DETAIL_TRANSACTIONS_DEVOLUTION_UNDELIVERED_REQUEST:
-    case detailTransactionTypes.DETAIL_TRANSACTIONS_REASONS_CANCELED_REQUEST:
-    case detailTransactionTypes.DETAIL_TRANSACTIONS_FINISH_RETURNED_REQUEST:
-    case detailTransactionTypes.DETAIL_TRANSACTIONS_FINISH_LOST_REQUEST:
-    case detailTransactionTypes.DETAIL_TRANSACTIONS_DNI_DELIVERED_REQUEST:
-      return {
-        ...state,
-        fetching: true,
-      };
-    case detailTransactionTypes.DETAIL_TRANSACTIONS_MENSSAGES_SUCCESS:
-      return {
-        ...state,
-        fetching: false,
-      };
-    case detailTransactionTypes.DETAIL_TRANSACTIONS_MENSSAGES_ERROR:
-      return {
-        ...state,
-        fetching: false,
-      };
-    case detailTransactionTypes.DETAIL_TRANSACTIONS_FINISH_LOST_SUCCESS:
-    case detailTransactionTypes.DETAIL_TRANSACTIONS_FINISH_RETURNED_SUCCESS:
-    case detailTransactionTypes.DETAIL_TRANSACTIONS_DEVOLUTION_UNDELIVERED_SUCCESS:
-    case detailTransactionTypes.DETAIL_TRANSACTIONS_REASONS_CANCELED_SUCCESS:
-    case detailTransactionTypes.DETAIL_TRANSACTIONS_DNI_DELIVERED_SUCCESS:
-      return {
-        ...state,
-        fetching: false,
-        detailTransactionModalOpen: false,
-      };
-    default:
-      return state;
-  }
-};
+export const transactionsSelector = (state: RootState) => state.transactions;
 
-export default reducer;
+export const actions = transactionSlice.actions;
+
+export default transactionSlice.reducer;

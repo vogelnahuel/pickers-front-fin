@@ -78,6 +78,11 @@
     color: #FFFFFF;
     margin-top: 42px;
     margin-left: 471px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor:pointer;
+
 }
 .modal-transaction-reasonsCanceledConfirm-subtitle-collection{
     font-family: 'Mulish';

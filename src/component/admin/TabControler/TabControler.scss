@@ -1,0 +1,77 @@
+.flex-tab{
+    display: inline-flex;
+    border-radius: 10px;
+}
+.background-tab{
+    background-color: white;
+    border: 1px solid #E5E5E5;
+    border-radius: 6px;    
+}
+
+
+
+
+.preliquidation-paragraph-goBack{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 23px;
+    text-align: center;
+    color: #145A99;  
+    display: inline-block;
+    margin-top: -0.65104166666667vh;
+    margin-left: 0.5rem;
+    cursor: pointer;
+}
+
+%container-tag{
+    height: 95px;
+    width: 26.2vw;
+    max-width: 535px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+}
+.container-tag{
+  @extend %container-tag;
+}
+.container-tag-active{
+    @extend %container-tag;
+    cursor: default;
+}
+
+%title {
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 17px;
+    line-height: 21px;
+}
+
+
+.table-title{
+    @extend %title;
+    color: #2D2D2D;
+}
+
+.table-title-active{
+    @extend %title;
+    color: #0098FF;
+    cursor: default;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
+.border-tag{
+    border-left: 1px solid #E5E5E5;
+}
+
+.img-buttons{
+    width: 56px;
+    margin-left: 16px;
+}

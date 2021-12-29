@@ -5,42 +5,44 @@ import or from "assets/admin/PendingUser/or.svg";
 import search from "assets/admin/PendingUser/search.svg";
 import { Field, Form } from "react-final-form";
 import { Input } from "component/inputs/Input";
-import { Col, Container, Row } from "react-bootstrap";
 import { FILTER_PICKERS_OPTIONS } from "utils/constants";
 import Select from "component/inputs/Select";
 import useValidationSchema from "hooks/useValidationSchema";
 import { FilterTypes } from "./types";
+import i18next from "i18next";
 
-/****diseño del filtro y muestra inputs*/
-//TODO: revisar tipo del onSubmit
 export const FilterPickers: React.FC<FilterTypes> = ({
   onSubmit,
   filters,
   validationSchema,
 }): JSX.Element => {
   return (
-    <Container className="display-filter-transaction">
-      <Row>
-        <Col md={"auto"}>
+    <div className="container-fluid display-filter-transaction">
+      <div className="container-row">
+        <div className="container-col-auto">
           <div className="filter-Imagen-width">
             <img
               className="img-filter-transaction"
               src={dropdown}
               alt="desplegable"
             />
-            <p className="p-filter-transaction">Filtros</p>
+            <p className="p-filter-transaction">
+              {i18next.t("filterPickers:label.subtitle.filter")}
+            </p>
           </div>
-        </Col>
-        <Col className="sub-container">
-          <Row className="px-2">
+        </div>
+        <div className="container-col">
+          <div className="container-row">
             <Form
-              onSubmit={(value)=>onSubmit(value)}
+              onSubmit={(value) => { onSubmit(value) }}
               initialValues={filters}
               mutators={{
                 setValue: ([field, value], state, { changeValue }) => {
                   changeValue(state, field, () => value);
+
                 },
-              }}
+              }
+              }
               validate={useValidationSchema(validationSchema)}
             >
               {({ handleSubmit, form }) => (
@@ -48,71 +50,82 @@ export const FilterPickers: React.FC<FilterTypes> = ({
                   className="form-filter-transaction"
                   onSubmit={handleSubmit}
                 >
-                  <Col xxl xl={4} className="px-3">
+
+                  <div className="container-col-sm-1 container-col-xl">
                     <Field
                       type="text"
                       name="name"
-                      label="Nombre y apellido"
+                      label={i18next.t("filterPickers:label.filter.name")}
                       component={Input}
-                      className="Admin-Pickers-input"
-                      placeholder="Ingresá el nombre y apellido"
+                      className="Admin-Pickers-input test"
+                      placeholder={i18next.t(
+                        "filterPickers:placeholder.filter.name"
+                      )}
                       maxLength={50}
                     />
-                  </Col>
-                  <Col xxl xl={4} className="px-3">
+                  </div>
+                  <div className="container-col-sm-1 container-col-xl">
                     <Field
                       type="text"
                       name="identificationNumber"
-                      label="DNI"
+                      label={i18next.t("filterPickers:label.filter.identifier")}
                       component={Input}
                       className="Admin-Pickers-input"
-                      placeholder="Ingresá el DNI"
-                      maxLength={9}
+                      placeholder={i18next.t(
+                        "filterPickers:placeholder.filter.identifier"
+                      )}
+                      maxLength={8}
                     />
-                  </Col>
-                  <Col xxl xl={4} className="px-3">
+                  </div>
+                  <div className="container-col-sm-1 container-col-xl">
                     <Field
                       name="vehicleType"
-                      label="Vehículo"
+                      label={i18next.t("filterPickers:label.filter.vehicle")}
                       onChange={form.mutators.setValue}
-                      placeholder="Seleccioná tipo de vehículo"
-                      options={FILTER_PICKERS_OPTIONS}
+                      placeholder={i18next.t(
+                        "filterPickers:placeholder.filter.vehicle"
+                      )}
+                      options={FILTER_PICKERS_OPTIONS.map((o) => ({
+                        ...o,
+                        label: i18next.t(o.label),
+                      }))}
                     >
                       {(props: any) => <Select {...props} />}
                     </Field>
-                  </Col>
-                  <Col xxl xl={4} className="px-3">
+                  </div>
+                  <div className="container-col-sm-1 container-col-xl">
                     <Field
                       type="text"
                       name="email"
-                      label="Email"
+                      label={i18next.t("filterPickers:label.filter.email")}
                       component={Input}
                       className="Admin-Pickers-input"
-                      placeholder="Ingresá el email"
+                      placeholder={i18next.t(
+                        "filterPickers:placeholder.filter.email"
+                      )}
                       maxLength={250}
                     />
-                  </Col>
-                  <Col
-                    xxl={{ span: "auto", offset: 0 }}
-                    lg={{ span: 4, offset: 4 }}
-                    className="px-3"
-                  >
+                  </div>
+                  <div className="container-col-sm-offset-1 container-col-sm-1 container-col-xl-auto end">
                     <button
-                      className="search-button-transaction float-end"
+                      className="search-button-transaction"
                       name="search"
                       type="submit"
                     >
                       <img src={search} alt="export" />
                       <img className="or-filter" src={or} alt="or" />
-                      <p className="display-inline-block p-export">Buscar</p>
+                      <p className="display-inline-block p-export">
+                        {i18next.t("global:label.button.search")}
+                      </p>
                     </button>
-                  </Col>
+                  </div>
+
                 </form>
               )}
             </Form>
-          </Row>
-        </Col>
-      </Row>
-    </Container>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };

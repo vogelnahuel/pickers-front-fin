@@ -1,0 +1,58 @@
+{
+  "label.button.export": "Exportar",
+  "filter.button.search": "Buscar",
+  "label.button.cancel": "Cancelar",
+  "label.button.save": "Guardar",
+  "label.button.retry": "Reintentar",
+  "label.button.finish": "Finalizar",
+  "filter.label.inAlert": "En alerta",
+  "label.input.email": "Email",
+  "label.title.noResults": "No obtuvimos resultados para tu búsqueda :(",
+  "label.button.search": "Buscar",
+  "label.button.back": "Volver",
+  "label.button.seeMore": "Ver más",
+
+  "placeholder.input.date": "día / mes / año",
+  "label.switch.title": "Estado",
+  "label.switch.disabled": "Deshabilitado",
+  "label.switch.enabled": "Habilitado",
+
+  "title.modal.export": "Exportaste exitosamente",
+  "label.modal.export": "El archivo se descargó correctamente",
+
+  "title.modal.connectionError": "Error de conexión",
+  "label.modal.connectionError": "Hubo un error de comunicación con el servidor. Por favor, intentalo nuevamente",
+
+  "title.modal.serverError": "Error en nuestro servidor",
+  "label.modal.serverError": "Por favor, reintentalo nuevamente.",
+
+  "title.modal.changesSaved": "Datos guardados",
+  "label.modal.changesSaved": "Ya quedaron registrados los cambios",
+
+  "title.modal.withoutSaving": "No se van a guardar tus archivos",
+  "label.modal.withoutSaving": "Hay errores en la carga. Si te vas sin resolverlos, no se van a guardar los cambios.",
+
+
+  "label.button.understood": "Entendido",
+
+  "label.button.continue": "Continuar",
+  "label.button.checkErrors": "Revisar errores",
+
+  "error.input.required": "Este campo es requerido",
+  "error.input.specialCharacters": "No se admiten caracteres especiales",
+  "error.input.numbersOrSpecialCharacters": "No se admiten números o caracteres especiales",
+  "error.input.lettersOrSpecialCharacters": "No se admiten letras o caracteres especiales",
+  "error.input.invalidFormat": "Ingresá el formato correcto",
+  "error.input.invalidEmailFormat": "El correo ingresado es inválido",
+  "error.input.patentLong": "La patente debe tener entre 6 y 7 caracteres",
+  "error.input.dniLength": "El DNI debe tener entre 7 y 8 caracteres numéricos",
+  "error.input.emisionDate": "Ingresá una fecha correspondiente al período",
+  "error.input.salePoint": "Ingresá un número de 4 o 5 dígitos",
+  "error.input.invoiceNumber": "Ingresá un número de 8 dígitos",
+  "error.input.caeNumber": "Ingresá un número de 14 dígitos",
+
+
+  "label.label.yes":"Si",
+  "label.label.no":"No",
+  "error.input.patentFormat": "La patente ingresada es inválida"
+}

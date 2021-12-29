@@ -16,7 +16,7 @@
     font-family: 'Mulish';
     font-weight: 700;
     border-top: none;
-    
+    cursor: pointer;
 }
 .paginator-button-transaction-disabled{
     position: relative;
@@ -56,6 +56,10 @@
     height: 50px;
     background-color: white;
     margin-top: 0vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
 .export-transaction-disabled{
     background: #FFFFFF;
@@ -66,6 +70,9 @@
     height: 50px;
     background-color: white;
     margin-top: 0vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .p-export-transaction-disabled{
@@ -159,6 +166,8 @@
     margin-top: 0px;
     padding-right: 30px;
     margin-bottom: 20px;
+    opacity: .50;
+    margin-top: 7px;
 }
 ._3G24_nB5gK6geBR6bQ0SZx{
     background-color: white;
@@ -187,6 +196,7 @@
     text-align: center;
     color: #FFFFFF;
     margin-left: 14px;
+    cursor: pointer;
 }
 .button-modal-transaction:disabled{
     background: #BDBDBD;
@@ -203,6 +213,7 @@
     text-align: center;
     color: #FFFFFF;
     margin-left: 14px;
+    cursor: default;
 }
 .modal-transaction-finish-enabled{
     background: #0098FF;
@@ -218,6 +229,7 @@
     line-height: 23px;
     text-align: center;
     color: #FFFFFF;
+    
    // margin-left: 0.952vw;
 
    margin-left: 14px;

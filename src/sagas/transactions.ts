@@ -1,52 +1,54 @@
+import { PayloadAction } from "@reduxjs/toolkit";
+import { AxiosResponse } from "axios";
+import i18next from "i18next";
+import * as transactionsMiddleware from "middleware/transactions";
+import { actions as notificationActions } from "reducers/notification";
+import { actions } from "reducers/transactions";
+import { NotificationStateType } from "reducers/types/notification";
+import { GetTransactionsSuccessType } from "reducers/types/transaction";
 import {
   call,
-  takeLatest,
-  put,
   CallEffect,
-  PutEffect,
   ForkEffect,
+  put,
+  PutEffect,
+  takeLatest,
 } from "redux-saga/effects";
-import { types, actions } from "reducers/transactions";
-import * as transactionsMiddleware from "middleware/transactions";
 import createCSV from "utils/createCSV";
-import { actions as notificationActions } from "reducers/notification";
 import {
-  TransactionsExportContentType,
-  TransactionsActionType,
+  FilterTransactionsType,
   TransactionResponseContent,
+  TransactionsExportContentType,
 } from "./types/transactions";
-import { AxiosResponse } from "axios";
-import { GetTransactionsSuccessType } from "reducers/types/transaction";
 
-const sagas:ForkEffect<never>[] = [
-  takeLatest(types.TRANSACTIONS_GET_REQUEST, getTransactions),
-  takeLatest(types.TRANSACTIONS_EXPORT_REQUEST, getTransactionsExport),
-  takeLatest(types.TRANSACTIONS_GET_MORE_REQUEST, getMoreTransactions),
+const sagas: ForkEffect<never>[] = [
+  takeLatest(actions.getTransactionsRequest.type, getTransactions),
+  takeLatest(actions.getTransactionsExportRequest.type, getTransactionsExport),
+  takeLatest(actions.getMoreTransactionsRequest.type, getMoreTransactions),
 ];
 
 export default sagas;
 
 function* getTransactions({
-  params,
-}: TransactionsActionType): Generator<
+  payload,
+}: PayloadAction<FilterTransactionsType>): Generator<
   | CallEffect<AxiosResponse<TransactionResponseContent>>
-  | PutEffect<{ type: string; content: any }>
+  | PutEffect<{ type: string; content: NotificationStateType }>
   | PutEffect<{ type: string; transactions: GetTransactionsSuccessType }>
   | PutEffect<{ type: string }>,
   void,
   TransactionResponseContent
 > {
-  delete params['date'];
-  const response = yield call(transactionsMiddleware.getTransactions, params);
-
+  delete payload["date"];
+  const response = yield call(transactionsMiddleware.getTransactions, payload);
   if (response.status !== 200) {
     switch (response.data.statusCode) {
       case 20011:
         yield put(
           notificationActions.showNotification({
             level: "error",
-            title: "El rango seleccionado es inválido",
-            body: "Por favor, ingresá un rango menor a 31 días",
+            title: i18next.t("transactions:title.modal.rangeExceeded"),
+            body: i18next.t("transactions:label.modal.rangeExceeded"),
           })
         );
         break;
@@ -55,6 +57,7 @@ function* getTransactions({
         yield put(
           actions.getTransactionsSuccess({
             items: [],
+            limit: 0,
             offset: 0,
             hasMore: false,
           })
@@ -75,25 +78,32 @@ function* getTransactions({
     } = response.data;
     yield put(
       actions.setExportEnabled(
-        params.pickerId || params.transactionCode || params.minMinDeliveryDate
+        payload.pickerId ||
+          payload.transactionCode ||
+          payload.minMinDeliveryDate
       )
     );
     yield put(
-      actions.getTransactionsSuccess({ items, limit, offset, hasMore })
+      actions.getTransactionsSuccess({
+        items,
+        limit,
+        offset,
+        hasMore,
+      })
     );
   }
 }
 
 function* getMoreTransactions({
-  params,
-}: TransactionsActionType): Generator<
+  payload,
+}: PayloadAction<FilterTransactionsType>): Generator<
   | CallEffect<AxiosResponse<TransactionResponseContent>>
   | PutEffect<{ type: string }>,
   void,
   TransactionResponseContent
 > {
-  delete params['date'];
-  const response = yield call(transactionsMiddleware.getTransactions, params);
+  delete payload["date"];
+  const response = yield call(transactionsMiddleware.getTransactions, payload);
 
   if (response.status !== 200) {
     yield put(actions.getTransactionsError());
@@ -105,36 +115,38 @@ function* getMoreTransactions({
       hasMore,
     } = response.data;
     yield put(
-      actions.getMoreTransactionsSuccess({ items, limit, offset, hasMore })
+      actions.getMoreTransactionsSuccess({
+        items,
+        limit,
+        offset,
+        hasMore,
+      })
     );
   }
 }
 
 function* getTransactionsExport({
-  params,
-  element,
-}: TransactionsActionType): Generator<
+  payload,
+}: PayloadAction<FilterTransactionsType>): Generator<
   | CallEffect<AxiosResponse<TransactionsExportContentType>>
-  | PutEffect<{ type: string }>,
+  | PutEffect<{ type: string; payload: NotificationStateType }>
+  | PutEffect<{ type: string; payload: undefined }>,
   void,
   TransactionsExportContentType
 > {
-  
   const response = yield call(
     transactionsMiddleware.getTransactionsExport,
-    params
+    payload
   );
   if (response.status !== 200) {
     yield put(actions.getTransactionsExportError());
   } else {
-
-    createCSV(response.data);
+    createCSV(response.data, "transactions");
     yield put(
       notificationActions.showNotification({
         level: "success",
-        title: "Exportaste exitosamente",
-        body: "El archivo se descargó correctamente",
-        element,
+        title: i18next.t("global:title.modal.export"),
+        body: i18next.t("global:label.modal.export"),
       })
     );
     yield put(actions.getTransactionsExportSuccess());

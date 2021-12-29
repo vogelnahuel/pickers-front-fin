@@ -1,25 +1,27 @@
-import { combineReducers } from "redux";
+import { combineReducers } from "@reduxjs/toolkit";
 import transactions from "reducers/transactions";
 import dashboard from "reducers/dashboard";
 import detailTransaction from "reducers/detailTransaction";
-import pendingUser from "reducers/pickers";
-import pendingUserAdminPicker from "reducers/detailPicker";
+import pickers from "./pickers";
+import detailPicker from "reducers/detailPicker";
 import login from "./login";
 import notification from "reducers/notification";
-import { connectRouter } from 'connected-react-router'
+import preliquidations from "reducers/preliquidation";
+import { connectRouter } from "connected-react-router";
 
-import { RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps } from "react-router-dom";
 
-
-const rootReducer = (history: RouteComponentProps['history']) => combineReducers({
+const rootReducer = (history: RouteComponentProps["history"]) =>
+  combineReducers({
     router: connectRouter(history),
+    pickers,
     transactions,
     dashboard,
-    pendingUser,
-    pendingUserAdminPicker,
+    detailPicker,
     login,
     notification,
     detailTransaction,
-});
+    preliquidations,
+  });
 
 export default rootReducer;

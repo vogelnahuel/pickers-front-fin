@@ -1,0 +1,37 @@
+.download-PDF {
+    border: none;
+    cursor: pointer;
+  }
+  
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+  }
+  
+  .detail-preliquidation-inline {
+    display: inline;
+  }
+  .detail-preliquidation-h2 {
+    font-family: "Mulish";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 45px;
+    color: #000000;
+  }
+  .detail-preliquidation-number {
+    font-family: "Mulish";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 45px;
+    color: #0098ff;
+    margin-left: 20px;
+  }
+  .preliquidation-display-flex {
+    display: flex;
+    justify-content: space-between;
+  }
+    
