@@ -100,7 +100,7 @@ export type DetailPreliquidationsContentResponseType = {
 
 export type DetailPreliquidationBodyParamsType = {
   emisionDate: string | null;
-  invoiceType: InvoiceTypes;
+  invoiceType: InvoiceTypes | null;
   invoiceNumber: string | null;
   salePoint: string | null;
   caeNumber: string | null;

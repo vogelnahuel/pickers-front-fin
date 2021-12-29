@@ -347,7 +347,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
               </button>
               <div className="detail-preliquidation-fondo">
                 <button
-                  disabled={invalid || !invoiceDetail.invoiceFile?.upload || invoiceFileStatus.error}
+                  disabled={invalid || !invoiceDetail.invoiceFile?.upload || invoiceFileStatus.error || dirty}
                   className="detail-preliquidation-invoice-p"
                   onClick={() =>
                     getInvoiceDetailDelete({
@@ -360,7 +360,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
 
                 <button
                   type="submit"
-                  disabled={invalid || !invoiceDetail.invoiceFile?.upload || invoiceFileStatus.error}
+                  disabled={invalid || !invoiceDetail.invoiceFile?.upload || invoiceFileStatus.error || dirty}
                   className="button-submit-active"
                   onClick={() =>
                     getInvoiceDetailApprove({

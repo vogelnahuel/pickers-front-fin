@@ -190,7 +190,7 @@ function* putSaveDetailInvoice({
       typeof payload.emisionDate !== "string"
         ? payload.emisionDate?.from
         : null,
-    invoiceType: payload.invoiceType || null,
+    invoiceType: payload.invoiceType?.tag ? payload.invoiceType : null,
     invoiceNumber: payload.invoiceNumber || null,
     salePoint: payload.salePoint || null,
     caeNumber: payload.caeNumber || null,

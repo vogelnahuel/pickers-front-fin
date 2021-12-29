@@ -15,45 +15,52 @@ import {
   invoiceValidationSchema,
 } from "./types";
 import { useHistory, useParams } from "react-router-dom";
-import { RejectInvoiceMiddlewareType, UploadInvoiceFileMiddlewareType } from "sagas/types/preliquidation";
+import {
+  RejectInvoiceMiddlewareType,
+  UploadInvoiceFileMiddlewareType,
+} from "sagas/types/preliquidation";
 import * as yup from "yup";
 import i18next from "i18next";
 import moment from "moment";
 import { DATE_FORMATS, MAX_FILE_SIZE, VALIDATION_REGEX } from "utils/constants";
 import { getBase64FromUrl, isBase64, toBase64 } from "utils/toBase64";
-import { InvoiceFileStatus, DetailInvoiceType } from "reducers/types/preliquidation";
+import {
+  InvoiceFileStatus,
+  DetailInvoiceType,
+} from "reducers/types/preliquidation";
 import { NotificationStateType } from "reducers/types/notification";
-
 
 const InvoiceContainer = (
   props: detailPreliquidationInvoiceContainerPropsType
 ): JSX.Element => {
   const params: { id?: string } = useParams();
- 
 
   useEffect(() => {
     props.setInvoiceFileStatus({ loading: false, error: false });
     props.setActualPage("INVOICE");
     props.getInvoiceDetailTypes();
     props.getInvoiceDetail(params.id);
-    
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fileHandler = async (file: File) => {
     props.setInvoiceFileStatus({ loading: true });
-    
+
     if (file.size > MAX_FILE_SIZE || file.type !== "application/pdf") {
       props.setInvoiceFileStatus({
         error: true,
         loading: false,
-        message: 'component:label.pdfController.invalidFile'
+        message: "component:label.pdfController.invalidFile",
       });
       return;
     } else {
       try {
-        const base64 = await toBase64(file) as string;
-        props.uploadInvoiceFile({ id: parseInt(params.id || '0'), content: base64 });
+        const base64 = (await toBase64(file)) as string;
+        props.uploadInvoiceFile({
+          id: parseInt(params.id || "0"),
+          content: base64,
+        });
       } catch (err) {
         console.log("Base64 error: ", err);
       }
@@ -61,9 +68,12 @@ const InvoiceContainer = (
   };
   const history = useHistory();
   const handleClickBack = (dirty: boolean) => {
-    const onClose = () => history.goBack()
-    if (!dirty) { onClose() }
-    else { showDirtyNotification(onClose) }
+    const onClose = () => history.goBack();
+    if (!dirty) {
+      onClose();
+    } else {
+      showDirtyNotification(onClose);
+    }
   };
 
   const showDirtyNotification = (onClose: Function) => {
@@ -83,8 +93,7 @@ const InvoiceContainer = (
           behavior: "smooth",
         }),
     });
-  }
-
+  };
 
   const showWrongFilesNotification = (onClose: Function) =>
     props.showNotification({
@@ -102,11 +111,11 @@ const InvoiceContainer = (
       props.setActualPage(page);
 
       history.replace("/preliquidation");
-
-    }
+    };
     if (isDirty) showDirtyNotification(onClose);
-    else if (props.invoiceFileStatus.error) { showWrongFilesNotification(onClose) }
-    else onClose();
+    else if (props.invoiceFileStatus.error) {
+      showWrongFilesNotification(onClose);
+    } else onClose();
   };
 
   const deleteFile = () => {
@@ -117,77 +126,76 @@ const InvoiceContainer = (
       onClickLabel: "invoice:button.modal.delete",
       onCloseLabel: "invoice:button.modal.cancel",
       onClose: undefined,
-      onClick: () => props.deleteInvoiceFile(parseInt(params.id||'0'))
+      onClick: () => props.deleteInvoiceFile(parseInt(params.id || "0")),
     });
-  }
+  };
 
   const goToPreviousFile = () => {
     props.setInvoiceFileStatus({
       error: false,
       loading: false,
     });
-  }
+  };
 
   const downloadFile = async () => {
-
     const url = props.invoiceDetail?.invoiceFile?.url;
     if (!url) return;
 
     const now = new Date();
     const date = `${now.getDate()}_${now.getMonth() + 1}_${now.getFullYear()}`;
-    const time = `${now.getHours()}_${now.getMinutes()}_${now.getSeconds()}`
+    const time = `${now.getHours()}_${now.getMinutes()}_${now.getSeconds()}`;
     const downloadLink = document.createElement("a");
     const fileName = `preli-${params.id || ""}-${date}_${time}.pdf`;
-    
-    if(isBase64(url)){
+
+    if (isBase64(url)) {
       downloadLink.href = url;
-    }
-    else{
-      const base64 = await getBase64FromUrl(url) as string;
+    } else {
+      const base64 = (await getBase64FromUrl(url)) as string;
       downloadLink.href = base64;
     }
     downloadLink.download = fileName;
     downloadLink.click();
-  }
+  };
 
-
-  const validarFechas = (value: DatePickerType | string | undefined) => {  
+  const validarFechas = (value: DatePickerType | string | undefined) => {
     if (!value || typeof value === "string" || !value?.from) return true;
 
     const valueProps = moment(value?.from, "DD/MM/YYYY");
     const today = moment();
     const startDate = moment(props.detailPreliquidations?.generatedAt);
 
-    const range = valueProps.isBetween(startDate, today, 'day', '[]');
+    const range = valueProps.isBetween(startDate, today, "day", "[]");
 
     return range;
   };
 
-  const castDatePicker = (
-    detailPreliquidations: DetailInvoiceType
-  ) => {
+  const castDatePicker = (detailPreliquidations: DetailInvoiceType) => {
     return {
       ...detailPreliquidations,
       caeNumber: detailPreliquidations.caeNumber ?? "",
       invoiceNumber: detailPreliquidations.invoiceNumber ?? "",
       salePoint: detailPreliquidations.salePoint ?? "",
-      emisionDate: detailPreliquidations.emisionDate  ? { from: moment(detailPreliquidations.emisionDate).format(DATE_FORMATS.shortDate) } : "",
+      emisionDate: detailPreliquidations.emisionDate
+        ? {
+            from: moment(detailPreliquidations.emisionDate).format(
+              DATE_FORMATS.shortDate
+            ),
+          }
+        : "",
     };
   };
 
   const initialValues = useMemo(() => {
     return castDatePicker(props.invoiceDetail);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [params.id])
+  }, [props.invoiceDetail.id]);
 
   const validationSchema: yup.SchemaOf<invoiceValidationSchema> = yup.object({
     emisionDate: yup
       .mixed<DatePickerType | string>()
       .required("")
-      .test(
-        "errorDatePicker",
-        "error.input.emisionDate",
-        (value) => validarFechas(value)
+      .test("errorDatePicker", "error.input.emisionDate", (value) =>
+        validarFechas(value)
       ),
     invoiceType: yup.object({
       name: yup.string().required("global:error.input.required"),
@@ -277,6 +285,6 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   },
   setInvoiceFileStatus: (params: InvoiceFileStatus) => {
     dispatch(preliActions.setInvoiceFileStatus(params));
-  }
+  },
 });
 export default connect(mapStateToProps, mapDispatchToProps)(InvoiceContainer);
