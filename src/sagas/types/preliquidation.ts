@@ -99,11 +99,11 @@ export type DetailPreliquidationsContentResponseType = {
 };
 
 export type DetailPreliquidationBodyParamsType = {
-  emisionDate: string;
+  emisionDate: string | null;
   invoiceType: InvoiceTypes;
-  invoiceNumber: string;
-  salePoint: string;
-  caeNumber: string;
+  invoiceNumber: string | null;
+  salePoint: string | null;
+  caeNumber: string | null;
 };
 
 export type DetailPreliquidationsApiResponse = {

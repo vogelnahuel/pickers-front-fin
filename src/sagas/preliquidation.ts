@@ -13,7 +13,7 @@ import {
 } from "redux-saga/effects";
 import { DATE_FORMATS } from "utils/constants";
 import * as preliquidationsMiddleware from "../middleware/preliquidations";
-
+import { actions as notificationActions } from "../reducers/notification";
 import { actions as preliquidationActions } from "../reducers/preliquidation";
 import {
   DetailPreliquidationBodyParamsType,
@@ -27,6 +27,8 @@ import {
   RejectInvoiceMiddlewareType,
   UploadInvoiceFileMiddlewareType,
 } from "./types/preliquidation";
+import i18next from "i18next";
+import { NotificationStateType } from "reducers/types/notification";
 
 const sagas = [
   takeLatest(
@@ -69,13 +71,17 @@ export default sagas;
 const process = (body: DetailPreliquidationBodyParamsType) => {
   return {
     ...body,
-    emisionDate: moment(body?.emisionDate, DATE_FORMATS.shortDate).format(
-      DATE_FORMATS.shortISODate
-    ),
+    emisionDate: body?.emisionDate
+      ? moment(body?.emisionDate, DATE_FORMATS.shortDate).format(
+          DATE_FORMATS.shortISODate
+        )
+      : null,
   };
 };
 
-const processDatePicker = (payload: PreliquidationParamsMiddlewareType):PreliquidationCastParamsMiddlewareType => {
+const processDatePicker = (
+  payload: PreliquidationParamsMiddlewareType
+): PreliquidationCastParamsMiddlewareType => {
   let payloadCast: PreliquidationCastParamsMiddlewareType =
     payload as PreliquidationCastParamsMiddlewareType;
   if (payload.generatedAt) {
@@ -173,17 +179,21 @@ function* putSaveDetailInvoice({
   payload,
 }: PayloadAction<detailPreliquidationDatePicker>): Generator<
   | PutEffect<{ payload: detailPreliquidationDatePicker; type: string }>
-  | PutEffect<{ payload: undefined; type: string }>
+  | PutEffect<{ type: string }>
+  | PutEffect<{ type: string; content: NotificationStateType }>
   | CallEffect<AxiosResponse<DetailPreliquidationsInvoiceApiResponseType>>,
   void,
   DetailPreliquidationsInvoiceApiResponseType
 > {
   let result: DetailPreliquidationBodyParamsType = {
-    emisionDate: typeof payload.emisionDate !== "string" ? payload.emisionDate?.from : "",
-    invoiceType: payload.invoiceType,
-    invoiceNumber: payload.invoiceNumber,
-    salePoint: payload.salePoint,
-    caeNumber: payload.caeNumber,
+    emisionDate:
+      typeof payload.emisionDate !== "string"
+        ? payload.emisionDate?.from
+        : null,
+    invoiceType: payload.invoiceType || null,
+    invoiceNumber: payload.invoiceNumber || null,
+    salePoint: payload.salePoint || null,
+    caeNumber: payload.caeNumber || null,
   };
   result = process(result);
 
@@ -193,6 +203,13 @@ function* putSaveDetailInvoice({
     result
   );
   if (response.status !== 200) {
+    yield put(
+      notificationActions.showNotification({
+        level: "error",
+        title: i18next.t("global:title.modal.connectionError"),
+        body: i18next.t("global:label.modal.connectionError"),
+      })
+    );
     yield put(preliquidationActions.getInvoiceDetailSaveError());
   } else {
     yield put(preliquidationActions.getInvoiceDetailSaveSuccess());
@@ -209,7 +226,8 @@ function* patchApproveDetailInvoice({
   DetailPreliquidationsInvoiceApiResponseType
 > {
   let result: DetailPreliquidationBodyParamsType = {
-    emisionDate: typeof payload.emisionDate !== "string" ? payload.emisionDate?.from : "",
+    emisionDate:
+      typeof payload.emisionDate !== "string" ? payload.emisionDate?.from : "",
     invoiceType: payload.invoiceType,
     invoiceNumber: payload.invoiceNumber,
     salePoint: payload.salePoint,
@@ -271,14 +289,16 @@ function* uploadInvoiceFile({
 
 function* deleteInvoiceFile({
   payload,
-}: PayloadAction<{ id: number}>): Generator<
+}: PayloadAction<{ id: number }>): Generator<
   | PutEffect<{ payload: undefined; type: string }>
   | CallEffect<AxiosResponse<ApiResponse<void>>>,
   void,
   ApiResponse<void>
 > {
   const response = yield call(
-    preliquidationsMiddleware.deleteInvoiceFile, payload.id);
+    preliquidationsMiddleware.deleteInvoiceFile,
+    payload.id
+  );
   if (response.status !== 200) {
     yield put(preliquidationActions.deleteInvoiceFileError());
   } else {
