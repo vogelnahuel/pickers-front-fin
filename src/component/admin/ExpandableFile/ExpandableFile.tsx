@@ -312,7 +312,7 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
                             </Tooltip>
                           )}
                         </>
-                      ) : actualPage === "PENDING" ? (
+                      ) : (
                         <Tooltip
                           position={ToolTipPosition.bottom}
                           message={i18next.t(
@@ -328,8 +328,6 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
                             <LoadIcon />
                           </div>
                         </Tooltip>
-                      ) : (
-                        <></>
                       )}
 
                       <input
