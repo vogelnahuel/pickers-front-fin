@@ -10,6 +10,7 @@ import {
   actions as preliActions,
   allPreliquidationsSelected,
   preliquidationSelector,
+  existApprovedPreliquidation
 } from "reducers/preliquidation";
 import { PreliquidationItem } from "sagas/types/preliquidation";
 import { connect } from "react-redux";
@@ -23,6 +24,7 @@ const TablePreliquidation = ({
   toggleItem,
   isAllSelected,
   toggleAll,
+  approved
 }: TablePreliquidationProps) => {
   const history = useHistory();
 
@@ -37,6 +39,8 @@ const TablePreliquidation = ({
     if (target?.localName !== "input") history.push(`/preliquidation/${id}`);
   };
 
+
+
   return (
     <Table className="preliquidation-table">
       <thead>
@@ -47,6 +51,7 @@ const TablePreliquidation = ({
           ))}
           <td>
             <Checkbox
+              disabled={!approved}
               checked={isAllSelected || false}
               onChange={() => toggleAll && toggleAll()}
             />
@@ -70,7 +75,7 @@ const TablePreliquidation = ({
             <td>{item.id}</td>
             <td>{item.fiscalNumber}</td>
             <td>{ISO8601toDDMMYYYHHMM(item.generatedAt).substring(0, 11)}</td>
-            <td>{item.status?.description}</td>
+            <td>{i18next.t(`preli:label.select.${item.status?.tag}`)}</td>
             <td>${item.total}</td>
             <td>
               {item.status?.tag === "approved" && (
@@ -91,6 +96,8 @@ const mapStateToProps = (state: RootState) => ({
   preliquidationsSelected:
     preliquidationSelector(state).preliquidationsSelected,
   isAllSelected: allPreliquidationsSelected(state),
+  approved:existApprovedPreliquidation(state),
+
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({

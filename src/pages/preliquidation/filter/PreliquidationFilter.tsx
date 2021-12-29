@@ -7,6 +7,7 @@ import MultipleSelect from "component/inputs/MultipleSelect";
 import useValidationSchema from "hooks/useValidationSchema";
 import i18next from "i18next";
 import "pages/pickers/filter/filter.scss";
+import "./preliquidationFilter.scss";
 import React from "react";
 import { Field, Form } from "react-final-form";
 import { FILTER_PRELIQUIDATION_OPTIONS } from "utils/constants";
@@ -14,6 +15,8 @@ import {
   PreliquidationFilterPropsType,
   PreliquidationFiltersType,
 } from "./types";
+import orDisabled from "assets/transaction/OrDisabled.svg";
+import searchDisabled from "assets/preli/searchDisabled.svg";
 
 export const PreliquidationFilter: React.FC<PreliquidationFilterPropsType> = ({
   onSubmit,
@@ -47,7 +50,7 @@ export const PreliquidationFilter: React.FC<PreliquidationFilterPropsType> = ({
               }}
               validate={useValidationSchema(validationSchema)}
             >
-              {({ handleSubmit, form }) => (
+              {({ handleSubmit, form,dirty }) => (
                 <form
                   className="form-filter-transaction"
                   onSubmit={handleSubmit}
@@ -118,12 +121,13 @@ export const PreliquidationFilter: React.FC<PreliquidationFilterPropsType> = ({
                   </div>
                   <div className="container-col-sm-offset-1 container-col-sm-1 container-col-xl-auto end">
                     <button
-                      className="search-button-transaction"
+                      className={dirty ? "search-button-transaction" : "preliquidation-filter-button-disabled"}
                       name="search"
                       type="submit"
+                      disabled={!dirty}
                     >
-                      <img src={search} alt="export" />
-                      <img className="or-filter" src={or} alt="or" />
+                      <img src={dirty ? search : searchDisabled} alt="export" />
+                      <img className="or-filter" src={dirty ? or : orDisabled} alt="or" />
                       <p className="display-inline-block p-export">
                         {i18next.t("global:label.button.search")}
                       </p>

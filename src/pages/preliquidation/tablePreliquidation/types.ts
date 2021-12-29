@@ -6,4 +6,5 @@ export type TablePreliquidationProps = {
   toggleItem?: (item: PreliquidationItem) => void;
   toggleAll?: () => void;
   isAllSelected?: boolean;
+  approved:boolean;
 };
