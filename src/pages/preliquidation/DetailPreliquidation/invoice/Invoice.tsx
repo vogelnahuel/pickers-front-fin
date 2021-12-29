@@ -33,8 +33,8 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
   detailPreliquidations,
   validationSchema,
   invoiceTypes,
+  initialValues,
   setDirty,
-  castDatePicker,
   getInvoiceDetailSave,
   getInvoiceDetailApprove,
   getInvoiceDetailDelete,
@@ -65,7 +65,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
     <div>
       <Form
         onSubmit={(value) => value}
-        initialValues={castDatePicker(invoiceDetail)}
+        initialValues={initialValues}
         mutators={{
           setValue: ([field, value], state, { changeValue }) => {
             delete value.label;
@@ -347,12 +347,11 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
               </button>
               <div className="detail-preliquidation-fondo">
                 <button
-                  disabled={invalid}
+                  disabled={invalid || !invoiceDetail.invoiceFile?.upload || invoiceFileStatus.error}
                   className="detail-preliquidation-invoice-p"
                   onClick={() =>
                     getInvoiceDetailDelete({
-                      ...(values as detailPreliquidationDatePicker),
-                      presettementId,
+                      presettlementId: presettementId
                     })
                   }
                 >
@@ -361,7 +360,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
 
                 <button
                   type="submit"
-                  disabled={invalid}
+                  disabled={invalid || !invoiceDetail.invoiceFile?.upload || invoiceFileStatus.error}
                   className="button-submit-active"
                   onClick={() =>
                     getInvoiceDetailApprove({
