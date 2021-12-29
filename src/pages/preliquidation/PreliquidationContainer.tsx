@@ -17,7 +17,7 @@ const PreliquidationContainer = (
   props: PreliquidationContainerProps
 ): JSX.Element => {
   useEffect(() => {
-    const filtersExtra = { limit: 3, offset: 0 };
+    const filtersExtra = { limit: window.innerHeight < 770 ? 3 : 4 , offset:0 };
     props.setPreliquidationExtraFilters(filtersExtra);
     props.getPreliquidations({ ...filtersExtra });
     // eslint-disable-next-line react-hooks/exhaustive-deps

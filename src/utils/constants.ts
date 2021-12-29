@@ -122,36 +122,37 @@ export const FILTER_TRANSACTION_OPTIONS = [
 export const FILTER_PRELIQUIDATION_OPTIONS = [
   {
     label: "preli:label.select.initial",
-    id: "INITIAL ",
+    id: "initial ",
   },
   {
     label: "preli:label.select.pending",
-    id: "PENDING",
+    id: "pending",
   },
   {
-    label: "preli:label.select.inAprovement",
-    id: "IN_APROVEMENT",
+    label: "preli:label.select.in_approvement",
+    id: "in_approvement",
   },
   {
-    label: "preli:label.select.aproved",
-    id: "APPROVED",
+    label: "preli:label.select.approved",
+    id: "approved",
   },
   {
-    label: "preli:label.select.rejectedInvoice",
-    id: "REJECTED_INVOICE",
+    label: "preli:label.select.pending_accounting",
+    id: "pending_accounting",
   },
   {
-    label: "preli:label.select.pendingAccounting",
-    id: "PENDING_ACCOUNTING",
-  },
-  {
-    label: "preli:label.select.inAccounting",
+    label: "preli:label.select.in_accounting",
     id: "IN_ACCOUNTING",
   },
   {
-    label: "preli:label.select.generatedPayment",
-    id: "GENERATED_PAYMENT",
+    label: "preli:label.select.generated_payment",
+    id: "generated_payment",
   },
+  {
+    label: "preli:label.select.invoice_rejected",
+    id: "invoice_rejected",
+  },
+
 ];
 
 export const FILTER_PICKERS_OPTIONS = [
