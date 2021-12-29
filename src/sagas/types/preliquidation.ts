@@ -34,7 +34,7 @@ export type PreliquidationStatus = {
 export type PreliquidationParamsMiddlewareType = {
   presettlmentId?: number;
   status?: string;
-  generatedAt?:generatedAtType 
+  generatedAt?: generatedAtType;
   fiscalNumber?: string;
   limit?: number;
   offset?: number;
@@ -42,7 +42,7 @@ export type PreliquidationParamsMiddlewareType = {
 export type PreliquidationCastParamsMiddlewareType = {
   presettlmentId?: number;
   status?: string;
-  generatedAt?:string 
+  generatedAt?: string;
   fiscalNumber?: string;
   limit?: number;
   offset?: number;
@@ -51,7 +51,7 @@ export type PreliquidationCastParamsMiddlewareType = {
 export type PreliquidationParamsMiddlewareTypeCast = {
   presettlmentId?: number;
   status?: string;
-  generatedAt?:string
+  generatedAt?: string;
   fiscalNumber?: string;
   limit?: number;
   offset?: number;
@@ -61,7 +61,11 @@ export type PreliquidationParamsMiddlewareTypeCast = {
 export type UploadInvoiceFileMiddlewareType = {
   id: number;
   content: string;
-}
+};
+
+export type RejectInvoiceMiddlewareType = {
+  presettlementId: string | undefined;
+};
 
 export type DetailPreliquidationsApiResponseType = {
   data: {
@@ -87,21 +91,19 @@ export type DetailPreliquidationsContentResponseType = {
     url: string | null;
   };
   presettlement: {
-   id?: number;
-   status :PreliquidationStatus,
-   generatedAt :  string
-  }
-  presettementId:string | undefined
+    id?: number;
+    status: PreliquidationStatus;
+    generatedAt: string;
+  };
+  presettementId: string | undefined;
 };
 
 export type DetailPreliquidationBodyParamsType = {
- 
-    emisionDate: string;
-    invoiceType: InvoiceTypes;
-    invoiceNumber: string;
-    salePoint: string;
-    caeNumber: string;
-  
+  emisionDate: string;
+  invoiceType: InvoiceTypes;
+  invoiceNumber: string;
+  salePoint: string;
+  caeNumber: string;
 };
 
 export type DetailPreliquidationsApiResponse = {

@@ -12,6 +12,7 @@ import {
   PreliquidationItem,
   PreliquidationParamsMiddlewareType,
   PreliquidationsContentResponseType,
+  RejectInvoiceMiddlewareType,
 } from "sagas/types/preliquidation";
 import { RootState } from "store";
 import { endsWithAny } from "utils/endsWithAny";
@@ -177,7 +178,7 @@ export const preliquidationSlice = createSlice({
     getInvoiceDetailApproveSuccess: () => {},
     getInvoiceDetailDeleteRequest: (
       state: PreliquitadionStateType,
-      action: PayloadAction<detailPreliquidationDatePicker>
+      action: PayloadAction<RejectInvoiceMiddlewareType>
     ) => {},
     getInvoiceDetailDeleteError: () => {},
     getInvoiceDetailDeleteSuccess: () => {},

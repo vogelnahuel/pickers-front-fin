@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { connect } from "react-redux";
 
 import { AppDispatch, RootState } from "store";
@@ -9,17 +9,17 @@ import {
 } from "reducers/preliquidation";
 import { actions as notificationActions } from "reducers/notification";
 import {
+  DatePickerType,
   detailPreliquidationDatePicker,
   detailPreliquidationInvoiceContainerPropsType,
   invoiceValidationSchema,
 } from "./types";
 import { useHistory, useParams } from "react-router-dom";
-import { UploadInvoiceFileMiddlewareType } from "sagas/types/preliquidation";
+import { RejectInvoiceMiddlewareType, UploadInvoiceFileMiddlewareType } from "sagas/types/preliquidation";
 import * as yup from "yup";
 import i18next from "i18next";
 import moment from "moment";
 import { DATE_FORMATS, MAX_FILE_SIZE, VALIDATION_REGEX } from "utils/constants";
-import { ObjectShape, TypeOfShape } from "yup/lib/object";
 import { getBase64FromUrl, isBase64, toBase64 } from "utils/toBase64";
 import { InvoiceFileStatus, DetailInvoiceType } from "reducers/types/preliquidation";
 import { NotificationStateType } from "reducers/types/notification";
@@ -151,15 +151,14 @@ const InvoiceContainer = (
   }
 
 
-  const validarFechas = (value: TypeOfShape<ObjectShape>) => {
-  
-    if (!value ) return true;
+  const validarFechas = (value: DatePickerType | string | undefined) => {  
+    if (!value || typeof value === "string" || !value?.from) return true;
 
-    const valueProps = moment(value.from, "DD/MM/YYYY");
+    const valueProps = moment(value?.from, "DD/MM/YYYY");
     const today = moment();
     const startDate = moment(props.detailPreliquidations?.generatedAt);
 
-    const range = valueProps.isBetween(startDate, today);
+    const range = valueProps.isBetween(startDate, today, 'day', '[]');
 
     return range;
   };
@@ -167,24 +166,27 @@ const InvoiceContainer = (
   const castDatePicker = (
     detailPreliquidations: DetailInvoiceType
   ) => {
-    let castear:
-      | detailPreliquidationDatePicker
-      | DetailInvoiceType = detailPreliquidations;
-      
-    castear = {
-      ...castear,
-      emisionDate: { from: detailPreliquidations.emisionDate  ? moment(detailPreliquidations.emisionDate).format(DATE_FORMATS.shortDate) : ""},
+    return {
+      ...detailPreliquidations,
+      caeNumber: detailPreliquidations.caeNumber ?? "",
+      invoiceNumber: detailPreliquidations.invoiceNumber ?? "",
+      salePoint: detailPreliquidations.salePoint ?? "",
+      emisionDate: detailPreliquidations.emisionDate  ? { from: moment(detailPreliquidations.emisionDate).format(DATE_FORMATS.shortDate) } : "",
     };
-    return castear;
   };
+
+  const initialValues = useMemo(() => {
+    return castDatePicker(props.invoiceDetail);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [params.id])
 
   const validationSchema: yup.SchemaOf<invoiceValidationSchema> = yup.object({
     emisionDate: yup
-      .object()
+      .mixed<DatePickerType | string>()
       .required("")
       .test(
         "errorDatePicker",
-        i18next.t("global:error.input.emisionDate"),
+        "error.input.emisionDate",
         (value) => validarFechas(value)
       ),
     invoiceType: yup.object({
@@ -225,7 +227,7 @@ const InvoiceContainer = (
       deleteFile={deleteFile}
       downloadFile={downloadFile}
       validationSchema={validationSchema}
-      castDatePicker={castDatePicker}
+      initialValues={initialValues}
       presettementId={params.id}
       handleClickBack={handleClickBack}
       changePage={changePage}
@@ -255,7 +257,7 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   getInvoiceDetailApprove: (params: detailPreliquidationDatePicker) => {
     dispatch(preliActions.getInvoiceDetailApproveRequest(params));
   },
-  getInvoiceDetailDelete: (params: detailPreliquidationDatePicker) => {
+  getInvoiceDetailDelete: (params: RejectInvoiceMiddlewareType) => {
     dispatch(preliActions.getInvoiceDetailDeleteRequest(params));
   },
   uploadInvoiceFile: (params: UploadInvoiceFileMiddlewareType) => {
