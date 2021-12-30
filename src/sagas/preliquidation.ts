@@ -29,6 +29,7 @@ import {
 } from "./types/preliquidation";
 import i18next from "i18next";
 import { NotificationStateType } from "reducers/types/notification";
+import { replace } from "connected-react-router";
 
 const sagas = [
   takeLatest(
@@ -212,6 +213,7 @@ function* putSaveDetailInvoice({
     );
     yield put(preliquidationActions.getInvoiceDetailSaveError());
   } else {
+    yield put(replace("/preliquidation"))
     yield put(preliquidationActions.getInvoiceDetailSaveSuccess());
   }
 }
@@ -221,6 +223,7 @@ function* patchApproveDetailInvoice({
 }: PayloadAction<detailPreliquidationDatePicker>): Generator<
   | PutEffect<{ payload: detailPreliquidationDatePicker; type: string }>
   | PutEffect<{ payload: undefined; type: string }>
+  | PutEffect<{ payload: string | undefined; type: string }>
   | CallEffect<AxiosResponse<DetailPreliquidationsInvoiceApiResponseType>>,
   void,
   DetailPreliquidationsInvoiceApiResponseType
@@ -243,7 +246,7 @@ function* patchApproveDetailInvoice({
   if (response.status !== 200) {
     yield put(preliquidationActions.getInvoiceDetailApproveError());
   } else {
-    yield put(preliquidationActions.getInvoiceDetailApproveSuccess());
+    yield put(preliquidationActions.getInvoiceDetailRequest(payload.presettementId));
   }
 }
 
@@ -252,6 +255,7 @@ function* putDeleteDetailInvoice({
 }: PayloadAction<RejectInvoiceMiddlewareType>): Generator<
   | PutEffect<{ payload: detailPreliquidationDatePicker; type: string }>
   | PutEffect<{ payload: undefined; type: string }>
+  | PutEffect<{ type: string }>
   | CallEffect<AxiosResponse<DetailPreliquidationsInvoiceApiResponseType>>,
   void,
   DetailPreliquidationsInvoiceApiResponseType
@@ -263,6 +267,7 @@ function* putDeleteDetailInvoice({
   if (response.status !== 200) {
     yield put(preliquidationActions.getInvoiceDetailDeleteError());
   } else {
+    yield put(replace("/preliquidation"))
     yield put(preliquidationActions.getInvoiceDetailDeleteSuccess());
   }
 }
@@ -291,6 +296,7 @@ function* deleteInvoiceFile({
   payload,
 }: PayloadAction<{ id: number }>): Generator<
   | PutEffect<{ payload: undefined; type: string }>
+  | PutEffect<{ payload: string | undefined; type: string }>
   | CallEffect<AxiosResponse<ApiResponse<void>>>,
   void,
   ApiResponse<void>
@@ -302,7 +308,7 @@ function* deleteInvoiceFile({
   if (response.status !== 200) {
     yield put(preliquidationActions.deleteInvoiceFileError());
   } else {
-    yield put(preliquidationActions.deleteInvoiceFileSuccess());
+    yield put(preliquidationActions.getInvoiceDetailRequest(payload.id.toString()));
   }
 }
 

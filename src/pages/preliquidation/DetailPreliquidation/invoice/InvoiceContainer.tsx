@@ -41,6 +41,7 @@ const InvoiceContainer = (
     props.getInvoiceDetailTypes();
     props.getInvoiceDetail(params.id);
 
+    return () => props.resetInvoiceDetail();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -69,11 +70,10 @@ const InvoiceContainer = (
   const history = useHistory();
   const handleClickBack = (dirty: boolean) => {
     const onClose = () => history.goBack();
-    if (!dirty) {
-      onClose();
-    } else {
-      showDirtyNotification(onClose);
-    }
+
+    if (dirty) showDirtyNotification(onClose);
+    else if (props.invoiceFileStatus.error) showWrongFilesNotification(onClose);
+    else onClose();
   };
 
   const showDirtyNotification = (onClose: Function) => {
@@ -113,9 +113,8 @@ const InvoiceContainer = (
       history.replace("/preliquidation");
     };
     if (isDirty) showDirtyNotification(onClose);
-    else if (props.invoiceFileStatus.error) {
-      showWrongFilesNotification(onClose);
-    } else onClose();
+    else if (props.invoiceFileStatus.error) showWrongFilesNotification(onClose);
+    else onClose();
   };
 
   const deleteFile = () => {
@@ -188,12 +187,15 @@ const InvoiceContainer = (
   const initialValues = useMemo(() => {
     return castDatePicker(props.invoiceDetail);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.invoiceDetail.id]);
+  }, [
+    props.invoiceDetail.id,
+    props.detailPreliquidations.status.tag,
+  ]);
 
   const validationSchema: yup.SchemaOf<invoiceValidationSchema> = yup.object({
     emisionDate: yup
       .mixed<DatePickerType | string>()
-      .required("")
+      .test("requireDatePicker", "", (value) => !!value)
       .test("errorDatePicker", "error.input.emisionDate", (value) =>
         validarFechas(value)
       ),
@@ -276,6 +278,9 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   },
   getInvoiceDetailTypes: () => {
     dispatch(preliActions.getInvoiceDetailTypesRequest());
+  },
+  resetInvoiceDetail: () => {
+    dispatch(preliActions.resetInvoiceDetail());
   },
   setDirty: (dirty: boolean) => {
     dispatch(preliActions.setDirty(dirty));
