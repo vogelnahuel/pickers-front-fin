@@ -223,7 +223,7 @@ function* patchApproveDetailInvoice({
 }: PayloadAction<detailPreliquidationDatePicker>): Generator<
   | PutEffect<{ payload: detailPreliquidationDatePicker; type: string }>
   | PutEffect<{ payload: undefined; type: string }>
-  | PutEffect<{ payload: string | undefined; type: string }>
+  | PutEffect<{ type: string }>
   | CallEffect<AxiosResponse<DetailPreliquidationsInvoiceApiResponseType>>,
   void,
   DetailPreliquidationsInvoiceApiResponseType
@@ -246,7 +246,7 @@ function* patchApproveDetailInvoice({
   if (response.status !== 200) {
     yield put(preliquidationActions.getInvoiceDetailApproveError());
   } else {
-    yield put(preliquidationActions.getInvoiceDetailRequest(payload.presettementId));
+    yield put(replace("/preliquidation"))
   }
 }
 
@@ -277,6 +277,7 @@ function* uploadInvoiceFile({
 }: PayloadAction<UploadInvoiceFileMiddlewareType>): Generator<
   | PutEffect<{ payload: string; type: string }>
   | PutEffect<{ payload: undefined; type: string }>
+  | PutEffect<{ type: string }>
   | CallEffect<AxiosResponse<ApiResponse<void>>>,
   void,
   ApiResponse<void>
@@ -288,7 +289,11 @@ function* uploadInvoiceFile({
   if (response.status !== 200) {
     yield put(preliquidationActions.uploadInvoiceFileError());
   } else {
-    yield put(preliquidationActions.uploadInvoiceFileSuccess(payload.content));
+    if(payload.refreshPage){
+      yield put(preliquidationActions.getInvoiceDetailRequest(payload.id.toString()))
+      yield put(preliquidationActions.setInvoiceFileStatus({ loading: false }));
+    }else
+      yield put(preliquidationActions.uploadInvoiceFileSuccess(payload.content));
   }
 }
 
