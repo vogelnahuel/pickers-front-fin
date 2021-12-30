@@ -6,9 +6,9 @@ import DetailPickerContainer from "pages/pickers/detailPicker/DetailPickerContai
 import PickersContainer from "pages/pickers/PickersContainer";
 import { Route, Switch } from "react-router"; // react-router v4/v5
 import DashboardContainer from "../pages/dashboard/DashboardAdminContainer";
-import { DetailPreliquidationContainer } from "pages/preliquidation/DetailPreliquidation/DetailPreliquidationContainer";
 import Transaction from "../pages/transaction/TransactionContainer";
-import PreliquidationContainer from "pages/preliquidation/PreliquidationContainer";
+//import { DetailPreliquidationContainer } from "pages/preliquidation/DetailPreliquidation/DetailPreliquidationContainer";
+//import PreliquidationContainer from "pages/preliquidation/PreliquidationContainer";
 import useScrollToTop from "../hooks/useScrollToTop";
 
 const Routes = (): JSX.Element => {
@@ -25,7 +25,7 @@ const Routes = (): JSX.Element => {
           <Route path="/pickers" exact component={PickersContainer} />
           <Route path="/pickers/:id" exact component={DetailPickerContainer} />
           <Route path="/transaction" exact component={Transaction} />
-          <Route
+          {/* <Route
             path="/preliquidation"
             exact
             component={PreliquidationContainer}
@@ -34,7 +34,7 @@ const Routes = (): JSX.Element => {
             path="/preliquidation/:id"
             exact
             component={DetailPreliquidationContainer}
-          />
+          /> */}
         </Switch>
 
   );

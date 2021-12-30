@@ -6,14 +6,14 @@
   "placeholder.filter.date": "Seleccioná la fecha",
   "label.filter.fiscalNumber": "Identificador fiscal",
 
-  "label.select.initial": "Inicial",
+  "label.select.initial": "En generación",
   "label.select.pending": "Pendiente",
-  "label.select.inAprovement": "En aprobación",
-  "label.select.aproved": "Aprobado",
-  "label.select.rejectedInvoice": "Factura rechazada",
-  "label.select.pendingAccounting": "Pendiente de contabilidad",
-  "label.select.inAccounting": "En contabilidad",
-  "label.select.generatedPayment": "Pago generado",
+  "label.select.in_approvement": "En aprobación",
+  "label.select.approved": "Aprobada",
+  "label.select.invoice_rejected": "Factura rechazada",
+  "label.select.pending_accounting": "Pend. contabilidad",
+  "label.select.in_accounting": "En contabilidad",
+  "label.select.generated_payment": "Pago generado",
 
   "label.filter.preliquidationNumber": "Número de preliquidación",
 
@@ -30,4 +30,5 @@
   "label.modal.sendToAccounting": "¿Deseás enviar {{ quantity }} {{ text }} a contabilidad?",
   "label.button.send": "Sí, enviar",
   "label.button.sendToAccounting": "Enviar a contabilidad"
+
 }

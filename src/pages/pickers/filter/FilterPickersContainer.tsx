@@ -47,11 +47,11 @@ const FilterPickersContainer: React.FC<FilterContainerTypes> = (props) => {
         ),
       identificationNumber: yup
         .string()
+        .min(7,i18next.t("global:error.input.dniLength"))
         .matches(
-          VALIDATION_REGEX.regNumber,
+          VALIDATION_REGEX.regDNI,
           i18next.t("global:error.input.lettersOrSpecialCharacters")
-        )
-        .min(7,i18next.t("global:error.input.dniLength")),
+          ),
       email: yup
         .string()
         .matches(

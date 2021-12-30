@@ -33,8 +33,8 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
   detailPreliquidations,
   validationSchema,
   invoiceTypes,
+  initialValues,
   setDirty,
-  castDatePicker,
   getInvoiceDetailSave,
   getInvoiceDetailApprove,
   getInvoiceDetailDelete,
@@ -65,7 +65,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
     <div>
       <Form
         onSubmit={(value) => value}
-        initialValues={castDatePicker(invoiceDetail)}
+        initialValues={initialValues}
         mutators={{
           setValue: ([field, value], state, { changeValue }) => {
             delete value.label;
@@ -104,9 +104,9 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
               }}
             />
             <div className="container-detail-preliquidation form-detail-preliquidation">
-            <h3 className="subTitle-pending-data detail-preliquidation-margin-top">
-                    {i18next.t("invoice:label.invoice.subTitleInvoice")}
-                  </h3>
+              <h3 className="subTitle-pending-data detail-preliquidation-margin-top">
+                {i18next.t("invoice:label.invoice.subTitleInvoice")}
+              </h3>
               <div className="container-detail-preliquidation-row">
                 <div className="container-detail-preliquidation-col-sm-1 form-part-1-admin-pickers">
                   <Field
@@ -347,12 +347,18 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
               </button>
               <div className="detail-preliquidation-fondo">
                 <button
-                  disabled={invalid}
-                  className="detail-preliquidation-invoice-p"
+                  disabled={
+                    invalid ||
+                    !invoiceDetail.invoiceFile?.upload ||
+                    invoiceFileStatus.error ||
+                    dirty ||
+                    verifyStateType() ||
+                    detailPreliquidations.status.tag === "invoice_rejected"
+                  }
+                  className="detail-preliquidation-invoice-p reject-invoice"
                   onClick={() =>
                     getInvoiceDetailDelete({
-                      ...(values as detailPreliquidationDatePicker),
-                      presettementId,
+                      presettlementId: presettementId,
                     })
                   }
                 >
@@ -361,7 +367,14 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
 
                 <button
                   type="submit"
-                  disabled={invalid}
+                  disabled={
+                    invalid ||
+                    !invoiceDetail.invoiceFile?.upload ||
+                    invoiceFileStatus.error ||
+                    dirty ||
+                    verifyStateType() ||
+                    detailPreliquidations.status.tag === "invoice_rejected"
+                  }
                   className="button-submit-active"
                   onClick={() =>
                     getInvoiceDetailApprove({

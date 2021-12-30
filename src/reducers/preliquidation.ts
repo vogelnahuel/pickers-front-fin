@@ -12,6 +12,7 @@ import {
   PreliquidationItem,
   PreliquidationParamsMiddlewareType,
   PreliquidationsContentResponseType,
+  RejectInvoiceMiddlewareType,
 } from "sagas/types/preliquidation";
 import { RootState } from "store";
 import { endsWithAny } from "utils/endsWithAny";
@@ -177,7 +178,7 @@ export const preliquidationSlice = createSlice({
     getInvoiceDetailApproveSuccess: () => {},
     getInvoiceDetailDeleteRequest: (
       state: PreliquitadionStateType,
-      action: PayloadAction<detailPreliquidationDatePicker>
+      action: PayloadAction<RejectInvoiceMiddlewareType>
     ) => {},
     getInvoiceDetailDeleteError: () => {},
     getInvoiceDetailDeleteSuccess: () => {},
@@ -260,7 +261,9 @@ export const preliquidationSlice = createSlice({
     ) => {
       state.actualPage = action.payload;
     },
-
+    resetInvoiceDetail: (state: PreliquitadionStateType) => {
+      state.invoiceDetail = initialState.invoiceDetail;
+    },
     toggleItem: (
       state: PreliquitadionStateType,
       action: PayloadAction<PreliquidationItem>
@@ -305,5 +308,10 @@ export const allPreliquidationsSelected = createSelector(
     preli.preliquidations.filter((p) => p.status.tag === "approved").length ===
       preli.preliquidationsSelected.length
 );
+export const existApprovedPreliquidation = createSelector(
+  (state: RootState) => state.preliquidations,
+  (preli) =>preli.preliquidations.some((p) => p.status.tag === "approved")
+);
+
 
 export default preliquidationSlice.reducer;

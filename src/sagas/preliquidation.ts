@@ -13,7 +13,7 @@ import {
 } from "redux-saga/effects";
 import { DATE_FORMATS } from "utils/constants";
 import * as preliquidationsMiddleware from "../middleware/preliquidations";
-
+import { actions as notificationActions } from "../reducers/notification";
 import { actions as preliquidationActions } from "../reducers/preliquidation";
 import {
   DetailPreliquidationBodyParamsType,
@@ -24,8 +24,12 @@ import {
   PreliquidationCastParamsMiddlewareType,
   PreliquidationParamsMiddlewareType,
   PreliquidationsApiResponse,
+  RejectInvoiceMiddlewareType,
   UploadInvoiceFileMiddlewareType,
 } from "./types/preliquidation";
+import i18next from "i18next";
+import { NotificationStateType } from "reducers/types/notification";
+import { replace } from "connected-react-router";
 
 const sagas = [
   takeLatest(
@@ -68,13 +72,17 @@ export default sagas;
 const process = (body: DetailPreliquidationBodyParamsType) => {
   return {
     ...body,
-    emisionDate: moment(body?.emisionDate, DATE_FORMATS.shortDate).format(
-      DATE_FORMATS.shortISODate
-    ),
+    emisionDate: body?.emisionDate
+      ? moment(body?.emisionDate, DATE_FORMATS.shortDate).format(
+          DATE_FORMATS.shortISODate
+        )
+      : null,
   };
 };
 
-const processDatePicker = (payload: PreliquidationParamsMiddlewareType):PreliquidationCastParamsMiddlewareType => {
+const processDatePicker = (
+  payload: PreliquidationParamsMiddlewareType
+): PreliquidationCastParamsMiddlewareType => {
   let payloadCast: PreliquidationCastParamsMiddlewareType =
     payload as PreliquidationCastParamsMiddlewareType;
   if (payload.generatedAt) {
@@ -172,17 +180,21 @@ function* putSaveDetailInvoice({
   payload,
 }: PayloadAction<detailPreliquidationDatePicker>): Generator<
   | PutEffect<{ payload: detailPreliquidationDatePicker; type: string }>
-  | PutEffect<{ payload: undefined; type: string }>
+  | PutEffect<{ type: string }>
+  | PutEffect<{ type: string; content: NotificationStateType }>
   | CallEffect<AxiosResponse<DetailPreliquidationsInvoiceApiResponseType>>,
   void,
   DetailPreliquidationsInvoiceApiResponseType
 > {
   let result: DetailPreliquidationBodyParamsType = {
-    emisionDate: payload.emisionDate?.from,
-    invoiceType: payload.invoiceType,
-    invoiceNumber: payload.invoiceNumber,
-    salePoint: payload.salePoint,
-    caeNumber: payload.caeNumber,
+    emisionDate:
+      typeof payload.emisionDate !== "string"
+        ? payload.emisionDate?.from
+        : null,
+    invoiceType: payload.invoiceType?.tag ? payload.invoiceType : null,
+    invoiceNumber: payload.invoiceNumber || null,
+    salePoint: payload.salePoint || null,
+    caeNumber: payload.caeNumber || null,
   };
   result = process(result);
 
@@ -192,8 +204,16 @@ function* putSaveDetailInvoice({
     result
   );
   if (response.status !== 200) {
+    yield put(
+      notificationActions.showNotification({
+        level: "error",
+        title: i18next.t("global:title.modal.connectionError"),
+        body: i18next.t("global:label.modal.connectionError"),
+      })
+    );
     yield put(preliquidationActions.getInvoiceDetailSaveError());
   } else {
+    yield put(replace("/preliquidation"))
     yield put(preliquidationActions.getInvoiceDetailSaveSuccess());
   }
 }
@@ -203,12 +223,14 @@ function* patchApproveDetailInvoice({
 }: PayloadAction<detailPreliquidationDatePicker>): Generator<
   | PutEffect<{ payload: detailPreliquidationDatePicker; type: string }>
   | PutEffect<{ payload: undefined; type: string }>
+  | PutEffect<{ payload: string | undefined; type: string }>
   | CallEffect<AxiosResponse<DetailPreliquidationsInvoiceApiResponseType>>,
   void,
   DetailPreliquidationsInvoiceApiResponseType
 > {
   let result: DetailPreliquidationBodyParamsType = {
-    emisionDate: payload.emisionDate?.from,
+    emisionDate:
+      typeof payload.emisionDate !== "string" ? payload.emisionDate?.from : "",
     invoiceType: payload.invoiceType,
     invoiceNumber: payload.invoiceNumber,
     salePoint: payload.salePoint,
@@ -224,26 +246,28 @@ function* patchApproveDetailInvoice({
   if (response.status !== 200) {
     yield put(preliquidationActions.getInvoiceDetailApproveError());
   } else {
-    yield put(preliquidationActions.getInvoiceDetailApproveSuccess());
+    yield put(preliquidationActions.getInvoiceDetailRequest(payload.presettementId));
   }
 }
 
 function* putDeleteDetailInvoice({
   payload,
-}: PayloadAction<detailPreliquidationDatePicker>): Generator<
+}: PayloadAction<RejectInvoiceMiddlewareType>): Generator<
   | PutEffect<{ payload: detailPreliquidationDatePicker; type: string }>
   | PutEffect<{ payload: undefined; type: string }>
+  | PutEffect<{ type: string }>
   | CallEffect<AxiosResponse<DetailPreliquidationsInvoiceApiResponseType>>,
   void,
   DetailPreliquidationsInvoiceApiResponseType
 > {
   const response = yield call(
     preliquidationsMiddleware.putDeleteDetailInvoice,
-    payload.presettementId
+    payload.presettlementId
   );
   if (response.status !== 200) {
     yield put(preliquidationActions.getInvoiceDetailDeleteError());
   } else {
+    yield put(replace("/preliquidation"))
     yield put(preliquidationActions.getInvoiceDetailDeleteSuccess());
   }
 }
@@ -270,18 +294,21 @@ function* uploadInvoiceFile({
 
 function* deleteInvoiceFile({
   payload,
-}: PayloadAction<{ id: number}>): Generator<
+}: PayloadAction<{ id: number }>): Generator<
   | PutEffect<{ payload: undefined; type: string }>
+  | PutEffect<{ payload: string | undefined; type: string }>
   | CallEffect<AxiosResponse<ApiResponse<void>>>,
   void,
   ApiResponse<void>
 > {
   const response = yield call(
-    preliquidationsMiddleware.deleteInvoiceFile, payload.id);
+    preliquidationsMiddleware.deleteInvoiceFile,
+    payload.id
+  );
   if (response.status !== 200) {
     yield put(preliquidationActions.deleteInvoiceFileError());
   } else {
-    yield put(preliquidationActions.deleteInvoiceFileSuccess());
+    yield put(preliquidationActions.getInvoiceDetailRequest(payload.id.toString()));
   }
 }
 
