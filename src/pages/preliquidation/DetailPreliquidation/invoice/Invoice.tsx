@@ -373,7 +373,8 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                     invoiceFileStatus.error ||
                     dirty ||
                     verifyStateType() ||
-                    detailPreliquidations.status.tag === "invoice_rejected"
+                    detailPreliquidations.status.tag === "invoice_rejected" ||
+                    detailPreliquidations.status.tag === "approved"
                   }
                   className="button-submit-active"
                   onClick={() =>
