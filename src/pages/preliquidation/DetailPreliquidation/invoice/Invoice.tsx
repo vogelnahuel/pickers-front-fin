@@ -104,9 +104,9 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
               }}
             />
             <div className="container-detail-preliquidation form-detail-preliquidation">
-            <h3 className="subTitle-pending-data detail-preliquidation-margin-top">
-                    {i18next.t("invoice:label.invoice.subTitleInvoice")}
-                  </h3>
+              <h3 className="subTitle-pending-data detail-preliquidation-margin-top">
+                {i18next.t("invoice:label.invoice.subTitleInvoice")}
+              </h3>
               <div className="container-detail-preliquidation-row">
                 <div className="container-detail-preliquidation-col-sm-1 form-part-1-admin-pickers">
                   <Field
@@ -347,11 +347,18 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
               </button>
               <div className="detail-preliquidation-fondo">
                 <button
-                  disabled={invalid || !invoiceDetail.invoiceFile?.upload || invoiceFileStatus.error}
-                  className="detail-preliquidation-invoice-p"
+                  disabled={
+                    invalid ||
+                    !invoiceDetail.invoiceFile?.upload ||
+                    invoiceFileStatus.error ||
+                    dirty ||
+                    verifyStateType() ||
+                    detailPreliquidations.status.tag === "invoice_rejected"
+                  }
+                  className="detail-preliquidation-invoice-p reject-invoice"
                   onClick={() =>
                     getInvoiceDetailDelete({
-                      presettlementId: presettementId
+                      presettlementId: presettementId,
                     })
                   }
                 >
@@ -360,7 +367,14 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
 
                 <button
                   type="submit"
-                  disabled={invalid || !invoiceDetail.invoiceFile?.upload || invoiceFileStatus.error}
+                  disabled={
+                    invalid ||
+                    !invoiceDetail.invoiceFile?.upload ||
+                    invoiceFileStatus.error ||
+                    dirty ||
+                    verifyStateType() ||
+                    detailPreliquidations.status.tag === "invoice_rejected"
+                  }
                   className="button-submit-active"
                   onClick={() =>
                     getInvoiceDetailApprove({

@@ -176,3 +176,11 @@
     cursor: default;
   }
 }
+
+button.reject-invoice {
+  cursor: pointer;
+
+  &:disabled {
+    cursor: default;
+  }
+}

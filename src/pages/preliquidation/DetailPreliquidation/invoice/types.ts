@@ -19,6 +19,7 @@ export type detailPreliquidationInvoiceContainerPropsType = {
   getInvoiceDetailApprove: (params:detailPreliquidationDatePicker) => void;
   getInvoiceDetailDelete: (params: RejectInvoiceMiddlewareType) => void;
   uploadInvoiceFile: (params: UploadInvoiceFileMiddlewareType) => void;
+  resetInvoiceDetail: () => void;
   deleteInvoiceFile: (id: number) => void;
   setInvoiceFileStatus: (params: InvoiceFileStatus) => void;
   getInvoiceDetailTypes: () => void;
@@ -67,7 +68,7 @@ export type detailPreliquidationDatePicker = {
 };
 
 export type invoiceValidationSchema = {
-  emisionDate: DatePickerType | string;
+  emisionDate: DatePickerType | string | undefined;
   salePoint: string | undefined;
   invoiceType: TypeOfShape<{}> | InvoiceTypes;
   invoiceNumber: string | undefined;

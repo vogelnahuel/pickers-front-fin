@@ -1,3 +1,4 @@
+import { ReactElement, useState, useMemo } from "react";
 import { Viewer, Worker } from "@react-pdf-viewer/core";
 import "@react-pdf-viewer/core/lib/styles/index.css";
 import {
@@ -8,7 +9,6 @@ import {
 import "@react-pdf-viewer/default-layout/lib/styles/index.css";
 import { RenderCurrentPageLabelProps } from "@react-pdf-viewer/page-navigation";
 import { toolbarPlugin } from "@react-pdf-viewer/toolbar";
-import React, { ReactElement, useState } from "react";
 import nextPage from "../../assets/preli/nextPage.svg";
 import prePage from "../../assets/preli/prePage.svg";
 import zoomIn from "../../assets/preli/zoomIn.svg";
@@ -29,7 +29,7 @@ export const PdfViewer = (props: PdfViewerPropsTypes) => {
         } = slots;
         return (
           <div className="toolbar-container">
-            <div className="zoom-container" >
+            <div className="zoom-container">
               <div>
                 <ZoomOut>
                   {(props) => (
@@ -53,7 +53,6 @@ export const PdfViewer = (props: PdfViewerPropsTypes) => {
                     ></img>
                   )}
                 </ZoomIn>
-
               </div>
             </div>
             <div className="page-navigator-container">
@@ -72,8 +71,9 @@ export const PdfViewer = (props: PdfViewerPropsTypes) => {
               <div className="page-number">
                 <CurrentPageLabel>
                   {(props: RenderCurrentPageLabelProps) => (
-                    <span>{`${props.currentPage + 1} / ${props.numberOfPages
-                      }`}</span>
+                    <span>{`${props.currentPage + 1} / ${
+                      props.numberOfPages
+                    }`}</span>
                   )}
                 </CurrentPageLabel>
               </div>
@@ -90,8 +90,7 @@ export const PdfViewer = (props: PdfViewerPropsTypes) => {
                 </GoToNextPage>
               </div>
             </div>
-            <div className="buttons-container"
-            >
+            <div className="buttons-container">
               {props.children.map((child: ReactElement, index: number) => {
                 return (
                   <div key={index} className="child-button">
@@ -106,22 +105,25 @@ export const PdfViewer = (props: PdfViewerPropsTypes) => {
     </Toolbar>
   );
 
+  const [fileUrl] = useState(props.src);
+  const toolbarPluginInstance = toolbarPlugin();
+
   const defaultLayoutPluginInstance = defaultLayoutPlugin({
     renderToolbar,
   });
 
-  const [defaultPdfFile] = useState(props.src);
-  const toolbarPluginInstance = toolbarPlugin();
+  const plugins = useMemo(
+    () => [defaultLayoutPluginInstance, toolbarPluginInstance],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [fileUrl]
+  );
 
   return (
     <div className="pdf-container">
-      {defaultPdfFile && (
+      {fileUrl && (
         <>
           <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.6.347/build/pdf.worker.min.js">
-            <Viewer
-              fileUrl={defaultPdfFile}
-              plugins={[defaultLayoutPluginInstance, toolbarPluginInstance]}
-            />
+            <Viewer fileUrl={fileUrl} plugins={plugins} />
           </Worker>
         </>
       )}

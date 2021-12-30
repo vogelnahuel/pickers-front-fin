@@ -261,7 +261,9 @@ export const preliquidationSlice = createSlice({
     ) => {
       state.actualPage = action.payload;
     },
-
+    resetInvoiceDetail: (state: PreliquitadionStateType) => {
+      state.invoiceDetail = initialState.invoiceDetail;
+    },
     toggleItem: (
       state: PreliquitadionStateType,
       action: PayloadAction<PreliquidationItem>
