@@ -50,10 +50,8 @@ function* getTransactions({
             title: i18next.t("transactions:title.modal.rangeExceeded"),
             body: i18next.t("transactions:label.modal.rangeExceeded"),
           })
-        );
-        break;
-      case 20027:
-      case 20029:
+          );
+          break;
       case 20013:
         yield put(actions.setExportEnabled());
         yield put(
