@@ -52,6 +52,8 @@ function* getTransactions({
           })
         );
         break;
+      case 20027:
+      case 20029:
       case 20013:
         yield put(actions.setExportEnabled());
         yield put(
