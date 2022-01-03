@@ -58,9 +58,15 @@ const InvoiceContainer = (
     } else {
       try {
         const base64 = (await toBase64(file)) as string;
+
+        // Si se esta reemplazando el archivo, fuerza a que
+        // se vuelvan a consumir los datos desde el back ya que el
+        // formulario con los datos de factura debe estar vacio.
+        const refresh = props.invoiceDetail?.invoiceFile?.upload;
         props.uploadInvoiceFile({
           id: parseInt(params.id || "0"),
           content: base64,
+          refreshPage: refresh
         });
       } catch (err) {
         console.log("Base64 error: ", err);
@@ -190,6 +196,7 @@ const InvoiceContainer = (
   }, [
     props.invoiceDetail.id,
     props.detailPreliquidations.status.tag,
+    props.isFetching
   ]);
 
   const validationSchema: yup.SchemaOf<invoiceValidationSchema> = yup.object({
