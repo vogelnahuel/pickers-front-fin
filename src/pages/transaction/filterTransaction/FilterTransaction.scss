@@ -43,7 +43,7 @@
 @-moz-document url-prefix() { 
     .label-filter-transaction-alert {
         position: relative;
-        bottom: 3px;
+        bottom: 2px;
         font-family: 'Mulish';
         font-style: normal;
         font-weight: normal;
@@ -51,7 +51,15 @@
         line-height: 21px;
         letter-spacing: 0.0025em;
         color: #4D4D4D;
+        cursor: pointer;
+        padding-left: 10px;
     }
+    .checkbox-filter-transaction:checked{
+        -webkit-appearance: none;
+        background-image: url("../../../assets/checkbox.svg");
+        outline: none;
+        margin-bottom: -2px;
+   }
 }
 
 .filter-Imagen-width{
@@ -302,7 +310,7 @@
     }
     @-moz-document url-prefix() { 
         .label-filter-transaction-alert {
-            bottom: 1px;
+            bottom: 2px;
         }
     }
     .display-inline{
