@@ -73,9 +73,9 @@ export type VehicleType = {
   active: boolean;
   approve: boolean;
   patent: string;
-  expirationDateDriverLicense: string;
-  expirationDateIdentificationVehicle: string;
-  expirationDatePolicyVehicle: string;
+  expirationDateDriverLicense: string | null;
+  expirationDateIdentificationVehicle: string | null;
+  expirationDatePolicyVehicle: string | null;
 };
 export type AcountDataType = {
   bankIdentifier: string;

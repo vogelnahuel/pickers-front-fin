@@ -97,34 +97,40 @@ const process = (body: {
 
       expirationDatePolicyVehicle:
         body.vehicle.expirationDatePolicyVehicle &&
-        body.vehicle.expirationDatePolicyVehicle.match(
-          DATE_FORMATS.regexshortDate
-        )
-          ? moment(
-              body.vehicle.expirationDatePolicyVehicle,
-              DATE_FORMATS.shortDate
-            ).format(DATE_FORMATS.shortISODate)
-          : body.vehicle.expirationDatePolicyVehicle,
+        body.vehicle.expirationDatePolicyVehicle !== ""
+          ? body.vehicle.expirationDatePolicyVehicle.match(
+              DATE_FORMATS.regexshortDate
+            )
+            ? moment(
+                body.vehicle.expirationDatePolicyVehicle,
+                DATE_FORMATS.shortDate
+              ).format(DATE_FORMATS.shortISODate)
+            : body.vehicle.expirationDatePolicyVehicle
+          : null,
       expirationDateIdentificationVehicle:
         body.vehicle.expirationDateIdentificationVehicle &&
-        body.vehicle.expirationDateIdentificationVehicle.match(
-          DATE_FORMATS.regexshortDate
-        )
-          ? moment(
-              body.vehicle.expirationDateIdentificationVehicle,
-              DATE_FORMATS.shortDate
-            ).format(DATE_FORMATS.shortISODate)
-          : body.vehicle.expirationDateIdentificationVehicle,
+        body.vehicle.expirationDateIdentificationVehicle !== ""
+          ? body.vehicle.expirationDateIdentificationVehicle.match(
+              DATE_FORMATS.regexshortDate
+            )
+            ? moment(
+                body.vehicle.expirationDateIdentificationVehicle,
+                DATE_FORMATS.shortDate
+              ).format(DATE_FORMATS.shortISODate)
+            : body.vehicle.expirationDateIdentificationVehicle
+          : null,
       expirationDateDriverLicense:
         body.vehicle.expirationDateDriverLicense &&
-        body.vehicle.expirationDateDriverLicense.match(
-          DATE_FORMATS.regexshortDate
-        )
-          ? moment(
-              body.vehicle.expirationDateDriverLicense,
-              DATE_FORMATS.shortDate
-            ).format(DATE_FORMATS.shortISODate)
-          : body.vehicle.expirationDateDriverLicense,
+        body.vehicle.expirationDateDriverLicense !== ""
+          ? body.vehicle.expirationDateDriverLicense.match(
+              DATE_FORMATS.regexshortDate
+            )
+            ? moment(
+                body.vehicle.expirationDateDriverLicense,
+                DATE_FORMATS.shortDate
+              ).format(DATE_FORMATS.shortISODate)
+            : body.vehicle.expirationDateDriverLicense
+          : null,
     },
   };
 };
@@ -353,37 +359,40 @@ function* getPickerFile({
   }
 }
 
-
 function* fileDelete({
-  payload: { id,tag },
+  payload: { id, tag },
 }: PayloadAction<DeleteFileType>): Generator<
-| PutEffect<{ type: string }>
-|CallEffect<AxiosResponse<any>>
-|Promise<AxiosResponse<any>>
-| void,
+  | PutEffect<{ type: string }>
+  | CallEffect<AxiosResponse<any>>
+  | Promise<AxiosResponse<any>>
+  | void,
   void,
   { status: number; data: {} }
 > {
-  const response = yield call(pickersMiddleware.deleteFile, id,tag);
+  const response = yield call(pickersMiddleware.deleteFile, id, tag);
   if (response.status !== 200) {
-    yield put(detailPickerActions.getPickerFileDeleteError({tag}));
+    yield put(detailPickerActions.getPickerFileDeleteError({ tag }));
   } else {
     yield put(detailPickerActions.getPickerFileDeleteSuccess({ tag }));
     yield put(detailPickerActions.getPendingUserPickerRequest(id));
   }
 }
 
-
 function* putFileUpload({
-  payload: { id,content,tag },
-}: PayloadAction<{id:number,content:string,tag:keyof DetailPickerTagFileType}>): Generator<
-| CallEffect<AxiosResponse<{}>>
-| PutEffect<{ type: string }>
-| void,
+  payload: { id, content, tag },
+}: PayloadAction<{
+  id: number;
+  content: string;
+  tag: keyof DetailPickerTagFileType;
+}>): Generator<
+  CallEffect<AxiosResponse<{}>> | PutEffect<{ type: string }> | void,
   void,
   { status: number; data: {} }
 > {
-  const response = yield call(pickersMiddleware.fileUpload, id,{content:content,tag:tag} );
+  const response = yield call(pickersMiddleware.fileUpload, id, {
+    content: content,
+    tag: tag,
+  });
   if (response.status !== 200) {
     yield put(detailPickerActions.getPickerFileSaveError({ tag }));
   } else {
@@ -391,4 +400,3 @@ function* putFileUpload({
     yield put(detailPickerActions.getPendingUserPickerRequest(id));
   }
 }
-
