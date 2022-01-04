@@ -1,13 +1,13 @@
 import { connect } from "react-redux";
 import { AppDispatch, RootState } from "store";
-import { DetailPreliquidation } from "./DetailPreliquidation";
-import { DetailPreliquidationContainerPropsType } from "./types";
+import { DetailPreliquidation } from "./WrapperPreliquidation";
+import { WrapperPreliquidationContainerPropsType } from "./types";
 import { preliquidationSelector } from "reducers/preliquidation";
 import { NotificationStateType } from "reducers/types/notification";
 import { actions as notificationActions } from "reducers/notification";
 
 export const DetailPreliquidationContainer = (
-  props: DetailPreliquidationContainerPropsType
+  props: WrapperPreliquidationContainerPropsType
 ): JSX.Element => {
 
 

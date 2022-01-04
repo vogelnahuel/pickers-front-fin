@@ -1,16 +1,18 @@
 import { Header } from "component/admin/Header/Header";
 import Nav from "component/admin/Nav/Nav";
 import NotificationModal from "component/modal/NotificationModal";
-import "pages/preliquidation/DetailPreliquidation/detailPreliquidation.scss";
+
 import React from "react";
 import InvoiceContainer from "./invoice/InvoiceContainer";
-import "pages/preliquidation/DetailPreliquidation/detailPreliquidations.scss";
-import { DetailPreliquidationPropsType } from "./types";
+import "./detailPreliquidation.scss";
+
+import DetailPreliquidationContainer from "./preliquidation/DetailPreliquidationContainer";
+import { WrapperPreliquidationPropsType } from "./types";
 
 
 
 
-export const DetailPreliquidation: React.FC<DetailPreliquidationPropsType> = ({
+export const DetailPreliquidation: React.FC<WrapperPreliquidationPropsType> = ({
   isFetching,
   actualPage
 }): JSX.Element => {
@@ -29,7 +31,7 @@ export const DetailPreliquidation: React.FC<DetailPreliquidationPropsType> = ({
           
 
           <NotificationModal />
-          {containerInvoice ? <InvoiceContainer/> : <></>}
+          {containerInvoice ? <DetailPreliquidationContainer/> : <InvoiceContainer/>}
         </div>
 
       </div>

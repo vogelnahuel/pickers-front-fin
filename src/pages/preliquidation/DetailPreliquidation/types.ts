@@ -1,11 +1,11 @@
 import { NotificationStateType } from "reducers/types/notification";
 
-export type DetailPreliquidationContainerPropsType = {
+export type WrapperPreliquidationContainerPropsType = {
   isFetching: boolean;
   actualPage:string;
   showNotification: (notification: NotificationStateType) => void;
 };
-export type DetailPreliquidationPropsType = {
+export type WrapperPreliquidationPropsType = {
   isFetching: boolean;
   actualPage:string;
 };
