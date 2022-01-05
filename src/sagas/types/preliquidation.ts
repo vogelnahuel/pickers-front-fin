@@ -142,3 +142,54 @@ export type InvoiceTypes = {
   name: string;
   tag: string;
 };
+
+
+export type DetatilPreliquidationsApiResponse = {
+  data: {
+    result: {
+      id: number,
+      status: {
+        id: number,
+        name: string,
+        tag: string
+      },
+      generatedAt: string,
+      fiscalNumber: string,
+      companyName: string,
+      sapCode: string,
+      total: number,
+      manualCorrection: {
+        maxAllowedPlus: number,
+        maxAllowedSubtract: number,
+      },
+      histories: [
+        {
+          id: number,
+          createdAt: string,
+          fieldEdited: string,
+          beforeValue: number,
+          currentValue: number,
+          reasonTag: {
+            id: number,
+            tag: string
+          }
+        }
+      ],
+      transactions: {
+        quantity: number,
+        items: [
+          {
+            transactionCode?: string | null
+            finishedAt: string,
+            status: {
+              name: string,
+              tag: string
+            },
+            amount: number
+          }
+        ]
+      }
+    }
+  };
+  status: number;
+};
