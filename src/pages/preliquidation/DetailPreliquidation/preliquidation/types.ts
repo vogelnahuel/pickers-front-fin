@@ -8,6 +8,7 @@ export type DetailPreliquidationContainerPropsType = {
   setActualPage: (page: PagesPreliquidationTypes) => void;
 };
 export type DetailPreliquidationPropsType = {
+  presettementId?:string
   changePage: (page: PagesPreliquidationTypes) => void;
   handleClickBack:()=>void;
   actualPage:string;

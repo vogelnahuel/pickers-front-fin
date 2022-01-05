@@ -29,13 +29,14 @@ export const DetailPreliquidation = ({
   changePage,
   handleClickBack,
   actualPage,
+  presettementId
 }: DetailPreliquidationPropsType) => {
   return (
     <div>
       <div className="header-container">
         <TabControler
           tabs={tabs}
-          changePage={(page)=>changePage(page)}
+          changePage={(page)=>changePage(page as PagesPreliquidationTypes)}
           actualPage={actualPage}
         />
         <Back onClick={handleClickBack} />
@@ -46,7 +47,7 @@ export const DetailPreliquidation = ({
             "detailPreliquidation:label.subtitle.preliquidationNumber"
           )}
         </h2>
-        <p className="detail-preliquidation-number">{2201100002}</p>
+        <p className="detail-preliquidation-number">{presettementId}</p>
       </div>
     </div>
   );
