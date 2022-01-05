@@ -24,7 +24,7 @@ export const DetailPreliquidationContainer = (
      history.goBack();
    };
 
-  return <DetailPreliquidation  handleClickBack ={handleClickBack} changePage={changePage} {...props} />;
+  return <DetailPreliquidation initialValues={undefined} handleClickBack ={handleClickBack} changePage={changePage} {...props} />;
 
 
 };

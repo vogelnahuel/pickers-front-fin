@@ -1,0 +1,83 @@
+@import "@pickit/pickit-grid-system";
+
+.container-detail-preliquidation-form {
+  @include container(3, 20px);
+}
+.container-detail-preliquidation-card {
+  @include container(4, 20px);
+}
+.detail-preliquidation-container-card {
+  width: 100%;
+  padding-top: 30px;
+  margin-bottom: 40px;
+}
+.container-detail-preliquidation-subtitle-amount {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+.overflow-scroll {
+  max-height: 322px;
+  overflow-y: auto;
+}
+.display-filter-preliquidation {
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  box-sizing: border-box;
+  border-radius: 10px;
+  margin-top: 16px;
+  padding-top: 35px;
+  padding-left: 30px;
+  padding-bottom: 25px;
+  padding-right: 8px;
+}
+.container-table-amount-preliquidation {
+  display: flex;
+  justify-content: space-between;
+  width: 93%;
+  p {
+    font-family: "Mulish";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: 0.004em;
+    color: #828282;
+    b {
+      font-weight: bold;
+      font-size: 16px;
+      line-height: 20px;
+      text-align: right;
+      letter-spacing: 0.0125em;
+      color: #4d4d4d;
+    }
+  }
+}
+.table-amount-preliquidation-subtitle {
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.0125em;
+  color: #4d4d4d;
+}
+.detail-preliquidation-subtitle-amount {
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.0125em;
+  color: #0098ff;
+  cursor: pointer;
+  margin-left: 10px;
+}
+.transparent{
+  position: relative;
+  top: -20px;
+  height: 20px;
+  width: 95%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 63.36%);
+}
