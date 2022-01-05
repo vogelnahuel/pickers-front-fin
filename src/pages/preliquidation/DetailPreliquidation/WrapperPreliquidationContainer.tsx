@@ -1,8 +1,8 @@
 import { connect } from "react-redux";
 import { AppDispatch, RootState } from "store";
 import { WrapperPreliquidation } from "./WrapperPreliquidation";
-import { WrapperPreliquidationContainerPropsType } from "./types";
-import { preliquidationSelector,actions } from "reducers/preliquidation";
+import { PagesPreliquidationTypes, WrapperPreliquidationContainerPropsType } from "./types";
+import { preliquidationSelector, actions } from "reducers/preliquidation";
 import { NotificationStateType } from "reducers/types/notification";
 import { actions as notificationActions } from "reducers/notification";
 
@@ -29,7 +29,7 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   showNotification: (content: NotificationStateType) => {
     dispatch(notificationActions.showNotification(content));
   },
-  setActualPage: (page: string) => {
+  setActualPage: (page: PagesPreliquidationTypes) => {
     dispatch(actions.setActualPage(page));
   },
 });

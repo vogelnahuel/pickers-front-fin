@@ -25,6 +25,7 @@ import calckBlue from "./../../../../assets/preli/calcBlue.svg";
 import invoiceBlack from "./../../../../assets/preli/invoiceBlack.svg";
 import invoiceBlue from "./../../../../assets/preli/invoiceBlue.svg";
 import Back from "component/back/Back";
+import { PagesPreliquidationTypes } from "../types";
 export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
   isFetching,
   invoiceFileStatus,
@@ -47,19 +48,19 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
 }): JSX.Element => {
   const verifyStateType = () =>
     statusList.includes(detailPreliquidations.status.tag);
- 
-const tabs = [
-  {
-    title: "Preliquidacion",
-    id: "preliquidation",
-    icons: { active: calckBlue, disable: calckBlack },
-  },
-  {
-    title: "Factura",
-    id: "invoice",
-    icons: { active: invoiceBlue, disable: invoiceBlack },
-  },
-];
+
+  const tabs = [
+    {
+      title: "Preliquidacion",
+      id: PagesPreliquidationTypes.PRELI,
+      icons: { active: calckBlue, disable: calckBlack },
+    },
+    {
+      title: "Factura",
+      id: PagesPreliquidationTypes.INVOICE,
+      icons: { active: invoiceBlue, disable: invoiceBlack },
+    },
+  ];
 
   const pdfControllerRef = useRef<any>();
   return (
@@ -80,10 +81,10 @@ const tabs = [
             <div className="header-container">
               <TabControler
                 tabs={tabs}
-                changePage={() => {
-                  changePage("preliquidation", dirty);
+                changePage={(page) => {
+                  changePage(page as PagesPreliquidationTypes, dirty);
                 }}
-                actualPage={"invoice"}
+                actualPage={PagesPreliquidationTypes.INVOICE}
               />
               <Back onClick={() => handleClickBack(dirty)} />
             </div>

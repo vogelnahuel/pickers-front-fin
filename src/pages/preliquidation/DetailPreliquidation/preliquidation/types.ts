@@ -1,14 +1,16 @@
 import { NotificationStateType } from "reducers/types/notification";
+import { PagesPreliquidationTypes } from "../types";
 
 export type DetailPreliquidationContainerPropsType = {
   isFetching: boolean;
   actualPage:string;
   showNotification: (notification: NotificationStateType) => void;
-  setActualPage: (page: string) => void;
+  setActualPage: (page: PagesPreliquidationTypes) => void;
 };
 export type DetailPreliquidationPropsType = {
-  changePage: (page: string) => void;
-  handleClickBack:(params:boolean)=>void;
+  presettementId?:string
+  changePage: (page: PagesPreliquidationTypes) => void;
+  handleClickBack:()=>void;
   actualPage:string;
   initialValues:any
 };
