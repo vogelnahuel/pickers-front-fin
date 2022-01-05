@@ -61,7 +61,13 @@
 .detail-preliquidation-margin-top{
   margin-top: 40px;
 }
-._28B9K2Lp5eIqcQvEtU2fqv input{
+
+.theme-default ._28B9K2Lp5eIqcQvEtU2fqv {
+  min-height: 48px;
+  height: auto;
+}
+
+.theme-default ._28B9K2Lp5eIqcQvEtU2fqv input{
   color: #2D2D2D;
   font-family: "Mulish";
   font-style: normal;
@@ -70,6 +76,7 @@
   line-height: 21px;
   letter-spacing: 0.005em;
   border-bottom: 1px solid #828282;
+  font-weight: 400;
 }
 ._28B9K2Lp5eIqcQvEtU2fqv input{
   position: relative;
