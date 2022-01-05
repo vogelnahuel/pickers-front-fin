@@ -81,8 +81,8 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
             <div className="header-container">
               <TabControler
                 tabs={tabs}
-                changePage={() => {
-                  changePage(PagesPreliquidationTypes.PRELI, dirty);
+                changePage={(page) => {
+                  changePage(page, dirty);
                 }}
                 actualPage={PagesPreliquidationTypes.INVOICE}
               />

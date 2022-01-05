@@ -35,7 +35,7 @@ export const DetailPreliquidation = ({
       <div className="header-container">
         <TabControler
           tabs={tabs}
-          changePage={()=>changePage(PagesPreliquidationTypes.INVOICE)}
+          changePage={(page)=>changePage(page)}
           actualPage={actualPage}
         />
         <Back onClick={handleClickBack} />
