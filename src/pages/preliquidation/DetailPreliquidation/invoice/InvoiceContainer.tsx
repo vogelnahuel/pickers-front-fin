@@ -38,7 +38,7 @@ const InvoiceContainer = (
 
   useEffect(() => {
     props.setInvoiceFileStatus({ loading: false, error: false });
-    props.setActualPage(PagesPreliquidationTypes.INVOICE);
+    props.setActualPage("invoice");
     props.getInvoiceDetailTypes();
     props.getInvoiceDetail(params.id);
 

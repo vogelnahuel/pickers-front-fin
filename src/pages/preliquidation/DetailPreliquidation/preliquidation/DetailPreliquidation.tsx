@@ -1,4 +1,5 @@
-import TabControler from "component/admin/TabControler/TabControler";
+import {TabControler} from "component/admin/TabControler/TabControler";
+import { TabType } from "component/admin/TabControler/types";
 import Back from "component/back/Back";
 
 import i18next from "i18next";
@@ -11,15 +12,15 @@ import invoiceBlack from "./../../../../assets/preli/invoiceBlack.svg";
 import invoiceBlue from "./../../../../assets/preli/invoiceBlue.svg";
 import { DetailPreliquidationPropsType } from "./types";
 
-const tabs = [
+const tabs:TabType<PagesPreliquidationTypes>[] = [
   {
     title: "Preliquidacion",
-    id: PagesPreliquidationTypes.PRELI,
+    id: "preliquidation",
     icons: { active: calckBlue, disable: calckBlack },
   },
   {
     title: "Factura",
-    id: PagesPreliquidationTypes.INVOICE,
+    id: "invoice",
     icons: { active: invoiceBlue, disable: invoiceBlack },
   },
 ];
@@ -34,9 +35,9 @@ export const DetailPreliquidation = ({
   return (
     <div>
       <div className="header-container">
-        <TabControler
+        <TabControler<PagesPreliquidationTypes>
           tabs={tabs}
-          changePage={(page)=>changePage(page as PagesPreliquidationTypes)}
+          changePage={(page)=>changePage(page)}
           actualPage={actualPage}
         />
         <Back onClick={handleClickBack} />

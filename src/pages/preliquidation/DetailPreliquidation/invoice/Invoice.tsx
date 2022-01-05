@@ -19,13 +19,14 @@ import useValidationSchema from "hooks/useValidationSchema";
 import { InvoiceTypes } from "sagas/types/preliquidation";
 import PdfController from "component/pdfController/PdfController";
 import { statusList } from "utils/constants";
-import TabControler from "component/admin/TabControler/TabControler";
+import {TabControler} from "component/admin/TabControler/TabControler";
 import calckBlack from "./../../../../assets/preli/calcBlack.svg";
 import calckBlue from "./../../../../assets/preli/calcBlue.svg";
 import invoiceBlack from "./../../../../assets/preli/invoiceBlack.svg";
 import invoiceBlue from "./../../../../assets/preli/invoiceBlue.svg";
 import Back from "component/back/Back";
 import { PagesPreliquidationTypes } from "../types";
+import { TabType } from "component/admin/TabControler/types";
 export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
   isFetching,
   invoiceFileStatus,
@@ -49,15 +50,15 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
   const verifyStateType = () =>
     statusList.includes(detailPreliquidations.status.tag);
 
-  const tabs = [
+  const tabs:TabType<PagesPreliquidationTypes>[] = [
     {
       title: "Preliquidacion",
-      id: PagesPreliquidationTypes.PRELI,
+      id: "preliquidation",
       icons: { active: calckBlue, disable: calckBlack },
     },
     {
       title: "Factura",
-      id: PagesPreliquidationTypes.INVOICE,
+      id: "invoice",
       icons: { active: invoiceBlue, disable: invoiceBlack },
     },
   ];
@@ -79,12 +80,12 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
         {({ invalid, handleSubmit, form, values, dirty }) => (
           <form className="form-filter-transaction" onSubmit={handleSubmit}>
             <div className="header-container">
-              <TabControler
+              <TabControler<PagesPreliquidationTypes>
                 tabs={tabs}
                 changePage={(page) => {
-                  changePage(page as PagesPreliquidationTypes, dirty);
+                  changePage(page, dirty);
                 }}
-                actualPage={PagesPreliquidationTypes.INVOICE}
+                actualPage={"invoice"}
               />
               <Back onClick={() => handleClickBack(dirty)} />
             </div>
