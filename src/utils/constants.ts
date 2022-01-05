@@ -34,7 +34,7 @@ export const preliquidationTableTitles: string[] = [
   "preli:label.table.total",
 ];
 
-export const statusList: string[] = [ "pending_accounting", "generated_payment", "in_accounting" ];
+export const preliStatusList: string[] = [ "approved", "pending_accounting", "generated_payment", "in_accounting" ];
 
 export const DATE_FORMATS = {
   regex:
