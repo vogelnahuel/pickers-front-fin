@@ -1,4 +1,11 @@
 {
   "label.button.goBack": "Volver",
-  "label.subtitle.preliquidationNumber": "Número de preliquidación"
+  "label.subtitle.preliquidationNumber": "Número de preliquidación",
+
+
+  "label.modal.preliquidationNumber": "Número de preliquidación",
+  "label.modal.status": "Estado",
+  "label.modal.dateOfIssue": "Fecha de emisión",
+
+  "label.modal.instruction": "Ingresá el nuevo monto de la preliquidación"
 }

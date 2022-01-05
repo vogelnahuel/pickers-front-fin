@@ -29,6 +29,7 @@ export const initialState: PreliquitadionStateType = {
     loading: false,
     message: "",
   },
+  showEditPreliquidationModal: false,
   preliquidations: [],
   dirty: false,
   preliquidationsSelected: [],
@@ -229,7 +230,9 @@ export const preliquidationSlice = createSlice({
         url: null,
       };
     },
-
+    toggleModalVisibility: (state: PreliquitadionStateType, action: PayloadAction<boolean>) => {
+      state.showEditPreliquidationModal = action.payload
+    },
     getInvoiceDetailTypesRequest: () => {},
     getInvoiceDetailTypesError: () => {},
     getInvoiceDetailTypesSuccess: (
