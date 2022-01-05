@@ -1,18 +1,17 @@
 import { connect } from "react-redux";
 import { AppDispatch, RootState } from "store";
-import { DetailPreliquidation } from "./WrapperPreliquidation";
+import { WrapperPreliquidation } from "./WrapperPreliquidation";
 import { WrapperPreliquidationContainerPropsType } from "./types";
-import { preliquidationSelector } from "reducers/preliquidation";
+import { preliquidationSelector,actions } from "reducers/preliquidation";
 import { NotificationStateType } from "reducers/types/notification";
 import { actions as notificationActions } from "reducers/notification";
 
-export const DetailPreliquidationContainer = (
+export const WrapperPreliquidationContainer = (
   props: WrapperPreliquidationContainerPropsType
 ): JSX.Element => {
 
-
   return (
-    <DetailPreliquidation
+    <WrapperPreliquidation
       {...props}
 
       actualPage={props.actualPage}
@@ -30,8 +29,11 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   showNotification: (content: NotificationStateType) => {
     dispatch(notificationActions.showNotification(content));
   },
+  setActualPage: (page: string) => {
+    dispatch(actions.setActualPage(page));
+  },
 });
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(DetailPreliquidation);
+)(WrapperPreliquidationContainer);

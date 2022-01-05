@@ -43,7 +43,7 @@ export const initialState: PreliquitadionStateType = {
   },
   seeMore: true,
 
-  actualPage: "",
+  actualPage: "preliquidation",
   invoiceTypes: [],
   detailPreliquidations: {
     id: 0,

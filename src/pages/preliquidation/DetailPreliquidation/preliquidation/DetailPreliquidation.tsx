@@ -8,39 +8,36 @@ import calckBlack from "./../../../../assets/preli/calcBlack.svg";
 import calckBlue from "./../../../../assets/preli/calcBlue.svg";
 import invoiceBlack from "./../../../../assets/preli/invoiceBlack.svg";
 import invoiceBlue from "./../../../../assets/preli/invoiceBlue.svg";
+import { DetailPreliquidationPropsType } from "./types";
 
 
 const tabs = [
   {
     title: "Preliquidacion",
-    id: "PRELI",
+    id: "preliquidation",
     icons: { active: calckBlue, disable: calckBlack },
   },
   {
     title: "Factura",
-    id: "INVOICE",
+    id: "invoice",
     icons: { active: invoiceBlue, disable: invoiceBlack },
   },
 ];
 
 export const DetailPreliquidation = ({
-  isFetching,
   changePage,
   handleClickBack,
-  initialValues,
-  validationSchema,
-}: any) => {
+  actualPage
+}: DetailPreliquidationPropsType) => {
   return (
     <div>
       <div className="header-container">
         <TabControler
           tabs={tabs}
-          changePage={() => {
-            changePage("INVOICE", "");
-          }}
-          actualPage={"PRELI"}
+          changePage={changePage}
+          actualPage={actualPage}
         />
-        <Back onClick={() => handleClickBack("")} />
+        <Back onClick={() => handleClickBack(false)} />
       </div>
       <div className="mainContainerFlex">
         <h2 className="detail-preliquidation-h2">

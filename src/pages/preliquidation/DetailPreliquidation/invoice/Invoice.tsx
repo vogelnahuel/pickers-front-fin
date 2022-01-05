@@ -47,18 +47,19 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
 }): JSX.Element => {
   const verifyStateType = () =>
     statusList.includes(detailPreliquidations.status.tag);
-  const tabs = [
-    {
-      title: "Preliquidacion",
-      id: "PRELI",
-      icons: { active: calckBlue, disable: calckBlack },
-    },
-    {
-      title: "Factura",
-      id: "INVOICE",
-      icons: { active: invoiceBlue, disable: invoiceBlack },
-    },
-  ];
+ 
+const tabs = [
+  {
+    title: "Preliquidacion",
+    id: "preliquidation",
+    icons: { active: calckBlue, disable: calckBlack },
+  },
+  {
+    title: "Factura",
+    id: "invoice",
+    icons: { active: invoiceBlue, disable: invoiceBlack },
+  },
+];
 
   const pdfControllerRef = useRef<any>();
   return (
@@ -80,9 +81,9 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
               <TabControler
                 tabs={tabs}
                 changePage={() => {
-                  changePage("PRELI", dirty);
+                  changePage("preliquidation", dirty);
                 }}
-                actualPage={"INVOICE"}
+                actualPage={"invoice"}
               />
               <Back onClick={() => handleClickBack(dirty)} />
             </div>

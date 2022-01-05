@@ -12,15 +12,10 @@ import { WrapperPreliquidationPropsType } from "./types";
 
 
 
-export const DetailPreliquidation: React.FC<WrapperPreliquidationPropsType> = ({
+export const WrapperPreliquidation: React.FC<WrapperPreliquidationPropsType> = ({
   isFetching,
   actualPage
 }): JSX.Element => {
-
-
-  const containerInvoice = true;
-
-
 
   return (
     <div className="background-Grey">
@@ -31,7 +26,7 @@ export const DetailPreliquidation: React.FC<WrapperPreliquidationPropsType> = ({
           
 
           <NotificationModal />
-          {containerInvoice ? <DetailPreliquidationContainer/> : <InvoiceContainer/>}
+          {actualPage==="preliquidation" ? <DetailPreliquidationContainer/> : <InvoiceContainer/>}
         </div>
 
       </div>

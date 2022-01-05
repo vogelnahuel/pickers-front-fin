@@ -17,6 +17,7 @@ const PendingUserAdminContainer: React.FC<PickerContainerTypes> = (
   props
 ): JSX.Element => {
   const changePage = (page: string) => {
+    console.log(page)
     if (props.isDetail || props.actualPage !== page) props.setActualPage(page);
   };
 
