@@ -25,6 +25,7 @@ import calckBlue from "./../../../../assets/preli/calcBlue.svg";
 import invoiceBlack from "./../../../../assets/preli/invoiceBlack.svg";
 import invoiceBlue from "./../../../../assets/preli/invoiceBlue.svg";
 import Back from "component/back/Back";
+import { PagesPreliquidationTypes } from "../types";
 export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
   isFetching,
   invoiceFileStatus,
@@ -51,12 +52,12 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
   const tabs = [
     {
       title: "Preliquidacion",
-      id: "preliquidation",
+      id: PagesPreliquidationTypes.PRELI,
       icons: { active: calckBlue, disable: calckBlack },
     },
     {
       title: "Factura",
-      id: "invoice",
+      id: PagesPreliquidationTypes.INVOICE,
       icons: { active: invoiceBlue, disable: invoiceBlack },
     },
   ];
@@ -81,9 +82,9 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
               <TabControler
                 tabs={tabs}
                 changePage={() => {
-                  changePage("preliquidation", dirty);
+                  changePage(PagesPreliquidationTypes.PRELI, dirty);
                 }}
-                actualPage={"invoice"}
+                actualPage={PagesPreliquidationTypes.INVOICE}
               />
               <Back onClick={() => handleClickBack(dirty)} />
             </div>

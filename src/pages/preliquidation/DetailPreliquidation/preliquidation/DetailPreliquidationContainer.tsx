@@ -14,7 +14,9 @@ export const DetailPreliquidationContainer = (
 ): JSX.Element => {
   const history = useHistory();
 
+
   const changePage = (page: PagesPreliquidationTypes) => {
+  
     if (props.actualPage !== page) 
     props.setActualPage(page);
   };

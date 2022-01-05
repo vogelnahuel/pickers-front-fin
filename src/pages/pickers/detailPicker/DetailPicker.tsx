@@ -100,7 +100,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                 <div className="header-container">
                   <TabControler
                     tabs={tabs}
-                    changePage={(page: string) => changePage(page, dirty)}
+                    changePage={(page) => changePage(page, dirty)}
                     actualPage={actualPage}
                   />
                   <Back onClick={() => goBack(true, dirty)} />

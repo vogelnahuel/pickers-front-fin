@@ -1,3 +1,4 @@
+import { PagesPreliquidationTypes } from "pages/preliquidation/DetailPreliquidation/types";
 import { PreliquidationFilterExtraType, PreliquidationFiltersType } from "pages/preliquidation/filter/types";
 import {
   InvoiceTypes,
@@ -18,7 +19,7 @@ export type PreliquitadionStateType = {
   detailPreliquidations: DetailPreliquidationsType;
   invoiceDetail: DetailInvoiceType;
   dirty: boolean;
-  actualPage: string;
+  actualPage: PagesPreliquidationTypes;
   invoiceTypes: InvoiceTypes[];
  
 };

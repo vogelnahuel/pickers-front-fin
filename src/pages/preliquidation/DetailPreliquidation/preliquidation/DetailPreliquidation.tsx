@@ -14,12 +14,12 @@ import { DetailPreliquidationPropsType } from "./types";
 const tabs = [
   {
     title: "Preliquidacion",
-    id: "preliquidation",
+    id: PagesPreliquidationTypes.PRELI,
     icons: { active: calckBlue, disable: calckBlack },
   },
   {
     title: "Factura",
-    id: "invoice",
+    id: PagesPreliquidationTypes.INVOICE,
     icons: { active: invoiceBlue, disable: invoiceBlack },
   },
 ];
