@@ -261,6 +261,12 @@ export const preliquidationSlice = createSlice({
     ) => {
       state.actualPage = action.payload;
     },
+    resetAllSelected: (
+      state: PreliquitadionStateType,
+      action: PayloadAction
+    ) => {
+      state.preliquidationsSelected = [];
+    },
     resetInvoiceDetail: (state: PreliquitadionStateType) => {
       state.invoiceDetail = initialState.invoiceDetail;
     },

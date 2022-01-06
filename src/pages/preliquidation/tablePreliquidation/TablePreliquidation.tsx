@@ -24,6 +24,7 @@ const TablePreliquidation = ({
   toggleItem,
   isAllSelected,
   toggleAll,
+  resetAllSelected,
   approved
 }: TablePreliquidationProps) => {
   const history = useHistory();
@@ -35,8 +36,13 @@ const TablePreliquidation = ({
     e: React.MouseEvent<HTMLTableRowElement, MouseEvent>,
     id: number
   ) => {
+   
     const target = e?.target as HTMLElement;
-    if (target?.localName !== "input") history.push(`/preliquidation/${id}`);
+    if (target?.localName !== "input"){
+      resetAllSelected();
+      history.push(`/preliquidation/${id}`);
+    }
+  
   };
 
 
@@ -107,6 +113,9 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   toggleAll: () => {
     dispatch(preliActions.toggleAll());
   },
+  resetAllSelected:()=>{
+    dispatch(preliActions.resetAllSelected())
+  }
 });
 export default connect(
   mapStateToProps,
