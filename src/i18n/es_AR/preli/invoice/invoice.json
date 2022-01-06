@@ -22,6 +22,7 @@
   "label.buttons.refuse": "Rechazar Factura",
   "label.buttons.approve": "Aprobar",
   "label.button.uploadInvoice": "Cargar factura",
+  "label.button.previousInvoice": "Ver factura anterior",
   "title.modal.deleteInvoice": "Estás por eliminar la factura",
   "label.modal.deleteInvoice": "¿Realmente querés eliminarla?",
   "button.modal.cancel": "Cancelar",

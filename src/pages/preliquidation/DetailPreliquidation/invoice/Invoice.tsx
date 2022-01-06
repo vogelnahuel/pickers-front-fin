@@ -206,7 +206,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                     buttonText={
                       invoiceDetail.invoiceFile?.upload &&
                       invoiceFileStatus.error
-                        ? i18next.t("global:label.button.retry")
+                        ? i18next.t("invoice:label.button.previousInvoice")
                         : i18next.t("invoice:label.button.uploadInvoice")
                     }
                     fileUploaded={invoiceDetail.invoiceFile?.upload}
