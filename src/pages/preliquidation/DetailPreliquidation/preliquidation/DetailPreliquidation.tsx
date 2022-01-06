@@ -16,6 +16,7 @@ import { DetailPreliquidationPropsType } from "./types";
 import  edit from '../../../../assets/preli/edit.svg'
 import "./detailPreliquidation.scss"
 import { PagesPreliquidationTypes } from "../types";
+import { DetailTablePreliquidation } from "./detailtable/DetailTablePreliquidation";
 
 const tabs:TabType<PagesPreliquidationTypes>[] = [
   {
@@ -146,7 +147,7 @@ export const DetailPreliquidation = ({
                     </div>
                   </div>
                   <div className="display-filter-preliquidation">
-                  componente Transacciones
+                  <DetailTablePreliquidation/>
                     <div className="transparent"></div>
 
                     <div>
@@ -154,7 +155,7 @@ export const DetailPreliquidation = ({
                         Total
                       </h3>
                       <div className="container-table-amount-preliquidation">
-                        <p>Transacciones</p>
+                        <p>15 Transacciones</p>
                         <p>
                           <b>$300.12</b>
                         </p>
