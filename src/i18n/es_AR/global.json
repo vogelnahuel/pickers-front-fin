@@ -50,6 +50,7 @@
   "error.input.salePoint": "Ingresá un número de 4 o 5 dígitos",
   "error.input.invoiceNumber": "Ingresá un número de 8 dígitos",
   "error.input.caeNumber": "Ingresá un número de 14 dígitos",
+  "error.input.numbersOnly": "Solo se admiten caracteres numéricos",
 
 
   "label.label.yes":"Si",
