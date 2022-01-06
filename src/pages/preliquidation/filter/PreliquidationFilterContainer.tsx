@@ -32,14 +32,14 @@ const search = (values: PreliquidationFiltersType) => {
         .min(5,i18next.t("filterPreliquidation:error.input.presettlmentIdLength"))
         .matches(
           VALIDATION_REGEX.regNumber,
-          i18next.t("global:error.input.specialCharacters")
+          i18next.t("global:error.input.numbersOnly")
         ),
         fiscalNumber: yup
         .string()
         .min(11,i18next.t("filterPreliquidation:error.input.fiscalNumberLength"))
         .matches(
           VALIDATION_REGEX.regNumber,
-          i18next.t("global:error.input.specialCharacters")
+          i18next.t("global:error.input.numbersOnly")
         ),
    
     });
