@@ -73,7 +73,7 @@
   font-style: normal;
   font-weight: normal;
   font-size: 17px;
-  line-height: 21px;
+  line-height: 27px;
   letter-spacing: 0.005em;
   border-bottom: 1px solid #828282;
   font-weight: 400;
@@ -101,9 +101,14 @@
 }
 .theme-default ._28B9K2Lp5eIqcQvEtU2fqv ._1HVyR0NAnXzmE1RU1Z4VIK{
   color: #ff1515;
+  line-height: 21px;
 }
 .color-red{
   color: #ff1515;
+}
+
+.theme-default ._28B9K2Lp5eIqcQvEtU2fqv input:disabled {
+  color: #828282;
 }
 
 %icon-container {
