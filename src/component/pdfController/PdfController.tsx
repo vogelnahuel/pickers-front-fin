@@ -165,21 +165,26 @@ const PdfController = forwardRef(
             </p>
           </div>
           <div className="pdf-content">
-            <Button className="pdf-button" disabled={disabled} onClick={openFileReader}>
-              {buttonText}
-            </Button>
             {fileUploaded && showError ? (
-              <button
-                className="pdf-go-back"
+              <Button
+                className="pdf-button"
+                disabled={disabled}
                 onClick={() => goToPreviousFile && goToPreviousFile()}
               >
-                {i18next.t("component:label.pdfController.goBack")}
-              </button>
+                {buttonText}
+              </Button>
             ) : (
-              <p className="pdf-message">
-                {i18next.t("component:label.pdfController.instruction")}
-              </p>
+              <Button
+                className="pdf-button"
+                disabled={disabled}
+                onClick={openFileReader}
+              >
+                {buttonText}
+              </Button>
             )}
+            <p className="pdf-message">
+              {i18next.t("component:label.pdfController.instruction")}
+            </p>
           </div>
           {loading && (
             <div className="pdf-loading-container">
@@ -188,7 +193,6 @@ const PdfController = forwardRef(
           )}
         </div>
         {hasError() && <p className="pdf-error-message">{errorMessage}</p>}
-
 
         <input
           type="file"
