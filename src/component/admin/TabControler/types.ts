@@ -1,16 +1,13 @@
-import { NotificationStateType } from "reducers/types/notification";
+export type TabControlerType<T> = {
+  actualPage: T;
+  tabs: Array<TabType<T>>;
 
-
-export type TabControlerType = {
-  actualPage: string;
-  tabs: Array<TabType>;
-  showNotification?: (notification: NotificationStateType) => void;
-  changePage: <T extends string>(page: T) => void;
+  changePage: (page: T) => void;
   clickable?: boolean;
 };
 
-export type TabType = {
+export type TabType<T> = {
   title: string;
-  id: string;
+  id: T;
   icons: { active: string; disable: string };
 };

@@ -1,4 +1,5 @@
-import TabControler from "component/admin/TabControler/TabControler";
+import {TabControler} from "component/admin/TabControler/TabControler";
+import { TabType } from "component/admin/TabControler/types";
 import Back from "component/back/Back";
 import { Input } from "component/inputs/Input";
 
@@ -16,15 +17,15 @@ import  edit from '../../../../assets/preli/edit.svg'
 import "./detailPreliquidation.scss"
 import { PagesPreliquidationTypes } from "../types";
 
-const tabs = [
+const tabs:TabType<PagesPreliquidationTypes>[] = [
   {
     title: "Preliquidacion",
-    id: PagesPreliquidationTypes.PRELI,
+    id: "preliquidation",
     icons: { active: calckBlue, disable: calckBlack },
   },
   {
     title: "Factura",
-    id: PagesPreliquidationTypes.INVOICE,
+    id: "invoice",
     icons: { active: invoiceBlue, disable: invoiceBlack },
   },
 ];
@@ -38,9 +39,9 @@ export const DetailPreliquidation = ({
   return (
     <div>
       <div className="header-container">
-        <TabControler
+        <TabControler<PagesPreliquidationTypes>
           tabs={tabs}
-          changePage={(page)=>changePage(page as PagesPreliquidationTypes)}
+          changePage={(page)=>changePage(page)}
           actualPage={actualPage}
         />
         <Back onClick={handleClickBack} />
@@ -71,13 +72,10 @@ export const DetailPreliquidation = ({
                   <div className="container-detail-preliquidation-form-col-sm-1">
                     <Field
                       type="text"
-                      name="emisionDate"
+                      name="status"
                       label="Estado"
                       component={Input}
                       className="Admin-Pickers-input"
-                      placeholder={i18next.t(
-                        "invoice:placeholder.form.broadcastDate"
-                      )}
                       language="es"
                       disabled={true}
                     />
@@ -89,9 +87,6 @@ export const DetailPreliquidation = ({
                       name="emisionDate"
                       component={Input}
                       className="Admin-Pickers-input"
-                      placeholder={i18next.t(
-                        "invoice:placeholder.form.broadcastDate"
-                      )}
                       language="es"
                       disabled={true}
                     />
@@ -99,13 +94,10 @@ export const DetailPreliquidation = ({
                   <div className="container-detail-preliquidation-form-col-sm-1">
                     <Field
                       type="text"
-                      name="emisionDate"
+                      name="fiscalNumber"
                       label="Identificador fiscal"
                       component={Input}
                       className="Admin-Pickers-input"
-                      placeholder={i18next.t(
-                        "invoice:placeholder.form.broadcastDate"
-                      )}
                       language="es"
                       disabled={true}
                     />
@@ -114,12 +106,9 @@ export const DetailPreliquidation = ({
                     <Field
                       type="text"
                       label="Razón social"
-                      name="emisionDate"
+                      name="companyName"
                       component={Input}
                       className="Admin-Pickers-input"
-                      placeholder={i18next.t(
-                        "invoice:placeholder.form.broadcastDate"
-                      )}
                       language="es"
                       disabled={true}
                     />
@@ -127,13 +116,10 @@ export const DetailPreliquidation = ({
                   <div className="container-detail-preliquidation-form-col-sm-1">
                     <Field
                       type="text"
-                      name="emisionDate"
+                      name="sapCode"
                       label="Codigo SAP"
                       component={Input}
                       className="Admin-Pickers-input"
-                      placeholder={i18next.t(
-                        "invoice:placeholder.form.broadcastDate"
-                      )}
                       language="es"
                       disabled={true}
                     />

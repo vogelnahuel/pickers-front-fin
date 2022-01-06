@@ -77,7 +77,7 @@ export const initialState: PreliquitadionStateType = {
     },
     presettementId: undefined
   },
-  actualPage:PagesPreliquidationTypes.PRELI
+  actualPage:"preliquidation"
 };
 
 const SLICE_NAME = "preliquidation";

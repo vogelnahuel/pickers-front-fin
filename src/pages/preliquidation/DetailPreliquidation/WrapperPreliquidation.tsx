@@ -7,7 +7,7 @@ import InvoiceContainer from "./invoice/InvoiceContainer";
 import "./wrapperPreliquidation.scss";
 
 import DetailPreliquidationContainer from "./preliquidation/DetailPreliquidationContainer";
-import { PagesPreliquidationTypes, WrapperPreliquidationPropsType } from "./types";
+import {  WrapperPreliquidationPropsType } from "./types";
 
 
 
@@ -26,7 +26,7 @@ export const WrapperPreliquidation: React.FC<WrapperPreliquidationPropsType> = (
           
 
           <NotificationModal />
-          {actualPage === PagesPreliquidationTypes.PRELI ? (
+          {actualPage === "preliquidation" ? (
             <DetailPreliquidationContainer />
           ) : (
             <InvoiceContainer />
