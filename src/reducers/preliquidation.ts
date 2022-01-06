@@ -48,12 +48,47 @@ export const initialState: PreliquitadionStateType = {
   detailPreliquidations: {
     id: 0,
     status: {
-      id: 0,
-      description: "",
-      tag: ""
+        id: 0,
+        name: "",
+        tag: "",
     },
     generatedAt: "",
-  },
+    fiscalNumber: "",
+    companyName: "",
+    sapCode: "",
+    total: 0.0,
+    manualCorrection: {
+        maxAllowedPlus: 0.0,
+        maxAllowedSubtract: 0.0,
+    },
+    histories: [
+        {
+            id: 0,
+            createdAt: "",
+            fieldEdited: "",
+            beforeValue: 0,
+            currentValue: 0,
+            reasonTag: {
+                id: 0,
+                tag: ""
+            }
+        }
+    ],
+    transactions: {
+        quantity: 0,
+        items: [
+            {
+                transactionCode: null,
+                finishedAt: "",
+                status: {
+                    name: "",
+                    tag: ""
+                },
+                amount: 0.0
+            }
+        ]
+    }
+},
   invoiceDetail: {
     id: 0,
     emisionDate: "",
@@ -239,7 +274,17 @@ export const preliquidationSlice = createSlice({
       const { payload } = action;
       state.invoiceTypes = payload;
     },
-
+    getDetailPreliquidationsRequest: (
+      state: PreliquitadionStateType,
+      action: PayloadAction<string>
+    ) => {},
+    getDetailPreliquidationsError: () => {},
+    getDetailPreliquidationsSuccess: (
+      state: PreliquitadionStateType,
+      action: PayloadAction<any>
+    ) => {
+      state.detailPreliquidations = action.payload;
+    },
     setDirty: (
       state: PreliquitadionStateType,
       action: PayloadAction<boolean>

@@ -37,6 +37,10 @@ const sagas = [
     getPreliquidations
   ),
   takeLatest(
+    preliquidationActions.getDetailPreliquidationsRequest.type,
+    getDetailPreliquidations
+  ),
+  takeLatest(
     preliquidationActions.getMorePreliquidationsRequest.type,
     getMorePreliquidations
   ),
@@ -124,6 +128,28 @@ function* getPreliquidations({
     yield put(preliquidationActions.getPreliquidationsSuccess(response.data));
   }
 }
+
+function* getDetailPreliquidations({
+  payload,
+}: PayloadAction<PreliquidationParamsMiddlewareType>): Generator<
+  | CallEffect<AxiosResponse<PreliquidationsApiResponse>>
+  | PutEffect<{ type: string }>,
+  void,
+  any
+> {
+
+  const response = yield call(
+    preliquidationsMiddleware.getDetailPreliquidations,
+    payload
+  );
+  if (response.status !== 200) {
+    yield put(preliquidationActions.getPreliquidationsError());
+  } else {
+    yield put(preliquidationActions.getPreliquidationsSuccess(response.data));
+  }
+}
+
+
 
 function* getMorePreliquidations({
   payload,

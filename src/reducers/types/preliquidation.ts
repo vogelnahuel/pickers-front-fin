@@ -15,7 +15,7 @@ export type PreliquitadionStateType = {
   filters: PreliquidationFiltersType;
   filtersExtra: PreliquidationFilterExtraType;
   filtersExtraSeeMore: PreliquidationFilterExtraType;
-  detailPreliquidations: DetailPreliquidationsType;
+  detailPreliquidations: any;
   invoiceDetail: DetailInvoiceType;
   dirty: boolean;
   actualPage: string;
@@ -28,7 +28,7 @@ export type InvoiceFileStatus = {
   loading?: boolean;
   message?: string;
 }
-export type DetailPreliquidationsType = {
+export type DetailPreliquidationsType = { //TODO: revisar tipos
     status: PreliquidationStatus;
     generatedAt: string;
     id: number;
