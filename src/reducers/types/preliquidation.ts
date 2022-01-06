@@ -28,7 +28,7 @@ export type InvoiceFileStatus = {
   loading?: boolean;
   message?: string;
 }
-export type DetailPreliquidationShortType = { //shortpreli TODO: revisar tipos
+export type DetailPreliquidationShortType = { 
     status: PreliquidationStatus;
     generatedAt: string;
     id: number;
@@ -38,7 +38,7 @@ export type DetailPreliquidationType = {
   id: number,
   status: {
     id: number,
-    name: string, //pregutnar cual queda (preguntar a ser o shei)
+    name: string, //TODO: pregutnar cual queda (preguntar a ser o shei)
     tag: string
   },
   generatedAt: string,
