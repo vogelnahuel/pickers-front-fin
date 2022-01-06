@@ -25,7 +25,6 @@ import moment from "moment";
 import {
   DATE_FORMATS,
   MAX_FILE_SIZE,
-  preliStatusList,
   VALIDATION_REGEX,
 } from "utils/constants";
 import { getBase64FromUrl, isBase64, toBase64 } from "utils/toBase64";
@@ -204,8 +203,9 @@ const InvoiceContainer = (
     props.isFetching,
   ]);
 
-  const isFormDisabled = useMemo(() => {
-    return preliStatusList.includes(props.detailPreliquidations.status.tag);
+  const isFormEnabled = useMemo(() => {
+    const tag = props.detailPreliquidations.status.tag;
+    return ["pending", "in_approvement"].includes(tag);
   }, [props.detailPreliquidations.status.tag]);
 
   const validationSchema: yup.SchemaOf<invoiceValidationSchema> = yup.object({
@@ -254,7 +254,7 @@ const InvoiceContainer = (
       downloadFile={downloadFile}
       validationSchema={validationSchema}
       initialValues={initialValues}
-      isFormDisabled={isFormDisabled}
+      isFormEnabled={isFormEnabled}
       presettementId={params.id}
       handleClickBack={handleClickBack}
       changePage={changePage}

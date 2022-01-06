@@ -34,7 +34,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
   validationSchema,
   invoiceTypes,
   initialValues,
-  isFormDisabled,
+  isFormEnabled,
   setDirty,
   getInvoiceDetailSave,
   getInvoiceDetailApprove,
@@ -111,12 +111,12 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                   <Field
                     type="text"
                     name="emisionDate"
+                    disabled={!isFormEnabled}
                     className="Admin-Pickers-input"
                     placeholder={i18next.t(
                       "invoice:placeholder.form.broadcastDate"
                     )}
                     language="es"
-                    disabled={isFormDisabled}
                   >
                     {(props: any) => {
                       return (
@@ -145,7 +145,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                   <div>
                     <Field
                       label={i18next.t("invoice:label.form.voucherType")}
-                      disabled={isFormDisabled}
+                      disabled={!isFormEnabled}
                       type="text"
                       placeholder={i18next.t(
                         "invoice:placeholder.form.voucherType"
@@ -161,7 +161,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                     </Field>
                   </div>
                   <Field
-                    disabled={isFormDisabled}
+                    disabled={!isFormEnabled}
                     type="text"
                     name="salePoint"
                     label={i18next.t("invoice:label.form.pointOfSale")}
@@ -173,7 +173,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                     maxLength={5}
                   />
                   <Field
-                    disabled={isFormDisabled}
+                    disabled={!isFormEnabled}
                     type="text"
                     name="invoiceNumber"
                     label={i18next.t("invoice:label.form.voucherNumber")}
@@ -185,7 +185,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                     maxLength={8}
                   />
                   <Field
-                    disabled={isFormDisabled}
+                    disabled={!isFormEnabled}
                     type="text"
                     name="caeNumber"
                     label={i18next.t("invoice:label.form.numberCAE")}
@@ -213,33 +213,33 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                     errorMessage={i18next.t(invoiceFileStatus.message || "")}
                     loading={invoiceFileStatus.loading}
                     fileHandler={fileHandler}
-                    disabled={detailPreliquidations.status.tag === "initial"}
+                    disabled={!isFormEnabled}
                     goToPreviousFile={goToPreviousFile}
                   >
                     <PdfViewer src={invoiceDetail.invoiceFile?.url || ""}>
                       <Tooltip
-                        disabled={isFormDisabled}
+                        disabled={!isFormEnabled && detailPreliquidations.status.tag !== "invoice_rejected"}
                         message={i18next.t("component:label.tooltip.delete")}
                         position={ToolTipPosition.top}
                       >
                         <button
                           className="icon-container-primary"
                           type="button"
-                          disabled={isFormDisabled}
+                          disabled={!isFormEnabled && detailPreliquidations.status.tag !== "invoice_rejected"}
                           onClick={deleteFile}
                         >
                           <DeleteIcon />
                         </button>
                       </Tooltip>
                       <Tooltip
-                        disabled={isFormDisabled}
+                        disabled={!isFormEnabled && detailPreliquidations.status.tag !== "invoice_rejected"}
                         message={i18next.t("component:label.tooltip.replace")}
                         position={ToolTipPosition.top}
                       >
                         <button
                           className="icon-container-primary"
                           type="button"
-                          disabled={isFormDisabled}
+                          disabled={!isFormEnabled && detailPreliquidations.status.tag !== "invoice_rejected"}
                           onClick={() =>
                             pdfControllerRef?.current?.triggerOnChange()
                           }
@@ -248,12 +248,12 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                         </button>
                       </Tooltip>
                       <Tooltip
-                        disabled={isFormDisabled}
+                        disabled={!invoiceDetail.invoiceFile?.upload}
                         message={i18next.t("component:label.tooltip.download")}
                         position={ToolTipPosition.top}
                       >
                         <button
-                          disabled={isFormDisabled}
+                          disabled={!invoiceDetail.invoiceFile?.upload}
                           type="button"
                           className="icon-container-secondary"
                           onClick={downloadFile}
@@ -334,6 +334,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
             <div className="detail-preliquidation-buttons">
               <button
                 type="button"
+                disabled={!isFormEnabled}
                 className="button-submit-subtype"
                 onClick={() =>
                   getInvoiceDetailSave({
@@ -351,9 +352,8 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                     !invoiceDetail.invoiceFile?.upload ||
                     invoiceFileStatus.error ||
                     dirty ||
-                    (isFormDisabled &&
-                      detailPreliquidations.status.tag !== "approved") ||
-                    detailPreliquidations.status.tag === "invoice_rejected"
+                    (detailPreliquidations.status.tag !== "in_approvement" &&
+                      detailPreliquidations.status.tag !== "approved")
                   }
                   className="detail-preliquidation-invoice-p reject-invoice"
                   onClick={() =>
@@ -372,8 +372,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                     !invoiceDetail.invoiceFile?.upload ||
                     invoiceFileStatus.error ||
                     dirty ||
-                    isFormDisabled ||
-                    detailPreliquidations.status.tag === "invoice_rejected"
+                    detailPreliquidations.status.tag !== "in_approvement"
                   }
                   className="button-submit-active"
                   onClick={() =>
