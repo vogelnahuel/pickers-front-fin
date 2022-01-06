@@ -145,7 +145,7 @@ export type PickerTypes = {
   setActualPage: Function;
   getPendingUsersExportRequest: Function;
   getMorePendingUser: Function;
-  changePage: (page: string) => void;
+  changePage: (page: pickerTabs) => void;
 };
 
 export type PickersAxiosResponseType = {
