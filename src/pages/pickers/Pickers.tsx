@@ -50,7 +50,7 @@ export const Pickers: React.FC<PickerTypes> = ({
         <div className="pending-container">
           <TabControler<pickerTabs>
             tabs={tabs}
-            changePage={(page) => changePage(page)}
+            changePage={changePage}
             actualPage={actualPage}
             clickable={false}
           />
