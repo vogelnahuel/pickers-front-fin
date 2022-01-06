@@ -49,7 +49,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
     statusList.includes(detailPreliquidations.status.tag);
   const tabs = [
     {
-      title: "Preliquidacion",
+      title: "Preliquidación",
       id: "PRELI",
       icons: { active: calckBlue, disable: calckBlack },
     },
