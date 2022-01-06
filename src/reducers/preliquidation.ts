@@ -276,7 +276,7 @@ export const preliquidationSlice = createSlice({
     },
     getDetailPreliquidationsRequest: (
       state: PreliquitadionStateType,
-      action: PayloadAction<string>
+      action: PayloadAction<number>
     ) => {},
     getDetailPreliquidationsError: () => {},
     getDetailPreliquidationsSuccess: (

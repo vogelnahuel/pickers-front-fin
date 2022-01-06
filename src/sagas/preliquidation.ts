@@ -131,8 +131,8 @@ function* getPreliquidations({
 
 function* getDetailPreliquidations({
   payload,
-}: PayloadAction<PreliquidationParamsMiddlewareType>): Generator<
-  | CallEffect<AxiosResponse<PreliquidationsApiResponse>>
+}: PayloadAction<any>): Generator<
+  | CallEffect<AxiosResponse<any>>
   | PutEffect<{ type: string }>,
   void,
   any

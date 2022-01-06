@@ -1,4 +1,5 @@
 import { generatedAtType } from "pages/preliquidation/filter/types";
+import { DetailPreliquidationType } from "reducers/types/preliquidation";
 
 export type PreliquidationsApiResponse = {
   data: PreliquidationsContentResponseType;
@@ -146,50 +147,7 @@ export type InvoiceTypes = {
 
 export type DetatilPreliquidationsApiResponse = {
   data: {
-    result: {
-      id: number,
-      status: {
-        id: number,
-        name: string,
-        tag: string
-      },
-      generatedAt: string,
-      fiscalNumber: string,
-      companyName: string,
-      sapCode: string,
-      total: number,
-      manualCorrection: {
-        maxAllowedPlus: number,
-        maxAllowedSubtract: number,
-      },
-      histories: [
-        {
-          id: number,
-          createdAt: string,
-          fieldEdited: string,
-          beforeValue: number,
-          currentValue: number,
-          reasonTag: {
-            id: number,
-            tag: string
-          }
-        }
-      ],
-      transactions: {
-        quantity: number,
-        items: [
-          {
-            transactionCode?: string | null
-            finishedAt: string,
-            status: {
-              name: string,
-              tag: string
-            },
-            amount: number
-          }
-        ]
-      }
-    }
+    result: DetailPreliquidationType
   };
   status: number;
 };

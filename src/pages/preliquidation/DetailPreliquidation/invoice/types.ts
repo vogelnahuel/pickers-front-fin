@@ -1,5 +1,5 @@
 import { RejectInvoiceMiddlewareType, UploadInvoiceFileMiddlewareType } from "sagas/types/preliquidation";
-import { DetailInvoiceType, DetailPreliquidationsType, InvoiceFileStatus } from "reducers/types/preliquidation";
+import { DetailInvoiceType, DetailPreliquidationShortType, DetailPreliquidationType, InvoiceFileStatus } from "reducers/types/preliquidation";
 import {
   InvoiceTypes,
 } from "sagas/types/preliquidation";
@@ -9,7 +9,7 @@ import { NotificationStateType } from "reducers/types/notification";
 export type detailPreliquidationInvoiceContainerPropsType = {
   isFetching: boolean;
   invoiceDetail: DetailInvoiceType;
-  detailPreliquidations: DetailPreliquidationsType;
+  detailPreliquidations: DetailPreliquidationShortType | DetailPreliquidationType;
   invoiceFileStatus: InvoiceFileStatus;
   invoiceTypes: InvoiceTypes[];
   setActualPage: (page: string) => void;
@@ -29,7 +29,7 @@ export type detailPreliquidationInvoiceContainerPropsType = {
 export type detailPreliquidationInvoicePropsType = {
   isFetching: boolean;
   invoiceDetail: DetailInvoiceType;
-  detailPreliquidations: DetailPreliquidationsType;
+  detailPreliquidations: DetailPreliquidationShortType | DetailPreliquidationType;
   validationSchema: object;
   invoiceTypes: InvoiceTypes[];
   invoiceFileStatus: InvoiceFileStatus;
