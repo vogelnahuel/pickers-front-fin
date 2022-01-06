@@ -24,7 +24,7 @@ import {
   ParamsMiddlewareType,
   DetailPickerValidationSchema,
 } from "../types";
-import { DetailPickerContainerTypeProps } from "./types";
+import { DetailPickerContainerTypeProps, pickerTabs } from "./types";
 
 import { DetailPicker } from "pages/pickers/detailPicker/DetailPicker";
 import { DATE_FORMATS, VALIDATION_REGEX } from "utils/constants";
@@ -329,7 +329,7 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
       pendingUserAdminPickerActions.getEditPickerRequest({ params, goBack })
     );
   },
-  setActualPage: (page: string) => {
+  setActualPage: (page: pickerTabs) => {
     dispatch(pendingUserActions.setActualPage(page));
   },
   resetWrongFiles: () => {

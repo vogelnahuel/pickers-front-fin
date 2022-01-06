@@ -12,11 +12,13 @@ import { actions, pickersSelector } from "reducers/pickers";
 import { NotificationStateType } from "reducers/types/notification";
 import { actions as notificationActions } from "reducers/notification";
 import { hasPickerWrongFilesSelector } from "reducers/detailPicker";
+import { pickerTabs } from "./detailPicker/types";
 
 const PendingUserAdminContainer: React.FC<PickerContainerTypes> = (
   props
 ): JSX.Element => {
-  const changePage = (page: string) => {
+  const changePage = (page: pickerTabs) => {
+
     if (props.isDetail || props.actualPage !== page) props.setActualPage(page);
   };
 
@@ -68,7 +70,7 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   setPendingUserExtraFilters: (extraFilters: PickersParamsType) => {
     dispatch(actions.setPendingUserExtraFilters(extraFilters));
   },
-  setActualPage: (page: string) => {
+  setActualPage: (page: pickerTabs) => {
     dispatch(actions.setActualPage(page));
   },
   getPendingUsersExportRequest: (

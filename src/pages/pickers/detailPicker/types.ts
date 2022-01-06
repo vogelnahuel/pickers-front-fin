@@ -4,7 +4,7 @@ import { NotificationStateType } from "reducers/types/notification";
 export type DetailPickerContainerTypeProps = {
   pendingUserAdminPicker: PickerType;
   isFetching: boolean;
-  actualPage: string;
+  actualPage: pickerTabs;
   nameDisplay: string;
   getPendingUserPicker: Function;
   getPendingUserPickerExport: Function;
@@ -24,7 +24,7 @@ export type DetailPickerTypeProps = {
   initialValues: PickerType;
   pendingUserAdminPicker: PickerType;
   getPendingUserPickerExport: Function;
-  actualPage: string;
+  actualPage: pickerTabs;
   setDirty: Function;
   active: boolean;
   cancel: Function;
@@ -45,3 +45,4 @@ export type PickerFileRequestType = {
   pickerId: number;
   tag: keyof DetailPickerTagFileType;
 };
+export type pickerTabs="PENDING" | "ACTIVE"
