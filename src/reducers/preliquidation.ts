@@ -5,6 +5,7 @@ import {
   createSelector,
 } from "@reduxjs/toolkit";
 import { detailPreliquidationDatePicker } from "pages/preliquidation/DetailPreliquidation/invoice/types";
+import { PagesPreliquidationTypes } from "pages/preliquidation/DetailPreliquidation/types";
 import { PreliquidationFilterExtraType, PreliquidationFiltersType } from "pages/preliquidation/filter/types";
 import {
   DetailPreliquidationsContentResponseType,
@@ -43,7 +44,7 @@ export const initialState: PreliquitadionStateType = {
   },
   seeMore: true,
 
-  actualPage: "",
+
   invoiceTypes: [],
   detailPreliquidations: {
     id: 0,
@@ -76,7 +77,7 @@ export const initialState: PreliquitadionStateType = {
     },
     presettementId: undefined
   },
-
+  actualPage:"preliquidation"
 };
 
 const SLICE_NAME = "preliquidation";
@@ -257,7 +258,7 @@ export const preliquidationSlice = createSlice({
     },
     setActualPage: (
       state: PreliquitadionStateType,
-      action: PayloadAction<string>
+      action: PayloadAction<PagesPreliquidationTypes>
     ) => {
       state.actualPage = action.payload;
     },

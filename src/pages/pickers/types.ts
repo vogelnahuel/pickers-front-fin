@@ -1,4 +1,5 @@
 import { TypeOfShape } from "yup/lib/object";
+import { pickerTabs } from "./detailPicker/types";
 
 export type ChangePageTypes = {
   props: {
@@ -117,7 +118,7 @@ export type PickerContainerTypes = {
   filtersExtraSeeMore: PickersParamsType;
   seeMore: boolean;
   pag: string;
-  actualPage: string;
+  actualPage: pickerTabs;
   reset: Function;
   getPendingUser: (params: ParamsMiddlewareType) => void;
   setPendingUserFilters: Function;
@@ -136,7 +137,7 @@ export type PickerTypes = {
   filtersExtraSeeMore: PickersParamsType;
   seeMore: boolean;
   tableTitles: string[];
-  actualPage: string;
+  actualPage: pickerTabs;
   reset: Function;
   getPendingUser: Function;
   setPendingUserFilters: Function;
@@ -144,7 +145,7 @@ export type PickerTypes = {
   setActualPage: Function;
   getPendingUsersExportRequest: Function;
   getMorePendingUser: Function;
-  changePage: (page: string) => void;
+  changePage: (page: pickerTabs) => void;
 };
 
 export type PickersAxiosResponseType = {
