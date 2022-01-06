@@ -17,7 +17,7 @@ import { pickerTabs } from "./detailPicker/types";
 const PendingUserAdminContainer: React.FC<PickerContainerTypes> = (
   props
 ): JSX.Element => {
-  const changePage = (page: string) => {
+  const changePage = (page: pickerTabs) => {
 
     if (props.isDetail || props.actualPage !== page) props.setActualPage(page);
   };

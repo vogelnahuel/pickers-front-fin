@@ -37,7 +37,7 @@ export const DetailPreliquidation = ({
       <div className="header-container">
         <TabControler<PagesPreliquidationTypes>
           tabs={tabs}
-          changePage={(page)=>changePage(page)}
+          changePage={changePage}
           actualPage={actualPage}
         />
         <Back onClick={handleClickBack} />
