@@ -23,13 +23,14 @@ export const DetailPreliquidationContainer = (
     history.goBack();
   };
 
-
   return (
     <DetailPreliquidation
-      initialValues={undefined} handleClickBack={handleClickBack}
+      initialValues={undefined}
+      handleClickBack={handleClickBack}
       changePage={changePage}
       presettementId={params.id}
-      {...props}    />
+      {...props}
+    />
   );
 };
 
