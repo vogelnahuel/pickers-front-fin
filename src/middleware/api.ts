@@ -56,23 +56,23 @@ export type ApiResponse<T> = {
   data: T
 }
 
-export const remove = (path: any, body?: object) => {
+export const remove = (path: string, body?: object) => {
   return api.delete(path, { params: body });
 };
 
-export const get = (path: any, query?: object) => {
+export const get = (path: string, query?: object) => {
   return api.get(path, { params: query });
 };
 
-export const post = (path: any, body: object) => {
+export const post = (path: string, body: object) => {
   return api.post(path, body);
 };
 
-export const put = (path: any, body?: object, query?: object) => {
+export const put = (path: string, body?: object, query?: object) => {
   return api.put(path, body, query);
 };
 
-export const patch = (path: any, body?: object, query?: object) => {
+export const patch = (path: string, body?: object, query?: object) => {
   return api.patch(path, body, query);
 };
 export default api;
