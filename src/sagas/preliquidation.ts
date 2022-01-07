@@ -21,6 +21,7 @@ import {
   DetailPreliquidationsContentResponseType,
   DetailPreliquidationsInvoiceApiResponseType,
   DetailPreliquidationsInvoiceTypesApiResponseType,
+  DetatilPreliquidationsApiResponse,
   PreliquidationCastParamsMiddlewareType,
   PreliquidationParamsMiddlewareType,
   PreliquidationsApiResponse,
@@ -30,6 +31,7 @@ import {
 import i18next from "i18next";
 import { NotificationStateType } from "reducers/types/notification";
 import { replace } from "connected-react-router";
+import { DetailPreliquidationType } from "reducers/types/preliquidation";
 
 const sagas = [
   takeLatest(
@@ -131,11 +133,11 @@ function* getPreliquidations({
 
 function* getDetailPreliquidations({
   payload,
-}: PayloadAction<any>): Generator<
-  | CallEffect<AxiosResponse<any>>
+}: PayloadAction<number>): Generator<
+  | CallEffect<AxiosResponse<DetatilPreliquidationsApiResponse>>
   | PutEffect<{ type: string }>,
   void,
-  any
+  DetatilPreliquidationsApiResponse
 > {
 
   const response = yield call(
@@ -143,9 +145,9 @@ function* getDetailPreliquidations({
     payload
   );
   if (response.status !== 200) {
-    yield put(preliquidationActions.getPreliquidationsError());
+    yield put(preliquidationActions.getDetailPreliquidationsError());
   } else {
-    yield put(preliquidationActions.getPreliquidationsSuccess(response.data));
+    yield put(preliquidationActions.getDetailPreliquidationsSuccess(response.data));
   }
 }
 
