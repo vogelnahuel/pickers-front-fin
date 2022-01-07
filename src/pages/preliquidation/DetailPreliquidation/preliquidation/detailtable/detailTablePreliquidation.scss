@@ -1,79 +1,66 @@
-table{
-  padding-bottom: 30px;
+@import "@pickit/pickit-grid-system";
+.container-detail-preliquidation-table {
+  @include container(4, 20px);
 }
-table thead{
-    font-family: "Mulish";
-    font-style: normal;
-    font-weight: bold;
-    font-size: 16px;
-    line-height: 20px;
-    letter-spacing: 0.0125em;
-    color: #4D4D4D;
-    text-align: start;
-    th{
-        text-align: start;
-    }
 
+.detail-preliquidation-table-head {
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.0125em;
+  color: #4d4d4d;
+  text-align: start;
 }
-table tbody{
-    font-family: "Mulish";
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 18px;
-    letter-spacing: 0.0025em;
-    color: #828282;
-    tr{
-        td{
-            padding-top: 12px;
-        }
-       
-    }
-   
+.detail-preliquidation-table-body {
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.0025em;
+  color: #828282;
+  padding-top: 12px;
 }
 
 table thead tr th:nth-child(1) {
-    width: 114px;
-    
+  width: 114px;
 }
 table thead tr th:nth-child(2) {
-    width: 125px;
+  width: 125px;
 }
 table thead tr th:nth-child(3) {
-    width: 132px;
+  width: 132px;
 }
 table thead tr th:nth-child(4) {
-    width: 61px;
+  width: 61px;
 }
 
+.overflow-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.overflow-scroll::-webkit-scrollbar-thumb {
+  background: #bdbdbd;
+  width: 7px;
+  height: 7px;
+  border-radius: 4px;
+}
+.overflow-scroll::-webkit-scrollbar-thumb:hover {
+  background: #bdbdbd;
+  width: 7px;
+  height: 7px;
+  border-radius: 4px;
+}
+.overflow-scroll::-webkit-scrollbar-thumb:active {
+  background-color: #bdbdbd;
+  width: 7px;
+  height: 7px;
+  border-radius: 4px;
+}
 
-
-
-
-  .overflow-scroll::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-  .overflow-scroll::-webkit-scrollbar-thumb {
-    background: #bdbdbd;
-    width: 7px;
-    height: 7px;
-    border-radius: 4px;
-  }
-  .overflow-scroll::-webkit-scrollbar-thumb:hover {
-    background: #bdbdbd;
-    width: 7px;
-    height: 7px;
-    border-radius: 4px;
-  }
-  .overflow-scroll::-webkit-scrollbar-thumb:active {
-    background-color: #bdbdbd;
-    width: 7px;
-    height: 7px;
-    border-radius: 4px;
-  }
-  
-  .overflow-scroll::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 4px;
-  }
+.overflow-scroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}

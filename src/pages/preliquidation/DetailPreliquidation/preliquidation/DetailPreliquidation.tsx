@@ -148,19 +148,6 @@ export const DetailPreliquidation = ({
                   </div>
                   <div className="display-filter-preliquidation">
                   <DetailTablePreliquidation/>
-                    <div className="transparent"></div>
-
-                    <div>
-                      <h3 className="table-amount-preliquidation-subtitle">
-                        Total
-                      </h3>
-                      <div className="container-table-amount-preliquidation">
-                        <p>15 Transacciones</p>
-                        <p>
-                          <b>$300.12</b>
-                        </p>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -168,6 +155,7 @@ export const DetailPreliquidation = ({
           </form>
         )}
       </Form>
+   
     </div>
   );
 };
