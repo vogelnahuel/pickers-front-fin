@@ -29,7 +29,7 @@ const PreliquidationFilterContainer: React.FC<
 
   const validationSchema: yup.SchemaOf<filterPreliquidationValidationSchema> =
     yup.object({
-      presettlmentId: yup
+      presettlementId: yup
         .string()
         .min(
           5,
