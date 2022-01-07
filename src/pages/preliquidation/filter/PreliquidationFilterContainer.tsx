@@ -6,22 +6,24 @@ import { AppDispatch, RootState } from "store";
 import i18next from "i18next";
 import { PreliquidationFilter } from "./PreliquidationFilter";
 import {
-    actions as preliquidationActions,
-    preliquidationSelector as preliquidationSelectors,
-  } from "reducers/preliquidation";
+  actions as preliquidationActions,
+  preliquidationSelector as preliquidationSelectors,
+} from "reducers/preliquidation";
 import { PreliquidationParamsMiddlewareType } from "sagas/types/preliquidation";
-import { filterPreliquidationValidationSchema, PreliquidationFilterContainerPropsType, PreliquidationFiltersType } from "./types";
+import {
+  filterPreliquidationValidationSchema,
+  PreliquidationFilterContainerPropsType,
+  PreliquidationFiltersType,
+} from "./types";
 
-const PreliquidationFilterContainer: React.FC<PreliquidationFilterContainerPropsType> = (props) => {
-
-
-
-const search = (values: PreliquidationFiltersType) => {
- 
-  props.getPreliquidations({
-    ...values,
-    ...props.filtersExtra,
-  });
+const PreliquidationFilterContainer: React.FC<
+  PreliquidationFilterContainerPropsType
+> = (props) => {
+  const search = (values: PreliquidationFiltersType) => {
+    props.getPreliquidations({
+      ...values,
+      ...props.filtersExtra,
+    });
     props.setPreliquidationFilters(values);
   };
 
@@ -29,19 +31,24 @@ const search = (values: PreliquidationFiltersType) => {
     yup.object({
       presettlmentId: yup
         .string()
-        .min(5,i18next.t("filterPreliquidation:error.input.presettlmentIdLength"))
+        .min(
+          5,
+          i18next.t("filterPreliquidation:error.input.presettlmentIdLength")
+        )
         .matches(
           VALIDATION_REGEX.regNumber,
           i18next.t("global:error.input.numbersOnly")
         ),
-        fiscalNumber: yup
+      fiscalNumber: yup
         .string()
-        .min(11,i18next.t("filterPreliquidation:error.input.fiscalNumberLength"))
+        .min(
+          11,
+          i18next.t("filterPreliquidation:error.input.fiscalNumberLength")
+        )
         .matches(
           VALIDATION_REGEX.regNumber,
           i18next.t("global:error.input.numbersOnly")
         ),
-   
     });
 
   return (
@@ -54,18 +61,17 @@ const search = (values: PreliquidationFiltersType) => {
 };
 
 const mapStateToProps = (state: RootState) => ({
-      filters: preliquidationSelectors(state).filters,
-      filtersExtra: preliquidationSelectors(state).filtersExtra,
+  filters: preliquidationSelectors(state).filters,
+  filtersExtra: preliquidationSelectors(state).filtersExtra,
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
-
-getPreliquidations: (params: PreliquidationParamsMiddlewareType) => {
-  dispatch(preliquidationActions.getPreliquidationsRequest(params));
-},
-setPreliquidationFilters: (filters: PreliquidationFiltersType) => {
-    dispatch(preliquidationActions.setPreliquidationFilters(filters))
-}
+  getPreliquidations: (params: PreliquidationParamsMiddlewareType) => {
+    dispatch(preliquidationActions.getPreliquidationsRequest(params));
+  },
+  setPreliquidationFilters: (filters: PreliquidationFiltersType) => {
+    dispatch(preliquidationActions.setPreliquidationFilters(filters));
+  },
 });
 
 export default connect(
