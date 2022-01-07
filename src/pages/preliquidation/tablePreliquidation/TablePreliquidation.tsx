@@ -17,6 +17,7 @@ import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { ISO8601toDDMMYYYHHMM } from "utils/iso8601toDDMMYYHHMM";
 import Checkbox from "component/checkbox/Checkbox";
+import { PreliquidationFiltersType } from "../filter/types";
 
 const TablePreliquidation = ({
   items,
@@ -25,6 +26,7 @@ const TablePreliquidation = ({
   isAllSelected,
   toggleAll,
   resetAllSelected,
+  setPreliquidationFilters,
   approved
 }: TablePreliquidationProps) => {
   const history = useHistory();
@@ -40,6 +42,7 @@ const TablePreliquidation = ({
     const target = e?.target as HTMLElement;
     if (target?.localName !== "input"){
       resetAllSelected();
+      setPreliquidationFilters({})
       history.push(`/preliquidation/${id}`);
     }
   
@@ -115,7 +118,10 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   },
   resetAllSelected:()=>{
     dispatch(preliActions.resetAllSelected())
-  }
+  },
+  setPreliquidationFilters: (filters: PreliquidationFiltersType) => {
+    dispatch(preliActions.setPreliquidationFilters(filters))
+}
 });
 export default connect(
   mapStateToProps,

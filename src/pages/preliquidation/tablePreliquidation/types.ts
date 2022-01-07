@@ -1,4 +1,5 @@
 import { PreliquidationItem } from "sagas/types/preliquidation";
+import { PreliquidationFiltersType } from "../filter/types";
 
 export type TablePreliquidationProps = {
   items: PreliquidationItem[];
@@ -8,4 +9,5 @@ export type TablePreliquidationProps = {
   isAllSelected?: boolean;
   approved:boolean;
   resetAllSelected:()=>void;
+  setPreliquidationFilters:(filters: PreliquidationFiltersType)=>void;
 };
