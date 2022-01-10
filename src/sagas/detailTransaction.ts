@@ -11,9 +11,7 @@ import {
   postCancelType, postDevolutionUndeliveredType, postDnideliveredResponseType, TransactionCancelResponseType
 } from "./types/detailTransactions";
 import { actions as notificationActions } from "../reducers/notification";
-// import { AxiosResponse } from "axios";
 import i18next from "i18next";
-// import { replace } from "connected-react-router";
 
 const sagas: ForkEffect<never>[] = [
   takeLatest(actions.getDetailTransactionRequest.type, getDetailTransaction),

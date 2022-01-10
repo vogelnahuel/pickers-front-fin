@@ -62,12 +62,8 @@ const InvoiceContainer = (
     } else {
       try {
         const base64 = (await toBase64(file)) as string;
-
-        // Si se esta reemplazando el archivo, fuerza a que
-        // se vuelvan a consumir los datos desde el back ya que el
-        // formulario con los datos de factura debe estar vacio.
-        const refresh = props.invoiceDetail?.invoiceFile?.upload;
-        !refresh ?
+        const uploaded = props.invoiceDetail?.invoiceFile?.upload;
+        !uploaded ?
           props.uploadInvoiceFile({
             id: parseInt(params.id || "0"),
             content: base64,
