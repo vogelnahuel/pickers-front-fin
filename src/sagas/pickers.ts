@@ -94,7 +94,7 @@ const process = (body: {
     },
     vehicle: {
       ...body.vehicle,
-
+      patent: body.vehicle.patent.toUpperCase(),
       expirationDatePolicyVehicle:
         body.vehicle.expirationDatePolicyVehicle &&
         body.vehicle.expirationDatePolicyVehicle.match(
