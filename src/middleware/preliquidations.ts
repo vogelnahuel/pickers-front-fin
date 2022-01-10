@@ -50,13 +50,18 @@ export const getDetailInvoiceTypes = (): Promise<
   AxiosResponse<DetailPreliquidationsInvoiceTypesApiResponseType>
 > => API.get(`/ms-admin-rest/api/v1.0/fiscal-data/invoice-type`);
 
-export const uploadInvoiceFile = (
+export const replaceInvoiceFile = (
   params: UploadInvoiceFileMiddlewareType
 ): Promise<AxiosResponse<ApiResponse<void>>> =>
   API.put(`/ms-admin-rest/api/v1.0/presettlements/${params.id}/invoice/file`, {
     content: params.content,
   });
-
+  export const uploadInvoiceFile = (
+    params: UploadInvoiceFileMiddlewareType
+  ): Promise<AxiosResponse<ApiResponse<void>>> =>
+    API.post(`/ms-admin-rest/api/v1.0/presettlements/${params.id}/invoice/file`, {
+      content: params.content,
+    });
 export const deleteInvoiceFile = (
   id: number
 ): Promise<AxiosResponse<ApiResponse<void>>> =>

@@ -10,6 +10,8 @@ import {
   DetailTransactionResponseType, DevolutionUndeliveredResponseType,
   postCancelType, postDevolutionUndeliveredType, postDnideliveredResponseType, TransactionCancelResponseType
 } from "./types/detailTransactions";
+import { actions as notificationActions } from "../reducers/notification";
+import i18next from "i18next";
 
 const sagas: ForkEffect<never>[] = [
   takeLatest(actions.getDetailTransactionRequest.type, getDetailTransaction),
@@ -35,9 +37,18 @@ function* getDetailTransaction({
   void,
   DetailTransactionResponseType
 > {
+  
   const response = yield call(transactionsMiddleware.getDetailTransaction, payload);
   if (response.status !== 200) {
     yield put(actions.getDetailTransactionError());
+    yield put(
+      notificationActions.showNotification({
+        level: "error",
+        title: i18next.t("global:title.modal.serverError"),
+        body: i18next.t("global:label.modal.serverError")
+        
+      }));
+
   } else {
     const { result } = response.data;
     yield put(actions.getDetailTransactionSuccess(result));
@@ -55,6 +66,14 @@ function* getMessages({
   const response = yield call(transactionsMiddleware.getMessages, payload);
   if (response.status !== 200) {
     yield put(actions.getDetailTransactionMenssagesError());
+    yield put(
+      notificationActions.showNotification({
+        level: "error",
+        title: i18next.t("global:title.modal.serverError"),
+        body: i18next.t("global:label.modal.serverError")
+        
+      }));
+
   } else {
     const { result } = response.data;
     yield put(actions.getDetailTransactionMenssagesSuccess(result.items));
@@ -79,6 +98,14 @@ function* postDevolutionUndelivered({
   );
   if (response.status !== 200) {
     yield put(actions.getDetailTransactionDevolutionUndeliveredError());
+    yield put(
+      notificationActions.showNotification({
+        level: "error",
+        title: i18next.t("global:title.modal.serverError"),
+        body: i18next.t("global:label.modal.serverError")
+        
+      }));
+
   } else {
     yield put(transactionActions.getDetailTransactionDevolutionUndeliveredSuccess());
   }
@@ -104,6 +131,14 @@ function* postReasonsCanceled({
   );
   if (response.status !== 200) {
     yield put(actions.getDetailTransactionReasonsCanceledError());
+    yield put(
+      notificationActions.showNotification({
+        level: "error",
+        title: i18next.t("global:title.modal.serverError"),
+        body: i18next.t("global:label.modal.serverError")
+        
+      }));
+
   } else {
     yield window.location.reload();
     yield put(transactionActions.getDetailTransactionReasonsCanceledSuccess());
@@ -121,6 +156,14 @@ function* postFinishReturned({
   const response = yield call(transactionsMiddleware.postFinishReturned, payload);
   if (response.status !== 200) {
     yield put(actions.getDetailTransactionFinishReturnedError());
+    yield put(
+      notificationActions.showNotification({
+        level: "error",
+        title: i18next.t("global:title.modal.serverError"),
+        body: i18next.t("global:label.modal.serverError")
+        
+      }));
+
   } else {
     yield put(transactionActions.getDetailTransactionFinishReturnedSuccess());
   }
@@ -137,6 +180,14 @@ function* postFinishLost({
   const response = yield call(transactionsMiddleware.postFinishLost, payload);
   if (response.status !== 200) {
     yield put(actions.getDetailTransactionFinishLostError());
+    yield put(
+      notificationActions.showNotification({
+        level: "error",
+        title: i18next.t("global:title.modal.serverError"),
+        body: i18next.t("global:label.modal.serverError")
+        
+      }));
+
   } else {
     yield put(transactionActions.getDetailTransactionFinishLostSuccess());
   }
@@ -157,6 +208,16 @@ function* postDnidelivered({
   );
   if (response.status !== 200) {
     yield put(actions.getDetailTransactionDniDeliveredError());
+    
+    yield put(
+      notificationActions.showNotification({
+        level: "error",
+        title: i18next.t("global:title.modal.serverError"),
+        body: i18next.t("global:label.modal.serverError")
+        
+      }));
+
+
   } else {
     yield put(transactionActions.getDetailTransactionDniDeliveredSuccess());
   }

@@ -61,7 +61,6 @@ export type PreliquidationParamsMiddlewareTypeCast = {
 export type UploadInvoiceFileMiddlewareType = {
   id: number;
   content: string;
-  refreshPage?: boolean;
 };
 
 export type RejectInvoiceMiddlewareType = {

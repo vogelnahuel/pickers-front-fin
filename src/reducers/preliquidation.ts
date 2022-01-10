@@ -181,6 +181,17 @@ export const preliquidationSlice = createSlice({
     ) => {},
     getInvoiceDetailDeleteError: () => {},
     getInvoiceDetailDeleteSuccess: () => {},
+    replaceInvoiceFile: (
+      state: PreliquitadionStateType,
+      action: PayloadAction<{ id: number; content: string }>
+    ) => {},
+    replaceInvoiceFileError: (state: PreliquitadionStateType) => {
+      state.invoiceFileStatus = {
+        loading: false,
+        error: true,
+        message: "component:label.pdfController.serverError",
+      };
+    },
     uploadInvoiceFile: (
       state: PreliquitadionStateType,
       action: PayloadAction<{ id: number; content: string }>
