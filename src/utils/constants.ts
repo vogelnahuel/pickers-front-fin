@@ -61,7 +61,7 @@ export const VALIDATION_REGEX = {
   expIdentificationNumber: /^[\d]{0,3}\.?[\d]{0,3}\.?[\d]{0,3}$/,
   regArea: /^([0-9]){1,5}$/,
   regTelefono: /^([0-9]){7,10}$/,
-  regPatent: /^([A-Z]{1}[0-9]{3}[A-Z]{3}|[0-9]{3}[A-Z]{3})*$/,
+  regPatent: /^([a-zA-Z]{1}[0-9]{3}[a-zA-Z]{3}|[0-9]{3}[a-zA-Z]{3})*$/,
   regTransactionCode: /^[a-fA-F0-9]*$/,
   regPickerId: /^[0-9]*$/,
   regEmail:
