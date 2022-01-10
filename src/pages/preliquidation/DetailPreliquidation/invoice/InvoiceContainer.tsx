@@ -120,7 +120,7 @@ const InvoiceContainer = (
     const onClose = () => {
       props.setActualPage(page);
 
-      history.replace("/preliquidation");
+      history.replace("/presettlements");
     };
     if (isDirty) showDirtyNotification(onClose);
     else if (props.invoiceFileStatus.error) showWrongFilesNotification(onClose);

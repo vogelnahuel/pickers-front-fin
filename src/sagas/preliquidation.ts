@@ -213,7 +213,7 @@ function* putSaveDetailInvoice({
     );
     yield put(preliquidationActions.getInvoiceDetailSaveError());
   } else {
-    yield put(replace("/preliquidation"))
+    yield put(replace("/presettlements"))
     yield put(preliquidationActions.getInvoiceDetailSaveSuccess());
   }
 }
@@ -251,7 +251,7 @@ function* patchApproveDetailInvoice({
       body: i18next.t("global:label.modal.connectionError"),
     }))
   } else {
-    yield put(replace("/preliquidation"))
+    yield put(replace("/presettlements"))
   }
 }
 
@@ -272,7 +272,7 @@ function* putDeleteDetailInvoice({
   if (response.status !== 200) {
     yield put(preliquidationActions.getInvoiceDetailDeleteError());
   } else {
-    yield put(replace("/preliquidation"))
+    yield put(replace("/presettlements"))
     yield put(preliquidationActions.getInvoiceDetailDeleteSuccess());
   }
 }

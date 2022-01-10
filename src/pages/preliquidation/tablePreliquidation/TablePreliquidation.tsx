@@ -43,7 +43,7 @@ const TablePreliquidation = ({
     if (target?.localName !== "input"){
       resetAllSelected();
       setPreliquidationFilters({})
-      history.push(`/preliquidation/${id}`);
+      history.push(`/presettlements/${id}`);
     }
   
   };
