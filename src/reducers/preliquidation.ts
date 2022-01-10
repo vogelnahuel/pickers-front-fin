@@ -38,7 +38,7 @@ export const initialState: PreliquitadionStateType = {
     offset: 0
   },
   filtersExtraSeeMore: {
-    limit: 3,
+    limit: 15,
     offset: 0
   },
   seeMore: true,
@@ -119,7 +119,6 @@ export const preliquidationSlice = createSlice({
       state.preliquidations = payload.result.items;
       state.seeMore = payload.hasMore;
       state.filtersExtraSeeMore.offset = payload.offset + payload.limit;
-
     },
     getMorePreliquidationsSuccess: (
       state: PreliquitadionStateType,
@@ -271,6 +270,12 @@ export const preliquidationSlice = createSlice({
       action: PayloadAction<string>
     ) => {
       state.actualPage = action.payload;
+    },
+    resetAllSelected: (
+      state: PreliquitadionStateType,
+      action: PayloadAction
+    ) => {
+      state.preliquidationsSelected = [];
     },
     resetInvoiceDetail: (state: PreliquitadionStateType) => {
       state.invoiceDetail = initialState.invoiceDetail;

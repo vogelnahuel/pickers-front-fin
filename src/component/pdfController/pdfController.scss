@@ -191,7 +191,7 @@
 .pdf-loading-bar {
   height: 5px;
   background-color: #bdbdbd;
-  animation: loadingAnim 10s ease;
+  animation: loadingAnim 10s ease-out;
   animation-fill-mode: forwards;
 }
 

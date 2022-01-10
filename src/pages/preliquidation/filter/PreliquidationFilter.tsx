@@ -58,7 +58,7 @@ export const PreliquidationFilter: React.FC<PreliquidationFilterPropsType> = ({
                   <div className="container-col-sm-1 container-col-xl">
                     <Field
                       type="text"
-                      name="presettlmentId"
+                      name="presettlementId"
                       label={i18next.t(
                         "preli:label.filter.preliquidationNumber"
                       )}

@@ -35,6 +35,7 @@ export type detailPreliquidationInvoicePropsType = {
   invoiceTypes: InvoiceTypes[];
   invoiceFileStatus: InvoiceFileStatus;
   presettementId:string | undefined;
+  isFormEnabled: boolean;
   initialValues: detailPreliquidationDatePicker;
   setDirty: (dirty: boolean) => void;
   getInvoiceDetailSave: (params:detailPreliquidationDatePicker) => void;

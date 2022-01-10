@@ -22,7 +22,11 @@ import {
 import * as yup from "yup";
 import i18next from "i18next";
 import moment from "moment";
-import { DATE_FORMATS, MAX_FILE_SIZE, VALIDATION_REGEX } from "utils/constants";
+import {
+  DATE_FORMATS,
+  MAX_FILE_SIZE,
+  VALIDATION_REGEX,
+} from "utils/constants";
 import { getBase64FromUrl, isBase64, toBase64 } from "utils/toBase64";
 import {
   InvoiceFileStatus,
@@ -199,8 +203,13 @@ const InvoiceContainer = (
   }, [
     props.invoiceDetail.id,
     props.detailPreliquidations.status.tag,
-    props.isFetching
+    props.isFetching,
   ]);
+
+  const isFormEnabled = useMemo(() => {
+    const tag = props.detailPreliquidations.status.tag;
+    return ["pending", "in_approvement"].includes(tag);
+  }, [props.detailPreliquidations.status.tag]);
 
   const validationSchema: yup.SchemaOf<invoiceValidationSchema> = yup.object({
     emisionDate: yup
@@ -248,6 +257,7 @@ const InvoiceContainer = (
       downloadFile={downloadFile}
       validationSchema={validationSchema}
       initialValues={initialValues}
+      isFormEnabled={isFormEnabled}
       presettementId={params.id}
       handleClickBack={handleClickBack}
       changePage={changePage}

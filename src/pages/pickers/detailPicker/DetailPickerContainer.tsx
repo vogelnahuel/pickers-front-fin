@@ -98,15 +98,15 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
 
           expirationDatePolicyVehicle: formatDate(
             props.pendingUserAdminPicker?.vehicle
-              ?.expirationDatePolicyVehicle
+              ?.expirationDatePolicyVehicle || ""
           ),
           expirationDateIdentificationVehicle: formatDate(
             props.pendingUserAdminPicker?.vehicle
-              ?.expirationDateIdentificationVehicle
+              ?.expirationDateIdentificationVehicle || ""
           ),
           expirationDateDriverLicense: formatDate(
             props.pendingUserAdminPicker?.vehicle
-              ?.expirationDateDriverLicense
+              ?.expirationDateDriverLicense || ""
           ),
         },
       }

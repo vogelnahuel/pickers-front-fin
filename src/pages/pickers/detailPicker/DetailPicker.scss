@@ -82,6 +82,7 @@
   cursor: text;
 }
 .Admin-Pickers-input-select {
+  pointer-events: none;
   font-family: "Mulish";
   font-style: normal;
   font-weight: normal;
@@ -371,6 +372,7 @@
 .button-submit-subtype:disabled {
   border: 2.5px solid #bdbdbd;
   color: #bdbdbd;
+  cursor: auto;
 }
 .modal-error-title2 {
   background: #00b2e3;

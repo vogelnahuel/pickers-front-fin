@@ -246,6 +246,11 @@ function* patchApproveDetailInvoice({
   );
   if (response.status !== 200) {
     yield put(preliquidationActions.getInvoiceDetailApproveError());
+    yield put(notificationActions.showNotification({
+      level: "error",
+      title: i18next.t("global:title.modal.connectionError"),
+      body: i18next.t("global:label.modal.connectionError"),
+    }))
   } else {
     yield put(replace("/preliquidation"))
   }
