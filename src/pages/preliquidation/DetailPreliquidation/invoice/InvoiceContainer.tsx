@@ -63,11 +63,14 @@ const InvoiceContainer = (
         // se vuelvan a consumir los datos desde el back ya que el
         // formulario con los datos de factura debe estar vacio.
         const refresh = props.invoiceDetail?.invoiceFile?.upload;
-        props.uploadInvoiceFile({
-          id: parseInt(params.id || "0"),
-          content: base64,
-          refreshPage: refresh
-        });
+        !refresh ?
+          props.uploadInvoiceFile({
+            id: parseInt(params.id || "0"),
+            content: base64,
+          }): props.replaceInvoiceFile({
+            id: parseInt(params.id || "0"),
+            content: base64,
+          })
       } catch (err) {
         console.log("Base64 error: ", err);
       }
@@ -182,10 +185,10 @@ const InvoiceContainer = (
       salePoint: detailPreliquidations.salePoint ?? "",
       emisionDate: detailPreliquidations.emisionDate
         ? {
-            from: moment(detailPreliquidations.emisionDate).format(
-              DATE_FORMATS.shortDate
-            ),
-          }
+          from: moment(detailPreliquidations.emisionDate).format(
+            DATE_FORMATS.shortDate
+          ),
+        }
         : "",
     };
   };
@@ -279,6 +282,9 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   },
   uploadInvoiceFile: (params: UploadInvoiceFileMiddlewareType) => {
     dispatch(preliActions.uploadInvoiceFile(params));
+  },
+  replaceInvoiceFile: (params: UploadInvoiceFileMiddlewareType) => {
+    dispatch(preliActions.replaceInvoiceFile(params));
   },
   deleteInvoiceFile: (id: number) => {
     dispatch(preliActions.deleteInvoiceFileRequest({ id }));

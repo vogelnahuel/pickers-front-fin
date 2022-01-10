@@ -19,6 +19,7 @@ export type detailPreliquidationInvoiceContainerPropsType = {
   getInvoiceDetailApprove: (params:detailPreliquidationDatePicker) => void;
   getInvoiceDetailDelete: (params: RejectInvoiceMiddlewareType) => void;
   uploadInvoiceFile: (params: UploadInvoiceFileMiddlewareType) => void;
+  replaceInvoiceFile: (params: UploadInvoiceFileMiddlewareType) => void;
   resetInvoiceDetail: () => void;
   deleteInvoiceFile: (id: number) => void;
   setInvoiceFileStatus: (params: InvoiceFileStatus) => void;
