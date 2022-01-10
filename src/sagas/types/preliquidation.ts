@@ -32,7 +32,7 @@ export type PreliquidationStatus = {
 };
 
 export type PreliquidationParamsMiddlewareType = {
-  presettlmentId?: number;
+  presettlementId?: number;
   status?: string;
   generatedAt?: generatedAtType;
   fiscalNumber?: string;
@@ -40,7 +40,7 @@ export type PreliquidationParamsMiddlewareType = {
   offset?: number;
 };
 export type PreliquidationCastParamsMiddlewareType = {
-  presettlmentId?: number;
+  presettlementId?: number;
   status?: string;
   generatedAt?: string;
   fiscalNumber?: string;
@@ -49,7 +49,7 @@ export type PreliquidationCastParamsMiddlewareType = {
 };
 
 export type PreliquidationParamsMiddlewareTypeCast = {
-  presettlmentId?: number;
+  presettlementId?: number;
   status?: string;
   generatedAt?: string;
   fiscalNumber?: string;
