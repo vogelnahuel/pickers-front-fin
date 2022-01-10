@@ -36,7 +36,7 @@ const TablePreliquidation = ({
     id: number
   ) => {
     const target = e?.target as HTMLElement;
-    if (target?.localName !== "input") history.push(`/preliquidation/${id}`);
+    if (target?.localName !== "input") history.push(`/presettlements/${id}`);
   };
 
 
