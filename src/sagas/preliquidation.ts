@@ -75,8 +75,8 @@ const process = (body: DetailPreliquidationBodyParamsType) => {
     ...body,
     emisionDate: body?.emisionDate
       ? moment(body?.emisionDate, DATE_FORMATS.shortDate).format(
-        DATE_FORMATS.shortISODate
-      )
+          DATE_FORMATS.shortISODate
+        )
       : null,
   };
 };
@@ -86,15 +86,15 @@ const processDatePicker = (
 ): PreliquidationCastParamsMiddlewareType => {
   let payloadCast: PreliquidationCastParamsMiddlewareType =
     payload as PreliquidationCastParamsMiddlewareType;
-  if (payload.generatedAt) {
-    const castDatePicker = moment(
-      payload.generatedAt?.from,
-      DATE_FORMATS.shortDate
-    ).format(DATE_FORMATS.shortISODate);
 
+  const { generatedAt } = payload;
+  if (!generatedAt) delete payloadCast.generatedAt;
+  else {
     payloadCast = {
       ...payload,
-      generatedAt: castDatePicker,
+      generatedAt: moment(generatedAt, DATE_FORMATS.shortDate).format(
+        DATE_FORMATS.shortISODate
+      ),
     };
   }
 
@@ -157,9 +157,9 @@ function* getInvoiceDetail({
   payload,
 }: PayloadAction<string | undefined>): Generator<
   | PutEffect<{
-    payload: DetailPreliquidationsContentResponseType;
-    type: string;
-  }>
+      payload: DetailPreliquidationsContentResponseType;
+      type: string;
+    }>
   | PutEffect<{ payload: undefined; type: string }>
   | CallEffect<AxiosResponse<DetailPreliquidationsContentResponseType>>,
   void,
@@ -188,10 +188,7 @@ function* putSaveDetailInvoice({
   DetailPreliquidationsInvoiceApiResponseType
 > {
   let result: DetailPreliquidationBodyParamsType = {
-    emisionDate:
-      typeof payload.emisionDate !== "string"
-        ? payload.emisionDate?.from
-        : null,
+    emisionDate: payload.emisionDate || null,
     invoiceType: payload.invoiceType?.tag ? payload.invoiceType : null,
     invoiceNumber: payload.invoiceNumber || null,
     salePoint: payload.salePoint || null,
@@ -214,7 +211,7 @@ function* putSaveDetailInvoice({
     );
     yield put(preliquidationActions.getInvoiceDetailSaveError());
   } else {
-    yield put(replace("/presettlements"))
+    yield put(replace("/presettlements"));
     yield put(preliquidationActions.getInvoiceDetailSaveSuccess());
   }
 }
@@ -230,8 +227,7 @@ function* patchApproveDetailInvoice({
   DetailPreliquidationsInvoiceApiResponseType
 > {
   let result: DetailPreliquidationBodyParamsType = {
-    emisionDate:
-      typeof payload.emisionDate !== "string" ? payload.emisionDate?.from : "",
+    emisionDate: payload.emisionDate || "",
     invoiceType: payload.invoiceType,
     invoiceNumber: payload.invoiceNumber,
     salePoint: payload.salePoint,
@@ -246,13 +242,15 @@ function* patchApproveDetailInvoice({
   );
   if (response.status !== 200) {
     yield put(preliquidationActions.getInvoiceDetailApproveError());
-    yield put(notificationActions.showNotification({
-      level: "error",
-      title: i18next.t("global:title.modal.connectionError"),
-      body: i18next.t("global:label.modal.connectionError"),
-    }))
+    yield put(
+      notificationActions.showNotification({
+        level: "error",
+        title: i18next.t("global:title.modal.connectionError"),
+        body: i18next.t("global:label.modal.connectionError"),
+      })
+    );
   } else {
-    yield put(replace("/presettlements"))
+    yield put(replace("/presettlements"));
   }
 }
 
@@ -273,7 +271,7 @@ function* putDeleteDetailInvoice({
   if (response.status !== 200) {
     yield put(preliquidationActions.getInvoiceDetailDeleteError());
   } else {
-    yield put(replace("/presettlements"))
+    yield put(replace("/presettlements"));
     yield put(preliquidationActions.getInvoiceDetailDeleteSuccess());
   }
 }
@@ -295,11 +293,12 @@ function* replaceInvoiceFile({
   if (response.status !== 200 && response.status !== 201) {
     yield put(preliquidationActions.replaceInvoiceFileError());
   } else {
-    yield put(preliquidationActions.getInvoiceDetailRequest(payload.id.toString()))
+    yield put(
+      preliquidationActions.getInvoiceDetailRequest(payload.id.toString())
+    );
     yield put(preliquidationActions.setInvoiceFileStatus({ loading: false }));
   }
 }
-
 
 function* uploadInvoiceFile({
   payload,
@@ -339,7 +338,9 @@ function* deleteInvoiceFile({
   if (response.status !== 200) {
     yield put(preliquidationActions.deleteInvoiceFileError());
   } else {
-    yield put(preliquidationActions.getInvoiceDetailRequest(payload.id.toString()));
+    yield put(
+      preliquidationActions.getInvoiceDetailRequest(payload.id.toString())
+    );
   }
 }
 

@@ -9,7 +9,6 @@ import {
 } from "reducers/preliquidation";
 import { actions as notificationActions } from "reducers/notification";
 import {
-  DatePickerType,
   detailPreliquidationDatePicker,
   detailPreliquidationInvoiceContainerPropsType,
   invoiceValidationSchema,
@@ -22,11 +21,7 @@ import {
 import * as yup from "yup";
 import i18next from "i18next";
 import moment from "moment";
-import {
-  DATE_FORMATS,
-  MAX_FILE_SIZE,
-  VALIDATION_REGEX,
-} from "utils/constants";
+import { DATE_FORMATS, MAX_FILE_SIZE, VALIDATION_REGEX } from "utils/constants";
 import { getBase64FromUrl, isBase64, toBase64 } from "utils/toBase64";
 import {
   InvoiceFileStatus,
@@ -63,14 +58,15 @@ const InvoiceContainer = (
       try {
         const base64 = (await toBase64(file)) as string;
         const uploaded = props.invoiceDetail?.invoiceFile?.upload;
-        !uploaded ?
-          props.uploadInvoiceFile({
-            id: parseInt(params.id || "0"),
-            content: base64,
-          }): props.replaceInvoiceFile({
-            id: parseInt(params.id || "0"),
-            content: base64,
-          })
+        !uploaded
+          ? props.uploadInvoiceFile({
+              id: parseInt(params.id || "0"),
+              content: base64,
+            })
+          : props.replaceInvoiceFile({
+              id: parseInt(params.id || "0"),
+              content: base64,
+            });
       } catch (err) {
         console.log("Base64 error: ", err);
       }
@@ -165,30 +161,25 @@ const InvoiceContainer = (
     downloadLink.click();
   };
 
-  const validarFechas = (value: DatePickerType | string | undefined) => {
-    if (!value || typeof value === "string" || !value?.from) return true;
+  const validarFechas = (value: string | undefined) => {
+    if (!value) return true;
 
-    const valueProps = moment(value?.from, "DD/MM/YYYY");
+    const valueProps = moment(value, "DD/MM/YYYY");
     const today = moment();
     const startDate = moment(props.detailPreliquidations?.generatedAt);
 
-    const range = valueProps.isBetween(startDate, today, "day", "[]");
-
-    return range;
+    return valueProps.isBetween(startDate, today, "day", "[]");
   };
 
   const castDatePicker = (detailPreliquidations: DetailInvoiceType) => {
+    const { emisionDate } = detailPreliquidations;
     return {
       ...detailPreliquidations,
       caeNumber: detailPreliquidations.caeNumber ?? "",
       invoiceNumber: detailPreliquidations.invoiceNumber ?? "",
       salePoint: detailPreliquidations.salePoint ?? "",
       emisionDate: detailPreliquidations.emisionDate
-        ? {
-          from: moment(detailPreliquidations.emisionDate).format(
-            DATE_FORMATS.shortDate
-          ),
-        }
+        ? moment(emisionDate).format(DATE_FORMATS.shortDate)
         : "",
     };
   };
@@ -209,7 +200,7 @@ const InvoiceContainer = (
 
   const validationSchema: yup.SchemaOf<invoiceValidationSchema> = yup.object({
     emisionDate: yup
-      .mixed<DatePickerType | string>()
+      .string()
       .test("requireDatePicker", "", (value) => !!value)
       .test("errorDatePicker", "error.input.emisionDate", (value) =>
         validarFechas(value)

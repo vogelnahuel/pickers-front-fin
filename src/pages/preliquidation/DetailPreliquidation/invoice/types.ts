@@ -51,7 +51,7 @@ export type detailPreliquidationInvoicePropsType = {
 
 export type detailPreliquidationDatePicker = {
   id: number;
-  emisionDate: string | { from: string };
+  emisionDate: string;
   invoiceNumber: string;
   salePoint: string;
   invoiceType: InvoiceTypes;
@@ -70,12 +70,9 @@ export type detailPreliquidationDatePicker = {
 };
 
 export type invoiceValidationSchema = {
-  emisionDate: DatePickerType | string | undefined;
+  emisionDate: string | undefined;
   salePoint: string | undefined;
   invoiceType: TypeOfShape<{}> | InvoiceTypes;
   invoiceNumber: string | undefined;
   caeNumber: string | undefined;
-};
-export type DatePickerType = {
-  from: string;
 };
