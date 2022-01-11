@@ -2,14 +2,13 @@
 @import "../../../../component/admin/ExpandableFile/ExpandableFile.scss";
 
 .container-detail-preliquidation-form {
-  @include container(3, 20px);
+  @include container(15, 20px);
 }
 .container-detail-preliquidation-card {
-  @include container(4, 20px);
+  @include container(12, 20px);
 }
-$backgroundColorWhite: "#ffffff";
 
-@mixin sizeParagraph($font-size, $line-height, $letter-spacing) {
+@mixin font-size($font-size, $line-height, $letter-spacing) {
   font-size: $font-size;
   line-height: $line-height;
   letter-spacing: $letter-spacing;
@@ -31,7 +30,7 @@ $backgroundColorWhite: "#ffffff";
   overflow-y: auto;
 }
 .display-filter-preliquidation {
-  background: $backgroundColorWhite;
+  background: #fff;
   border: 1px solid #e5e5e5;
   box-sizing: border-box;
   border-radius: 10px;
@@ -46,23 +45,23 @@ $backgroundColorWhite: "#ffffff";
   justify-content: space-between;
   width: 100%;
   p {
-    @include styleParagraph("normal", "#828282;");
-    @include sizeParagraph("13px", "16px", "0.004em;");
+    @include styleParagraph("normal", "#828282");
+    @include font-size("13px", "16px", "0.004em");
 
     b {
-      @include styleParagraph("bold", "#4d4d4d;");
-      @include sizeParagraph("16px", "20px", "0.0125em;");
+      @include styleParagraph("bold", "#4d4d4d");
+      @include font-size("16px", "20px", "0.0125em");
       text-align: right;
     }
   }
 }
 .table-amount-preliquidation-subtitle {
-  @include styleParagraph("bold", "#4d4d4d;");
-  @include sizeParagraph("16px", "20px", "0.0125em;");
+  @include styleParagraph("bold", "#4d4d4d");
+  @include font-size("16px", "20px", "0.0125em");
 }
 .detail-preliquidation-subtitle-amount {
-  @include styleParagraph("bold", "#0098ff;");
-  @include sizeParagraph("16px", "20px", "0.0125em;");
+  @include styleParagraph("bold", "#0098ff");
+  @include font-size("16px", "20px", "0.0125em");
   cursor: pointer;
   margin-left: 10px;
 }
