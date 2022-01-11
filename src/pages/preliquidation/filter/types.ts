@@ -5,6 +5,7 @@ export type PreliquidationFilterContainerPropsType = {
   filtersExtra: PreliquidationFilterExtraType;
   getPreliquidations: (params: PreliquidationParamsMiddlewareType) => void;
   setPreliquidationFilters: (params: PreliquidationFiltersType) => void;
+  reset: ()=>void;
 };
 
 export type PreliquidationFilterPropsType = {
