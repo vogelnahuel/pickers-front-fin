@@ -54,15 +54,7 @@ export const DetailPreliquidation = ({
         </h2>
         <p className="detail-preliquidation-number">{presettementId}</p>
       </div>
-      <Form
-        onSubmit={(value) => value}
-        mutators={{
-          setValue: ([field, value], state, { changeValue }) => {
-            delete value.label;
-            changeValue(state, field, () => value);
-          },
-        }}
-      >
+      <Form onSubmit={(value) => value}>
         {({ handleSubmit, form, values }) => (
           <form onSubmit={handleSubmit}>
             <div className="display-filter-transaction">
