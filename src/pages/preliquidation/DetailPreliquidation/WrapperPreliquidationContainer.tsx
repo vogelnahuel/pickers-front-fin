@@ -9,12 +9,20 @@ import { actions as notificationActions } from "reducers/notification";
 export const WrapperPreliquidationContainer = (
   props: WrapperPreliquidationContainerPropsType
 ): JSX.Element => {
-  return <WrapperPreliquidation {...props} actualPage={props.actualPage} />;
+
+  return (
+    <WrapperPreliquidation
+      {...props}
+
+      actualPage={props.actualPage}
+    />
+  );
 };
 
 const mapStateToProps = (state: RootState) => ({
   isFetching: preliquidationSelector(state).fetching,
   actualPage: preliquidationSelector(state).actualPage,
+
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({

@@ -15,11 +15,8 @@ export const DetailPreliquidationContainer = (
   const history = useHistory();
   const params: { id?: string } = useParams();
 
-
   const changePage = (page: PagesPreliquidationTypes) => {
-  
-    if (props.actualPage !== page) 
-    props.setActualPage(page);
+    if (props.actualPage !== page) props.setActualPage(page);
   };
 
   const handleClickBack = () => {
@@ -28,6 +25,7 @@ export const DetailPreliquidationContainer = (
 
   return (
     <DetailPreliquidation
+      initialValues={undefined}
       handleClickBack={handleClickBack}
       changePage={changePage}
       presettementId={params.id}

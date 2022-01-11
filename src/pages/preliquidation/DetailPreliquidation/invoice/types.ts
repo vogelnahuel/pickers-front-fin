@@ -78,4 +78,3 @@ export type invoiceValidationSchema = {
 export type DatePickerType = {
   from: string;
 };
-

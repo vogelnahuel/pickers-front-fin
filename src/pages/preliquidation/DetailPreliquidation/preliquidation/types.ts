@@ -12,4 +12,5 @@ export type DetailPreliquidationPropsType = {
   changePage: (page: PagesPreliquidationTypes) => void;
   handleClickBack:()=>void;
   actualPage:PagesPreliquidationTypes;
+  initialValues:any;
 };
