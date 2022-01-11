@@ -27,7 +27,7 @@
   "label.modal.preliquidations": "preliquidaciones",
 
   "title.modal.sendToAccounting": "Enviá las preliquidaciones a contabilidad",
-  "label.modal.sendToAccounting": "¿Deseás enviar {{ quantity }} {{ text }} a contabilidad?",
+  "label.modal.sendToAccounting": "¿Deseás enviar {{quantity}} a contabilidad?",
   "label.button.send": "Sí, enviar",
   "label.button.sendToAccounting": "Enviar a contabilidad"
 
