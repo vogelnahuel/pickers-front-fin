@@ -1,4 +1,4 @@
-import { ReactElement, useState, useMemo } from "react";
+import { ReactElement, useMemo } from "react";
 import { Viewer, Worker } from "@react-pdf-viewer/core";
 import "@react-pdf-viewer/core/lib/styles/index.css";
 import {
@@ -105,7 +105,6 @@ export const PdfViewer = (props: PdfViewerPropsTypes) => {
     </Toolbar>
   );
 
-  const [fileUrl] = useState(props.src);
   const toolbarPluginInstance = toolbarPlugin();
 
   const defaultLayoutPluginInstance = defaultLayoutPlugin({
@@ -115,15 +114,15 @@ export const PdfViewer = (props: PdfViewerPropsTypes) => {
   const plugins = useMemo(
     () => [defaultLayoutPluginInstance, toolbarPluginInstance],
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [fileUrl]
+    [props.src]
   );
 
   return (
     <div className="pdf-container">
-      {fileUrl && (
+      {props.src && (
         <>
           <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.6.347/build/pdf.worker.min.js">
-            <Viewer fileUrl={fileUrl} plugins={plugins} />
+            <Viewer fileUrl={props.src} plugins={plugins} />
           </Worker>
         </>
       )}
