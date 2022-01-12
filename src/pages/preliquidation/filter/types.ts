@@ -18,14 +18,10 @@ export type PreliquidationFilterExtraType = {
   offset: number;
 };
 
-export type generatedAtType = {
-  from: string;
-};
-
 export type PreliquidationFiltersType = {
   presettlementId?: number;
   fiscalNumber?: string;
-  generatedAt?:  generatedAtType;
+  generatedAt?:  string;
   status?: string;
 };
 export type filterPreliquidationValidationSchema = {

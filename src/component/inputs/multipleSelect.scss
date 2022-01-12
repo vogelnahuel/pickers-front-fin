@@ -87,11 +87,15 @@
 #valorAmodificar{
     margin-right: 14px;
 }
-.multiple-flotarImg{
+.multiple-select-icon {
     position: relative;
     right: 15px;
     margin-right: -15px;
     margin-top: 0;
+
+    &-disabled path{
+        fill: #828282;
+    }
 }
 
 .multiple-options{

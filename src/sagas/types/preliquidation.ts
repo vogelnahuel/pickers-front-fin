@@ -1,5 +1,3 @@
-import { generatedAtType } from "pages/preliquidation/filter/types";
-
 export type PreliquidationsApiResponse = {
   data: PreliquidationsContentResponseType;
   status: number;
@@ -34,7 +32,7 @@ export type PreliquidationStatus = {
 export type PreliquidationParamsMiddlewareType = {
   presettlementId?: number;
   status?: string;
-  generatedAt?: generatedAtType;
+  generatedAt?: string;
   fiscalNumber?: string;
   limit?: number;
   offset?: number;
