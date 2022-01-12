@@ -115,7 +115,6 @@ const InvoiceContainer = (
   const changePage = (page: PagesPreliquidationTypes, isDirty: boolean) => {
     const onClose = () => {
       props.setActualPage(page);
-
     };
     if (isDirty) showDirtyNotification(onClose);
     else if (props.invoiceFileStatus.error) showWrongFilesNotification(onClose);

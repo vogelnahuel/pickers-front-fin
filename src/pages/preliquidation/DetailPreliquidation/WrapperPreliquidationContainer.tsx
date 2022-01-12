@@ -15,14 +15,14 @@ export const WrapperPreliquidationContainer = (
 ): JSX.Element => {
   useEffect(() => {
     props.getDetailPreliquidation(1)
-
-}, [])
+  }, [])
   return <WrapperPreliquidation {...props} actualPage={props.actualPage} />;
 };
 
 const mapStateToProps = (state: RootState) => ({
   isFetching: preliquidationSelector(state).fetching,
   actualPage: preliquidationSelector(state).actualPage,
+
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
@@ -32,7 +32,7 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   setActualPage: (page: PagesPreliquidationTypes) => {
     dispatch(actions.setActualPage(page));
   },
-  getDetailPreliquidation: (id:number)=>{
+  getDetailPreliquidation: (id: number) => {
     dispatch(preliActions.getDetailPreliquidationsRequest(id))
   }
 });

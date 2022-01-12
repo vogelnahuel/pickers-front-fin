@@ -35,6 +35,28 @@ export type DetailPreliquidationShortType = {
     id: number;
 };
 
+export type PreliHistory =  {
+  id: number,
+  createdAt: string,
+  fieldEdited: string,
+  beforeValue: number,
+  currentValue: number,
+  reasonTag: {
+    id: number,
+    tag: string
+  }
+}
+
+export type PreliTransactionItem =  {
+  transactionCode?: string | null
+  finishedAt: string,
+  status: {
+    name: string,
+    tag: string
+  },
+  amount: number
+}
+
 export type DetailPreliquidationType = {
   id: number,
   status: {
@@ -51,32 +73,10 @@ export type DetailPreliquidationType = {
     maxAllowedPlus: number,
     maxAllowedSubtract: number,
   },
-  histories: [
-    {
-      id: number,
-      createdAt: string,
-      fieldEdited: string,
-      beforeValue: number,
-      currentValue: number,
-      reasonTag: {
-        id: number,
-        tag: string
-      }
-    }
-  ],
+  histories: PreliHistory[]
   transactions: {
     quantity: number,
-    items: [
-      {
-        transactionCode?: string | null
-        finishedAt: string,
-        status: {
-          name: string,
-          tag: string
-        },
-        amount: number
-      }
-    ]
+    items: PreliTransactionItem[]
   }
 }
 
