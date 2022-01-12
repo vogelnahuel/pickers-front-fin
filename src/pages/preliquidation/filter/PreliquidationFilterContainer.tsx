@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { VALIDATION_REGEX } from "utils/constants";
 import * as yup from "yup";
@@ -20,16 +20,13 @@ const PreliquidationFilterContainer: React.FC<
   PreliquidationFilterContainerPropsType
 > = (props) => {
 
-  useEffect(() => {
-    props.reset()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.filters])
-
   const search = (values: PreliquidationFiltersType) => {
+    props.resetAllSelected();
     props.getPreliquidations({
       ...values,
       ...props.filtersExtra,
     });
+    props.setPreliquidationFilters(values);
   };
 
   const validationSchema: yup.SchemaOf<filterPreliquidationValidationSchema> =
@@ -79,6 +76,9 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   },
   reset: () => {
     dispatch(preliquidationActions.reset());
+  },
+  resetAllSelected: () => {
+    dispatch(preliquidationActions.resetAllSelected());
   }
 });
 

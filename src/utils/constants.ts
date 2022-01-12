@@ -140,7 +140,7 @@ export const FILTER_PRELIQUIDATION_OPTIONS = [
   },
   {
     label: "preli:label.select.in_accounting",
-    id: "IN_ACCOUNTING",
+    id: "in_accounting",
   },
   {
     label: "preli:label.select.generated_payment",
