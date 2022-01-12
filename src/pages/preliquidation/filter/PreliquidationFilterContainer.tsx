@@ -22,9 +22,10 @@ const PreliquidationFilterContainer: React.FC<
 
   useEffect(() => {
     props.reset()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.filters])
 
-const search = (values: PreliquidationFiltersType) => {
+  const search = (values: PreliquidationFiltersType) => {
     props.getPreliquidations({
       ...values,
       ...props.filtersExtra,
