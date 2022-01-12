@@ -2,7 +2,7 @@ import React from "react";
 import { Header } from "component/admin/Header/Header";
 import { Nav } from "component/admin/Nav/Nav";
 import "pages/pickers/Pickers.scss";
-import TabControler from "component/admin/TabControler/TabControler";
+import {TabControler} from "component/admin/TabControler/TabControler";
 import exportar from "assets/admin/PendingUser/exportar.svg";
 import or from "assets/admin/PendingUser/or.svg";
 import FilterPickers from "pages/pickers/filter/FilterPickersContainer";
@@ -15,6 +15,8 @@ import trabajadorOscuro from "assets/admin/PendingUser/trabajadorOscuro.svg";
 import trabajadorAzul from "assets/admin/PendingUser/trabajadorAzul.svg";
 
 import i18next from "i18next";
+import { pickerTabs } from "./detailPicker/types";
+import { TabType } from "component/admin/TabControler/types";
 
 export const Pickers: React.FC<PickerTypes> = ({
   actualPage,
@@ -27,7 +29,7 @@ export const Pickers: React.FC<PickerTypes> = ({
   getPendingUsersExportRequest,
   changePage,
 }): JSX.Element => {
-  const tabs = [
+  const tabs:TabType<pickerTabs>[] = [
     {
       title: "pickers:label.title.pending",
       id: "PENDING",
@@ -46,7 +48,12 @@ export const Pickers: React.FC<PickerTypes> = ({
       <div className="mainContainerFlex">
         <Nav isDirty={null} showNotification={null} />
         <div className="pending-container">
-          <TabControler tabs={tabs} changePage={changePage} actualPage={actualPage} clickable={false}/>
+          <TabControler<pickerTabs>
+            tabs={tabs}
+            changePage={changePage}
+            actualPage={actualPage}
+            clickable={false}
+          />
 
           <div className="mainContainerFlex">
             <h2 className="subTitle-pending">

@@ -11,12 +11,11 @@ import i18next from "i18next";
 
 const TransactionStateHistory: React.FC<TransactionHistoryType> = ({
   transactionHistory,
+  cancelStatus,
+  showCreatedDate,
+  linkableStatus,
 }): JSX.Element => {
-  const cancelStatus = [
-    "state_pickup_cancelled_temporally",
-    "state_pickup_cancelled_permanently",
-    "state_lost",
-  ];
+
   return (
     <div className="modal-transaction-history-container">
       <h3 className="modal-transaction-h3">
@@ -27,14 +26,14 @@ const TransactionStateHistory: React.FC<TransactionHistoryType> = ({
         <div key={state.id}>
           <div className="modal-transaction-part" key={state.id}>
             <img
-              src={cancelStatus.includes(state.reasonTag.tag) ? Cancel : Okey}
+              src={cancelStatus?.includes(state.reasonTag.tag) ? Cancel : Okey}
               alt="Cancel"
               className="modal-transaction-img-okey"
             />
             <p className="modal-transaction-part-subtitle">
               {i18next.t(TRANSACTION_ACTIONS_TAG_LABEL[state.reasonTag.tag])}
             </p>
-            {state.metadata.length > 0 && (
+            {state.metadata?.length > 0 && (
               <p className="modal-transaction-part-subtitle-metadata">
                 {`. ${i18next.t(
                   "detailTransaction:label.historyModal.reason"
@@ -42,9 +41,10 @@ const TransactionStateHistory: React.FC<TransactionHistoryType> = ({
                 {state.metadata[0].value.toLocaleLowerCase()}
               </p>
             )}
-            <p className="modal-transaction-part-info">
-              {ISO8601toDDMMYYYHHMM(state.createdAt)}
-            </p>
+            {showCreatedDate &&
+              <p className="modal-transaction-part-info">
+                {ISO8601toDDMMYYYHHMM(state.createdAt)}
+              </p>}
 
             {state.reasonTag.tag === "assigned_picker" && (
               <Link

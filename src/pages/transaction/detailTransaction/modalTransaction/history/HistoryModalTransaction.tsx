@@ -24,7 +24,11 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
 }): JSX.Element => {
   const cancelEnabledStatus = [1, 2, 3, 4];
   const finishEnabledStatus = [5, 6, 7, 8];
-
+  const cancelStatus = [
+    "state_pickup_cancelled_temporally",
+    "state_pickup_cancelled_permanently",
+    "state_lost",
+  ];
   return (
     <div className="modal-transaction-scroll">
       <div>
@@ -223,6 +227,8 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
         </Form>
         <TransactionStateHistory
           transactionHistory={detailTransaction.transactionHistory}
+          cancelStatus={cancelStatus}
+          showCreatedDate={true}
         />
       </div>
       <div>

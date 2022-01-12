@@ -1,4 +1,5 @@
 import { generatedAtType } from "pages/preliquidation/filter/types";
+import { DetailPreliquidationType } from "reducers/types/preliquidation";
 
 export type PreliquidationsApiResponse = {
   data: PreliquidationsContentResponseType;
@@ -140,4 +141,12 @@ export type DetailPreliquidationsInvoiceTypesApiResponseContentType = {
 export type InvoiceTypes = {
   name: string;
   tag: string;
+};
+
+
+export type DetatilPreliquidationsApiResponse = {
+  data: {
+    result: DetailPreliquidationType
+  };
+  status: number;
 };

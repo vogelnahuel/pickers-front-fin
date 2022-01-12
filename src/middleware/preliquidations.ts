@@ -1,4 +1,4 @@
-import { AxiosResponse } from "axios";
+import axios, { AxiosResponse } from "axios";
 import * as API from "middleware/api";
 import {
   DetailPreliquidationBodyParamsType,
@@ -8,6 +8,7 @@ import {
   UploadInvoiceFileMiddlewareType,
   DetailPreliquidationsInvoiceTypesApiResponseType,
   PreliquidationCastParamsMiddlewareType,
+  DetatilPreliquidationsApiResponse,
 } from "sagas/types/preliquidation";
 import { ApiResponse } from "./api";
 
@@ -66,3 +67,6 @@ export const deleteInvoiceFile = (
   id: number
 ): Promise<AxiosResponse<ApiResponse<void>>> =>
   API.remove(`/ms-admin-rest/api/v1.0/presettlements/${id}/invoice/file`);
+
+export const getDetailPreliquidations = (id: number): Promise<AxiosResponse<DetatilPreliquidationsApiResponse>> =>
+  axios.get(" http://localhost:8080/detailPreliquidation");

@@ -1,4 +1,5 @@
 import { Action, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { pickerTabs } from "pages/pickers/detailPicker/types";
 import {
   ParamsMiddlewareType,
   PickersParamsType,
@@ -71,7 +72,7 @@ export const pickersSlice = createSlice({
     ) => {
       state.filters = action.payload;
     },
-    setActualPage: (state: PickerStateType, action: PayloadAction<string>) => {
+    setActualPage: (state: PickerStateType, action: PayloadAction<pickerTabs>) => {
       state.actualPage = action.payload;
       state.users = [];
     },

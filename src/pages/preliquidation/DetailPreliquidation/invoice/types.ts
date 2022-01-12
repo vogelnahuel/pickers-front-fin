@@ -1,18 +1,19 @@
 import { RejectInvoiceMiddlewareType, UploadInvoiceFileMiddlewareType } from "sagas/types/preliquidation";
-import { DetailInvoiceType, DetailPreliquidationsType, InvoiceFileStatus } from "reducers/types/preliquidation";
+import { DetailInvoiceType, DetailPreliquidationShortType, DetailPreliquidationType, InvoiceFileStatus } from "reducers/types/preliquidation";
 import {
   InvoiceTypes,
 } from "sagas/types/preliquidation";
 import { TypeOfShape } from "yup/lib/object";
 import { NotificationStateType } from "reducers/types/notification";
+import { PagesPreliquidationTypes } from "../types";
 
 export type detailPreliquidationInvoiceContainerPropsType = {
   isFetching: boolean;
   invoiceDetail: DetailInvoiceType;
-  detailPreliquidations: DetailPreliquidationsType;
+  detailPreliquidations: DetailPreliquidationShortType | DetailPreliquidationType;
   invoiceFileStatus: InvoiceFileStatus;
   invoiceTypes: InvoiceTypes[];
-  setActualPage: (page: string) => void;
+  setActualPage: (page: PagesPreliquidationTypes) => void;
   setDirty: (dirty: boolean) => void;
   getInvoiceDetail: (id: string | undefined) => void;
   getInvoiceDetailSave: (params:detailPreliquidationDatePicker) => void;
@@ -30,7 +31,7 @@ export type detailPreliquidationInvoiceContainerPropsType = {
 export type detailPreliquidationInvoicePropsType = {
   isFetching: boolean;
   invoiceDetail: DetailInvoiceType;
-  detailPreliquidations: DetailPreliquidationsType;
+  detailPreliquidations: DetailPreliquidationShortType | DetailPreliquidationType;
   validationSchema: object;
   invoiceTypes: InvoiceTypes[];
   invoiceFileStatus: InvoiceFileStatus;
@@ -46,7 +47,7 @@ export type detailPreliquidationInvoicePropsType = {
   fileHandler: (file: File) => void;
   goToPreviousFile: () => void;
   handleClickBack:(dirty:boolean)=>void;
-  changePage:(page: string, isDirty: boolean)=>void;
+  changePage:(page: PagesPreliquidationTypes, isDirty: boolean)=>void;
 };
 
 export type detailPreliquidationDatePicker = {
