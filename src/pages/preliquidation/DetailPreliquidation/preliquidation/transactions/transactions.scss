@@ -1,21 +1,20 @@
 @import "@pickit/pickit-grid-system";
 .container-detail-preliquidation-table {
   @include container(4, 20px);
+  font-family: "Mulish";
+  font-style: normal;
 }
 
 .detail-preliquidation-table-head {
-  font-family: "Mulish";
-  font-style: normal;
-  font-weight: bold;
+  font-weight: 700;
   font-size: 16px;
   line-height: 20px;
   letter-spacing: 0.0125em;
   color: #4d4d4d;
   text-align: start;
+  padding-bottom: 16px;
 }
 .detail-preliquidation-table-body {
-  font-family: "Mulish";
-  font-style: normal;
   font-weight: normal;
   font-size: 14px;
   line-height: 18px;
@@ -63,4 +62,35 @@ table thead tr th:nth-child(4) {
 .overflow-scroll::-webkit-scrollbar-track {
   background: #f1f1f1;
   border-radius: 4px;
+}
+
+.row-transparent {
+  position: relative;
+  top: -20px;
+  height: 20px;
+  width: 95%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    #ffffff 63.36%
+  );
+}
+
+.transaction-total-text {
+  color: #4d4d4d;
+  font-weight: 700;
+}
+.transaction-quantity {
+  font-weight: 400;
+  color: #828282;
+  font-size: 13px;
+  line-height: 16px;
+  padding-top: 4px;
+}
+
+.amount-container {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  color: #4d4d4d;
 }

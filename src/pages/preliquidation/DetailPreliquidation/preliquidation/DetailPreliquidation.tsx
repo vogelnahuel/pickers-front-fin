@@ -13,7 +13,7 @@ import invoiceBlack from "./../../../../assets/preli/invoiceBlack.svg";
 import invoiceBlue from "./../../../../assets/preli/invoiceBlue.svg";
 import "./detailPreliquidation.scss";
 import { DetailPreliquidationPropsType } from "./types";
-import { DetailTablePreliquidation } from "./detailtable/DetailTablePreliquidation";
+import { Transactions } from "./transactions/Transactions";
 
 const tabs: TabType<PagesPreliquidationTypes>[] = [
   {
@@ -134,11 +134,10 @@ export const DetailPreliquidation = ({
                   Modificar Monto
                 </p>
               </div>
-             
             </div>
             <div className="display-filter-preliquidation">
-                <DetailTablePreliquidation />
-              </div>
+              <Transactions />
+            </div>
           </div>
         </div>
       </div>

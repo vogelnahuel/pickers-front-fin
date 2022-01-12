@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
-import "./detailTablePreliquidation.scss";
+import "./transactions.scss";
 
-export const DetailTablePreliquidation = () => {
+export const Transactions = () => {
   const titulos = ["ID", "Fecha", "Estado", "Monto"];
   const contenido = [
     {
@@ -123,7 +123,7 @@ export const DetailTablePreliquidation = () => {
   return (
     <>
       <div className="container-detail-preliquidation-table-col">
-        <div className="container-detail-preliquidation-table-row overflow-scroll table-detail-preliquidation">
+        <div className="container-detail-preliquidation-table-row">
           {titulos.map((el) => (
             <div
               key={el}
@@ -132,9 +132,11 @@ export const DetailTablePreliquidation = () => {
               <p key={el}>{el}</p>
             </div>
           ))}
+        </div>
+        <div className="container-detail-preliquidation-table-row overflow-scroll table-detail-preliquidation">
           {contenido.map((el) => (
             <Fragment key={el.id}>
-              <div className="container-detail-preliquidation-table-col-sm-1 detail-preliquidation-table-body ">
+              <div className="container-detail-preliquidation-table-col-sm-1 detail-preliquidation-table-body">
                 <p>{el.id}</p>
               </div>
               <div className="container-detail-preliquidation-table-col-sm-1 detail-preliquidation-table-body">
@@ -150,17 +152,13 @@ export const DetailTablePreliquidation = () => {
           ))}
         </div>
         <div className="container-detail-preliquidation-table-row">
-          <div className="transparent"></div>
-          <div className="container-detail-preliquidation-table-col-sm-4 ">
-            <h3 className="table-amount-preliquidation-subtitle ">Total</h3>
-          </div>
+          <div className="row-transparent"></div>
           <div className="container-detail-preliquidation-table-col-sm-3 ">
-            <p className="">15 Transacciones</p>
+            <p className="transaction-total-text">Total</p>
+            <p className="transaction-quantity">15 Transacciones</p>
           </div>
-          <div className="container-detail-preliquidation-table-col-sm-1  ">
-            <p>
-              <b className="">{`$ 3000,12`}</b>
-            </p>
+          <div className="container-detail-preliquidation-table-col-sm-1 amount-container">
+            <p>{`$ 3000,12`}</p>
           </div>
         </div>
       </div>
