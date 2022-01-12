@@ -24,13 +24,11 @@ const PreliquidationFilterContainer: React.FC<
     props.reset()
   }, [props.filters])
 
-  const search = (values: PreliquidationFiltersType) => {
-    debugger
+const search = (values: PreliquidationFiltersType) => {
     props.getPreliquidations({
       ...values,
       ...props.filtersExtra,
     });
-    //props.setPreliquidationFilters(values); dejo esto comentado por si las dudas
   };
 
   const validationSchema: yup.SchemaOf<filterPreliquidationValidationSchema> =
