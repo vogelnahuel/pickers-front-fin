@@ -1,152 +1,45 @@
 import React, { Fragment } from "react";
+import moment from "moment";
+import { TransactionsProps } from "./types";
 import "./transactions.scss";
+import {
+  TRANSACTION_STATE_TAG_LABEL,
+  PRELIQUIDATION_TRANSACTIONS_LABELS,
+} from "utils/constants";
+import i18next from "i18next";
 
-export const Transactions = () => {
-  const titulos = ["ID", "Fecha", "Estado", "Monto"];
-  const contenido = [
-    {
-      id: "AAB114",
-      fecha: "07/12/2021",
-      estado: "Entregada",
-      monto: "$ 1000,65",
-    },
-    {
-      id: "AAB115",
-      fecha: "07/12/2021",
-      estado: "Entregada",
-      monto: "$ 10,65",
-    },
-    {
-      id: "AAB116",
-      fecha: "07/12/2021",
-      estado: "Entregada",
-      monto: "$ 10000,65",
-    },
-    {
-      id: "AAB117",
-      fecha: "07/12/2021",
-      estado: "Entregada",
-      monto: "$ 100,65",
-    },
-    {
-      id: "AAB18",
-      fecha: "07/12/2021",
-      estado: "Entregada",
-      monto: "$ 100,65",
-    },
-    {
-      id: "AAB119",
-      fecha: "07/12/2021",
-      estado: "Entregada",
-      monto: "$ 100,65",
-    },
-    {
-      id: "AAB20",
-      fecha: "07/12/2021",
-      estado: "Entregada",
-      monto: "$ 100,65",
-    },
-    {
-      id: "AAB23",
-      fecha: "07/12/2021",
-      estado: "Entregada",
-      monto: "$ 100,65",
-    },
-    {
-      id: "AAB125",
-      fecha: "07/12/2021",
-      estado: "Entregada",
-      monto: "$ 100,65",
-    },
-    {
-      id: "AAB129",
-      fecha: "07/12/2021",
-      estado: "Entregada",
-      monto: "$ 100,65",
-    },
-    {
-      id: "AAB130",
-      fecha: "07/12/2021",
-      estado: "Entregada",
-      monto: "$ 100,65",
-    },
-    {
-      id: "AAB134",
-      fecha: "07/12/2021",
-      estado: "Entregada",
-      monto: "$ 100,65",
-    },
-    {
-      id: "AAB144",
-      fecha: "07/12/2021",
-      estado: "Entregada",
-      monto: "$ 100,65",
-    },
-    {
-      id: "AAB154",
-      fecha: "07/12/2021",
-      estado: "Entregada",
-      monto: "$ 100,65",
-    },
-
-    {
-      id: "AAB175",
-      fecha: "07/12/2021",
-      estado: "Entregada",
-      monto: "$ 100,65",
-    },
-    {
-      id: "AAB112",
-      fecha: "07/12/2021",
-      estado: "Entregada",
-      monto: "$ 100,65",
-    },
-    {
-      id: "AAB120",
-      fecha: "07/12/2021",
-      estado: "Entregada",
-      monto: "$ 100,65",
-    },
-    {
-      id: "AAB155",
-      fecha: "07/12/2021",
-      estado: "Entregada",
-      monto: "$ 100,65",
-    },
-    {
-      id: "AAB166",
-      fecha: "07/12/2021",
-      estado: "Entregada",
-      monto: "$ 100,65",
-    },
-  ];
+export const Transactions = ({ total, quantity, items }: TransactionsProps) => {
   return (
     <>
       <div className="container-detail-preliquidation-table-col">
         <div className="container-detail-preliquidation-table-row">
-          {titulos.map((el) => (
+          {PRELIQUIDATION_TRANSACTIONS_LABELS.map((label) => (
             <div
-              key={el}
+              key={label}
               className="container-detail-preliquidation-table-col-sm-1 detail-preliquidation-table-head"
             >
-              <p key={el}>{el}</p>
+              <p>{i18next.t(label)}</p>
             </div>
           ))}
         </div>
         <div className="container-detail-preliquidation-table-row overflow-scroll table-detail-preliquidation">
-          {contenido.map((el) => (
-            <Fragment key={el.id}>
+          {items.map((item) => (
+            <Fragment key={item.transactionCode}>
               <div className="container-detail-preliquidation-table-col-sm-1 detail-preliquidation-table-body">
-                <p>{el.id}</p>
+                <p>{item.transactionCode || "-"}</p>
               </div>
               <div className="container-detail-preliquidation-table-col-sm-1 detail-preliquidation-table-body">
-                <p>{el.fecha}</p>
+                <p>
+                  {item.finishedAt
+                    ? moment(item.finishedAt).format("DD/MM/YYYY")
+                    : ""}
+                </p>
               </div>
               <div className="container-detail-preliquidation-table-col-sm-1 detail-preliquidation-table-body">
-                <p>{el.estado}</p>
+                <p>{i18next.t(TRANSACTION_STATE_TAG_LABEL[item.status.tag])}</p>
               </div>
               <div className="container-detail-preliquidation-table-col-sm-1 detail-preliquidation-table-body">
-                <p>{el.monto}</p>
+                <p className="transaction-amount-item">{`$ ${item.amount}`}</p>
               </div>
             </Fragment>
           ))}
@@ -154,11 +47,17 @@ export const Transactions = () => {
         <div className="container-detail-preliquidation-table-row">
           <div className="row-transparent"></div>
           <div className="container-detail-preliquidation-table-col-sm-3 ">
-            <p className="transaction-total-text">Total</p>
-            <p className="transaction-quantity">15 Transacciones</p>
+            <p className="transaction-total-text">
+              {i18next.t("detailPreliquidation:label.table.total")}
+            </p>
+            <p className="transaction-quantity">
+              {`${quantity} ${i18next.t(
+                "detailPreliquidation:label.title.transactions"
+              )}`}
+            </p>
           </div>
           <div className="container-detail-preliquidation-table-col-sm-1 amount-container">
-            <p>{`$ 3000,12`}</p>
+            <p>{`$ ${total}`}</p>
           </div>
         </div>
       </div>

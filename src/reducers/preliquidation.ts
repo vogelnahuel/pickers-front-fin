@@ -50,7 +50,7 @@ export const initialState: PreliquitadionStateType = {
     id: 0,
     status: {
         id: 0,
-        name: "",
+        description: "",
         tag: "",
     },
     generatedAt: "",
@@ -77,17 +77,7 @@ export const initialState: PreliquitadionStateType = {
     ],
     transactions: {
         quantity: 0,
-        items: [
-            {
-                transactionCode: null,
-                finishedAt: "",
-                status: {
-                    name: "",
-                    tag: ""
-                },
-                amount: 0.0
-            }
-        ]
+        items: []
     }
 },
   invoiceDetail: {

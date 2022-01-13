@@ -19,12 +19,13 @@
   padding-top: 30px;
   margin-bottom: 40px;
 }
-.container-detail-preliquidation-subtitle-amount {
-  width: 100%;
+
+.preliquidation-transactions-header {
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
 }
+
 .overflow-scroll {
   max-height: 322px;
   overflow-y: auto;
@@ -46,20 +47,42 @@
   justify-content: space-between;
   width: 100%;
   p {
-    @include styleParagraph("normal", "#828282");
-    @include font-size("13px", "16px", "0.004em");
+    @include styleParagraph(normal, #828282);
+    @include font-size(13px, 16px, 0.004em);
 
     b {
-      @include styleParagraph("bold", "#4d4d4d");
-      @include font-size("16px", "20px", "0.0125em");
+      @include styleParagraph(700, #4d4d4d);
+      @include font-size(16px, 20px, 0.0125em);
       text-align: right;
     }
   }
 }
 
-.detail-preliquidation-subtitle-amount {
-  @include styleParagraph("bold", "#0098ff");
-  @include font-size("16px", "20px", "0.0125em");
+.button-change-amount {
+  display: flex;
+  align-items: flex-end;
   cursor: pointer;
-  margin-left: 10px;
+  outline: none;
+  background: none;
+  border: none;
+
+  p {
+    @include styleParagraph(700, #0098ff);
+    @include font-size(16px, 20px, 0.0125em);
+    margin-left: 10px;
+  }
+
+  svg path {
+    stroke: #0098ff;
+  }
+
+  &:disabled {
+    cursor: auto;
+    p {
+      color: #CCC;
+    }
+    svg path {
+      stroke: #CCC;
+    }
+  }
 }

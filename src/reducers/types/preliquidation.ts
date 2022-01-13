@@ -5,6 +5,7 @@ import {
   PreliquidationItem,
   PreliquidationStatus,
 } from "sagas/types/preliquidation";
+import { TransactionStatusType } from "sagas/types/transactions";
 
 
 export type PreliquitadionStateType = {
@@ -16,7 +17,7 @@ export type PreliquitadionStateType = {
   filters: PreliquidationFiltersType;
   filtersExtra: PreliquidationFilterExtraType;
   filtersExtraSeeMore: PreliquidationFilterExtraType;
-  detailPreliquidations: DetailPreliquidationShortType | DetailPreliquidationType;
+  detailPreliquidations: DetailPreliquidationType;
   invoiceDetail: DetailInvoiceType;
   dirty: boolean;
   actualPage: PagesPreliquidationTypes;
@@ -29,11 +30,6 @@ export type InvoiceFileStatus = {
   loading?: boolean;
   message?: string;
 }
-export type DetailPreliquidationShortType = { 
-    status: PreliquidationStatus;
-    generatedAt: string;
-    id: number;
-};
 
 export type PreliHistory =  {
   id: number,
@@ -52,18 +48,14 @@ export type PreliTransactionItem =  {
   finishedAt: string,
   status: {
     name: string,
-    tag: string
+    tag: TransactionStatusType
   },
   amount: number
 }
 
 export type DetailPreliquidationType = {
   id: number,
-  status: {
-    id: number,
-    name: string, //TODO: pregutnar cual queda (preguntar a ser o shei)
-    tag: string
-  },
+  status: PreliquidationStatus,
   generatedAt: string,
   fiscalNumber: string,
   companyName: string,

@@ -5,7 +5,7 @@ import Back from "component/back/Back";
 import { Input } from "component/inputs/Input";
 import i18next from "i18next";
 import { Field, Form } from "react-final-form";
-import edit from "../../../../assets/preli/edit.svg";
+import { ReactComponent as Edit } from "../../../../assets/preli/edit.svg";
 import { PagesPreliquidationTypes } from "../types";
 import calckBlack from "./../../../../assets/preli/calcBlack.svg";
 import calckBlue from "./../../../../assets/preli/calcBlue.svg";
@@ -29,10 +29,12 @@ const tabs: TabType<PagesPreliquidationTypes>[] = [
 ];
 
 export const DetailPreliquidation = ({
-  changePage,
-  handleClickBack,
+  preliquidation,
   actualPage,
   presettementId,
+  initialValues,
+  changePage,
+  handleClickBack,
 }: DetailPreliquidationPropsType) => {
   return (
     <div>
@@ -52,7 +54,7 @@ export const DetailPreliquidation = ({
         </h2>
         <p className="detail-preliquidation-number">{presettementId}</p>
       </div>
-      <Form onSubmit={(value) => value}>
+      <Form onSubmit={(value) => value} initialValues={initialValues}>
         {({ handleSubmit, form, values }) => (
           <form onSubmit={handleSubmit}>
             <div className="display-filter-transaction">
@@ -126,17 +128,26 @@ export const DetailPreliquidation = ({
             </div>
           </div>
           <div className="container-detail-preliquidation-card-col-sm-6 container-detail-preliquidation-card-col-xl-4">
-            <div className="display-flex">
-              <h2>Transacciones</h2>
-              <div className="container-detail-preliquidation-subtitle-amount">
-                <img src={edit} alt="" />
-                <p className="detail-preliquidation-subtitle-amount">
-                  Modificar Monto
+            <div className="preliquidation-transactions-header">
+              <h2>
+                {i18next.t("detailPreliquidation:label.title.transactions")}
+              </h2>
+              <button
+                disabled={preliquidation.status.tag !== "initial"}
+                className="button-change-amount"
+              >
+                <Edit />
+                <p>
+                  {i18next.t("detailPreliquidation:label.button.changeAmount")}
                 </p>
-              </div>
+              </button>
             </div>
             <div className="display-filter-preliquidation">
-              <Transactions />
+              <Transactions
+                total={preliquidation.total}
+                items={preliquidation.transactions.items}
+                quantity={preliquidation.transactions.quantity}
+              />
             </div>
           </div>
         </div>

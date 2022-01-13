@@ -2,7 +2,7 @@ import { Header } from "component/admin/Header/Header";
 import Nav from "component/admin/Nav/Nav";
 import NotificationModal from "component/modal/NotificationModal";
 
-import React, { useEffect } from "react";
+import React from "react";
 import InvoiceContainer from "./invoice/InvoiceContainer";
 import "./wrapperPreliquidation.scss";
 

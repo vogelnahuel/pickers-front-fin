@@ -176,9 +176,10 @@
     color: #000000;
  }
  .Admin-Pickers-input-select.readonly{
-    color: #828282;
+    color: #B8B8B8;
     background-color: transparent;
     cursor: default;
+    border-bottom-color: #B8B8B8;
  }
 
  @media (min-width:1800px){
