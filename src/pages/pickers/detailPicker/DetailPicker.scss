@@ -34,9 +34,10 @@
   margin-left: auto;
 }
 .Admin-Pickers-input.readonly {
-  color: #828282;
+  color: #B8B8B8;
   background-color: transparent;
   cursor: default;
+  border-bottom-color: #B8B8B8;
 }
 .Admin-Pickers-inputs {
   display: flex;
@@ -44,7 +45,7 @@
   justify-content: space-between;
 }
 .label-Admin-Pickers.readonly {
-  color: #828282;
+  color: #B8B8B8;
 }
 .label-Admin-Pickers {
   font-family: "Mulish";

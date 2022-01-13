@@ -103,3 +103,17 @@ export type TransactionsExportContentType = {
   data: string;
   status: number;
 };
+
+export type TransactionStatusType =
+  | "PENDING_ASSIGNMENT"
+  | "ASSIGNED"
+  | "IN_PICK_UP"
+  | "IN_PICK_UP_POINT"
+  | "PICKED_UP"
+  | "IN_DELIVERY"
+  | "IN_DELIVERY_POINT"
+  | "IN_RETURN_TO_SENDER"
+  | "CANCEL"
+  | "DELIVERED"
+  | "RETURNED_TO_SENDER"
+  | "LOST";
