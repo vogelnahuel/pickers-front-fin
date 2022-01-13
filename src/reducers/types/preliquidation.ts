@@ -16,7 +16,7 @@ export type PreliquitadionStateType = {
   filters: PreliquidationFiltersType;
   filtersExtra: PreliquidationFilterExtraType;
   filtersExtraSeeMore: PreliquidationFilterExtraType;
-  detailPreliquidations: DetailPreliquidationsType;
+  detailPreliquidations: DetailPreliquidationShortType | DetailPreliquidationType;
   invoiceDetail: DetailInvoiceType;
   dirty: boolean;
   actualPage: PagesPreliquidationTypes;
@@ -29,11 +29,57 @@ export type InvoiceFileStatus = {
   loading?: boolean;
   message?: string;
 }
-export type DetailPreliquidationsType = {
+export type DetailPreliquidationShortType = { 
     status: PreliquidationStatus;
     generatedAt: string;
     id: number;
 };
+
+export type PreliHistory =  {
+  id: number,
+  createdAt: string,
+  fieldEdited: string,
+  beforeValue: number,
+  currentValue: number,
+  reasonTag: {
+    id: number,
+    tag: string
+  }
+}
+
+export type PreliTransactionItem =  {
+  transactionCode?: string | null
+  finishedAt: string,
+  status: {
+    name: string,
+    tag: string
+  },
+  amount: number
+}
+
+export type DetailPreliquidationType = {
+  id: number,
+  status: {
+    id: number,
+    name: string, //TODO: pregutnar cual queda (preguntar a ser o shei)
+    tag: string
+  },
+  generatedAt: string,
+  fiscalNumber: string,
+  companyName: string,
+  sapCode: string,
+  total: number,
+  manualCorrection: {
+    maxAllowedPlus: number,
+    maxAllowedSubtract: number,
+  },
+  histories: PreliHistory[]
+  transactions: {
+    quantity: number,
+    items: PreliTransactionItem[]
+  }
+}
+
 export type DetailInvoiceType= {
   id: number;
   emisionDate: string;
