@@ -5,7 +5,10 @@ import {
   createSelector,
 } from "@reduxjs/toolkit";
 import { detailPreliquidationDatePicker } from "pages/preliquidation/DetailPreliquidation/invoice/types";
-import { PreliquidationFilterExtraType, PreliquidationFiltersType } from "pages/preliquidation/filter/types";
+import {
+  PreliquidationFilterExtraType,
+  PreliquidationFiltersType,
+} from "pages/preliquidation/filter/types";
 import {
   DetailPreliquidationsContentResponseType,
   InvoiceTypes,
@@ -29,18 +32,18 @@ export const initialState: PreliquitadionStateType = {
     loading: false,
     message: "",
   },
-  showEditPreliquidationModal: false,
+  showEditPreliquidationModal: true,
   preliquidations: [],
   dirty: false,
   preliquidationsSelected: [],
   filters: {},
   filtersExtra: {
     limit: 3,
-    offset: 0
+    offset: 0,
   },
   filtersExtraSeeMore: {
     limit: 3,
-    offset: 0
+    offset: 0,
   },
   seeMore: true,
 
@@ -51,7 +54,7 @@ export const initialState: PreliquitadionStateType = {
     status: {
       id: 0,
       description: "",
-      tag: ""
+      tag: "",
     },
     generatedAt: "",
   },
@@ -75,9 +78,8 @@ export const initialState: PreliquitadionStateType = {
       upload: false,
       url: null,
     },
-    presettementId: undefined
+    presettementId: undefined,
   },
-
 };
 
 const SLICE_NAME = "preliquidation";
@@ -104,9 +106,7 @@ export const preliquidationSlice = createSlice({
     getPreliquidationsRequest: (
       state: PreliquitadionStateType,
       action: PayloadAction<PreliquidationParamsMiddlewareType>
-    ) => {
-
-    },
+    ) => {},
     getMorePreliquidationsRequest: (
       state: PreliquitadionStateType,
       action: PayloadAction<PreliquidationParamsMiddlewareType>
@@ -116,11 +116,10 @@ export const preliquidationSlice = createSlice({
       action: PayloadAction<PreliquidationsContentResponseType>
     ) => {
       const { payload } = action;
-      
+
       state.preliquidations = payload.result.items;
       state.seeMore = payload.hasMore;
       state.filtersExtraSeeMore.offset = payload.offset + payload.limit;
-
     },
     getMorePreliquidationsSuccess: (
       state: PreliquitadionStateType,
@@ -130,7 +129,6 @@ export const preliquidationSlice = createSlice({
       state.preliquidations = [...state.preliquidations, ...payload.items];
       state.seeMore = payload.hasMore;
       state.filtersExtraSeeMore.offset = payload.offset + payload.limit;
-
     },
     getPreliquidationsError: () => {},
     getMorePreliquidationsError: () => {},
@@ -144,7 +142,6 @@ export const preliquidationSlice = createSlice({
       state: PreliquitadionStateType,
       action: PayloadAction<PreliquidationFilterExtraType>
     ) => {
-
       state.filtersExtra = { ...state.filtersExtra, ...action.payload };
     },
 
@@ -230,8 +227,11 @@ export const preliquidationSlice = createSlice({
         url: null,
       };
     },
-    toggleModalVisibility: (state: PreliquitadionStateType, action: PayloadAction<boolean>) => {
-      state.showEditPreliquidationModal = action.payload
+    toggleModalVisibility: (
+      state: PreliquitadionStateType,
+      action: PayloadAction<boolean>
+    ) => {
+      state.showEditPreliquidationModal = action.payload;
     },
     getInvoiceDetailTypesRequest: () => {},
     getInvoiceDetailTypesError: () => {},
@@ -313,8 +313,7 @@ export const allPreliquidationsSelected = createSelector(
 );
 export const existApprovedPreliquidation = createSelector(
   (state: RootState) => state.preliquidations,
-  (preli) =>preli.preliquidations.some((p) => p.status.tag === "approved")
+  (preli) => preli.preliquidations.some((p) => p.status.tag === "approved")
 );
-
 
 export default preliquidationSlice.reducer;

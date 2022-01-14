@@ -1,7 +1,10 @@
+
 import { connect, ConnectedProps } from "react-redux";
 import { AppDispatch, RootState } from "store";
 import { EditPreliquidationAmount } from "./EditPreliquidationAmount";
-import { EditPreliquidationAmountContainerProps } from "./types";
+import {
+  EditPreliquidationAmountContainerProps
+} from "./types";
 import {
   actions as preliActions,
   preliquidationSelector,
@@ -10,10 +13,19 @@ import {
 const EditPreliquidationAmountContainer = (
   props: EditPreliquidationAmountContainerProps & ConnectorProps
 ): JSX.Element => {
-  return <EditPreliquidationAmount {...props} />;
+  
+
+  if(!props.showModal) return <></>;
+
+  return (
+    <EditPreliquidationAmount
+      {...props}
+    />
+  );
 };
 
 const mapStateToProps = (state: RootState) => ({
+  showModal: preliquidationSelector(state).showEditPreliquidationModal,
   preliquidation: preliquidationSelector(state).detailPreliquidations,
 });
 

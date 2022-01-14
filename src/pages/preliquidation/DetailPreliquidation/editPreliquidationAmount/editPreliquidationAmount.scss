@@ -8,6 +8,12 @@
   position: fixed;
 }
 
+.theme-default ._97HeZ1z-bCxJgRNi-TY8d {
+  transform: none !important;
+  position: relative !important;
+}
+
+
 .preliquidation-modal-close {
   position: absolute;
   right: 20px;
@@ -30,7 +36,7 @@
   padding-bottom: 12px;
   display: flex;
   border-bottom: 1px solid #bdbdbd;
-  font-weight: 700;  
+  font-weight: 700;
 }
 
 .preliquidation-modal-header-number {
@@ -79,7 +85,7 @@
 
 .preliquidation-modal-content {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   flex-direction: column;
   flex: 1;
@@ -91,4 +97,39 @@
   font-weight: 800;
   color: #101820;
   margin-bottom: 40px;
+}
+
+.preliquidation-modal-form {
+  width: 496px;
+  display: flex;
+  flex-direction: column;
+}
+
+.preliquidation-modal-form-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.preliquidation-modal-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100% - 20px);
+  align-self: flex-start;
+
+  svg.disabled {
+    cursor: pointer;
+    & > path {
+      stroke: #808080;
+      transition: stroke 0.2s;
+    }
+  }
+}
+
+.button-confirm-container{
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
 }
