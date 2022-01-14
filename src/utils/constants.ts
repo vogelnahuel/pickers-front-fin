@@ -1,5 +1,6 @@
 import { DetailPickerTagFileType } from "pages/pickers/types";
 import { TransactionActionTagType } from "pages/transaction/types";
+import { TransactionStatusType } from "sagas/types/transactions";
 
 export const titlesAdminPending: string[] = [
   "tablePickers:label.table.name",
@@ -183,7 +184,7 @@ export const TRANSACTION_STATE_ID_LABEL: any = {
   12: "filterTransaction:label.select.lost",
 };
 
-export const TRANSACTION_STATE_TAG_LABEL = {
+export const TRANSACTION_STATE_TAG_LABEL: { [k in TransactionStatusType]: string } = {
   PENDING_ASSIGNMENT: "filterTransaction:label.select.notAssigned",
   ASSIGNED: "filterTransaction:label.select.assigned",
   IN_PICK_UP: "filterTransaction:label.select.inPickup",
@@ -230,6 +231,13 @@ export const DETAIL_PICKER_TAG: DetailPickerTagFileType = {
     "detailPicker:label.card.vehicleIdentificationFront",
   "driver-insurance-card": "detailPicker:label.card.driverInsuranceCard",
 };
+
+export const PRELIQUIDATION_TRANSACTIONS_LABELS = [
+  "detailPreliquidation:label.table.id",
+  "detailPreliquidation:label.table.date",
+  "detailPreliquidation:label.table.status",
+  "detailPreliquidation:label.table.amount",
+]
 
 export const MAX_FILE_SIZE = 5000000
 export const PICKERS_MAX_FILE_SIZE = MAX_FILE_SIZE;

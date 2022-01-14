@@ -1,9 +1,7 @@
-import { DetailPreliquidationShortType } from "reducers/types/preliquidation";
 import {
   FiltersExtraSeeMoreType,
   FiltersExtraType,
 } from "reducers/types/transaction";
-import { DetailTransactionHistoryType } from "sagas/types/detailTransactions";
 import {
   FilterTransactionsType,
   TransactionResponseTypeResult,

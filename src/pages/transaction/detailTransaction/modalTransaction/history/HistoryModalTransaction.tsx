@@ -10,7 +10,7 @@ import {
 import { AppDispatch, RootState } from "store";
 import Reload from "../../../../../assets/transaction/Reload.svg";
 import "../optionList.css";
-import StateHistory from "../../../../../component/StatesHistory/StateHistory";
+import {StateHistory} from "../../../../../component/StatesHistory/StateHistory";
 import { HistoryModalTransactionType } from "../types";
 import "./HistoryModalTransaction.scss";
 import i18next from "i18next";

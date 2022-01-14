@@ -1,14 +1,13 @@
 import { connect } from "react-redux";
 import { AppDispatch, RootState } from "store";
 import { WrapperPreliquidation } from "./WrapperPreliquidation";
-import { PagesPreliquidationTypes, WrapperPreliquidationContainerPropsType } from "./types";
+import {
+  PagesPreliquidationTypes,
+  WrapperPreliquidationContainerPropsType,
+} from "./types";
 import { preliquidationSelector, actions } from "reducers/preliquidation";
 import { NotificationStateType } from "reducers/types/notification";
 import { actions as notificationActions } from "reducers/notification";
-import {
-  actions as preliActions,
-} from "reducers/preliquidation";
-import { useEffect } from "react";
 
 export const WrapperPreliquidationContainer = (
   props: WrapperPreliquidationContainerPropsType
@@ -19,7 +18,6 @@ export const WrapperPreliquidationContainer = (
 const mapStateToProps = (state: RootState) => ({
   isFetching: preliquidationSelector(state).fetching,
   actualPage: preliquidationSelector(state).actualPage,
-
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({

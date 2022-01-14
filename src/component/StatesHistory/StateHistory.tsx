@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Cancel from "../../assets/transaction/Cancel.svg";
 import Okey from "../../assets/transaction/Okey.svg";
 
-const StateHistory: React.FC<StateHistoryProps> = ({
+export function StateHistory<T>({
   history,
   cancelStatus,
   showCreatedDate,
@@ -13,7 +13,7 @@ const StateHistory: React.FC<StateHistoryProps> = ({
   tittle,
   subtittleMetadata,
   transaccion
-}): JSX.Element => {
+}: StateHistoryProps<T>) {
   return (
     <div >
       {tittle && <div> <h3 className="modal-transaction-h3">
@@ -22,7 +22,7 @@ const StateHistory: React.FC<StateHistoryProps> = ({
         <hr className="modal-transaction-separate-option " /></div>}
       <div className="history-container">
         {history.map((state) =>
-          <div className={transaccion? "state-container-transaction":"state-container"}>
+          <div className={transaccion? "state-container transaction":"state-container"}>
             <img className="image" src={cancelStatus?.includes(state.reasonTag.tag) ? Cancel : Okey} />
             <div className="state-name">
               <p>{state.reasonTag.label ? state.reasonTag.label : state.reasonTag.tag}{!subtittleMetadata && state.metadata?.length > 0 ? `. Motivo: ${state.metadata[0].value.toLocaleLowerCase()}` : ""}</p>
@@ -32,13 +32,13 @@ const StateHistory: React.FC<StateHistoryProps> = ({
                   target="_blank"
                   style={{ textDecoration: "none" }}
                   className="modal-transaction-a"
-                  to={state.curentValue ? `/${linkableStatus.link}/${state.curentValue}` : "#"}
+                  to={state.currentValue ? `/${linkableStatus.link}/${state.currentValue}` : "#"}
                 >
                   {linkableStatus.label}
                 </Link>
               )}
             </div><div className="metadata">
-              {subtittleMetadata && state.metadata?.length > 0 && <p> {state.metadata[0].value.toLocaleLowerCase()}</p>}
+              {subtittleMetadata && state.metadata?.length > 0 && <p> {state?.metadata[0].value.toLocaleLowerCase()}</p>}
             </div></div>
         )}
 
@@ -46,4 +46,3 @@ const StateHistory: React.FC<StateHistoryProps> = ({
     </div>
   );
 };
-export default StateHistory;

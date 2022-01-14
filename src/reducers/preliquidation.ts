@@ -63,31 +63,11 @@ export const initialState: PreliquitadionStateType = {
         maxAllowedSubtract: 0.0,
     },
     histories: [
-        {
-            id: 0,
-            createdAt: "",
-            fieldEdited: "",
-            beforeValue: 0,
-            currentValue: 0,
-            reasonTag: {
-                id: 0,
-                tag: ""
-            }
-        }
+        
     ],
     transactions: {
         quantity: 0,
-        items: [
-            {
-                transactionCode: null,
-                finishedAt: "",
-                status: {
-                    name: "",
-                    tag: ""
-                },
-                amount: 0.0
-            }
-        ]
+        items: []
     }
 },
   invoiceDetail: {

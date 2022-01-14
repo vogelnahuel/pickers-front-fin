@@ -194,72 +194,24 @@
       "tag": "string"
     }
   ],
-
-"detailPreliquidation":{
-  "id": 0,
-        "status": {
-            "id": 0,
-            "name": "",
-            "tag": ""
-        },
-        "generatedAt": "",
-        "fiscalNumber": "",
-        "companyName": "",
-        "sapCode": "",
-        "total": 0.0,
-        "manualCorrection": {
-            "maxAllowedPlus": 0.0,
-            "maxAllowedSubtract": 0.0
-        },
-        "histories": [
-            {
-                "id": 0,
-                "createdAt": "17/12/2021",
-                "fieldEdited": "",
-                "beforeValue": 0,
-                "currentValue": 0,
-                "reasonTag": {
-                    "id": 0,
-                    "tag": "123"
-                },
-                "metadata": [
-                  {
-                    "key": "string",
-                    "value": "Se descontaron $100 de la preliquidación por tiempo de inactividad"
-                  }
-              ]
-            },
-            {
-              "id": 0,
-              "createdAt": "17/12/2021",
-              "fieldEdited": "",
-              "beforeValue": 0,
-              "currentValue": 0,
-              "reasonTag": {
-                  "id": 0,
-                  "tag": "123"
-              },
-              "metadata": [
-            ]
-          },
-          {
-            "id": 0,
-            "createdAt": "17/12/2021",
-            "fieldEdited": "",
-            "beforeValue": 0,
-            "currentValue": 0,
-            "reasonTag": {
-                "id": 0,
-                "tag": "123"
-            },
-            "metadata": [
-              {
-                "key": "string",
-                "value": "Se descontaron $100 de la preliquidación por tiempo de inactividad"
-              }
-          ]
-        },
-        {
+  "detailPreliquidation": {
+    "id": 0,
+    "status": {
+      "id": 0,
+      "description": "Pendiente",
+      "tag": "initial"
+    },
+    "generatedAt": "2022-01-06T15:59:06.000Z",
+    "fiscalNumber": "1234123",
+    "companyName": "Company name",
+    "sapCode": "12443456",
+    "total": 1220.10,
+    "manualCorrection": {
+      "maxAllowedPlus": 0.0,
+      "maxAllowedSubtract": 0.0
+    },
+    "histories": [
+      {
           "id": 0,
           "createdAt": "17/12/2021",
           "fieldEdited": "",
@@ -275,24 +227,142 @@
               "value": "Se descontaron $100 de la preliquidación por tiempo de inactividad"
             }
         ]
-      }
-            
-        ],
-        "transactions": {
-            "quantity": 0,
-            "items": [
-                {
-                    "transactionCode": null,
-                    "finishedAt": "",
-                    "status": {
-                        "name": "",
-                        "tag": ""
-                    },
-                    "amount": 0.0
-                }
-            ]
+      },
+      {
+        "id": 0,
+        "createdAt": "17/12/2021",
+        "fieldEdited": "",
+        "beforeValue": 0,
+        "currentValue": 0,
+        "reasonTag": {
+            "id": 0,
+            "tag": "123"
+        },
+        "metadata": [
+      ]
+    },
+    {
+      "id": 0,
+      "createdAt": "17/12/2021",
+      "fieldEdited": "",
+      "beforeValue": 0,
+      "currentValue": 0,
+      "reasonTag": {
+          "id": 0,
+          "tag": "123"
+      },
+      "metadata": [
+        {
+          "key": "string",
+          "value": "Se descontaron $100 de la preliquidación por tiempo de inactividad"
         }
+    ]
+  }
+   ],
+
+    "transactions": {
+      "quantity": 2,
+      "items": [
+        {
+          "transactionCode": "1234",
+          "finishedAt": "2022-01-06T15:59:06.000Z",
+          "status": {
+            "name": "Entregado",
+            "tag": "ASSIGNED"
+          },
+          "amount": 120.3
+        },
+        {
+          "transactionCode": "1234",
+          "finishedAt": "2022-01-06T15:59:06.000Z",
+          "status": {
+            "name": "Entregado",
+            "tag": "ASSIGNED"
+          },
+          "amount": 120.3
+        },
+        {
+          "transactionCode": "1234",
+          "finishedAt": "2022-01-06T15:59:06.000Z",
+          "status": {
+            "name": "Entregado",
+            "tag": "ASSIGNED"
+          },
+          "amount": 120.3
+        },
+        {
+          "transactionCode": "1234",
+          "finishedAt": "2022-01-06T15:59:06.000Z",
+          "status": {
+            "name": "Entregado",
+            "tag": "CANCEL"
+          },
+          "amount": 120.3
+        },
+        {
+          "transactionCode": "1234",
+          "finishedAt": "2022-01-06T15:59:06.000Z",
+          "status": {
+            "name": "Entregado",
+            "tag": "CANCEL"
+          },
+          "amount": 120.3
+        },
+        {
+          "transactionCode": "1234",
+          "finishedAt": "2022-01-06T15:59:06.000Z",
+          "status": {
+            "name": "Entregado",
+            "tag": "LOST"
+          },
+          "amount": 120.3
+        },
+        {
+          "transactionCode": "1234",
+          "finishedAt": "2022-01-06T15:59:06.000Z",
+          "status": {
+            "name": "Entregado",
+            "tag": "LOST"
+          },
+          "amount": 120.3
+        },
+        {
+          "transactionCode": "1234",
+          "finishedAt": "2022-01-06T15:59:06.000Z",
+          "status": {
+            "name": "Entregado",
+            "tag": "IN_RETURN_TO_SENDER"
+          },
+          "amount": 120.3
+        },
+        {
+          "transactionCode": "1234",
+          "finishedAt": "2022-01-06T15:59:06.000Z",
+          "status": {
+            "name": "Entregado",
+            "tag": "IN_RETURN_TO_SENDER"
+          },
+          "amount": 120.3
+        },
+        {
+          "transactionCode": "1234",
+          "finishedAt": "2022-01-06T15:59:06.000Z",
+          "status": {
+            "name": "Entregado",
+            "tag": "IN_RETURN_TO_SENDER"
+          },
+          "amount": 120.3
+        },
+        {
+          "transactionCode": "1234",
+          "finishedAt": "2022-01-06T15:59:06.000Z",
+          "status": {
+            "name": "Entregado",
+            "tag": "IN_RETURN_TO_SENDER"
+          },
+          "amount": 120.3
+        }
+      ]
     }
-
-
+  }
 }

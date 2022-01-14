@@ -1,4 +1,12 @@
 {
   "label.button.goBack": "Volver",
-  "label.subtitle.preliquidationNumber": "Número de preliquidación"
+  "label.subtitle.preliquidationNumber": "Número de preliquidación",
+
+  "label.title.transactions": "Transacciones",
+  "label.button.changeAmount": "Modificar monto",
+  "label.table.id": "ID",
+  "label.table.date": "Fecha",
+  "label.table.status": "Estado",
+  "label.table.amount": "Monto",
+  "label.table.total": "Total"
 }

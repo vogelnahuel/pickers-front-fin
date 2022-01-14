@@ -142,21 +142,21 @@ export type TransactionProductType = {
   unit: number;
 };
 
-export type DetailTransactionHistoryType = {
+export type HistoryType = {
   id: number;
   createdAt: string;
-  fieldEdited: number;
+  fieldEdited: string;
   beforeValue: number;
-  curentValue: number;
+  currentValue: number;
   reasonTag: DetailTransactionReasonTagType;
-  metadata: DetailTransactionMetaDataType[];
+  metadata: DetailMetaDataType[];
 };
 export type DetailTransactionReasonTagType = {
   id: number;
   label:string;
   tag: string//keyof TransactionActionTagType;
 };
-export type DetailTransactionMetaDataType = {
+export type DetailMetaDataType = {
   key: number;
   value: string;
 };
@@ -184,7 +184,7 @@ export type DetailTransactionType = {
   destination: DetailTransactionDestinationType;
   client: DetailTransactionClientType;
   products: DetailTransactionProductType[];
-  transactionHistory: DetailTransactionHistoryType[];
+  transactionHistory: HistoryType[];
   picker: DetailTransactionPickerType;
   seller: DetailTransactionSellerType;
 };

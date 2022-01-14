@@ -31,7 +31,6 @@ import {
 import i18next from "i18next";
 import { NotificationStateType } from "reducers/types/notification";
 import { replace } from "connected-react-router";
-import { DetailPreliquidationType } from "reducers/types/preliquidation";
 
 const sagas = [
   takeLatest(
