@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import classNames from "classnames";
 import { Field, Form } from "react-final-form";
 import useValidationSchema from "hooks/useValidationSchema";
@@ -18,12 +18,13 @@ const namespace = "detailPreliquidation:label.modal";
 export const EditPreliquidationAmount: React.FC<
   EditPreliquidationAmountProps
 > = ({
+  increase,
+  setIncrease,
   preliquidation,
   initialValues,
   validationSchema,
   onClose,
 }): JSX.Element => {
-  const [increase, setIncrease] = useState(true);
 
   return (
     <div className="preliquidation-modal-background">

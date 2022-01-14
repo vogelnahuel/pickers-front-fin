@@ -107,16 +107,21 @@
 
 .preliquidation-modal-form-row {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 40px;
+}
+
+.preliquidation-modal-form p.errors{
+  min-height: 18px;
+  height: auto;
 }
 
 .preliquidation-modal-buttons {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: calc(100% - 20px);
+  height: 56px;
   align-self: flex-start;
 
   svg.disabled {

@@ -15,5 +15,6 @@
   "placeholder.modal.amount": "Ingresá el monto",
   "placeholder.modal.reason": "Ingresá el motivo de la modificación",
   "label.tooltip.add": "Sumar un monto",
-  "label.tooltip.subtract": "Restar un monto"
+  "label.tooltip.subtract": "Restar un monto",
+  "error.input.amountExceeded": "El monto excede el límite"
 }

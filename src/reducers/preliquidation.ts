@@ -57,6 +57,10 @@ export const initialState: PreliquitadionStateType = {
       tag: "",
     },
     generatedAt: "",
+    manualCorrection: {
+      maxAllowedPlus: 300,
+      maxAllowedSubtract: 100
+    }
   },
   invoiceDetail: {
     id: 0,
