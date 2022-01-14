@@ -50,7 +50,7 @@ export const initialState: PreliquitadionStateType = {
     id: 0,
     status: {
         id: 0,
-        name: "",
+        description: "",
         tag: "",
     },
     generatedAt: "",

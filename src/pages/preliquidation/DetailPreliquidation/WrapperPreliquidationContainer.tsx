@@ -13,9 +13,6 @@ import { useEffect } from "react";
 export const WrapperPreliquidationContainer = (
   props: WrapperPreliquidationContainerPropsType
 ): JSX.Element => {
-  useEffect(() => {
-    props.getDetailPreliquidation(1)
-  }, [])
   return <WrapperPreliquidation {...props} actualPage={props.actualPage} />;
 };
 
@@ -32,9 +29,6 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   setActualPage: (page: PagesPreliquidationTypes) => {
     dispatch(actions.setActualPage(page));
   },
-  getDetailPreliquidation: (id: number) => {
-    dispatch(preliActions.getDetailPreliquidationsRequest(id))
-  }
 });
 export default connect(
   mapStateToProps,

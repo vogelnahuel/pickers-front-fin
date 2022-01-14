@@ -14,6 +14,7 @@ import invoiceBlack from "./../../../../assets/preli/invoiceBlack.svg";
 import invoiceBlue from "./../../../../assets/preli/invoiceBlue.svg";
 import "./detailPreliquidation.scss";
 import { DetailPreliquidationPropsType } from "./types";
+import StateHistory from "component/StatesHistory/StateHistory";
 
 
 
@@ -35,6 +36,7 @@ export const DetailPreliquidation = ({
   handleClickBack,
   actualPage,
   presettementId,
+  detailPreliquidation
 }: DetailPreliquidationPropsType) => {
   return (
     <div>
@@ -124,7 +126,11 @@ export const DetailPreliquidation = ({
           <div className="container-detail-preliquidation-card-col-sm-6 container-detail-preliquidation-card-col-xl-4">
             <h2>Historial</h2>
             <div className="display-filter-transaction">
-              componente historial
+              <StateHistory
+              history={detailPreliquidation.histories}
+              showCreatedDate={true}
+              subtittleMetadata={true}
+              />
             </div>
           </div>
           <div className="container-detail-preliquidation-card-col-sm-6 container-detail-preliquidation-card-col-xl-4">

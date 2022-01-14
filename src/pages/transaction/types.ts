@@ -1,3 +1,4 @@
+import { DetailPreliquidationShortType } from "reducers/types/preliquidation";
 import {
   FiltersExtraSeeMoreType,
   FiltersExtraType,
@@ -8,12 +9,6 @@ import {
   TransactionResponseTypeResult,
 } from "sagas/types/transactions";
 
-export type TransactionHistoryType= {
-  transactionHistory:DetailTransactionHistoryType[];
-  cancelStatus?:string[],
-  showCreatedDate?:boolean,
-  linkableStatus?:any[]
-}
 
 export type URLTransactionContainerType = {
   minMinDeliveryDate?: string;

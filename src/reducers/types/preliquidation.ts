@@ -61,7 +61,7 @@ export type DetailPreliquidationType = {
   id: number,
   status: {
     id: number,
-    name: string, //TODO: pregutnar cual queda (preguntar a ser o shei)
+    description: string,
     tag: string
   },
   generatedAt: string,

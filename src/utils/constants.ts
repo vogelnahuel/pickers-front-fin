@@ -198,7 +198,7 @@ export const TRANSACTION_STATE_TAG_LABEL = {
   LOST: "filterTransaction:label.select.lost",
 };
 
-export const TRANSACTION_ACTIONS_TAG_LABEL: TransactionActionTagType = {
+export const TRANSACTION_ACTIONS_TAG_LABEL: any /*TransactionActionTagType*/ = {
   assigned_picker: "filterTransaction:label.select.assigned",
   un_assigning: "filterTransaction:label.select.pendingAssignment",
   state_pending_assigment: "filterTransaction:label.select.pendingAssignment",

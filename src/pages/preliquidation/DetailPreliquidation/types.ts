@@ -5,7 +5,7 @@ export type WrapperPreliquidationContainerPropsType = {
   actualPage: PagesPreliquidationTypes;
   showNotification: (notification: NotificationStateType) => void;
   setActualPage: (page: PagesPreliquidationTypes) => void;
-  getDetailPreliquidation: (id:number)=>void
+  getDetailPreliquidation: (id: number) => void
 };
 export type WrapperPreliquidationPropsType = {
   isFetching: boolean;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { AppDispatch, RootState } from "store";
 import { DetailPreliquidation } from "./DetailPreliquidation";
@@ -8,6 +8,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { NotificationStateType } from "reducers/types/notification";
 import { actions as notificationActions } from "reducers/notification";
 import { PagesPreliquidationTypes } from "../types";
+import { getDetailPreliquidations } from "middleware/preliquidations";
 
 export const DetailPreliquidationContainer = (
   props: DetailPreliquidationContainerPropsType
@@ -15,6 +16,7 @@ export const DetailPreliquidationContainer = (
   const history = useHistory();
   const params: { id?: string } = useParams();
 
+  console.log(props.detailPreliquidation)
   const changePage = (page: PagesPreliquidationTypes) => {
     if (props.actualPage !== page) props.setActualPage(page);
   };
@@ -22,6 +24,10 @@ export const DetailPreliquidationContainer = (
   const handleClickBack = () => {
     history.goBack();
   };
+
+  useEffect(() => {
+    props.getDetailPreliquidation(1);
+  }, [])
 
   return (
     <DetailPreliquidation
@@ -37,6 +43,7 @@ export const DetailPreliquidationContainer = (
 const mapStateToProps = (state: RootState) => ({
   isFetching: preliquidationSelector(state).fetching,
   actualPage: preliquidationSelector(state).actualPage,
+  detailPreliquidation: preliquidationSelector(state).detailPreliquidations,
 });
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
   showNotification: (content: NotificationStateType) => {
@@ -45,6 +52,9 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   setActualPage: (page: PagesPreliquidationTypes) => {
     dispatch(actions.setActualPage(page));
   },
+  getDetailPreliquidation: (id: number) => {
+    dispatch(actions.getDetailPreliquidationsRequest(id))
+  }
 });
 
 export default connect(

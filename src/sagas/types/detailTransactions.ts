@@ -153,7 +153,8 @@ export type DetailTransactionHistoryType = {
 };
 export type DetailTransactionReasonTagType = {
   id: number;
-  tag: keyof TransactionActionTagType;
+  label:string;
+  tag: string//keyof TransactionActionTagType;
 };
 export type DetailTransactionMetaDataType = {
   key: number;
