@@ -1,4 +1,19 @@
 {
   "label.button.goBack": "Volver",
-  "label.subtitle.preliquidationNumber": "Número de preliquidación"
+  "label.subtitle.preliquidationNumber": "Número de preliquidación",
+
+
+  "label.modal.preliquidationNumber": "Número de preliquidación",
+  "label.modal.status": "Estado",
+  "label.modal.dateOfIssue": "Fecha de emisión",
+
+  "label.modal.instruction": "Ingresá el nuevo monto de la preliquidación",
+  "label.modal.actualAmount": "Monto actual",
+  "label.modal.amountToAdd": "¿Cuánto querés sumarle? *",
+  "label.modal.amountToSubstract": "¿Cuánto querés restarle? *",
+  "label.modal.reason": "Motivo *",
+  "placeholder.modal.amount": "Ingresá el monto",
+  "placeholder.modal.reason": "Ingresá el motivo de la modificación",
+  "label.tooltip.add": "Sumar un monto",
+  "label.tooltip.subtract": "Restar un monto"
 }

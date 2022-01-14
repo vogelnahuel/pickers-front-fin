@@ -20,7 +20,7 @@ export type PreliquitadionStateType = {
   dirty: boolean;
   actualPage: string;
   invoiceTypes: InvoiceTypes[];
- 
+  showEditPreliquidationModal: boolean;
 };
 
 export type InvoiceFileStatus = {
