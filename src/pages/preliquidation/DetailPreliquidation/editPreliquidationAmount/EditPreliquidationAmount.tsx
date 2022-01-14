@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import { Field, Form } from "react-final-form";
+import useValidationSchema from "hooks/useValidationSchema";
 import { Modal, Tooltip, ToolTipPosition } from "@pickit/pickit-components";
 import { ReactComponent as CloseIcon } from "assets/admin/close.svg";
 import "./editPreliquidationAmount.scss";
@@ -18,6 +19,8 @@ export const EditPreliquidationAmount: React.FC<
   EditPreliquidationAmountProps
 > = ({
   preliquidation,
+  initialValues,
+  validationSchema,
   onClose,
 }): JSX.Element => {
   const [increase, setIncrease] = useState(true);
@@ -56,6 +59,8 @@ export const EditPreliquidationAmount: React.FC<
             </h6>
             <Form
               onSubmit={(value) => value}
+              initialValues={initialValues}
+              validate={useValidationSchema(validationSchema)}
             >
               {({ invalid, handleSubmit }) => (
                 <form
