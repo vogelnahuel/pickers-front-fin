@@ -29,9 +29,13 @@ export type InvoiceFileStatus = {
   message?: string;
 }
 export type DetailPreliquidationsType = {
-    status: PreliquidationStatus;
-    generatedAt: string;
-    id: number;
+  status: PreliquidationStatus;
+  generatedAt: string;
+  id: number;
+  manualCorrection: {
+    maxAllowedPlus: number,
+    maxAllowedSubtract: number,
+  },
 };
 export type DetailInvoiceType= {
   id: number;

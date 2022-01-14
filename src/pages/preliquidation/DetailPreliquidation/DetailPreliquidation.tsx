@@ -6,6 +6,7 @@ import React from "react";
 import InvoiceContainer from "./invoice/InvoiceContainer";
 import "pages/preliquidation/DetailPreliquidation/detailPreliquidations.scss";
 import { DetailPreliquidationPropsType } from "./types";
+import EditPreliquidationAmountContainer from "./editPreliquidationAmount/EditPreliquidationAmountContainer";
 
 
 
@@ -33,6 +34,7 @@ export const DetailPreliquidation: React.FC<DetailPreliquidationPropsType> = ({
         </div>
 
       </div>
+      <EditPreliquidationAmountContainer />
       {isFetching === true ? <div className="modalLoading"></div> : <></>}
     </div>
   );
