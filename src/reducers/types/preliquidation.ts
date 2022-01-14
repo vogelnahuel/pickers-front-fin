@@ -36,6 +36,7 @@ export type DetailPreliquidationsType = {
     maxAllowedPlus: number,
     maxAllowedSubtract: number,
   },
+  total: number
 };
 export type DetailInvoiceType= {
   id: number;
