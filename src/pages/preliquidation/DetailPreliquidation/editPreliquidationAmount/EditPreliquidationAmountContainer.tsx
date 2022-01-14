@@ -12,6 +12,7 @@ import {
   preliquidationSelector,
 } from "reducers/preliquidation";
 import i18next from "i18next";
+import { AdjustAmountMiddlewareType } from "sagas/types/preliquidation";
 
 const EditPreliquidationAmountContainer = (
   props: EditPreliquidationAmountContainerProps & ConnectorProps
@@ -35,7 +36,7 @@ const EditPreliquidationAmountContainer = (
   const validationSchema: yup.SchemaOf<PreliquidationAmountForm> = yup.object({
     actualAmount: yup.string(),
     newAmount: yup
-      .number()
+      .mixed()
       .required(i18next.t("global:error.input.required"))
       .test(
         "rangeError",
@@ -47,13 +48,26 @@ const EditPreliquidationAmountContainer = (
 
   const initialValues: PreliquidationAmountForm = useMemo(() => {
     return {
-      actualAmount: `$${10}`,
+      actualAmount: `$${props.preliquidation.total}`,
       newAmount: "",
       reason: "",
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.preliquidation]);
 
+  const onSubmit = (values: PreliquidationAmountForm) => {
+    const params: AdjustAmountMiddlewareType = {
+      id: props.preliquidation.id,
+      currentAmount: props.preliquidation.total,
+      adjustment: {
+        amount: Number(values.newAmount),
+        reason: values.reason,
+        type: increase ? "plus" : "subtract"
+      }
+    }
+    
+    props.adjustAmount(params);
+  }
   if (!props.showModal) return <></>;
 
   return (
@@ -63,6 +77,7 @@ const EditPreliquidationAmountContainer = (
       setIncrease={setIncrease}
       validationSchema={validationSchema}
       initialValues={initialValues}
+      onSubmit={onSubmit}
     />
   );
 };
@@ -76,6 +91,9 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   onClose: () => {
     dispatch(preliActions.toggleModalVisibility(false));
   },
+  adjustAmount: (params: AdjustAmountMiddlewareType) => {
+    dispatch(preliActions.adjustAmountRequest(params))
+  }
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);

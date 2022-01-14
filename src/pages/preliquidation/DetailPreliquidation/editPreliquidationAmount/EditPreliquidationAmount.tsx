@@ -9,6 +9,7 @@ import i18next from "i18next";
 import { EditPreliquidationAmountProps } from "./types";
 import { ISO8601toDDMMYYYHHMM } from "utils/iso8601toDDMMYYHHMM";
 import { Input } from "component/inputs/Input";
+import { NumericInput } from "component/inputs/NumericInput"
 import { ReactComponent as PlusIcon } from "../../../../assets/admin/icon_plus.svg";
 import { ReactComponent as MinusIcon } from "../../../../assets/admin/icon_minus.svg";
 import Button from "component/button/Button";
@@ -19,13 +20,13 @@ export const EditPreliquidationAmount: React.FC<
   EditPreliquidationAmountProps
 > = ({
   increase,
-  setIncrease,
   preliquidation,
   initialValues,
   validationSchema,
+  setIncrease,
+  onSubmit,
   onClose,
 }): JSX.Element => {
-
   return (
     <div className="preliquidation-modal-background">
       <Modal width="1190px" height="496px" isOpen={true} onClose={onClose}>
@@ -59,7 +60,7 @@ export const EditPreliquidationAmount: React.FC<
               {i18next.t(`${namespace}.instruction`)}
             </h6>
             <Form
-              onSubmit={(value) => value}
+              onSubmit={onSubmit}
               initialValues={initialValues}
               validate={useValidationSchema(validationSchema)}
             >
@@ -97,22 +98,21 @@ export const EditPreliquidationAmount: React.FC<
                         position={ToolTipPosition.top}
                       >
                         <div>
-                        <MinusIcon
-                          onClick={() => setIncrease(false)}
-                          className={classNames({ disabled: increase })}
-                        />
+                          <MinusIcon
+                            onClick={() => setIncrease(false)}
+                            className={classNames({ disabled: increase })}
+                          />
                         </div>
                       </Tooltip>
                     </div>
                     <Field
-                      type="number"
                       name="newAmount"
                       label={i18next.t(
                         `${namespace}.${
                           increase ? "amountToAdd" : "amountToSubstract"
                         }`
                       )}
-                      component={Input}
+                      component={NumericInput}
                       className="Admin-Pickers-input"
                       placeholder={i18next.t(
                         "detailPreliquidation:placeholder.modal.amount"
