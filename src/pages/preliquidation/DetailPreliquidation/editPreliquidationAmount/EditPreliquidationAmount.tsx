@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState} from "react";
 import classNames from "classnames";
 import { Field, Form } from "react-final-form";
 import useValidationSchema from "hooks/useValidationSchema";
@@ -12,6 +12,8 @@ import { Input } from "component/inputs/Input";
 import { ReactComponent as PlusIcon } from "../../../../assets/admin/icon_plus.svg";
 import { ReactComponent as MinusIcon } from "../../../../assets/admin/icon_minus.svg";
 import Button from "component/button/Button";
+import LoadingButton from "component/loadingButton/LoadingButton";
+import { LoadingButtonState } from "component/loadingButton/types";
 
 const namespace = "detailPreliquidation:label.modal";
 
@@ -25,6 +27,11 @@ export const EditPreliquidationAmount: React.FC<
   validationSchema,
   onClose,
 }): JSX.Element => {
+  const [state, setState] = useState<LoadingButtonState>(LoadingButtonState.Idle);
+
+  const onClickText = () => {
+    setTimeout(() => setState(LoadingButtonState.Error), 1000);
+  }
 
   return (
     <div className="preliquidation-modal-background">
@@ -132,6 +139,7 @@ export const EditPreliquidationAmount: React.FC<
                   />
                   <div className="button-confirm-container">
                     <Button disabled={invalid}>Confirmar</Button>
+                    <LoadingButton onClick={onClickText} status={state}>Confirmar</LoadingButton>
                   </div>
                 </form>
               )}
