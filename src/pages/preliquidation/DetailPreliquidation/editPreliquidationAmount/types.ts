@@ -11,6 +11,7 @@ export type EditPreliquidationAmountProps = {
   initialValues: PreliquidationAmountForm;
   preliquidation: DetailPreliquidationsType;
   increase: boolean;
+  onSubmit: (values: PreliquidationAmountForm) => void;
   setIncrease: Dispatch<SetStateAction<boolean>>
   onClose: () => void;
 };

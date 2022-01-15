@@ -8,6 +8,7 @@ import {
   UploadInvoiceFileMiddlewareType,
   DetailPreliquidationsInvoiceTypesApiResponseType,
   PreliquidationCastParamsMiddlewareType,
+  AdjustAmountMiddlewareType,
 } from "sagas/types/preliquidation";
 import { ApiResponse } from "./api";
 
@@ -61,3 +62,8 @@ export const deleteInvoiceFile = (
   id: number
 ): Promise<AxiosResponse<ApiResponse<void>>> =>
   API.remove(`/ms-admin-rest/api/v1.0/presettlements/${id}/invoice/file`);
+
+export const preliquidationAdjustment = (params: AdjustAmountMiddlewareType) => {
+  const { id, ...body } = params;
+  return API.post(`/ms-admin-rest/api/v1.0/presettlements/${id}/adjustment`, body);
+}

@@ -15,6 +15,7 @@ import {
   PreliquidationItem,
   PreliquidationParamsMiddlewareType,
   PreliquidationsContentResponseType,
+  AdjustAmountMiddlewareType,
   RejectInvoiceMiddlewareType,
 } from "sagas/types/preliquidation";
 import { RootState } from "store";
@@ -60,7 +61,8 @@ export const initialState: PreliquitadionStateType = {
     manualCorrection: {
       maxAllowedPlus: 300,
       maxAllowedSubtract: 100
-    }
+    },
+    total: 100
   },
   invoiceDetail: {
     id: 0,
@@ -246,7 +248,9 @@ export const preliquidationSlice = createSlice({
       const { payload } = action;
       state.invoiceTypes = payload;
     },
-
+    adjustAmountRequest: (state: PreliquitadionStateType, action: PayloadAction<AdjustAmountMiddlewareType>) => {},
+    adjustAmountError: () => {},
+    adjustAmountSuccess: () => {},
     setDirty: (
       state: PreliquitadionStateType,
       action: PayloadAction<boolean>

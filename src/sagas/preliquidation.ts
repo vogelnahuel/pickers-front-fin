@@ -16,6 +16,7 @@ import * as preliquidationsMiddleware from "../middleware/preliquidations";
 import { actions as notificationActions } from "../reducers/notification";
 import { actions as preliquidationActions } from "../reducers/preliquidation";
 import {
+  AdjustAmountMiddlewareType,
   DetailPreliquidationBodyParamsType,
   DetailPreliquidationsApiResponseType,
   DetailPreliquidationsContentResponseType,
@@ -65,6 +66,10 @@ const sagas = [
     preliquidationActions.getInvoiceDetailTypesRequest.type,
     getDetailInvoiceTypes
   ),
+  takeLatest(
+    preliquidationActions.adjustAmountRequest.type,
+    adjustAmount
+  )
 ];
 
 export default sagas;
@@ -329,5 +334,24 @@ function* getDetailInvoiceTypes(): Generator<
   } else {
     const { result } = response.data;
     yield put(preliquidationActions.getInvoiceDetailTypesSuccess(result));
+  }
+}
+
+function* adjustAmount({
+  payload,
+}: PayloadAction<AdjustAmountMiddlewareType>): Generator<
+  | PutEffect<{ payload: undefined; type: string }>
+  | CallEffect<AxiosResponse<ApiResponse<void>>>,
+  void,
+  ApiResponse<void>
+> {
+  const response = yield call(
+    preliquidationsMiddleware.preliquidationAdjustment,
+    payload
+  );
+  if (response.status !== 200) {
+    yield put(preliquidationActions.adjustAmountError());
+  } else {
+    yield put(preliquidationActions.adjustAmountSuccess());
   }
 }

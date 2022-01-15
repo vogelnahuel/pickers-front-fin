@@ -142,3 +142,13 @@ export type InvoiceTypes = {
   name: string;
   tag: string;
 };
+
+export type AdjustAmountMiddlewareType = {
+  id: number;
+  currentAmount: number;
+  adjustment: {
+    type: "plus" | "subtract";
+    amount: number;
+    reason: string;
+  };
+};
