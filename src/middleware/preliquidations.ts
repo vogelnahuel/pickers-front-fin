@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
 import * as API from "middleware/api";
 import {
   DetailPreliquidationBodyParamsType,
@@ -64,4 +64,4 @@ export const deleteInvoiceFile = (
   API.remove(`/ms-admin-rest/api/v1.0/presettlements/${id}/invoice/file`);
 
 export const getDetailPreliquidations = (id: number): Promise<AxiosResponse<DetatilPreliquidationsApiResponse>> =>
-  axios.get(" http://localhost:8080/detailPreliquidation");
+  API.get(`/ms-admin-rest/api/v1.0/presettlements/${id}`);

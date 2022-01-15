@@ -8,5 +8,7 @@
   "label.table.date": "Fecha",
   "label.table.status": "Estado",
   "label.table.amount": "Monto",
-  "label.table.total": "Total"
+  "label.table.total": "Total",
+  "label.tag.plus": "Suma",
+  "label.tag.subtract": "Resta"
 }
