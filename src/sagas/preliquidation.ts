@@ -138,7 +138,6 @@ function* getDetailPreliquidations({
   void,
   DetatilPreliquidationsApiResponse
 > {
-
   const response = yield call(
     preliquidationsMiddleware.getDetailPreliquidations,
     payload
@@ -146,11 +145,10 @@ function* getDetailPreliquidations({
   if (response.status !== 200) {
     yield put(preliquidationActions.getDetailPreliquidationsError());
   } else {
-    yield put(preliquidationActions.getDetailPreliquidationsSuccess(response.data));
+    const { result } = response.data;
+    yield put(preliquidationActions.getDetailPreliquidationsSuccess(result));
   }
 }
-
-
 
 function* getMorePreliquidations({
   payload,
@@ -240,7 +238,7 @@ function* putSaveDetailInvoice({
     );
     yield put(preliquidationActions.getInvoiceDetailSaveError());
   } else {
-    yield put(replace("/preliquidation"))
+    yield put(replace("/preliquidation"));
     yield put(preliquidationActions.getInvoiceDetailSaveSuccess());
   }
 }
@@ -273,7 +271,7 @@ function* patchApproveDetailInvoice({
   if (response.status !== 200) {
     yield put(preliquidationActions.getInvoiceDetailApproveError());
   } else {
-    yield put(replace("/preliquidation"))
+    yield put(replace("/preliquidation"));
   }
 }
 
@@ -294,7 +292,7 @@ function* putDeleteDetailInvoice({
   if (response.status !== 200) {
     yield put(preliquidationActions.getInvoiceDetailDeleteError());
   } else {
-    yield put(replace("/preliquidation"))
+    yield put(replace("/preliquidation"));
     yield put(preliquidationActions.getInvoiceDetailDeleteSuccess());
   }
 }
@@ -316,11 +314,15 @@ function* uploadInvoiceFile({
   if (response.status !== 200) {
     yield put(preliquidationActions.uploadInvoiceFileError());
   } else {
-    if(payload.refreshPage){
-      yield put(preliquidationActions.getInvoiceDetailRequest(payload.id.toString()))
+    if (payload.refreshPage) {
+      yield put(
+        preliquidationActions.getInvoiceDetailRequest(payload.id.toString())
+      );
       yield put(preliquidationActions.setInvoiceFileStatus({ loading: false }));
-    }else
-      yield put(preliquidationActions.uploadInvoiceFileSuccess(payload.content));
+    } else
+      yield put(
+        preliquidationActions.uploadInvoiceFileSuccess(payload.content)
+      );
   }
 }
 
@@ -340,7 +342,9 @@ function* deleteInvoiceFile({
   if (response.status !== 200) {
     yield put(preliquidationActions.deleteInvoiceFileError());
   } else {
-    yield put(preliquidationActions.getInvoiceDetailRequest(payload.id.toString()));
+    yield put(
+      preliquidationActions.getInvoiceDetailRequest(payload.id.toString())
+    );
   }
 }
 

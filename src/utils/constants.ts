@@ -199,6 +199,8 @@ export const TRANSACTION_STATE_TAG_LABEL: { [k in TransactionStatusType]: string
   DELIVERED: "filterTransaction:label.select.delivered",
   RETURNED_TO_SENDER: "filterTransaction:label.select.returnedToSender",
   LOST: "filterTransaction:label.select.lost",
+  plus: "detailPreliquidation:label.tag.plus",
+  subtract: "detailPreliquidation:label.tag.subtract"
 };
 
 export const TRANSACTION_ACTIONS_TAG_LABEL: TransactionActionTagType = {

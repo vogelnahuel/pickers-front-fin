@@ -6,10 +6,7 @@ import {
   DetailPreliquidationContainerPropsType,
   DetailPreliquidationForm,
 } from "./types";
-import {
-  preliquidationSelector,
-  actions,
-} from "reducers/preliquidation";
+import { preliquidationSelector, actions } from "reducers/preliquidation";
 import { useHistory, useParams } from "react-router-dom";
 import { NotificationStateType } from "reducers/types/notification";
 import { actions as notificationActions } from "reducers/notification";
@@ -32,14 +29,14 @@ export const DetailPreliquidationContainer = (
   };
 
   useEffect(() => {
-    props.getDetailPreliquidation(1);
+    if (params.id) props.getDetailPreliquidation(Number(params.id));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const initialValues: DetailPreliquidationForm = useMemo(() => {
     const { preliquidation } = props;
     return {
-      status: preliquidation.status.description || "",
+      status: preliquidation.status?.description || "",
       emisionDate: preliquidation.generatedAt
         ? moment(preliquidation.generatedAt).format(DATE_FORMATS.shortDate)
         : "",

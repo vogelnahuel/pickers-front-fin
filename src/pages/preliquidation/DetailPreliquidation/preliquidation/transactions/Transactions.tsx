@@ -6,6 +6,7 @@ import {
   TRANSACTION_STATE_TAG_LABEL,
   PRELIQUIDATION_TRANSACTIONS_LABELS,
 } from "utils/constants";
+import classNames from "classnames";
 import i18next from "i18next";
 
 export const Transactions = ({ total, quantity, items }: TransactionsProps) => {
@@ -36,10 +37,15 @@ export const Transactions = ({ total, quantity, items }: TransactionsProps) => {
                 </p>
               </div>
               <div className="container-detail-preliquidation-table-col-sm-1 detail-preliquidation-table-body">
-                <p>{i18next.t(TRANSACTION_STATE_TAG_LABEL[item.status.tag])}</p>
+                <p>
+                  {i18next.t(TRANSACTION_STATE_TAG_LABEL[item.status.tag])}
+                </p>
               </div>
               <div className="container-detail-preliquidation-table-col-sm-1 detail-preliquidation-table-body">
-                <p className="transaction-amount-item">{`$ ${item.amount}`}</p>
+                <p className={classNames("transaction-amount-item", {
+                  "amount-plus": item.status.tag === "plus",
+                  "amount-subtract": item.status.tag === "subtract"
+                })}>{`$ ${item.amount}`}</p>
               </div>
             </Fragment>
           ))}
