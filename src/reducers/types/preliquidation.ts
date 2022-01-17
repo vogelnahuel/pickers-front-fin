@@ -1,9 +1,12 @@
+import { PagesPreliquidationTypes } from "pages/preliquidation/DetailPreliquidation/types";
 import { PreliquidationFilterExtraType, PreliquidationFiltersType } from "pages/preliquidation/filter/types";
+import { HistoryType } from "sagas/types/detailTransactions";
 import {
   InvoiceTypes,
   PreliquidationItem,
   PreliquidationStatus,
 } from "sagas/types/preliquidation";
+import { TransactionStatusType } from "sagas/types/transactions";
 
 
 export type PreliquitadionStateType = {
@@ -15,10 +18,10 @@ export type PreliquitadionStateType = {
   filters: PreliquidationFiltersType;
   filtersExtra: PreliquidationFilterExtraType;
   filtersExtraSeeMore: PreliquidationFilterExtraType;
-  detailPreliquidations: DetailPreliquidationsType;
+  detailPreliquidations: DetailPreliquidationType;
   invoiceDetail: DetailInvoiceType;
   dirty: boolean;
-  actualPage: string;
+  actualPage: PagesPreliquidationTypes;
   invoiceTypes: InvoiceTypes[];
  
 };
@@ -28,11 +31,49 @@ export type InvoiceFileStatus = {
   loading?: boolean;
   message?: string;
 }
-export type DetailPreliquidationsType = {
-    status: PreliquidationStatus;
-    generatedAt: string;
-    id: number;
-};
+
+// export type PreliHistory =  {
+//   id: number,
+//   createdAt: string,
+//   fieldEdited: string,
+//   beforeValue: number,
+//   currentValue: number,
+//   reasonTag: {
+//     id: number,
+//     tag: string
+//   }
+  
+// }
+
+export type PreliTransactionItem =  {
+  transactionCode?: string | null
+  finishedAt: string,
+  status: {
+    name: string,
+    tag: TransactionStatusType
+  },
+  amount: number
+}
+
+export type DetailPreliquidationType = {
+  id: number,
+  status: PreliquidationStatus,
+  generatedAt: string,
+  fiscalNumber: string,
+  companyName: string,
+  sapCode: string,
+  total: number,
+  manualCorrection: {
+    maxAllowedPlus: number,
+    maxAllowedSubtract: number,
+  },
+  histories: HistoryType[]
+  transactions: {
+    quantity: number,
+    items: PreliTransactionItem[]
+  }
+}
+
 export type DetailInvoiceType= {
   id: number;
   emisionDate: string;

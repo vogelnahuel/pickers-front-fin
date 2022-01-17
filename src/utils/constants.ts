@@ -1,5 +1,6 @@
 import { DetailPickerTagFileType } from "pages/pickers/types";
 import { TransactionActionTagType } from "pages/transaction/types";
+import { TransactionStatusType } from "sagas/types/transactions";
 
 export const titlesAdminPending: string[] = [
   "tablePickers:label.table.name",
@@ -183,7 +184,7 @@ export const TRANSACTION_STATE_ID_LABEL: any = {
   12: "filterTransaction:label.select.lost",
 };
 
-export const TRANSACTION_STATE_TAG_LABEL = {
+export const TRANSACTION_STATE_TAG_LABEL: { [k in TransactionStatusType]: string } = {
   PENDING_ASSIGNMENT: "filterTransaction:label.select.notAssigned",
   ASSIGNED: "filterTransaction:label.select.assigned",
   IN_PICK_UP: "filterTransaction:label.select.inPickup",
@@ -196,9 +197,11 @@ export const TRANSACTION_STATE_TAG_LABEL = {
   DELIVERED: "filterTransaction:label.select.delivered",
   RETURNED_TO_SENDER: "filterTransaction:label.select.returnedToSender",
   LOST: "filterTransaction:label.select.lost",
+  plus: "detailPreliquidation:label.tag.plus",
+  subtract: "detailPreliquidation:label.tag.subtract"
 };
 
-export const TRANSACTION_ACTIONS_TAG_LABEL: TransactionActionTagType = {
+export const TRANSACTION_ACTIONS_TAG_LABEL: any /*TransactionActionTagType*/ = {
   assigned_picker: "filterTransaction:label.select.assigned",
   un_assigning: "filterTransaction:label.select.pendingAssignment",
   state_pending_assigment: "filterTransaction:label.select.pendingAssignment",
@@ -217,6 +220,20 @@ export const TRANSACTION_ACTIONS_TAG_LABEL: TransactionActionTagType = {
   state_initial: "filterTransaction:label.select.created",
 };
 
+
+
+export const PRELIQUIDATION_HISTORY_STATES: any = {
+  "state_initial": "detailPreliquidation:label.tag.initialState",
+  "state_pending": "detailPreliquidation:label.tag.pending",
+  "state_in_approvement":"detailPreliquidation:label.tag.inAprovement",
+  "state_approved":"detailPreliquidation:label.tag.aproved",
+  "state_pending_accounting":"detailPreliquidation:label.tag.pendingAcounting",
+  "state_in_accounting": "detailPreliquidation:label.tag.inAcounting",
+  "state_generated_payment": "detailPreliquidation:label.tag.generatedPayment", 
+  "state_invoice_rejected":"detailPreliquidation:label.tag.invoiceRejected",
+  "adjustment": "detailPreliquidation:label.tag.adjustment", 
+};
+
 export const DETAIL_PICKER_TAG: DetailPickerTagFileType = {
   "dni-front": "detailPicker:label.card.dniFront",
   "dni-back": "detailPicker:label.card.dniBack",
@@ -230,6 +247,13 @@ export const DETAIL_PICKER_TAG: DetailPickerTagFileType = {
     "detailPicker:label.card.vehicleIdentificationFront",
   "driver-insurance-card": "detailPicker:label.card.driverInsuranceCard",
 };
+
+export const PRELIQUIDATION_TRANSACTIONS_LABELS = [
+  "detailPreliquidation:label.table.id",
+  "detailPreliquidation:label.table.date",
+  "detailPreliquidation:label.table.status",
+  "detailPreliquidation:label.table.amount",
+]
 
 export const MAX_FILE_SIZE = 5000000
 export const PICKERS_MAX_FILE_SIZE = MAX_FILE_SIZE;

@@ -3,7 +3,7 @@ import { Header } from "component/admin/Header/Header";
 import Nav from "component/admin/Nav/Nav";
 import "pages/pickers/Pickers.scss";
 import "pages/pickers/detailPicker/DetailPicker.scss";
-import TabControler from "component/admin/TabControler/TabControler";
+import {TabControler} from "component/admin/TabControler/TabControler";
 import { Input } from "component/inputs/Input";
 import { Switch } from "component/inputs/switch";
 import motorcycle from "assets/admin/PendingUserAdminPicker/motorcycle.svg";
@@ -13,7 +13,7 @@ import useValidationSchema from "hooks/useValidationSchema";
 import { FormSpy } from "react-final-form";
 import NotificationModal from "component/modal/NotificationModal";
 import ExportAction from "../actions/ExportAction";
-import { DetailPickerTypeProps } from "./types";
+import { DetailPickerTypeProps, pickerTabs } from "./types";
 import i18next from "i18next";
 import ExpandableFile from "component/admin/ExpandableFile/ExpandableFile";
 import relojAzul from "assets/admin/PendingUser/relojAzul.svg";
@@ -21,6 +21,7 @@ import relojOscuro from "assets/admin/PendingUser/relojOscuro.svg";
 import trabajadorOscuro from "assets/admin/PendingUser/trabajadorOscuro.svg";
 import trabajadorAzul from "assets/admin/PendingUser/trabajadorAzul.svg";
 import Back from "component/back/Back";
+import { TabType } from "component/admin/TabControler/types";
 
 export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
   actualPage,
@@ -43,7 +44,11 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
   changePage,
 }) => {
 
-  const tabs = [
+ 
+
+
+  
+  const tabs:TabType<pickerTabs>[] = [
     {
       title: "pickers:label.title.pending",
       id: "PENDING",
@@ -98,9 +103,9 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
             }) => (
               <>
                 <div className="header-container">
-                  <TabControler
+                  <TabControler<pickerTabs>
                     tabs={tabs}
-                    changePage={(page: string) => changePage(page, dirty)}
+                    changePage={(page) => changePage(page, dirty)}
                     actualPage={actualPage}
                   />
                   <Back onClick={() => goBack(true, dirty)} />

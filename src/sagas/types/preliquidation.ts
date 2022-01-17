@@ -1,3 +1,5 @@
+import { DetailPreliquidationType } from "reducers/types/preliquidation";
+
 export type PreliquidationsApiResponse = {
   data: PreliquidationsContentResponseType;
   status: number;
@@ -89,7 +91,7 @@ export type DetailPreliquidationsContentResponseType = {
     url: string | null;
   };
   presettlement: {
-    id?: number;
+    id: number;
     status: PreliquidationStatus;
     generatedAt: string;
   };
@@ -138,4 +140,12 @@ export type DetailPreliquidationsInvoiceTypesApiResponseContentType = {
 export type InvoiceTypes = {
   name: string;
   tag: string;
+};
+
+
+export type DetatilPreliquidationsApiResponse = {
+  data: {
+    result: DetailPreliquidationType
+  };
+  status: number;
 };

@@ -28,6 +28,7 @@ import {
   DetailInvoiceType,
 } from "reducers/types/preliquidation";
 import { NotificationStateType } from "reducers/types/notification";
+import { PagesPreliquidationTypes } from "../types";
 
 const InvoiceContainer = (
   props: detailPreliquidationInvoiceContainerPropsType
@@ -36,7 +37,6 @@ const InvoiceContainer = (
 
   useEffect(() => {
     props.setInvoiceFileStatus({ loading: false, error: false });
-    props.setActualPage("INVOICE");
     props.getInvoiceDetailTypes();
     props.getInvoiceDetail(params.id);
 
@@ -111,7 +111,7 @@ const InvoiceContainer = (
       onClick: undefined,
     });
 
-  const changePage = (page: string, isDirty: boolean) => {
+  const changePage = (page: PagesPreliquidationTypes, isDirty: boolean) => {
     const onClose = () => {
       props.setActualPage(page);
 
@@ -262,7 +262,7 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
-  setActualPage: (page: string) => {
+  setActualPage: (page:PagesPreliquidationTypes) => {
     dispatch(preliActions.setActualPage(page));
   },
   getInvoiceDetail: (params: string | undefined) => {
