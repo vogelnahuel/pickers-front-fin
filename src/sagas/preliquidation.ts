@@ -61,6 +61,7 @@ const sagas = [
     preliquidationActions.getInvoiceDetailDeleteRequest.type,
     putDeleteDetailInvoice
   ),
+  takeLatest(preliquidationActions.replaceInvoiceFile.type, replaceInvoiceFile),
   takeLatest(preliquidationActions.uploadInvoiceFile.type, uploadInvoiceFile),
   takeLatest(
     preliquidationActions.deleteInvoiceFileRequest.type,
@@ -79,8 +80,8 @@ const process = (body: DetailPreliquidationBodyParamsType) => {
     ...body,
     emisionDate: body?.emisionDate
       ? moment(body?.emisionDate, DATE_FORMATS.shortDate).format(
-          DATE_FORMATS.shortISODate
-        )
+        DATE_FORMATS.shortISODate
+      )
       : null,
   };
 };
@@ -181,9 +182,9 @@ function* getInvoiceDetail({
   payload,
 }: PayloadAction<string | undefined>): Generator<
   | PutEffect<{
-      payload: DetailPreliquidationsContentResponseType;
-      type: string;
-    }>
+    payload: DetailPreliquidationsContentResponseType;
+    type: string;
+  }>
   | PutEffect<{ payload: undefined; type: string }>
   | CallEffect<AxiosResponse<DetailPreliquidationsContentResponseType>>,
   void,
@@ -238,7 +239,7 @@ function* putSaveDetailInvoice({
     );
     yield put(preliquidationActions.getInvoiceDetailSaveError());
   } else {
-    yield put(replace("/preliquidation"));
+    yield put(replace("/presettlements"))
     yield put(preliquidationActions.getInvoiceDetailSaveSuccess());
   }
 }
@@ -270,8 +271,13 @@ function* patchApproveDetailInvoice({
   );
   if (response.status !== 200) {
     yield put(preliquidationActions.getInvoiceDetailApproveError());
+    yield put(notificationActions.showNotification({
+      level: "error",
+      title: i18next.t("global:title.modal.connectionError"),
+      body: i18next.t("global:label.modal.connectionError"),
+    }))
   } else {
-    yield put(replace("/preliquidation"));
+    yield put(replace("/presettlements"))
   }
 }
 
@@ -292,10 +298,33 @@ function* putDeleteDetailInvoice({
   if (response.status !== 200) {
     yield put(preliquidationActions.getInvoiceDetailDeleteError());
   } else {
-    yield put(replace("/preliquidation"));
+    yield put(replace("/presettlements"))
     yield put(preliquidationActions.getInvoiceDetailDeleteSuccess());
   }
 }
+
+function* replaceInvoiceFile({
+  payload,
+}: PayloadAction<UploadInvoiceFileMiddlewareType>): Generator<
+  | PutEffect<{ payload: string; type: string }>
+  | PutEffect<{ payload: undefined; type: string }>
+  | PutEffect<{ type: string }>
+  | CallEffect<AxiosResponse<ApiResponse<void>>>,
+  void,
+  ApiResponse<void>
+> {
+  const response = yield call(
+    preliquidationsMiddleware.replaceInvoiceFile,
+    payload
+  );
+  if (response.status !== 200 && response.status !== 201) {
+    yield put(preliquidationActions.replaceInvoiceFileError());
+  } else {
+    yield put(preliquidationActions.getInvoiceDetailRequest(payload.id.toString()))
+    yield put(preliquidationActions.setInvoiceFileStatus({ loading: false }));
+  }
+}
+
 
 function* uploadInvoiceFile({
   payload,
@@ -311,18 +340,11 @@ function* uploadInvoiceFile({
     preliquidationsMiddleware.uploadInvoiceFile,
     payload
   );
-  if (response.status !== 200) {
+  if (response.status !== 200 && response.status !== 201) {
     yield put(preliquidationActions.uploadInvoiceFileError());
   } else {
-    if (payload.refreshPage) {
-      yield put(
-        preliquidationActions.getInvoiceDetailRequest(payload.id.toString())
-      );
-      yield put(preliquidationActions.setInvoiceFileStatus({ loading: false }));
-    } else
-      yield put(
-        preliquidationActions.uploadInvoiceFileSuccess(payload.content)
-      );
+    yield put(preliquidationActions.uploadInvoiceFileSuccess(payload.content));
+    yield put(preliquidationActions.setInvoiceFileStatus({ loading: false }));
   }
 }
 

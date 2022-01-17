@@ -213,17 +213,54 @@
     },
     "histories": [
       {
+          "id": 0,
+          "createdAt": "17/12/2021",
+          "fieldEdited": "",
+          "beforeValue": 0,
+          "currentValue": 0,
+          "reasonTag": {
+              "id": 0,
+              "tag": "123"
+          },
+          "metadata": [
+            {
+              "key": "string",
+              "value": "Se descontaron $100 de la preliquidación por tiempo de inactividad"
+            }
+        ]
+      },
+      {
         "id": 0,
-        "createdAt": "",
+        "createdAt": "17/12/2021",
         "fieldEdited": "",
         "beforeValue": 0,
         "currentValue": 0,
         "reasonTag": {
+            "id": 0,
+            "tag": "123"
+        },
+        "metadata": [
+      ]
+    },
+    {
+      "id": 0,
+      "createdAt": "17/12/2021",
+      "fieldEdited": "",
+      "beforeValue": 0,
+      "currentValue": 0,
+      "reasonTag": {
           "id": 0,
-          "tag": ""
+          "tag": "123"
+      },
+      "metadata": [
+        {
+          "key": "string",
+          "value": "Se descontaron $100 de la preliquidación por tiempo de inactividad"
         }
-      }
-    ],
+    ]
+  }
+   ],
+
     "transactions": {
       "quantity": 2,
       "items": [

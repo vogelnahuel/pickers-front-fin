@@ -26,7 +26,7 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   },
   setActualPage: (page: PagesPreliquidationTypes) => {
     dispatch(actions.setActualPage(page));
-  }
+  },
 });
 export default connect(
   mapStateToProps,
