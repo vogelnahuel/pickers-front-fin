@@ -70,3 +70,5 @@ export const deleteInvoiceFile = (
 
 export const getDetailPreliquidations = (id: number): Promise<AxiosResponse<DetatilPreliquidationsApiResponse>> =>
   API.get(`/ms-admin-rest/api/v1.0/presettlements/${id}`);
+
+  
