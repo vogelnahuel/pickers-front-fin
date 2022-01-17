@@ -49,8 +49,6 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
   handleClickBack,
   changePage,
 }): JSX.Element => {
-  // const verifyStateType = () =>
-  //   statusList.includes(detailPreliquidations.status.tag);
 
   const tabs:TabType<PagesPreliquidationTypes>[] = [
     {

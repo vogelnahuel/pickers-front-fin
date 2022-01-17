@@ -10,7 +10,7 @@ import {
 import { AppDispatch, RootState } from "store";
 import Reload from "../../../../../assets/transaction/Reload.svg";
 import "../optionList.css";
-import {StateHistory} from "../../../../../component/StatesHistory/StateHistory";
+import { StateHistory } from "../../../../../component/StatesHistory/StateHistory";
 import { HistoryModalTransactionType } from "../types";
 import "./HistoryModalTransaction.scss";
 import i18next from "i18next";
@@ -182,7 +182,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                 </div>
 
                 <h3
-                  className="modal-transaction-h3"
+                  className="modal-history-h3"
                   id="modal-transaction-history-Final"
                 >
                   {i18next.t(
@@ -228,24 +228,27 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
           )}
         </Form>
         <div className="transaction-history-container">
-        <StateHistory
-          history={detailTransaction.transactionHistory.map((t) => {
-            return {
-              ...t,createdAt: ISO8601toDDMMYYYHHMM(t.createdAt), reasonTag: { ...t.reasonTag, label: i18next.t(TRANSACTION_ACTIONS_TAG_LABEL[t.reasonTag.tag]) }
-            }
-          })}
-          transaccion={true}
-          cancelStatus={cancelStatus}
-          showCreatedDate={true}
-          linkableStatus={{ tags: ["assigned_picker"], link: "pickers", label: i18next.t("detailTransaction:label.detailTransaction.seePicker") }}
-          tittle={i18next.t("detailTransaction:label.detailTransaction.history")}
-        />
+          <StateHistory
+            history={detailTransaction.transactionHistory.map((t) => {
+              return {
+                ...t,
+                metadata: [...t.metadata.map((meta) => { return { ...meta, value: `. Motivo: ${meta.value}` } })],
+                createdAt: ISO8601toDDMMYYYHHMM(t.createdAt),
+                reasonTag: { ...t.reasonTag, label: i18next.t(TRANSACTION_ACTIONS_TAG_LABEL[t.reasonTag.tag]) }
+              }
+            })}
+            transaccion={true}
+            cancelStatus={cancelStatus}
+            showCreatedDate={true}
+            linkableStatus={{ tags: ["assigned_picker"], link: "pickers", label: i18next.t("detailTransaction:label.detailTransaction.seePicker") }}
+            title={i18next.t("detailTransaction:label.detailTransaction.history")}
+          />
         </div>
       </div>
       <div>
         <div className="modal-transaction-difuminar1"> </div>
         <div className="modal-transaction-difuminar2"></div>
-        <div className="modal-transaction-difuminar3"></div>
+        <div className="modal-transaction-difuminar3"></div>{/*TODO: linear gradient */}
       </div>
       <div className="button-container">
         <button

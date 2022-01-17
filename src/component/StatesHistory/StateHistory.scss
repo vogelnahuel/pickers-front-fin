@@ -69,4 +69,48 @@
     color: #bdbdbd;
   }
 
+  .modal-history-a {
+    text-decoration: none;
+    font-family: "Mulish";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 19px;
+    letter-spacing: 0.004em;
+    color: #0098ff;
+    margin-left: 15px;
+    margin-top: 2px;
+  }
+
+  .modal-history-a:hover {
+    text-decoration: none;
+    font-family: "Mulish";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 19px;
+    letter-spacing: 0.004em;
+    color: #0098ff;
+    margin-left: 15px;
+    margin-top: 2px;
+  }
   
+
+  
+.modal-history-separate-option {
+  border: 1px solid #BDBDBD;
+  margin-top: 0px;
+  padding-right: 30px;
+  margin-bottom: 20px;
+  opacity: .50;
+  margin-top: 7px;
+}
+
+@media (min-width: 1800px) {
+  .modal-history-separate-option {
+    margin-bottom: 30px;
+  }
+  .modal-hitory-h3 {
+    margin-bottom: 0px;
+  }
+}
