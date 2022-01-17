@@ -3,7 +3,7 @@ import {
   PreliquidationItem,
   PreliquidationParamsMiddlewareType,
 } from "sagas/types/preliquidation";
-import { PreliquidationFilterExtraType } from "./filter/types";
+import { PreliquidationFilterExtraType, PreliquidationFiltersType } from "./filter/types";
 
 export type PreliquidationContainerProps = {
   preliquidations: PreliquidationItem[];
@@ -14,12 +14,14 @@ export type PreliquidationContainerProps = {
   seeMore: boolean;
   anyPreliquidationSelected: boolean;
   numberOfPreliSelected: number;
+  setPreliquidationFilters: (params: PreliquidationFiltersType) => void;
   getPreliquidations: (params: PreliquidationParamsMiddlewareType) => void;
   setPreliquidationExtraFilters: (
     params: PreliquidationFilterExtraType
   ) => void;
   getMorePreliquidations: (params: PreliquidationParamsMiddlewareType) => void;
   showNotification: (content: NotificationStateType) => void;
+  resetAllSelected: () => void;
 };
 
 export type PreliquidationsProps = {

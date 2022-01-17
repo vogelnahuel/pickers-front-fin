@@ -5,6 +5,8 @@ export type PreliquidationFilterContainerPropsType = {
   filtersExtra: PreliquidationFilterExtraType;
   getPreliquidations: (params: PreliquidationParamsMiddlewareType) => void;
   setPreliquidationFilters: (params: PreliquidationFiltersType) => void;
+  reset: () => void;
+  resetAllSelected: () => void;
 };
 
 export type PreliquidationFilterPropsType = {
@@ -17,14 +19,10 @@ export type PreliquidationFilterExtraType = {
   offset: number;
 };
 
-export type generatedAtType = {
-  from: string;
-};
-
 export type PreliquidationFiltersType = {
   presettlementId?: number;
   fiscalNumber?: string;
-  generatedAt?:  generatedAtType;
+  generatedAt?: string;
   status?: string;
 };
 export type filterPreliquidationValidationSchema = {

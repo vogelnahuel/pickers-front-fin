@@ -1,4 +1,3 @@
-import { generatedAtType } from "pages/preliquidation/filter/types";
 import { DetailPreliquidationType } from "reducers/types/preliquidation";
 
 export type PreliquidationsApiResponse = {
@@ -35,7 +34,7 @@ export type PreliquidationStatus = {
 export type PreliquidationParamsMiddlewareType = {
   presettlementId?: number;
   status?: string;
-  generatedAt?: generatedAtType;
+  generatedAt?: string;
   fiscalNumber?: string;
   limit?: number;
   offset?: number;

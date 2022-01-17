@@ -345,7 +345,7 @@ export const actions = preliquidationSlice.actions;
 
 export const allPreliquidationsSelected = createSelector(
   (state: RootState) => state.preliquidations,
-  (preli) =>
+  (preli) => 
     preli.preliquidationsSelected.length > 0 &&
     preli.preliquidations.filter((p) => p.status.tag === "approved").length ===
       preli.preliquidationsSelected.length

@@ -19,7 +19,9 @@ import {
 const PreliquidationFilterContainer: React.FC<
   PreliquidationFilterContainerPropsType
 > = (props) => {
+
   const search = (values: PreliquidationFiltersType) => {
+    props.resetAllSelected();
     props.getPreliquidations({
       ...values,
       ...props.filtersExtra,
@@ -72,6 +74,12 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   setPreliquidationFilters: (filters: PreliquidationFiltersType) => {
     dispatch(preliquidationActions.setPreliquidationFilters(filters));
   },
+  reset: () => {
+    dispatch(preliquidationActions.reset());
+  },
+  resetAllSelected: () => {
+    dispatch(preliquidationActions.resetAllSelected());
+  }
 });
 
 export default connect(
