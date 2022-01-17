@@ -35,8 +35,6 @@ export const preliquidationTableTitles: string[] = [
   "preli:label.table.total",
 ];
 
-export const statusList: string[] = [ "pending_accounting", "generated_payment", "in_accounting" ];
-
 export const DATE_FORMATS = {
   regex:
     /^(?:(?:31(\/|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/,
@@ -62,7 +60,7 @@ export const VALIDATION_REGEX = {
   expIdentificationNumber: /^[\d]{0,3}\.?[\d]{0,3}\.?[\d]{0,3}$/,
   regArea: /^([0-9]){1,5}$/,
   regTelefono: /^([0-9]){7,10}$/,
-  regPatent: /^([A-Z]{1}[0-9]{3}[A-Z]{3}|[0-9]{3}[A-Z]{3})*$/,
+  regPatent: /^([a-zA-Z]{1}[0-9]{3}[a-zA-Z]{3}|[0-9]{3}[a-zA-Z]{3})*$/,
   regTransactionCode: /^[a-fA-F0-9]*$/,
   regPickerId: /^[0-9]*$/,
   regEmail:
@@ -203,7 +201,7 @@ export const TRANSACTION_STATE_TAG_LABEL: { [k in TransactionStatusType]: string
   subtract: "detailPreliquidation:label.tag.subtract"
 };
 
-export const TRANSACTION_ACTIONS_TAG_LABEL: TransactionActionTagType = {
+export const TRANSACTION_ACTIONS_TAG_LABEL: any /*TransactionActionTagType*/ = {
   assigned_picker: "filterTransaction:label.select.assigned",
   un_assigning: "filterTransaction:label.select.pendingAssignment",
   state_pending_assigment: "filterTransaction:label.select.pendingAssignment",

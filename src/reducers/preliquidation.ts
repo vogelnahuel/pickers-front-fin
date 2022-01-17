@@ -39,7 +39,7 @@ export const initialState: PreliquitadionStateType = {
     offset: 0
   },
   filtersExtraSeeMore: {
-    limit: 3,
+    limit: 15,
     offset: 0
   },
   seeMore: true,
@@ -63,17 +63,7 @@ export const initialState: PreliquitadionStateType = {
         maxAllowedSubtract: 0.0,
     },
     histories: [
-        {
-            id: 0,
-            createdAt: "",
-            fieldEdited: "",
-            beforeValue: 0,
-            currentValue: 0,
-            reasonTag: {
-                id: 0,
-                tag: ""
-            }
-        }
+        
     ],
     transactions: {
         quantity: 0,
@@ -145,7 +135,6 @@ export const preliquidationSlice = createSlice({
       state.preliquidations = payload.result.items;
       state.seeMore = payload.hasMore;
       state.filtersExtraSeeMore.offset = payload.offset + payload.limit;
-
     },
     getMorePreliquidationsSuccess: (
       state: PreliquitadionStateType,
@@ -208,6 +197,17 @@ export const preliquidationSlice = createSlice({
     ) => {},
     getInvoiceDetailDeleteError: () => {},
     getInvoiceDetailDeleteSuccess: () => {},
+    replaceInvoiceFile: (
+      state: PreliquitadionStateType,
+      action: PayloadAction<{ id: number; content: string }>
+    ) => {},
+    replaceInvoiceFileError: (state: PreliquitadionStateType) => {
+      state.invoiceFileStatus = {
+        loading: false,
+        error: true,
+        message: "component:label.pdfController.serverError",
+      };
+    },
     uploadInvoiceFile: (
       state: PreliquitadionStateType,
       action: PayloadAction<{ id: number; content: string }>
@@ -296,6 +296,12 @@ export const preliquidationSlice = createSlice({
       action: PayloadAction<PagesPreliquidationTypes>
     ) => {
       state.actualPage = action.payload;
+    },
+    resetAllSelected: (
+      state: PreliquitadionStateType,
+      action: PayloadAction
+    ) => {
+      state.preliquidationsSelected = [];
     },
     resetInvoiceDetail: (state: PreliquitadionStateType) => {
       state.invoiceDetail = initialState.invoiceDetail;

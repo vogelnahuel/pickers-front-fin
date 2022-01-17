@@ -26,12 +26,12 @@ const Routes = (): JSX.Element => {
           <Route path="/pickers/:id" exact component={DetailPickerContainer} />
           <Route path="/transaction" exact component={Transaction} />
           <Route
-            path="/preliquidation"
+            path="/presettlements"
             exact
             component={PreliquidationContainer}
           />
           <Route
-            path="/preliquidation/:id"
+            path="/presettlements/:id"
             exact
             component={WrapperPreliquidationContainer}
           />

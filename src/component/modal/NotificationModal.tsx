@@ -1,7 +1,8 @@
+import React, { useCallback, useEffect } from "react";
 import { Modal } from "@pickit/pickit-components";
 import "component/modal/notificationModal.scss";
 import i18next from "i18next";
-import React, { useCallback, useEffect } from "react";
+import DOMPurify from "dompurify";
 import { connect } from "react-redux";
 import {
   actions as notificationActions,
@@ -62,9 +63,12 @@ export const NotificationModal = ({
         <div className={`modal-title ${level}`}>
           <p>{title}</p>
         </div>
-        <div className="modal-body-buttons">
-          <p>{body}</p>
-          <div>
+        <div className="modal-body-content">
+          <div
+            className="modal-body-text"
+            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(body) }}
+          />
+          <div className="modal-body-buttons">
             {onCloseLabel && (
               <button
                 onClick={onClose ? () => doAction(onClose) : () => setClose()}

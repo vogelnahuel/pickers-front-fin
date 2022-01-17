@@ -22,12 +22,12 @@ export type generatedAtType = {
 };
 
 export type PreliquidationFiltersType = {
-  presettlmentId?: number;
+  presettlementId?: number;
   fiscalNumber?: string;
   generatedAt?:  generatedAtType;
   status?: string;
 };
 export type filterPreliquidationValidationSchema = {
-  presettlmentId?: string;
+  presettlementId?: string;
   fiscalNumber?: string;
 };

@@ -22,7 +22,11 @@ import {
 import * as yup from "yup";
 import i18next from "i18next";
 import moment from "moment";
-import { DATE_FORMATS, MAX_FILE_SIZE, VALIDATION_REGEX } from "utils/constants";
+import {
+  DATE_FORMATS,
+  MAX_FILE_SIZE,
+  VALIDATION_REGEX,
+} from "utils/constants";
 import { getBase64FromUrl, isBase64, toBase64 } from "utils/toBase64";
 import {
   InvoiceFileStatus,
@@ -58,16 +62,15 @@ const InvoiceContainer = (
     } else {
       try {
         const base64 = (await toBase64(file)) as string;
-
-        // Si se esta reemplazando el archivo, fuerza a que
-        // se vuelvan a consumir los datos desde el back ya que el
-        // formulario con los datos de factura debe estar vacio.
-        const refresh = props.invoiceDetail?.invoiceFile?.upload;
-        props.uploadInvoiceFile({
-          id: parseInt(params.id || "0"),
-          content: base64,
-          refreshPage: refresh
-        });
+        const uploaded = props.invoiceDetail?.invoiceFile?.upload;
+        !uploaded ?
+          props.uploadInvoiceFile({
+            id: parseInt(params.id || "0"),
+            content: base64,
+          }): props.replaceInvoiceFile({
+            id: parseInt(params.id || "0"),
+            content: base64,
+          })
       } catch (err) {
         console.log("Base64 error: ", err);
       }
@@ -115,6 +118,8 @@ const InvoiceContainer = (
   const changePage = (page: PagesPreliquidationTypes, isDirty: boolean) => {
     const onClose = () => {
       props.setActualPage(page);
+
+      history.replace("/presettlements");
     };
     if (isDirty) showDirtyNotification(onClose);
     else if (props.invoiceFileStatus.error) showWrongFilesNotification(onClose);
@@ -180,10 +185,10 @@ const InvoiceContainer = (
       salePoint: detailPreliquidations.salePoint ?? "",
       emisionDate: detailPreliquidations.emisionDate
         ? {
-            from: moment(detailPreliquidations.emisionDate).format(
-              DATE_FORMATS.shortDate
-            ),
-          }
+          from: moment(detailPreliquidations.emisionDate).format(
+            DATE_FORMATS.shortDate
+          ),
+        }
         : "",
     };
   };
@@ -194,8 +199,13 @@ const InvoiceContainer = (
   }, [
     props.invoiceDetail.id,
     props.detailPreliquidations.status.tag,
-    props.isFetching
+    props.isFetching,
   ]);
+
+  const isFormEnabled = useMemo(() => {
+    const tag = props.detailPreliquidations.status.tag;
+    return ["pending", "in_approvement"].includes(tag);
+  }, [props.detailPreliquidations.status.tag]);
 
   const validationSchema: yup.SchemaOf<invoiceValidationSchema> = yup.object({
     emisionDate: yup
@@ -243,6 +253,7 @@ const InvoiceContainer = (
       downloadFile={downloadFile}
       validationSchema={validationSchema}
       initialValues={initialValues}
+      isFormEnabled={isFormEnabled}
       presettementId={params.id}
       handleClickBack={handleClickBack}
       changePage={changePage}
@@ -277,6 +288,9 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   },
   uploadInvoiceFile: (params: UploadInvoiceFileMiddlewareType) => {
     dispatch(preliActions.uploadInvoiceFile(params));
+  },
+  replaceInvoiceFile: (params: UploadInvoiceFileMiddlewareType) => {
+    dispatch(preliActions.replaceInvoiceFile(params));
   },
   deleteInvoiceFile: (id: number) => {
     dispatch(preliActions.deleteInvoiceFileRequest({ id }));

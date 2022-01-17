@@ -11,6 +11,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { NotificationStateType } from "reducers/types/notification";
 import { actions as notificationActions } from "reducers/notification";
 import { PagesPreliquidationTypes } from "../types";
+import { getDetailPreliquidations } from "middleware/preliquidations";
 import moment from "moment";
 import { DATE_FORMATS } from "utils/constants";
 
@@ -20,6 +21,7 @@ export const DetailPreliquidationContainer = (
   const history = useHistory();
   const params: { id?: string } = useParams();
 
+  console.log(props.detailPreliquidation)
   const changePage = (page: PagesPreliquidationTypes) => {
     if (props.actualPage !== page) props.setActualPage(page);
   };
@@ -61,6 +63,7 @@ export const DetailPreliquidationContainer = (
 const mapStateToProps = (state: RootState) => ({
   isFetching: preliquidationSelector(state).fetching,
   actualPage: preliquidationSelector(state).actualPage,
+  detailPreliquidation: preliquidationSelector(state).detailPreliquidations,
   preliquidation: preliquidationSelector(state).detailPreliquidations,
 });
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
@@ -71,8 +74,8 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
     dispatch(actions.setActualPage(page));
   },
   getDetailPreliquidation: (id: number) => {
-    dispatch(actions.getDetailPreliquidationsRequest(id));
-  },
+    dispatch(actions.getDetailPreliquidationsRequest(id))
+  }
 });
 
 export default connect(

@@ -1,5 +1,6 @@
 import { PagesPreliquidationTypes } from "pages/preliquidation/DetailPreliquidation/types";
 import { PreliquidationFilterExtraType, PreliquidationFiltersType } from "pages/preliquidation/filter/types";
+import { HistoryType } from "sagas/types/detailTransactions";
 import {
   InvoiceTypes,
   PreliquidationItem,
@@ -31,17 +32,18 @@ export type InvoiceFileStatus = {
   message?: string;
 }
 
-export type PreliHistory =  {
-  id: number,
-  createdAt: string,
-  fieldEdited: string,
-  beforeValue: number,
-  currentValue: number,
-  reasonTag: {
-    id: number,
-    tag: string
-  }
-}
+// export type PreliHistory =  {
+//   id: number,
+//   createdAt: string,
+//   fieldEdited: string,
+//   beforeValue: number,
+//   currentValue: number,
+//   reasonTag: {
+//     id: number,
+//     tag: string
+//   }
+  
+// }
 
 export type PreliTransactionItem =  {
   transactionCode?: string | null
@@ -65,7 +67,7 @@ export type DetailPreliquidationType = {
     maxAllowedPlus: number,
     maxAllowedSubtract: number,
   },
-  histories: PreliHistory[]
+  histories: HistoryType[]
   transactions: {
     quantity: number,
     items: PreliTransactionItem[]
