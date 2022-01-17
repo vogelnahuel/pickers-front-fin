@@ -236,11 +236,7 @@ function* putSaveDetailInvoice({
     );
     yield put(preliquidationActions.getInvoiceDetailSaveError());
   } else {
-<<<<<<< HEAD
     yield put(replace("/presettlements"));
-=======
-    yield put(replace("/presettlements"))
->>>>>>> 302c316ab5ae6adec6733ae831a49f1fc0f0cbe0
     yield put(preliquidationActions.getInvoiceDetailSaveSuccess());
   }
 }
@@ -279,11 +275,7 @@ function* patchApproveDetailInvoice({
       })
     );
   } else {
-<<<<<<< HEAD
     yield put(replace("/presettlements"));
-=======
-    yield put(replace("/presettlements"))
->>>>>>> 302c316ab5ae6adec6733ae831a49f1fc0f0cbe0
   }
 }
 
@@ -304,11 +296,7 @@ function* putDeleteDetailInvoice({
   if (response.status !== 200) {
     yield put(preliquidationActions.getInvoiceDetailDeleteError());
   } else {
-<<<<<<< HEAD
     yield put(replace("/presettlements"));
-=======
-    yield put(replace("/presettlements"))
->>>>>>> 302c316ab5ae6adec6733ae831a49f1fc0f0cbe0
     yield put(preliquidationActions.getInvoiceDetailDeleteSuccess());
   }
 }
