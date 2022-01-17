@@ -195,7 +195,8 @@
     }
   ],
   "detailPreliquidation": {
-    "id": 0,
+    "result": {
+      "id": 0,
     "status": {
       "id": 0,
       "description": "Pendiente",
@@ -304,7 +305,7 @@
           "finishedAt": "2022-01-06T15:59:06.000Z",
           "status": {
             "name": "Entregado",
-            "tag": "CANCEL"
+            "tag": "plus"
           },
           "amount": 120.3
         },
@@ -322,7 +323,7 @@
           "finishedAt": "2022-01-06T15:59:06.000Z",
           "status": {
             "name": "Entregado",
-            "tag": "LOST"
+            "tag": "subtract"
           },
           "amount": 120.3
         },
@@ -363,6 +364,7 @@
           "amount": 120.3
         }
       ]
+    }
     }
   }
 }

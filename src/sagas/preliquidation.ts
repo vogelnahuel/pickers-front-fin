@@ -139,7 +139,6 @@ function* getDetailPreliquidations({
   void,
   DetatilPreliquidationsApiResponse
 > {
-
   const response = yield call(
     preliquidationsMiddleware.getDetailPreliquidations,
     payload
@@ -147,11 +146,10 @@ function* getDetailPreliquidations({
   if (response.status !== 200) {
     yield put(preliquidationActions.getDetailPreliquidationsError());
   } else {
-    yield put(preliquidationActions.getDetailPreliquidationsSuccess(response.data));
+    const { result } = response.data;
+    yield put(preliquidationActions.getDetailPreliquidationsSuccess(result));
   }
 }
-
-
 
 function* getMorePreliquidations({
   payload,
@@ -366,7 +364,9 @@ function* deleteInvoiceFile({
   if (response.status !== 200) {
     yield put(preliquidationActions.deleteInvoiceFileError());
   } else {
-    yield put(preliquidationActions.getInvoiceDetailRequest(payload.id.toString()));
+    yield put(
+      preliquidationActions.getInvoiceDetailRequest(payload.id.toString())
+    );
   }
 }
 

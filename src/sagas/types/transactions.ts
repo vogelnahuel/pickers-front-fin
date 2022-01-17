@@ -116,4 +116,6 @@ export type TransactionStatusType =
   | "CANCEL"
   | "DELIVERED"
   | "RETURNED_TO_SENDER"
-  | "LOST";
+  | "LOST"
+  | "plus"
+  | "subtract";
