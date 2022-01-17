@@ -17,6 +17,8 @@ import {StateHistory} from "component/StatesHistory/StateHistory";
 
 
 import { Transactions } from "./transactions/Transactions";
+import { ISO8601toDDMMYYYHHMM } from "utils/iso8601toDDMMYYHHMM";
+import { PRELIQUIDATION_HISTORY_STATES } from "utils/constants";
 
 const tabs: TabType<PagesPreliquidationTypes>[] = [
   {
@@ -129,7 +131,13 @@ export const DetailPreliquidation = ({
             <h2>Historial</h2>
             <div className="display-filter-transaction">
               <StateHistory
-              history={detailPreliquidation.histories}
+              history={detailPreliquidation.histories.map((state:any)=>{
+                return {
+                  ...state,
+                  createdAt: ISO8601toDDMMYYYHHMM(state.createdAt),
+                 reasonTag: { ...state.reasonTag, label: i18next.t(PRELIQUIDATION_HISTORY_STATES[state.reasonTag.tag]) }
+                }
+              })}
               showCreatedDate={true}
               subtitleMetadata={true}
               />

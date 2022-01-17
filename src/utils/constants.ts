@@ -220,6 +220,20 @@ export const TRANSACTION_ACTIONS_TAG_LABEL: any /*TransactionActionTagType*/ = {
   state_initial: "filterTransaction:label.select.created",
 };
 
+
+
+export const PRELIQUIDATION_HISTORY_STATES: any = {
+  "state_initial": "detailPreliquidation:label.tag.initialState",
+  "state_pending": "detailPreliquidation:label.tag.pending",
+  "state_in_approvement":"detailPreliquidation:label.tag.inAprovement",
+  "state_approved":"detailPreliquidation:label.tag.aproved",
+  "state_pending_accounting":"detailPreliquidation:label.tag.pendingAcounting",
+  "state_in_accounting": "detailPreliquidation:label.tag.inAcounting",
+  "state_generated_payment": "detailPreliquidation:label.tag.generatedPayment", 
+  "state_invoice_rejected":"detailPreliquidation:label.tag.invoiceRejected",
+  "adjustment": "detailPreliquidation:label.tag.adjustment", 
+};
+
 export const DETAIL_PICKER_TAG: DetailPickerTagFileType = {
   "dni-front": "detailPicker:label.card.dniFront",
   "dni-back": "detailPicker:label.card.dniBack",

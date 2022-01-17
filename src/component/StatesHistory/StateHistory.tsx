@@ -14,8 +14,7 @@ export function StateHistory<T>({
   subtitleMetadata,
   transaccion
 }: StateHistoryProps<T>) {
-  
-  console.log(history,"history")
+
 
   return (
     <div >
