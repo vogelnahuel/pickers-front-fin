@@ -131,7 +131,7 @@ export const DetailPreliquidation = ({
               <StateHistory
               history={detailPreliquidation.histories}
               showCreatedDate={true}
-              subtittleMetadata={true}
+              subtitleMetadata={true}
               />
             </div>
           </div>
