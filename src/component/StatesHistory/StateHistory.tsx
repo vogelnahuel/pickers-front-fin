@@ -25,7 +25,7 @@ export function StateHistory<T>({
       <div className="history-container">
         {history.map((state) =>
           <div className={transaccion ? "state-container transaction" : "state-container"}>
-            <img className="image" src={cancelStatus?.includes(state.reasonTag.tag) ? Cancel : Okey} />
+            <img className="image" alt="state" src={cancelStatus?.includes(state.reasonTag.tag) ? Cancel : Okey} />
             <div className="state-name">
               <p>{state.reasonTag.label ? state.reasonTag.label : state.reasonTag.tag}{!subtitleMetadata && state.metadata?.length > 0 ? state.metadata[0].value : ""}</p>
               <p className="created-date"> {state.createdAt}</p>
