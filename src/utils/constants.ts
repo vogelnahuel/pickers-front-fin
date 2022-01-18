@@ -1,5 +1,4 @@
 import { DetailPickerTagFileType } from "pages/pickers/types";
-import { TransactionActionTagType } from "pages/transaction/types";
 import { TransactionStatusType } from "sagas/types/transactions";
 
 export const titlesAdminPending: string[] = [

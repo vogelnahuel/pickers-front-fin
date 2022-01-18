@@ -11,7 +11,6 @@ import { useHistory, useParams } from "react-router-dom";
 import { NotificationStateType } from "reducers/types/notification";
 import { actions as notificationActions } from "reducers/notification";
 import { PagesPreliquidationTypes } from "../types";
-import { getDetailPreliquidations } from "middleware/preliquidations";
 import moment from "moment";
 import { DATE_FORMATS } from "utils/constants";
 
