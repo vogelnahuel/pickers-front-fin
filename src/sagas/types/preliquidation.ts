@@ -152,3 +152,6 @@ export type AdjustAmountMiddlewareType = {
     reason: string;
   };
 };
+export type AdjustmenResponseType = {
+  statusCode?: number;
+}

@@ -1,0 +1,161 @@
+.default-loading-button {
+  background: #0098FF;
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 50px;
+  height: 50px;
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  color: #FFFFFF;
+  padding: 0 44px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  overflow: hidden;
+
+  & > .button-text-hidden {
+    visibility: hidden;
+  }
+
+  & > .button-text-container,
+  & > .button-icon-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 50px;
+    width: 100%;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  & > .button-icon-container {
+    z-index: 4;
+  }
+
+  &:disabled{
+    background: #BDBDBD;
+    color: #FFFFFF;
+    cursor: default;
+  }
+}
+
+.button-fade-out > .button-text-container > span{
+  animation: fadeOut 1.5s;
+  animation-fill-mode: forwards;
+}
+
+.button-loading-bar,
+.button-result-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 50px;
+  width: 0;
+  z-index: 1;
+  background-color: #007ACC;
+}
+
+.button-result-bar {
+  left: auto;
+  right: 0;
+  z-index: 3;
+  background-color: transparent;
+}
+
+
+.button-loading-50-animation {
+  animation: firstHalf 3s;
+  animation-fill-mode: forwards;
+}
+
+.button-loading-100-animation {
+  animation: secondHalf 1.5s;
+  animation-fill-mode: forwards;
+}
+
+.button-error-animation {
+  animation: error 1s;
+  animation-delay: 1.5s;
+  animation-fill-mode: forwards;
+}
+
+.button-success-animation {
+  animation: success 1s;
+  animation-delay: 1.5s;
+  animation-fill-mode: forwards;
+}
+
+.button-icon-animation {
+  opacity: 0;
+  animation: fadeIn 1s;
+  animation-delay: 1.5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    display: block;
+    opacity: 1;
+  }
+  100% {
+    display: none;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
+
+@keyframes firstHalf {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 50%;
+  }
+}
+
+@keyframes secondHalf {
+  0% {
+    width: 50%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes error {
+  0% {
+    width: 0%;
+    background-color: transparent;
+  }
+  100% {
+    width: 100%;
+    background-color: #FF1515;
+  }
+}
+
+@keyframes success {
+  0% {
+    width: 0%;
+    background-color: transparent;
+  }
+  100% {
+    width: 100%;
+    background-color: #04CE6D;
+  }
+}
