@@ -158,3 +158,6 @@ export type DetatilPreliquidationsApiResponse = {
   };
   status: number;
 };
+export type AdjustmenResponseType = {
+  statusCode?: number;
+}
