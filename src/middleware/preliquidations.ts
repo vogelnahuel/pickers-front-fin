@@ -9,6 +9,7 @@ import {
   DetailPreliquidationsInvoiceTypesApiResponseType,
   PreliquidationCastParamsMiddlewareType,
   AdjustAmountMiddlewareType,
+  DetatilPreliquidationsApiResponse,
 } from "sagas/types/preliquidation";
 import { ApiResponse } from "./api";
 
@@ -51,13 +52,18 @@ export const getDetailInvoiceTypes = (): Promise<
   AxiosResponse<DetailPreliquidationsInvoiceTypesApiResponseType>
 > => API.get(`/ms-admin-rest/api/v1.0/fiscal-data/invoice-type`);
 
-export const uploadInvoiceFile = (
+export const replaceInvoiceFile = (
   params: UploadInvoiceFileMiddlewareType
 ): Promise<AxiosResponse<ApiResponse<void>>> =>
   API.put(`/ms-admin-rest/api/v1.0/presettlements/${params.id}/invoice/file`, {
     content: params.content,
   });
-
+  export const uploadInvoiceFile = (
+    params: UploadInvoiceFileMiddlewareType
+  ): Promise<AxiosResponse<ApiResponse<void>>> =>
+    API.post(`/ms-admin-rest/api/v1.0/presettlements/${params.id}/invoice/file`, {
+      content: params.content,
+    });
 export const deleteInvoiceFile = (
   id: number
 ): Promise<AxiosResponse<ApiResponse<void>>> =>
@@ -67,3 +73,7 @@ export const preliquidationAdjustment = (params: AdjustAmountMiddlewareType) => 
   const { id, ...body } = params;
   return API.post(`/ms-admin-rest/api/v1.0/presettlements/${id}/adjustment`, body);
 }
+export const getDetailPreliquidations = (id: number): Promise<AxiosResponse<DetatilPreliquidationsApiResponse>> =>
+  API.get(`/ms-admin-rest/api/v1.0/presettlements/${id}`);
+
+  

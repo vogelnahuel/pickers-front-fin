@@ -15,8 +15,6 @@ import {
   PreliquidationFilterPropsType,
   PreliquidationFiltersType,
 } from "./types";
-import orDisabled from "assets/transaction/OrDisabled.svg";
-import searchDisabled from "assets/preli/searchDisabled.svg";
 
 export const PreliquidationFilter: React.FC<PreliquidationFilterPropsType> = ({
   onSubmit,
@@ -58,7 +56,7 @@ export const PreliquidationFilter: React.FC<PreliquidationFilterPropsType> = ({
                   <div className="container-col-sm-1 container-col-xl">
                     <Field
                       type="text"
-                      name="presettlmentId"
+                      name="presettlementId"
                       label={i18next.t(
                         "preli:label.filter.preliquidationNumber"
                       )}
@@ -121,13 +119,12 @@ export const PreliquidationFilter: React.FC<PreliquidationFilterPropsType> = ({
                   </div>
                   <div className="container-col-sm-offset-1 container-col-sm-1 container-col-xl-auto end">
                     <button
-                      className={dirty ? "search-button-transaction" : "preliquidation-filter-button-disabled"}
+                      className="search-button-transaction"
                       name="search"
                       type="submit"
-                      disabled={!dirty}
                     >
-                      <img src={dirty ? search : searchDisabled} alt="export" />
-                      <img className="or-filter" src={dirty ? or : orDisabled} alt="or" />
+                      <img src={search} alt="export" />
+                      <img className="or-filter" src={or} alt="or" />
                       <p className="display-inline-block p-export">
                         {i18next.t("global:label.button.search")}
                       </p>

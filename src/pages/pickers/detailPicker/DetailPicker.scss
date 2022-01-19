@@ -34,9 +34,10 @@
   margin-left: auto;
 }
 .Admin-Pickers-input.readonly {
-  color: #828282;
+  color: #B8B8B8;
   background-color: transparent;
   cursor: default;
+  border-bottom-color: #B8B8B8;
 }
 .Admin-Pickers-inputs {
   display: flex;
@@ -44,7 +45,7 @@
   justify-content: space-between;
 }
 .label-Admin-Pickers.readonly {
-  color: #828282;
+  color: #B8B8B8;
 }
 .label-Admin-Pickers {
   font-family: "Mulish";
@@ -372,6 +373,7 @@
 .button-submit-subtype:disabled {
   border: 2.5px solid #bdbdbd;
   color: #bdbdbd;
+  cursor: auto;
 }
 .modal-error-title2 {
   background: #00b2e3;
@@ -576,9 +578,7 @@
     //width: 22.2vw;
     margin-bottom: 0;
   }
-  // .Admin-Pickers-input-middle{
-  //     //width: 124px;
-  // }
+ 
   .label-Admin-Pickers-middle {
     margin-bottom: 0;
     //width: 124px;

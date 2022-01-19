@@ -11,35 +11,36 @@ import { actions as notificationActions } from "../../reducers/notification";
 import { PreliquidationContainerProps } from "./types";
 import { NotificationStateType } from "reducers/types/notification";
 import i18next from "i18next";
-import { PreliquidationFilterExtraType } from "./filter/types";
+import { PreliquidationFilterExtraType, PreliquidationFiltersType } from "./filter/types";
 
 const PreliquidationContainer = (
   props: PreliquidationContainerProps
 ): JSX.Element => {
   useEffect(() => {
-    const filtersExtra = { limit: window.innerHeight < 770 ? 3 : 4 , offset:0 };
+    const filtersExtra = { limit: window.innerHeight < 770 ? 3 : 4, offset: 0 };
+    props.resetAllSelected();
+    props.setPreliquidationFilters({});
     props.setPreliquidationExtraFilters(filtersExtra);
     props.getPreliquidations({ ...filtersExtra });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const sendToAccounting = () =>
+  const sendToAccounting = () => {
+    const namespace = "preli:label.modal";
+    const { numberOfPreliSelected: n } = props;
+    const word = i18next.t(`${namespace}.preliquidation${n > 1 ? "s" : ""}`);
     props.showNotification({
       level: "warning",
       title: i18next.t("preli:title.modal.sendToAccounting"),
-      body: i18next.t("preli:label.modal.sendToAccounting", {
-        quantity: props.numberOfPreliSelected,
-        text: i18next.t(
-          `preli:label.modal.preliquidation${
-            props.numberOfPreliSelected > 1 ? "s" : ""
-          }`
-        ),
+      body: i18next.t(`${namespace}.sendToAccounting`, {
+        quantity: `<span class="preliquidation-quantity">${n} ${word}</span>`,
       }),
       onCloseLabel: i18next.t("global:label.button.cancel"),
       onClickLabel: i18next.t("preli:label.button.send"),
       onClose: undefined,
       onClick: () => console.log("Send"),
     });
+  };
 
   return <Preliquidation {...props} sendToAccounting={sendToAccounting} />;
 };
@@ -61,11 +62,17 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   getPreliquidations: (params: PreliquidationParamsMiddlewareType) => {
     dispatch(preliActions.getPreliquidationsRequest(params));
   },
+  setPreliquidationFilters: (params: PreliquidationFiltersType) => {
+    dispatch(preliActions.setPreliquidationFilters(params))
+  },
   setPreliquidationExtraFilters: (params: PreliquidationFilterExtraType) => {
     dispatch(preliActions.setPreliquidationExtraFilters(params));
   },
   getMorePreliquidations: (params: PreliquidationParamsMiddlewareType) => {
     dispatch(preliActions.getMorePreliquidationsRequest(params));
+  },
+  resetAllSelected:()=>{
+    dispatch(preliActions.resetAllSelected())
   },
   showNotification: (content: NotificationStateType) => {
     dispatch(notificationActions.showNotification(content));

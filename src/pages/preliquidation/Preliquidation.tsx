@@ -27,13 +27,18 @@ export const Preliquidation: React.FC<PreliquidationsProps> = ({
       <div className="mainContainerFlex">
         <Nav isDirty={null} showNotification={null} />
         <div className="pending-container">
-            <h2 className="subTitle-pending">
-              <p className="subtitle-pendingUser-h2">{i18next.t("preli:label.title.preliquidations")}</p>
-            </h2>
+          <h2 className="subTitle-pending">
+            <p className="subtitle-pendingUser-h2">
+              {i18next.t("preli:label.title.preliquidations")}
+            </p>
+          </h2>
           <PreliquidationFilter />
           <div className="button-container-preliquidation">
-            <Button disabled={!anyPreliquidationSelected} onClick={sendToAccounting}>
-              { i18next.t("preli:label.button.sendToAccounting")}
+            <Button
+              disabled={!anyPreliquidationSelected}
+              onClick={sendToAccounting}
+            >
+              {i18next.t("preli:label.button.sendToAccounting")}
             </Button>
           </div>
           <TablePreliquidation items={preliquidations} />

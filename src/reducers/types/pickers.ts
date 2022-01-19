@@ -1,3 +1,4 @@
+import { pickerTabs } from "pages/pickers/detailPicker/types";
 import {
   PickerType,
   ParamsMiddlewareType,
@@ -36,7 +37,7 @@ export type PickerStateType = {
   };
   seeMore: boolean;
   sizePage: number;
-  actualPage: string;
+  actualPage: pickerTabs;
 };
 
 export type SelectorType = {

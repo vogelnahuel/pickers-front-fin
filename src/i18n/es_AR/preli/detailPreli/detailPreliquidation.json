@@ -16,5 +16,26 @@
   "placeholder.modal.reason": "Ingresá el motivo de la modificación",
   "label.tooltip.add": "Sumar un monto",
   "label.tooltip.subtract": "Restar un monto",
-  "error.input.amountExceeded": "El monto excede el límite"
+  "error.input.amountExceeded": "El monto excede el límite",
+  "label.title.transactions": "Transacciones",
+  "label.button.changeAmount": "Modificar monto",
+  "label.table.id": "ID",
+  "label.table.date": "Fecha",
+  "label.table.status": "Estado",
+  "label.table.amount": "Monto",
+  "label.table.total": "Total",
+  "label.tag.plus": "Suma",
+  "label.tag.subtract": "Resta",
+
+
+
+  "label.tag.initialState":"En generación",
+  "label.tag.pending":"Pendiente",
+  "label.tag.inAprovement":"En aprobación",
+  "label.tag.aproved":"Aprobado",
+  "label.tag.pendingAcounting":"Pendiente de contabilidad",
+  "label.tag.inAcounting":"En contabilidad",
+  "label.tag.generatedPayment":"Pago generado",
+  "label.tag.invoiceRejected":"Factura rechazada",
+  "label.tag.adjustment":"Modificación"
 }

@@ -10,10 +10,12 @@ import {
 import { AppDispatch, RootState } from "store";
 import Reload from "../../../../../assets/transaction/Reload.svg";
 import "../optionList.css";
-import TransactionStateHistory from "../history/transactionStateHistory/TransactionStateHistory";
+import { StateHistory } from "../../../../../component/StatesHistory/StateHistory";
 import { HistoryModalTransactionType } from "../types";
 import "./HistoryModalTransaction.scss";
 import i18next from "i18next";
+import { TRANSACTION_ACTIONS_TAG_LABEL } from "utils/constants";
+import { ISO8601toDDMMYYYHHMM } from "utils/iso8601toDDMMYYHHMM";
 
 const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
   detailTransaction,
@@ -24,7 +26,11 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
 }): JSX.Element => {
   const cancelEnabledStatus = [1, 2, 3, 4];
   const finishEnabledStatus = [5, 6, 7, 8];
-
+  const cancelStatus = [
+    "state_pickup_cancelled_temporally",
+    "state_pickup_cancelled_permanently",
+    "state_lost",
+  ];
   return (
     <div className="modal-transaction-scroll">
       <div>
@@ -34,7 +40,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
       </div>
       <div className="modal-transaction-optionContainer-scroll">
         <Form
-          onSubmit={() => {}}
+          onSubmit={() => { }}
           initialValues={{
             areaCode: detailTransaction.picker.phone
               ? detailTransaction.picker.phone.areaNumber
@@ -109,7 +115,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                           disabled
                         />
                       </div>
-                      
+
                       <div className="container-history-col-4">
                         <Field
                           type="text"
@@ -176,7 +182,7 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
                 </div>
 
                 <h3
-                  className="modal-transaction-h3"
+                  className="modal-history-h3"
                   id="modal-transaction-history-Final"
                 >
                   {i18next.t(
@@ -221,14 +227,28 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
             </form>
           )}
         </Form>
-        <TransactionStateHistory
-          transactionHistory={detailTransaction.transactionHistory}
-        />
+        <div className="transaction-history-container">
+          <StateHistory
+            history={detailTransaction.transactionHistory.map((t) => {
+              return {
+                ...t,
+                metadata: [...t.metadata.map((meta) => { return { ...meta, value: `. Motivo: ${meta.value}` } })],
+                createdAt: ISO8601toDDMMYYYHHMM(t.createdAt),
+                reasonTag: { ...t.reasonTag, label: i18next.t(TRANSACTION_ACTIONS_TAG_LABEL[t.reasonTag.tag]) }
+              }
+            })}
+            transaccion={true}
+            cancelStatus={cancelStatus}
+            showCreatedDate={true}
+            linkableStatus={{ tags: ["assigned_picker"], link: "pickers", label: i18next.t("detailTransaction:label.detailTransaction.seePicker") }}
+            title={i18next.t("detailTransaction:label.detailTransaction.history")}
+          />
+        </div>
       </div>
       <div>
         <div className="modal-transaction-difuminar1"> </div>
         <div className="modal-transaction-difuminar2"></div>
-        <div className="modal-transaction-difuminar3"></div>
+        <div className="modal-transaction-difuminar3"></div>{/*TODO: linear gradient */}
       </div>
       <div className="button-container">
         <button

@@ -1,25 +1,24 @@
 import { Header } from "component/admin/Header/Header";
 import Nav from "component/admin/Nav/Nav";
 import NotificationModal from "component/modal/NotificationModal";
-import "pages/preliquidation/DetailPreliquidation/detailPreliquidation.scss";
+
 import React from "react";
 import InvoiceContainer from "./invoice/InvoiceContainer";
-import "pages/preliquidation/DetailPreliquidation/detailPreliquidations.scss";
-import { DetailPreliquidationPropsType } from "./types";
+// import "../DetailPreliquidation/detailPreliquidation.scss"//"pages/preliquidation/DetailPreliquidation/detailPreliquidations.scss";
+// import { DetailPreliquidationPropsType } from "./types";
 import EditPreliquidationAmountContainer from "./editPreliquidationAmount/EditPreliquidationAmountContainer";
+import "./wrapperPreliquidation.scss";
+
+import DetailPreliquidationContainer from "./preliquidation/DetailPreliquidationContainer";
+import {  WrapperPreliquidationPropsType } from "./types";
 
 
 
 
-export const DetailPreliquidation: React.FC<DetailPreliquidationPropsType> = ({
+export const WrapperPreliquidation: React.FC<WrapperPreliquidationPropsType> = ({
   isFetching,
   actualPage
 }): JSX.Element => {
-
-
-  const containerInvoice = true;
-
-
 
   return (
     <div className="background-Grey">
@@ -27,10 +26,14 @@ export const DetailPreliquidation: React.FC<DetailPreliquidationPropsType> = ({
       <div className="mainContainerFlex">
         <Nav />
         <div className="pending-container">
-          
+
 
           <NotificationModal />
-          {containerInvoice ? <InvoiceContainer/> : <></>}
+          {actualPage === "preliquidation" ? (
+            <DetailPreliquidationContainer />
+          ) : (
+            <InvoiceContainer />
+          )}
         </div>
 
       </div>

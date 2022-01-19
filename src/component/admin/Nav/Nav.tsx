@@ -97,10 +97,10 @@ export const Nav = ({ isDirty, pickerWrongFiles, isInvoiceDirty, invoiceFileErro
             <li>
               <div
                 className={`circle ${
-                  pathname.includes("/preliquidation") && "visible"
+                  pathname.includes("/presettlements") && "visible"
                 }`}
               />
-              <Link onClick={handleClick} to="/preliquidation">
+              <Link onClick={handleClick} to="/presettlements">
                 {i18next.t("nav:label.menu.preLiquidation")}
               </Link>
             </li>

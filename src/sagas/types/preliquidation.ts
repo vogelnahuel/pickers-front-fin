@@ -1,4 +1,4 @@
-import { generatedAtType } from "pages/preliquidation/filter/types";
+import { DetailPreliquidationType } from "reducers/types/preliquidation";
 
 export type PreliquidationsApiResponse = {
   data: PreliquidationsContentResponseType;
@@ -32,15 +32,15 @@ export type PreliquidationStatus = {
 };
 
 export type PreliquidationParamsMiddlewareType = {
-  presettlmentId?: number;
+  presettlementId?: number;
   status?: string;
-  generatedAt?: generatedAtType;
+  generatedAt?: string;
   fiscalNumber?: string;
   limit?: number;
   offset?: number;
 };
 export type PreliquidationCastParamsMiddlewareType = {
-  presettlmentId?: number;
+  presettlementId?: number;
   status?: string;
   generatedAt?: string;
   fiscalNumber?: string;
@@ -49,7 +49,7 @@ export type PreliquidationCastParamsMiddlewareType = {
 };
 
 export type PreliquidationParamsMiddlewareTypeCast = {
-  presettlmentId?: number;
+  presettlementId?: number;
   status?: string;
   generatedAt?: string;
   fiscalNumber?: string;
@@ -61,7 +61,6 @@ export type PreliquidationParamsMiddlewareTypeCast = {
 export type UploadInvoiceFileMiddlewareType = {
   id: number;
   content: string;
-  refreshPage?: boolean;
 };
 
 export type RejectInvoiceMiddlewareType = {
@@ -92,7 +91,7 @@ export type DetailPreliquidationsContentResponseType = {
     url: string | null;
   };
   presettlement: {
-    id?: number;
+    id: number;
     status: PreliquidationStatus;
     generatedAt: string;
   };
@@ -151,4 +150,11 @@ export type AdjustAmountMiddlewareType = {
     amount: number;
     reason: string;
   };
+};
+
+export type DetatilPreliquidationsApiResponse = {
+  data: {
+    result: DetailPreliquidationType
+  };
+  status: number;
 };

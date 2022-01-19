@@ -99,11 +99,15 @@ input[type=number] {
 #valorAmodificar{
     margin-right: 14px;
 }
-.multiple-flotarImg{
+.multiple-select-icon {
     position: relative;
     right: 15px;
     margin-right: -15px;
     margin-top: 0;
+
+    &-disabled path{
+        fill: #828282;
+    }
 }
 
 .multiple-options{
@@ -188,9 +192,10 @@ input[type=number] {
     color: #000000;
  }
  .Admin-Pickers-input-select.readonly{
-    color: #828282;
+    color: #B8B8B8;
     background-color: transparent;
     cursor: default;
+    border-bottom-color: #B8B8B8;
  }
 
  @media (min-width:1800px){

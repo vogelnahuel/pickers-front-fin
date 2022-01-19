@@ -5,6 +5,7 @@ import {
   createSelector,
 } from "@reduxjs/toolkit";
 import { detailPreliquidationDatePicker } from "pages/preliquidation/DetailPreliquidation/invoice/types";
+import { PagesPreliquidationTypes } from "pages/preliquidation/DetailPreliquidation/types";
 import {
   PreliquidationFilterExtraType,
   PreliquidationFiltersType,
@@ -48,22 +49,32 @@ export const initialState: PreliquitadionStateType = {
   },
   seeMore: true,
 
-  actualPage: "",
+
   invoiceTypes: [],
   detailPreliquidations: {
     id: 0,
     status: {
-      id: 0,
-      description: "",
-      tag: "",
+        id: 0,
+        description: "",
+        tag: "",
     },
     generatedAt: "",
+    fiscalNumber: "",
+    companyName: "",
+    sapCode: "",
+    total: 0.0,
     manualCorrection: {
-      maxAllowedPlus: 300,
-      maxAllowedSubtract: 100
+        maxAllowedPlus: 0.0,
+        maxAllowedSubtract: 0.0,
     },
-    total: 100
-  },
+    histories: [
+        
+    ],
+    transactions: {
+        quantity: 0,
+        items: []
+    }
+},
   invoiceDetail: {
     id: 0,
     emisionDate: "",
@@ -86,6 +97,7 @@ export const initialState: PreliquitadionStateType = {
     },
     presettementId: undefined,
   },
+  actualPage:"preliquidation"
 };
 
 const SLICE_NAME = "preliquidation";
@@ -186,6 +198,17 @@ export const preliquidationSlice = createSlice({
     ) => {},
     getInvoiceDetailDeleteError: () => {},
     getInvoiceDetailDeleteSuccess: () => {},
+    replaceInvoiceFile: (
+      state: PreliquitadionStateType,
+      action: PayloadAction<{ id: number; content: string }>
+    ) => {},
+    replaceInvoiceFileError: (state: PreliquitadionStateType) => {
+      state.invoiceFileStatus = {
+        loading: false,
+        error: true,
+        message: "component:label.pdfController.serverError",
+      };
+    },
     uploadInvoiceFile: (
       state: PreliquitadionStateType,
       action: PayloadAction<{ id: number; content: string }>
@@ -251,6 +274,17 @@ export const preliquidationSlice = createSlice({
     adjustAmountRequest: (state: PreliquitadionStateType, action: PayloadAction<AdjustAmountMiddlewareType>) => {},
     adjustAmountError: () => {},
     adjustAmountSuccess: () => {},
+    getDetailPreliquidationsRequest: (
+      state: PreliquitadionStateType,
+      action: PayloadAction<number>
+    ) => {},
+    getDetailPreliquidationsError: () => {},
+    getDetailPreliquidationsSuccess: (
+      state: PreliquitadionStateType,
+      action: PayloadAction<any>
+    ) => {
+      state.detailPreliquidations = action.payload;
+    },
     setDirty: (
       state: PreliquitadionStateType,
       action: PayloadAction<boolean>
@@ -268,9 +302,15 @@ export const preliquidationSlice = createSlice({
     },
     setActualPage: (
       state: PreliquitadionStateType,
-      action: PayloadAction<string>
+      action: PayloadAction<PagesPreliquidationTypes>
     ) => {
       state.actualPage = action.payload;
+    },
+    resetAllSelected: (
+      state: PreliquitadionStateType,
+      action: PayloadAction
+    ) => {
+      state.preliquidationsSelected = [];
     },
     resetInvoiceDetail: (state: PreliquitadionStateType) => {
       state.invoiceDetail = initialState.invoiceDetail;
@@ -314,7 +354,7 @@ export const actions = preliquidationSlice.actions;
 
 export const allPreliquidationsSelected = createSelector(
   (state: RootState) => state.preliquidations,
-  (preli) =>
+  (preli) => 
     preli.preliquidationsSelected.length > 0 &&
     preli.preliquidations.filter((p) => p.status.tag === "approved").length ===
       preli.preliquidationsSelected.length
