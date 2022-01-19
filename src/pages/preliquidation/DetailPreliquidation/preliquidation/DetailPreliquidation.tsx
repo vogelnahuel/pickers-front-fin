@@ -41,6 +41,7 @@ export const DetailPreliquidation = ({
   initialValues,
   changePage,
   handleClickBack,
+  toggleModalVisibility
 }: DetailPreliquidationPropsType) => {
   return (
     <div>
@@ -151,6 +152,7 @@ export const DetailPreliquidation = ({
               <button
                 disabled={preliquidation.status.tag !== "initial"}
                 className="button-change-amount"
+                onClick={()=>{toggleModalVisibility(true)}}
               >
                 <Edit />
                 <p>

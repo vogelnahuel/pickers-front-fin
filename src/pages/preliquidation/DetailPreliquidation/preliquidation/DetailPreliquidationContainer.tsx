@@ -54,6 +54,7 @@ export const DetailPreliquidationContainer = (
       handleClickBack={handleClickBack}
       changePage={changePage}
       presettementId={params.id}
+      // toggleModalVisibility={props.toggleModalVisibility}
       {...props}
     />
   );
@@ -63,6 +64,7 @@ const mapStateToProps = (state: RootState) => ({
   isFetching: preliquidationSelector(state).fetching,
   actualPage: preliquidationSelector(state).actualPage,
   detailPreliquidation: preliquidationSelector(state).detailPreliquidations,
+  showEditPreliquidationModal: preliquidationSelector(state).showEditPreliquidationModal,
   preliquidation: preliquidationSelector(state).detailPreliquidations,
 });
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
@@ -74,6 +76,9 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   },
   getDetailPreliquidation: (id: number) => {
     dispatch(actions.getDetailPreliquidationsRequest(id))
+  },
+  toggleModalVisibility: (isOpen: boolean) => {
+    dispatch(actions.toggleModalVisibility(isOpen));
   }
 });
 
