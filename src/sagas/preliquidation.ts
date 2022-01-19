@@ -9,6 +9,8 @@ import {
   CallEffect,
   put,
   PutEffect,
+  PutEffectDescriptor,
+  SimpleEffect,
   takeLatest,
 } from "redux-saga/effects";
 import { DATE_FORMATS } from "utils/constants";
@@ -17,6 +19,7 @@ import { actions as notificationActions } from "../reducers/notification";
 import { actions as preliquidationActions } from "../reducers/preliquidation";
 import {
   AdjustAmountMiddlewareType,
+  AdjustmenResponseType,
   DetailPreliquidationBodyParamsType,
   DetailPreliquidationsApiResponseType,
   DetailPreliquidationsContentResponseType,
@@ -341,15 +344,25 @@ function* adjustAmount({
   payload,
 }: PayloadAction<AdjustAmountMiddlewareType>): Generator<
   | PutEffect<{ payload: undefined; type: string }>
+  | PutEffect<{ type: string; content: NotificationStateType }>
+  | SimpleEffect<"PUT", PutEffectDescriptor<{ payload: NotificationStateType; type: string; }>>
   | CallEffect<AxiosResponse<ApiResponse<void>>>,
   void,
-  ApiResponse<void>
+  ApiResponse<AdjustmenResponseType>
 > {
   const response = yield call(
     preliquidationsMiddleware.preliquidationAdjustment,
     payload
   );
   if (response.status !== 200) {
+    if(response.data.statusCode === 30020 ){
+    yield put(
+      notificationActions.showNotification({
+        level: "error",
+        title: i18next.t("Error en la modificación"),
+        body: i18next.t("La preliquidación ya está siendo modificada. Intentalo nuevamente en unos minutos"),
+      })
+    );}
     yield put(preliquidationActions.adjustAmountError());
   } else {
     yield put(preliquidationActions.adjustAmountSuccess());
