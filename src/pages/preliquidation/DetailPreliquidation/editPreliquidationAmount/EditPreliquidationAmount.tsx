@@ -140,7 +140,7 @@ export const EditPreliquidationAmount: React.FC<
                   />
                   <div className="button-confirm-container">
                     <Button disabled={invalid}>Confirmar</Button>
-                    <LoadingButton onClick={onClickText} status={state}>Confirmar</LoadingButton>
+                    {/* <LoadingButton onClick={onClickText} status={state}>Confirmar</LoadingButton> */}
                   </div>
                 </form>
               )}

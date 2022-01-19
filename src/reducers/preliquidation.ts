@@ -34,7 +34,7 @@ export const initialState: PreliquitadionStateType = {
     loading: false,
     message: "",
   },
-  showEditPreliquidationModal: true,
+  showEditPreliquidationModal: false,
   preliquidations: [],
   dirty: false,
   preliquidationsSelected: [],
