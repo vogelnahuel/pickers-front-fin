@@ -3,7 +3,7 @@ import { Header } from "component/admin/Header/Header";
 import Nav from "component/admin/Nav/Nav";
 import "pages/pickers/Pickers.scss";
 import "pages/pickers/detailPicker/DetailPicker.scss";
-import {TabControler} from "component/admin/TabControler/TabControler";
+import { TabControler } from "component/admin/TabControler/TabControler";
 import { Input } from "component/inputs/Input";
 import { Switch } from "component/inputs/switch";
 import motorcycle from "assets/admin/PendingUserAdminPicker/motorcycle.svg";
@@ -22,6 +22,8 @@ import trabajadorOscuro from "assets/admin/PendingUser/trabajadorOscuro.svg";
 import trabajadorAzul from "assets/admin/PendingUser/trabajadorAzul.svg";
 import Back from "component/back/Back";
 import { TabType } from "component/admin/TabControler/types";
+import Select from "component/inputs/Select";
+import { FISCAL_DATA_PICKERS_OPTIONS } from "utils/constants";
 
 export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
   actualPage,
@@ -44,11 +46,11 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
   changePage,
 }) => {
 
- 
 
 
-  
-  const tabs:TabType<pickerTabs>[] = [
+
+
+  const tabs: TabType<pickerTabs>[] = [
     {
       title: "pickers:label.title.pending",
       id: "PENDING",
@@ -70,8 +72,8 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
             onSubmit={(values) =>
               !active
                 ? aproveSubmit(values, goBack)
-                : wrongFiles 
-                ? showNotification({
+                : wrongFiles
+                  ? showNotification({
                     level: "warning",
                     title: i18next.t(
                       "global:title.modal.withoutSaving"
@@ -85,10 +87,10 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                     onCloseLabel: i18next.t(
                       "global:label.button.continue"
                     ),
-                    onClose: () =>  postEditPickerRequest(values, goBack),
+                    onClose: () => postEditPickerRequest(values, goBack),
                     onClick: undefined
                   })
-                : postEditPickerRequest(values, goBack)
+                  : postEditPickerRequest(values, goBack)
             }
             initialValues={initialValues}
             validate={useValidationSchema(validationSchema)}
@@ -120,7 +122,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                     <h2 className="subTitle-pending-picker">{nameDisplay}</h2>
                   </div>
                   {pendingUserAdminPicker?.vehicle &&
-                  pendingUserAdminPicker?.vehicle?.type === "motorcycle" ? (
+                    pendingUserAdminPicker?.vehicle?.type === "motorcycle" ? (
                     <img
                       className="vehiculo-pending-picker"
                       src={motorcycle}
@@ -293,7 +295,6 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                             "detailPicker:label.account.bankIdentifier"
                           )}
                           component={Input}
-                          disabled
                           className="Admin-Pickers-input readonly"
                           placeholder={i18next.t(
                             "detailPicker:placeholder.account.bankIdentifier"
@@ -314,6 +315,102 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                             "detailPicker:placeholder.account.bankName"
                           )}
                         />
+                      </div>
+                      <div className="container-detailPicker-col-sm-6  ">
+                        <Field
+                          type="text"
+                          name="accountingData.SAPCode"
+                          label={i18next.t(
+                            "Código de proveedor SAP"
+                          )}
+                          component={Input}
+                          disabled
+                          className="Admin-Pickers-input readonly"
+                          placeholder={i18next.t(
+                            "-"
+                          )}
+                        />
+                      </div>
+                      <div className="container-detailPicker-row"><div className="divider"></div></div>
+                      <h3 className="container-detailPicker-row subTitle-fiscal-data">
+                        {i18next.t("Dirección fiscal")}
+                      </h3>
+                      <div className="container-detailPicker-row">
+                        <div className="container-detailPicker-col-sm-6  ">
+                          <Field
+                            type="text"
+                            name="accountingData.street"
+                            label={i18next.t(
+                             "Calle *"
+                            )}
+                            component={Input}
+                            className="Admin-Pickers-input"
+                            placeholder={i18next.t(
+                              "Ingresá una calle"
+                            )}
+                          />
+                        </div>
+                        <div className="container-detailPicker-col-sm-3  ">
+                        <Field
+                            type="text"
+                            name="accountingData.streetNumber"
+                            label={i18next.t(
+                             "Número *"
+                            )}
+                            component={Input}
+                            className="Admin-Pickers-input"
+                            placeholder={i18next.t(
+                              "Ingresá una número"
+                            )}
+                          />
+                        </div>
+                        <div className="container-detailPicker-col-sm-3  ">
+                        <Field
+                            type="text"
+                            name="accountingData.cp"
+                            label={i18next.t(
+                             "CP *"
+                            )}
+                            component={Input}
+                            className="Admin-Pickers-input "
+                            placeholder={i18next.t(
+                              "Ingresá un codigo postal"
+                            )}
+                          />
+                        </div>
+                        <div className="container-detailPicker-col-sm-6  ">
+                          <Field
+                            type="text"
+                            name="accountingData.location"
+                            label={i18next.t(
+                              "Localidad *"
+                            )}
+                            component={Input}
+                            className="Admin-Pickers-input"
+                            placeholder={i18next.t(
+                              "Ingresá una localidad"
+                            )}
+                          />
+                        </div>
+                        <div className="container-detailPicker-col-sm-6  ">
+                          <Field
+                            type="text"
+                            name="accountingData.state"
+                            label={i18next.t(
+                              "Provincia *"
+                            )}
+                            className="Admin-Pickers-input"
+                            placeholder={i18next.t(
+                              "Seleccioná una provincia"
+                            )}
+                            options={FISCAL_DATA_PICKERS_OPTIONS.map((o) => ({
+                              ...o,
+                              label: i18next.t(o.label),
+                            }))}
+                          >
+                             {(props: any) => <Select {...props} />}
+                          </Field>
+                        </div>
                       </div>
                     </div>
                     <ExpandableFile
@@ -444,22 +541,22 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                           onClick={() =>
                             wrongFiles
                               ? showNotification({
-                                  level: "warning",
-                                  title: i18next.t(
-                                    "global:title.modal.withoutSaving"
-                                  ),
-                                  body: i18next.t(
-                                    "global:label.modal.withoutSaving"
-                                  ),
-                                  onClickLabel: i18next.t(
-                                    "global:label.button.checkErrors"
-                                  ),
-                                  onCloseLabel: i18next.t(
-                                    "global:label.button.continue"
-                                  ),
-                                  onClose: () => postPendingUserDocumentsEdit(values),
-                                  onClick: undefined
-                                })
+                                level: "warning",
+                                title: i18next.t(
+                                  "global:title.modal.withoutSaving"
+                                ),
+                                body: i18next.t(
+                                  "global:label.modal.withoutSaving"
+                                ),
+                                onClickLabel: i18next.t(
+                                  "global:label.button.checkErrors"
+                                ),
+                                onCloseLabel: i18next.t(
+                                  "global:label.button.continue"
+                                ),
+                                onClose: () => postPendingUserDocumentsEdit(values),
+                                onClick: undefined
+                              })
                               : postPendingUserDocumentsEdit(values)
                           }
                           className="button-submit-subtype"

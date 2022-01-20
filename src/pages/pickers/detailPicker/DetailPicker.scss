@@ -152,6 +152,15 @@
   width: 100%;
 }
 
+.divider{
+  background-color: rgb(0, 0, 0);
+  height: 0px;
+  padding-left: 100%;
+ margin: 15px;
+ margin-left: 25px;
+  border: 1px solid #E5E5E5;
+}
+
 .subTitle-pending-data {
   margin-top: 2rem;
   font-family: "Mulish";
@@ -160,6 +169,16 @@
   font-size: 24px;
   line-height: 30px;
   color: #2d2d2d;
+}
+.subTitle-fiscal-data {
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+  letter-spacing: 0.01em;
+  color: #4D4D4D;
+  margin-left: 0px;
 }
 
 .separacion {

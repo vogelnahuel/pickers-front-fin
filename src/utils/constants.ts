@@ -168,6 +168,26 @@ export const FILTER_PICKERS_OPTIONS = [
   },
 ];
 
+export const FISCAL_DATA_PICKERS_OPTIONS = [
+  {
+    label: "Santa fé",
+    value: "SantaFe",
+  },
+  {
+    label: "Buenos Aires",
+    value: "BuenosAires",
+  },
+  {
+    label: "Capital Federal",
+    value: "CapitalFederal",
+  },
+  {
+    label: "Misiones",
+    value: "Misiones",
+  },
+];
+
+
 export const TRANSACTION_STATE_ID_LABEL: any = {
   1: "filterTransaction:label.select.notAssigned",
   2: "filterTransaction:label.select.assigned",

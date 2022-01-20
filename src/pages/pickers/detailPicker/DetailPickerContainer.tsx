@@ -220,6 +220,23 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
             ),
         }),
       }),
+      accountingData: yup.object({
+        street: yup
+        .string()
+        .required(i18next.t("global:error.input.required")),
+        streetNumber: yup
+        .string()
+        .required(i18next.t("global:error.input.required")),
+        cp: yup
+        .string()
+        .required(i18next.t("global:error.input.required")),
+        location: yup
+        .string()
+        .required(i18next.t("global:error.input.required")),
+        state: yup
+        .string()
+        .required(i18next.t("global:error.input.required")),
+      }),
       vehicle:
         props.pendingUserAdminPicker.vehicle &&
         props.pendingUserAdminPicker.vehicle.type === "motorcycle"
