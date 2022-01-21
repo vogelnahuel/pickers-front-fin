@@ -126,7 +126,7 @@ export type PickerContainerTypes = {
   setActualPage: Function;
   getPendingUsersExportRequest: Function;
   getMorePendingUser: Function;
-  isDetail:boolean;
+  isDetail: boolean;
 };
 
 export type PickerTypes = {
@@ -181,6 +181,13 @@ export type PickerFileResponseType = {
     url: string;
   };
 };
+
+export type BankNameResponseType = {
+  result: {
+    id: number;
+    name: string;
+  };
+}
 
 export type DetailPickerTagFileType = {
   "dni-front": string;

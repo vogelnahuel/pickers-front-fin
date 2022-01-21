@@ -39,6 +39,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
   useEffect(() => {
     props.resetWrongFiles();
     props.getPendingUserPicker(params.id);
+    props.getBankNumber(191)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -298,6 +299,9 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
+  getBankNumber: (params: number) => {
+    dispatch(pendingUserAdminPickerActions.getBankNameRequest({cbuPrefix:params}));
+  },
   getPendingUserPicker: (params: number) => {
     dispatch(pendingUserAdminPickerActions.getPendingUserPickerRequest(params));
   },

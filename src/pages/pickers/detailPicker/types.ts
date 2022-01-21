@@ -4,6 +4,7 @@ import { NotificationStateType } from "reducers/types/notification";
 export type DetailPickerContainerTypeProps = {
   pendingUserAdminPicker: PickerType;
   isFetching: boolean;
+  getBankNumber:(param:number)=>void
   actualPage: pickerTabs;
   nameDisplay: string;
   getPendingUserPicker: Function;
@@ -44,5 +45,9 @@ export type DetailPickerTypeProps = {
 export type PickerFileRequestType = {
   pickerId: number;
   tag: keyof DetailPickerTagFileType;
+};
+
+export type BanksRequestType = {
+  cbuPrefix: number;
 };
 export type pickerTabs="PENDING" | "ACTIVE"

@@ -4,6 +4,7 @@ import { AxiosResponse } from "axios";
 import { DeleteFileType } from "component/admin/ExpandableFile/types";
 import { goBack } from "connected-react-router";
 import i18next from "i18next";
+import { ApiResponse } from "middleware/api";
 import moment from "moment";
 import { PickerFileRequestType } from "pages/pickers/detailPicker/types";
 import { actions } from "reducers/pickers";
@@ -19,6 +20,7 @@ import { DATE_FORMATS } from "utils/constants";
 import * as pickersMiddleware from "../middleware/pickers";
 import {
   AcountDataType,
+  BankNameResponseType,
   DetailPickerTagFileType,
   EditPickerResponseType,
   FilesType,
@@ -60,6 +62,7 @@ const sagas = [
   takeLatest(detailPickerActions.getEditPickerRequest.type, postEditPicker),
   takeLatest(detailPickerActions.getPickerFileRequest.type, getPickerFile),
   takeLatest(detailPickerActions.getPickerFileSaveRequest.type, putFileUpload),
+  takeLatest(detailPickerActions.getBankNameRequest.type, getBankName),
   takeLatest(detailPickerActions.getPickerFileDeleteRequest.type, fileDelete),
 ];
 
@@ -97,38 +100,38 @@ const process = (body: {
       patent: body?.vehicle?.patent?.toUpperCase(),
       expirationDatePolicyVehicle:
         body.vehicle.expirationDatePolicyVehicle &&
-        body.vehicle.expirationDatePolicyVehicle !== ""
+          body.vehicle.expirationDatePolicyVehicle !== ""
           ? body.vehicle.expirationDatePolicyVehicle.match(
-              DATE_FORMATS.regexshortDate
-            )
+            DATE_FORMATS.regexshortDate
+          )
             ? moment(
-                body.vehicle.expirationDatePolicyVehicle,
-                DATE_FORMATS.shortDate
-              ).format(DATE_FORMATS.shortISODate)
+              body.vehicle.expirationDatePolicyVehicle,
+              DATE_FORMATS.shortDate
+            ).format(DATE_FORMATS.shortISODate)
             : body.vehicle.expirationDatePolicyVehicle
           : null,
       expirationDateIdentificationVehicle:
         body.vehicle.expirationDateIdentificationVehicle &&
-        body.vehicle.expirationDateIdentificationVehicle !== ""
+          body.vehicle.expirationDateIdentificationVehicle !== ""
           ? body.vehicle.expirationDateIdentificationVehicle.match(
-              DATE_FORMATS.regexshortDate
-            )
+            DATE_FORMATS.regexshortDate
+          )
             ? moment(
-                body.vehicle.expirationDateIdentificationVehicle,
-                DATE_FORMATS.shortDate
-              ).format(DATE_FORMATS.shortISODate)
+              body.vehicle.expirationDateIdentificationVehicle,
+              DATE_FORMATS.shortDate
+            ).format(DATE_FORMATS.shortISODate)
             : body.vehicle.expirationDateIdentificationVehicle
           : null,
       expirationDateDriverLicense:
         body.vehicle.expirationDateDriverLicense &&
-        body.vehicle.expirationDateDriverLicense !== ""
+          body.vehicle.expirationDateDriverLicense !== ""
           ? body.vehicle.expirationDateDriverLicense.match(
-              DATE_FORMATS.regexshortDate
-            )
+            DATE_FORMATS.regexshortDate
+          )
             ? moment(
-                body.vehicle.expirationDateDriverLicense,
-                DATE_FORMATS.shortDate
-              ).format(DATE_FORMATS.shortISODate)
+              body.vehicle.expirationDateDriverLicense,
+              DATE_FORMATS.shortDate
+            ).format(DATE_FORMATS.shortISODate)
             : body.vehicle.expirationDateDriverLicense
           : null,
     },
@@ -152,6 +155,26 @@ function* getPickers({
       ...rest
     } = response.data;
     yield put(actions.getPendingUserSuccess({ items, ...rest }));
+  }
+}
+
+
+
+function* getBankName({
+  payload,
+}: PayloadAction<{ cbuPrefix: number }>): Generator<
+  CallEffect<unknown>
+  | PutEffect<{ payload: undefined; type: string; }>
+  | PutEffect<{ payload: { id: number; name: string; }; type: string; }>,
+  void,
+  ApiResponse<BankNameResponseType>
+> {
+  console.log(payload)
+  const response = yield call(pickersMiddleware.getBankName, payload.cbuPrefix);
+  if (response.status !== 200) {
+    yield put(detailPickerActions.getBankNameError());
+  } else {
+    yield put(detailPickerActions.getBankNameSuccess(response.data.result));
   }
 }
 

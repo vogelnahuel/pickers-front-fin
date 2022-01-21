@@ -92,6 +92,13 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
             }
             initialValues={initialValues}
             validate={useValidationSchema(validationSchema)}
+            mutators={{
+              setMin: (args, state, utils) => {
+                utils.changeValue(state, 'accountingData.bankName', () => "pepe")
+                //console.log(state,"backName")
+              },
+            
+            }}
           >
             {({
               invalid,
@@ -147,10 +154,15 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                   <FormSpy
                     subscription={{
                       dirty: true,
+                      values:true,
                     }}
                     onChange={(pro) => {
                       setDirty(pro.dirty);
+                      if(pro.values.accountingData.bankName===""){
+                          form.mutators.setMin()
+                        }
                     }}
+                    
                   />
                   <div id="personal-data-card" className="container-detailPicker-fluid form-part-1-admin-pickers">
                     <div className="container-detailPicker-row">
@@ -279,7 +291,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                           )}
                           component={Input}
                           disabled
-                          className="Admin-Pickers-input readonly"
+                          className="Admin-Pickers-input"
                           placeholder={i18next.t(
                             "detailPicker:placeholder.account.fiscalNumber"
                           )}
@@ -293,8 +305,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                             "detailPicker:label.account.bankIdentifier"
                           )}
                           component={Input}
-                          disabled
-                          className="Admin-Pickers-input readonly"
+                          className="Admin-Pickers-input"
                           placeholder={i18next.t(
                             "detailPicker:placeholder.account.bankIdentifier"
                           )}
@@ -308,7 +319,6 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                             "detailPicker:label.account.bankName"
                           )}
                           component={Input}
-                          disabled
                           className="Admin-Pickers-input readonly"
                           placeholder={i18next.t(
                             "detailPicker:placeholder.account.bankName"

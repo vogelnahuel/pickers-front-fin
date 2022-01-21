@@ -4,7 +4,7 @@ import {
   Action,
   createSelector,
 } from "@reduxjs/toolkit";
-import { ParamsMiddlewareType, PickerType } from "pages/pickers/types";
+import { BankNameResponseType, ParamsMiddlewareType, PickerType } from "pages/pickers/types";
 import {
   DetailPickerStateType,
   PickerWrongFilePayloadType,
@@ -175,6 +175,17 @@ export const detailPickerSlice = createSlice({
       state.pendingUserAdminPicker = action.payload;
     },
     getEditPickerError: () => {},
+    getBankNameRequest: (
+      state: DetailPickerStateType,
+      action: PayloadAction<{cbuPrefix:number }>
+    ) => {},
+    getBankNameSuccess: (
+      state: DetailPickerStateType,
+      action: PayloadAction<{id:number, name:string}>
+    ) => {
+      state.pendingUserAdminPicker.accountingData.bankName = action.payload.name
+    },
+    getBankNameError: () => {},
     getPickerFileRequest: (
       state: DetailPickerStateType,
       action: PayloadAction<PickerFileRequestType>

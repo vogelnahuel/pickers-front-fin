@@ -183,6 +183,8 @@ export const TRANSACTION_STATE_ID_LABEL: any = {
   12: "filterTransaction:label.select.lost",
 };
 
+
+
 export const TRANSACTION_STATE_TAG_LABEL: { [k in TransactionStatusType]: string } = {
   PENDING_ASSIGNMENT: "filterTransaction:label.select.notAssigned",
   ASSIGNED: "filterTransaction:label.select.assigned",
