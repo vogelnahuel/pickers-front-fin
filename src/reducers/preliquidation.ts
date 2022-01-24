@@ -4,6 +4,7 @@ import {
   PayloadAction,
   createSelector,
 } from "@reduxjs/toolkit";
+import { LoadingButtonState } from "component/loadingButton/types";
 import { detailPreliquidationDatePicker } from "pages/preliquidation/DetailPreliquidation/invoice/types";
 import { PagesPreliquidationTypes } from "pages/preliquidation/DetailPreliquidation/types";
 import {
@@ -34,6 +35,7 @@ export const initialState: PreliquitadionStateType = {
     loading: false,
     message: "",
   },
+  adjustingAmount: LoadingButtonState.Idle,
   showEditPreliquidationModal: false,
   preliquidations: [],
   dirty: false,
@@ -49,14 +51,13 @@ export const initialState: PreliquitadionStateType = {
   },
   seeMore: true,
 
-
   invoiceTypes: [],
   detailPreliquidations: {
     id: 0,
     status: {
-        id: 0,
-        description: "",
-        tag: "",
+      id: 0,
+      description: "",
+      tag: "",
     },
     generatedAt: "",
     fiscalNumber: "",
@@ -64,17 +65,15 @@ export const initialState: PreliquitadionStateType = {
     sapCode: "",
     total: 0.0,
     manualCorrection: {
-        maxAllowedPlus: 0.0,
-        maxAllowedSubtract: 0.0,
+      maxAllowedPlus: 0.0,
+      maxAllowedSubtract: 0.0,
     },
-    histories: [
-        
-    ],
+    histories: [],
     transactions: {
-        quantity: 0,
-        items: []
-    }
-},
+      quantity: 0,
+      items: [],
+    },
+  },
   invoiceDetail: {
     id: 0,
     emisionDate: "",
@@ -97,7 +96,7 @@ export const initialState: PreliquitadionStateType = {
     },
     presettementId: undefined,
   },
-  actualPage:"preliquidation"
+  actualPage: "preliquidation",
 };
 
 const SLICE_NAME = "preliquidation";
@@ -271,13 +270,24 @@ export const preliquidationSlice = createSlice({
       const { payload } = action;
       state.invoiceTypes = payload;
     },
-    adjustAmountRequest: (state: PreliquitadionStateType, action: PayloadAction<AdjustAmountMiddlewareType>) => {},
-    adjustAmountError: () => {},
-    adjustAmountSuccess: () => {},
+    adjustAmount: (
+      state: PreliquitadionStateType,
+      action: PayloadAction<AdjustAmountMiddlewareType>
+    ) => {
+      state.adjustingAmount = LoadingButtonState.Loading;
+    },
+    adjustAmountError: (state: PreliquitadionStateType) => {
+      state.adjustingAmount = LoadingButtonState.Error;
+    },
+    adjustAmountSuccess: (state: PreliquitadionStateType) => {
+      state.adjustingAmount = LoadingButtonState.Success;
+    },
     getDetailPreliquidationsRequest: (
       state: PreliquitadionStateType,
       action: PayloadAction<number>
-    ) => {},
+    ) => {
+      state.adjustingAmount = LoadingButtonState.Idle;
+    },
     getDetailPreliquidationsError: () => {},
     getDetailPreliquidationsSuccess: (
       state: PreliquitadionStateType,
@@ -354,7 +364,7 @@ export const actions = preliquidationSlice.actions;
 
 export const allPreliquidationsSelected = createSelector(
   (state: RootState) => state.preliquidations,
-  (preli) => 
+  (preli) =>
     preli.preliquidationsSelected.length > 0 &&
     preli.preliquidations.filter((p) => p.status.tag === "approved").length ===
       preli.preliquidationsSelected.length

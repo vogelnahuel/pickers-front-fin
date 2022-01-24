@@ -4,11 +4,12 @@ import { ReactComponent as SuccessIcon} from "./../../assets/admin/success_icon.
 import { ReactComponent as ErrorIcon} from "./../../assets/admin/error_icon.svg";
 import "./loadingButton.scss";
 
-const FIRST_ANIMATION_TIME = 3000;
+export const FIRST_ANIMATION_TIME = 1500;
 
 const LoadingButton = ({
   children,
   onClick,
+  type,
   disabled,
   status,
 }: LoadingButtonProps) => {
@@ -25,6 +26,13 @@ const LoadingButton = ({
       setState(LoadingButtonState.Loading);
       setTimeout(() => (setTime(true)), FIRST_ANIMATION_TIME);
       if (onClick) onClick(e);
+    }
+    else if(state > LoadingButtonState.Loading && onClick) {
+      console.log("Set state");
+      setState(LoadingButtonState.Idle);
+      setTime(false);
+      setResolved(false);
+      onClick(e);
     }
   };
 
@@ -72,7 +80,7 @@ const LoadingButton = ({
   ].join(" ")
 
   return (
-    <button type="button" disabled={disabled} onClick={onButtonClick} className={classes}>
+    <button type={type} disabled={disabled} onClick={onButtonClick} className={classes}>
       <div className={loadingBarClasses}/>
       <div className={resultBarClasses}/>
       <div className="button-text-container">

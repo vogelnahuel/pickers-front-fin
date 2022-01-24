@@ -55,6 +55,13 @@ const EditPreliquidationAmountContainer = (
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.preliquidation]);
 
+  const onClose = (reload?: boolean) => {
+    props.onCloseModal();
+    setIncrease(true);
+    if (reload && props.preliquidation.id)
+      props.getDetailPreliquidation(props.preliquidation.id);
+  };
+
   const onSubmit = (values: PreliquidationAmountForm) => {
     const params: AdjustAmountMiddlewareType = {
       id: props.preliquidation.id,
@@ -62,17 +69,17 @@ const EditPreliquidationAmountContainer = (
       adjustment: {
         amount: Number(values.newAmount),
         reason: values.reason,
-        type: increase ? "plus" : "subtract"
-      }
-    }
-    
+        type: increase ? "plus" : "subtract",
+      },
+    };
     props.adjustAmount(params);
-  }
+  };
   if (!props.showModal) return <></>;
 
   return (
     <EditPreliquidationAmount
       {...props}
+      onClose={onClose}
       increase={increase}
       setIncrease={setIncrease}
       validationSchema={validationSchema}
@@ -84,16 +91,20 @@ const EditPreliquidationAmountContainer = (
 
 const mapStateToProps = (state: RootState) => ({
   showModal: preliquidationSelector(state).showEditPreliquidationModal,
+  adjustingAmount: preliquidationSelector(state).adjustingAmount,
   preliquidation: preliquidationSelector(state).detailPreliquidations,
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
-  onClose: () => {
+  onCloseModal: () => {
     dispatch(preliActions.toggleModalVisibility(false));
   },
+  getDetailPreliquidation: (id: number) => {
+    dispatch(preliActions.getDetailPreliquidationsRequest(id));
+  },
   adjustAmount: (params: AdjustAmountMiddlewareType) => {
-    dispatch(preliActions.adjustAmountRequest(params))
-  }
+    dispatch(preliActions.adjustAmount(params));
+  },
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);

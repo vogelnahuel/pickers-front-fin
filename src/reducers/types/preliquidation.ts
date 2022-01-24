@@ -1,3 +1,4 @@
+import { LoadingButtonState } from "component/loadingButton/types";
 import { PagesPreliquidationTypes } from "pages/preliquidation/DetailPreliquidation/types";
 import { PreliquidationFilterExtraType, PreliquidationFiltersType } from "pages/preliquidation/filter/types";
 import { HistoryType } from "sagas/types/detailTransactions";
@@ -13,6 +14,7 @@ export type PreliquitadionStateType = {
   fetching: boolean;
   invoiceFileStatus: InvoiceFileStatus;
   seeMore: boolean;
+  adjustingAmount: LoadingButtonState;
   preliquidations: PreliquidationItem[];
   preliquidationsSelected: PreliquidationItem[];
   filters: PreliquidationFiltersType;
@@ -35,19 +37,7 @@ export type DetailPreliquidationsType = {
   status: PreliquidationStatus;
   generatedAt: string;
   id: number;
-
-// export type PreliHistory =  {
-//   id: number,
-//   createdAt: string,
-//   fieldEdited: string,
-//   beforeValue: number,
-//   currentValue: number,
-//   reasonTag: {
-//     id: number,
-//     tag: string
-//   }
-  
- }
+}
 
 export type PreliTransactionItem =  {
   transactionCode?: string | null

@@ -46,7 +46,7 @@
 }
 
 .button-fade-out > .button-text-container > span{
-  animation: fadeOut 1.5s;
+  animation: fadeOut 1s;
   animation-fill-mode: forwards;
 }
 
@@ -70,31 +70,31 @@
 
 
 .button-loading-50-animation {
-  animation: firstHalf 3s;
+  animation: firstHalf 1.5s;
   animation-fill-mode: forwards;
 }
 
 .button-loading-100-animation {
-  animation: secondHalf 1.5s;
+  animation: secondHalf 1s;
   animation-fill-mode: forwards;
 }
 
 .button-error-animation {
-  animation: error 1s;
-  animation-delay: 1.5s;
+  animation: error 1.2s;
+  animation-delay: 1s;
   animation-fill-mode: forwards;
 }
 
 .button-success-animation {
-  animation: success 1s;
-  animation-delay: 1.5s;
+  animation: success 1.2s;
+  animation-delay: 1s;
   animation-fill-mode: forwards;
 }
 
 .button-icon-animation {
   opacity: 0;
-  animation: fadeIn 1s;
-  animation-delay: 1.5s;
+  animation: fadeIn 1.2s;
+  animation-delay: 1.2s;
   animation-fill-mode: forwards;
 }
 

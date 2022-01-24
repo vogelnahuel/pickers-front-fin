@@ -8,10 +8,11 @@ import {
   call,
   CallEffect,
   put,
+  delay,
   PutEffect,
-  PutEffectDescriptor,
-  SimpleEffect,
   takeLatest,
+  all,
+  AllEffect,
 } from "redux-saga/effects";
 import { DATE_FORMATS } from "utils/constants";
 import * as preliquidationsMiddleware from "../middleware/preliquidations";
@@ -35,6 +36,7 @@ import {
 import i18next from "i18next";
 import { NotificationStateType } from "reducers/types/notification";
 import { replace } from "connected-react-router";
+import { FIRST_ANIMATION_TIME } from "component/loadingButton/LoadingButton";
 
 const sagas = [
   takeLatest(
@@ -75,10 +77,7 @@ const sagas = [
     preliquidationActions.getInvoiceDetailTypesRequest.type,
     getDetailInvoiceTypes
   ),
-  takeLatest(
-    preliquidationActions.adjustAmountRequest.type,
-    adjustAmount
-  )
+  takeLatest(preliquidationActions.adjustAmount.type, adjustAmount),
 ];
 
 export default sagas;
@@ -397,25 +396,29 @@ function* adjustAmount({
 }: PayloadAction<AdjustAmountMiddlewareType>): Generator<
   | PutEffect<{ payload: undefined; type: string }>
   | PutEffect<{ type: string; content: NotificationStateType }>
-  | SimpleEffect<"PUT", PutEffectDescriptor<{ payload: NotificationStateType; type: string; }>>
-  | CallEffect<AxiosResponse<ApiResponse<void>>>,
+  | PutEffect<{ type: string }>
+  | CallEffect<AxiosResponse<ApiResponse<void>>>
+  | AllEffect<CallEffect<any> | CallEffect<true>>,
   void,
-  ApiResponse<AdjustmenResponseType>
+  [ApiResponse<AdjustmenResponseType>]
 > {
-  const response = yield call(
-    preliquidationsMiddleware.preliquidationAdjustment,
-    payload
-  );
+  const [response] = yield all([
+    call(preliquidationsMiddleware.preliquidationAdjustment, payload),
+    delay(FIRST_ANIMATION_TIME),
+  ]);
+
   if (response.status !== 200) {
-    if(response.data.statusCode === 30020 ){
-    yield put(
-      notificationActions.showNotification({
-        level: "error",
-        title: i18next.t("Error en la modificación"),
-        body: i18next.t("La preliquidación ya está siendo modificada. Intentalo nuevamente en unos minutos"),
-      })
-    );}
     yield put(preliquidationActions.adjustAmountError());
+    if (response.data.statusCode === 30020) {
+      yield delay(3000);
+      yield put(
+        notificationActions.showNotification({
+          level: "error",
+          title: i18next.t("detailPreliquidation:title.modal.concurrency"),
+          body: i18next.t("detailPreliquidation:body.modal.concurrency"),
+        })
+      );
+    }
   } else {
     yield put(preliquidationActions.adjustAmountSuccess());
   }
