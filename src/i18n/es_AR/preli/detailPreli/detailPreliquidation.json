@@ -37,5 +37,8 @@
   "label.tag.inAcounting":"En contabilidad",
   "label.tag.generatedPayment":"Pago generado",
   "label.tag.invoiceRejected":"Factura rechazada",
-  "label.tag.adjustment":"Modificación"
+  "label.tag.adjustment":"Modificación",
+
+  "title.modal.concurrency": "Error en la modificación",
+  "body.modal.concurrency": "La preliquidación ya está siendo modificada. Intentalo nuevamente en unos minutos"
 }

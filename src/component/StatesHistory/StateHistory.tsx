@@ -24,7 +24,7 @@ export function StateHistory<T>({
         <hr className="modal-history-separate-option" /></div>}
       <div className="history-container">
         {history.map((state) =>
-          <div className={transaccion ? "state-container transaction" : "state-container"}>
+          <div key={state.id} className={transaccion ? "state-container transaction" : "state-container"}>
             <img className="image" alt="state" src={cancelStatus?.includes(state.reasonTag.tag) ? Cancel : Okey} />
             <div className="state-name">
               <p>{state.reasonTag.label ? state.reasonTag.label : state.reasonTag.tag}{!subtitleMetadata && state.metadata?.length > 0 ? state.metadata[0].value : ""}</p>

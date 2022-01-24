@@ -24,8 +24,8 @@ export const Transactions = ({ total, quantity, items }: TransactionsProps) => {
           ))}
         </div>
         <div className="container-detail-preliquidation-table-row overflow-scroll table-detail-preliquidation">
-          {items.map((item) => (
-            <Fragment key={item.transactionCode}>
+          {items.map((item, index) => (
+            <Fragment key={item.transactionCode || index}>
               <div className="container-detail-preliquidation-table-col-sm-1 detail-preliquidation-table-body">
                 <p>{item.transactionCode || "-"}</p>
               </div>

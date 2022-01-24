@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React from "react";
 import classNames from "classnames";
 import { Field, Form } from "react-final-form";
 import useValidationSchema from "hooks/useValidationSchema";
@@ -9,10 +9,9 @@ import i18next from "i18next";
 import { EditPreliquidationAmountProps } from "./types";
 import { ISO8601toDDMMYYYHHMM } from "utils/iso8601toDDMMYYHHMM";
 import { Input } from "component/inputs/Input";
-import { NumericInput } from "component/inputs/NumericInput"
+import { NumericInput } from "component/inputs/NumericInput";
 import { ReactComponent as PlusIcon } from "../../../../assets/admin/icon_plus.svg";
 import { ReactComponent as MinusIcon } from "../../../../assets/admin/icon_minus.svg";
-import Button from "component/button/Button";
 import LoadingButton from "component/loadingButton/LoadingButton";
 import { LoadingButtonState } from "component/loadingButton/types";
 
@@ -25,21 +24,30 @@ export const EditPreliquidationAmount: React.FC<
   preliquidation,
   initialValues,
   validationSchema,
+  adjustingAmount,
   setIncrease,
   onSubmit,
   onClose,
 }): JSX.Element => {
-  const [state, setState] = useState<LoadingButtonState>(LoadingButtonState.Idle);
-
-  const onClickText = () => {
-    setTimeout(() => setState(LoadingButtonState.Error), 1000);
-  }
+  const onClick = () => {
+    if (adjustingAmount > LoadingButtonState.Loading) onClose(true);
+  };
 
   return (
     <div className="preliquidation-modal-background">
-      <Modal width="1190px" height="496px" isOpen={true} onClose={onClose}>
+      <Modal
+        width="1190px"
+        height="496px"
+        isOpen={true}
+        onClose={() => onClose(adjustingAmount > LoadingButtonState.Loading)}
+      >
         <div className="preliquidation-modal-container">
-          <CloseIcon onClick={onClose} className="preliquidation-modal-close" />
+          <CloseIcon
+            onClick={() =>
+              onClose(adjustingAmount > LoadingButtonState.Loading)
+            }
+            className="preliquidation-modal-close"
+          />
           <div className="preliquidation-modal-header">
             <div className="preliquidation-modal-header-number">
               <label>{i18next.t(`${namespace}.preliquidationNumber`)}</label>
@@ -139,8 +147,18 @@ export const EditPreliquidationAmount: React.FC<
                     maxLength={150}
                   />
                   <div className="button-confirm-container">
-                    <Button disabled={invalid}>Confirmar</Button>
-                    {/* <LoadingButton onClick={onClickText} status={state}>Confirmar</LoadingButton> */}
+                    <LoadingButton
+                      type={
+                        adjustingAmount > LoadingButtonState.Loading
+                          ? "button"
+                          : "submit"
+                      }
+                      disabled={invalid}
+                      onClick={onClick}
+                      status={adjustingAmount}
+                    >
+                      { i18next.t("global:label.button.confirm") }
+                    </LoadingButton>
                   </div>
                 </form>
               )}
