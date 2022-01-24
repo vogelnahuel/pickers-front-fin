@@ -3,6 +3,7 @@
   "label.subtitle.preliquidationNumber": "Número de preliquidación",
 
   "label.title.transactions": "Transacciones",
+  "label.title.transaction": "Transacción",
   "label.button.changeAmount": "Modificar monto",
   "label.table.id": "ID",
   "label.table.date": "Fecha",
