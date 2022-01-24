@@ -11,7 +11,6 @@ export type DetailPreliquidationContainerPropsType = {
   showNotification: (notification: NotificationStateType) => void;
   setActualPage: (page: PagesPreliquidationTypes) => void;
   getDetailPreliquidation: (id:number) => void;
-  detailPreliquidation: any;// DetailPreliquidationShortType | DetailPreliquidationType;
 };
 export type DetailPreliquidationPropsType = {
   presettementId?: string;
@@ -20,7 +19,6 @@ export type DetailPreliquidationPropsType = {
   initialValues: DetailPreliquidationForm;
   changePage: (page: PagesPreliquidationTypes) => void;
   handleClickBack:()=>void;
-  detailPreliquidation:DetailPreliquidationType;
 };
 
 export type DetailPreliquidationForm = {

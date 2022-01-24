@@ -37,7 +37,6 @@ export const DetailPreliquidation = ({
   preliquidation,
   actualPage,
   presettementId,
-  detailPreliquidation,
   initialValues,
   changePage,
   handleClickBack,
@@ -131,7 +130,7 @@ export const DetailPreliquidation = ({
             <h2>Historial</h2>
             <div className="display-filter-transaction">
               <StateHistory
-              history={detailPreliquidation.histories.map((state:any)=>{
+              history={preliquidation.histories.map((state:any)=>{
                 return {
                   ...state,
                   createdAt: ISO8601toDDMMYYYHHMM(state.createdAt),
