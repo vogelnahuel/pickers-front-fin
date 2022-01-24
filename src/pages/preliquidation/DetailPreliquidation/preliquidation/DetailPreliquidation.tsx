@@ -69,7 +69,7 @@ export const DetailPreliquidation = ({
                   <Field
                     type="text"
                     name="status"
-                    label="Estado"
+                    label={i18next.t("detailPreliquidation:label.input.status")}
                     component={Input}
                     className="Admin-Pickers-input"
                     language="es"
@@ -79,7 +79,7 @@ export const DetailPreliquidation = ({
                 <div className="container-detail-preliquidation-form-col-sm-5 container-detail-preliquidation-form-col-lg-3">
                   <Field
                     type="text"
-                    label="Fecha de emisión"
+                    label={i18next.t("detailPreliquidation:label.input.emisionDate")}
                     name="emisionDate"
                     component={Input}
                     className="Admin-Pickers-input"
@@ -91,7 +91,7 @@ export const DetailPreliquidation = ({
                   <Field
                     type="text"
                     name="fiscalNumber"
-                    label="Identificador fiscal"
+                    label={i18next.t("detailPreliquidation:label.input.fiscalNumber")}
                     component={Input}
                     className="Admin-Pickers-input"
                     language="es"
@@ -101,7 +101,7 @@ export const DetailPreliquidation = ({
                 <div className="container-detail-preliquidation-form-col-sm-5 container-detail-preliquidation-form-col-lg-3">
                   <Field
                     type="text"
-                    label="Razón social"
+                    label={i18next.t("detailPreliquidation:label.input.companyName")}
                     name="companyName"
                     component={Input}
                     className="Admin-Pickers-input"
@@ -113,7 +113,7 @@ export const DetailPreliquidation = ({
                   <Field
                     type="text"
                     name="sapCode"
-                    label="Codigo SAP"
+                    label={i18next.t("detailPreliquidation:label.input.sapCode")}
                     component={Input}
                     className="Admin-Pickers-input"
                     language="es"

@@ -20,7 +20,6 @@ export const DetailPreliquidationContainer = (
   const history = useHistory();
   const params: { id?: string } = useParams();
 
-  console.log(props.detailPreliquidation)
   const changePage = (page: PagesPreliquidationTypes) => {
     if (props.actualPage !== page) props.setActualPage(page);
   };
@@ -36,14 +35,17 @@ export const DetailPreliquidationContainer = (
 
   const initialValues: DetailPreliquidationForm = useMemo(() => {
     const { preliquidation } = props;
+    const { fiscalNumber: fn } = preliquidation;
     return {
-      status: preliquidation.status?.description || "",
+      status: preliquidation.status?.description || "-",
       emisionDate: preliquidation.generatedAt
         ? moment(preliquidation.generatedAt).format(DATE_FORMATS.shortDate)
-        : "",
-      companyName: preliquidation.companyName || "",
-      fiscalNumber: preliquidation.fiscalNumber || "",
-      sapCode: preliquidation.sapCode || "",
+        : "-",
+      companyName: preliquidation.companyName || "-",
+      fiscalNumber: fn
+        ? `${fn.slice(0, 2)}-${fn.slice(2, 10)}-${fn.slice(10, 11)}`
+        : "-",
+      sapCode: preliquidation.sapCode || "-",
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.preliquidation]);
@@ -73,8 +75,8 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
     dispatch(actions.setActualPage(page));
   },
   getDetailPreliquidation: (id: number) => {
-    dispatch(actions.getDetailPreliquidationsRequest(id))
-  }
+    dispatch(actions.getDetailPreliquidationsRequest(id));
+  },
 });
 
 export default connect(
