@@ -13,12 +13,12 @@ import invoiceBlack from "./../../../../assets/preli/invoiceBlack.svg";
 import invoiceBlue from "./../../../../assets/preli/invoiceBlue.svg";
 import "./detailPreliquidation.scss";
 import { DetailPreliquidationPropsType } from "./types";
-import {StateHistory} from "component/StatesHistory/StateHistory";
-
+import { StateHistory } from "component/StatesHistory/StateHistory";
 
 import { Transactions } from "./transactions/Transactions";
 import { ISO8601toDDMMYYYHHMM } from "utils/iso8601toDDMMYYHHMM";
 import { PRELIQUIDATION_HISTORY_STATES } from "utils/constants";
+import { HistoryType } from "sagas/types/detailTransactions";
 
 const tabs: TabType<PagesPreliquidationTypes>[] = [
   {
@@ -78,7 +78,9 @@ export const DetailPreliquidation = ({
                 <div className="container-detail-preliquidation-form-col-sm-5 container-detail-preliquidation-form-col-lg-3">
                   <Field
                     type="text"
-                    label={i18next.t("detailPreliquidation:label.input.emisionDate")}
+                    label={i18next.t(
+                      "detailPreliquidation:label.input.emisionDate"
+                    )}
                     name="emisionDate"
                     component={Input}
                     className="Admin-Pickers-input"
@@ -90,7 +92,9 @@ export const DetailPreliquidation = ({
                   <Field
                     type="text"
                     name="fiscalNumber"
-                    label={i18next.t("detailPreliquidation:label.input.fiscalNumber")}
+                    label={i18next.t(
+                      "detailPreliquidation:label.input.fiscalNumber"
+                    )}
                     component={Input}
                     className="Admin-Pickers-input"
                     language="es"
@@ -100,7 +104,9 @@ export const DetailPreliquidation = ({
                 <div className="container-detail-preliquidation-form-col-sm-5 container-detail-preliquidation-form-col-lg-3">
                   <Field
                     type="text"
-                    label={i18next.t("detailPreliquidation:label.input.companyName")}
+                    label={i18next.t(
+                      "detailPreliquidation:label.input.companyName"
+                    )}
                     name="companyName"
                     component={Input}
                     className="Admin-Pickers-input"
@@ -112,7 +118,9 @@ export const DetailPreliquidation = ({
                   <Field
                     type="text"
                     name="sapCode"
-                    label={i18next.t("detailPreliquidation:label.input.sapCode")}
+                    label={i18next.t(
+                      "detailPreliquidation:label.input.sapCode"
+                    )}
                     component={Input}
                     className="Admin-Pickers-input"
                     language="es"
@@ -127,19 +135,29 @@ export const DetailPreliquidation = ({
       <div className="detail-preliquidation-container-card">
         <div className="container-detail-preliquidation-card-row">
           <div className="container-detail-preliquidation-card-col-sm-6 container-detail-preliquidation-card-col-xl-4">
-            <h2>Historial</h2>
-            <div className="display-filter-transaction">
-              <StateHistory
-              history={preliquidation.histories.map((state:any)=>{
-                return {
-                  ...state,
-                  createdAt: ISO8601toDDMMYYYHHMM(state.createdAt),
-                 reasonTag: { ...state.reasonTag, label: i18next.t(PRELIQUIDATION_HISTORY_STATES[state.reasonTag.tag]) }
-                }
-              })}
-              showCreatedDate={true}
-              subtitleMetadata={true}
-              />
+            <h2>{i18next.t("detailPreliquidation:label.title.history")}</h2>
+            <div className="display-filter-preliquidation relative">
+              <div className="preliquidation-history-container">
+                <StateHistory
+                  history={preliquidation.histories.map(
+                    (state: HistoryType) => {
+                      return {
+                        ...state,
+                        createdAt: ISO8601toDDMMYYYHHMM(state.createdAt),
+                        reasonTag: {
+                          ...state.reasonTag,
+                          label: i18next.t(
+                            PRELIQUIDATION_HISTORY_STATES[state.reasonTag.tag]
+                          ),
+                        },
+                      };
+                    }
+                  )}
+                  showCreatedDate={true}
+                  subtitleMetadata={true}
+                />
+              </div>
+              <div className="history-footer-transparent" />
             </div>
           </div>
           <div className="container-detail-preliquidation-card-col-sm-6 container-detail-preliquidation-card-col-xl-4">

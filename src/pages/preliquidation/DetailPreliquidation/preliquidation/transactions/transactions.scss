@@ -27,6 +27,12 @@
   padding-top: 12px;
 }
 
+.overflow-scroll {
+  max-height: 316px;
+  overflow-y: auto;
+  padding-bottom: 20px;
+}
+
 .overflow-scroll::-webkit-scrollbar {
   width: 7px;
   height: 7px;
