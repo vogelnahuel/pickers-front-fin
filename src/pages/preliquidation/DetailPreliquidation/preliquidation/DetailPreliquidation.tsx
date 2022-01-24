@@ -22,7 +22,7 @@ import { PRELIQUIDATION_HISTORY_STATES } from "utils/constants";
 
 const tabs: TabType<PagesPreliquidationTypes>[] = [
   {
-    title: "Preliquidacion",
+    title: "Preliquidación",
     id: "preliquidation",
     icons: { active: calckBlue, disable: calckBlack },
   },
