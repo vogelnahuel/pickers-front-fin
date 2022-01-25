@@ -120,7 +120,7 @@ export const FILTER_TRANSACTION_OPTIONS = [
 export const FILTER_PRELIQUIDATION_OPTIONS = [
   {
     label: "preli:label.select.initial",
-    id: "initial ",
+    id: "initial",
   },
   {
     label: "preli:label.select.pending",
