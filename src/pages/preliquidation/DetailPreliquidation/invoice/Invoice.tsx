@@ -52,7 +52,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
 
   const tabs:TabType<PagesPreliquidationTypes>[] = [
     {
-      title: "Preliquidacion",
+      title: "Preliquidación",
       id: "preliquidation",
       icons: { active: calckBlue, disable: calckBlack },
     },
@@ -86,6 +86,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                   changePage(page, dirty);
                 }}
                 actualPage={"invoice"}
+                clickable={false}
               />
               <Back onClick={() => handleClickBack(dirty)} />
             </div>

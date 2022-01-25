@@ -24,8 +24,8 @@ export const Transactions = ({ total, quantity, items }: TransactionsProps) => {
           ))}
         </div>
         <div className="container-detail-preliquidation-table-row overflow-scroll table-detail-preliquidation">
-          {items.map((item) => (
-            <Fragment key={item.transactionCode}>
+          {items.map((item, index) => (
+            <Fragment key={item.transactionCode || index}>
               <div className="container-detail-preliquidation-table-col-sm-1 detail-preliquidation-table-body">
                 <p>{item.transactionCode || "-"}</p>
               </div>
@@ -37,15 +37,15 @@ export const Transactions = ({ total, quantity, items }: TransactionsProps) => {
                 </p>
               </div>
               <div className="container-detail-preliquidation-table-col-sm-1 detail-preliquidation-table-body">
-                <p>
-                  {i18next.t(TRANSACTION_STATE_TAG_LABEL[item.status.tag])}
-                </p>
+                <p>{i18next.t(TRANSACTION_STATE_TAG_LABEL[item.status.tag])}</p>
               </div>
               <div className="container-detail-preliquidation-table-col-sm-1 detail-preliquidation-table-body">
-                <p className={classNames("transaction-amount-item", {
-                  "amount-plus": item.status.tag === "plus",
-                  "amount-subtract": item.status.tag === "subtract"
-                })}>{`$ ${item.amount}`}</p>
+                <p
+                  className={classNames("transaction-amount-item", {
+                    "amount-plus": item.status.tag === "plus",
+                    "amount-subtract": item.status.tag === "subtract",
+                  })}
+                >{`$ ${item.amount}`}</p>
               </div>
             </Fragment>
           ))}
@@ -58,7 +58,9 @@ export const Transactions = ({ total, quantity, items }: TransactionsProps) => {
             </p>
             <p className="transaction-quantity">
               {`${quantity} ${i18next.t(
-                "detailPreliquidation:label.title.transactions"
+                quantity > 1
+                  ? "detailPreliquidation:label.title.transactions"
+                  : "detailPreliquidation:label.title.transaction"
               )}`}
             </p>
           </div>
