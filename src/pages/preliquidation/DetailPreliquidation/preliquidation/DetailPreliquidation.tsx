@@ -48,6 +48,7 @@ export const DetailPreliquidation = ({
           tabs={tabs}
           changePage={changePage}
           actualPage={actualPage}
+          clickable={false}
         />
         <Back onClick={handleClickBack} />
       </div>

@@ -86,6 +86,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                   changePage(page, dirty);
                 }}
                 actualPage={"invoice"}
+                clickable={false}
               />
               <Back onClick={() => handleClickBack(dirty)} />
             </div>
