@@ -12,6 +12,7 @@
   display: flex;
   flex-direction: column;
   min-height: 48px;
+  width: 100%;
 }
 
 .state-container.transaction {
@@ -54,12 +55,39 @@
 
 .metadata {
   margin-bottom: 20px;
-
-  p{
+  max-height: 46px;
+  overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(0,1,0,1);
+  
+  p {
+    cursor: pointer;
     font-size: 15px;
+    line-height: 19px;
+    
     color: #4d4d4d;
     margin-top: 6px;
+    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+
+    white-space: pre-wrap;          
+    white-space: -moz-pre-wrap;    
+    white-space: -pre-wrap;        
+    white-space: -o-pre-wrap;      
+    word-wrap: break-word;      
+    animation: collapseText 0.1s linear 0.1s forwards;
   }
+}
+
+.metadata.expanded {
+  max-height: 100rem;
+  transition: max-height 0.3s cubic-bezier(0.9, 0, 0.8, 0.2);
+}
+
+.metadata.expanded > p {
+  animation: expandText 0.1s linear 0s forwards;
 }
 
 .created-date {
@@ -112,5 +140,26 @@
   }
   .modal-hitory-h3 {
     margin-bottom: 0px;
+  }
+}
+
+@keyframes expandText {
+  from {
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+  }
+  to {
+    line-clamp: initial;
+    -webkit-line-clamp: initial;
+  }
+}
+@keyframes collapseText {
+  from {
+    line-clamp: initial;
+    -webkit-line-clamp: initial;
+  }
+  to {
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
   }
 }
