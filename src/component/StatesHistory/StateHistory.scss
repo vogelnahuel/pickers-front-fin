@@ -61,6 +61,7 @@
   
   p {
     cursor: pointer;
+    text-align: left;
     font-size: 15px;
     line-height: 19px;
     
@@ -72,10 +73,6 @@
     display: -webkit-box;
     -webkit-box-orient: vertical;
 
-    white-space: pre-wrap;          
-    white-space: -moz-pre-wrap;    
-    white-space: -pre-wrap;        
-    white-space: -o-pre-wrap;      
     word-wrap: break-word;      
     animation: collapseText 0.1s linear 0.1s forwards;
   }
