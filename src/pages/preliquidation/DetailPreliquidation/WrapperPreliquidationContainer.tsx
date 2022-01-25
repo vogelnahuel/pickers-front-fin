@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { connect } from "react-redux";
 import { AppDispatch, RootState } from "store";
 import { WrapperPreliquidation } from "./WrapperPreliquidation";
@@ -12,6 +13,12 @@ import { actions as notificationActions } from "reducers/notification";
 export const WrapperPreliquidationContainer = (
   props: WrapperPreliquidationContainerPropsType
 ): JSX.Element => {
+
+  useEffect(() => {
+    props.setActualPage("preliquidation");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return <WrapperPreliquidation {...props} actualPage={props.actualPage} />;
 };
 

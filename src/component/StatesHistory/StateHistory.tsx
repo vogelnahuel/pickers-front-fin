@@ -25,6 +25,7 @@ export function StateHistory<T>({
       <div className="history-container">
         {history.map((state) => (
           <div
+            key={state.id}
             className={
               transaccion ? "state-container transaction" : "state-container"
             }
