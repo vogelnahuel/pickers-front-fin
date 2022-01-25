@@ -1,9 +1,10 @@
+import { useState } from "react";
 import { StateHistoryProps } from "./types";
-import React from "react";
 import "./StateHistory.scss";
 import { Link } from "react-router-dom";
 import Cancel from "../../assets/transaction/Cancel.svg";
 import Okey from "../../assets/transaction/Okey.svg";
+import classNames from "classnames";
 
 export function StateHistory<T>({
   history,
@@ -14,6 +15,13 @@ export function StateHistory<T>({
   subtitleMetadata,
   transaccion,
 }: StateHistoryProps<T>) {
+  const [expandedId, setExpandedId] = useState<number | null>(null);
+
+  const onExpandHandler = (stateId: number) => {
+    if(stateId === expandedId) setExpandedId(null);
+    else setExpandedId(stateId);
+  }
+
   return (
     <div>
       {title && (
@@ -61,9 +69,9 @@ export function StateHistory<T>({
                   </Link>
                 )}
             </div>
-            <div className="metadata">
+            <div className={classNames("metadata", { "expanded": expandedId === state.id})} >
               {subtitleMetadata && state.metadata?.length > 0 && (
-                <p> {state?.metadata[0].value}</p>
+                <p onClick={() => onExpandHandler(state.id)}> {state?.metadata[0].value}</p>
               )}
             </div>
           </div>
