@@ -64,7 +64,6 @@ export const DetailPreliquidationContainer = (
 const mapStateToProps = (state: RootState) => ({
   isFetching: preliquidationSelector(state).fetching,
   actualPage: preliquidationSelector(state).actualPage,
-  showEditPreliquidationModal: preliquidationSelector(state).showEditPreliquidationModal,
   preliquidation: preliquidationSelector(state).detailPreliquidations,
 });
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
