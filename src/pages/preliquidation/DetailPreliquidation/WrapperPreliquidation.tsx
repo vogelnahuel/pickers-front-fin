@@ -4,8 +4,6 @@ import NotificationModal from "component/modal/NotificationModal";
 
 import React from "react";
 import InvoiceContainer from "./invoice/InvoiceContainer";
-// import "../DetailPreliquidation/detailPreliquidation.scss"//"pages/preliquidation/DetailPreliquidation/detailPreliquidations.scss";
-// import { DetailPreliquidationPropsType } from "./types";
 import EditPreliquidationAmountContainer from "./editPreliquidationAmount/EditPreliquidationAmountContainer";
 import "./wrapperPreliquidation.scss";
 
