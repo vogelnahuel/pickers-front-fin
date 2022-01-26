@@ -39,7 +39,8 @@ export const EditPreliquidationAmount: React.FC<
         width="1190px"
         height="496px"
         isOpen={true}
-        onClose={() => onClose(adjustingAmount > LoadingButtonState.Loading)}
+        onClose={() => {}}
+        closeOnBlur={false}
       >
         <div className="preliquidation-modal-container">
           <CloseIcon

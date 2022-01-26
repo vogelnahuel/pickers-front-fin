@@ -411,11 +411,13 @@ function* adjustAmount({
     yield put(preliquidationActions.adjustAmountError());
     if (response.data.statusCode === 30020) {
       yield delay(3000);
+      yield put(preliquidationActions.toggleModalVisibility(false));
       yield put(
         notificationActions.showNotification({
           level: "error",
           title: i18next.t("detailPreliquidation:title.modal.concurrency"),
           body: i18next.t("detailPreliquidation:body.modal.concurrency"),
+          onClick: () => payload.callback(payload.id)
         })
       );
     }
