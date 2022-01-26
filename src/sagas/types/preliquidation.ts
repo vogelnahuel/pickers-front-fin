@@ -145,6 +145,7 @@ export type InvoiceTypes = {
 export type AdjustAmountMiddlewareType = {
   id: number;
   currentAmount: number;
+  callback: (id: number) => void;
   adjustment: {
     type: "plus" | "subtract";
     amount: number;

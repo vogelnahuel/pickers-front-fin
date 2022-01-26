@@ -66,6 +66,7 @@ const EditPreliquidationAmountContainer = (
     const params: AdjustAmountMiddlewareType = {
       id: props.preliquidation.id,
       currentAmount: props.preliquidation.total,
+      callback: props.getDetailPreliquidation,
       adjustment: {
         amount: Number(values.newAmount),
         reason: values.reason,
