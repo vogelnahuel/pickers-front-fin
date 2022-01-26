@@ -8,14 +8,19 @@ import {
   call,
   CallEffect,
   put,
+  delay,
   PutEffect,
   takeLatest,
+  all,
+  AllEffect,
 } from "redux-saga/effects";
 import { DATE_FORMATS } from "utils/constants";
 import * as preliquidationsMiddleware from "../middleware/preliquidations";
 import { actions as notificationActions } from "../reducers/notification";
 import { actions as preliquidationActions } from "../reducers/preliquidation";
 import {
+  AdjustAmountMiddlewareType,
+  AdjustmenResponseType,
   DetailPreliquidationBodyParamsType,
   DetailPreliquidationsApiResponseType,
   DetailPreliquidationsContentResponseType,
@@ -31,6 +36,7 @@ import {
 import i18next from "i18next";
 import { NotificationStateType } from "reducers/types/notification";
 import { replace } from "connected-react-router";
+import { FIRST_ANIMATION_TIME } from "component/loadingButton/LoadingButton";
 
 const sagas = [
   takeLatest(
@@ -71,6 +77,7 @@ const sagas = [
     preliquidationActions.getInvoiceDetailTypesRequest.type,
     getDetailInvoiceTypes
   ),
+  takeLatest(preliquidationActions.adjustAmount.type, adjustAmount),
 ];
 
 export default sagas;
@@ -381,5 +388,40 @@ function* getDetailInvoiceTypes(): Generator<
   } else {
     const { result } = response.data;
     yield put(preliquidationActions.getInvoiceDetailTypesSuccess(result));
+  }
+}
+
+function* adjustAmount({
+  payload,
+}: PayloadAction<AdjustAmountMiddlewareType>): Generator<
+  | PutEffect<{ payload: undefined; type: string }>
+  | PutEffect<{ type: string; content: NotificationStateType }>
+  | PutEffect<{ type: string }>
+  | CallEffect<AxiosResponse<ApiResponse<void>>>
+  | AllEffect<CallEffect<any> | CallEffect<true>>,
+  void,
+  [ApiResponse<AdjustmenResponseType>]
+> {
+  const [response] = yield all([
+    call(preliquidationsMiddleware.preliquidationAdjustment, payload),
+    delay(FIRST_ANIMATION_TIME),
+  ]);
+
+  if (response.status !== 200) {
+    yield put(preliquidationActions.adjustAmountError());
+    if (response.data.statusCode === 30020) {
+      yield delay(2500);
+      yield put(preliquidationActions.toggleModalVisibility(false));
+      yield put(
+        notificationActions.showNotification({
+          level: "error",
+          title: i18next.t("detailPreliquidation:title.modal.concurrency"),
+          body: i18next.t("detailPreliquidation:body.modal.concurrency"),
+          onClick: () => payload.callback(payload.id)
+        })
+      );
+    }
+  } else {
+    yield put(preliquidationActions.adjustAmountSuccess());
   }
 }

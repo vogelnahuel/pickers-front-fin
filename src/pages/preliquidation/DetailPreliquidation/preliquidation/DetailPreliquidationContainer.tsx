@@ -74,8 +74,11 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
     dispatch(actions.setActualPage(page));
   },
   getDetailPreliquidation: (id: number) => {
-    dispatch(actions.getDetailPreliquidationsRequest(id));
+    dispatch(actions.getDetailPreliquidationsRequest(id))
   },
+  toggleModalVisibility: (isOpen: boolean) => {
+    dispatch(actions.toggleModalVisibility(isOpen));
+  }
 });
 
 export default connect(

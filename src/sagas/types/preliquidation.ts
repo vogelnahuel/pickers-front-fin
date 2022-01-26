@@ -142,6 +142,16 @@ export type InvoiceTypes = {
   tag: string;
 };
 
+export type AdjustAmountMiddlewareType = {
+  id: number;
+  currentAmount: number;
+  callback: (id: number) => void;
+  adjustment: {
+    type: "plus" | "subtract";
+    amount: number;
+    reason: string;
+  };
+};
 
 export type DetatilPreliquidationsApiResponse = {
   data: {
@@ -149,3 +159,6 @@ export type DetatilPreliquidationsApiResponse = {
   };
   status: number;
 };
+export type AdjustmenResponseType = {
+  statusCode?: number;
+}
