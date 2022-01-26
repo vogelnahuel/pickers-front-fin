@@ -239,7 +239,6 @@ const HistoryModalTransaction: React.FC<HistoryModalTransactionType> = ({
             })}
             transaccion={true}
             cancelStatus={cancelStatus}
-            showCreatedDate={true}
             linkableStatus={{ tags: ["assigned_picker"], link: "pickers", label: i18next.t("detailTransaction:label.detailTransaction.seePicker") }}
             title={i18next.t("detailTransaction:label.detailTransaction.history")}
           />

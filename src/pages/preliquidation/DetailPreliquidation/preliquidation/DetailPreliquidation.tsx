@@ -154,8 +154,7 @@ export const DetailPreliquidation = ({
                       };
                     }
                   )}
-                  showCreatedDate={true}
-                  subtitleMetadata={true}
+                  showMetadata
                 />
               </div>
               <div className="history-footer-transparent" />

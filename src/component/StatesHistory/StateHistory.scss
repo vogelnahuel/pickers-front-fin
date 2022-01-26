@@ -60,7 +60,7 @@
   transition: max-height 0.3s cubic-bezier(0,1,0,1);
   
   p {
-    cursor: pointer;
+    cursor: default;
     text-align: left;
     font-size: 15px;
     line-height: 19px;
@@ -85,6 +85,10 @@
 
 .metadata.expanded > p {
   animation: expandText 0.1s linear 0s forwards;
+}
+
+.metadata.expandable > p{
+  cursor: pointer;
 }
 
 .created-date {
