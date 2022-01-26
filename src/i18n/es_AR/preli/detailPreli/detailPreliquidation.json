@@ -17,7 +17,9 @@
   "label.tooltip.add": "Sumar un monto",
   "label.tooltip.subtract": "Restar un monto",
   "error.input.amountExceeded": "El monto excede el límite",
+  "label.title.history": "Historial",
   "label.title.transactions": "Transacciones",
+  "label.title.transaction": "Transacción",
   "label.button.changeAmount": "Modificar monto",
   "label.table.id": "ID",
   "label.table.date": "Fecha",
@@ -26,8 +28,6 @@
   "label.table.total": "Total",
   "label.tag.plus": "Suma",
   "label.tag.subtract": "Resta",
-
-
 
   "label.tag.initialState":"En generación",
   "label.tag.pending":"Pendiente",
@@ -40,5 +40,11 @@
   "label.tag.adjustment":"Modificación",
 
   "title.modal.concurrency": "Error en la modificación",
-  "body.modal.concurrency": "La preliquidación ya está siendo modificada. Intentalo nuevamente en unos minutos"
+  "body.modal.concurrency": "La preliquidación ya está siendo modificada. Intentalo nuevamente en unos minutos",
+  
+  "label.input.status": "Estado",
+  "label.input.emisionDate": "Fecha de emisión",
+  "label.input.fiscalNumber": "Identificador fiscal",
+  "label.input.companyName": "Razón social",
+  "label.input.sapCode": "Código SAP"
 }

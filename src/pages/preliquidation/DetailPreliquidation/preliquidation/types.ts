@@ -11,8 +11,7 @@ export type DetailPreliquidationContainerPropsType = {
   toggleModalVisibility: (isOpen: boolean) => void;
   showNotification: (notification: NotificationStateType) => void;
   setActualPage: (page: PagesPreliquidationTypes) => void;
-  getDetailPreliquidation: (id: number) => void;
-  detailPreliquidation: any;// DetailPreliquidationShortType | DetailPreliquidationType;
+  getDetailPreliquidation: (id:number) => void;
 };
 export type DetailPreliquidationPropsType = {
   presettementId?: string;
@@ -22,7 +21,6 @@ export type DetailPreliquidationPropsType = {
   changePage: (page: PagesPreliquidationTypes) => void;
   handleClickBack: () => void;
   toggleModalVisibility: (isOpen: boolean) => void;
-  detailPreliquidation: DetailPreliquidationType;
 };
 
 export type DetailPreliquidationForm = {

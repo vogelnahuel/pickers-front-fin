@@ -75,6 +75,7 @@ const EditPreliquidationAmountContainer = (
     };
     props.adjustAmount(params);
   };
+  
   if (!props.showModal) return <></>;
 
   return (

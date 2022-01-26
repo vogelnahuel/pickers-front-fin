@@ -34,7 +34,8 @@ const InvoiceContainer = (
   props: detailPreliquidationInvoiceContainerPropsType
 ): JSX.Element => {
   const params: { id?: string } = useParams();
-
+  const history = useHistory();
+  
   useEffect(() => {
     props.setInvoiceFileStatus({ loading: false, error: false });
     props.getInvoiceDetailTypes();
@@ -72,7 +73,7 @@ const InvoiceContainer = (
       }
     }
   };
-  const history = useHistory();
+
   const handleClickBack = (dirty: boolean) => {
     const onClose = () => history.goBack();
 
@@ -112,11 +113,7 @@ const InvoiceContainer = (
     });
 
   const changePage = (page: PagesPreliquidationTypes, isDirty: boolean) => {
-    const onClose = () => {
-      props.setActualPage(page);
-
-      history.replace("/presettlements");
-    };
+    const onClose = () => props.setActualPage(page);
     if (isDirty) showDirtyNotification(onClose);
     else if (props.invoiceFileStatus.error) showWrongFilesNotification(onClose);
     else onClose();

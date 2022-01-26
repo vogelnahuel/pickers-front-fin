@@ -35,14 +35,17 @@ export const DetailPreliquidationContainer = (
 
   const initialValues: DetailPreliquidationForm = useMemo(() => {
     const { preliquidation } = props;
+    const { fiscalNumber: fn } = preliquidation;
     return {
-      status: preliquidation.status?.description || "",
+      status: preliquidation.status?.description || "-",
       emisionDate: preliquidation.generatedAt
         ? moment(preliquidation.generatedAt).format(DATE_FORMATS.shortDate)
-        : "",
-      companyName: preliquidation.companyName || "",
-      fiscalNumber: preliquidation.fiscalNumber || "",
-      sapCode: preliquidation.sapCode || "",
+        : "-",
+      companyName: preliquidation.companyName || "-",
+      fiscalNumber: fn
+        ? `${fn.slice(0, 2)}-${fn.slice(2, 10)}-${fn.slice(10, 11)}`
+        : "-",
+      sapCode: preliquidation.sapCode || "-",
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.preliquidation]);
@@ -53,7 +56,6 @@ export const DetailPreliquidationContainer = (
       handleClickBack={handleClickBack}
       changePage={changePage}
       presettementId={params.id}
-      // toggleModalVisibility={props.toggleModalVisibility}
       {...props}
     />
   );
@@ -62,7 +64,6 @@ export const DetailPreliquidationContainer = (
 const mapStateToProps = (state: RootState) => ({
   isFetching: preliquidationSelector(state).fetching,
   actualPage: preliquidationSelector(state).actualPage,
-  detailPreliquidation: preliquidationSelector(state).detailPreliquidations,
   showEditPreliquidationModal: preliquidationSelector(state).showEditPreliquidationModal,
   preliquidation: preliquidationSelector(state).detailPreliquidations,
 });
