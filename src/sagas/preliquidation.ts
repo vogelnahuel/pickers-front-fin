@@ -410,7 +410,7 @@ function* adjustAmount({
   if (response.status !== 200) {
     yield put(preliquidationActions.adjustAmountError());
     if (response.data.statusCode === 30020) {
-      yield delay(3000);
+      yield delay(2500);
       yield put(preliquidationActions.toggleModalVisibility(false));
       yield put(
         notificationActions.showNotification({
