@@ -38,13 +38,11 @@ export const initialState: PreliquitadionStateType = {
     limit: 3,
     offset: 0
   },
+  seeMore: true,
   filtersExtraSeeMore: {
     limit: 15,
     offset: 0
   },
-  seeMore: true,
-
-
   invoiceTypes: [],
   detailPreliquidations: {
     id: 0,
