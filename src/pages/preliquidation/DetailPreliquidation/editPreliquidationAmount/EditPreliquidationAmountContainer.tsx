@@ -37,11 +37,15 @@ const EditPreliquidationAmountContainer = (
     actualAmount: yup.string(),
     newAmount: yup
       .mixed()
-      .required(i18next.t("global:error.input.required"))
       .test(
         "rangeError",
         i18next.t("detailPreliquidation:error.input.amountExceeded"),
         validateAmount
+      )
+      .test(
+        "newAmountRequired",
+        i18next.t(i18next.t("global:error.input.required")),
+        (value: number | undefined) => !!value
       ),
     reason: yup.string().required(i18next.t("global:error.input.required")),
   });
