@@ -33,19 +33,20 @@
 .export-container {
   margin-left: auto;
 }
-.Admin-Pickers-input.readonly {
+.Admin-Pickers-input.disabled {
   color: #B8B8B8;
   background-color: transparent;
   cursor: default;
   border-bottom-color: #B8B8B8;
 }
+
 .Admin-Pickers-inputs {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
-.label-Admin-Pickers.readonly {
-  color: #B8B8B8;
+.label-Admin-Pickers.disabled {
+  color: #828282;
 }
 .label-Admin-Pickers {
   font-family: "Mulish";

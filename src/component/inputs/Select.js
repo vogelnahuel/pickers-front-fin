@@ -30,7 +30,7 @@ const Select = ({
     <div className="multiple-selectbox">
       <div onClick={handleClick} className="multiple-contenido-select">
         <label
-          className={`label-Admin-Pickers ${disabled ? " readonly" : ""} `}
+          className={`label-Admin-Pickers ${disabled ? " disabled" : ""} `}
         >
           {label}
         </label>
@@ -46,7 +46,7 @@ const Select = ({
           }
           disabled
           className={`Admin-Pickers-input-select ${
-            disabled ? " readonly" : ""
+            disabled ? " disabled" : ""
           }`}
           type="text"
         />
