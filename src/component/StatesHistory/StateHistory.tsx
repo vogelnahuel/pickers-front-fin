@@ -16,12 +16,12 @@ export function StateHistory({
   transaccion,
 }: StateHistoryProps) {
   const [expandedId, setExpandedId] = useState<number | null>(null);
-  const [firstUpdate, setFirstUpdate] = useState(false);
+  const [firstUpdate, setFirstUpdate] = useState(0);
   const itemsRef = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
     itemsRef.current = itemsRef.current.slice(0, history.length);
-    if (itemsRef.current.length > 0) setFirstUpdate(true);
+    if (itemsRef.current.length > 0) setFirstUpdate(prev => prev + 1);
   }, [history]);
 
   const onExpandHandler = (stateId: number, i: number) => {
