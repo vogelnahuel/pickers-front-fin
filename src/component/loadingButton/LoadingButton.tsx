@@ -3,8 +3,7 @@ import { LoadingButtonProps, LoadingButtonState } from "./types";
 import { ReactComponent as SuccessIcon} from "./../../assets/admin/success_icon.svg";
 import { ReactComponent as ErrorIcon} from "./../../assets/admin/error_icon.svg";
 import "./loadingButton.scss";
-
-export const FIRST_ANIMATION_TIME = 1500;
+import { FIRST_ANIMATION_TIME } from "utils/constants";
 
 const LoadingButton = ({
   children,
@@ -28,7 +27,6 @@ const LoadingButton = ({
       if (onClick) onClick(e);
     }
     else if(state > LoadingButtonState.Loading && onClick) {
-      console.log("Set state");
       setState(LoadingButtonState.Idle);
       setTime(false);
       setResolved(false);

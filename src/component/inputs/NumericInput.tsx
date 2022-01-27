@@ -37,7 +37,7 @@ export const NumericInput = (props: any) => {
         const noComaValue = valueInput.replace(",", ".");
         emitValue = parseFloat(noComaValue);
       }
-      return emitValue || emitValue === 0 ? emitValue : "";
+      return emitValue ?? "";
     },
     []
   );

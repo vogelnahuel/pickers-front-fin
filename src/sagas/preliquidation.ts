@@ -14,7 +14,7 @@ import {
   all,
   AllEffect,
 } from "redux-saga/effects";
-import { DATE_FORMATS } from "utils/constants";
+import { DATE_FORMATS, FIRST_ANIMATION_TIME } from "utils/constants";
 import * as preliquidationsMiddleware from "../middleware/preliquidations";
 import { actions as notificationActions } from "../reducers/notification";
 import { actions as preliquidationActions } from "../reducers/preliquidation";
@@ -36,7 +36,6 @@ import {
 import i18next from "i18next";
 import { NotificationStateType } from "reducers/types/notification";
 import { replace } from "connected-react-router";
-import { FIRST_ANIMATION_TIME } from "component/loadingButton/LoadingButton";
 
 const sagas = [
   takeLatest(
