@@ -46,7 +46,7 @@ export const initialState: PreliquitadionStateType = {
     offset: 0,
   },
   filtersExtraSeeMore: {
-    limit: 3,
+    limit: 15,
     offset: 0,
   },
   seeMore: true,
