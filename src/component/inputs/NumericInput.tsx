@@ -92,7 +92,7 @@ export const NumericInput = (props: any) => {
           middle ? "label-Admin-Pickers-middle" : "label-Admin-Pickers",
           {
             labelError: meta.error && meta.touched,
-            readonly: disabled,
+            disabled: disabled,
             "last-label": lastLabel,
           }
         )}
@@ -101,7 +101,7 @@ export const NumericInput = (props: any) => {
       </label>
       <input
         className={classNames(className, {
-          readonly: disabled,
+          disabled: disabled,
           inputError: meta.error && meta.touched
         })}
         type={input.type}

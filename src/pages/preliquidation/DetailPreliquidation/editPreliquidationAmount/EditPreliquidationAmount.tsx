@@ -88,7 +88,7 @@ export const EditPreliquidationAmount: React.FC<
                 >
                   <div className="preliquidation-modal-form-row">
                     <Field
-                      disabled={true}
+                      readOnly
                       type="text"
                       name="actualAmount"
                       label={i18next.t(`${namespace}.actualAmount`)}
