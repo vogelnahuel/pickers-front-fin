@@ -394,7 +394,6 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
           </form>
         )}
       </Form>
-      {isFetching && <div className="modalLoading"></div>}
     </div>
   );
 };
