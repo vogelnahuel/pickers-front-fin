@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Cancel from "../../assets/transaction/Cancel.svg";
 import Okey from "../../assets/transaction/Okey.svg";
 import classNames from "classnames";
+import i18next from "i18next";
 
 export function StateHistory({
   history,
@@ -14,41 +15,43 @@ export function StateHistory({
   showMetadata,
   transaccion,
 }: StateHistoryProps) {
-
   const [expandedId, setExpandedId] = useState<number | null>(null);
   const [firstUpdate, setFirstUpdate] = useState(false);
   const itemsRef = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
     itemsRef.current = itemsRef.current.slice(0, history.length);
-    if(itemsRef.current.length > 0) setFirstUpdate(true);
+    if (itemsRef.current.length > 0) setFirstUpdate(true);
   }, [history]);
 
   const onExpandHandler = (stateId: number, i: number) => {
     const expandable = isExpandable(i);
-    if(!expandable) return;
-    
+    if (!expandable) return;
+
     if (stateId === expandedId) setExpandedId(null);
     else setExpandedId(stateId);
   };
 
-  const isExpandable = useCallback((i: number) => {
-    const paragraph = getElement(i);
-    const lineHeight = 19;
-    if(paragraph) return paragraph.scrollHeight > 2 * lineHeight;
-    
-    return false;
+  const isExpandable = useCallback(
+    (i: number) => {
+      const paragraph = getElement(i);
+      const lineHeight = 19;
+      if (paragraph) return paragraph.scrollHeight > 2 * lineHeight;
+
+      return false;
+    },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [history, firstUpdate])
+    [history, firstUpdate]
+  );
 
   const getElement = (i: number) => {
     const elem = itemsRef.current[i];
-    if(elem){
+    if (elem) {
       const child = elem.children[0];
-      if(child) return child;
+      if (child) return child;
     }
     return null;
-  }
+  };
 
   return (
     <div>
@@ -103,13 +106,23 @@ export function StateHistory({
               }}
               className={classNames("metadata", {
                 expanded: expandedId === state.id,
-                expandable: isExpandable(i)
+                expandable: isExpandable(i),
               })}
             >
               {showMetadata && state.metadata?.length > 0 && (
-                <p onClick={() => onExpandHandler(state.id, i)}>
-                  {state?.metadata[0].value}
-                </p>
+                <>
+                  <p className="metadata-text">{state?.metadata[0].value}</p>
+                  {isExpandable(i) && (
+                    <p
+                      className="see-more-label"
+                      onClick={() => onExpandHandler(state.id, i)}
+                    >
+                      {expandedId !== state.id
+                        ? i18next.t("component:label.button.seeMore")
+                        : i18next.t("component:label.button.seeLess")}
+                    </p>
+                  )}
+                </>
               )}
             </div>
           </div>
