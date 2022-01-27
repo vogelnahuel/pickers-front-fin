@@ -4,7 +4,7 @@ import {
   Action,
   createSelector,
 } from "@reduxjs/toolkit";
-import { BankNameResponseType, ParamsMiddlewareType, PickerType } from "pages/pickers/types";
+import { ParamsMiddlewareType, PickerType } from "pages/pickers/types";
 import {
   DetailPickerStateType,
   PickerWrongFilePayloadType,
@@ -15,6 +15,7 @@ import { endsWithAny } from "utils/endsWithAny";
 import { PickerFileRequestType } from "pages/pickers/detailPicker/types";
 import { DeleteFileType, ExpandableFileSaveParamsType } from "component/admin/ExpandableFile/types";
 import { ActionErrorPickersType } from "./types/pickers";
+import { BankType } from "sagas/types/pickers";
 
 const wrongFilesInitialValue = {
   "dni-front": false,
@@ -177,11 +178,11 @@ export const detailPickerSlice = createSlice({
     getEditPickerError: () => {},
     getBankNameRequest: (
       state: DetailPickerStateType,
-      action: PayloadAction<{cbuPrefix:number }>
+      action: PayloadAction<{ cbuPrefix:number }>
     ) => {},
     getBankNameSuccess: (
       state: DetailPickerStateType,
-      action: PayloadAction<{id:number, name:string}>
+      action: PayloadAction<BankType>
     ) => {
       state.pendingUserAdminPicker.accountingData.bankName = action.payload.name
     },

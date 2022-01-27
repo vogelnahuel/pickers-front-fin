@@ -182,13 +182,6 @@ export type PickerFileResponseType = {
   };
 };
 
-export type BankNameResponseType = {
-  result: {
-    id: number;
-    name: string;
-  };
-}
-
 export type DetailPickerTagFileType = {
   "dni-front": string;
   "dni-back": string;

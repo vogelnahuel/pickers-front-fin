@@ -1,8 +1,8 @@
 import { AxiosResponse } from "axios";
 import * as API from "middleware/api";
-import { BanksRequestType, PickerFileRequestType } from "pages/pickers/detailPicker/types";
+import { PickerFileRequestType } from "pages/pickers/detailPicker/types";
 
-import { ExpandableFileLoadParamType } from "sagas/types/pickers";
+import { BankType, ExpandableFileLoadParamType } from "sagas/types/pickers";
 import {
   PickerType,
   EditPickerResponseType,
@@ -10,7 +10,6 @@ import {
   PickersAxiosResponseType,
   PickersExportResponseType,
   PickerFileResponseType,
-  BankNameResponseType,
 } from "../pages/pickers/types";
 
 export const getPickers = (
@@ -72,7 +71,8 @@ export const deleteFile = (
 ): Promise<AxiosResponse<{}>> =>
   API.remove(`/ms-admin-rest/api/v1.0/pickers/${id}/files/${tag}`);
 
-
 export const getBankName = (
-  cbuPrefix: any): any =>{
- return API.get(`/ms-admin-rest/api/v1.0/banks/${cbuPrefix}`);}
+  cbuPrefix: number
+): Promise<AxiosResponse<API.ApiResponse<BankType>>> => {
+  return API.get(`/ms-admin-rest/api/v1.0/banks/${cbuPrefix}`);
+};

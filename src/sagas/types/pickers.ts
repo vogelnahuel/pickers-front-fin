@@ -54,3 +54,8 @@ export type ExpandableFileLoadParamType ={
     tag: string,      
     content: string   
 }
+
+export type BankType = {
+  id: number;
+  name: string;
+}

@@ -299,8 +299,8 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
-  getBankNumber: (params: number) => {
-    dispatch(pendingUserAdminPickerActions.getBankNameRequest({cbuPrefix:params}));
+  getBankNumber: (cbuPrefix: number) => {
+    dispatch(pendingUserAdminPickerActions.getBankNameRequest({ cbuPrefix }));
   },
   getPendingUserPicker: (params: number) => {
     dispatch(pendingUserAdminPickerActions.getPendingUserPickerRequest(params));

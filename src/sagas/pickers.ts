@@ -20,7 +20,6 @@ import { DATE_FORMATS } from "utils/constants";
 import * as pickersMiddleware from "../middleware/pickers";
 import {
   AcountDataType,
-  BankNameResponseType,
   DetailPickerTagFileType,
   EditPickerResponseType,
   FilesType,
@@ -37,6 +36,7 @@ import {
 import { actions as detailPickerActions } from "../reducers/detailPicker";
 import { actions as notificationActions } from "../reducers/notification";
 import {
+  BankType,
   CsvResponseType,
   PickerResponseType,
   PickersResponseType,
@@ -167,14 +167,14 @@ function* getBankName({
   | PutEffect<{ payload: undefined; type: string; }>
   | PutEffect<{ payload: { id: number; name: string; }; type: string; }>,
   void,
-  ApiResponse<BankNameResponseType>
+  ApiResponse<BankType>
 > {
-  console.log(payload)
   const response = yield call(pickersMiddleware.getBankName, payload.cbuPrefix);
   if (response.status !== 200) {
     yield put(detailPickerActions.getBankNameError());
   } else {
-    yield put(detailPickerActions.getBankNameSuccess(response.data.result));
+    const { result } = response.data;
+    yield put(detailPickerActions.getBankNameSuccess(result));
   }
 }
 

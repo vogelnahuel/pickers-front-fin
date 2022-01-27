@@ -53,7 +53,9 @@ api.interceptors.response.use(
 
 export type ApiResponse<T> = {
   status: number;
-  data: T
+  data: {
+    result: T
+  }
 }
 
 export const remove = (path: string, body?: object) => {
