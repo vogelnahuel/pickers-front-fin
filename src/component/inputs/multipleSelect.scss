@@ -142,13 +142,19 @@ input[type=number] {
     background: #FFFFFF;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
     border-radius: 11px;
-    padding: 10px 10px 10px 10px;
-    width: 20vw;
+    padding: 10px 6px 10px 10px;
+    width: 100%;
     position: absolute;
     display: block;
     margin-top: -15px;
     z-index: 10;
+    .filter-admin-scroll{
+        padding-right: 6px;
+        max-height: 240px;
+        overflow-y: auto;
+    }
 }
+
 
 .multiple-checkboxInput{
     border: 1px solid #BDBDBD;
@@ -178,9 +184,9 @@ input[type=number] {
     cursor: pointer;
    
 }
-//.multiple-selectbox{
-//
-//}
+.multiple-selectbox{
+    position: relative;
+}
 
 .multiple-seleccionadoInputColor::-webkit-input-placeholder {
     font-family: 'Mulish';
@@ -197,6 +203,25 @@ input[type=number] {
     cursor: default;
     border-bottom-color: #B8B8B8;
  }
+
+
+  
+  .filter-admin-scroll::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+  .filter-admin-scroll::-webkit-scrollbar-thumb {
+    background: #CCCCCC;
+    width: 7px;
+    height: 7px;
+    border-radius: 4px;
+    background-clip: padding-box;
+  }
+  
+  .filter-admin-scroll::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 4px;
+  }
 
  @media (min-width:1800px){
     //.transaction-container-button-width{

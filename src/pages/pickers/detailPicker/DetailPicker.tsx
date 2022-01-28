@@ -328,7 +328,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                       <div className="container-detailPicker-col-sm-6  ">
                         <Field
                           type="text"
-                          name="accountingData.SAPCode"
+                          name="accountingData.sapInterlocutor"
                           label={i18next.t(
                             "Código de proveedor SAP"
                           )}
@@ -577,6 +577,12 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                         >
                           {i18next.t("detailPicker:label.button.save")}
                         </button>
+                        {
+                          console.log(values)
+                        }
+                        {
+                          console.log(invalid)
+                        }
                         <button
                           type="submit"
                           disabled={invalid || wrongFiles || !loadedFiles}

@@ -226,25 +226,34 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
           street: yup
             .string()
             .required(i18next.t("global:error.input.required"))
-            .matches(VALIDATION_REGEX.regStreet, i18next.t("global:error.input.formatAddress")),
+            .matches(
+              VALIDATION_REGEX.regStreet,
+              i18next.t("global:error.input.formatAddress")
+            ),
           streetNumber: yup
             .string()
-            .matches(VALIDATION_REGEX.regStreet, i18next.t("global:error.input.formatAddress"))
+            .matches(
+              VALIDATION_REGEX.regStreet,
+              i18next.t("global:error.input.formatAddress")
+            )
             .required(i18next.t("global:error.input.required")),
-          cp: yup
+          postalCode: yup
             .string()
             .min(4, i18next.t("global:error.input.cp"))
             .matches(
               VALIDATION_REGEX.regNumber,
-              i18next.t("global:error.input.required")
+              i18next.t("global:error.input.lettersOrSpecialCharacters")
             )
             .required(i18next.t("global:error.input.required")),
-          location: yup
+          locality: yup
             .string()
-            .matches(VALIDATION_REGEX.regStreet, i18next.t("global:error.input.formatAddress"))
+            .matches(
+              VALIDATION_REGEX.regStreet,
+              i18next.t("global:error.input.formatAddress")
+            )
             .required(i18next.t("global:error.input.required")),
-          state: yup
-            .string()
+          province: yup
+            .object()
             .required(i18next.t("global:error.input.required")),
         }),
       }),
