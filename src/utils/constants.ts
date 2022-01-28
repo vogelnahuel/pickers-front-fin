@@ -121,7 +121,7 @@ export const FILTER_TRANSACTION_OPTIONS = [
 export const FILTER_PRELIQUIDATION_OPTIONS = [
   {
     label: "preli:label.select.initial",
-    id: "initial ",
+    id: "initial",
   },
   {
     label: "preli:label.select.pending",
@@ -283,3 +283,5 @@ export const PICKERS_FILE_EXT = [
   "image/jpg",
   "image/jpeg",
 ];
+
+export const FIRST_ANIMATION_TIME = 1500;

@@ -10,6 +10,7 @@ export const Input= (props) => {
         placeholder,
         middle,
         disabled,
+        readOnly,
         input,
         lastLabel,
         meta,
@@ -29,7 +30,7 @@ export const Input= (props) => {
                 classNames(middle ?"label-Admin-Pickers-middle":"label-Admin-Pickers",{
                         "labelError": meta.error && meta.touched,
                         "label-login":animated,
-                        "readonly":disabled,
+                        "disabled":disabled,
                         "last-label":lastLabel,
                          [input.value  || focus===true?"animationTop":"animationOrigin"] :animated
                     }
@@ -39,13 +40,14 @@ export const Input= (props) => {
             <input
                 
                 className={ classNames( className, {
-                    "readonly":disabled,
+                    "disabled":disabled,
                     "inputError": meta.error && meta.touched,
                     [meta.error && meta.touched ?"inputReboteAnimation":""] :animated
                 })}
                 type={input.type}
                 name={input.name}
                 disabled={disabled}
+                readOnly={readOnly}
                 id={id}
                 value={input.value}
                 placeholder={placeholder}

@@ -202,7 +202,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                             "detailPicker:label.user.identifier"
                           )}
                           component={Input}
-                          className="Admin-Pickers-input readonly"
+                          className="Admin-Pickers-input disabled"
                           placeholder={i18next.t(
                             "detailPicker:placeholder.user.identifier"
                           )}
@@ -218,7 +218,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                             label={i18next.t("detailPicker:label.user.email")}
                             component={Input}
                             disabled
-                            className="Admin-Pickers-input readonly"
+                            className="Admin-Pickers-input disabled"
                             placeholder={i18next.t(
                               "detailPicker:placeholder.user.email"
                             )}
@@ -289,7 +289,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                           )}
                           component={Input}
                           disabled
-                          className="Admin-Pickers-input readonly"
+                          className="Admin-Pickers-input disabled"
                           placeholder={i18next.t(
                             "detailPicker:placeholder.account.fiscalNumber"
                           )}
@@ -303,7 +303,8 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                             "detailPicker:label.account.bankIdentifier"
                           )}
                           component={Input}
-                          className="Admin-Pickers-input readonly"
+                          disabled
+                          className="Admin-Pickers-input disabled"
                           placeholder={i18next.t(
                             "detailPicker:placeholder.account.bankIdentifier"
                           )}
@@ -318,7 +319,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                           )}
                           component={Input}
                           disabled
-                          className="Admin-Pickers-input readonly"
+                          className="Admin-Pickers-input disabled"
                           placeholder={i18next.t(
                             "detailPicker:placeholder.account.bankName"
                           )}

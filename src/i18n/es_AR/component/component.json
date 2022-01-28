@@ -8,5 +8,7 @@
   "label.button.goBack": "Volver",
   "label.tooltip.delete": "Eliminar",
   "label.tooltip.replace": "Reemplazar",
-  "label.tooltip.download": "Descargar"
+  "label.tooltip.download": "Descargar",
+  "label.button.seeMore": "Ver más",
+  "label.button.seeLess": "Ver menos"
 }

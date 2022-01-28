@@ -26,11 +26,7 @@
   align-items: center;
 }
 
-.overflow-scroll {
-  max-height: 322px;
-  overflow-y: auto;
-  padding-bottom: 20px;
-}
+
 .display-filter-preliquidation {
   background: #fff;
   border: 1px solid #e5e5e5;
@@ -86,3 +82,45 @@
     }
   }
 }
+
+.preliquidation-history-container{
+  max-height: 400px;
+  padding: 6px 12px;
+  overflow-y: auto;
+  
+  &::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: #CCCCCC;
+    width: 7px;
+    height: 7px;
+    border-radius: 4px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 4px;
+  }
+}
+
+.relative{
+  position: relative;
+  overflow: hidden;
+}
+
+.history-footer-transparent {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 60px;
+  width: calc(100% - 20px);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    #ffffff 63.36%
+  );
+}
+
