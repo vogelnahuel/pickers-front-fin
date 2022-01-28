@@ -22,6 +22,7 @@ import trabajadorOscuro from "assets/admin/PendingUser/trabajadorOscuro.svg";
 import trabajadorAzul from "assets/admin/PendingUser/trabajadorAzul.svg";
 import Back from "component/back/Back";
 import { TabType } from "component/admin/TabControler/types";
+import { PickerType } from "../types";
 
 export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
   actualPage,
@@ -93,11 +94,22 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
             initialValues={initialValues}
             validate={useValidationSchema(validationSchema)}
             mutators={{
-              setMin: (args, state, utils) => {
-                utils.changeValue(state, 'accountingData.bankName', () => "pepe")
-                //console.log(state,"backName")
+              bankSearch: ([field, value], state, { changeValue }) => {
+                const values = state.formState.values as PickerType;
+                const errors = state.formState.errors;
+                const { bankIdentifier } = values.accountingData;
+                
+                if(!bankIdentifier || bankIdentifier.length === 0)
+                  changeValue(state, 'accountingData.bankName', () => '');
+              
+                // Si tiene errores, no se actualiza el campo BankName
+                if(errors?.accountingData?.bankIdentifier) return;
+
+                console.log("State: ", state);
+              
+                
+                changeValue(state, 'accountingData.bankName', () => 'pepe');
               },
-            
             }}
           >
             {({
@@ -158,11 +170,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                     }}
                     onChange={(pro) => {
                       setDirty(pro.dirty);
-                      if(pro.values.accountingData.bankName===""){
-                          form.mutators.setMin()
-                        }
                     }}
-                    
                   />
                   <div id="personal-data-card" className="container-detailPicker-fluid form-part-1-admin-pickers">
                     <div className="container-detailPicker-row">
@@ -309,6 +317,9 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                           placeholder={i18next.t(
                             "detailPicker:placeholder.account.bankIdentifier"
                           )}
+                          
+                          maxLength={22}
+                          onBlur={form.mutators.bankSearch}
                         />
                       </div>
                       <div className="container-detailPicker-col-sm-6  ">
@@ -318,6 +329,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                           label={i18next.t(
                             "detailPicker:label.account.bankName"
                           )}
+                          disabled
                           component={Input}
                           className="Admin-Pickers-input readonly"
                           placeholder={i18next.t(

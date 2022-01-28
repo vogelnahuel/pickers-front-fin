@@ -187,6 +187,14 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
     });
   };
 
+  const onBankIdentifierBlur = (values: PickerType) => {
+    const { bankIdentifier } = values?.accountingData;
+    console.log("values: ", bankIdentifier);
+
+    if(!bankIdentifier || bankIdentifier.length < 3)
+    props.getBankNumber(191)  
+  }
+
   const validationSchema: yup.SchemaOf<DetailPickerValidationSchema> =
     yup.object({
       personalData: yup.object({
@@ -220,6 +228,15 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
               i18next.t("global:error.input.invalidFormat")
             ),
         }),
+      }),
+      accountingData: yup.object({
+        bankIdentifier: yup
+          .string()
+          .required(i18next.t("global:error.input.required"))
+          .matches(
+            VALIDATION_REGEX.regNumber,
+            i18next.t("global:error.input.lettersOrSpecialCharacters")
+          ),
       }),
       vehicle:
         props.pendingUserAdminPicker.vehicle &&
@@ -285,6 +302,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
       aproveSubmit={aproveSubmit}
       active={active}
       formatDate={formatDate}
+      getBankNumber={props.getBankNumber}
     />
   );
 };

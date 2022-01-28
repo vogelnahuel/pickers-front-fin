@@ -40,6 +40,7 @@ export type DetailPickerTypeProps = {
   loadedFiles: boolean;
   changePage: (page:string, isDirty: boolean, ) => void;
   goBack: (validate?: boolean, isDirty?: boolean) => void;
+  getBankNumber: (cbuPrefix: number) => void;
 };
 
 export type PickerFileRequestType = {
