@@ -23,7 +23,7 @@ import trabajadorAzul from "assets/admin/PendingUser/trabajadorAzul.svg";
 import Back from "component/back/Back";
 import { TabType } from "component/admin/TabControler/types";
 import Select from "component/inputs/Select";
-import { FISCAL_DATA_PICKERS_OPTIONS } from "utils/constants";
+// import { FISCAL_DATA_PICKERS_OPTIONS } from "utils/constants";
 
 export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
   actualPage,
@@ -44,6 +44,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
   showNotification,
   loadedFiles,
   changePage,
+  stateTypes
 }) => {
 
 
@@ -94,6 +95,13 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
             }
             initialValues={initialValues}
             validate={useValidationSchema(validationSchema)}
+            mutators={{
+              setValue: ([field, value], state, { changeValue }) => {
+                changeValue(state, field, () => value);
+
+              },
+            }
+          }
           >
             {({
               invalid,
@@ -333,79 +341,84 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                       </div>
                       <div className="container-detailPicker-row"><div className="divider"></div></div>
                       <h3 className="container-detailPicker-row subTitle-fiscal-data">
-                        {i18next.t("Dirección fiscal")}
+                        {i18next.t("Dirección fiscal")} 
                       </h3>
                       <div className="container-detailPicker-row">
                         <div className="container-detailPicker-col-sm-6  ">
                           <Field
                             type="text"
-                            name="accountingData.street"
+                            name="accountingData.address.street"
                             label={i18next.t(
-                             "Calle *"
+                              "detailPicker:label.accountingData.street"
                             )}
                             component={Input}
                             className="Admin-Pickers-input"
                             placeholder={i18next.t(
-                              "Ingresá una calle"
+                              "detailPicker:placeholder.accountingData.street"
                             )}
+                            maxLength={50}
                           />
                         </div>
                         <div className="container-detailPicker-col-sm-3  ">
                         <Field
                             type="text"
-                            name="accountingData.streetNumber"
+                            name="accountingData.address.streetNumber"
                             label={i18next.t(
-                             "Número *"
+                              "detailPicker:label.accountingData.streetNumber"
                             )}
                             component={Input}
                             className="Admin-Pickers-input"
                             placeholder={i18next.t(
-                              "Ingresá una número"
+                              "detailPicker:placeholder.accountingData.streetNumber"
                             )}
+                            maxLength={10}
                           />
                         </div>
                         <div className="container-detailPicker-col-sm-3  ">
                         <Field
                             type="text"
-                            name="accountingData.cp"
+                            name="accountingData.address.postalCode"
                             label={i18next.t(
-                             "CP *"
+                              "detailPicker:label.accountingData.postalCode"
                             )}
                             component={Input}
                             className="Admin-Pickers-input "
                             placeholder={i18next.t(
-                              "Ingresá un codigo postal"
+                              "detailPicker:placeholder.accountingData.postalCode"
                             )}
+                            maxLength={4}
                           />
                         </div>
                         <div className="container-detailPicker-col-sm-6  ">
                           <Field
                             type="text"
-                            name="accountingData.location"
+                            name="accountingData.address.locality"
                             label={i18next.t(
-                              "Localidad *"
+                              "detailPicker:label.accountingData.locality"
                             )}
                             component={Input}
                             className="Admin-Pickers-input"
                             placeholder={i18next.t(
-                              "Ingresá una localidad"
+                              "detailPicker:placeholder.accountingData.locality"
                             )}
+                            maxLength={50}
                           />
                         </div>
                         <div className="container-detailPicker-col-sm-6  ">
                           <Field
                             type="text"
-                            name="accountingData.state"
+                            name="accountingData.address.province"
+                            onChange={form.mutators.setValue}
                             label={i18next.t(
-                              "Provincia *"
+                              "detailPicker:label.accountingData.province"
                             )}
                             className="Admin-Pickers-input"
                             placeholder={i18next.t(
-                              "Seleccioná una provincia"
+                              "detailPicker:placeholder.accountingData.province"
                             )}
-                            options={FISCAL_DATA_PICKERS_OPTIONS.map((o) => ({
+                            options={stateTypes.map((o) => ({
                               ...o,
-                              label: i18next.t(o.label),
+                              label: i18next.t(o.name),
                             }))}
                           >
                              {(props: any) => <Select {...props} />}

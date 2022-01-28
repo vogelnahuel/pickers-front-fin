@@ -1,10 +1,11 @@
 import { TagsErrorType } from "component/admin/ExpandableFile/types";
 import { DetailPickerTagFileType, PickerType } from "pages/pickers/types";
+import { StatesTypes } from "sagas/types/pickers";
 
 export enum FileStatusEnum {
   EMPTY = "EMPTY",
   PENDING = "PENDING",
-  COMPLETED = "COMPLETED"
+  COMPLETED = "COMPLETED",
 }
 
 export type DetailPickerTypes = {
@@ -42,6 +43,7 @@ export type SelectorType = {
 };
 
 export type DetailPickerStateType = {
+  state: StatesTypes[];
   fetching: boolean;
   dirty: boolean;
   wrongFiles: TagsErrorType;
@@ -72,4 +74,7 @@ export type ActionType = {
   getEditPickerRequest: Function;
   getEditPickerSuccess: Function;
   getEditPickerError: Function;
+  getStatesTypesRequest: Function;
+  getStatesTypesError: Function;
+  getStatesTypesSuccess: Function;
 };

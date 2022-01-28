@@ -15,6 +15,7 @@ import { endsWithAny } from "utils/endsWithAny";
 import { PickerFileRequestType } from "pages/pickers/detailPicker/types";
 import { DeleteFileType, ExpandableFileSaveParamsType } from "component/admin/ExpandableFile/types";
 import { ActionErrorPickersType } from "./types/pickers";
+import { StatesTypes } from "sagas/types/pickers";
 
 const wrongFilesInitialValue = {
   "dni-front": false,
@@ -84,6 +85,7 @@ export const initialState: DetailPickerStateType = {
       },
     },
   },
+  state: []
 };
 
 const SLICE_NAME = "detailPicker";
@@ -102,6 +104,7 @@ export const detailPickerSlice = createSlice({
   name: SLICE_NAME,
   initialState,
   reducers: {
+    
     getPendingUserPickerRequest: (
       state: DetailPickerStateType,
       action: PayloadAction<number>
@@ -222,7 +225,17 @@ export const detailPickerSlice = createSlice({
       if (!state.serverError?.includes(action.payload.tag))
         state.serverError?.push(action.payload.tag);
     },
+    getStatesTypesRequest: () => {},
+    getStatesTypesError: () => {},
+    getStatesTypesSuccess: (
+      state: DetailPickerStateType,
+      action: PayloadAction<StatesTypes[]>
+    ) => {
+      const { payload } = action;
+      state.state = payload;
+    },
   },
+
   extraReducers: (builder) =>
     builder
       .addMatcher(isRequestAction, (state: DetailPickerStateType) => {

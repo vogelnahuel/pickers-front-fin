@@ -22,6 +22,17 @@
   "label.account.bankName": "Nombre del banco",
   "placeholder.account.bankName": "Ingresá el nombre del banco",
 
+  "label.accountingData.street": "Calle *",
+  "placeholder.accountingData.street": "Ingresá una calle",
+  "label.accountingData.streetNumber": "Número *",
+  "placeholder.accountingData.streetNumber": "Ingresá una número",
+  "label.accountingData.postalCode": "CP *",
+  "placeholder.accountingData.postalCode": "Ingresá un codigo postal",
+  "label.accountingData.locality": "Localidad *",
+  "placeholder.accountingData.locality": "Ingresá una localidad",
+  "label.accountingData.province": "Provincia *",
+  "placeholder.accountingData.province": "Seleccioná una provincia",
+
   "label.subtitle.insurance": "Datos del vehículo",
   "label.insurance.patent": "Patente del vehículo *",
   "placeholder.insurance.patent": "Ingresá los dígitos de la patente",
