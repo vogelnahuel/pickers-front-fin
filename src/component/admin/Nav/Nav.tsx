@@ -101,7 +101,7 @@ export const Nav = ({ isDirty, pickerWrongFiles, isInvoiceDirty, invoiceFileErro
                 }`}
               />
               <Link onClick={handleClick} to="/presettlements">
-                {i18next.t("nav:label.menu.preLiquidation")}
+                {i18next.t("nav:label.menu.presettlements")}
               </Link>
             </li>
           </ul>
