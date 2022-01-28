@@ -226,22 +226,22 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
           street: yup
             .string()
             .required(i18next.t("global:error.input.required"))
-            .matches(VALIDATION_REGEX.regStreet, i18next.t("error de formato")),
+            .matches(VALIDATION_REGEX.regStreet, i18next.t("global:error.input.formatAddress")),
           streetNumber: yup
             .string()
-            .matches(VALIDATION_REGEX.regStreet, i18next.t("error de formato"))
+            .matches(VALIDATION_REGEX.regStreet, i18next.t("global:error.input.formatAddress"))
             .required(i18next.t("global:error.input.required")),
           cp: yup
             .string()
-            .min(4, "4 numeros")
+            .min(4, i18next.t("global:error.input.cp"))
             .matches(
               VALIDATION_REGEX.regNumber,
-              i18next.t("Solo se permiten numeros")
+              i18next.t("global:error.input.required")
             )
             .required(i18next.t("global:error.input.required")),
           location: yup
             .string()
-            .matches(VALIDATION_REGEX.regStreet, i18next.t("error de formato"))
+            .matches(VALIDATION_REGEX.regStreet, i18next.t("global:error.input.formatAddress"))
             .required(i18next.t("global:error.input.required")),
           state: yup
             .string()
