@@ -330,19 +330,19 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                           type="text"
                           name="accountingData.sapInterlocutor"
                           label={i18next.t(
-                            "Código de proveedor SAP"
+                            "detailPicker:label.accountingData.sapInterlocutor"
                           )}
                           component={Input}
                           disabled
                           className="Admin-Pickers-input readonly"
                           placeholder={i18next.t(
-                            "-"
+                            "detailPicker:placeholder.accountingData.sapInterlocutor"
                           )}
                         />
                       </div>
                       <div className="container-detailPicker-row"><div className="divider"></div></div>
                       <h3 className="container-detailPicker-row subTitle-fiscal-data">
-                        {i18next.t("Dirección fiscal")} 
+                        {i18next.t("detailPicker:label.card.fiscalDirection")} 
                       </h3>
                       <div className="container-detailPicker-row">
                         <div className="container-detailPicker-col-sm-6  ">
@@ -577,12 +577,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                         >
                           {i18next.t("detailPicker:label.button.save")}
                         </button>
-                        {
-                          console.log(values)
-                        }
-                        {
-                          console.log(invalid)
-                        }
+
                         <button
                           type="submit"
                           disabled={invalid || wrongFiles || !loadedFiles}

@@ -22,6 +22,8 @@
   "label.account.bankName": "Nombre del banco",
   "placeholder.account.bankName": "Ingresá el nombre del banco",
 
+  "label.accountingData.sapInterlocutor": "Código de proveedor SAP",
+  "placeholder.accountingData.sapInterlocutor": "-",
   "label.accountingData.street": "Calle *",
   "placeholder.accountingData.street": "Ingresá una calle",
   "label.accountingData.streetNumber": "Número *",
@@ -60,5 +62,6 @@
   "label.card.driverLicense":"Licencia de conducir",
   "label.card.vehicleIdentificationBack":"Cédula frente",
   "label.card.vehicleIdentificationFront":"Cédula dorso",
-  "label.card.driverInsuranceCard":"Seguro de automotor"
+  "label.card.driverInsuranceCard":"Seguro de automotor",
+  "label.card.fiscalDirection":"Dirección fiscal"
 }
