@@ -31,8 +31,8 @@
 
   "label.tag.initialState":"En generación",
   "label.tag.pending":"Pendiente",
-  "label.tag.inAprovement":"En aprobación",
-  "label.tag.aproved":"Aprobado",
+  "label.tag.inApprovement":"En aprobación",
+  "label.tag.approved": "Aprobada",
   "label.tag.pendingAcounting":"Pendiente de contabilidad",
   "label.tag.inAcounting":"En contabilidad",
   "label.tag.generatedPayment":"Pago generado",

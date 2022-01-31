@@ -224,8 +224,8 @@ export const TRANSACTION_ACTIONS_TAG_LABEL: any /*TransactionActionTagType*/ = {
 export const PRELIQUIDATION_HISTORY_STATES: any = {
   "state_initial": "detailPreliquidation:label.tag.initialState",
   "state_pending": "detailPreliquidation:label.tag.pending",
-  "state_in_approvement":"detailPreliquidation:label.tag.inAprovement",
-  "state_approved":"detailPreliquidation:label.tag.aproved",
+  "state_in_approvement":"detailPreliquidation:label.tag.inApprovement",
+  "state_approved":"detailPreliquidation:label.tag.approved",
   "state_pending_accounting":"detailPreliquidation:label.tag.pendingAcounting",
   "state_in_accounting": "detailPreliquidation:label.tag.inAcounting",
   "state_generated_payment": "detailPreliquidation:label.tag.generatedPayment", 
