@@ -74,7 +74,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
           },
           accountingData: {
             ...props.pendingUserAdminPicker?.accountingData,
-            sapInterlocutor: props.pendingUserAdminPicker?.accountingData?.sapInterlocutor ? props.pendingUserAdminPicker?.accountingData?.sapInterlocutor : "-",
+            sapInterlocutor: props.pendingUserAdminPicker?.accountingData?.sapInterlocutor || "-",
             fiscalNumber:
               props.pendingUserAdminPicker?.accountingData?.fiscalNumber?.includes(
                 "-"
