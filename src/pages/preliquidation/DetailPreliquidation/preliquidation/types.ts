@@ -11,6 +11,7 @@ export type DetailPreliquidationContainerPropsType = {
   showNotification: (notification: NotificationStateType) => void;
   setActualPage: (page: PagesPreliquidationTypes) => void;
   getDetailPreliquidation: (id:number) => void;
+  setDirty: (dirty: boolean) => void;
 };
 export type DetailPreliquidationPropsType = {
   presettementId?: string;

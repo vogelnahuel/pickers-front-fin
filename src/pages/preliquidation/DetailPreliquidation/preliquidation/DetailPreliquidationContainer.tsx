@@ -30,6 +30,7 @@ export const DetailPreliquidationContainer = (
 
   useEffect(() => {
     if (params.id) props.getDetailPreliquidation(Number(params.id));
+    props.setDirty(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -76,6 +77,9 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   getDetailPreliquidation: (id: number) => {
     dispatch(actions.getDetailPreliquidationsRequest(id));
   },
+  setDirty: (dirty: boolean) => {
+    dispatch(actions.setDirty(dirty));
+  }
 });
 
 export default connect(
