@@ -23,6 +23,7 @@ import trabajadorAzul from "assets/admin/PendingUser/trabajadorAzul.svg";
 import Back from "component/back/Back";
 import { TabType } from "component/admin/TabControler/types";
 import { PickerType } from "../types";
+import Select from "component/inputs/Select";
 
 export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
   actualPage,
@@ -44,6 +45,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
   loadedFiles,
   changePage,
   getBankName,
+  provinces,
 }) => {
   const tabs: TabType<pickerTabs>[] = [
     {
@@ -93,6 +95,9 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                   const prefix = bankIdentifier.substring(0, 3);
                   getBankName(prefix);
                 }
+              },
+              setValue: ([field, value], state, { changeValue }) => {
+                changeValue(state, field, () => value);
               },
             }}
           >
@@ -162,7 +167,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                     className="container-detailPicker-fluid form-part-1-admin-pickers"
                   >
                     <div className="container-detailPicker-row">
-                      <div className="container-detailPicker-col-sm-6  ">
+                      <div className="container-detailPicker-col-sm-8  container-detailPicker-col-xl-6">
                         <Field
                           type="text"
                           name="personalData.name"
@@ -178,7 +183,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                           }}
                         />
                       </div>
-                      <div className="container-detailPicker-col-sm-6  ">
+                      <div className="container-detailPicker-col-sm-8  container-detailPicker-col-xl-6">
                         <Field
                           type="text"
                           name="personalData.surname"
@@ -191,7 +196,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                           maxLength={49}
                         />
                       </div>
-                      <div className="container-detailPicker-col-sm-6  ">
+                      <div className="container-detailPicker-col-sm-8  container-detailPicker-col-xl-6">
                         <Field
                           type="text"
                           name="personalData.identificationNumber"
@@ -200,78 +205,73 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                             "detailPicker:label.user.identifier"
                           )}
                           component={Input}
-                          className="Admin-Pickers-input readonly"
+                          className="Admin-Pickers-input disabled"
                           placeholder={i18next.t(
                             "detailPicker:placeholder.user.identifier"
                           )}
                         />
                       </div>
-                    </div>
-                    <div>
-                      <div className="container-detailPicker-row">
-                        <div className="container-detailPicker-col-sm-6  ">
-                          <Field
-                            type="text"
-                            name="personalData.email"
-                            label={i18next.t("detailPicker:label.user.email")}
-                            component={Input}
-                            disabled
-                            className="Admin-Pickers-input readonly"
-                            placeholder={i18next.t(
-                              "detailPicker:placeholder.user.email"
-                            )}
-                          />
-                        </div>
-                        <div className="container-detailPicker-col-sm-6  ">
-                          <Field
-                            type="text"
-                            name="personalData.dateOfBirth"
-                            label={i18next.t(
-                              "detailPicker:label.user.birthdate"
-                            )}
-                            component={Input}
-                            disabled
-                            className="Admin-Pickers-input"
-                            placeholder={i18next.t(
-                              "detailPicker:placeholder.user.birthdate"
-                            )}
-                          />
-                        </div>
-                        <div className="container-detailPicker-col-sm-3  ">
-                          <Field
-                            type="text"
-                            name="personalData.phone.areaNumber"
-                            label={i18next.t(
-                              "detailPicker:label.user.areaCode"
-                            )}
-                            component={Input}
-                            className="Admin-Pickers-input"
-                            placeholder={i18next.t(
-                              "detailPicker:placeholder.user.areaCode"
-                            )}
-                            maxLength={5}
-                          />
-                        </div>
 
-                        <div className="container-detailPicker-col-sm-3  ">
-                          <Field
-                            type="text"
-                            name="personalData.phone.number"
-                            label={i18next.t("detailPicker:label.user.phone")}
-                            component={Input}
-                            className="Admin-Pickers-input"
-                            placeholder={i18next.t(
-                              "detailPicker:placeholder.user.phone"
-                            )}
-                            maxLength={10}
-                          />
-                        </div>
-                      </div>
+
+                    <div className="container-detailPicker-col-sm-8  container-detailPicker-col-xl-6">
+                      <Field
+                        type="text"
+                        name="personalData.email"
+                        label={i18next.t("detailPicker:label.user.email")}
+                        component={Input}
+                        disabled
+                        className="Admin-Pickers-input disabled"
+                        placeholder={i18next.t(
+                          "detailPicker:placeholder.user.email"
+                        )}
+                      />
+                    </div>
+                    <div className="container-detailPicker-col-sm-8  container-detailPicker-col-xl-6">
+                      <Field
+                        type="text"
+                        name="personalData.dateOfBirth"
+                        label={i18next.t("detailPicker:label.user.birthdate")}
+                        component={Input}
+                        disabled
+                        className="Admin-Pickers-input"
+                        placeholder={i18next.t(
+                          "detailPicker:placeholder.user.birthdate"
+                        )}
+                      />
+                    </div>
+                    <div className="container-detailPicker-col-sm-4  container-detailPicker-col-xl-3">
+                      <Field
+                        type="text"
+                        name="personalData.phone.areaNumber"
+                        label={i18next.t("detailPicker:label.user.areaCode")}
+                        component={Input}
+                        className="Admin-Pickers-input"
+                        placeholder={i18next.t(
+                          "detailPicker:placeholder.user.areaCode"
+                        )}
+                        maxLength={5}
+                      />
+                    </div>
+
+                    <div className="container-detailPicker-col-sm-4  container-detailPicker-col-xl-3">
+                      <Field
+                        type="text"
+                        name="personalData.phone.number"
+                        label={i18next.t("detailPicker:label.user.phone")}
+                        component={Input}
+                        className="Admin-Pickers-input"
+                        placeholder={i18next.t(
+                          "detailPicker:placeholder.user.phone"
+                        )}
+                        maxLength={10}
+                      />
+                    </div>
                     </div>
                     <ExpandableFile
                       files={pendingUserAdminPicker?.files?.personalData}
                       pickerId={pendingUserAdminPicker?.id}
                     />
+              
                   </div>
                   <h3 className="subTitle-pending-data">
                     {i18next.t("detailPicker:label.subtitle.account")}
@@ -281,7 +281,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                     className="form-part-1-admin-pickers"
                   >
                     <div className="container-detailPicker-row">
-                      <div className="container-detailPicker-col-sm-6  ">
+                      <div className="container-detailPicker-col-sm-8  container-detailPicker-col-xl-6">
                         <Field
                           type="text"
                           name="accountingData.fiscalNumber"
@@ -290,13 +290,13 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                           )}
                           component={Input}
                           disabled
-                          className="Admin-Pickers-input"
+                          className="Admin-Pickers-input disabled"
                           placeholder={i18next.t(
                             "detailPicker:placeholder.account.fiscalNumber"
                           )}
                         />
                       </div>
-                      <div className="container-detailPicker-col-sm-6  ">
+                      <div className="container-detailPicker-col-sm-8  container-detailPicker-col-xl-6 ">
                         <Field
                           type="text"
                           name="accountingData.bankIdentifier"
@@ -312,7 +312,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                           onBlur={form.mutators.bankSearch}
                         />
                       </div>
-                      <div className="container-detailPicker-col-sm-6  ">
+                      <div className="container-detailPicker-col-sm-8  container-detailPicker-col-xl-6">
                         <Field
                           type="text"
                           name="accountingData.bankName"
@@ -321,14 +321,114 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                           )}
                           isEqual={() => true}
                           disabled
-                          component={Input}
-                          className="Admin-Pickers-input readonly"
+                          className="Admin-Pickers-input disabled"
                           placeholder={i18next.t(
                             "detailPicker:placeholder.account.bankName"
                           )}
                         />
                       </div>
-                    </div>
+                      <div className="container-detailPicker-col-sm-8  container-detailPicker-col-xl-6">
+                        <Field
+                          type="text"
+                          name="accountingData.sapInterlocutor"
+                          label={i18next.t(
+                            "detailPicker:label.accountingData.sapInterlocutor"
+                          )}
+                          component={Input}
+                          disabled
+                          className="Admin-Pickers-input readonly"
+                        />
+                      </div>
+                      </div>   
+                      <div className="container-detailPicker-col-sm-24">
+                        <div className="divider"></div>
+                      </div>
+                      <h3 className="container-detailPicker-row subTitle-fiscal-data">
+                        {i18next.t("detailPicker:label.card.fiscalDirection")}
+                      </h3>
+                      <div className="container-detailPicker-row">
+                        <div className="container-detailPicker-col-sm-8  container-detailPicker-col-xl-6">
+                          <Field
+                            type="text"
+                            name="accountingData.address.street"
+                            label={i18next.t(
+                              "detailPicker:label.accountingData.street"
+                            )}
+                            component={Input}
+                            className="Admin-Pickers-input"
+                            placeholder={i18next.t(
+                              "detailPicker:placeholder.accountingData.street"
+                            )}
+                            maxLength={50}
+                          />
+                        </div>
+                        <div className="container-detailPicker-col-sm-4  container-detailPicker-col-xl-3">
+                          <Field
+                            type="text"
+                            name="accountingData.address.streetNumber"
+                            label={i18next.t(
+                              "detailPicker:label.accountingData.streetNumber"
+                            )}
+                            component={Input}
+                            className="Admin-Pickers-input"
+                            placeholder={i18next.t(
+                              "detailPicker:placeholder.accountingData.streetNumber"
+                            )}
+                            maxLength={10}
+                          />
+                        </div>
+                        <div className="container-detailPicker-col-sm-4  container-detailPicker-col-xl-3">
+                          <Field
+                            type="text"
+                            name="accountingData.address.postalCode"
+                            label={i18next.t(
+                              "detailPicker:label.accountingData.postalCode"
+                            )}
+                            component={Input}
+                            className="Admin-Pickers-input "
+                            placeholder={i18next.t(
+                              "detailPicker:placeholder.accountingData.postalCode"
+                            )}
+                            maxLength={4}
+                          />
+                        </div>
+                        <div className="container-detailPicker-col-sm-8  container-detailPicker-col-xl-6">
+                          <Field
+                            type="text"
+                            name="accountingData.address.locality"
+                            label={i18next.t(
+                              "detailPicker:label.accountingData.locality"
+                            )}
+                            component={Input}
+                            className="Admin-Pickers-input"
+                            placeholder={i18next.t(
+                              "detailPicker:placeholder.accountingData.locality"
+                            )}
+                            maxLength={50}
+                          />
+                        </div>
+                        <div className="container-detailPicker-col-sm-8  container-detailPicker-col-xl-6">
+                          <Field
+                            type="text"
+                            name="accountingData.address.province"
+                            onChange={form.mutators.setValue}
+                            label={i18next.t(
+                              "detailPicker:label.accountingData.province"
+                            )}
+                            className="Admin-Pickers-input"
+                            placeholder={i18next.t(
+                              "detailPicker:placeholder.accountingData.province"
+                            )}
+                            options={provinces.map((o) => ({
+                              ...o,
+                              label: o.name,
+                            }))}
+                          >
+                            {(props: any) => <Select {...props} />}
+                          </Field>
+                        </div>
+                      </div>
+
                     <ExpandableFile
                       files={pendingUserAdminPicker?.files?.accountingData}
                       pickerId={pendingUserAdminPicker.id}
@@ -348,7 +448,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                           {initialValues.vehicle &&
                             initialValues.vehicle.type === "motorcycle" && (
                               <>
-                                <div className="container-detailPicker-col-sm-6  ">
+                                <div className="container-detailPicker-col-sm-8  container-detailPicker-col-xl-6 ">
                                   <Field
                                     type="text"
                                     name={`vehicle.patent`}
@@ -363,7 +463,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                                     maxLength={7}
                                   />
                                 </div>
-                                <div className="container-detailPicker-col-sm-6  ">
+                                <div className="container-detailPicker-col-sm-8  container-detailPicker-col-xl-6">
                                   <Field
                                     type="text"
                                     name={`vehicle.expirationDateDriverLicense`}
@@ -378,7 +478,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                                     maxLength={10}
                                   />
                                 </div>
-                                <div className="container-detailPicker-col-sm-6  ">
+                                <div className="container-detailPicker-col-sm-8 container-detailPicker-col-xl-6 ">
                                   <Field
                                     type="text"
                                     name={`vehicle.expirationDateIdentificationVehicle`}
@@ -393,7 +493,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                                     maxLength={10}
                                   />
                                 </div>
-                                <div className="container-detailPicker-col-sm-6">
+                                <div className="container-detailPicker-col-sm-8 container-detailPicker-col-xl-6">
                                   <Field
                                     type="text"
                                     name={`vehicle.expirationDatePolicyVehicle`}
@@ -483,6 +583,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                         >
                           {i18next.t("detailPicker:label.button.save")}
                         </button>
+
                         <button
                           type="submit"
                           disabled={invalid || wrongFiles || !loadedFiles}

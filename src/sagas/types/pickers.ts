@@ -59,3 +59,19 @@ export type BankType = {
   id: number;
   name: string;
 }
+
+export type DetailPickersProvincesApiResponseType = {
+  data: DetailPickersProvincesApiResponseContentType;
+  status: number;
+};
+
+export type DetailPickersProvincesApiResponseContentType = {
+  result:{
+    items:  ProvincesTypes[];
+  }
+
+};
+export type ProvincesTypes = {
+  name: string;
+  tag: string;
+};

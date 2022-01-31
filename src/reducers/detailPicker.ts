@@ -16,6 +16,7 @@ import { PickerFileRequestType } from "pages/pickers/detailPicker/types";
 import { DeleteFileType, ExpandableFileSaveParamsType } from "component/admin/ExpandableFile/types";
 import { ActionErrorPickersType } from "./types/pickers";
 import { BankType } from "sagas/types/pickers";
+import { ProvincesTypes } from "sagas/types/pickers";
 
 const wrongFilesInitialValue = {
   "dni-front": false,
@@ -37,13 +38,14 @@ export const initialState: DetailPickerStateType = {
   nameDisplay: "",
   invalidBank: true,
   bankNameRequested: false,
+  provinces: [],
   pendingUserAdminPicker: {
     id: 0,
     enable: false,
     registerDatetime: "",
     status: {
       description: "",
-      id: 0,
+      id: 0
     },
     personalData: {
       name: "",
@@ -55,38 +57,42 @@ export const initialState: DetailPickerStateType = {
         areaNumber: "",
         countryNumber: "",
         number: "",
-        registerDate: undefined,
-      },
+        registerDate: undefined
+      }
     },
     accountingData: {
+      address: "",
       bankIdentifier: "",
+      companyName: "",
       bankName: "",
       fiscalNumber: "",
+      sapInterlocutor: "",
+      id: 0
     },
     vehicle: {
       type: "",
       active: false,
       approve: false,
       patent: "",
-      expirationDateDriverLicense: "",
-      expirationDateIdentificationVehicle: "",
-      expirationDatePolicyVehicle: "",
+      expirationDateDriverLicense: null,
+      expirationDateIdentificationVehicle: null,
+      expirationDatePolicyVehicle: null
     },
     files: {
       personalData: {
         status: "",
-        content: [],
+        content: []
       },
       accountingData: {
         status: "",
-        content: [],
+        content: []
       },
       vehicle: {
         status: "",
-        content: [],
-      },
-    },
-  },
+        content: []
+      }
+    }
+  }
 };
 
 const SLICE_NAME = "detailPicker";
@@ -105,6 +111,7 @@ export const detailPickerSlice = createSlice({
   name: SLICE_NAME,
   initialState,
   reducers: {
+    
     getPendingUserPickerRequest: (
       state: DetailPickerStateType,
       action: PayloadAction<number>
@@ -244,7 +251,17 @@ export const detailPickerSlice = createSlice({
       if (!state.serverError?.includes(action.payload.tag))
         state.serverError?.push(action.payload.tag);
     },
+    getProvincesRequest: () => {},
+    getProvincesError: () => {},
+    getProvincesSuccess: (
+      state: DetailPickerStateType,
+      action: PayloadAction<ProvincesTypes[]>
+    ) => {
+      const { payload } = action;
+      state.provinces = payload;
+    },
   },
+
   extraReducers: (builder) =>
     builder
       .addMatcher(isRequestAction, (state: DetailPickerStateType) => {

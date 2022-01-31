@@ -1,8 +1,11 @@
 import { AxiosResponse } from "axios";
 import * as API from "middleware/api";
 import { PickerFileRequestType } from "pages/pickers/detailPicker/types";
-
-import { BankType, ExpandableFileLoadParamType } from "sagas/types/pickers";
+import {
+  BankType,
+  DetailPickersProvincesApiResponseType,
+  ExpandableFileLoadParamType,
+} from "sagas/types/pickers";
 import {
   PickerType,
   EditPickerResponseType,
@@ -76,3 +79,6 @@ export const getBankName = (
 ): Promise<AxiosResponse<API.ApiResponse<BankType>>> => {
   return API.get(`/ms-admin-rest/api/v1.0/banks/${cbuPrefix}`);
 };
+export const getProvinces = (): Promise<
+  AxiosResponse<DetailPickersProvincesApiResponseType>
+> => API.get(`/ms-admin-rest/api/v1.0/provinces`);

@@ -23,6 +23,18 @@
   "placeholder.account.bankName": "Ingresá el nombre del banco",
   "error.input.invalidBank": "El número ingresado no corresponde a un banco",
 
+  "label.accountingData.sapInterlocutor": "Código de proveedor SAP",
+  "label.accountingData.street": "Calle *",
+  "placeholder.accountingData.street": "Ingresá una calle",
+  "label.accountingData.streetNumber": "Número *",
+  "placeholder.accountingData.streetNumber": "Ingresá un número",
+  "label.accountingData.postalCode": "CP *",
+  "placeholder.accountingData.postalCode": "Ingresá un codigo postal",
+  "label.accountingData.locality": "Localidad *",
+  "placeholder.accountingData.locality": "Ingresá una localidad",
+  "label.accountingData.province": "Provincia *",
+  "placeholder.accountingData.province": "Seleccioná una provincia",
+
   "label.subtitle.insurance": "Datos del vehículo",
   "label.insurance.patent": "Patente del vehículo *",
   "placeholder.insurance.patent": "Ingresá los dígitos de la patente",
@@ -50,5 +62,6 @@
   "label.card.driverLicense":"Licencia de conducir",
   "label.card.vehicleIdentificationBack":"Cédula frente",
   "label.card.vehicleIdentificationFront":"Cédula dorso",
-  "label.card.driverInsuranceCard":"Seguro de automotor"
+  "label.card.driverInsuranceCard":"Seguro de automotor",
+  "label.card.fiscalDirection":"Dirección fiscal"
 }

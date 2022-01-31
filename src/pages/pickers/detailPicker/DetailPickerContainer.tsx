@@ -40,6 +40,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
   useEffect(() => {
     props.resetWrongFiles();
     props.getPendingUserPicker(params.id);
+    props.getProvinces();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -77,6 +78,9 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
           },
           accountingData: {
             ...props.pendingUserAdminPicker?.accountingData,
+            sapInterlocutor:
+              props.pendingUserAdminPicker?.accountingData?.sapInterlocutor ||
+              "-",
             fiscalNumber:
               props.pendingUserAdminPicker?.accountingData?.fiscalNumber?.includes(
                 "-"
@@ -118,10 +122,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
 
     return prevValues.current;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    props.pendingUserAdminPicker.id,
-    props.bankNameRequested,
-  ]);
+  }, [props.pendingUserAdminPicker.id, props.bankNameRequested]);
 
   const changePage = (page: string, isDirty: boolean) => {
     let onClose = () => {
@@ -242,6 +243,40 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
             VALIDATION_REGEX.regNumber,
             i18next.t("global:error.input.lettersOrSpecialCharacters")
           ),
+        address: yup.object({
+          street: yup
+            .string()
+            .required(i18next.t("global:error.input.required"))
+            .matches(
+              VALIDATION_REGEX.regStreet,
+              i18next.t("global:error.input.formatAddress")
+            ),
+          streetNumber: yup
+            .string()
+            .matches(
+              VALIDATION_REGEX.regStreet,
+              i18next.t("global:error.input.formatAddress")
+            )
+            .required(i18next.t("global:error.input.required")),
+          postalCode: yup
+            .string()
+            .min(4, i18next.t("global:error.input.cp"))
+            .matches(
+              VALIDATION_REGEX.regNumber,
+              i18next.t("global:error.input.lettersOrSpecialCharacters")
+            )
+            .required(i18next.t("global:error.input.required")),
+          locality: yup
+            .string()
+            .matches(
+              VALIDATION_REGEX.regStreet,
+              i18next.t("global:error.input.formatAddress")
+            )
+            .required(i18next.t("global:error.input.required")),
+          province: yup
+            .object()
+            .required(i18next.t("global:error.input.required")),
+        }),
       }),
       vehicle:
         props.pendingUserAdminPicker.vehicle &&
@@ -321,6 +356,7 @@ const mapStateToProps = (state: RootState) => ({
   nameDisplay: detailPickerSelector(state).nameDisplay,
   wrongFiles: hasPickerWrongFilesSelector(state),
   loadedFiles: hasPickerAllFilesLoadedSelector(state),
+  provinces: detailPickerSelector(state).provinces,
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
@@ -329,6 +365,9 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   },
   getPendingUserPicker: (params: number) => {
     dispatch(pendingUserAdminPickerActions.getPendingUserPickerRequest(params));
+  },
+  getProvinces: () => {
+    dispatch(pendingUserAdminPickerActions.getProvincesRequest());
   },
   getPendingUserPickerExport: (params: ParamsMiddlewareType) => {
     dispatch(

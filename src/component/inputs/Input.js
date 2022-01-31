@@ -15,6 +15,7 @@ export const Input = (props) => {
     maxLength,
     animated,
     onBlur,
+    readOnly,
   } = props;
 
   const [focus, setFocus] = useState(false);
@@ -32,7 +33,7 @@ export const Input = (props) => {
           {
             labelError: meta.error && meta.touched,
             "label-login": animated,
-            readonly: disabled,
+            disabled: disabled,
             "last-label": lastLabel,
             [input.value || focus === true
               ? "animationTop"
@@ -44,13 +45,14 @@ export const Input = (props) => {
       </label>
       <input
         className={classNames(className, {
-          readonly: disabled,
+          disabled: disabled,
           inputError: meta.error && meta.touched,
           [meta.error && meta.touched ? "inputReboteAnimation" : ""]: animated,
         })}
         type={input.type}
         name={input.name}
         disabled={disabled}
+        readOnly={readOnly}
         id={id}
         value={input.value}
         placeholder={placeholder}

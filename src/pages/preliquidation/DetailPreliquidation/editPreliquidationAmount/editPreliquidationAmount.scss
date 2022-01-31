@@ -1,0 +1,140 @@
+.preliquidation-modal-background {
+  background: rgba(45, 45, 45, 0.25);
+  mix-blend-mode: multiply;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  position: fixed;
+}
+
+.theme-default ._97HeZ1z-bCxJgRNi-TY8d {
+  transform: none !important;
+  position: relative !important;
+}
+
+
+.preliquidation-modal-close {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  cursor: pointer;
+  width: 30px;
+}
+
+.preliquidation-modal-container {
+  padding: 40px;
+  font-family: Mulish;
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.preliquidation-modal-header {
+  padding-right: 32px;
+  padding-bottom: 12px;
+  display: flex;
+  border-bottom: 1px solid #bdbdbd;
+  font-weight: 700;
+}
+
+.preliquidation-modal-header-number {
+  width: 450px;
+  text-align: left;
+
+  & > * {
+    font-size: 25px;
+    line-height: 31px;
+  }
+
+  & > label {
+    color: #bdbdbd;
+  }
+
+  & > p {
+    color: #0098ff;
+  }
+}
+
+.preliquidation-modal-header-status {
+  flex: 1;
+  text-align: left;
+}
+
+.preliquidation-modal-header-date {
+  width: 200px;
+  text-align: right;
+}
+
+.preliquidation-modal-header-status,
+.preliquidation-modal-header-date {
+  font-size: 17px;
+  line-height: 21px;
+  letter-spacing: 0.0125em;
+
+  & > * {
+    color: #4d4d4d;
+  }
+
+  & > p {
+    margin-top: 4px;
+    font-weight: 400;
+  }
+}
+
+.preliquidation-modal-content {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: column;
+  flex: 1;
+}
+
+.preliquidation-modal-title {
+  font-size: 20px;
+  line-height: 25px;
+  font-weight: 800;
+  color: #101820;
+  margin-bottom: 40px;
+}
+
+.preliquidation-modal-form {
+  width: 496px;
+  display: flex;
+  flex-direction: column;
+}
+
+.preliquidation-modal-form-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.preliquidation-modal-form p.errors{
+  min-height: 18px;
+  height: auto;
+}
+
+.preliquidation-modal-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 56px;
+  align-self: flex-start;
+
+  svg.disabled {
+    cursor: pointer;
+    & > path {
+      stroke: #808080;
+      transition: stroke 0.2s;
+    }
+  }
+}
+
+.button-confirm-container{
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+}

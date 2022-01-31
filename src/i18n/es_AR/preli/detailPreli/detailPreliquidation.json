@@ -2,7 +2,24 @@
   "label.button.goBack": "Volver",
   "label.subtitle.preliquidationNumber": "Número de preliquidación",
 
+
+  "label.modal.preliquidationNumber": "Número de la preliquidación",
+  "label.modal.status": "Estado",
+  "label.modal.dateOfIssue": "Fecha de emisión",
+
+  "label.modal.instruction": "Ingresá el nuevo monto de la preliquidación",
+  "label.modal.actualAmount": "Monto actual",
+  "label.modal.amountToAdd": "¿Cuánto querés sumarle? *",
+  "label.modal.amountToSubstract": "¿Cuánto querés restarle? *",
+  "label.modal.reason": "Motivo *",
+  "placeholder.modal.amount": "Ingresá el monto",
+  "placeholder.modal.reason": "Ingresá el motivo de la modificación",
+  "label.tooltip.add": "Sumar un monto",
+  "label.tooltip.subtract": "Restar un monto",
+  "error.input.amountExceeded": "El monto excede el límite",
+  "label.title.history": "Historial",
   "label.title.transactions": "Transacciones",
+  "label.title.transaction": "Transacción",
   "label.button.changeAmount": "Modificar monto",
   "label.table.id": "ID",
   "label.table.date": "Fecha",
@@ -12,8 +29,6 @@
   "label.tag.plus": "Suma",
   "label.tag.subtract": "Resta",
 
-
-
   "label.tag.initialState":"En generación",
   "label.tag.pending":"Pendiente",
   "label.tag.inAprovement":"En aprobación",
@@ -22,5 +37,14 @@
   "label.tag.inAcounting":"En contabilidad",
   "label.tag.generatedPayment":"Pago generado",
   "label.tag.invoiceRejected":"Factura rechazada",
-  "label.tag.adjustment":"Modificación"
+  "label.tag.adjustment":"Modificación",
+
+  "title.modal.concurrency": "Error en la modificación",
+  "body.modal.concurrency": "La preliquidación ya está siendo modificada. Intentalo nuevamente en unos minutos",
+  
+  "label.input.status": "Estado",
+  "label.input.emisionDate": "Fecha de emisión",
+  "label.input.fiscalNumber": "Identificador fiscal",
+  "label.input.companyName": "Razón social",
+  "label.input.sapCode": "Código SAP"
 }

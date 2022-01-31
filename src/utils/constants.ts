@@ -72,6 +72,7 @@ export const VALIDATION_REGEX = {
   regLetNum: /^(?=.{1,})(?=.*[a-zA-ZdàáèéìíòóùúñÀÁÈÉÌÍÒÓÙÚÑ])(?=.*[0-9]).*$/,
   regDNI: /^[0-9]*$/,
   regNumber: /^[0-9]*$/,
+  regStreet: /^[0-9A-Za-zàáäãâåèéêëìíîïòóôöõøùúüÿýñçšžÀÁÄÃÅÈÉÊËÌÍÎÏÒÓÔÖÕØÙÚÜŸÝŽÑŠßÇðŒÆ ,.'-/º#]*$/,
 };
 
 export const FILTER_TRANSACTION_OPTIONS = [
@@ -120,7 +121,7 @@ export const FILTER_TRANSACTION_OPTIONS = [
 export const FILTER_PRELIQUIDATION_OPTIONS = [
   {
     label: "preli:label.select.initial",
-    id: "initial ",
+    id: "initial",
   },
   {
     label: "preli:label.select.pending",
@@ -167,6 +168,7 @@ export const FILTER_PICKERS_OPTIONS = [
     value: "motorcycle",
   },
 ];
+
 
 export const TRANSACTION_STATE_ID_LABEL: any = {
   1: "filterTransaction:label.select.notAssigned",
@@ -264,3 +266,5 @@ export const PICKERS_FILE_EXT = [
   "image/jpg",
   "image/jpeg",
 ];
+
+export const FIRST_ANIMATION_TIME = 1500;

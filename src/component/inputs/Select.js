@@ -30,7 +30,7 @@ const Select = ({
     <div className="multiple-selectbox">
       <div onClick={handleClick} className="multiple-contenido-select">
         <label
-          className={`label-Admin-Pickers ${disabled ? " readonly" : ""} `}
+          className={`label-Admin-Pickers ${disabled ? " disabled" : ""} `}
         >
           {label}
         </label>
@@ -46,7 +46,7 @@ const Select = ({
           }
           disabled
           className={`Admin-Pickers-input-select ${
-            disabled ? " readonly" : ""
+            disabled ? " disabled" : ""
           }`}
           type="text"
         />
@@ -58,20 +58,22 @@ const Select = ({
       </div>
       {open && (
         <div className="filter-admin-options">
-          {options.map((option, key) => (
-            <div
-              className="filter-admin-content-option"
-              key={key}
-              id={key}
-              onClick={(e) => {
-                onChange(input.name, option);
-              }}
-            >
-              <label className="filter-admin-option-paragraph">
-                {option.label}
-              </label>
-            </div>
-          ))}
+          <div className="filter-admin-scroll">
+            {options.map((option, key) => (
+              <div
+                className="filter-admin-content-option"
+                key={key}
+                id={key}
+                onClick={(e) => {
+                  onChange(input.name, option);
+                }}
+              >
+                <label className="filter-admin-option-paragraph">
+                  {option.label}
+                </label>
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </div>
