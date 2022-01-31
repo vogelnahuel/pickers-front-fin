@@ -3,7 +3,7 @@ import { Header } from "component/admin/Header/Header";
 import Nav from "component/admin/Nav/Nav";
 import "pages/pickers/Pickers.scss";
 import "pages/pickers/detailPicker/DetailPicker.scss";
-import {TabControler} from "component/admin/TabControler/TabControler";
+import { TabControler } from "component/admin/TabControler/TabControler";
 import { Input } from "component/inputs/Input";
 import { Switch } from "component/inputs/switch";
 import motorcycle from "assets/admin/PendingUserAdminPicker/motorcycle.svg";
@@ -43,13 +43,9 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
   showNotification,
   loadedFiles,
   changePage,
+  getBankName,
 }) => {
-
- 
-
-
-  
-  const tabs:TabType<pickerTabs>[] = [
+  const tabs: TabType<pickerTabs>[] = [
     {
       title: "pickers:label.title.pending",
       id: "PENDING",
@@ -68,26 +64,19 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
         <Nav />
         <div className="pending-container">
           <Form
+            keepDirtyOnReinitialize
             onSubmit={(values) =>
               !active
                 ? aproveSubmit(values, goBack)
-                : wrongFiles 
+                : wrongFiles
                 ? showNotification({
                     level: "warning",
-                    title: i18next.t(
-                      "global:title.modal.withoutSaving"
-                    ),
-                    body: i18next.t(
-                      "global:label.modal.withoutSaving"
-                    ),
-                    onClickLabel: i18next.t(
-                      "global:label.button.checkErrors"
-                    ),
-                    onCloseLabel: i18next.t(
-                      "global:label.button.continue"
-                    ),
-                    onClose: () =>  postEditPickerRequest(values, goBack),
-                    onClick: undefined
+                    title: i18next.t("global:title.modal.withoutSaving"),
+                    body: i18next.t("global:label.modal.withoutSaving"),
+                    onClickLabel: i18next.t("global:label.button.checkErrors"),
+                    onCloseLabel: i18next.t("global:label.button.continue"),
+                    onClose: () => postEditPickerRequest(values, goBack),
+                    onClick: undefined,
                   })
                 : postEditPickerRequest(values, goBack)
             }
@@ -96,19 +85,14 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
             mutators={{
               bankSearch: ([field, value], state, { changeValue }) => {
                 const values = state.formState.values as PickerType;
-                const errors = state.formState.errors;
                 const { bankIdentifier } = values.accountingData;
-                
-                if(!bankIdentifier || bankIdentifier.length === 0)
-                  changeValue(state, 'accountingData.bankName', () => '');
-              
-                // Si tiene errores, no se actualiza el campo BankName
-                if(errors?.accountingData?.bankIdentifier) return;
 
-                console.log("State: ", state);
-              
-                
-                changeValue(state, 'accountingData.bankName', () => 'pepe');
+                if (!bankIdentifier || bankIdentifier.length < 22)
+                  changeValue(state, "accountingData.bankName", () => "-");
+                else {
+                  const prefix = bankIdentifier.substring(0, 3);
+                  getBankName(prefix);
+                }
               },
             }}
           >
@@ -166,13 +150,17 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                   <FormSpy
                     subscription={{
                       dirty: true,
-                      values:true,
+                      values: true,
+                      pristine: true
                     }}
                     onChange={(pro) => {
                       setDirty(pro.dirty);
                     }}
                   />
-                  <div id="personal-data-card" className="container-detailPicker-fluid form-part-1-admin-pickers">
+                  <div
+                    id="personal-data-card"
+                    className="container-detailPicker-fluid form-part-1-admin-pickers"
+                  >
                     <div className="container-detailPicker-row">
                       <div className="container-detailPicker-col-sm-6  ">
                         <Field
@@ -288,7 +276,10 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                   <h3 className="subTitle-pending-data">
                     {i18next.t("detailPicker:label.subtitle.account")}
                   </h3>
-                  <div id="accounting-data-card" className="form-part-1-admin-pickers">
+                  <div
+                    id="accounting-data-card"
+                    className="form-part-1-admin-pickers"
+                  >
                     <div className="container-detailPicker-row">
                       <div className="container-detailPicker-col-sm-6  ">
                         <Field
@@ -317,7 +308,6 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                           placeholder={i18next.t(
                             "detailPicker:placeholder.account.bankIdentifier"
                           )}
-                          
                           maxLength={22}
                           onBlur={form.mutators.bankSearch}
                         />
@@ -329,6 +319,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                           label={i18next.t(
                             "detailPicker:label.account.bankName"
                           )}
+                          isEqual={() => true}
                           disabled
                           component={Input}
                           className="Admin-Pickers-input readonly"
@@ -349,7 +340,10 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                       <h3 className="subTitle-pending-data">
                         {i18next.t("detailPicker:label.subtitle.insurance")}
                       </h3>
-                      <div id="vehicle-data-card" className="form-part-1-admin-pickers">
+                      <div
+                        id="vehicle-data-card"
+                        className="form-part-1-admin-pickers"
+                      >
                         <div className="container-detailPicker-row">
                           {initialValues.vehicle &&
                             initialValues.vehicle.type === "motorcycle" && (
@@ -479,8 +473,9 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                                   onCloseLabel: i18next.t(
                                     "global:label.button.continue"
                                   ),
-                                  onClose: () => postPendingUserDocumentsEdit(values),
-                                  onClick: undefined
+                                  onClose: () =>
+                                    postPendingUserDocumentsEdit(values),
+                                  onClick: undefined,
                                 })
                               : postPendingUserDocumentsEdit(values)
                           }

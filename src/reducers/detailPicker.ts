@@ -35,6 +35,8 @@ export const initialState: DetailPickerStateType = {
   dirty: false,
   wrongFiles: wrongFilesInitialValue,
   nameDisplay: "",
+  invalidBank: true,
+  bankNameRequested: false,
   pendingUserAdminPicker: {
     id: 0,
     enable: false,
@@ -176,17 +178,25 @@ export const detailPickerSlice = createSlice({
       state.pendingUserAdminPicker = action.payload;
     },
     getEditPickerError: () => {},
-    getBankNameRequest: (
+    getBankNameFetch: (
       state: DetailPickerStateType,
-      action: PayloadAction<{ cbuPrefix:number }>
-    ) => {},
+      action: PayloadAction<{cbuPrefix: string}>
+    ) => {
+      state.invalidBank = false;
+      state.bankNameRequested = true;
+    },
     getBankNameSuccess: (
       state: DetailPickerStateType,
       action: PayloadAction<BankType>
     ) => {
-      state.pendingUserAdminPicker.accountingData.bankName = action.payload.name
+      state.pendingUserAdminPicker.accountingData.bankName = action.payload.name;
+      state.bankNameRequested = false;
     },
-    getBankNameError: () => {},
+    getBankNameError: (state: DetailPickerStateType) => {
+      state.invalidBank = true; 
+      state.bankNameRequested = false;
+      state.pendingUserAdminPicker.accountingData.bankName = ""
+    },
     getPickerFileRequest: (
       state: DetailPickerStateType,
       action: PayloadAction<PickerFileRequestType>

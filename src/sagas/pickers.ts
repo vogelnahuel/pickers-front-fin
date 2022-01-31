@@ -62,7 +62,7 @@ const sagas = [
   takeLatest(detailPickerActions.getEditPickerRequest.type, postEditPicker),
   takeLatest(detailPickerActions.getPickerFileRequest.type, getPickerFile),
   takeLatest(detailPickerActions.getPickerFileSaveRequest.type, putFileUpload),
-  takeLatest(detailPickerActions.getBankNameRequest.type, getBankName),
+  takeLatest(detailPickerActions.getBankNameFetch.type, getBankName),
   takeLatest(detailPickerActions.getPickerFileDeleteRequest.type, fileDelete),
 ];
 
@@ -162,7 +162,7 @@ function* getPickers({
 
 function* getBankName({
   payload,
-}: PayloadAction<{ cbuPrefix: number }>): Generator<
+}: PayloadAction<{ cbuPrefix: string}>): Generator<
   CallEffect<unknown>
   | PutEffect<{ payload: undefined; type: string; }>
   | PutEffect<{ payload: { id: number; name: string; }; type: string; }>,

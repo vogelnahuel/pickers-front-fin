@@ -72,7 +72,7 @@ export const deleteFile = (
   API.remove(`/ms-admin-rest/api/v1.0/pickers/${id}/files/${tag}`);
 
 export const getBankName = (
-  cbuPrefix: number
+  cbuPrefix: string
 ): Promise<AxiosResponse<API.ApiResponse<BankType>>> => {
   return API.get(`/ms-admin-rest/api/v1.0/banks/${cbuPrefix}`);
 };

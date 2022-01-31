@@ -4,7 +4,6 @@ import { NotificationStateType } from "reducers/types/notification";
 export type DetailPickerContainerTypeProps = {
   pendingUserAdminPicker: PickerType;
   isFetching: boolean;
-  getBankNumber:(param:number)=>void
   actualPage: pickerTabs;
   nameDisplay: string;
   getPendingUserPicker: Function;
@@ -12,12 +11,15 @@ export type DetailPickerContainerTypeProps = {
   setDirty: Function;
   postAprovePickerRequest: Function;
   postPendingUserDocumentsEdit: Function;
+  invalidBank: boolean;
+  bankNameRequested: boolean;
   resetWrongFiles: () => void;
   showNotification: (notification: NotificationStateType) => void;
   postEditPickerRequest: Function;
   setActualPage: Function;
   wrongFiles: boolean;
   loadedFiles: boolean;
+  getBankName: (cbuPrefix: string) => void;
 };
 
 export type DetailPickerTypeProps = {
@@ -40,7 +42,7 @@ export type DetailPickerTypeProps = {
   loadedFiles: boolean;
   changePage: (page:string, isDirty: boolean, ) => void;
   goBack: (validate?: boolean, isDirty?: boolean) => void;
-  getBankNumber: (cbuPrefix: number) => void;
+  getBankName: (cbuPrefix: string) => void;
 };
 
 export type PickerFileRequestType = {
@@ -49,6 +51,6 @@ export type PickerFileRequestType = {
 };
 
 export type BanksRequestType = {
-  cbuPrefix: number;
+  cbuPrefix: string;
 };
 export type pickerTabs="PENDING" | "ACTIVE"

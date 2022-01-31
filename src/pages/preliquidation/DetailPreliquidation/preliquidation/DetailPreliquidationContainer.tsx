@@ -20,7 +20,6 @@ export const DetailPreliquidationContainer = (
   const history = useHistory();
   const params: { id?: string } = useParams();
 
-  console.log(props.detailPreliquidation)
   const changePage = (page: PagesPreliquidationTypes) => {
     if (props.actualPage !== page) props.setActualPage(page);
   };
