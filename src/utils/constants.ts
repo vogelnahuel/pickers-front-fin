@@ -170,7 +170,6 @@ export const FILTER_PICKERS_OPTIONS = [
 ];
 
 
-
 export const TRANSACTION_STATE_ID_LABEL: any = {
   1: "filterTransaction:label.select.notAssigned",
   2: "filterTransaction:label.select.assigned",
