@@ -36,7 +36,7 @@ import {
 import { actions as detailPickerActions } from "../reducers/detailPicker";
 import { actions as notificationActions } from "../reducers/notification";
 import {
-  BankType,
+  BankResponseType,
   CsvResponseType,
   DetailPickersProvincesApiResponseType,
   PickerResponseType,
@@ -170,7 +170,7 @@ function* getBankName({
   | PutEffect<{ payload: undefined; type: string; }>
   | PutEffect<{ payload: { id: number; name: string; }; type: string; }>,
   void,
-  ApiResponse<BankType>
+  ApiResponse<BankResponseType>
 > {
   const response = yield call(pickersMiddleware.getBankName, payload.cbuPrefix);
   if (response.status !== 200) {

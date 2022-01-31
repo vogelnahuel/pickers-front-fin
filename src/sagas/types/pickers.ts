@@ -60,6 +60,10 @@ export type BankType = {
   name: string;
 }
 
+export type BankResponseType = {
+  result: BankType;
+}
+
 export type DetailPickersProvincesApiResponseType = {
   data: DetailPickersProvincesApiResponseContentType;
   status: number;

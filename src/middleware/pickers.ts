@@ -2,7 +2,7 @@ import { AxiosResponse } from "axios";
 import * as API from "middleware/api";
 import { PickerFileRequestType } from "pages/pickers/detailPicker/types";
 import {
-  BankType,
+  BankResponseType,
   DetailPickersProvincesApiResponseType,
   ExpandableFileLoadParamType,
 } from "sagas/types/pickers";
@@ -76,7 +76,7 @@ export const deleteFile = (
 
 export const getBankName = (
   cbuPrefix: string
-): Promise<AxiosResponse<API.ApiResponse<BankType>>> => {
+): Promise<AxiosResponse<API.ApiResponse<BankResponseType>>> => {
   return API.get(`/ms-admin-rest/api/v1.0/banks/${cbuPrefix}`);
 };
 export const getProvinces = (): Promise<

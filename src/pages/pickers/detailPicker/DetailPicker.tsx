@@ -321,6 +321,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                           )}
                           isEqual={() => true}
                           disabled
+                          component={Input}
                           className="Admin-Pickers-input disabled"
                           placeholder={i18next.t(
                             "detailPicker:placeholder.account.bankName"
