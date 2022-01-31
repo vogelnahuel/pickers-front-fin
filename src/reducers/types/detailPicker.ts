@@ -48,6 +48,8 @@ export type DetailPickerStateType = {
   dirty: boolean;
   wrongFiles: TagsErrorType;
   nameDisplay: string;
+  invalidBank: boolean;
+  bankNameRequested: boolean;
   pendingUserAdminPicker: PickerType;
   serverError: (keyof DetailPickerTagFileType)[];
 };
@@ -78,3 +80,5 @@ export type ActionType = {
   getProvincesError: Function;
   getProvincesSuccess: Function;
 };
+
+

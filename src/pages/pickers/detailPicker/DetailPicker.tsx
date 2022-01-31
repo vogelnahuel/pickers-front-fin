@@ -22,6 +22,7 @@ import trabajadorOscuro from "assets/admin/PendingUser/trabajadorOscuro.svg";
 import trabajadorAzul from "assets/admin/PendingUser/trabajadorAzul.svg";
 import Back from "component/back/Back";
 import { TabType } from "component/admin/TabControler/types";
+import { PickerType } from "../types";
 import Select from "component/inputs/Select";
 
 export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
@@ -43,6 +44,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
   showNotification,
   loadedFiles,
   changePage,
+  getBankName,
   provinces,
 }) => {
   const tabs: TabType<pickerTabs>[] = [
@@ -64,6 +66,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
         <Nav />
         <div className="pending-container">
           <Form
+            keepDirtyOnReinitialize
             onSubmit={(values) =>
               !active
                 ? aproveSubmit(values, goBack)
@@ -82,6 +85,17 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
             initialValues={initialValues}
             validate={useValidationSchema(validationSchema)}
             mutators={{
+              bankSearch: ([field, value], state, { changeValue }) => {
+                const values = state.formState.values as PickerType;
+                const { bankIdentifier } = values.accountingData;
+
+                if (!bankIdentifier || bankIdentifier.length < 22)
+                  changeValue(state, "accountingData.bankName", () => "-");
+                else {
+                  const prefix = bankIdentifier.substring(0, 3);
+                  getBankName(prefix);
+                }
+              },
               setValue: ([field, value], state, { changeValue }) => {
                 changeValue(state, field, () => value);
               },
@@ -141,6 +155,8 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                   <FormSpy
                     subscription={{
                       dirty: true,
+                      values: true,
+                      pristine: true
                     }}
                     onChange={(pro) => {
                       setDirty(pro.dirty);
@@ -288,11 +304,12 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                             "detailPicker:label.account.bankIdentifier"
                           )}
                           component={Input}
-                          disabled
-                          className="Admin-Pickers-input disabled"
+                          className="Admin-Pickers-input"
                           placeholder={i18next.t(
                             "detailPicker:placeholder.account.bankIdentifier"
                           )}
+                          maxLength={22}
+                          onBlur={form.mutators.bankSearch}
                         />
                       </div>
                       <div className="container-detailPicker-col-sm-8  container-detailPicker-col-xl-6">
@@ -302,8 +319,9 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                           label={i18next.t(
                             "detailPicker:label.account.bankName"
                           )}
-                          component={Input}
+                          isEqual={() => true}
                           disabled
+                          component={Input}
                           className="Admin-Pickers-input disabled"
                           placeholder={i18next.t(
                             "detailPicker:placeholder.account.bankName"

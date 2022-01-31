@@ -12,6 +12,8 @@ export type DetailPickerContainerTypeProps = {
   setDirty: Function;
   postAprovePickerRequest: Function;
   postPendingUserDocumentsEdit: Function;
+  invalidBank: boolean;
+  bankNameRequested: boolean;
   resetWrongFiles: () => void;
   getProvinces:()=>void;
   showNotification: (notification: NotificationStateType) => void;
@@ -19,6 +21,7 @@ export type DetailPickerContainerTypeProps = {
   setActualPage: Function;
   wrongFiles: boolean;
   loadedFiles: boolean;
+  getBankName: (cbuPrefix: string) => void;
   provinces:ProvincesTypes[]
 };
 
@@ -42,11 +45,16 @@ export type DetailPickerTypeProps = {
   loadedFiles: boolean;
   changePage: (page:string, isDirty: boolean, ) => void;
   goBack: (validate?: boolean, isDirty?: boolean) => void;
+  getBankName: (cbuPrefix: string) => void;
   provinces:ProvincesTypes[];
 };
 
 export type PickerFileRequestType = {
   pickerId: number;
   tag: keyof DetailPickerTagFileType;
+};
+
+export type BanksRequestType = {
+  cbuPrefix: string;
 };
 export type pickerTabs="PENDING" | "ACTIVE"

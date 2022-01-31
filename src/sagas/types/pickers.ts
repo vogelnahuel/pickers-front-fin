@@ -55,7 +55,14 @@ export type ExpandableFileLoadParamType ={
     content: string   
 }
 
+export type BankType = {
+  id: number;
+  name: string;
+}
 
+export type BankResponseType = {
+  result: BankType;
+}
 
 export type DetailPickersProvincesApiResponseType = {
   data: DetailPickersProvincesApiResponseContentType;

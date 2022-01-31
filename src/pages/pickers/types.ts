@@ -130,7 +130,7 @@ export type PickerContainerTypes = {
   setActualPage: Function;
   getPendingUsersExportRequest: Function;
   getMorePendingUser: Function;
-  isDetail:boolean;
+  isDetail: boolean;
 };
 
 export type PickerTypes = {

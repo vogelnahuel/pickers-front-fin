@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import { connect } from "react-redux";
 import i18next from "i18next";
 import moment from "moment";
@@ -33,6 +33,7 @@ import { NotificationStateType } from "reducers/types/notification";
 const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
   props
 ): JSX.Element => {
+  const prevValues = useRef<PickerType | null>(null);
   const params: { id?: string } = useParams();
   const history = useHistory();
 
@@ -56,7 +57,10 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
   };
 
   const initialValues = useMemo(() => {
-    return props.pendingUserAdminPicker.id
+    if (props.bankNameRequested)
+      return prevValues.current || props.pendingUserAdminPicker;
+
+    prevValues.current = props.pendingUserAdminPicker.id
       ? {
           ...props.pendingUserAdminPicker,
           personalData: {
@@ -74,7 +78,9 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
           },
           accountingData: {
             ...props.pendingUserAdminPicker?.accountingData,
-            sapInterlocutor: props.pendingUserAdminPicker?.accountingData?.sapInterlocutor || "-",
+            sapInterlocutor:
+              props.pendingUserAdminPicker?.accountingData?.sapInterlocutor ||
+              "-",
             fiscalNumber:
               props.pendingUserAdminPicker?.accountingData?.fiscalNumber?.includes(
                 "-"
@@ -114,8 +120,9 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
         }
       : props.pendingUserAdminPicker;
 
+    return prevValues.current;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.pendingUserAdminPicker.id]);
+  }, [props.pendingUserAdminPicker.id, props.bankNameRequested]);
 
   const changePage = (page: string, isDirty: boolean) => {
     let onClose = () => {
@@ -223,6 +230,19 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
         }),
       }),
       accountingData: yup.object({
+        bankIdentifier: yup
+          .string()
+          .test(
+            "invalidBankIdentifier",
+            i18next.t("detailPicker:error.input.invalidBank"),
+            () => !props.invalidBank
+          )
+          .required(i18next.t("global:error.input.required"))
+          .min(22, i18next.t("detailPicker:error.input.invalidBank"))
+          .matches(
+            VALIDATION_REGEX.regNumber,
+            i18next.t("global:error.input.lettersOrSpecialCharacters")
+          ),
         address: yup.object({
           street: yup
             .string()
@@ -322,6 +342,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
       aproveSubmit={aproveSubmit}
       active={active}
       formatDate={formatDate}
+      getBankName={props.getBankName}
     />
   );
 };
@@ -329,6 +350,8 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
 const mapStateToProps = (state: RootState) => ({
   pendingUserAdminPicker: detailPickerSelector(state).pendingUserAdminPicker,
   isFetching: detailPickerSelector(state).fetching,
+  invalidBank: detailPickerSelector(state).invalidBank,
+  bankNameRequested: detailPickerSelector(state).bankNameRequested,
   actualPage: pickersSelector(state).actualPage,
   nameDisplay: detailPickerSelector(state).nameDisplay,
   wrongFiles: hasPickerWrongFilesSelector(state),
@@ -337,6 +360,9 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
+  getBankName: (cbuPrefix: string) => {
+    dispatch(pendingUserAdminPickerActions.getBankNameFetch({ cbuPrefix }));
+  },
   getPendingUserPicker: (params: number) => {
     dispatch(pendingUserAdminPickerActions.getPendingUserPickerRequest(params));
   },

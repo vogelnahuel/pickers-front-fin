@@ -15,6 +15,7 @@ import { endsWithAny } from "utils/endsWithAny";
 import { PickerFileRequestType } from "pages/pickers/detailPicker/types";
 import { DeleteFileType, ExpandableFileSaveParamsType } from "component/admin/ExpandableFile/types";
 import { ActionErrorPickersType } from "./types/pickers";
+import { BankType } from "sagas/types/pickers";
 import { ProvincesTypes } from "sagas/types/pickers";
 
 const wrongFilesInitialValue = {
@@ -35,9 +36,9 @@ export const initialState: DetailPickerStateType = {
   dirty: false,
   wrongFiles: wrongFilesInitialValue,
   nameDisplay: "",
-
+  invalidBank: true,
+  bankNameRequested: false,
   provinces: [],
-
   pendingUserAdminPicker: {
     id: 0,
     enable: false,
@@ -184,6 +185,25 @@ export const detailPickerSlice = createSlice({
       state.pendingUserAdminPicker = action.payload;
     },
     getEditPickerError: () => {},
+    getBankNameFetch: (
+      state: DetailPickerStateType,
+      action: PayloadAction<{cbuPrefix: string}>
+    ) => {
+      state.invalidBank = false;
+      state.bankNameRequested = true;
+    },
+    getBankNameSuccess: (
+      state: DetailPickerStateType,
+      action: PayloadAction<BankType>
+    ) => {
+      state.pendingUserAdminPicker.accountingData.bankName = action.payload.name;
+      state.bankNameRequested = false;
+    },
+    getBankNameError: (state: DetailPickerStateType) => {
+      state.invalidBank = true; 
+      state.bankNameRequested = false;
+      state.pendingUserAdminPicker.accountingData.bankName = ""
+    },
     getPickerFileRequest: (
       state: DetailPickerStateType,
       action: PayloadAction<PickerFileRequestType>
