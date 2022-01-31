@@ -39,7 +39,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
   useEffect(() => {
     props.resetWrongFiles();
     props.getPendingUserPicker(params.id);
-    props.getStatesTypes();
+    props.getProvinces();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -74,6 +74,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
           },
           accountingData: {
             ...props.pendingUserAdminPicker?.accountingData,
+            sapInterlocutor: props.pendingUserAdminPicker?.accountingData?.sapInterlocutor ? props.pendingUserAdminPicker?.accountingData?.sapInterlocutor : "-",
             fiscalNumber:
               props.pendingUserAdminPicker?.accountingData?.fiscalNumber?.includes(
                 "-"
@@ -332,15 +333,15 @@ const mapStateToProps = (state: RootState) => ({
   nameDisplay: detailPickerSelector(state).nameDisplay,
   wrongFiles: hasPickerWrongFilesSelector(state),
   loadedFiles: hasPickerAllFilesLoadedSelector(state),
-  stateTypes: detailPickerSelector(state).state,
+  provinces: detailPickerSelector(state).provinces,
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
   getPendingUserPicker: (params: number) => {
     dispatch(pendingUserAdminPickerActions.getPendingUserPickerRequest(params));
   },
-  getStatesTypes: () => {
-    dispatch(pendingUserAdminPickerActions.getStatesTypesRequest());
+  getProvinces: () => {
+    dispatch(pendingUserAdminPickerActions.getProvincesRequest());
   },
   getPendingUserPickerExport: (params: ParamsMiddlewareType) => {
     dispatch(

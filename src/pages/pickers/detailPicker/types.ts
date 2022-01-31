@@ -1,6 +1,6 @@
 import { DetailPickerTagFileType, PickerType } from "../types";
 import { NotificationStateType } from "reducers/types/notification";
-import { StatesTypes } from "sagas/types/pickers";
+import { ProvincesTypes } from "sagas/types/pickers";
 
 export type DetailPickerContainerTypeProps = {
   pendingUserAdminPicker: PickerType;
@@ -13,13 +13,13 @@ export type DetailPickerContainerTypeProps = {
   postAprovePickerRequest: Function;
   postPendingUserDocumentsEdit: Function;
   resetWrongFiles: () => void;
-  getStatesTypes:()=>void;
+  getProvinces:()=>void;
   showNotification: (notification: NotificationStateType) => void;
   postEditPickerRequest: Function;
   setActualPage: Function;
   wrongFiles: boolean;
   loadedFiles: boolean;
-  stateTypes:StatesTypes[]
+  provinces:ProvincesTypes[]
 };
 
 export type DetailPickerTypeProps = {
@@ -42,7 +42,7 @@ export type DetailPickerTypeProps = {
   loadedFiles: boolean;
   changePage: (page:string, isDirty: boolean, ) => void;
   goBack: (validate?: boolean, isDirty?: boolean) => void;
-  stateTypes:StatesTypes[];
+  provinces:ProvincesTypes[];
 };
 
 export type PickerFileRequestType = {

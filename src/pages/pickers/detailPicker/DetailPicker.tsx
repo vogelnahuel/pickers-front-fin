@@ -23,7 +23,6 @@ import trabajadorAzul from "assets/admin/PendingUser/trabajadorAzul.svg";
 import Back from "component/back/Back";
 import { TabType } from "component/admin/TabControler/types";
 import Select from "component/inputs/Select";
-// import { FISCAL_DATA_PICKERS_OPTIONS } from "utils/constants";
 
 export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
   actualPage,
@@ -44,7 +43,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
   showNotification,
   loadedFiles,
   changePage,
-  stateTypes
+  provinces
 }) => {
 
 
@@ -335,12 +334,9 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                           component={Input}
                           disabled
                           className="Admin-Pickers-input readonly"
-                          placeholder={i18next.t(
-                            "detailPicker:placeholder.accountingData.sapInterlocutor"
-                          )}
                         />
                       </div>
-                      <div className="container-detailPicker-row"><div className="divider"></div></div>
+                      <div className="container-detailPicker-col-sm-18"><div className="divider"></div></div>
                       <h3 className="container-detailPicker-row subTitle-fiscal-data">
                         {i18next.t("detailPicker:label.card.fiscalDirection")} 
                       </h3>
@@ -417,9 +413,9 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                             placeholder={i18next.t(
                               "detailPicker:placeholder.accountingData.province"
                             )}
-                            options={stateTypes.map((o) => ({
+                            options={provinces.map((o) => ({
                               ...o,
-                              label: i18next.t(o.name),
+                              label: (o.name),
                             }))}
                           >
                              {(props: any) => <Select {...props} />}

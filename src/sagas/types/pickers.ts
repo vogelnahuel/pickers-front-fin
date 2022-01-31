@@ -57,18 +57,18 @@ export type ExpandableFileLoadParamType ={
 
 
 
-export type DetailPickersStatesTypesApiResponseType = {
-  data: DetailPickersStatesTypesApiResponseContentType;
+export type DetailPickersProvincesApiResponseType = {
+  data: DetailPickersProvincesApiResponseContentType;
   status: number;
 };
 
-export type DetailPickersStatesTypesApiResponseContentType = {
+export type DetailPickersProvincesApiResponseContentType = {
   result:{
-    items:  StatesTypes[];
+    items:  ProvincesTypes[];
   }
 
 };
-export type StatesTypes = {
+export type ProvincesTypes = {
   name: string;
   tag: string;
 };

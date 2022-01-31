@@ -23,11 +23,10 @@
   "placeholder.account.bankName": "Ingresá el nombre del banco",
 
   "label.accountingData.sapInterlocutor": "Código de proveedor SAP",
-  "placeholder.accountingData.sapInterlocutor": "-",
   "label.accountingData.street": "Calle *",
   "placeholder.accountingData.street": "Ingresá una calle",
   "label.accountingData.streetNumber": "Número *",
-  "placeholder.accountingData.streetNumber": "Ingresá una número",
+  "placeholder.accountingData.streetNumber": "Ingresá un número",
   "label.accountingData.postalCode": "CP *",
   "placeholder.accountingData.postalCode": "Ingresá un codigo postal",
   "label.accountingData.locality": "Localidad *",

@@ -36,7 +36,7 @@ import { actions as detailPickerActions } from "../reducers/detailPicker";
 import { actions as notificationActions } from "../reducers/notification";
 import {
   CsvResponseType,
-  DetailPickersStatesTypesApiResponseType,
+  DetailPickersProvincesApiResponseType,
   PickerResponseType,
   PickersResponseType,
 } from "./types/pickers";
@@ -63,7 +63,7 @@ const sagas = [
   takeLatest(detailPickerActions.getPickerFileSaveRequest.type, putFileUpload),
   takeLatest(detailPickerActions.getPickerFileDeleteRequest.type, fileDelete),
 
-  takeLatest(detailPickerActions.getStatesTypesRequest.type, getStatesTypes),
+  takeLatest(detailPickerActions.getProvincesRequest.type, getProvinces),
 ];
 
 export default sagas;
@@ -404,18 +404,18 @@ function* putFileUpload({
   }
 }
 
-function* getStatesTypes(): Generator<
+function* getProvinces(): Generator<
   | PutEffect<{ type: string }>
-  | CallEffect<AxiosResponse<DetailPickersStatesTypesApiResponseType>>,
+  | CallEffect<AxiosResponse<DetailPickersProvincesApiResponseType>>,
   void,
-  DetailPickersStatesTypesApiResponseType
+  DetailPickersProvincesApiResponseType
 > {
-  const response = yield call(pickersMiddleware.getStates);
+  const response = yield call(pickersMiddleware.getProvinces);
   if (response.status !== 200) {
-    yield put(detailPickerActions.getStatesTypesError());
+    yield put(detailPickerActions.getProvincesError());
   } else {
     const { result } = response.data;
  
-    yield put(detailPickerActions.getStatesTypesSuccess(result.items));
+    yield put(detailPickerActions.getProvincesSuccess(result.items));
   }
 }

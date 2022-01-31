@@ -1,7 +1,7 @@
 import { AxiosResponse } from "axios";
 import * as API from "middleware/api";
 import { PickerFileRequestType } from "pages/pickers/detailPicker/types";
-import { DetailPickersStatesTypesApiResponseType, ExpandableFileLoadParamType } from "sagas/types/pickers";
+import { DetailPickersProvincesApiResponseType, ExpandableFileLoadParamType } from "sagas/types/pickers";
 import {
   PickerType,
   EditPickerResponseType,
@@ -70,5 +70,5 @@ export const deleteFile = (
 ): Promise<AxiosResponse<{}>> =>
   API.remove(`/ms-admin-rest/api/v1.0/pickers/${id}/files/${tag}`);
 
-  export const getStates = (): Promise<AxiosResponse<DetailPickersStatesTypesApiResponseType>> =>
+  export const getProvinces = (): Promise<AxiosResponse<DetailPickersProvincesApiResponseType>> =>
   API.get(`/ms-admin-rest/api/v1.0/provinces`);
