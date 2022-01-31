@@ -8,6 +8,7 @@ export type DetailPreliquidationContainerPropsType = {
   isFetching: boolean;
   actualPage: PagesPreliquidationTypes;
   preliquidation: DetailPreliquidationType;
+  toggleModalVisibility: (isOpen: boolean) => void;
   showNotification: (notification: NotificationStateType) => void;
   setActualPage: (page: PagesPreliquidationTypes) => void;
   getDetailPreliquidation: (id:number) => void;
@@ -19,7 +20,8 @@ export type DetailPreliquidationPropsType = {
   preliquidation: DetailPreliquidationType;
   initialValues: DetailPreliquidationForm;
   changePage: (page: PagesPreliquidationTypes) => void;
-  handleClickBack:()=>void;
+  handleClickBack: () => void;
+  toggleModalVisibility: (isOpen: boolean) => void;
 };
 
 export type DetailPreliquidationForm = {

@@ -75,10 +75,13 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
     dispatch(actions.setActualPage(page));
   },
   getDetailPreliquidation: (id: number) => {
-    dispatch(actions.getDetailPreliquidationsRequest(id));
+    dispatch(actions.getDetailPreliquidationsRequest(id))
   },
   setDirty: (dirty: boolean) => {
     dispatch(actions.setDirty(dirty));
+  },
+  toggleModalVisibility: (isOpen: boolean) => {
+    dispatch(actions.toggleModalVisibility(isOpen));
   }
 });
 

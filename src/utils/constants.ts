@@ -262,3 +262,5 @@ export const PICKERS_FILE_EXT = [
   "image/jpg",
   "image/jpeg",
 ];
+
+export const FIRST_ANIMATION_TIME = 1500;

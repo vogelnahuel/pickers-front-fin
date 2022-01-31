@@ -4,6 +4,7 @@ import NotificationModal from "component/modal/NotificationModal";
 
 import React from "react";
 import InvoiceContainer from "./invoice/InvoiceContainer";
+import EditPreliquidationAmountContainer from "./editPreliquidationAmount/EditPreliquidationAmountContainer";
 import "./wrapperPreliquidation.scss";
 
 import DetailPreliquidationContainer from "./preliquidation/DetailPreliquidationContainer";
@@ -23,7 +24,7 @@ export const WrapperPreliquidation: React.FC<WrapperPreliquidationPropsType> = (
       <div className="mainContainerFlex">
         <Nav />
         <div className="pending-container">
-          
+
 
           <NotificationModal />
           {actualPage === "preliquidation" ? (
@@ -34,6 +35,7 @@ export const WrapperPreliquidation: React.FC<WrapperPreliquidationPropsType> = (
         </div>
 
       </div>
+      <EditPreliquidationAmountContainer />
       {isFetching === true ? <div className="modalLoading"></div> : <></>}
     </div>
   );

@@ -129,7 +129,7 @@ export const Invoice: React.FC<detailPreliquidationInvoicePropsType> = ({
                           <label
                             className={
                               props.disabled
-                                ? "label-Admin-Pickers readonly"
+                                ? "label-Admin-Pickers disabled"
                                 : props.meta.error && props.meta.touched
                                 ? "label-Admin-Pickers color-red"
                                 : "label-Admin-Pickers"
