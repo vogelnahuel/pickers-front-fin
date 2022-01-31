@@ -58,20 +58,22 @@ const Select = ({
       </div>
       {open && (
         <div className="filter-admin-options">
-          {options.map((option, key) => (
-            <div
-              className="filter-admin-content-option"
-              key={key}
-              id={key}
-              onClick={(e) => {
-                onChange(input.name, option);
-              }}
-            >
-              <label className="filter-admin-option-paragraph">
-                {option.label}
-              </label>
-            </div>
-          ))}
+          <div className="filter-admin-scroll">
+            {options.map((option, key) => (
+              <div
+                className="filter-admin-content-option"
+                key={key}
+                id={key}
+                onClick={(e) => {
+                  onChange(input.name, option);
+                }}
+              >
+                <label className="filter-admin-option-paragraph">
+                  {option.label}
+                </label>
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </div>

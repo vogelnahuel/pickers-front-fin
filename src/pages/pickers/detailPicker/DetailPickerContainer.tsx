@@ -39,6 +39,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
   useEffect(() => {
     props.resetWrongFiles();
     props.getPendingUserPicker(params.id);
+    props.getProvinces();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -56,64 +57,65 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
 
   const initialValues = useMemo(() => {
     return props.pendingUserAdminPicker.id
-    ? {
-        ...props.pendingUserAdminPicker,
-        personalData: {
-          ...props.pendingUserAdminPicker?.personalData,
-          dateOfBirth:
-            props.pendingUserAdminPicker?.personalData?.dateOfBirth &&
-            props.pendingUserAdminPicker?.personalData?.dateOfBirth.includes(
-              "-"
-            )
-              ? moment(
-                  props.pendingUserAdminPicker?.personalData?.dateOfBirth,
-                  DATE_FORMATS.shortISODate
-                ).format(DATE_FORMATS.shortDate)
-              : props.pendingUserAdminPicker?.personalData?.dateOfBirth,
-        },
-        accountingData: {
-          ...props.pendingUserAdminPicker?.accountingData,
-          fiscalNumber:
-            props.pendingUserAdminPicker?.accountingData?.fiscalNumber?.includes(
-              "-"
-            )
-              ? props.pendingUserAdminPicker?.accountingData?.fiscalNumber
-              : props.pendingUserAdminPicker?.accountingData?.fiscalNumber?.slice(
-                  0,
-                  2
-                ) +
-                " - " +
-                props.pendingUserAdminPicker?.accountingData?.fiscalNumber?.slice(
-                  2,
-                  10
-                ) +
-                " - " +
-                props.pendingUserAdminPicker?.accountingData?.fiscalNumber?.slice(
-                  10,
-                  11
-                ),
-        },
-        vehicle: {
-          ...props.pendingUserAdminPicker.vehicle,
+      ? {
+          ...props.pendingUserAdminPicker,
+          personalData: {
+            ...props.pendingUserAdminPicker?.personalData,
+            dateOfBirth:
+              props.pendingUserAdminPicker?.personalData?.dateOfBirth &&
+              props.pendingUserAdminPicker?.personalData?.dateOfBirth.includes(
+                "-"
+              )
+                ? moment(
+                    props.pendingUserAdminPicker?.personalData?.dateOfBirth,
+                    DATE_FORMATS.shortISODate
+                  ).format(DATE_FORMATS.shortDate)
+                : props.pendingUserAdminPicker?.personalData?.dateOfBirth,
+          },
+          accountingData: {
+            ...props.pendingUserAdminPicker?.accountingData,
+            sapInterlocutor: props.pendingUserAdminPicker?.accountingData?.sapInterlocutor || "-",
+            fiscalNumber:
+              props.pendingUserAdminPicker?.accountingData?.fiscalNumber?.includes(
+                "-"
+              )
+                ? props.pendingUserAdminPicker?.accountingData?.fiscalNumber
+                : props.pendingUserAdminPicker?.accountingData?.fiscalNumber?.slice(
+                    0,
+                    2
+                  ) +
+                  " - " +
+                  props.pendingUserAdminPicker?.accountingData?.fiscalNumber?.slice(
+                    2,
+                    10
+                  ) +
+                  " - " +
+                  props.pendingUserAdminPicker?.accountingData?.fiscalNumber?.slice(
+                    10,
+                    11
+                  ),
+          },
+          vehicle: {
+            ...props.pendingUserAdminPicker.vehicle,
 
-          expirationDatePolicyVehicle: formatDate(
-            props.pendingUserAdminPicker?.vehicle
-              ?.expirationDatePolicyVehicle || ""
-          ),
-          expirationDateIdentificationVehicle: formatDate(
-            props.pendingUserAdminPicker?.vehicle
-              ?.expirationDateIdentificationVehicle || ""
-          ),
-          expirationDateDriverLicense: formatDate(
-            props.pendingUserAdminPicker?.vehicle
-              ?.expirationDateDriverLicense || ""
-          ),
-        },
-      }
-    : props.pendingUserAdminPicker
+            expirationDatePolicyVehicle: formatDate(
+              props.pendingUserAdminPicker?.vehicle
+                ?.expirationDatePolicyVehicle || ""
+            ),
+            expirationDateIdentificationVehicle: formatDate(
+              props.pendingUserAdminPicker?.vehicle
+                ?.expirationDateIdentificationVehicle || ""
+            ),
+            expirationDateDriverLicense: formatDate(
+              props.pendingUserAdminPicker?.vehicle
+                ?.expirationDateDriverLicense || ""
+            ),
+          },
+        }
+      : props.pendingUserAdminPicker;
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.pendingUserAdminPicker.id])
+  }, [props.pendingUserAdminPicker.id]);
 
   const changePage = (page: string, isDirty: boolean) => {
     let onClose = () => {
@@ -161,7 +163,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
           behavior: "smooth",
         }),
     });
-  }
+  };
 
   const showWrongFilesNotification = (onClose: Function) =>
     props.showNotification({
@@ -218,6 +220,42 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
               VALIDATION_REGEX.regTelefono,
               i18next.t("global:error.input.invalidFormat")
             ),
+        }),
+      }),
+      accountingData: yup.object({
+        address: yup.object({
+          street: yup
+            .string()
+            .required(i18next.t("global:error.input.required"))
+            .matches(
+              VALIDATION_REGEX.regStreet,
+              i18next.t("global:error.input.formatAddress")
+            ),
+          streetNumber: yup
+            .string()
+            .matches(
+              VALIDATION_REGEX.regStreet,
+              i18next.t("global:error.input.formatAddress")
+            )
+            .required(i18next.t("global:error.input.required")),
+          postalCode: yup
+            .string()
+            .min(4, i18next.t("global:error.input.cp"))
+            .matches(
+              VALIDATION_REGEX.regNumber,
+              i18next.t("global:error.input.lettersOrSpecialCharacters")
+            )
+            .required(i18next.t("global:error.input.required")),
+          locality: yup
+            .string()
+            .matches(
+              VALIDATION_REGEX.regStreet,
+              i18next.t("global:error.input.formatAddress")
+            )
+            .required(i18next.t("global:error.input.required")),
+          province: yup
+            .object()
+            .required(i18next.t("global:error.input.required")),
         }),
       }),
       vehicle:
@@ -295,11 +333,15 @@ const mapStateToProps = (state: RootState) => ({
   nameDisplay: detailPickerSelector(state).nameDisplay,
   wrongFiles: hasPickerWrongFilesSelector(state),
   loadedFiles: hasPickerAllFilesLoadedSelector(state),
+  provinces: detailPickerSelector(state).provinces,
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
   getPendingUserPicker: (params: number) => {
     dispatch(pendingUserAdminPickerActions.getPendingUserPickerRequest(params));
+  },
+  getProvinces: () => {
+    dispatch(pendingUserAdminPickerActions.getProvincesRequest());
   },
   getPendingUserPickerExport: (params: ParamsMiddlewareType) => {
     dispatch(

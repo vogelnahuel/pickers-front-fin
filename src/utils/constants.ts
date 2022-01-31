@@ -72,6 +72,7 @@ export const VALIDATION_REGEX = {
   regLetNum: /^(?=.{1,})(?=.*[a-zA-ZdàáèéìíòóùúñÀÁÈÉÌÍÒÓÙÚÑ])(?=.*[0-9]).*$/,
   regDNI: /^[0-9]*$/,
   regNumber: /^[0-9]*$/,
+  regStreet: /^[0-9A-Za-zàáäãâåèéêëìíîïòóôöõøùúüÿýñçšžÀÁÄÃÅÈÉÊËÌÍÎÏÒÓÔÖÕØÙÚÜŸÝŽÑŠßÇðŒÆ ,.'-/º#]*$/,
 };
 
 export const FILTER_TRANSACTION_OPTIONS = [
@@ -167,6 +168,7 @@ export const FILTER_PICKERS_OPTIONS = [
     value: "motorcycle",
   },
 ];
+
 
 export const TRANSACTION_STATE_ID_LABEL: any = {
   1: "filterTransaction:label.select.notAssigned",

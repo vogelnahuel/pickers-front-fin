@@ -252,7 +252,7 @@ const ExpandableFile: React.FC<ExpandableFilePropsType> = ({
           <div className="container-detailPicker-row ">
             {files?.content.map((element: DataContentType) => (
               <Fragment key={element.tag}>
-                <div className="container-detailPicker-col-sm-6 file-container">
+                <div className="container-detailPicker-col-sm-8 file-container">
                   <p
                     className={
                       element.isUpload && !hasError(element.tag)
