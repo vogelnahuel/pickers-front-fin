@@ -1,7 +1,7 @@
 @import "@pickit/pickit-grid-system";
 
 .container-detailPicker {
-  @include container(18, 25px);
+  @include container(24, 25px);
 }
 
 .container-detailPicker-row {
@@ -153,6 +153,14 @@
   width: 100%;
 }
 
+.divider{
+  background-color: #E5E5E5;
+  height: 1px;
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 40px;
+}
+
 .subTitle-pending-data {
   margin-top: 2rem;
   font-family: "Mulish";
@@ -161,6 +169,16 @@
   font-size: 24px;
   line-height: 30px;
   color: #2d2d2d;
+}
+.subTitle-fiscal-data {
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+  letter-spacing: 0.01em;
+  color: #4D4D4D;
+  margin-left: 0px;
 }
 
 .separacion {

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import { connect } from "react-redux";
 import i18next from "i18next";
 import moment from "moment";
@@ -33,12 +33,14 @@ import { NotificationStateType } from "reducers/types/notification";
 const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
   props
 ): JSX.Element => {
+  const prevValues = useRef<PickerType | null>(null);
   const params: { id?: string } = useParams();
   const history = useHistory();
 
   useEffect(() => {
     props.resetWrongFiles();
     props.getPendingUserPicker(params.id);
+    props.getProvinces();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -55,65 +57,72 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
   };
 
   const initialValues = useMemo(() => {
-    return props.pendingUserAdminPicker.id
-    ? {
-        ...props.pendingUserAdminPicker,
-        personalData: {
-          ...props.pendingUserAdminPicker?.personalData,
-          dateOfBirth:
-            props.pendingUserAdminPicker?.personalData?.dateOfBirth &&
-            props.pendingUserAdminPicker?.personalData?.dateOfBirth.includes(
-              "-"
-            )
-              ? moment(
-                  props.pendingUserAdminPicker?.personalData?.dateOfBirth,
-                  DATE_FORMATS.shortISODate
-                ).format(DATE_FORMATS.shortDate)
-              : props.pendingUserAdminPicker?.personalData?.dateOfBirth,
-        },
-        accountingData: {
-          ...props.pendingUserAdminPicker?.accountingData,
-          fiscalNumber:
-            props.pendingUserAdminPicker?.accountingData?.fiscalNumber?.includes(
-              "-"
-            )
-              ? props.pendingUserAdminPicker?.accountingData?.fiscalNumber
-              : props.pendingUserAdminPicker?.accountingData?.fiscalNumber?.slice(
-                  0,
-                  2
-                ) +
-                " - " +
-                props.pendingUserAdminPicker?.accountingData?.fiscalNumber?.slice(
-                  2,
-                  10
-                ) +
-                " - " +
-                props.pendingUserAdminPicker?.accountingData?.fiscalNumber?.slice(
-                  10,
-                  11
-                ),
-        },
-        vehicle: {
-          ...props.pendingUserAdminPicker.vehicle,
+    if (props.bankNameRequested)
+      return prevValues.current || props.pendingUserAdminPicker;
 
-          expirationDatePolicyVehicle: formatDate(
-            props.pendingUserAdminPicker?.vehicle
-              ?.expirationDatePolicyVehicle || ""
-          ),
-          expirationDateIdentificationVehicle: formatDate(
-            props.pendingUserAdminPicker?.vehicle
-              ?.expirationDateIdentificationVehicle || ""
-          ),
-          expirationDateDriverLicense: formatDate(
-            props.pendingUserAdminPicker?.vehicle
-              ?.expirationDateDriverLicense || ""
-          ),
-        },
-      }
-    : props.pendingUserAdminPicker
+    prevValues.current = props.pendingUserAdminPicker.id
+      ? {
+          ...props.pendingUserAdminPicker,
+          personalData: {
+            ...props.pendingUserAdminPicker?.personalData,
+            dateOfBirth:
+              props.pendingUserAdminPicker?.personalData?.dateOfBirth &&
+              props.pendingUserAdminPicker?.personalData?.dateOfBirth.includes(
+                "-"
+              )
+                ? moment(
+                    props.pendingUserAdminPicker?.personalData?.dateOfBirth,
+                    DATE_FORMATS.shortISODate
+                  ).format(DATE_FORMATS.shortDate)
+                : props.pendingUserAdminPicker?.personalData?.dateOfBirth,
+          },
+          accountingData: {
+            ...props.pendingUserAdminPicker?.accountingData,
+            sapInterlocutor:
+              props.pendingUserAdminPicker?.accountingData?.sapInterlocutor ||
+              "-",
+            fiscalNumber:
+              props.pendingUserAdminPicker?.accountingData?.fiscalNumber?.includes(
+                "-"
+              )
+                ? props.pendingUserAdminPicker?.accountingData?.fiscalNumber
+                : props.pendingUserAdminPicker?.accountingData?.fiscalNumber?.slice(
+                    0,
+                    2
+                  ) +
+                  " - " +
+                  props.pendingUserAdminPicker?.accountingData?.fiscalNumber?.slice(
+                    2,
+                    10
+                  ) +
+                  " - " +
+                  props.pendingUserAdminPicker?.accountingData?.fiscalNumber?.slice(
+                    10,
+                    11
+                  ),
+          },
+          vehicle: {
+            ...props.pendingUserAdminPicker.vehicle,
 
+            expirationDatePolicyVehicle: formatDate(
+              props.pendingUserAdminPicker?.vehicle
+                ?.expirationDatePolicyVehicle || ""
+            ),
+            expirationDateIdentificationVehicle: formatDate(
+              props.pendingUserAdminPicker?.vehicle
+                ?.expirationDateIdentificationVehicle || ""
+            ),
+            expirationDateDriverLicense: formatDate(
+              props.pendingUserAdminPicker?.vehicle
+                ?.expirationDateDriverLicense || ""
+            ),
+          },
+        }
+      : props.pendingUserAdminPicker;
+
+    return prevValues.current;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.pendingUserAdminPicker.id])
+  }, [props.pendingUserAdminPicker.id, props.bankNameRequested]);
 
   const changePage = (page: string, isDirty: boolean) => {
     let onClose = () => {
@@ -161,7 +170,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
           behavior: "smooth",
         }),
     });
-  }
+  };
 
   const showWrongFilesNotification = (onClose: Function) =>
     props.showNotification({
@@ -218,6 +227,55 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
               VALIDATION_REGEX.regTelefono,
               i18next.t("global:error.input.invalidFormat")
             ),
+        }),
+      }),
+      accountingData: yup.object({
+        bankIdentifier: yup
+          .string()
+          .test(
+            "invalidBankIdentifier",
+            i18next.t("detailPicker:error.input.invalidBank"),
+            () => !props.invalidBank
+          )
+          .required(i18next.t("global:error.input.required"))
+          .min(22, i18next.t("detailPicker:error.input.invalidBank"))
+          .matches(
+            VALIDATION_REGEX.regNumber,
+            i18next.t("global:error.input.lettersOrSpecialCharacters")
+          ),
+        address: yup.object({
+          street: yup
+            .string()
+            .required(i18next.t("global:error.input.required"))
+            .matches(
+              VALIDATION_REGEX.regStreet,
+              i18next.t("global:error.input.formatAddress")
+            ),
+          streetNumber: yup
+            .string()
+            .matches(
+              VALIDATION_REGEX.regStreet,
+              i18next.t("global:error.input.formatAddress")
+            )
+            .required(i18next.t("global:error.input.required")),
+          postalCode: yup
+            .string()
+            .min(4, i18next.t("global:error.input.cp"))
+            .matches(
+              VALIDATION_REGEX.regNumber,
+              i18next.t("global:error.input.lettersOrSpecialCharacters")
+            )
+            .required(i18next.t("global:error.input.required")),
+          locality: yup
+            .string()
+            .matches(
+              VALIDATION_REGEX.regStreet,
+              i18next.t("global:error.input.formatAddress")
+            )
+            .required(i18next.t("global:error.input.required")),
+          province: yup
+            .object()
+            .required(i18next.t("global:error.input.required")),
         }),
       }),
       vehicle:
@@ -284,6 +342,7 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
       aproveSubmit={aproveSubmit}
       active={active}
       formatDate={formatDate}
+      getBankName={props.getBankName}
     />
   );
 };
@@ -291,15 +350,24 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
 const mapStateToProps = (state: RootState) => ({
   pendingUserAdminPicker: detailPickerSelector(state).pendingUserAdminPicker,
   isFetching: detailPickerSelector(state).fetching,
+  invalidBank: detailPickerSelector(state).invalidBank,
+  bankNameRequested: detailPickerSelector(state).bankNameRequested,
   actualPage: pickersSelector(state).actualPage,
   nameDisplay: detailPickerSelector(state).nameDisplay,
   wrongFiles: hasPickerWrongFilesSelector(state),
   loadedFiles: hasPickerAllFilesLoadedSelector(state),
+  provinces: detailPickerSelector(state).provinces,
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
+  getBankName: (cbuPrefix: string) => {
+    dispatch(pendingUserAdminPickerActions.getBankNameFetch({ cbuPrefix }));
+  },
   getPendingUserPicker: (params: number) => {
     dispatch(pendingUserAdminPickerActions.getPendingUserPickerRequest(params));
+  },
+  getProvinces: () => {
+    dispatch(pendingUserAdminPickerActions.getProvincesRequest());
   },
   getPendingUserPickerExport: (params: ParamsMiddlewareType) => {
     dispatch(

@@ -1,7 +1,11 @@
 import { AxiosResponse } from "axios";
 import * as API from "middleware/api";
 import { PickerFileRequestType } from "pages/pickers/detailPicker/types";
-import { ExpandableFileLoadParamType } from "sagas/types/pickers";
+import {
+  BankResponseType,
+  DetailPickersProvincesApiResponseType,
+  ExpandableFileLoadParamType,
+} from "sagas/types/pickers";
 import {
   PickerType,
   EditPickerResponseType,
@@ -15,7 +19,7 @@ export const getPickers = (
   params: ParamsMiddlewareType
 ): Promise<AxiosResponse<PickersAxiosResponseType>> =>
   API.get("/ms-admin-rest/api/v1.0/pickers", params);
-  
+
 //TODO: unificar los export del csv
 export const getPickersExport = (
   params: ParamsMiddlewareType
@@ -69,3 +73,12 @@ export const deleteFile = (
   tag: string
 ): Promise<AxiosResponse<{}>> =>
   API.remove(`/ms-admin-rest/api/v1.0/pickers/${id}/files/${tag}`);
+
+export const getBankName = (
+  cbuPrefix: string
+): Promise<AxiosResponse<API.ApiResponse<BankResponseType>>> => {
+  return API.get(`/ms-admin-rest/api/v1.0/banks/${cbuPrefix}`);
+};
+export const getProvinces = (): Promise<
+  AxiosResponse<DetailPickersProvincesApiResponseType>
+> => API.get(`/ms-admin-rest/api/v1.0/provinces`);

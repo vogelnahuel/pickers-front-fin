@@ -79,9 +79,13 @@ export type VehicleType = {
   expirationDatePolicyVehicle: string | null;
 };
 export type AcountDataType = {
+  address: string;
   bankIdentifier: string;
+  companyName: string;
   bankName: string;
   fiscalNumber: string;
+  sapInterlocutor:string;
+  id:number;
 };
 export type DataContentType = {
   tag: keyof DetailPickerTagFileType;
@@ -126,7 +130,7 @@ export type PickerContainerTypes = {
   setActualPage: Function;
   getPendingUsersExportRequest: Function;
   getMorePendingUser: Function;
-  isDetail:boolean;
+  isDetail: boolean;
 };
 
 export type PickerTypes = {

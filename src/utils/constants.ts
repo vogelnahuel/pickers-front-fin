@@ -72,6 +72,7 @@ export const VALIDATION_REGEX = {
   regLetNum: /^(?=.{1,})(?=.*[a-zA-ZdàáèéìíòóùúñÀÁÈÉÌÍÒÓÙÚÑ])(?=.*[0-9]).*$/,
   regDNI: /^[0-9]*$/,
   regNumber: /^[0-9]*$/,
+  regStreet: /^[0-9A-Za-zàáäãâåèéêëìíîïòóôöõøùúüÿýñçšžÀÁÄÃÅÈÉÊËÌÍÎÏÒÓÔÖÕØÙÚÜŸÝŽÑŠßÇðŒÆ ,.'-/º#]*$/,
 };
 
 export const FILTER_TRANSACTION_OPTIONS = [
@@ -168,6 +169,7 @@ export const FILTER_PICKERS_OPTIONS = [
   },
 ];
 
+
 export const TRANSACTION_STATE_ID_LABEL: any = {
   1: "filterTransaction:label.select.notAssigned",
   2: "filterTransaction:label.select.assigned",
@@ -182,6 +184,8 @@ export const TRANSACTION_STATE_ID_LABEL: any = {
   11: "filterTransaction:label.select.returnedToSender",
   12: "filterTransaction:label.select.lost",
 };
+
+
 
 export const TRANSACTION_STATE_TAG_LABEL: { [k in TransactionStatusType]: string } = {
   PENDING_ASSIGNMENT: "filterTransaction:label.select.notAssigned",
