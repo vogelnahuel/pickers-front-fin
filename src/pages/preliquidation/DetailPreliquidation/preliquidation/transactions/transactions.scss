@@ -7,6 +7,7 @@
 
 .container-detail-preliquidation-table-col{
   padding-left: 0;
+  height: calc(100% - 85px);
 }
 
 .detail-preliquidation-table-head {
@@ -16,7 +17,7 @@
   letter-spacing: 0.0125em;
   color: #4d4d4d;
   text-align: start;
-  padding-bottom: 4px;
+  padding-bottom: 8px;
 }
 .detail-preliquidation-table-body {
   font-weight: normal;
@@ -27,10 +28,14 @@
   padding-top: 12px;
 }
 
+.detail-preliquidation-table-content{
+  //height: 265px;
+  height: 100%;
+}
+
 .overflow-scroll {
-  max-height: 316px;
   overflow-y: auto;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 }
 
 .overflow-scroll::-webkit-scrollbar {

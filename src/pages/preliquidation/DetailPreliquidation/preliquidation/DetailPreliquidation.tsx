@@ -137,7 +137,7 @@ export const DetailPreliquidation = ({
         <div className="container-detail-preliquidation-card-row">
           <div className="container-detail-preliquidation-card-col-sm-6 container-detail-preliquidation-card-col-xl-4">
             <h2>{i18next.t("detailPreliquidation:label.title.history")}</h2>
-            <div className="display-filter-preliquidation relative">
+            <div className="display-card-preliquidation relative">
               <div className="preliquidation-history-container">
                 <StateHistory
                   history={preliquidation.histories.map(
@@ -175,7 +175,7 @@ export const DetailPreliquidation = ({
                 </p>
               </button>
             </div>
-            <div className="display-filter-preliquidation">
+            <div className="display-card-preliquidation">
               <Transactions
                 total={preliquidation.total}
                 items={preliquidation.transactions.items}

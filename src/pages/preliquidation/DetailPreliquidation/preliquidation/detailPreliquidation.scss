@@ -27,7 +27,7 @@
 }
 
 
-.display-filter-preliquidation {
+.display-card-preliquidation {
   background: #fff;
   border: 1px solid #e5e5e5;
   box-sizing: border-box;
@@ -37,6 +37,9 @@
   padding-left: 30px;
   padding-bottom: 25px;
   padding-right: 8px;
+  //height: 411px;
+  height: calc(100% - 45px);
+  max-height: 411px;
 }
 .container-table-amount-preliquidation {
   display: flex;
@@ -84,9 +87,9 @@
 }
 
 .preliquidation-history-container{
-  max-height: 400px;
   padding: 6px 12px;
   overflow-y: auto;
+  height: 100%;
   
   &::-webkit-scrollbar {
     width: 7px;
