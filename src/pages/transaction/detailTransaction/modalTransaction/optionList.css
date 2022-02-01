@@ -19,6 +19,7 @@
   line-height: 23px;
   text-align: center;
   color: #101820;
+  cursor: pointer;
 }
 .modal-transaction-button-irApicker-disabled {
   height: 50px;
