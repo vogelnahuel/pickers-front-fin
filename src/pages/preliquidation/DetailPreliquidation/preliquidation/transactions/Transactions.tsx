@@ -23,9 +23,9 @@ export const Transactions = ({ total, quantity, items }: TransactionsProps) => {
             </div>
           ))}
         </div>
-        <div className="container-detail-preliquidation-table-row overflow-scroll table-detail-preliquidation">
+        <div className="detail-preliquidation-table-content overflow-scroll">
           {items.map((item, index) => (
-            <Fragment key={item.transactionCode || index}>
+            <div className="container-detail-preliquidation-table-row" key={item.transactionCode || index}>
               <div className="container-detail-preliquidation-table-col-sm-1 detail-preliquidation-table-body">
                 <p>{item.transactionCode || "-"}</p>
               </div>
@@ -47,7 +47,7 @@ export const Transactions = ({ total, quantity, items }: TransactionsProps) => {
                   })}
                 >{`$ ${item.amount}`}</p>
               </div>
-            </Fragment>
+            </div>
           ))}
         </div>
         <div className="container-detail-preliquidation-table-row">
