@@ -16,7 +16,7 @@ export function TabControler<T>({
   return (
     <div className="flex-tab background-tab">
       <div
-        id="tab-tabControler"
+        id={tabs ? `tab-${tabs[0].id}` : ""}
         onClick={() => changePage(tabs && tabs[0].id)}
         className={classNames({
           "cursor-pointer": clickable,
@@ -45,6 +45,7 @@ export function TabControler<T>({
       </div>
 
       <div
+        id={tabs ? `tab-${tabs[1].id}` : ""}
         onClick={() => changePage(tabs && tabs[1].id)}
         className={classNames("border-tag", {
           "cursor-pointer": clickable,
