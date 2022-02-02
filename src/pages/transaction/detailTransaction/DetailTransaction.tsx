@@ -53,6 +53,9 @@ export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
               {i18next.t("transactions:label.transactions.transactionCode")}
             </h2>
             <p>
+              {i18next.t("transactions:label.transactions.orderNumber")}
+            </p>
+            <p>
               {i18next.t("detailTransaction:title.detailTransaction.state")}
             </p>
             <p className="modal-transaction-date">
@@ -70,6 +73,7 @@ export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
           </div>
           <div className="modal-transaction-subtitle">
             <h2>{detailTransaction.transaction.transactionCode}</h2>
+            <p>{detailTransaction.transaction.orderNumber}</p>
             <p>
               {i18next.t(
                 TRANSACTION_STATE_ID_LABEL[
