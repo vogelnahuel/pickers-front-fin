@@ -1,16 +1,16 @@
 @import "@pickit/pickit-grid-system";
 
 .container-transaction-table {
-  @include container(24, 25px);
+  @include container(25, 25px);
 }
 
-@mixin styleParagraph($font-weight, $color) {
+@mixin style-paragraph($font-weight, $color) {
   font-family: "Mulish";
   font-style: normal;
   font-weight: $font-weight;
   color: $color;
 }
-@mixin fontSize($font-size, $line-height) {
+@mixin font-size($font-size, $line-height) {
   font-size: $font-size;
   line-height: $line-height;
 }
@@ -31,7 +31,7 @@ $backgroundWhite: white;
   align-items: center;
 }
 
-.titleTableTransactions {
+.title-table-transactions {
   overflow: hidden;
   @extend %tableTopRadius;
   background: $backgroundTableHead;
@@ -42,8 +42,8 @@ $backgroundWhite: white;
   @extend %centerTable;
   div {
     border-bottom: $styleBorder;
-    @include styleParagraph(bold, #4d4d4d);
-    @include fontSize(18px, 23px);
+    @include style-paragraph(bold, #4d4d4d);
+    @include font-size(18px, 23px);
     background: $backgroundWhite;
     height: 85px;
   }
@@ -56,13 +56,13 @@ $backgroundWhite: white;
   border-right: $styleBorder;
   div {
     border-bottom: $styleBorder;
-    @include styleParagraph(normal, #4f4f4f);
-    @include fontSize(18px, 23px);
+    @include style-paragraph(normal, #4f4f4f);
+    @include font-size(18px, 23px);
   }
   .admin-table-alerta {
     display: inline-block;
-    @include styleParagraph(normal, #ff1515);
-    @include fontSize(13px, 16px);
+    @include style-paragraph(normal, #ff1515);
+    @include font-size(13px, 16px);
     margin-left: 1vw;
     letter-spacing: 0.004em;
     background: rgba(255, 21, 21, 0.1);
@@ -77,8 +77,8 @@ $backgroundWhite: white;
   }
 
   &:hover {
-    @include styleParagraph(normal, #4f4f4f);
-    @include fontSize(18px, 23px);
+    @include style-paragraph(normal, #4f4f4f);
+    @include font-size(18px, 23px);
     border-bottom: $styleBorder;
     background: #f2f2f2;
     mix-blend-mode: multiply;

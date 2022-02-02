@@ -17,30 +17,21 @@ export const TableTransaction = ({
 }: TableTransactionPropsTypes) => {
   return (
     <div className="container-transaction-table-fluid">
-      <div className="container-transaction-table-row titleTableTransactions">
-        <div className="container-transaction-table-col-sm-1"></div>
+      <div className="container-transaction-table-row title-table-transactions">
+        <div className="container-transaction-table-col-sm-2"></div>
 
         {transactionTableTitles.map((titulo: string) => (
           <Fragment key={titulo}>
             {titulo === "transactionTable:label.table.slaExpiration" ? (
-              <div
-                className="container-transaction-table-col-sm-6 flex-align-center"
-                key={titulo}
-              >
+              <div className="container-transaction-table-col-sm-6 flex-align-center">
                 {i18next.t(titulo)}
               </div>
             ) : titulo === "transactionTable:label.table.status" ? (
-              <div
-                className="container-transaction-table-col-sm-5 flex-align-center"
-                key={titulo}
-              >
+              <div className="container-transaction-table-col-sm-5 flex-align-center">
                 {i18next.t(titulo)}
               </div>
             ) : (
-              <div
-                className="container-transaction-table-col-sm-4 flex-align-center"
-                key={titulo}
-              >
+              <div className="container-transaction-table-col-sm-4 flex-align-center">
                 {i18next.t(titulo)}
               </div>
             )}
@@ -53,10 +44,10 @@ export const TableTransaction = ({
           <div
             id={`${data.transaction.id}`}
             className="container-transaction-table-row table-content"
-            key={`${data.transaction.id}`}
+            key={data.transaction.id}
             onClick={() => getDetailTransaction(data.transaction.id)}
           >
-            <div className="container-transaction-table-col-sm-1 flex-align-center">
+            <div className="container-transaction-table-col-sm-2 flex-align-center">
               <img
                 className="img-transaction"
                 src={TreePoints}
