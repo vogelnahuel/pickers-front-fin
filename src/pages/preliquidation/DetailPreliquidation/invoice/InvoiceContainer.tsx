@@ -256,6 +256,7 @@ const mapStateToProps = (state: RootState) => ({
   detailPreliquidations: preliquidationSelector(state).detailPreliquidations,
   invoiceFileStatus: preliquidationSelector(state).invoiceFileStatus,
   invoiceTypes: preliquidationSelector(state).invoiceTypes,
+  approvingInvoice: preliquidationSelector(state).approvingInvoice
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
@@ -269,7 +270,7 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
     dispatch(preliActions.getInvoiceDetailSaveRequest(params));
   },
   getInvoiceDetailApprove: (params: detailPreliquidationDatePicker) => {
-    dispatch(preliActions.getInvoiceDetailApproveRequest(params));
+    dispatch(preliActions.getInvoiceDetailApproveFetch(params));
   },
   getInvoiceDetailDelete: (params: RejectInvoiceMiddlewareType) => {
     dispatch(preliActions.getInvoiceDetailDeleteRequest(params));

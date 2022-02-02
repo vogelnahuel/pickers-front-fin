@@ -8,9 +8,10 @@ import { FIRST_ANIMATION_TIME } from "utils/constants";
 const LoadingButton = ({
   children,
   onClick,
-  type,
+  type = "button",
   disabled,
   status,
+  className = ""
 }: LoadingButtonProps) => {
   const [state, setState] = useState<LoadingButtonState>(
     LoadingButtonState.Idle
@@ -57,6 +58,7 @@ const LoadingButton = ({
 
   const classes = [
     "default-loading-button",
+    className,
     state > LoadingButtonState.Loading && "button-fade-out"
   ].join(" ");
 

@@ -36,6 +36,7 @@ export const initialState: PreliquitadionStateType = {
     message: "",
   },
   adjustingAmount: LoadingButtonState.Idle,
+  approvingInvoice: LoadingButtonState.Idle,
   showEditPreliquidationModal: false,
   preliquidations: [],
   dirty: false,
@@ -184,12 +185,18 @@ export const preliquidationSlice = createSlice({
     ) => {},
     getInvoiceDetailSaveError: () => {},
     getInvoiceDetailSaveSuccess: () => {},
-    getInvoiceDetailApproveRequest: (
+    getInvoiceDetailApproveFetch: (
       state: PreliquitadionStateType,
       action: PayloadAction<detailPreliquidationDatePicker>
-    ) => {},
-    getInvoiceDetailApproveError: () => {},
-    getInvoiceDetailApproveSuccess: () => {},
+    ) => {
+      state.approvingInvoice = LoadingButtonState.Loading;
+    },
+    getInvoiceDetailApproveError: (state: PreliquitadionStateType) => {
+      state.approvingInvoice = LoadingButtonState.Error;
+    },
+    getInvoiceDetailApproveSuccess: (state: PreliquitadionStateType) => {
+      state.approvingInvoice = LoadingButtonState.Success;
+    },
     getInvoiceDetailDeleteRequest: (
       state: PreliquitadionStateType,
       action: PayloadAction<RejectInvoiceMiddlewareType>
