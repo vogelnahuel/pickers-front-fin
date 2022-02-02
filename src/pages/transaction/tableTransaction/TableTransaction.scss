@@ -1,125 +1,87 @@
+@import "@pickit/pickit-grid-system";
 
-.titleTableTransactions { 
-    border-collapse: separate; 
-    border-spacing: 0px;
-    border-top-left-radius: 10px; 
-    border-top-right-radius: 10px; 
-    background: #F7F7F7;
-    border: 1px solid #CCCCCC;
-    width: 78vw;    
-    margin-top: 40px;
-}
-.titleTableTransactions thead tr{
-    border: 1px solid #CCCCCC;
-    height: 86px;
+.container-transaction-table {
+  @include container(24, 25px);
 }
 
-.titleTableTransactions thead tr td  {
-    border-bottom: 1px solid #CCCCCC;
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 23px;
-    color: #4D4D4D;
+@mixin styleParagraph($font-weight, $color) {
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: $font-weight;
+  color: $color;
 }
-.titleTableTransactions tbody tr {
-    background: white;
-    height: 100px;
+@mixin fontSize($font-size, $line-height) {
+  font-size: $font-size;
+  line-height: $line-height;
 }
-.titleTableTransactions tbody tr td{
-    border-bottom: 1px solid #CCCCCC;
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 23px;
-    color: #4F4F4F;
+%centerTable {
+  margin-left: 0px;
+  width: 100%;
 }
-.titleTableTransactions tbody tr:hover{
-    border-bottom: 1px solid #CCCCCC;
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 23px;
-    background: #F2F2F2;
-    mix-blend-mode: multiply;
-    cursor: pointer;
+%tableTopRadius {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
-.admin-table-alerta {
+$styleBorder: 1px solid #cccccc;
+$backgroundTableHead: #f7f7f7;
+$backgroundWhite: white;
+
+.flex-align-center {
+  display: flex;
+  align-items: center;
+}
+
+.titleTableTransactions {
+  overflow: hidden;
+  @extend %tableTopRadius;
+  background: $backgroundTableHead;
+  margin-top: 40px;
+  border: $styleBorder;
+  height: 86px;
+
+  @extend %centerTable;
+  div {
+    border-bottom: $styleBorder;
+    @include styleParagraph(bold, #4d4d4d);
+    @include fontSize(18px, 23px);
+    background: $backgroundWhite;
+    height: 85px;
+  }
+}
+.table-content {
+  @extend %centerTable;
+  background: white;
+  height: 100px;
+  border-left: $styleBorder;
+  border-right: $styleBorder;
+  div {
+    border-bottom: $styleBorder;
+    @include styleParagraph(normal, #4f4f4f);
+    @include fontSize(18px, 23px);
+  }
+  .admin-table-alerta {
     display: inline-block;
-    font-family: "Mulish";
-    font-style: normal;
-    font-weight: normal;
-    font-size: 13px;
-    line-height: 16px;
+    @include styleParagraph(normal, #ff1515);
+    @include fontSize(13px, 16px);
     margin-left: 1vw;
     letter-spacing: 0.004em;
-    color: #ff1515;
     background: rgba(255, 21, 21, 0.1);
     border: 1px solid #ff1515;
     box-sizing: border-box;
     border-radius: 5px;
     height: 29px;
-    padding-left: 0.5vw;
-    width: 74px;
+    padding-left: 1.4vw;
+    width: 99px;
     padding-top: 6px;
     margin-left: 25px;
   }
 
-
-.titleTableTransactions thead tr td:nth-child(1){
-    width: 10.833vw;
-}
-.titleTableTransactions thead tr td:nth-child(2){
-    width: 16vw;
-}
-.titleTableTransactions thead tr td:nth-child(3){
-    width: 16vw;
-}
-.titleTableTransactions thead tr td:nth-child(4){
-    width: 20vw;
-}
-.titleTableTransactions thead tr td:nth-child(5){
-    width: 15vw;
-}
-.img-filter-transaction{
- 
-}
-.titleTableTransactions tbody tr td:nth-child(1){
-    padding-left: 2.833vw;
-}
-
-@media(max-width:1310px){
-  .titleTableTransactions{
-      width: 77vw;
+  &:hover {
+    @include styleParagraph(normal, #4f4f4f);
+    @include fontSize(18px, 23px);
+    border-bottom: $styleBorder;
+    background: #f2f2f2;
+    mix-blend-mode: multiply;
+    cursor: pointer;
   }
-  .titleTableTransactions thead tr td:nth-child(5){
-    width: 17vw;
-    }
-    .titleTableTransactions thead tr td:nth-child(6){
-        width: 17vw;
-        }
- 
-}
-@media (min-width:1800px){
-    .titleTableTransactions{
-        width: 100%;
-    }
-    .titleTableTransactions thead tr{
-        height: 86px;
-    }
-    .titleTableTransactions tbody tr{
-        height: 100px;
-    }
-    .titleTableTransactions thead tr td:nth-child(2){
-        width: 213px;
-    }
-    .titleTableTransactions thead tr td:nth-child(3){
-        width: 361px;
-    }
-    .titleTableTransactions thead tr td:nth-child(4){
-        width: 335px;
-    }
 }
