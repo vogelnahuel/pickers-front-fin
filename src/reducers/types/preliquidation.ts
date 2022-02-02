@@ -15,6 +15,7 @@ export type PreliquitadionStateType = {
   invoiceFileStatus: InvoiceFileStatus;
   seeMore: boolean;
   adjustingAmount: LoadingButtonState;
+  approvingInvoice: LoadingButtonState;
   preliquidations: PreliquidationItem[];
   preliquidationsSelected: PreliquidationItem[];
   filters: PreliquidationFiltersType;

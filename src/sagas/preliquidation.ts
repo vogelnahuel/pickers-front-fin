@@ -59,7 +59,7 @@ const sagas = [
     putSaveDetailInvoice
   ),
   takeLatest(
-    preliquidationActions.getInvoiceDetailApproveRequest.type,
+    preliquidationActions.getInvoiceDetailApproveFetch.type,
     patchApproveDetailInvoice
   ),
   takeLatest(
@@ -251,11 +251,12 @@ function* patchApproveDetailInvoice({
   payload,
 }: PayloadAction<detailPreliquidationDatePicker>): Generator<
   | PutEffect<{ payload: detailPreliquidationDatePicker; type: string }>
-  | PutEffect<{ payload: undefined; type: string }>
+  | PutEffect<{ type: string; payload: undefined }>
   | PutEffect<{ type: string }>
-  | CallEffect<AxiosResponse<DetailPreliquidationsInvoiceApiResponseType>>,
+  | CallEffect<AxiosResponse<DetailPreliquidationsInvoiceApiResponseType>> 
+  | AllEffect<CallEffect<any> | CallEffect<true>>,
   void,
-  DetailPreliquidationsInvoiceApiResponseType
+  [DetailPreliquidationsInvoiceApiResponseType]
 > {
   let result: DetailPreliquidationBodyParamsType = {
     emisionDate: payload.emisionDate || "",
@@ -266,13 +267,18 @@ function* patchApproveDetailInvoice({
   };
   result = process(result);
 
-  const response = yield call(
-    preliquidationsMiddleware.patchApproveDetailInvoice,
-    payload.presettementId,
-    result
-  );
+  const [response] = yield all([
+    call(
+      preliquidationsMiddleware.patchApproveDetailInvoice,
+      payload.presettementId,
+      result
+    ),
+    delay(FIRST_ANIMATION_TIME),
+  ]);
+
   if (response.status !== 200) {
     yield put(preliquidationActions.getInvoiceDetailApproveError());
+    yield delay(FIRST_ANIMATION_TIME + 1000);
     yield put(
       notificationActions.showNotification({
         level: "error",
@@ -281,6 +287,8 @@ function* patchApproveDetailInvoice({
       })
     );
   } else {
+    yield put(preliquidationActions.getInvoiceDetailApproveSuccess());
+    yield delay(2*FIRST_ANIMATION_TIME);
     yield put(replace("/presettlements"));
   }
 }
