@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import moment from "moment";
 import { connect } from "react-redux";
 import { actions as detailTransaction } from "reducers/detailTransaction";
@@ -16,49 +16,69 @@ export const TableTransaction = ({
   getDetailTransaction,
 }: TableTransactionPropsTypes) => {
   return (
-    <div>
-      <table className="titleTableTransactions">
-        <thead>
-          <tr>
-            <td></td>
-            {transactionTableTitles.map((titulo: string) => (
-              <td key={titulo}>{i18next.t(titulo)}</td>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {transactions.length > 0 &&
-            transactions.map((data: TransactionResponseTypeResult) => (
-              <tr
-                id={`${data.transaction.id}`}
-                key={`${data.transaction.id}`}
-                onClick={() => getDetailTransaction(data.transaction.id)}
-              >
-                <td>
-                  <img
-                    className="img-transaction"
-                    src={TreePoints}
-                    alt="TreePoints"
-                  />
-                </td>
-                <td> {data.transaction.transactionCode} </td>
-                <td> {data.transaction.externalPickerId}</td>
-                <td>
-                  {moment(
-                    data.transaction.maxDeliveryDateTime.substring(0, 10),
-                    DATE_FORMATS.shortISODate
-                  ).format(DATE_FORMATS.shortDate)}
-                  {data.transaction.inAlert && (
-                    <div className="admin-table-alerta">
-                      {i18next.t("transactionTable:label.table.inAlert")}
-                    </div>
-                  )}
-                </td>
-                <td> {data.transaction.state.name}</td>
-              </tr>
-            ))}
-        </tbody>
-      </table>
+    <div className="container-transaction-table-fluid">
+      <div className="container-transaction-table-row title-table-transactions">
+        <div className="container-transaction-table-col-sm-2"></div>
+
+        {transactionTableTitles.map((titulo: string) => (
+          <Fragment key={titulo}>
+            {titulo === "transactionTable:label.table.slaExpiration" ? (
+              <div className="container-transaction-table-col-sm-6 flex-align-center">
+                {i18next.t(titulo)}
+              </div>
+            ) : titulo === "transactionTable:label.table.status" ? (
+              <div className="container-transaction-table-col-sm-5 flex-align-center">
+                {i18next.t(titulo)}
+              </div>
+            ) : (
+              <div className="container-transaction-table-col-sm-4 flex-align-center">
+                {i18next.t(titulo)}
+              </div>
+            )}
+          </Fragment>
+        ))}
+      </div>
+
+      {transactions.length > 0 &&
+        transactions.map((data: TransactionResponseTypeResult) => (
+          <div
+            id={`${data.transaction.id}`}
+            className="container-transaction-table-row table-content"
+            key={data.transaction.id}
+            onClick={() => getDetailTransaction(data.transaction.id)}
+          >
+            <div className="container-transaction-table-col-sm-2 flex-align-center">
+              <img
+                className="img-transaction"
+                src={TreePoints}
+                alt="TreePoints"
+              />
+            </div>
+            <div className="container-transaction-table-col-sm-4 flex-align-center">
+              {data.transaction.transactionCode}
+            </div>
+            <div className="container-transaction-table-col-sm-4 flex-align-center">
+              {data.transaction.orderNumber}
+            </div>
+            <div className="container-transaction-table-col-sm-4 flex-align-center">
+              {data.transaction.externalPickerId}
+            </div>
+            <div className="container-transaction-table-col-sm-6 flex-align-center">
+              {moment(
+                data.transaction.maxDeliveryDateTime.substring(0, 10),
+                DATE_FORMATS.shortISODate
+              ).format(DATE_FORMATS.shortDate)}
+              {data.transaction.inAlert && (
+                <div className="admin-table-alerta">
+                  {i18next.t("transactionTable:label.table.inAlert")}
+                </div>
+              )}
+            </div>
+            <div className="container-transaction-table-col-sm-5 flex-align-center">
+              {data.transaction.state.name}
+            </div>
+          </div>
+        ))}
     </div>
   );
 };
