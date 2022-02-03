@@ -1,5 +1,6 @@
 {
   "label.table.inAlert": "En alerta",
+  "label.table.orderNumber":"Nro de orden",
   "label.table.transaction": "Transacción",
   "label.table.idPicker": "Id de picker",
   "label.table.slaExpiration": "Vencimiento SLA",

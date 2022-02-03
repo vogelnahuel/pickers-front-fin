@@ -21,6 +21,7 @@ export const titlesAdminActive: string[] = [
 
 export const transactionTableTitles: string[] = [
   "transactionTable:label.table.transaction",
+  "transactionTable:label.table.orderNumber",
   "transactionTable:label.table.idPicker",
   "transactionTable:label.table.slaExpiration",
   "transactionTable:label.table.status",
