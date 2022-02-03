@@ -67,27 +67,12 @@ $background-white: white;
     mix-blend-mode: multiply;
     cursor: pointer;
   }
-  .admin-table-alerta {
-    display: inline-block;
-    @include style-paragraph(normal, #ff1515);
-    @include font-size(13px, 16px);
-    margin-left: 1vw;
-    letter-spacing: 0.004em;
-    background: rgba(255, 21, 21, 0.1);
-    border: 1px solid #ff1515;
-    box-sizing: border-box;
-    border-radius: 5px;
-    height: 29px;
-    padding-left: 1.4vw;
-    width: 99px;
-    padding-top: 6px;
-    margin-left: 25px;
-  }
 }
 
 
-.white-space {
+.table-transactions-sla-date {
   white-space: pre;
+  margin-right:15px;
 }
 .in-alert-red {
   color: #ff1515;

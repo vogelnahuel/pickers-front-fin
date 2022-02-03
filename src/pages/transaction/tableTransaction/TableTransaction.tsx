@@ -67,39 +67,33 @@ export const TableTransaction = ({
               {data.transaction.externalPickerId}
             </div>
             <div className="container-transaction-table-col-sm-6 flex-align-center">
-            {
+              {
+                <>
+                  <span className="table-transactions-sla-date">
+                    {ISO8601toDDMMYYYHHMM(
+                      data.transaction.maxDeliveryDateTime
+                    ).substring(0, 10)}
+                  </span>
 
-                    <>
-                      <span className="white-space">
-                        {ISO8601toDDMMYYYHHMM(
-                          data.transaction.maxDeliveryDateTime
-                        )
-                          .substring(0, 10)
-                          .concat("    ")}
-                      </span>
-                      {
-                        <span
-                          className={classNames({
-                            "in-alert-red": data.transaction.inAlert,
-                          })}
-                        >
-                          {"-" +
-                            ISO8601toDDMMYYYHHMM(
-                              data.transaction.maxDeliveryDateTime
-                            ).substring(10, 16)}
-                        </span>
-                      }
-                    </>
-                  }
-                  {data.transaction.inAlert && (
-
-                      <img
-                        className="admin-table-inAlert"
-                        src={TimeError}
-                        alt="icono"
-                      />
-
-                  )}
+                  <span
+                    className={classNames({
+                      "in-alert-red": data.transaction.inAlert,
+                    })}
+                  >
+                    {"-" +
+                      ISO8601toDDMMYYYHHMM(
+                        data.transaction.maxDeliveryDateTime
+                      ).substring(10, 16)}
+                  </span>
+                </>
+              }
+              {data.transaction.inAlert && (
+                <img
+                  className="admin-table-inAlert"
+                  src={TimeError}
+                  alt="icono"
+                />
+              )}
             </div>
             <div className="container-transaction-table-col-sm-5 flex-align-center">
               {data.transaction.state.name}
