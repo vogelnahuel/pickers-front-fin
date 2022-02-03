@@ -1,5 +1,6 @@
 import { Modal } from "@pickit/pickit-components";
 import Close from "assets/transaction/Close.svg";
+
 import { FlowTrasitionParamsType } from "component/flowtransition/types";
 import React from "react";
 import i18next from "i18next";
@@ -13,6 +14,8 @@ import ReasonsCanceled from "./modalTransaction/reasonsCanceled/ReasonsCanceled"
 import ReasonsCanceledConfirm from "./modalTransaction/reasonsCanceledConfirm/ReasonsCanceledConfirm";
 import Undelivered from "./modalTransaction/undelivered/Undelivered";
 import { DetailTransactionPropsType } from "./types";
+import classNames from "classnames";
+import TimeError from "../../../assets/transaction/TimeError.svg";
 
 export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
   detailTransaction,
@@ -52,22 +55,11 @@ export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
             <h2>
               {i18next.t("transactions:label.transactions.transactionCode")}
             </h2>
-            <p>
-              {i18next.t("transactions:label.transactions.orderNumber")}
-            </p>
+            <p>{i18next.t("transactions:label.transactions.orderNumber")}</p>
             <p>
               {i18next.t("detailTransaction:title.detailTransaction.state")}
             </p>
             <p className="modal-transaction-date">
-              {detailTransaction &&
-              detailTransaction.transaction &&
-              detailTransaction.transaction.inAlert ? (
-                <span className="transaction-modal-alert modal-transaction-alerta">
-                  {i18next.t("transactions:label.filter.inAlert")}
-                </span>
-              ) : (
-                <span className="modal-transaction-space"></span>
-              )}
               {i18next.t("transactions:label.filter.SLA")}
             </p>
           </div>
@@ -83,11 +75,29 @@ export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
             </p>
 
             <p className="modal-transaction-date">
-              {detailTransaction &&
-                detailTransaction.transaction &&
-                ISO8601toDDMMYYYHHMM(
+              <span className="table-transactions-sla-date">
+                {ISO8601toDDMMYYYHHMM(
                   detailTransaction.transaction.maxDeliveryDateTime
-                )}
+                ).substring(0, 10)}
+              </span>
+
+              <span
+                className={classNames({
+                  "in-alert-red": detailTransaction.transaction.inAlert,
+                })}
+              >
+                {"-" +
+                  ISO8601toDDMMYYYHHMM(
+                    detailTransaction.transaction.maxDeliveryDateTime
+                  ).substring(10, 16)}
+              </span>
+              {detailTransaction.transaction.inAlert && (
+                <img
+                  className="admin-table-inAlert"
+                  src={TimeError}
+                  alt="icono"
+                />
+              )}
             </p>
           </div>
           <hr

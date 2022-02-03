@@ -62,7 +62,6 @@ $background-white: white;
   &:hover {
     @include style-paragraph(normal, #4f4f4f);
     @include font-size(18px, 23px);
-    border-bottom: $style-border;
     background: #f2f2f2;
     mix-blend-mode: multiply;
     cursor: pointer;
@@ -79,4 +78,6 @@ $background-white: white;
 }
 .admin-table-inAlert {
   margin-left: 5px;
+  width: 18px;
+  height: auto;
 }

@@ -67,26 +67,23 @@ export const TableTransaction = ({
               {data.transaction.externalPickerId}
             </div>
             <div className="container-transaction-table-col-sm-6 flex-align-center">
-              {
-                <>
-                  <span className="table-transactions-sla-date">
-                    {ISO8601toDDMMYYYHHMM(
-                      data.transaction.maxDeliveryDateTime
-                    ).substring(0, 10)}
-                  </span>
+              <span className="table-transactions-sla-date">
+                {ISO8601toDDMMYYYHHMM(
+                  data.transaction.maxDeliveryDateTime
+                ).substring(0, 10)}
+              </span>
 
-                  <span
-                    className={classNames({
-                      "in-alert-red": data.transaction.inAlert,
-                    })}
-                  >
-                    {"-" +
-                      ISO8601toDDMMYYYHHMM(
-                        data.transaction.maxDeliveryDateTime
-                      ).substring(10, 16)}
-                  </span>
-                </>
-              }
+              <span
+                className={classNames({
+                  "in-alert-red": data.transaction.inAlert,
+                })}
+              >
+                {"-" +
+                  ISO8601toDDMMYYYHHMM(
+                    data.transaction.maxDeliveryDateTime
+                  ).substring(10, 16)}
+              </span>
+
               {data.transaction.inAlert && (
                 <img
                   className="admin-table-inAlert"
