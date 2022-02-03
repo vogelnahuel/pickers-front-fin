@@ -59,29 +59,25 @@ $background-white: white;
     @include style-paragraph(normal, #4f4f4f);
     @include font-size(18px, 23px);
   }
-  .admin-table-alerta {
-    display: inline-block;
-    @include style-paragraph(normal, #ff1515);
-    @include font-size(13px, 16px);
-    margin-left: 1vw;
-    letter-spacing: 0.004em;
-    background: rgba(255, 21, 21, 0.1);
-    border: 1px solid #ff1515;
-    box-sizing: border-box;
-    border-radius: 5px;
-    height: 29px;
-    padding-left: 1.4vw;
-    width: 99px;
-    padding-top: 6px;
-    margin-left: 25px;
-  }
-
   &:hover {
     @include style-paragraph(normal, #4f4f4f);
     @include font-size(18px, 23px);
-    border-bottom: $style-border;
     background: #f2f2f2;
     mix-blend-mode: multiply;
     cursor: pointer;
   }
+}
+
+
+.table-transactions-sla-date {
+  white-space: pre;
+  margin-right:15px;
+}
+.in-alert-red {
+  color: #ff1515;
+}
+.admin-table-inAlert {
+  margin-left: 5px;
+  width: 18px;
+  height: auto;
 }

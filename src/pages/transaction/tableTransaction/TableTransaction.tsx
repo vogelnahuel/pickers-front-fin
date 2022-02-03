@@ -1,15 +1,18 @@
 import React, { Fragment } from "react";
-import moment from "moment";
+
 import { connect } from "react-redux";
 import { actions as detailTransaction } from "reducers/detailTransaction";
 import { transactionsSelector } from "reducers/transactions";
 import { TransactionResponseTypeResult } from "sagas/types/transactions";
 import { AppDispatch, RootState } from "store";
 import TreePoints from "../../../assets/transaction/TreePoints.svg";
-import { DATE_FORMATS, transactionTableTitles } from "../../../utils/constants";
+import TimeError from "../../../assets/transaction/TimeError.svg";
+import { transactionTableTitles } from "../../../utils/constants";
 import "./TableTransaction.scss";
 import { TableTransactionPropsTypes } from "./types";
 import i18next from "i18next";
+import { ISO8601toDDMMYYYHHMM } from "utils/iso8601toDDMMYYHHMM";
+import { classNames } from "@react-pdf-viewer/core";
 
 export const TableTransaction = ({
   transactions,
@@ -64,14 +67,29 @@ export const TableTransaction = ({
               {data.transaction.externalPickerId}
             </div>
             <div className="container-transaction-table-col-sm-6 flex-align-center">
-              {moment(
-                data.transaction.maxDeliveryDateTime.substring(0, 10),
-                DATE_FORMATS.shortISODate
-              ).format(DATE_FORMATS.shortDate)}
+              <span className="table-transactions-sla-date">
+                {ISO8601toDDMMYYYHHMM(
+                  data.transaction.maxDeliveryDateTime
+                ).substring(0, 10)}
+              </span>
+
+              <span
+                className={classNames({
+                  "in-alert-red": data.transaction.inAlert,
+                })}
+              >
+                {"-" +
+                  ISO8601toDDMMYYYHHMM(
+                    data.transaction.maxDeliveryDateTime
+                  ).substring(10, 16)}
+              </span>
+
               {data.transaction.inAlert && (
-                <div className="admin-table-alerta">
-                  {i18next.t("transactionTable:label.table.inAlert")}
-                </div>
+                <img
+                  className="admin-table-inAlert"
+                  src={TimeError}
+                  alt="icono"
+                />
               )}
             </div>
             <div className="container-transaction-table-col-sm-5 flex-align-center">
