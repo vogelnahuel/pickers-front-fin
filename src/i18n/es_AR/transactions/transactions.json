@@ -1,6 +1,7 @@
 {
   "label.title.transactions": "Transacciones",
   "label.transactions.transactionCode": "Código de transacción",
+  "label.transactions.orderNumber": "Nro de orden",
   "label.filter.inAlert": "En alerta",
   "label.filter.SLA": "Vencimiento SLA",
   "label.input.lost": "Siniestrado",
