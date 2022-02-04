@@ -10,5 +10,6 @@ export type LoadingButtonProps = {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
   status?: LoadingButtonState;
-  type: "reset" | "button" | "submit" | undefined;
+  type?: "reset" | "button" | "submit" | undefined;
+  className?: string
 }

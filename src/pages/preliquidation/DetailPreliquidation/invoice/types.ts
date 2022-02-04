@@ -6,6 +6,7 @@ import {
 import { TypeOfShape } from "yup/lib/object";
 import { NotificationStateType } from "reducers/types/notification";
 import { PagesPreliquidationTypes } from "../types";
+import { LoadingButtonState } from "component/loadingButton/types";
 
 export type detailPreliquidationInvoiceContainerPropsType = {
   isFetching: boolean;
@@ -13,6 +14,7 @@ export type detailPreliquidationInvoiceContainerPropsType = {
   detailPreliquidations: DetailPreliquidationType;
   invoiceFileStatus: InvoiceFileStatus;
   invoiceTypes: InvoiceTypes[];
+  approvingInvoice: LoadingButtonState;
   setActualPage: (page: PagesPreliquidationTypes) => void;
   setDirty: (dirty: boolean) => void;
   getInvoiceDetail: (id: string | undefined) => void;
@@ -38,6 +40,7 @@ export type detailPreliquidationInvoicePropsType = {
   presettementId:string | undefined;
   isFormEnabled: boolean;
   initialValues: detailPreliquidationDatePicker;
+  approvingInvoice: LoadingButtonState;
   setDirty: (dirty: boolean) => void;
   getInvoiceDetailSave: (params:detailPreliquidationDatePicker) => void;
   getInvoiceDetailApprove: (params:detailPreliquidationDatePicker) => void;
