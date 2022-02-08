@@ -1,4 +1,4 @@
-import { ActionCreatorWithPayload, PayloadAction } from "@reduxjs/toolkit";
+import { PayloadAction } from "@reduxjs/toolkit";
 import { AxiosResponse } from "axios";
 import moment from "moment";
 import { ApiResponse } from "middleware/api";
@@ -13,7 +13,6 @@ import {
   takeLatest,
   all,
   AllEffect,
-  ChannelPutEffect,
 } from "redux-saga/effects";
 import { DATE_FORMATS, FIRST_ANIMATION_TIME } from "utils/constants";
 import * as preliquidationsMiddleware from "../middleware/preliquidations";
