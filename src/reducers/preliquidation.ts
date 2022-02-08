@@ -359,7 +359,7 @@ export const preliquidationSlice = createSlice({
     },
     toggleAll: (state: PreliquitadionStateType) => {
       const approvedItems = state.preliquidations.filter(
-        (p) => p.status.tag === "approved"
+        (p) =>  p.status?.tag === "approved" || p.status?.tag === "pending_accounting"
       );
       // Estan todas las preli seleccionadas
       if (approvedItems.length === state.preliquidationsSelected.length)
@@ -386,12 +386,12 @@ export const allPreliquidationsSelected = createSelector(
   (state: RootState) => state.preliquidations,
   (preli) =>
     preli.preliquidationsSelected.length > 0 &&
-    preli.preliquidations.filter((p) => p.status.tag === "approved").length ===
+    preli.preliquidations.filter((p) => p.status?.tag === "approved" || p.status?.tag === "pending_accounting").length ===
     preli.preliquidationsSelected.length
 );
 export const existApprovedPreliquidation = createSelector(
   (state: RootState) => state.preliquidations,
-  (preli) => preli.preliquidations.some((p) => p.status.tag === "approved")
+  (preli) => preli.preliquidations.some((p) => p.status?.tag === "approved" || p.status?.tag === "pending_accounting")
 );
 
 export default preliquidationSlice.reducer;

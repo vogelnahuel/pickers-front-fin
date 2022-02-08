@@ -4,7 +4,7 @@ import "./checkbox.scss";
 
 const Checkbox = ({ label, checked, ...others }: CheckboxProps) => {
   return (
-    <label className="checkbox-label">
+    <label className="checkbox-container">
       <input
         className="checkbox-input"
         type="checkbox"

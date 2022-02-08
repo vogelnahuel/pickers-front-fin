@@ -410,7 +410,7 @@ function* sendAccounting({
       preliquidationActions.sendAccountingSuccess()
     );
     yield put(preliquidationActions.getPreliquidationsRequest({
-      limit: 4,
+      limit: window.innerHeight < 770 ? 3 : 4,
       offset: 0
     }))
   }

@@ -35,12 +35,14 @@ const TablePreliquidation = ({
     e: React.MouseEvent<HTMLTableRowElement, MouseEvent>,
     id: number
   ) => {
-   
+
     const target = e?.target as HTMLElement;
-    if (target?.localName !== "input"){
-      history.push(`/presettlements/${id}`);
+    console.log(target)
+    if (target?.localName === "input" || target?.id === "checkbox-td" || target?.className.includes("checkbox-container")) {
+      return
     }
-  
+    history.push(`/presettlements/${id}`);
+
   };
 
 
@@ -81,8 +83,8 @@ const TablePreliquidation = ({
             <td>{ISO8601toDDMMYYYHHMM(item.generatedAt).substring(0, 11)}</td>
             <td>{i18next.t(`preli:label.select.${item.status?.tag}`)}</td>
             <td>${item.total}</td>
-            <td>
-              {(item.status?.tag === "approved" || item.status?.tag === "pending_accounting" )&& (
+            <td id={item.status?.tag === "approved" || item.status?.tag === "pending_accounting" ?"checkbox-td":""}>
+              {(item.status?.tag === "approved" || item.status?.tag === "pending_accounting") && (
                 <Checkbox
                   checked={!!isSelected(item.id)}
                   onChange={() => toggleItem && toggleItem(item)}
@@ -100,7 +102,7 @@ const mapStateToProps = (state: RootState) => ({
   preliquidationsSelected:
     preliquidationSelector(state).preliquidationsSelected,
   isAllSelected: allPreliquidationsSelected(state),
-  approved:existApprovedPreliquidation(state),
+  approved: existApprovedPreliquidation(state),
 
 });
 
