@@ -24,6 +24,7 @@ import {
   ParamsMiddlewareType,
   DetailPickerValidationSchema,
 } from "../types";
+
 import { DetailPickerContainerTypeProps, pickerTabs } from "./types";
 
 import { DetailPicker } from "pages/pickers/detailPicker/DetailPicker";

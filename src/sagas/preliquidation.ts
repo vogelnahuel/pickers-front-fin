@@ -169,6 +169,9 @@ function* getMorePreliquidations({
   void,
   PreliquidationsApiResponse
 > {
+  if (payload?.status === "") {
+    delete payload["status"];
+  }
   let payloadCast: PreliquidationCastParamsMiddlewareType =
     processDatePicker(payload);
   const response = yield call(

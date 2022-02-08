@@ -124,11 +124,11 @@ export const preliquidationSlice = createSlice({
     getPreliquidationsRequest: (
       state: PreliquitadionStateType,
       action: PayloadAction<PreliquidationParamsMiddlewareType>
-    ) => {},
+    ) => { },
     getMorePreliquidationsRequest: (
       state: PreliquitadionStateType,
       action: PayloadAction<PreliquidationParamsMiddlewareType>
-    ) => {},
+    ) => { },
     getPreliquidationsSuccess: (
       state: PreliquitadionStateType,
       action: PayloadAction<PreliquidationsContentResponseType>
@@ -148,8 +148,8 @@ export const preliquidationSlice = createSlice({
       state.seeMore = payload.hasMore;
       state.filtersExtraSeeMore.offset = payload.offset + payload.limit;
     },
-    getPreliquidationsError: () => {},
-    getMorePreliquidationsError: () => {},
+    getPreliquidationsError: () => { },
+    getMorePreliquidationsError: () => { },
     setPreliquidationFilters: (
       state: PreliquitadionStateType,
       action: PayloadAction<PreliquidationFiltersType>
@@ -166,8 +166,8 @@ export const preliquidationSlice = createSlice({
     getInvoiceDetailRequest: (
       state: PreliquitadionStateType,
       action: PayloadAction<string | undefined>
-    ) => {},
-    getInvoiceDetailError: () => {},
+    ) => { },
+    getInvoiceDetailError: () => { },
     getInvoiceDetailSuccess: (
       state: PreliquitadionStateType,
       action: PayloadAction<DetailPreliquidationsContentResponseType>
@@ -183,9 +183,9 @@ export const preliquidationSlice = createSlice({
     getInvoiceDetailSaveRequest: (
       state: PreliquitadionStateType,
       action: PayloadAction<detailPreliquidationDatePicker>
-    ) => {},
-    getInvoiceDetailSaveError: () => {},
-    getInvoiceDetailSaveSuccess: () => {},
+    ) => { },
+    getInvoiceDetailSaveError: () => { },
+    getInvoiceDetailSaveSuccess: () => { },
     getInvoiceDetailApproveFetch: (
       state: PreliquitadionStateType,
       action: PayloadAction<detailPreliquidationDatePicker>
@@ -201,13 +201,13 @@ export const preliquidationSlice = createSlice({
     getInvoiceDetailDeleteRequest: (
       state: PreliquitadionStateType,
       action: PayloadAction<RejectInvoiceMiddlewareType>
-    ) => {},
-    getInvoiceDetailDeleteError: () => {},
-    getInvoiceDetailDeleteSuccess: () => {},
+    ) => { },
+    getInvoiceDetailDeleteError: () => { },
+    getInvoiceDetailDeleteSuccess: () => { },
     replaceInvoiceFile: (
       state: PreliquitadionStateType,
       action: PayloadAction<{ id: number; content: string }>
-    ) => {},
+    ) => { },
     replaceInvoiceFileError: (state: PreliquitadionStateType) => {
       state.invoiceFileStatus = {
         loading: false,
@@ -218,7 +218,7 @@ export const preliquidationSlice = createSlice({
     uploadInvoiceFile: (
       state: PreliquitadionStateType,
       action: PayloadAction<{ id: number; content: string }>
-    ) => {},
+    ) => { },
     uploadInvoiceFileError: (state: PreliquitadionStateType) => {
       state.invoiceFileStatus = {
         loading: false,
@@ -243,7 +243,7 @@ export const preliquidationSlice = createSlice({
     deleteInvoiceFileRequest: (
       state: PreliquitadionStateType,
       action: PayloadAction<{ id: number }>
-    ) => {},
+    ) => { },
     deleteInvoiceFileError: (state: PreliquitadionStateType) => {
       state.invoiceFileStatus = {
         loading: false,
@@ -265,10 +265,15 @@ export const preliquidationSlice = createSlice({
 
     sendAccountingRequest: (
       state: PreliquitadionStateType,
-      action: PayloadAction< sendAccountinMiddlewareType>
-    ) => {},
-    sendAccountingError: () => {},
-    sendAccountingSuccess: (state: PreliquitadionStateType,) => {state.preliquidationsSelected=[]},
+      action: PayloadAction<sendAccountinMiddlewareType>
+    ) => { },
+    sendAccountingError: () => { },
+    sendAccountingSuccess: (state: PreliquitadionStateType) => {
+      state.preliquidationsSelected = [];
+      state.filters = initialState.filters;
+      state.filtersExtra = initialState.filtersExtra;
+      state.filtersExtraSeeMore = initialState.filtersExtraSeeMore;
+    },
 
     toggleModalVisibility: (
       state: PreliquitadionStateType,
@@ -276,8 +281,8 @@ export const preliquidationSlice = createSlice({
     ) => {
       state.showEditPreliquidationModal = action.payload;
     },
-    getInvoiceDetailTypesRequest: () => {},
-    getInvoiceDetailTypesError: () => {},
+    getInvoiceDetailTypesRequest: () => { },
+    getInvoiceDetailTypesError: () => { },
     getInvoiceDetailTypesSuccess: (
       state: PreliquitadionStateType,
       action: PayloadAction<InvoiceTypes[]>
@@ -303,7 +308,7 @@ export const preliquidationSlice = createSlice({
     ) => {
       state.adjustingAmount = LoadingButtonState.Idle;
     },
-    getDetailPreliquidationsError: () => {},
+    getDetailPreliquidationsError: () => { },
     getDetailPreliquidationsSuccess: (
       state: PreliquitadionStateType,
       action: PayloadAction<any>
@@ -382,7 +387,7 @@ export const allPreliquidationsSelected = createSelector(
   (preli) =>
     preli.preliquidationsSelected.length > 0 &&
     preli.preliquidations.filter((p) => p.status.tag === "approved").length ===
-      preli.preliquidationsSelected.length
+    preli.preliquidationsSelected.length
 );
 export const existApprovedPreliquidation = createSelector(
   (state: RootState) => state.preliquidations,
