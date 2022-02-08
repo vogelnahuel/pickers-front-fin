@@ -82,7 +82,7 @@ const TablePreliquidation = ({
             <td>{i18next.t(`preli:label.select.${item.status?.tag}`)}</td>
             <td>${item.total}</td>
             <td>
-              {item.status?.tag === "approved" && (
+              {item.status?.tag === "approved" || item.status?.tag === "pending_accounting" && (
                 <Checkbox
                   checked={!!isSelected(item.id)}
                   onChange={() => toggleItem && toggleItem(item)}

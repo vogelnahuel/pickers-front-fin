@@ -19,6 +19,7 @@ import {
   PreliquidationsContentResponseType,
   AdjustAmountMiddlewareType,
   RejectInvoiceMiddlewareType,
+  sendAccountinMiddlewareType,
 } from "sagas/types/preliquidation";
 import { RootState } from "store";
 import { endsWithAny } from "utils/endsWithAny";
@@ -261,6 +262,14 @@ export const preliquidationSlice = createSlice({
         url: null,
       };
     },
+
+    sendAccountingRequest: (
+      state: PreliquitadionStateType,
+      action: PayloadAction< sendAccountinMiddlewareType>
+    ) => {},
+    sendAccountingError: () => {},
+    sendAccountingSuccess: () => {},
+
     toggleModalVisibility: (
       state: PreliquitadionStateType,
       action: PayloadAction<boolean>

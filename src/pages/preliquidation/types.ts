@@ -22,6 +22,8 @@ export type PreliquidationContainerProps = {
   getMorePreliquidations: (params: PreliquidationParamsMiddlewareType) => void;
   showNotification: (content: NotificationStateType) => void;
   resetAllSelected: () => void;
+  sendAccounting: (params: {presettlements:number[]})=>void
+  preliquidationsSelected: PreliquidationItem[]
 };
 
 export type PreliquidationsProps = {
