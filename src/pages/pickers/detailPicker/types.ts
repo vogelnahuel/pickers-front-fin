@@ -1,6 +1,7 @@
 import { DetailPickerTagFileType, PickerType } from "../types";
 import { NotificationStateType } from "reducers/types/notification";
 import { ProvincesTypes } from "sagas/types/pickers";
+import { FormApi } from "final-form";
 
 export type DetailPickerContainerTypeProps = {
   pendingUserAdminPicker: PickerType;
@@ -33,7 +34,7 @@ export type DetailPickerTypeProps = {
   actualPage: pickerTabs;
   setDirty: Function;
   active: boolean;
-  cancel: Function;
+  cancel: (isDirty: boolean, form: FormApi<object, object>) => void;
   aproveSubmit: Function;
   nameDisplay: string;
   postPendingUserDocumentsEdit: Function;
