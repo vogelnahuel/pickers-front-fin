@@ -29,6 +29,7 @@ import { DetailPickerContainerTypeProps, pickerTabs } from "./types";
 import { DetailPicker } from "pages/pickers/detailPicker/DetailPicker";
 import { DATE_FORMATS, VALIDATION_REGEX } from "utils/constants";
 import { NotificationStateType } from "reducers/types/notification";
+import { FormApi } from "final-form";
 
 const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
   props
@@ -139,7 +140,18 @@ const DetailPickerContainer: React.FC<DetailPickerContainerTypeProps> = (
     else onClose();
   };
 
-  const cancel = (isDirty: boolean, restart: Function) => {
+  const cancel = (isDirty: boolean, form: FormApi<object, object>) => {
+    const restart = () => {
+      form.setConfig('keepDirtyOnReinitialize', false);
+      form.reset();
+      const { values } = form.getState();
+      const { accountingData } = values as PickerType;
+      if(accountingData?.bankIdentifier.length === 22){
+        const prefix = accountingData?.bankIdentifier?.substring(0, 3);
+        props.getBankName(prefix);
+      }
+      form.setConfig('keepDirtyOnReinitialize', true);
+    }
     if (isDirty) showDirtyNotification(restart);
     else restart();
   };

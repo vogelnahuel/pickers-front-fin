@@ -124,6 +124,7 @@ export type PickerContainerTypes = {
   pag: string;
   actualPage: pickerTabs;
   reset: Function;
+  resetDetailPicker: () => void;
   getPendingUser: (params: ParamsMiddlewareType) => void;
   setPendingUserFilters: Function;
   setPendingUserExtraFilters: Function;

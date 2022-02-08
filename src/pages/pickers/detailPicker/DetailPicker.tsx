@@ -156,11 +156,11 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                     subscription={{
                       dirty: true,
                       values: true,
-                      pristine: true
+                      invalid: true,
                     }}
                     onChange={(pro) => {
                       setDirty(pro.dirty);
-                    }}
+                    }} 
                   />
                   <div
                     id="personal-data-card"
@@ -526,7 +526,7 @@ export const DetailPicker: React.FC<DetailPickerTypeProps> = ({
                       <div className="pending-admin-picker-button">
                         <button
                           type="button"
-                          onClick={() => cancel(dirty, form.restart)}
+                          onClick={() => cancel(dirty, form)}
                           disabled={!dirty}
                           className="button-submit-subtype"
                         >
