@@ -77,7 +77,7 @@ export const getDetailPreliquidations = (id: number): Promise<AxiosResponse<Deta
   API.get(`/ms-admin-rest/api/v1.0/presettlements/${id}`);
 
   export const sendAccounting = (
-    params:  {presettlements:number[]}//UploadInvoiceFileMiddlewareType
+    params:  {presettlements:number[]}
   ): Promise<AxiosResponse<ApiResponse<void>>> =>
     API.post(`/ms-admin-rest/api/v1.0/presettlements/accounting`, params);
 
