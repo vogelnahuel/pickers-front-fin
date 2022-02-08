@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { PreliquidationParamsMiddlewareType } from "sagas/types/preliquidation";
+import { PreliquidationParamsMiddlewareType, sendAccountinMiddlewareType } from "sagas/types/preliquidation";
 import { AppDispatch, RootState } from "store";
 import { Preliquidation } from "./Preliquidation";
 import {
@@ -38,7 +38,7 @@ const PreliquidationContainer = (
       onCloseLabel: i18next.t("global:label.button.cancel"),
       onClickLabel: i18next.t("preli:label.button.send"),
       onClose: undefined,
-      onClick: () => console.log("Send"),
+      onClick: () => props.sendAccounting({ presettlements: props.preliquidationsSelected.map((item)=>{return item.id}) }),
     });
   };
 
@@ -52,6 +52,7 @@ const mapStateToProps = (state: RootState) => ({
   filtersExtra: preliquidationSelector(state).filtersExtra,
   filtersExtraSeeMore: preliquidationSelector(state).filtersExtraSeeMore,
   seeMore: preliquidationSelector(state).seeMore,
+  preliquidationsSelected: preliquidationSelector(state).preliquidationsSelected,
   numberOfPreliSelected:
     preliquidationSelector(state).preliquidationsSelected.length,
   anyPreliquidationSelected:
@@ -71,11 +72,14 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   getMorePreliquidations: (params: PreliquidationParamsMiddlewareType) => {
     dispatch(preliActions.getMorePreliquidationsRequest(params));
   },
-  resetAllSelected:()=>{
+  resetAllSelected: () => {
     dispatch(preliActions.resetAllSelected())
   },
   showNotification: (content: NotificationStateType) => {
     dispatch(notificationActions.showNotification(content));
+  },
+  sendAccounting: (params: sendAccountinMiddlewareType) => {
+    dispatch(preliActions.sendAccountingRequest(params));
   },
 });
 export default connect(
