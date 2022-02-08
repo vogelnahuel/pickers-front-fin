@@ -9,6 +9,7 @@ import {
 } from "./types";
 import { AppDispatch, RootState } from "store";
 import { actions, pickersSelector } from "reducers/pickers";
+import { actions as detailPickersActions } from "reducers/detailPicker";
 import { NotificationStateType } from "reducers/types/notification";
 import { actions as notificationActions } from "reducers/notification";
 import { hasPickerWrongFilesSelector } from "reducers/detailPicker";
@@ -35,6 +36,11 @@ const PendingUserAdminContainer: React.FC<PickerContainerTypes> = (
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.actualPage]);
 
+  useEffect(() => {
+    props.resetDetailPicker();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <Pickers
       {...props}
@@ -60,6 +66,9 @@ const mapStateToProps = (state: RootState) => ({
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
   reset: () => {
     dispatch(actions.reset());
+  },
+  resetDetailPicker: () => {
+    dispatch(detailPickersActions.resetPicker())
   },
   getPendingUser: (params: ParamsMiddlewareType) => {
     dispatch(actions.getPendingUserRequest(params));

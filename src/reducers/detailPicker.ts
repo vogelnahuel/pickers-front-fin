@@ -111,7 +111,11 @@ export const detailPickerSlice = createSlice({
   name: SLICE_NAME,
   initialState,
   reducers: {
-    
+    resetPicker: (
+      state: DetailPickerStateType,
+    ) => {
+      state.pendingUserAdminPicker = initialState.pendingUserAdminPicker;
+    },
     getPendingUserPickerRequest: (
       state: DetailPickerStateType,
       action: PayloadAction<number>
@@ -122,6 +126,7 @@ export const detailPickerSlice = createSlice({
     ) => {
       const { payload } = action;
       state.pendingUserAdminPicker = payload;
+      state.invalidBank = !!!payload.accountingData?.bankName;
       state.nameDisplay = `${payload.personalData.name} ${payload.personalData.surname}`;
     },
     getPendingUserPickerError: () => {},
@@ -261,7 +266,6 @@ export const detailPickerSlice = createSlice({
       state.provinces = payload;
     },
   },
-
   extraReducers: (builder) =>
     builder
       .addMatcher(isRequestAction, (state: DetailPickerStateType) => {
