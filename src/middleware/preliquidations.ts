@@ -10,6 +10,7 @@ import {
   PreliquidationCastParamsMiddlewareType,
   AdjustAmountMiddlewareType,
   DetatilPreliquidationsApiResponse,
+  sendAccountinMiddlewareType,
 } from "sagas/types/preliquidation";
 import { ApiResponse } from "./api";
 
@@ -77,7 +78,7 @@ export const getDetailPreliquidations = (id: number): Promise<AxiosResponse<Deta
   API.get(`/ms-admin-rest/api/v1.0/presettlements/${id}`);
 
   export const sendAccounting = (
-    params:  {presettlements:number[]}
+    params:  sendAccountinMiddlewareType
   ): Promise<AxiosResponse<ApiResponse<void>>> =>
     API.post(`/ms-admin-rest/api/v1.0/presettlements/accounting`, params);
 

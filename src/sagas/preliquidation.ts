@@ -1,4 +1,4 @@
-import { PayloadAction } from "@reduxjs/toolkit";
+import { ActionCreatorWithPayload, PayloadAction } from "@reduxjs/toolkit";
 import { AxiosResponse } from "axios";
 import moment from "moment";
 import { ApiResponse } from "middleware/api";
@@ -13,6 +13,7 @@ import {
   takeLatest,
   all,
   AllEffect,
+  ChannelPutEffect,
 } from "redux-saga/effects";
 import { DATE_FORMATS, FIRST_ANIMATION_TIME } from "utils/constants";
 import * as preliquidationsMiddleware from "../middleware/preliquidations";
@@ -130,7 +131,6 @@ function* getPreliquidations({
   }
   let payloadCast: PreliquidationCastParamsMiddlewareType =
     processDatePicker(payload);
-
   const response = yield call(
     preliquidationsMiddleware.getPreliquidations,
     payloadCast
@@ -392,7 +392,7 @@ function* sendAccounting({
   payload,
 }: PayloadAction<sendAccountinMiddlewareType>): Generator<
   | PutEffect<{ payload: undefined; type: string }>
-  | PutEffect<{ payload: undefined; type: string }>
+  | PutEffect<{ type: string }>
   | CallEffect<AxiosResponse<ApiResponse<void>>>,
   void,
   ApiResponse<void>
@@ -407,6 +407,10 @@ function* sendAccounting({
     yield put(
       preliquidationActions.sendAccountingSuccess()
     );
+    yield put(preliquidationActions.getPreliquidationsRequest({
+      limit: 4,
+      offset: 0
+    }))
   }
 }
 

@@ -268,7 +268,7 @@ export const preliquidationSlice = createSlice({
       action: PayloadAction< sendAccountinMiddlewareType>
     ) => {},
     sendAccountingError: () => {},
-    sendAccountingSuccess: () => {},
+    sendAccountingSuccess: (state: PreliquitadionStateType,) => {state.preliquidationsSelected=[]},
 
     toggleModalVisibility: (
       state: PreliquitadionStateType,
