@@ -37,8 +37,10 @@ const TablePreliquidation = ({
   ) => {
 
     const target = e?.target as HTMLElement;
-    console.log(target)
-    if (target?.localName === "input" || target?.id === "checkbox-td" || target?.className.includes("checkbox-container")) {
+    if (
+      target?.localName === "input" ||
+      target?.id === "checkbox-td" ||
+      target?.className.includes("checkbox-container")) {
       return
     }
     history.push(`/presettlements/${id}`);
@@ -83,7 +85,7 @@ const TablePreliquidation = ({
             <td>{ISO8601toDDMMYYYHHMM(item.generatedAt).substring(0, 11)}</td>
             <td>{i18next.t(`preli:label.select.${item.status?.tag}`)}</td>
             <td>${item.total}</td>
-            <td id={item.status?.tag === "approved" || item.status?.tag === "pending_accounting" ?"checkbox-td":""}>
+            <td id={item.status?.tag === "approved" || item.status?.tag === "pending_accounting" ? "checkbox-td" : ""}>
               {(item.status?.tag === "approved" || item.status?.tag === "pending_accounting") && (
                 <Checkbox
                   checked={!!isSelected(item.id)}
