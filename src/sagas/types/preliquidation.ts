@@ -162,3 +162,5 @@ export type DetatilPreliquidationsApiResponse = {
 export type AdjustmenResponseType = {
   statusCode?: number;
 }
+
+export type sendAccountinMiddlewareType = { presettlements: number[] }

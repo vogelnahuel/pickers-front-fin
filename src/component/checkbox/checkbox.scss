@@ -1,9 +1,10 @@
-.label-container {
+.checkbox-container {
 	display: flex;
 	align-items: center;
 	gap: 8px;
 	padding: 2px 4px;
 	margin: 0;
+	width: fit-content;
 }
 
 .checkbox-input {

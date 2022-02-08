@@ -2,6 +2,7 @@ import { NotificationStateType } from "reducers/types/notification";
 import {
   PreliquidationItem,
   PreliquidationParamsMiddlewareType,
+  sendAccountinMiddlewareType,
 } from "sagas/types/preliquidation";
 import { PreliquidationFilterExtraType, PreliquidationFiltersType } from "./filter/types";
 
@@ -22,6 +23,8 @@ export type PreliquidationContainerProps = {
   getMorePreliquidations: (params: PreliquidationParamsMiddlewareType) => void;
   showNotification: (content: NotificationStateType) => void;
   resetAllSelected: () => void;
+  sendAccounting: (params: sendAccountinMiddlewareType)=>void
+  preliquidationsSelected: PreliquidationItem[]
 };
 
 export type PreliquidationsProps = {
