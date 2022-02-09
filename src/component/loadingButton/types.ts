@@ -8,6 +8,7 @@ export enum LoadingButtonState {
 export type LoadingButtonProps = {
   children: string | JSX.Element | JSX.Element[];
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  allowClickAfterAnimation?: boolean;
   disabled?: boolean;
   status?: LoadingButtonState;
   type?: "reset" | "button" | "submit" | undefined;
