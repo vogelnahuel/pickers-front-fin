@@ -13,6 +13,7 @@ import {
 } from "reducers/preliquidation";
 import i18next from "i18next";
 import { AdjustAmountMiddlewareType } from "sagas/types/preliquidation";
+import { LoadingButtonState } from "component/loadingButton/types";
 
 const EditPreliquidationAmountContainer = (
   props: EditPreliquidationAmountContainerProps & ConnectorProps
@@ -67,6 +68,9 @@ const EditPreliquidationAmountContainer = (
   };
 
   const onSubmit = (values: PreliquidationAmountForm) => {
+    // Evita multiples llamados
+    if(props.adjustingAmount > LoadingButtonState.Idle) return;
+
     const params: AdjustAmountMiddlewareType = {
       id: props.preliquidation.id,
       currentAmount: props.preliquidation.total,

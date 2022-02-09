@@ -149,6 +149,7 @@ export const EditPreliquidationAmount: React.FC<
                   />
                   <div className="button-confirm-container">
                     <LoadingButton
+                      allowClickAfterAnimation
                       type={
                         adjustingAmount > LoadingButtonState.Loading
                           ? "button"

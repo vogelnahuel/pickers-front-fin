@@ -11,6 +11,7 @@ const LoadingButton = ({
   type = "button",
   disabled,
   status,
+  allowClickAfterAnimation,
   className = ""
 }: LoadingButtonProps) => {
   const [state, setState] = useState<LoadingButtonState>(
@@ -27,7 +28,7 @@ const LoadingButton = ({
       setTimeout(() => (setTime(true)), FIRST_ANIMATION_TIME);
       if (onClick) onClick(e);
     }
-    else if(state > LoadingButtonState.Loading && onClick) {
+    else if(state > LoadingButtonState.Loading && onClick && allowClickAfterAnimation) {
       setState(LoadingButtonState.Idle);
       setTime(false);
       setResolved(false);
@@ -49,7 +50,7 @@ const LoadingButton = ({
   useEffect(() => {
     if (resolved && time && status) {
       setState(status);
-
+        
       // Se reinicia el ciclo
       setTime(false);
       setResolved(false);
