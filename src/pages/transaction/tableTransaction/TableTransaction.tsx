@@ -18,6 +18,16 @@ export const TableTransaction = ({
   transactions,
   getDetailTransaction,
 }: TableTransactionPropsTypes) => {
+
+  function lengthOrderNumber(orderNumber: string): string {
+
+    return orderNumber.length > 10 && window.screen.width < 1920
+      ? orderNumber.substring(0, 10) + "..."
+      : orderNumber.length > 12 && window.screen.width >= 1920
+      ? orderNumber.substring(0, 12) + "..."
+      : orderNumber;
+  }
+
   return (
     <div className="container-transaction-table-fluid">
       <div className="container-transaction-table-row title-table-transactions">
@@ -60,8 +70,8 @@ export const TableTransaction = ({
             <div className="container-transaction-table-col-sm-4 flex-align-center">
               {data.transaction.transactionCode}
             </div>
-            <div className="container-transaction-table-col-sm-4 flex-align-center">
-              {data.transaction.orderNumber}
+            <div className="container-transaction-table-col-sm-4 flex-align-center transaction-table-order-number">
+              {lengthOrderNumber(data.transaction.orderNumber)}
             </div>
             <div className="container-transaction-table-col-sm-4 flex-align-center">
               {data.transaction.externalPickerId}
