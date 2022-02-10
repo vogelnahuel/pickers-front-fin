@@ -1,4 +1,4 @@
-import { Modal } from "@pickit/pickit-components";
+import { Modal, Tooltip, ToolTipPosition } from "@pickit/pickit-components";
 import Close from "assets/transaction/Close.svg";
 
 import { FlowTrasitionParamsType } from "component/flowtransition/types";
@@ -16,6 +16,7 @@ import Undelivered from "./modalTransaction/undelivered/Undelivered";
 import { DetailTransactionPropsType } from "./types";
 import classNames from "classnames";
 import TimeError from "../../../assets/transaction/TimeError.svg";
+import "./detailTransaction.scss";
 
 export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
   detailTransaction,
@@ -51,22 +52,45 @@ export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
             alt="cerrar"
           />
 
-          <div className="modal-transaction-title">
-            <h2>
+          <div className="container-detail-transaction-header-row modal-transaction-title">
+
+            <h2 className="container-detail-transaction-header-col-sm-4">
               {i18next.t("transactions:label.transactions.transactionCode")}
             </h2>
-            <p>{i18next.t("transactions:label.transactions.orderNumber")}</p>
-            <p>
+
+            <p className="container-detail-transaction-header-col-sm-3">
+              {i18next.t("transactions:label.transactions.orderNumber")}
+            </p>
+            <p className="container-detail-transaction-header-col-sm-2">
               {i18next.t("detailTransaction:title.detailTransaction.state")}
             </p>
-            <p className="modal-transaction-date">
+            <p className="container-detail-transaction-header-col-sm-3 modal-transaction-date">
               {i18next.t("transactions:label.filter.SLA")}
             </p>
+
           </div>
-          <div className="modal-transaction-subtitle">
-            <h2>{detailTransaction.transaction.transactionCode}</h2>
-            <p>{detailTransaction.transaction.orderNumber}</p>
-            <p>
+
+          <div className="container-detail-transaction-header-row modal-transaction-subtitle">
+            <h2 className="container-detail-transaction-header-col-sm-4">
+              {detailTransaction.transaction.transactionCode}
+            </h2>
+            <div className="container-detail-transaction-header-col-sm-3">
+              <Tooltip
+                position={ToolTipPosition.bottom}
+                message={detailTransaction.transaction.orderNumber}
+                disabled={
+                  detailTransaction.transaction.orderNumber.length <= 18
+                }
+              >
+                <p>
+                  {detailTransaction.transaction.orderNumber.substring(0, 18)}
+                  {detailTransaction.transaction.orderNumber.length > 18 &&
+                    "..."}
+                </p>
+              </Tooltip>
+            </div>
+
+            <p className="container-detail-transaction-header-col-sm-2">
               {i18next.t(
                 TRANSACTION_STATE_ID_LABEL[
                   detailTransaction.transaction.state.id
@@ -74,7 +98,7 @@ export const DetailTransaction: React.FC<DetailTransactionPropsType> = ({
               )}
             </p>
 
-            <p className="modal-transaction-date">
+            <p className="container-detail-transaction-header-col-sm-3 modal-transaction-date">
               <span className="table-transactions-sla-date">
                 {ISO8601toDDMMYYYHHMM(
                   detailTransaction.transaction.maxDeliveryDateTime

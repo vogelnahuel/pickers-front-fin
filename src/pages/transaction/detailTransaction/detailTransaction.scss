@@ -1,0 +1,5 @@
+@import "@pickit/pickit-grid-system";
+
+.container-detail-transaction-header {
+  @include container(12, 25px);
+}
