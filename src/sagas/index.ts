@@ -47,7 +47,7 @@ export default function* rootSaga() {
                 `${saga.name} was terminated because it threw an exception on startup.`
               );
             }
-            yield call(handleError, error);
+            // yield call(handleError, error);
           }
 
           if (!httpError) {
@@ -61,9 +61,9 @@ export default function* rootSaga() {
   );
 }
 
-export function* handleError(error: ITypeError) {
-  const { status } = error.response;
-  if (status === 401) {
-    yield put(actions.logout());
-  }
-}
+// export function* handleError(error: ITypeError) {
+//   const { status } = error.response;
+//   if (status === 401) {
+//     yield put(actions.logout());
+//   }
+// }

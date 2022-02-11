@@ -13,14 +13,14 @@ export const setAuthToken = (token: string) => {
   api.defaults.headers.Authorization = `bearer ${token}`;
 };
 
-api.interceptors.request.use((request) => {
-  if (request.headers && !request.headers.Authorization) {
-    let token = getValue("token");
-    request.headers.Authorization = `bearer ${token}`;
-    setAuthToken(token);
-  }
-  return request;
-});
+// api.interceptors.request.use((request) => {
+//   if (request.headers && !request.headers.Authorization) {
+//     let token = getValue("token");
+//     request.headers.Authorization = `bearer ${token}`;
+//     setAuthToken(token);
+//   }
+//   return request;
+// });
 
 api.interceptors.response.use(
   (response) => {
